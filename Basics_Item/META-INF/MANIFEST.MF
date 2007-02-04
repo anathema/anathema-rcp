@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Basics_Item
+Bundle-SymbolicName: Basics_Item
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Require-Bundle: Basics_Lib
+Export-Package: net.sf.anathema.framework.item,
+ net.sf.anathema.framework.item.change,
+ net.sf.anathema.framework.item.data,
+ net.sf.anathema.framework.persistence,
+ net.sf.anathema.framework.repository,
+ net.sf.anathema.framework.repository.access
