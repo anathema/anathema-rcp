@@ -1,5 +1,7 @@
 package anathema_rcp.repository;
 
+import net.sf.anathema.basics.jface.FileEditorInput;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.OpenEvent;
@@ -12,8 +14,6 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-
-import editor.styledtext.editors.FileEditorInput;
 
 public class RepositoryView extends ViewPart {
   public static final String ID = "Anathema_RCP.view";

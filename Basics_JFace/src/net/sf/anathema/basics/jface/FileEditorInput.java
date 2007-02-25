@@ -1,4 +1,4 @@
-package editor.styledtext.editors;
+package net.sf.anathema.basics.jface;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IStorage;

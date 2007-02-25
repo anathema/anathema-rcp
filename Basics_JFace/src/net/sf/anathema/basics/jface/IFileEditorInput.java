@@ -8,38 +8,43 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package editor.styledtext.editors;
+package net.sf.anathema.basics.jface;
 
-import org.eclipse.core.resources.IStorage;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.ui.IEditorInput;
+import org.eclipse.core.resources.IFile;
 
 /**
- * Interface for a <code>IStorage</code> input to an editor.
+ * This interface defines a file-oriented input to an editor.
  * <p>
  * Clients implementing this editor input interface should override
  * <code>Object.equals(Object)</code> to answer true for two inputs
  * that are the same. The <code>IWorbenchPage.openEditor</code> APIs
  * are dependent on this to find an editor with the same input.
  * </p><p>
- * Clients should implement this interface to declare new types of 
- * <code>IStorage</code> editor inputs.
+ * File-oriented editors should support this as a valid input type, and allow
+ * full read-write editing of its content.
  * </p><p>
- * File-oriented editors should support this as a valid input type, and display
- * its content for viewing (but not allow modification).
- * Within the editor, the "save" and "save as" operations should create a new 
- * file resource within the workspace.
+ * A default implementation of this interface is provided by 
+ * org.eclipse.ui.part.FileEditorInput.  
  * </p><p>
  * All editor inputs must implement the <code>IAdaptable</code> interface;
  * extensions are managed by the platform's adapter manager.
  * </p>
+ *
+ * @see org.eclipse.core.resources.IFile
  */
-public interface IStorageEditorInput extends IEditorInput {
+public interface IFileEditorInput extends IStorageEditorInput {
     /**
-     * Returns the underlying IStorage object.
+     * Returns the file resource underlying this editor input.
+     * <p>
+     * The <code>IFile</code> returned can be a handle to a resource
+     * that does not exist in the workspace. As such, an editor should
+     * provide appropriate feedback to the user instead of simply failing
+     * during input validation. For example, a text editor could open
+     * in read-only mode with a message in the text area to inform the
+     * user that the file does not exist.
+     * </p>
      *
-     * @return an IStorage object.
-     * @exception CoreException if this method fails
+     * @return the underlying file
      */
-    public IStorage getStorage() throws CoreException;
+    public IFile getFile();
 }

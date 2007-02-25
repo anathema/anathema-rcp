@@ -1,5 +1,6 @@
 package editor.styledtext.editors;
 
+import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
 import net.sf.anathema.lib.xml.DocumentUtilities;
