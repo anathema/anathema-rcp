@@ -14,7 +14,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
@@ -36,8 +35,8 @@ public class StyledTextEditor extends EditorPart {
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
-      IFileEditorInput fileInput = (IFileEditorInput) input;
-      Document xmlDocument = DocumentUtilities.read(fileInput.getFile().getContents());
+      IStorageEditorInput fileInput = (IStorageEditorInput) input;
+      Document xmlDocument = DocumentUtilities.read(fileInput.getStorage().getContents());
       BasicsPersister basicsPersister = new BasicsPersister();
       itemData = new BasicItemData();
       basicsPersister.load(xmlDocument.getRootElement(), itemData);

@@ -8,9 +8,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text,
  org.eclipse.ui.editors,
  org.eclipse.ui.workbench.texteditor,
- org.eclipse.ui.ide,
  org.eclipse.core.resources,
  Basics_Item,
  Basics_Lib
 Eclipse-LazyStart: true
 Bundle-ClassPath: .
+Export-Package: editor.styledtext.editors

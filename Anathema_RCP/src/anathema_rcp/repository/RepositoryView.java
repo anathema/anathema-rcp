@@ -11,8 +11,9 @@ import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ViewPart;
+
+import editor.styledtext.editors.FileEditorInput;
 
 public class RepositoryView extends ViewPart {
   public static final String ID = "Anathema_RCP.view";
