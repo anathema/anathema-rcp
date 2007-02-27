@@ -40,11 +40,12 @@ import org.w3c.dom.svg.SVGUseElement;
 public class SvgTreeView implements ISvgTreeView {
 
   private AnathemaCanvas canvas = new AnathemaCanvas();
-  private ISvgTreeViewProperties properties;
-  private final SvgTreeListening listening = new SvgTreeListening(canvas);
+  private final ISvgTreeViewProperties properties;
+  private final SvgTreeListening listening;
 
   public SvgTreeView(final ISvgTreeViewProperties properties) {
-    setProperties(properties);
+    this.properties = properties;
+    this.listening = new SvgTreeListening(canvas, properties);
     addDocumentLoadedListener(new IDocumentLoadedListener() {
       public void documentLoaded() {
         initNodeNames(canvas.getSVGDocument());
@@ -67,10 +68,11 @@ public class SvgTreeView implements ISvgTreeView {
   }
 
   public void loadCascade(final org.dom4j.Document dom4jDocument) throws DocumentException {
-    DOMImplementation implementation = SVG12DOMImplementation.getDOMImplementation();
-    SVGDocument document = (SVGDocument) new DOMWriter().write(dom4jDocument, implementation);
     listening.destructDocumentListening(canvas.getSVGDocument());
-    if (document != null) {
+    SVGDocument document = null;
+    if (dom4jDocument != null) {
+      DOMImplementation implementation = SVG12DOMImplementation.getDOMImplementation();
+      document = (SVGDocument) new DOMWriter().write(dom4jDocument, implementation);
       listening.initDocumentListening(document);
     }
     canvas.setDocument(document);
@@ -146,11 +148,6 @@ public class SvgTreeView implements ISvgTreeView {
     canvas.setDocument(null);
     // todo vom (22.02.2005) (sieroux): Notify pool of unused canvas
     canvas = null;
-  }
-
-  public void setProperties(final ISvgTreeViewProperties viewProperties) {
-    this.properties = viewProperties;
-    this.listening.setProperties(viewProperties);
   }
 
   public IBoundsCalculator getBoundsCalculator() {
