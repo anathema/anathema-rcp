@@ -26,17 +26,16 @@ import org.eclipse.ui.part.EditorPart;
 
 public class StyledTextEditor extends EditorPart {
   private BasicItemData itemData;
+  private StyledText contentComposite;
 
   @Override
   public void doSave(IProgressMonitor monitor) {
     // TODO Auto-generated method stub
-
   }
 
   @Override
   public void doSaveAs() {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException();
   }
 
   @Override
@@ -69,7 +68,6 @@ public class StyledTextEditor extends EditorPart {
 
   @Override
   public void createPartControl(Composite parent) {
-    // Composite parent = new Composite(parent, SWT.NONE);
     parent.setLayout(new GridLayout(2, false));
     Label nameLabel = new Label(parent, SWT.LEFT);
     nameLabel.setText("Name:"); //$NON-NLS-1$
@@ -79,7 +77,7 @@ public class StyledTextEditor extends EditorPart {
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText("Content:"); //$NON-NLS-1$
     contentLabel.setLayoutData(new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false));
-    StyledText contentComposite = new StyledText(parent, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP | SWT.BORDER);
+    contentComposite = new StyledText(parent, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP | SWT.BORDER);
     contentComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
     StyleRange[] styleRanges = createStyleRanges();
     contentComposite.setText(itemData.getDescription().getContent().getText());
@@ -106,6 +104,6 @@ public class StyledTextEditor extends EditorPart {
 
   @Override
   public void setFocus() {
-    // TODO Auto-generated method stub
+    contentComposite.setFocus();
   }
 }
