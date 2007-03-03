@@ -1,5 +1,7 @@
 package net.sf.anathema.lib.textualdescription;
 
+import net.disy.commons.core.util.ObjectUtilities;
+
 
 public class TextPart implements ITextPart {
 
@@ -17,6 +19,15 @@ public class TextPart implements ITextPart {
 
   public ITextFormat getFormat() {
     return format;
+  }
+  
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof TextPart)) {
+      return false;
+    }
+    TextPart other = (TextPart) obj;
+    return ObjectUtilities.equals(format, other.format) && ObjectUtilities.equals(text, other.text);
   }
 
   @Override

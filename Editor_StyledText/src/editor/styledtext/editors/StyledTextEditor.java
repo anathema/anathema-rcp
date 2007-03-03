@@ -6,6 +6,8 @@ import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.basics.jface.selection.StyledTextSelectionProvider;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
+import net.sf.anathema.lib.textualdescription.IStyledTextChangeListener;
+import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
 import net.sf.anathema.lib.textualdescription.ITextFormat;
 import net.sf.anathema.lib.textualdescription.ITextPart;
 import net.sf.anathema.lib.xml.DocumentUtilities;
@@ -13,6 +15,8 @@ import net.sf.anathema.lib.xml.DocumentUtilities;
 import org.dom4j.Document;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ExtendedModifyEvent;
+import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.layout.GridData;
@@ -59,8 +63,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   @Override
   public boolean isDirty() {
-    // TODO Auto-generated method stub
-    return false;
+    return itemData.isDirty();
   }
 
   @Override
@@ -81,17 +84,41 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     contentLabel.setLayoutData(new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false));
     contentComposite = new StyledText(parent, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP | SWT.BORDER);
     contentComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
-    StyleRange[] styleRanges = createStyleRanges();
-    contentComposite.setText(itemData.getDescription().getContent().getText());
-    contentComposite.setStyleRanges(styleRanges);
+    updateContent();
     getSite().setSelectionProvider(new StyledTextSelectionProvider(contentComposite));
+    contentComposite.addExtendedModifyListener(new ExtendedModifyListener() {
+      public void modifyText(ExtendedModifyEvent event) {
+        String replacedText = event.replacedText;
+        int index = event.start;
+        String newText = contentComposite.getTextRange(index, event.length);
+        IStyledTextualDescription styledText = getStyledDescription();
+        styledText.replaceText(index, replacedText.length(), newText);
+      }
+    });
+    getStyledDescription().addTextChangedListener(new IStyledTextChangeListener() {
+      public void textChanged(ITextPart[] newParts) {
+        updateContent();
+      }
+    });
+  }
+
+  private IStyledTextualDescription getStyledDescription() {
+    return itemData.getDescription().getContent();
+  }
+
+  private void updateContent() {
+    String newText = getStyledDescription().getText();
+    if (!newText.equals(contentComposite.getText())) {
+      contentComposite.setText(newText);
+    }
+    contentComposite.setStyleRanges(createStyleRanges());
   }
 
   private StyleRange[] createStyleRanges() {
     final StyleRangeFactory styleRangeFactory = new StyleRangeFactory();
     final int[] startIndex = new int[] { 0 };
     StyleRange[] styleRanges = ArrayUtilities.transform(
-        itemData.getDescription().getContent().getTextParts(),
+        getStyledDescription().getTextParts(),
         StyleRange.class,
         new ITransformer<ITextPart, StyleRange>() {
           public StyleRange transform(ITextPart textPart) {
@@ -112,6 +139,5 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   public void modifySelection(ITextModification modification) {
     // TODO Auto-generated method stub
-
   }
 }
