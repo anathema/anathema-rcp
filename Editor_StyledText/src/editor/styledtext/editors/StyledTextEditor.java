@@ -2,6 +2,7 @@ package editor.styledtext.editors;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
@@ -14,6 +15,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -24,7 +26,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-public class StyledTextEditor extends EditorPart {
+public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   private BasicItemData itemData;
   private StyledText contentComposite;
 
@@ -105,5 +107,22 @@ public class StyledTextEditor extends EditorPart {
   @Override
   public void setFocus() {
     contentComposite.setFocus();
+  }
+
+  public void modifySelection(ITextModification modification) {
+    // TODO Auto-generated method stub
+
+  }
+
+  public void addSelectionListener(SelectionListener selectionListener) {
+    contentComposite.addSelectionListener(selectionListener);
+  }
+
+  public boolean isEmptySelection() {
+    return StringUtilities.isNullOrEmpty(contentComposite.getSelectionText());
+  }
+
+  public void removeSelectionListener(SelectionListener selectionListener) {
+    contentComposite.removeSelectionListener(selectionListener);
   }
 }

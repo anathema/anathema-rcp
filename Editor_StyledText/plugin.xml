@@ -5,11 +5,12 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="Styled Text Editor"
+            class="editor.styledtext.editors.StyledTextEditor"
+            contributorClass="editor.styledtext.editors.StyledTextEditorActionBarContributor"
             extensions="not"
             icon="icons/sample.gif"
-            class="editor.styledtext.editors.StyledTextEditor"
-            id="editor.styledtext.editors.StyledTextEditor">
+            id="editor.styledtext.editors.StyledTextEditor"
+            name="Styled Text Editor">
       </editor>
    </extension>
 
