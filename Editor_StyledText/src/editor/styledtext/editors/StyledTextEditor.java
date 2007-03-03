@@ -1,11 +1,15 @@
 package editor.styledtext.editors;
 
+import java.io.ByteArrayInputStream;
+
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.basics.jface.IFileEditorInput;
 import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.basics.jface.selection.StyledTextSelectionProvider;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
+import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextChangeListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
 import net.sf.anathema.lib.textualdescription.ITextFormat;
@@ -13,7 +17,10 @@ import net.sf.anathema.lib.textualdescription.ITextPart;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
@@ -36,7 +43,21 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   @Override
   public void doSave(IProgressMonitor monitor) {
-    // TODO Auto-generated method stub
+    IFileEditorInput editorInput = (IFileEditorInput) getEditorInput();
+    BasicsPersister basicsPersister = new BasicsPersister();
+    Document document = DocumentHelper.createDocument(DocumentHelper.createElement("Note")); //$NON-NLS-1$
+    basicsPersister.save(itemData, document.getRootElement());
+    IFile file = editorInput.getFile();
+    try {
+      String documentContent = DocumentUtilities.asString(document);
+      ByteArrayInputStream source = new ByteArrayInputStream(documentContent.getBytes());
+      file.setContents(source, true, true, new NullProgressMonitor());
+      firePropertyChange(PROP_DIRTY);
+    }
+    catch (Exception e) {
+      // TODO Fehlerhandlin
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -47,11 +68,16 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
-      IStorageEditorInput fileInput = (IStorageEditorInput) input;
-      Document xmlDocument = DocumentUtilities.read(fileInput.getStorage().getContents());
+      IStorageEditorInput storageInput = (IStorageEditorInput) input;
+      Document xmlDocument = DocumentUtilities.read(storageInput.getStorage().getContents());
       BasicsPersister basicsPersister = new BasicsPersister();
       itemData = new BasicItemData();
       basicsPersister.load(xmlDocument.getRootElement(), itemData);
+      itemData.addDirtyListener(new IChangeListener() {
+        public void changeOccured() {
+          firePropertyChange(PROP_DIRTY);
+        }
+      });
       setSite(site);
       setInput(input);
       setPartName(input.getName());
