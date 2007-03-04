@@ -2,18 +2,17 @@ package editor.styledtext.editors;
 
 import java.io.ByteArrayInputStream;
 
-import net.disy.commons.core.util.ArrayUtilities;
-import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.basics.jface.IFileEditorInput;
 import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.basics.jface.selection.StyledTextSelectionProvider;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
+import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextChangeListener;
+import net.sf.anathema.lib.textualdescription.IStyledTextView;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
-import net.sf.anathema.lib.textualdescription.ITextFormat;
 import net.sf.anathema.lib.textualdescription.ITextPart;
 import net.sf.anathema.lib.textualdescription.ITextView;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
@@ -28,8 +27,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
-import org.eclipse.swt.custom.StyleRange;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -42,7 +39,7 @@ import org.eclipse.ui.part.EditorPart;
 public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   private BasicItemData itemData;
-  private StyledText contentComposite;
+  private IStyledTextView contentView;
 
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -113,9 +110,8 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText("Content:"); //$NON-NLS-1$
     contentLabel.setLayoutData(createLabelData());
-    contentComposite = new StyledText(parent, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP | SWT.BORDER);
-    contentComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
     final IStyledTextualDescription contentDescription = itemData.getDescription().getContent();
+    contentView = new StyledTextView(parent);
     contentComposite.addExtendedModifyListener(new ExtendedModifyListener() {
       public void modifyText(ExtendedModifyEvent event) {
         String replacedText = event.replacedText;
@@ -126,10 +122,10 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     });
     contentDescription.addTextChangedListener(new IStyledTextChangeListener() {
       public void textChanged(ITextPart[] newParts) {
-        updateContent(contentComposite, contentDescription);
+        updateContent(contentView, contentDescription);
       }
     });
-    updateContent(contentComposite, contentDescription);
+    updateContent(contentView, contentDescription);
     getSite().setSelectionProvider(new StyledTextSelectionProvider(contentComposite));
   }
 
@@ -137,35 +133,13 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     return new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false);
   }
 
-  private void updateContent(StyledText widget, IStyledTextualDescription description) {
-    String newText = description.getText();
-    if (!newText.equals(widget.getText())) {
-      widget.setText(newText);
-    }
-    widget.setStyleRanges(createStyleRanges(description));
-  }
-
-  private StyleRange[] createStyleRanges(final IStyledTextualDescription description) {
-    final StyleRangeFactory styleRangeFactory = new StyleRangeFactory();
-    final int[] startIndex = new int[] { 0 };
-    StyleRange[] styleRanges = ArrayUtilities.transform(
-        description.getTextParts(),
-        StyleRange.class,
-        new ITransformer<ITextPart, StyleRange>() {
-          public StyleRange transform(ITextPart textPart) {
-            int length = textPart.getText().length();
-            ITextFormat format = textPart.getFormat();
-            StyleRange styleRange = styleRangeFactory.createStyleRange(startIndex[0], length, format);
-            startIndex[0] += length;
-            return styleRange;
-          }
-        });
-    return styleRanges;
+  private void updateContent(IStyledTextView view, IStyledTextualDescription description) {
+    view.setContent(description.getText(), description.getTextParts());
   }
 
   @Override
   public void setFocus() {
-    contentComposite.setFocus();
+    contentView.setFocus();
   }
 
   public void modifySelection(ITextModification modification) {

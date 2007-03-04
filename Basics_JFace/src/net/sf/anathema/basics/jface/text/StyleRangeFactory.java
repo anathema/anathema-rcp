@@ -1,4 +1,4 @@
-package editor.styledtext.editors;
+package net.sf.anathema.basics.jface.text;
 
 import net.disy.commons.core.text.font.FontStyle;
 import net.sf.anathema.lib.textualdescription.ITextFormat;
