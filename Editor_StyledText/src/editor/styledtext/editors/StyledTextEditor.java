@@ -106,16 +106,16 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     parent.setLayout(new GridLayout(2, false));
     Label nameLabel = new Label(parent, SWT.LEFT);
     nameLabel.setText("Name:"); //$NON-NLS-1$
+    nameLabel.setLayoutData(createLabelData());
     final ITextView nameView = new SimpleTextView(parent);
     final ITextualDescription nameModel = itemData.getDescription().getName();
     new TextualPresentation().initView(nameView, nameModel);
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText("Content:"); //$NON-NLS-1$
-    contentLabel.setLayoutData(new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false));
+    contentLabel.setLayoutData(createLabelData());
     contentComposite = new StyledText(parent, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP | SWT.BORDER);
     contentComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
-    updateContent();
-    getSite().setSelectionProvider(new StyledTextSelectionProvider(contentComposite));
+    final IStyledTextualDescription contentDescription = getStyledDescription();
     contentComposite.addExtendedModifyListener(new ExtendedModifyListener() {
       public void modifyText(ExtendedModifyEvent event) {
         String replacedText = event.replacedText;
@@ -127,21 +127,27 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     });
     getStyledDescription().addTextChangedListener(new IStyledTextChangeListener() {
       public void textChanged(ITextPart[] newParts) {
-        updateContent();
+        updateContent(contentComposite, contentDescription);
       }
     });
+    updateContent(contentComposite, contentDescription);
+    getSite().setSelectionProvider(new StyledTextSelectionProvider(contentComposite));
+  }
+
+  private GridData createLabelData() {
+    return new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false);
   }
 
   private IStyledTextualDescription getStyledDescription() {
     return itemData.getDescription().getContent();
   }
 
-  private void updateContent() {
-    String newText = getStyledDescription().getText();
-    if (!newText.equals(contentComposite.getText())) {
-      contentComposite.setText(newText);
+  private void updateContent(StyledText widget, IStyledTextualDescription description) {
+    String newText = description.getText();
+    if (!newText.equals(widget.getText())) {
+      widget.setText(newText);
     }
-    contentComposite.setStyleRanges(createStyleRanges());
+    widget.setStyleRanges(createStyleRanges());
   }
 
   private StyleRange[] createStyleRanges() {
