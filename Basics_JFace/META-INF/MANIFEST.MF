@@ -8,4 +8,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  Basics_Lib
 Export-Package: net.sf.anathema.basics.jface,
- net.sf.anathema.basics.jface.selection
+ net.sf.anathema.basics.jface.selection,
+ net.sf.anathema.basics.jface.text

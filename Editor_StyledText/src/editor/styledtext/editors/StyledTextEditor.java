@@ -4,18 +4,20 @@ import java.io.ByteArrayInputStream;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
-import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.jface.IFileEditorInput;
 import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.basics.jface.selection.StyledTextSelectionProvider;
+import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
 import net.sf.anathema.lib.control.change.IChangeListener;
-import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextChangeListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
 import net.sf.anathema.lib.textualdescription.ITextFormat;
 import net.sf.anathema.lib.textualdescription.ITextPart;
+import net.sf.anathema.lib.textualdescription.ITextView;
+import net.sf.anathema.lib.textualdescription.ITextualDescription;
+import net.sf.anathema.lib.textualdescription.TextualPresentation;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
@@ -28,13 +30,10 @@ import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -107,24 +106,9 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     parent.setLayout(new GridLayout(2, false));
     Label nameLabel = new Label(parent, SWT.LEFT);
     nameLabel.setText("Name:"); //$NON-NLS-1$
-    final Text nameText = new Text(parent, SWT.SINGLE | SWT.BORDER);
-    nameText.addModifyListener(new ModifyListener() {
-      public void modifyText(ModifyEvent e) {
-        String text = nameText.getText();
-        itemData.getDescription().getName().setText(text);
-      }
-    });
-    itemData.getDescription().getName().addTextChangedListener(new IObjectValueChangedListener<String>() {
-      public void valueChanged(String newValue) {
-        String widgetText = nameText.getText();
-        if (ObjectUtilities.equals(widgetText, newValue)) {
-          return;
-        }
-        nameText.setText(newValue);
-      }
-    });
-    nameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    nameText.setText(itemData.getDescription().getName().getText());
+    final ITextView nameView = new SimpleTextView(parent);
+    final ITextualDescription nameModel = itemData.getDescription().getName();
+    new TextualPresentation().initView(nameView, nameModel);
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText("Content:"); //$NON-NLS-1$
     contentLabel.setLayoutData(new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false));
