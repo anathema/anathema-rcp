@@ -115,17 +115,16 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     contentLabel.setLayoutData(createLabelData());
     contentComposite = new StyledText(parent, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP | SWT.BORDER);
     contentComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
-    final IStyledTextualDescription contentDescription = getStyledDescription();
+    final IStyledTextualDescription contentDescription = itemData.getDescription().getContent();
     contentComposite.addExtendedModifyListener(new ExtendedModifyListener() {
       public void modifyText(ExtendedModifyEvent event) {
         String replacedText = event.replacedText;
         int index = event.start;
         String newText = contentComposite.getTextRange(index, event.length);
-        IStyledTextualDescription styledText = getStyledDescription();
-        styledText.replaceText(index, replacedText.length(), newText);
+        contentDescription.replaceText(index, replacedText.length(), newText);
       }
     });
-    getStyledDescription().addTextChangedListener(new IStyledTextChangeListener() {
+    contentDescription.addTextChangedListener(new IStyledTextChangeListener() {
       public void textChanged(ITextPart[] newParts) {
         updateContent(contentComposite, contentDescription);
       }
@@ -138,23 +137,19 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     return new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false);
   }
 
-  private IStyledTextualDescription getStyledDescription() {
-    return itemData.getDescription().getContent();
-  }
-
   private void updateContent(StyledText widget, IStyledTextualDescription description) {
     String newText = description.getText();
     if (!newText.equals(widget.getText())) {
       widget.setText(newText);
     }
-    widget.setStyleRanges(createStyleRanges());
+    widget.setStyleRanges(createStyleRanges(description));
   }
 
-  private StyleRange[] createStyleRanges() {
+  private StyleRange[] createStyleRanges(final IStyledTextualDescription description) {
     final StyleRangeFactory styleRangeFactory = new StyleRangeFactory();
     final int[] startIndex = new int[] { 0 };
     StyleRange[] styleRanges = ArrayUtilities.transform(
-        getStyledDescription().getTextParts(),
+        description.getTextParts(),
         StyleRange.class,
         new ITransformer<ITextPart, StyleRange>() {
           public StyleRange transform(ITextPart textPart) {
