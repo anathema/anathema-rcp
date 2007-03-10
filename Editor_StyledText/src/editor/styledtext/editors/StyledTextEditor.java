@@ -13,6 +13,7 @@ import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextChangeListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextView;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
+import net.sf.anathema.lib.textualdescription.ITextExchangeListener;
 import net.sf.anathema.lib.textualdescription.ITextPart;
 import net.sf.anathema.lib.textualdescription.ITextView;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
@@ -25,8 +26,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ExtendedModifyEvent;
-import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -112,12 +111,10 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     contentLabel.setLayoutData(createLabelData());
     final IStyledTextualDescription contentDescription = itemData.getDescription().getContent();
     contentView = new StyledTextView(parent);
-    contentComposite.addExtendedModifyListener(new ExtendedModifyListener() {
-      public void modifyText(ExtendedModifyEvent event) {
-        String replacedText = event.replacedText;
-        int index = event.start;
-        String newText = contentComposite.getTextRange(index, event.length);
-        contentDescription.replaceText(index, replacedText.length(), newText);
+    contentView.addTextExchangeListener(new ITextExchangeListener() {
+      @Override
+      public void textReplaced(int startIndex, int replacedTextLength, String newText) {
+        contentDescription.replaceText(startIndex, replacedTextLength, newText);
       }
     });
     contentDescription.addTextChangedListener(new IStyledTextChangeListener() {
