@@ -2,6 +2,7 @@ package net.sf.anathema.basics.jface.text;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.basics.jface.selection.StyledTextSelectionProvider;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.textualdescription.IStyledTextView;
@@ -9,6 +10,7 @@ import net.sf.anathema.lib.textualdescription.ITextExchangeListener;
 import net.sf.anathema.lib.textualdescription.ITextFormat;
 import net.sf.anathema.lib.textualdescription.ITextPart;
 
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
@@ -78,5 +80,9 @@ public class StyledTextView implements IStyledTextView {
   @Override
   public void addTextExchangeListener(ITextExchangeListener listener) {
     exchangeControl.addListener(listener);
+  }
+
+  public ISelectionProvider createSelectionProvider() {
+    return new StyledTextSelectionProvider(contentComposite);
   }
 }

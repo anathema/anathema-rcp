@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 
 import net.sf.anathema.basics.jface.IFileEditorInput;
 import net.sf.anathema.basics.jface.IStorageEditorInput;
-import net.sf.anathema.basics.jface.selection.StyledTextSelectionProvider;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.framework.item.data.BasicItemData;
@@ -38,7 +37,7 @@ import org.eclipse.ui.part.EditorPart;
 public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   private BasicItemData itemData;
-  private IStyledTextView contentView;
+  private StyledTextView contentView;
 
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -123,7 +122,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
       }
     });
     updateContent(contentView, contentDescription);
-    getSite().setSelectionProvider(new StyledTextSelectionProvider(contentComposite));
+    getSite().setSelectionProvider(contentView.createSelectionProvider());
   }
 
   private GridData createLabelData() {
