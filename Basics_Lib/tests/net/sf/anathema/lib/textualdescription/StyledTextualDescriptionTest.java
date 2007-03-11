@@ -56,7 +56,7 @@ public class StyledTextualDescriptionTest {
   }
 
   @Test
-  public void equalsFormatsDontMix() throws Exception {
+  public void equalFormatsDontInterfereWithRange() throws Exception {
     ITextPart[] parts = {
         new TextPart("ein ", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
         new TextPart("Hasä ", new TextFormat(FontStyle.ITALIC, false)), //$NON-NLS-1$
