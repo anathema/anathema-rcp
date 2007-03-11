@@ -9,14 +9,11 @@ import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
 import net.sf.anathema.lib.control.change.IChangeListener;
-import net.sf.anathema.lib.textualdescription.IStyledTextChangeListener;
-import net.sf.anathema.lib.textualdescription.IStyledTextView;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
-import net.sf.anathema.lib.textualdescription.ITextExchangeListener;
-import net.sf.anathema.lib.textualdescription.ITextPart;
 import net.sf.anathema.lib.textualdescription.ITextView;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
-import net.sf.anathema.lib.textualdescription.TextualPresentation;
+import net.sf.anathema.lib.textualdescription.StyledTextPresenter;
+import net.sf.anathema.lib.textualdescription.TextualPresenter;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
@@ -104,33 +101,18 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     nameLabel.setLayoutData(createLabelData());
     final ITextView nameView = new SimpleTextView(parent);
     final ITextualDescription nameModel = itemData.getDescription().getName();
-    new TextualPresentation().initView(nameView, nameModel);
+    new TextualPresenter(nameView, nameModel).initPresentation();
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText("Content:"); //$NON-NLS-1$
     contentLabel.setLayoutData(createLabelData());
     final IStyledTextualDescription contentDescription = itemData.getDescription().getContent();
     contentView = new StyledTextView(parent);
-    contentView.addTextExchangeListener(new ITextExchangeListener() {
-      @Override
-      public void textReplaced(int startIndex, int replacedTextLength, String newText) {
-        contentDescription.replaceText(startIndex, replacedTextLength, newText);
-      }
-    });
-    contentDescription.addTextChangedListener(new IStyledTextChangeListener() {
-      public void textChanged(ITextPart[] newParts) {
-        updateContent(contentView, contentDescription);
-      }
-    });
-    updateContent(contentView, contentDescription);
+    new StyledTextPresenter(contentView, contentDescription).initPresentation();
     getSite().setSelectionProvider(contentView.createSelectionProvider());
   }
 
   private GridData createLabelData() {
     return new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false);
-  }
-
-  private void updateContent(IStyledTextView view, IStyledTextualDescription description) {
-    view.setContent(description.getText(), description.getTextParts());
   }
 
   @Override
