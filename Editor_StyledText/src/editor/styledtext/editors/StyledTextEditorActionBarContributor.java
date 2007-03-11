@@ -27,7 +27,7 @@ public class StyledTextEditorActionBarContributor extends EditorActionBarContrib
 
   private void updateState() {
     for (IStyledTextAction action : actions) {
-      action.setState();
+      action.updateState();
     }
   }
 

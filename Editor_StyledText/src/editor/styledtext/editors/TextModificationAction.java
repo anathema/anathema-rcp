@@ -24,7 +24,7 @@ public class TextModificationAction extends Action implements IStyledTextAction 
   }
 
   @Override
-  public void setState() {
+  public void updateState() {
     setChecked(editor.isActiveFor(modification));
   }
 }
