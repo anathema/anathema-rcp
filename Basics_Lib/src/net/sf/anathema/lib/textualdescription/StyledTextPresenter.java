@@ -15,6 +15,7 @@ public class StyledTextPresenter {
   }
 
   public void initPresentation() {
+    updateContent();
     view.addTextExchangeListener(new ITextExchangeListener() {
       @Override
       public void textReplaced(int startIndex, int replacedTextLength, String newText) {
@@ -26,7 +27,6 @@ public class StyledTextPresenter {
         updateContent();
       }
     });
-    updateContent();
   }
 
   private void updateContent() {

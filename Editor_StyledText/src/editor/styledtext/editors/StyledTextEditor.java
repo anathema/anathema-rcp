@@ -2,6 +2,7 @@ package editor.styledtext.editors;
 
 import java.io.ByteArrayInputStream;
 
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.jface.IFileEditorInput;
 import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
@@ -9,6 +10,7 @@ import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
 import net.sf.anathema.lib.control.change.IChangeListener;
+import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
 import net.sf.anathema.lib.textualdescription.ITextView;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
@@ -19,6 +21,8 @@ import net.sf.anathema.lib.xml.DocumentUtilities;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.swt.SWT;
@@ -64,11 +68,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
-      IStorageEditorInput storageInput = (IStorageEditorInput) input;
-      Document xmlDocument = DocumentUtilities.read(storageInput.getStorage().getContents());
-      BasicsPersister basicsPersister = new BasicsPersister();
-      itemData = new BasicItemData();
-      basicsPersister.load(xmlDocument.getRootElement(), itemData);
+      itemData = loadData(((IStorageEditorInput) input).getStorage());
       itemData.addDirtyListener(new IChangeListener() {
         public void changeOccured() {
           firePropertyChange(PROP_DIRTY);
@@ -81,6 +81,19 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     catch (Exception e) {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
+  }
+
+  protected String getPartName(BasicItemData itemData) {
+    String name = itemData.getDescription().getName().getText();
+    return StringUtilities.isNullOrEmpty(name) ? "Unnamed" : name;
+  }
+
+  protected BasicItemData loadData(IStorage storage) throws PersistenceException, CoreException {
+    Document xmlDocument = DocumentUtilities.read(storage.getContents());
+    BasicsPersister basicsPersister = new BasicsPersister();
+    BasicItemData newData = new BasicItemData();
+    basicsPersister.load(xmlDocument.getRootElement(), newData);
+    return newData;
   }
 
   @Override

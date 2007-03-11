@@ -53,7 +53,8 @@ public class StyledTextView implements IStyledTextView {
 
   @Override
   public void setContent(String newText, ITextPart[] parts) {
-    if (!newText.equals(contentComposite.getText())) {
+    String viewText = contentComposite.getText();
+    if (!newText.equals(viewText)) {
       contentComposite.setText(newText);
     }
     contentComposite.setStyleRanges(createStyleRanges(parts));
