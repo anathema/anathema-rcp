@@ -1,6 +1,7 @@
 package net.sf.anathema.lib.textualdescription;
 
 import net.disy.commons.core.predicate.IPredicate;
+import net.disy.commons.core.text.font.FontStyle;
 
 public interface IStyledTextualDescription extends ITextualDescription {
 
@@ -15,4 +16,8 @@ public interface IStyledTextualDescription extends ITextualDescription {
   public void replaceText(int offset, int length, String newText);
 
   public boolean containsFormat(int offset, int length, IPredicate<ITextFormat> predicate);
+
+  public void setFontStyle(int offset, int length, FontStyle fontStyle);
+
+  public void setUnderline(int offset, int length);
 }

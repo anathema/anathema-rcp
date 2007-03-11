@@ -2,7 +2,6 @@ package editor.styledtext.editors;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.text.TextSelection;
 
 public class TextModificationAction extends Action implements IStyledTextAction {
 
@@ -25,7 +24,7 @@ public class TextModificationAction extends Action implements IStyledTextAction 
   }
 
   @Override
-  public void setState(TextSelection selection) {
-    setChecked(modification.isActive(selection, editor.getItemData().getDescription().getContent()));
+  public void setState() {
+    setChecked(editor.isActiveFor(modification));
   }
 }

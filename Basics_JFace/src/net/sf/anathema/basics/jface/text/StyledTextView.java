@@ -16,6 +16,7 @@ import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 
@@ -85,5 +86,9 @@ public class StyledTextView implements IStyledTextView {
 
   public ISelectionProvider createSelectionProvider() {
     return new StyledTextSelectionProvider(contentComposite);
+  }
+
+  public Point getSelectionRange() {
+    return contentComposite.getSelectionRange();
   }
 }

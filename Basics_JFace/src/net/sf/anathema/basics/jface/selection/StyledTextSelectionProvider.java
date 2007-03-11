@@ -3,7 +3,6 @@ package net.sf.anathema.basics.jface.selection;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 
-import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -11,7 +10,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Point;
 
 public class StyledTextSelectionProvider implements ISelectionProvider {
 
@@ -46,8 +44,7 @@ public class StyledTextSelectionProvider implements ISelectionProvider {
   }
 
   public ISelection getSelection() {
-    Point range = composite.getSelectionRange();
-    return new TextSelection(range.x, range.y);
+    return new SimpleSelection(composite.getSelectionText().isEmpty());
   }
 
   public void removeSelectionChangedListener(ISelectionChangedListener listener) {

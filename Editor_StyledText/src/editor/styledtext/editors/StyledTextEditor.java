@@ -9,7 +9,6 @@ import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
-import net.sf.anathema.framework.item.data.IBasicItemData;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
@@ -27,6 +26,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -134,12 +134,17 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     contentView.setFocus();
   }
 
+  @Override
   public void modifySelection(ITextModification modification) {
-    // TODO Auto-generated method stub
+    Point selectionRange = contentView.getSelectionRange();
+    IStyledTextualDescription styledText = itemData.getDescription().getContent();
+    modification.perform(styledText, selectionRange.x, selectionRange.y);
   }
 
   @Override
-  public IBasicItemData getItemData() {
-    return itemData;
+  public boolean isActiveFor(ITextModification modification) {
+    Point selectionRange = contentView.getSelectionRange();
+    IStyledTextualDescription styledText = itemData.getDescription().getContent();
+    return modification.isActive(styledText, selectionRange.x, selectionRange.y);
   }
 }

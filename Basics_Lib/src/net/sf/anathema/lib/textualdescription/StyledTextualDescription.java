@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.disy.commons.core.predicate.IPredicate;
+import net.disy.commons.core.text.font.FontStyle;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
@@ -123,7 +124,6 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
   }
 
-  // TODO Index über == suchen
   private int indexOfInstance(ITextPart textPart) {
     for (int index = 0; index < textParts.size(); index++) {
       if (textParts.get(index) == textPart) {
@@ -158,5 +158,15 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       }
     }
     return false;
+  }
+
+  @Override
+  public void setFontStyle(int offset, int length, FontStyle fontStyle) {
+    // TODO setFontStyle
+  }
+
+  @Override
+  public void setUnderline(int offset, int length) {
+    // TODO setUnderline
   }
 }
