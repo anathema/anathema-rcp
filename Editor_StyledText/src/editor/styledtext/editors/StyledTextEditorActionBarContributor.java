@@ -2,6 +2,7 @@ package editor.styledtext.editors;
 
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ui.IEditorPart;
@@ -15,20 +16,19 @@ public class StyledTextEditorActionBarContributor extends EditorActionBarContrib
       new TextModificationAction("U", new UnderlineModification()) };
   private final ISelectionChangedListener selectionListener = new ISelectionChangedListener() {
     public void selectionChanged(SelectionChangedEvent event) {
-      updateEnabled(!event.getSelection().isEmpty());
+      updateState((TextSelection) event.getSelection());
     }
   };
   private IEditorPart targetEditor;
 
   @Override
   public void contributeToToolBar(IToolBarManager toolBarManager) {
-    updateEnabled(false);
     addToContributionManager(toolBarManager);
   }
 
-  private void updateEnabled(boolean enabled) {
+  private void updateState(TextSelection selection) {
     for (IStyledTextAction action : actions) {
-      action.setEnabled(enabled);
+      action.setState(selection);
     }
   }
 

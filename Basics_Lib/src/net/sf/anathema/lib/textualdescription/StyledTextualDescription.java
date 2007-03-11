@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
@@ -97,8 +98,8 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     int endTextPosition = startTextPosition + length;
     ITextPart startTextPart = getTextPart(startTextPosition);
     ITextPart endTextPart = getTextPart(endTextPosition);
-    int startTextPartIndex = textParts.indexOf(startTextPart);
-    int endTextPartIndex = textParts.indexOf(endTextPart);
+    int startTextPartIndex = indexOfInstance(startTextPart);
+    int endTextPartIndex = indexOfInstance(endTextPart);
     List<ITextPart> newTextParts = new ArrayList<ITextPart>();
     newTextParts.addAll(textParts.subList(0, startTextPartIndex));
     int startIndexWithinTextPart = startTextPosition - overallStartIndex.get(startTextPart);
@@ -122,6 +123,16 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
   }
 
+  // TODO Index über == suchen
+  private int indexOfInstance(ITextPart textPart) {
+    for (int index = 0; index < textParts.size(); index++) {
+      if (textParts.get(index) == textPart) {
+        return index;
+      }
+    }
+    return -1;
+  }
+
   private ITextPart getTextPart(int textPosition) {
     int endIndex = 0;
     for (ITextPart part : textParts) {
@@ -131,5 +142,21 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       }
     }
     throw new IllegalArgumentException("TextPosition must not be greater than size: " + textPosition); //$NON-NLS-1$
+  }
+
+  @Override
+  public boolean containsFormat(int offset, int length, IPredicate<ITextFormat> predicate) {
+    if (textParts.size() == 0) {
+      return false;
+    }
+    int firstIndex = indexOfInstance(getTextPart(offset));
+    int endIndex = indexOfInstance(getTextPart(offset + length));
+    for (int index = firstIndex; index <= endIndex; index++) {
+      ITextPart currentPart = textParts.get(index);
+      if (predicate.evaluate(currentPart.getFormat())) {
+        return true;
+      }
+    }
+    return false;
   }
 }

@@ -9,6 +9,7 @@ import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
+import net.sf.anathema.framework.item.data.IBasicItemData;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
@@ -135,5 +136,10 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   public void modifySelection(ITextModification modification) {
     // TODO Auto-generated method stub
+  }
+
+  @Override
+  public IBasicItemData getItemData() {
+    return itemData;
   }
 }
