@@ -31,5 +31,13 @@
    <extension
          point="org.eclipse.ui.editors">
    </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="Anathema_RCP.application"
+            name="Anathema">
+      </product>
+   </extension>
 
 </plugin>
