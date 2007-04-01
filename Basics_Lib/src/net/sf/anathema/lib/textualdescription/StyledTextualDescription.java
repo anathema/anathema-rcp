@@ -170,16 +170,20 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     int startIndex = indexOfInstance(getTextPart(offset));
     ITextPart startTextPart = textParts.get(startIndex);
     List<ITextPart> newTextParts = new ArrayList<ITextPart>();
-    int splitPoint = offset == 0 ? length : offset;
-    ITextPart[] splittedParts = startTextPart.split(splitPoint);
+    int partStart = overallStartIndex.get(startTextPart);
+    int partLength = startTextPart.getText().length();
     ITextFormat toggledFormat = TextFormat.deriveFormat(startTextPart.getFormat(), fontStyle);
-    if (offset == 0) {
+    if (offset == partStart) {
+      // das Erste/Einzige modifizieren
+      ITextPart[] splittedParts = startTextPart.split(Math.min(partLength, length));
       newTextParts.add(new TextPart(splittedParts[0].getText(), toggledFormat));
       if (splittedParts.length > 1) {
         newTextParts.add(splittedParts[1]);
       }
     }
     else {
+      // das zweite Modifizieren
+      ITextPart[] splittedParts = startTextPart.split(offset - partStart);
       newTextParts.add(splittedParts[0]);
       newTextParts.add(new TextPart(splittedParts[1].getText(), toggledFormat));
     }
