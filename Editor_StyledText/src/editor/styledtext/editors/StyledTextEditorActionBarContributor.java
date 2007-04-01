@@ -1,5 +1,7 @@
 package editor.styledtext.editors;
 
+import net.sf.anathema.lib.control.change.IChangeListener;
+
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -18,7 +20,13 @@ public class StyledTextEditorActionBarContributor extends EditorActionBarContrib
       updateState();
     }
   };
-  private IEditorPart targetEditor;
+  private final IChangeListener caretChangeListener = new IChangeListener() {
+    @Override
+    public void changeOccured() {
+      updateState();
+    }
+  };
+  private IStyledTextEditor targetEditor;
 
   @Override
   public void contributeToToolBar(IToolBarManager toolBarManager) {
@@ -41,13 +49,15 @@ public class StyledTextEditorActionBarContributor extends EditorActionBarContrib
   public void setActiveEditor(IEditorPart targetEditor) {
     if (this.targetEditor != null) {
       this.targetEditor.getEditorSite().getSelectionProvider().removeSelectionChangedListener(selectionListener);
+      this.targetEditor.removeCaretChangeListener(caretChangeListener);
     }
-    this.targetEditor = targetEditor;
+    this.targetEditor = (IStyledTextEditor) targetEditor;
     if (this.targetEditor != null) {
       this.targetEditor.getEditorSite().getSelectionProvider().addSelectionChangedListener(selectionListener);
+      this.targetEditor.addCaretChangeListener(caretChangeListener);
     }
     for (IStyledTextAction action : actions) {
-      action.setEditor((IStyledTextEditor) targetEditor);
+      action.setEditor(this.targetEditor);
     }
   }
 }

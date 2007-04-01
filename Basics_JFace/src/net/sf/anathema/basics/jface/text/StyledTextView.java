@@ -3,8 +3,12 @@ package net.sf.anathema.basics.jface.text;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.basics.jface.selection.StyledTextSelectionProvider;
+import net.sf.anathema.basics.swt.event.KeyReleasedChangeAdapter;
+import net.sf.anathema.basics.swt.event.MouseUpChangeAdapter;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
+import net.sf.anathema.lib.control.change.ChangeControl;
+import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextView;
 import net.sf.anathema.lib.textualdescription.ITextExchangeListener;
 import net.sf.anathema.lib.textualdescription.ITextFormat;
@@ -23,6 +27,7 @@ import org.eclipse.swt.widgets.Composite;
 public class StyledTextView implements IStyledTextView {
 
   private StyledText contentComposite;
+  private ChangeControl caretMoveControl = new ChangeControl();
   private GenericControl<ITextExchangeListener> exchangeControl = new GenericControl<ITextExchangeListener>();
 
   public StyledTextView(Composite parent) {
@@ -36,6 +41,9 @@ public class StyledTextView implements IStyledTextView {
         fireExchangeText(index, replacedText.length(), newText);
       }
     });
+    final ChangeControl changeControl = caretMoveControl;
+    contentComposite.addKeyListener(new KeyReleasedChangeAdapter(changeControl));
+    contentComposite.addMouseListener(new MouseUpChangeAdapter(caretMoveControl));
   }
 
   private void fireExchangeText(final int startIndex, final int replacedTextLength, final String newText) {
@@ -90,5 +98,13 @@ public class StyledTextView implements IStyledTextView {
 
   public Point getSelectionRange() {
     return contentComposite.getSelectionRange();
+  }
+
+  public void addCursorPositionChangedListener(IChangeListener changeListener) {
+    caretMoveControl.addChangeListener(changeListener);
+  }
+
+  public void removeCursorPositionChangedListener(IChangeListener changeListener) {
+    caretMoveControl.removeChangeListener(changeListener);
   }
 }

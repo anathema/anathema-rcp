@@ -1,6 +1,6 @@
 package net.sf.anathema.lib.textualdescription;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 

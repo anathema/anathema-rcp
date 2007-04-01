@@ -147,4 +147,14 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     IStyledTextualDescription styledText = itemData.getDescription().getContent();
     return modification.isActive(styledText, selectionRange.x, selectionRange.y);
   }
+
+  @Override
+  public void addCaretChangeListener(IChangeListener changeListener) {
+    contentView.addCursorPositionChangedListener(changeListener);
+  }
+  
+  @Override
+  public void removeCaretChangeListener(IChangeListener changeListener) {
+    contentView.removeCursorPositionChangedListener(changeListener);
+  }
 }
