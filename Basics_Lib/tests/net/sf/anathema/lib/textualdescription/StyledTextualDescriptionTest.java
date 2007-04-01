@@ -129,7 +129,17 @@ public class StyledTextualDescriptionTest {
     assertStyleAndLength(textParts[0], FontStyle.PLAIN, 4);
     assertStyleAndLength(textParts[1], FontStyle.BOLD, 6);
     assertStyleAndLength(textParts[2], FontStyle.PLAIN, 5);
+  }
 
+  @Test
+  public void middleOfTextPartIsUnbolded() throws Exception {
+    description.setText(new TextPart("Ein toller Hasä", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
+    description.toggleFontStyle(4, 6, FontStyle.BOLD);
+    description.toggleFontStyle(4, 6, FontStyle.BOLD);
+    ITextPart[] textParts = description.getTextParts();
+    assertStyleAndLength(textParts[0], FontStyle.PLAIN, 4);
+    assertStyleAndLength(textParts[1], FontStyle.PLAIN, 6);
+    assertStyleAndLength(textParts[2], FontStyle.PLAIN, 5);
   }
 
   private void assertStyleAndLength(ITextPart textPart, FontStyle style, int length) {
