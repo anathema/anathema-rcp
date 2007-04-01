@@ -6,5 +6,7 @@ public interface ITextPart {
 
   public ITextFormat getFormat();
 
-  public ITextPart[] split(int offset);
+  public ITextPart[] split(int offset, int length);
+
+  public int getLength();
 }

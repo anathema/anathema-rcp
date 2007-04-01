@@ -102,7 +102,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     int startTextPartIndex = indexOfInstance(startTextPart);
     int endTextPartIndex = indexOfInstance(endTextPart);
     List<ITextPart> newTextParts = new ArrayList<ITextPart>();
-    newTextParts.addAll(textParts.subList(0, startTextPartIndex));
+    addLeadingTextParts(startTextPartIndex, newTextParts);
     int startIndexWithinTextPart = startTextPosition - overallStartIndex.get(startTextPart);
     String originalText = startTextPart.getText();
     StringBuilder newTextBuilder = new StringBuilder();
@@ -118,9 +118,53 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       newTextParts.add(new TextPart(newTextBuilder.toString(), startTextPart.getFormat()));
       newTextParts.add(new TextPart(endTextPartText, endTextPart.getFormat()));
     }
-    if (endTextPartIndex + 1 < textParts.size()) {
-      newTextParts.addAll(textParts.subList(endTextPartIndex + 1, textParts.size()));
+    addTailingTextParts(endTextPartIndex, newTextParts);
+    setNewText(newTextParts);
+  }
+
+  @Override
+  public void toggleFontStyle(int offset, int length, FontStyle fontStyle) {
+    if (length == 0) {
+      return;
     }
+    int endTextPosition = offset + length;
+    int startTextPartIndex = indexOfInstance(getTextPart(offset));
+    int endTextPartIndex = indexOfInstance(getTextPart(endTextPosition));
+    List<ITextPart> newTextParts = new ArrayList<ITextPart>();
+    int currentOffset = offset;
+    addLeadingTextParts(startTextPartIndex, newTextParts);
+    for (int index = startTextPartIndex; index <= endTextPartIndex; index++) {
+      ITextPart currentPart = textParts.get(index);
+      int partStart = overallStartIndex.get(currentPart);
+      int partLength = currentPart.getText().length();
+      ITextFormat toggledFormat = TextFormat.deriveFormat(currentPart.getFormat(), fontStyle);
+      if (currentOffset == partStart) {
+        // das Erste/Einzige modifizieren
+        ITextPart[] splittedParts = currentPart.split(0, Math.min(partLength, endTextPosition - partStart));
+        newTextParts.add(new TextPart(splittedParts[0].getText(), toggledFormat));
+        if (splittedParts.length > 1) {
+          newTextParts.add(splittedParts[1]);
+        }
+        currentOffset += partLength;
+      }
+      else {
+        // das zweite Modifizieren
+        ITextPart[] splittedParts = currentPart.split(currentOffset - partStart, Math.min(partLength, endTextPosition
+            - partStart));
+        newTextParts.add(splittedParts[0]);
+        newTextParts.add(new TextPart(splittedParts[1].getText(), toggledFormat));
+        if (splittedParts.length > 2) {
+          newTextParts.add(splittedParts[2]);
+        }
+        currentOffset += splittedParts[1].getText().length();
+      }
+
+    }
+    addTailingTextParts(endTextPartIndex, newTextParts);
+    setNewText(newTextParts);
+  }
+
+  private void setNewText(List<ITextPart> newTextParts) {
     setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
   }
 
@@ -163,31 +207,14 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     return false;
   }
 
-  @Override
-  public void toggleFontStyle(int offset, int length, FontStyle fontStyle) {
-    // int endIndex = indexOfInstance(getTextPart(offset + length));
-    // ITextPart endTextPart = textParts.get(endIndex);
-    int startIndex = indexOfInstance(getTextPart(offset));
-    ITextPart startTextPart = textParts.get(startIndex);
-    List<ITextPart> newTextParts = new ArrayList<ITextPart>();
-    int partStart = overallStartIndex.get(startTextPart);
-    int partLength = startTextPart.getText().length();
-    ITextFormat toggledFormat = TextFormat.deriveFormat(startTextPart.getFormat(), fontStyle);
-    if (offset == partStart) {
-      // das Erste/Einzige modifizieren
-      ITextPart[] splittedParts = startTextPart.split(Math.min(partLength, length));
-      newTextParts.add(new TextPart(splittedParts[0].getText(), toggledFormat));
-      if (splittedParts.length > 1) {
-        newTextParts.add(splittedParts[1]);
-      }
+  private void addTailingTextParts(int endIndex, List<ITextPart> newTextParts) {
+    if (endIndex + 1 < textParts.size()) {
+      newTextParts.addAll(textParts.subList(endIndex + 1, textParts.size()));
     }
-    else {
-      // das zweite Modifizieren
-      ITextPart[] splittedParts = startTextPart.split(offset - partStart);
-      newTextParts.add(splittedParts[0]);
-      newTextParts.add(new TextPart(splittedParts[1].getText(), toggledFormat));
-    }
-    setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
+  }
+
+  private void addLeadingTextParts(int startIndex, List<ITextPart> newTextParts) {
+    newTextParts.addAll(textParts.subList(0, startIndex));
   }
 
   @Override

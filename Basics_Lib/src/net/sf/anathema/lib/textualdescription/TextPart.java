@@ -36,18 +36,29 @@ public class TextPart implements ITextPart {
   }
 
   @Override
-  public ITextPart[] split(int offset) {
-    Ensure.ensureArgumentFalse("offset must be at least 0.", offset < 0); //$NON-NLS-1$
-    Ensure.ensureArgumentFalse("Offset must lie within text length.", offset > getLength()); //$NON-NLS-1$
-    if (offset == getLength() || offset == 0) {
+  public ITextPart[] split(int offset, int length) {
+    Ensure.ensureArgumentFalse("Offset must be at least 0.", offset < 0); //$NON-NLS-1$
+    Ensure.ensureArgumentFalse("Length must lie within text length.", length > getLength()); //$NON-NLS-1$
+    if (offset == 0 && (length == getLength() || length == 0)) {
       return new ITextPart[] { this };
+    }
+    if (offset > 0 && length == getLength()) {
+      return new ITextPart[] {
+          new TextPart(getText().substring(0, offset), format),
+          new TextPart(getText().substring(offset, getLength()), format) };
+    }
+    if (offset == 0 && length < getLength()) {
+      return new ITextPart[] {
+          new TextPart(getText().substring(0, length), format),
+          new TextPart(getText().substring(length, getLength()), format) };
     }
     return new ITextPart[] {
         new TextPart(getText().substring(0, offset), format),
-        new TextPart(getText().substring(offset), format) };
+        new TextPart(getText().substring(offset, length), format),
+        new TextPart(getText().substring(length, getLength()), format) };
   }
 
-  private int getLength() {
+  public int getLength() {
     return text == null ? 0 : getText().length();
   }
 }
