@@ -14,6 +14,6 @@ public class BoldModification extends AbstractTextModification {
 
   @Override
   public void perform(IStyledTextualDescription content, int offset, int length) {
-    content.setFontStyle(offset, length, FontStyle.BOLD);
+    content.toggleFontStyle(offset, length, FontStyle.BOLD);
   }
 }

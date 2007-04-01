@@ -5,4 +5,6 @@ public interface ITextPart {
   public String getText();
 
   public ITextFormat getFormat();
+
+  public ITextPart[] split(int offset);
 }

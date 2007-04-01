@@ -20,7 +20,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   private final Map<ITextPart, Integer> overallStartIndex = new HashMap<ITextPart, Integer>();
   private final Map<IObjectValueChangedListener<String>, IStyledTextChangeListener> listenerMap = new HashMap<IObjectValueChangedListener<String>, IStyledTextChangeListener>();
 
-  public void setText(ITextPart[] textParts) {
+  public void setText(ITextPart... textParts) {
     if (Arrays.deepEquals(getTextParts(), textParts)) {
       return;
     }
@@ -137,9 +137,12 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     int endIndex = 0;
     for (ITextPart part : textParts) {
       endIndex += part.getText().length();
-      if (endIndex >= textPosition) {
+      if (endIndex > textPosition) {
         return part;
       }
+    }
+    if (textPosition == getText().length()) {
+      return textParts.get(textParts.size() - 1);
     }
     throw new IllegalArgumentException("TextPosition must not be greater than size: " + textPosition); //$NON-NLS-1$
   }
@@ -150,7 +153,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       return false;
     }
     int firstIndex = indexOfInstance(getTextPart(offset));
-    int endIndex = indexOfInstance(getTextPart(offset + length));
+    int endIndex = indexOfInstance(getTextPart(offset + length - 1));
     for (int index = firstIndex; index <= endIndex; index++) {
       ITextPart currentPart = textParts.get(index);
       if (predicate.evaluate(currentPart.getFormat())) {
@@ -161,12 +164,30 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   }
 
   @Override
-  public void setFontStyle(int offset, int length, FontStyle fontStyle) {
-    // TODO setFontStyle
+  public void toggleFontStyle(int offset, int length, FontStyle fontStyle) {
+    // int endIndex = indexOfInstance(getTextPart(offset + length));
+    // ITextPart endTextPart = textParts.get(endIndex);
+    int startIndex = indexOfInstance(getTextPart(offset));
+    ITextPart startTextPart = textParts.get(startIndex);
+    List<ITextPart> newTextParts = new ArrayList<ITextPart>();
+    int splitPoint = offset == 0 ? length : offset;
+    ITextPart[] splittedParts = startTextPart.split(splitPoint);
+    ITextFormat toggledFormat = TextFormat.deriveFormat(startTextPart.getFormat(), fontStyle);
+    if (offset == 0) {
+      newTextParts.add(new TextPart(splittedParts[0].getText(), toggledFormat));
+      if (splittedParts.length > 1) {
+        newTextParts.add(splittedParts[1]);
+      }
+    }
+    else {
+      newTextParts.add(splittedParts[0]);
+      newTextParts.add(new TextPart(splittedParts[1].getText(), toggledFormat));
+    }
+    setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
   }
 
   @Override
-  public void setUnderline(int offset, int length) {
+  public void toggleUnderline(int offset, int length) {
     // TODO setUnderline
   }
 }

@@ -57,13 +57,53 @@ public class StyledTextualDescriptionTest {
 
   @Test
   public void equalFormatsDontInterfereWithRange() throws Exception {
-    ITextPart[] parts = {
-        new TextPart("ein ", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
+    description.setText(new TextPart("ein ", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
         new TextPart("Hasä ", new TextFormat(FontStyle.ITALIC, false)), //$NON-NLS-1$
         new TextPart("ein ", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
         new TextPart("toller ", new TextFormat(FontStyle.BOLD, false)), //$NON-NLS-1$
-        new TextPart("Hasä ", new TextFormat(FontStyle.ITALIC, false))}; //$NON-NLS-1$
-    description.setText(parts);
+        new TextPart("Hasä ", new TextFormat(FontStyle.ITALIC, false))); //$NON-NLS-1$
     assertTrue("Must evaluate to bold.", evaluateIsBold(11, 10)); //$NON-NLS-1$
+  }
+
+  @Test
+  public void everythingIsSetToggleFromPlainToBold() throws Exception {
+    ITextPart[] parts = { new TextPart("ein", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
+    };
+    description.setText(parts);
+    description.toggleFontStyle(0, 3, FontStyle.BOLD);
+    assertTrue(evaluateIsBold(0, 3));
+  }
+
+  @Test
+  public void everythingIsToggledFromBoldToPlain() throws Exception {
+    description.setText(new TextPart("ein", new TextFormat(FontStyle.BOLD, true))); //$NON-NLS-1$
+    description.toggleFontStyle(0, 3, FontStyle.BOLD);
+    assertFalse(evaluateIsBold(0, 3));
+  }
+
+  @Test
+  public void onlyLeadingPartialTextPartBolded() throws Exception {
+    description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
+    description.toggleFontStyle(0, 2, FontStyle.BOLD);
+    assertTrue(evaluateIsBold(0, 2));
+    assertFalse(evaluateIsBold(2, 1));
+  }
+
+  @Test
+  public void onlyTailingPartialTextPartBolded() throws Exception {
+    description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
+    description.toggleFontStyle(2, 1, FontStyle.BOLD);
+    assertFalse(evaluateIsBold(0, 2));
+    assertTrue(evaluateIsBold(2, 1));
+  }
+
+  @Test
+  public void tailingAndNextTextPartBolded() throws Exception {
+    description.setText(
+        new TextPart("ein", new TextFormat(FontStyle.PLAIN, true)), new TextPart("Hasä", new TextFormat(FontStyle.ITALIC, false))); //$NON-NLS-1$ //$NON-NLS-2$
+    description.toggleFontStyle(2, 3, FontStyle.BOLD);
+    assertFalse(evaluateIsBold(0, 2));
+    assertTrue(evaluateIsBold(2, 3));
+    assertFalse(evaluateIsBold(5, 1));
   }
 }

@@ -12,6 +12,15 @@ public class TextFormat implements ITextFormat {
   private final String fontName;
   private final Color textColor;
 
+  public static ITextFormat deriveFormat(ITextFormat format, FontStyle fontStyle) {
+    return new TextFormat(
+        format.getFontName(),
+        FontStyleUtilities.combineFontStyles(format.getFontStyle(), fontStyle),
+        format.isUnderline(),
+        format.getFontSize(),
+        format.getColor());
+  }
+
   public TextFormat() {
     this(FontStyle.PLAIN, false, null);
   }

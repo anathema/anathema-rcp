@@ -12,6 +12,6 @@ public class UnderlineModification extends AbstractTextModification {
 
   @Override
   public void perform(IStyledTextualDescription description, int offset, int length) {
-    description.setUnderline(offset, length);
+    description.toggleUnderline(offset, length);
   }
 }

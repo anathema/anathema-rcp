@@ -13,6 +13,6 @@ public class ItalicsModification extends AbstractTextModification {
 
   @Override
   public void perform(IStyledTextualDescription content, int offset, int length) {
-    content.setFontStyle(offset, length, FontStyle.ITALIC);
+    content.toggleFontStyle(offset, length, FontStyle.ITALIC);
   }
 }

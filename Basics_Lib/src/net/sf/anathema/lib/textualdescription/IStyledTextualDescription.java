@@ -5,7 +5,7 @@ import net.disy.commons.core.text.font.FontStyle;
 
 public interface IStyledTextualDescription extends ITextualDescription {
 
-  public void setText(ITextPart[] textParts);
+  public void setText(ITextPart... textParts);
 
   public ITextPart[] getTextParts();
 
@@ -17,7 +17,7 @@ public interface IStyledTextualDescription extends ITextualDescription {
 
   public boolean containsFormat(int offset, int length, IPredicate<ITextFormat> predicate);
 
-  public void setFontStyle(int offset, int length, FontStyle fontStyle);
+  public void toggleFontStyle(int offset, int length, FontStyle fontStyle);
 
-  public void setUnderline(int offset, int length);
+  public void toggleUnderline(int offset, int length);
 }
