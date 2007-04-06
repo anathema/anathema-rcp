@@ -13,4 +13,6 @@ public interface IStyledTextEditor extends IEditorPart {
   public void addCaretChangeListener(IChangeListener changeListener);
 
   public void removeCaretChangeListener(IChangeListener caretChangeListener);
+
+  public boolean isSelectionEmpty();
 }

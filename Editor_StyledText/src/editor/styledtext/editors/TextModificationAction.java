@@ -11,7 +11,7 @@ public class TextModificationAction extends Action implements IStyledTextAction 
   public TextModificationAction(String text, ITextModification modification) {
     super(text, IAction.AS_CHECK_BOX);
     this.modification = modification;
-    setChecked(false);
+    updateState();
   }
 
   public void setEditor(IStyledTextEditor editor) {
@@ -25,6 +25,13 @@ public class TextModificationAction extends Action implements IStyledTextAction 
 
   @Override
   public void updateState() {
-    setChecked(editor.isActiveFor(modification));
+    if (editor == null) {
+      setEnabled(false);
+      setChecked(false);
+    }
+    else {
+      setEnabled(!editor.isSelectionEmpty());
+      setChecked(editor.isActiveFor(modification));
+    }
   }
 }

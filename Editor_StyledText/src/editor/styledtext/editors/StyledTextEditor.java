@@ -149,10 +149,16 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   }
 
   @Override
+  public boolean isSelectionEmpty() {
+    Point selectionRange = contentView.getSelectionRange();
+    return selectionRange.y == 0;
+  }
+
+  @Override
   public void addCaretChangeListener(IChangeListener changeListener) {
     contentView.addCursorPositionChangedListener(changeListener);
   }
-  
+
   @Override
   public void removeCaretChangeListener(IChangeListener changeListener) {
     contentView.removeCursorPositionChangedListener(changeListener);
