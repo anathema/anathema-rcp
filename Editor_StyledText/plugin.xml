@@ -8,7 +8,7 @@
             class="editor.styledtext.editors.StyledTextEditor"
             contributorClass="editor.styledtext.editors.StyledTextEditorActionBarContributor"
             extensions="not"
-            icon="icons/sample.gif"
+            icon="icons/TabNotes16.png"
             id="editor.styledtext.editors.StyledTextEditor"
             name="Styled Text Editor">
       </editor>
