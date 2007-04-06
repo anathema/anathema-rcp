@@ -37,7 +37,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
+public class NotesEditor extends EditorPart implements IStyledTextEditor {
 
   private BasicItemData itemData;
   private StyledTextView contentView;
