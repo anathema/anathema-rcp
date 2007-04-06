@@ -10,6 +10,7 @@ import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
 import net.sf.anathema.lib.control.change.IChangeListener;
+import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
 import net.sf.anathema.lib.textualdescription.ITextView;
@@ -77,16 +78,25 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
       });
       setSite(site);
       setInput(input);
-      setPartName(input.getName());
+      itemData.getDescription().getName().addTextChangedListener(new IObjectValueChangedListener<String>() {
+        @Override
+        public void valueChanged(String newValue) {
+          updatePartName();
+        }
+      });
+      updatePartName();
     }
     catch (Exception e) {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
   }
-
-  protected String getPartName(BasicItemData itemData) {
+  
+  private void updatePartName() {
     String name = itemData.getDescription().getName().getText();
-    return StringUtilities.isNullOrEmpty(name) ? "Unnamed" : name;
+    if (StringUtilities.isNullOrEmpty(name)) {
+      name = "Untitled Note";
+    }
+    setPartName(name);
   }
 
   protected BasicItemData loadData(IStorage storage) throws PersistenceException, CoreException {
