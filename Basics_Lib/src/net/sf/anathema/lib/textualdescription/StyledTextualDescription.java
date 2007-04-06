@@ -127,9 +127,10 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     if (length == 0) {
       return;
     }
-    int endTextPosition = offset + length;
+    int blockEndPosition = getEndPosition(offset, length);
+    int tailStartPosition = blockEndPosition + 1;
     int startTextPartIndex = indexOfInstance(getTextPart(offset));
-    int endTextPartIndex = indexOfInstance(getTextPart(endTextPosition));
+    int endTextPartIndex = indexOfInstance(getTextPart(blockEndPosition));
     List<ITextPart> newTextParts = new ArrayList<ITextPart>();
     int currentOffset = offset;
     addLeadingTextParts(startTextPartIndex, newTextParts);
@@ -140,7 +141,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       ITextFormat toggledFormat = TextFormat.deriveFormat(currentPart.getFormat(), fontStyle);
       if (currentOffset == partStart) {
         // das Erste/Einzige modifizieren
-        ITextPart[] splittedParts = currentPart.split(0, Math.min(partLength, endTextPosition - partStart));
+        ITextPart[] splittedParts = currentPart.split(0, Math.min(partLength, tailStartPosition - partStart));
         newTextParts.add(new TextPart(splittedParts[0].getText(), toggledFormat));
         if (splittedParts.length > 1) {
           newTextParts.add(splittedParts[1]);
@@ -149,7 +150,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       }
       else {
         // das zweite Modifizieren
-        ITextPart[] splittedParts = currentPart.split(currentOffset - partStart, Math.min(partLength, endTextPosition
+        ITextPart[] splittedParts = currentPart.split(currentOffset - partStart, Math.min(partLength, tailStartPosition
             - partStart));
         newTextParts.add(splittedParts[0]);
         newTextParts.add(new TextPart(splittedParts[1].getText(), toggledFormat));
@@ -197,7 +198,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       return false;
     }
     int firstIndex = indexOfInstance(getTextPart(offset));
-    int endIndex = indexOfInstance(getTextPart(offset + length - 1));
+    int endIndex = indexOfInstance(getTextPart(getEndPosition(offset, length)));
     for (int index = firstIndex; index <= endIndex; index++) {
       ITextPart currentPart = textParts.get(index);
       if (predicate.evaluate(currentPart.getFormat())) {
@@ -205,6 +206,10 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       }
     }
     return false;
+  }
+
+  private int getEndPosition(int offset, int length) {
+    return offset + length - 1;
   }
 
   private void addTailingTextParts(int endIndex, List<ITextPart> newTextParts) {
