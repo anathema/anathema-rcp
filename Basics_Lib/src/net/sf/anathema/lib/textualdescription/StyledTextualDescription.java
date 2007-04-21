@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.disy.commons.core.predicate.IPredicate;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
@@ -95,10 +94,21 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     return getText(getTextParts());
   }
 
+  @Override
+  public void toggleAspect(final TextAspect aspect, final int offset, final int length) {
+    ITransformer<ITextFormat, ITextFormat> transformer = new ITransformer<ITextFormat, ITextFormat>() {
+      @Override
+      public ITextFormat transform(ITextFormat input) {
+        return aspect.deriveFormat(input, isDominant(aspect, offset, length));
+      }
+    };
+    toggleFormat(offset, length, transformer);
+  }
+
   public void replaceText(int startTextPosition, int length, String newText) {
-    int endTextPosition = startTextPosition + length;
+    int tailStartPosition = startTextPosition + length;
     ITextPart startTextPart = getTextPart(startTextPosition);
-    ITextPart endTextPart = getTextPart(endTextPosition);
+    ITextPart endTextPart = getTextPart(tailStartPosition);
     int startTextPartIndex = indexOfInstance(startTextPart);
     int endTextPartIndex = indexOfInstance(endTextPart);
     List<ITextPart> newTextParts = new ArrayList<ITextPart>();
@@ -108,7 +118,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     StringBuilder newTextBuilder = new StringBuilder();
     newTextBuilder.append(originalText.substring(0, startIndexWithinTextPart));
     newTextBuilder.append(newText);
-    int endIndexWithinEndTextPart = endTextPosition - overallStartIndex.get(endTextPart);
+    int endIndexWithinEndTextPart = tailStartPosition - overallStartIndex.get(endTextPart);
     String endTextPartText = endTextPart.getText().substring(endIndexWithinEndTextPart);
     if (startTextPart.getFormat().equals(endTextPart.getFormat())) {
       newTextBuilder.append(endTextPartText);
@@ -122,28 +132,14 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     setNewText(newTextParts);
   }
 
-  @Override
-  public void toggleAspect(final TextAspect aspect, final int offset, final int length) {
-    ITransformer<ITextFormat, ITextFormat> transformer = new ITransformer<ITextFormat, ITextFormat>() {
-      @Override
-      public ITextFormat transform(ITextFormat input) {
-        return aspect.deriveFormat(input, isDominant(aspect, offset, length));
-      }
-    };
-    toggleFormat(offset, length, transformer);
-  }
-
   private void toggleFormat(int offset, int length, ITransformer<ITextFormat, ITextFormat> formatTransformer) {
-    if (length == 0) {
-      return;
-    }
     int blockEndPosition = getEndPosition(offset, length);
-    int tailStartPosition = blockEndPosition + 1;
     int startTextPartIndex = indexOfInstance(getTextPart(offset));
     int endTextPartIndex = indexOfInstance(getTextPart(blockEndPosition));
     List<ITextPart> newTextParts = new ArrayList<ITextPart>();
-    int currentOffset = offset;
+    int tailStartPosition = blockEndPosition + 1;
     addLeadingTextParts(startTextPartIndex, newTextParts);
+    int currentOffset = offset;
     for (int index = startTextPartIndex; index <= endTextPartIndex; index++) {
       ITextPart currentPart = textParts.get(index);
       int partStart = overallStartIndex.get(currentPart);
@@ -204,12 +200,6 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
 
   @Override
   public boolean isDominant(final TextAspect aspect, int offset, int length) {
-    final IPredicate<ITextFormat> dominantAspectPredicate = new IPredicate<ITextFormat>() {
-      @Override
-      public boolean evaluate(ITextFormat format) {
-        return aspect.isDominant(format);
-      }
-    };
     if (textParts.size() == 0) {
       return false;
     }
@@ -217,7 +207,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     int endIndex = indexOfInstance(getTextPart(getEndPosition(offset, length)));
     for (int index = firstIndex; index <= endIndex; index++) {
       ITextPart currentPart = textParts.get(index);
-      if (!dominantAspectPredicate.evaluate(currentPart.getFormat())) {
+      if (!aspect.isDominant(currentPart.getFormat())) {
         return false;
       }
     }
