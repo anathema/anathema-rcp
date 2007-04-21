@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Editor StyledText
-Bundle-SymbolicName: Editor_StyledText; singleton:=true
+Bundle-SymbolicName: net.sf.anathema.editor.styledtext;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- Basics_Item,
- Basics_Lib,
- Basics_JFace
+ net.sf.anathema.basics.item,
+ net.sf.anathema.basics.jface,
+ net.sf.anathema.basics.lib
 Eclipse-LazyStart: true
 Bundle-ClassPath: .
 Export-Package: editor.styledtext.editors

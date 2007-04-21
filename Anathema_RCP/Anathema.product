@@ -10,14 +10,14 @@
    <splash
       startupProgressRect="0,0,0,0" />
    <plugins>
-      <plugin id="Anathema_RCP"/>
-      <plugin id="Basics_Item"/>
-      <plugin id="Basics_JFace"/>
-      <plugin id="Basics_Lib"/>
-      <plugin id="Basics_SvgTree"/>
-      <plugin id="Editor_StyledText"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="com.ibm.icu.source"/>
+      <plugin id="net.sf.anathema.basics.item"/>
+      <plugin id="net.sf.anathema.basics.jface"/>
+      <plugin id="net.sf.anathema.basics.lib"/>
+      <plugin id="net.sf.anathema.basics.svgtree"/>
+      <plugin id="net.sf.anathema.editor.styledtext"/>
+      <plugin id="net.sf.anathema.rcp"/>
       <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.core.commands"/>
       <plugin id="org.eclipse.core.contenttype"/>

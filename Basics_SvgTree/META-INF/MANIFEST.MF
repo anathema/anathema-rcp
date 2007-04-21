@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Basics_SvgTree Plug-in
-Bundle-SymbolicName: Basics_SvgTree;singleton:=true
+Bundle-SymbolicName: net.sf.anathema.basics.svgtree;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: lib/batik-awt-util.jar,
  lib/batik-bridge.jar,
@@ -18,8 +18,8 @@ Bundle-ClassPath: lib/batik-awt-util.jar,
  lib/batik-xml.jar,
  lib/xml-apis-dom3.jar,
  .
-Require-Bundle: Basics_Lib,
- org.eclipse.ui,
+Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- Anathema_RCP
+ net.sf.anathema.basics.lib,
+ net.sf.anathema.rcp
 Export-Package: net.sf.anathema.platform.svgtree

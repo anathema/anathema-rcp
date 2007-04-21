@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Basics_Lib Plug-in
-Bundle-SymbolicName: Basics_Lib
+Bundle-SymbolicName: net.sf.anathema.basics.lib
 Bundle-Version: 1.0.0
 Bundle-ClassPath: lib/disy-commons-core.jar,
  .,

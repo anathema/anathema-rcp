@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Basics_Item
-Bundle-SymbolicName: Basics_Item
+Bundle-SymbolicName: net.sf.anathema.basics.item
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
-Require-Bundle: Basics_Lib
+Require-Bundle: net.sf.anathema.basics.lib
 Export-Package: net.sf.anathema.framework.item,
  net.sf.anathema.framework.item.change,
  net.sf.anathema.framework.item.data,

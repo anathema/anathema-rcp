@@ -32,7 +32,7 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="Anathema_RCP.application"
+            application="net.sf.anathema.rcp.application"
             name="Anathema">
       </product>
    </extension>

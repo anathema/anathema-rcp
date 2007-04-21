@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Basics_JFace Plug-in
-Bundle-SymbolicName: Basics_JFace
+Bundle-SymbolicName: net.sf.anathema.basics.jface
 Bundle-Version: 1.0.0
-Require-Bundle: Basics_Lib,
- org.eclipse.core.resources,
+Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.eclipse.jface.text,
- org.eclipse.ui
+ org.eclipse.ui,
+ net.sf.anathema.basics.lib
 Export-Package: net.sf.anathema.basics.jface,
  net.sf.anathema.basics.jface.selection,
  net.sf.anathema.basics.jface.text

@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Anathema_RCP Plug-in
-Bundle-SymbolicName: Anathema_RCP; singleton:=true
+Bundle-SymbolicName: net.sf.anathema.rcp;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.core.resources,
- Basics_JFace
+ net.sf.anathema.basics.jface
 Export-Package: anathema_rcp
