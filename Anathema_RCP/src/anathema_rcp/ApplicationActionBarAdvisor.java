@@ -8,8 +8,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.action.ActionContributionItem;
-import org.eclipse.jface.action.CoolBarManager;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.ICoolBarManager;
@@ -35,6 +33,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
   // fillActionBars is called with FILL_PROXY.
   private IWorkbenchAction exitAction;
   private List<IAction> toolbarActions = new ArrayList<IAction>();
+  private IWorkbenchAction saveAction;
+  private IWorkbenchAction saveAllAction;
 
   public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
     super(configurer);
@@ -47,7 +47,11 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     // The corresponding commands keybindings are defined in the plugin.xml file.
     // Registering also provides automatic disposal of the actions when the window is closed.
     exitAction = ActionFactory.QUIT.create(window);
+    saveAction = ActionFactory.SAVE.create(window);
+    saveAllAction = ActionFactory.SAVE_ALL.create(window);
     register(exitAction);
+    register(saveAction);
+    register(saveAllAction);
     createActions(window);
   }
 
@@ -61,6 +65,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
           toolbarActions.add(action);
         }
         catch (CoreException e) {
+          // TODO Fehlerhandling
           e.printStackTrace();
         }
       }
@@ -72,6 +77,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     MenuManager fileMenu = new MenuManager("&File", IWorkbenchActionConstants.M_FILE);
     menuBar.add(fileMenu);
     fileMenu.add(exitAction);
+    fileMenu.add(saveAction);
+    fileMenu.add(saveAllAction);
     MenuManager grrrMenuu = new MenuManager("&Grrr", "Grrr");
     menuBar.add(grrrMenuu);
     addActions(grrrMenuu);

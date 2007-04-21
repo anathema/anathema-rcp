@@ -29,9 +29,6 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.ui.editors">
-   </extension>
-   <extension
          id="product"
          point="org.eclipse.core.runtime.products">
       <product

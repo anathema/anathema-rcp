@@ -5,9 +5,6 @@ Bundle-SymbolicName: Editor_StyledText; singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.jface.text,
- org.eclipse.ui.editors,
- org.eclipse.ui.workbench.texteditor,
  org.eclipse.core.resources,
  Basics_Item,
  Basics_Lib,
