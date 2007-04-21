@@ -1,8 +1,6 @@
 package net.sf.anathema.lib.textualdescription;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,27 +13,16 @@ import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 public class StyledTextualDescription extends AbstractTextualDescription implements IStyledTextualDescription {
 
   private final GenericControl<IStyledTextChangeListener> textListeners = new GenericControl<IStyledTextChangeListener>();
-  private List<ITextPart> textParts = new ArrayList<ITextPart>();
-  private final Map<ITextPart, Integer> overallStartIndex = new HashMap<ITextPart, Integer>();
+  private final TextPartCollection textPartCollection = new TextPartCollection();
   private final Map<IObjectValueChangedListener<String>, IStyledTextChangeListener> listenerMap = new HashMap<IObjectValueChangedListener<String>, IStyledTextChangeListener>();
 
   public void setText(ITextPart... textParts) {
-    if (Arrays.deepEquals(getTextParts(), textParts)) {
-      return;
-    }
-    this.textParts = new ArrayList<ITextPart>();
-    Collections.addAll(this.textParts, textParts);
-    overallStartIndex.clear();
-    int startIndex = 0;
-    for (ITextPart part : textParts) {
-      overallStartIndex.put(part, startIndex);
-      startIndex += part.getText().length();
-    }
+    textPartCollection.setText(textParts);
     setDirty(true);
   }
 
   public ITextPart[] getTextParts() {
-    return textParts.toArray(new ITextPart[textParts.size()]);
+    return textPartCollection.getTextParts();
   }
 
   @Override
@@ -56,7 +43,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   }
 
   public boolean isEmpty() {
-    return textParts.size() == 0;
+    return textPartCollection.isEmpty();
   }
 
   public void setText(String text) {
@@ -71,7 +58,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   public void addTextChangedListener(final IObjectValueChangedListener<String> listener) {
     IStyledTextChangeListener styledListener = new IStyledTextChangeListener() {
       public void textChanged(ITextPart[] newParts) {
-        listener.valueChanged(getText(newParts));
+        listener.valueChanged(getText());
       }
     };
     addTextChangedListener(styledListener);
@@ -82,16 +69,8 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     removeTextChangedListener(listenerMap.get(listener));
   }
 
-  private String getText(ITextPart[] parts) {
-    StringBuilder builder = new StringBuilder();
-    for (ITextPart part : parts) {
-      builder.append(part.getText());
-    }
-    return builder.toString();
-  }
-
   public String getText() {
-    return getText(getTextParts());
+    return textPartCollection.getText();
   }
 
   @Override
@@ -102,49 +81,18 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
         return aspect.deriveFormat(input, isDominant(aspect, offset, length));
       }
     };
-    toggleFormat(offset, length, transformer);
-  }
-
-  public void replaceText(int startTextPosition, int length, String newText) {
-    int tailStartPosition = startTextPosition + length;
-    ITextPart startTextPart = getTextPart(startTextPosition);
-    ITextPart endTextPart = getTextPart(tailStartPosition);
-    int startTextPartIndex = indexOfInstance(startTextPart);
-    int endTextPartIndex = indexOfInstance(endTextPart);
-    List<ITextPart> newTextParts = new ArrayList<ITextPart>();
-    addLeadingTextParts(startTextPartIndex, newTextParts);
-    int startIndexWithinTextPart = startTextPosition - overallStartIndex.get(startTextPart);
-    String originalText = startTextPart.getText();
-    StringBuilder newTextBuilder = new StringBuilder();
-    newTextBuilder.append(originalText.substring(0, startIndexWithinTextPart));
-    newTextBuilder.append(newText);
-    int endIndexWithinEndTextPart = tailStartPosition - overallStartIndex.get(endTextPart);
-    String endTextPartText = endTextPart.getText().substring(endIndexWithinEndTextPart);
-    if (startTextPart.getFormat().equals(endTextPart.getFormat())) {
-      newTextBuilder.append(endTextPartText);
-      newTextParts.add(new TextPart(newTextBuilder.toString(), startTextPart.getFormat()));
-    }
-    else {
-      newTextParts.add(new TextPart(newTextBuilder.toString(), startTextPart.getFormat()));
-      newTextParts.add(new TextPart(endTextPartText, endTextPart.getFormat()));
-    }
-    addTailingTextParts(endTextPartIndex, newTextParts);
-    setNewText(newTextParts);
-  }
-
-  private void toggleFormat(int offset, int length, ITransformer<ITextFormat, ITextFormat> formatTransformer) {
-    int blockEndPosition = getEndPosition(offset, length);
-    int startTextPartIndex = indexOfInstance(getTextPart(offset));
-    int endTextPartIndex = indexOfInstance(getTextPart(blockEndPosition));
+    int blockEndPosition = getBlockEndPosition(offset, length);
+    int startTextPartIndex = textPartCollection.indexOf(textPartCollection.getTextPartByTextPosition(offset));
+    int endTextPartIndex = textPartCollection.indexOf(textPartCollection.getTextPartByTextPosition(blockEndPosition));
     List<ITextPart> newTextParts = new ArrayList<ITextPart>();
     int tailStartPosition = blockEndPosition + 1;
     addLeadingTextParts(startTextPartIndex, newTextParts);
     int currentOffset = offset;
     for (int index = startTextPartIndex; index <= endTextPartIndex; index++) {
-      ITextPart currentPart = textParts.get(index);
-      int partStart = overallStartIndex.get(currentPart);
+      ITextPart currentPart = textPartCollection.get(index);
+      int partStart = textPartCollection.getStartPosition(currentPart);
       int partLength = currentPart.getText().length();
-      ITextFormat toggledFormat = formatTransformer.transform(currentPart.getFormat());
+      ITextFormat toggledFormat = transformer.transform(currentPart.getFormat());
       if (currentOffset == partStart) {
         // das Erste/Einzige modifizieren
         ITextPart[] splittedParts = currentPart.split(0, Math.min(partLength, tailStartPosition - partStart));
@@ -168,45 +116,45 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
 
     }
     addTailingTextParts(endTextPartIndex, newTextParts);
-    setNewText(newTextParts);
-  }
-
-  private void setNewText(List<ITextPart> newTextParts) {
     setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
   }
 
-  private int indexOfInstance(ITextPart textPart) {
-    for (int index = 0; index < textParts.size(); index++) {
-      if (textParts.get(index) == textPart) {
-        return index;
-      }
+  public void replaceText(int startTextPosition, int length, String newText) {
+    int tailStartPosition = startTextPosition + length;
+    ITextPart startTextPart = textPartCollection.getTextPartByTextPosition(startTextPosition);
+    ITextPart endTextPart = textPartCollection.getTextPartByTextPosition(tailStartPosition);
+    int startTextPartIndex = textPartCollection.indexOf(startTextPart);
+    int endTextPartIndex = textPartCollection.indexOf(endTextPart);
+    List<ITextPart> newTextParts = new ArrayList<ITextPart>();
+    addLeadingTextParts(startTextPartIndex, newTextParts);
+    int startIndexWithinTextPart = startTextPosition - textPartCollection.getStartPosition(startTextPart);
+    String originalText = startTextPart.getText();
+    StringBuilder newTextBuilder = new StringBuilder();
+    newTextBuilder.append(originalText.substring(0, startIndexWithinTextPart));
+    newTextBuilder.append(newText);
+    int endIndexWithinEndTextPart = tailStartPosition - textPartCollection.getStartPosition(endTextPart);
+    String endTextPartText = endTextPart.getText().substring(endIndexWithinEndTextPart);
+    if (startTextPart.getFormat().equals(endTextPart.getFormat())) {
+      newTextBuilder.append(endTextPartText);
+      newTextParts.add(new TextPart(newTextBuilder.toString(), startTextPart.getFormat()));
     }
-    return -1;
-  }
-
-  private ITextPart getTextPart(int textPosition) {
-    int endIndex = 0;
-    for (ITextPart part : textParts) {
-      endIndex += part.getText().length();
-      if (endIndex > textPosition) {
-        return part;
-      }
+    else {
+      newTextParts.add(new TextPart(newTextBuilder.toString(), startTextPart.getFormat()));
+      newTextParts.add(new TextPart(endTextPartText, endTextPart.getFormat()));
     }
-    if (textPosition == getText().length()) {
-      return textParts.get(textParts.size() - 1);
-    }
-    throw new IllegalArgumentException("TextPosition must not be greater than size: " + textPosition); //$NON-NLS-1$
+    addTailingTextParts(endTextPartIndex, newTextParts);
+    setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
   }
 
   @Override
   public boolean isDominant(final TextAspect aspect, int offset, int length) {
-    if (textParts.size() == 0) {
+    if (textPartCollection.isEmpty()) {
       return false;
     }
-    int firstIndex = indexOfInstance(getTextPart(offset));
-    int endIndex = indexOfInstance(getTextPart(getEndPosition(offset, length)));
+    int firstIndex = textPartCollection.getIndexOfTextPosition(offset);
+    int endIndex = textPartCollection.getIndexOfTextPosition((getBlockEndPosition(offset, length)));
     for (int index = firstIndex; index <= endIndex; index++) {
-      ITextPart currentPart = textParts.get(index);
+      ITextPart currentPart = textPartCollection.get(index);
       if (!aspect.isDominant(currentPart.getFormat())) {
         return false;
       }
@@ -214,17 +162,17 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     return true;
   }
 
-  private int getEndPosition(int offset, int length) {
+  private int getBlockEndPosition(int offset, int length) {
     return offset + length - 1;
   }
 
   private void addTailingTextParts(int endIndex, List<ITextPart> newTextParts) {
-    if (endIndex + 1 < textParts.size()) {
-      newTextParts.addAll(textParts.subList(endIndex + 1, textParts.size()));
+    if (endIndex + 1 < textPartCollection.size()) {
+      newTextParts.addAll(textPartCollection.subList(endIndex + 1, textPartCollection.size()));
     }
   }
 
   private void addLeadingTextParts(int startIndex, List<ITextPart> newTextParts) {
-    newTextParts.addAll(textParts.subList(0, startIndex));
+    newTextParts.addAll(textPartCollection.subList(0, startIndex));
   }
 }
