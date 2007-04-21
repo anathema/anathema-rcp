@@ -10,7 +10,7 @@ public abstract class AbstractTextModification implements ITextModification {
 
   @Override
   public boolean isActive(IStyledTextualDescription description, int offset, int length) {
-    return description.containsFormat(offset, length, new IPredicate<ITextFormat>() {
+    return description.isFormatted(offset, length, new IPredicate<ITextFormat>() {
       @Override
       public boolean evaluate(ITextFormat format) {
         return isActive(format);

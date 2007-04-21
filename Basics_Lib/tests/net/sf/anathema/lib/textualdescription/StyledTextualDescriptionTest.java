@@ -12,7 +12,7 @@ public class StyledTextualDescriptionTest {
   private StyledTextualDescription description;
 
   private boolean evaluateIsBold(int start, int length) {
-    return description.containsFormat(start, length, new IPredicate<ITextFormat>() {
+    return description.isFormatted(start, length, new IPredicate<ITextFormat>() {
       @Override
       public boolean evaluate(ITextFormat format) {
         return format.getFontStyle().isBold();
@@ -27,9 +27,9 @@ public class StyledTextualDescriptionTest {
 
   @Test
   public void emptyDescriptionContainsNoFormat() throws Exception {
-    assertFalse(description.containsFormat(0, 0, new IPredicate<ITextFormat>() {
+    assertFalse(description.isFormatted(0, 0, new IPredicate<ITextFormat>() {
       @Override
-      public boolean evaluate(ITextFormat arg0) {
+      public boolean evaluate(ITextFormat input) {
         return true;
       }
     }));
@@ -52,23 +52,22 @@ public class StyledTextualDescriptionTest {
     TextPart notMatchingPart = new TextPart("Hasän", new TextFormat(FontStyle.ITALIC, true)); //$NON-NLS-1$
     TextPart matchingPart = new TextPart("tum", new TextFormat(FontStyle.BOLD, false)); //$NON-NLS-1$
     description.setText(new ITextPart[] { notMatchingPart, matchingPart });
-    assertTrue(evaluateIsBold(0, 6));
+    assertFalse(evaluateIsBold(0, 6));
   }
 
   @Test
   public void equalFormatsDontInterfereWithRange() throws Exception {
     description.setText(new TextPart("ein ", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
-        new TextPart("Hasä ", new TextFormat(FontStyle.ITALIC, false)), //$NON-NLS-1$
+        new TextPart("Hasä ", new TextFormat(FontStyle.BOLD, false)), //$NON-NLS-1$
         new TextPart("ein ", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
-        new TextPart("toller ", new TextFormat(FontStyle.BOLD, false)), //$NON-NLS-1$
-        new TextPart("Hasä ", new TextFormat(FontStyle.ITALIC, false))); //$NON-NLS-1$
-    assertTrue("Must evaluate to bold.", evaluateIsBold(11, 10)); //$NON-NLS-1$
+        new TextPart("toller ", new TextFormat(FontStyle.ITALIC, false)), //$NON-NLS-1$
+        new TextPart("Hasä ", new TextFormat(FontStyle.BOLD, false))); //$NON-NLS-1$
+    assertFalse("Must not be bold.", evaluateIsBold(11, 10)); //$NON-NLS-1$
   }
 
   @Test
-  public void everythingIsSetToggleFromPlainToBold() throws Exception {
-    ITextPart[] parts = { new TextPart("ein", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
-    };
+  public void everythingIsToggledFromPlainToBold() throws Exception {
+    ITextPart[] parts = { new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))}; //$NON-NLS-1$
     description.setText(parts);
     description.toggleFontStyle(0, 3, FontStyle.BOLD);
     assertTrue(evaluateIsBold(0, 3));
@@ -145,5 +144,16 @@ public class StyledTextualDescriptionTest {
   private void assertStyleAndLength(ITextPart textPart, FontStyle style, int length) {
     assertEquals(style, textPart.getFormat().getFontStyle());
     assertEquals(length, textPart.getLength());
+  }
+
+  @Test
+  public void plainestPartDictatesBehaviour() throws Exception {
+    description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, false)), //$NON-NLS-1$
+        new TextPart("toller", new TextFormat(FontStyle.BOLD, false))); //$NON-NLS-1$
+    description.toggleFontStyle(0, 5, FontStyle.BOLD);
+    ITextPart[] textParts = description.getTextParts();
+    assertStyleAndLength(textParts[0], FontStyle.BOLD, 3);
+    assertStyleAndLength(textParts[1], FontStyle.BOLD, 2);
+    assertStyleAndLength(textParts[2], FontStyle.BOLD, 4);
   }
 }

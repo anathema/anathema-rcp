@@ -15,7 +15,7 @@ public interface IStyledTextualDescription extends ITextualDescription {
 
   public void replaceText(int offset, int length, String newText);
 
-  public boolean containsFormat(int offset, int length, IPredicate<ITextFormat> predicate);
+  public boolean isFormatted(int offset, int length, IPredicate<ITextFormat> predicate);
 
   public void toggleFontStyle(int offset, int length, FontStyle fontStyle);
 

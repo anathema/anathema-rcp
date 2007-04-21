@@ -9,6 +9,7 @@ import java.util.Map;
 
 import net.disy.commons.core.predicate.IPredicate;
 import net.disy.commons.core.text.font.FontStyle;
+import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
@@ -123,7 +124,41 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   }
 
   @Override
-  public void toggleFontStyle(int offset, int length, FontStyle fontStyle) {
+  public void toggleUnderline(int offset, int length) {
+    toggleFormat(offset, length, new ITransformer<ITextFormat, ITextFormat>() {
+      @Override
+      public ITextFormat transform(ITextFormat input) {
+        return TextFormat.deriveFormatWithToggledUnderline(input);
+      }
+    });
+  }
+
+  @Override
+  public void toggleFontStyle(final int offset, final int length, final FontStyle fontStyle) {
+    toggleFormat(offset, length, new ITransformer<ITextFormat, ITextFormat>() {
+      @Override
+      public ITextFormat transform(ITextFormat input) {
+        boolean isFormatted = isFormatted(offset, length, new IPredicate<ITextFormat>() {
+          @Override
+          public boolean evaluate(ITextFormat format) {
+            return format.getFontStyle() == fontStyle;
+          }
+        });
+        FontStyle targetStyle = isFormatted ? createErasedFontStyle(input, fontStyle) : fontStyle;
+        return TextFormat.deriveFormat(input, targetStyle);
+      }
+
+      private FontStyle createErasedFontStyle(ITextFormat input, FontStyle fontStyle) {
+        FontStyle inputStyle = input.getFontStyle();
+        if (fontStyle == FontStyle.BOLD) {
+          return inputStyle.isItalic() ? FontStyle.ITALIC : FontStyle.PLAIN;
+        }
+        return inputStyle.isBold() ? FontStyle.BOLD : FontStyle.PLAIN;
+      }
+    });
+  }
+
+  private void toggleFormat(int offset, int length, ITransformer<ITextFormat, ITextFormat> formatTransformer) {
     if (length == 0) {
       return;
     }
@@ -138,7 +173,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       ITextPart currentPart = textParts.get(index);
       int partStart = overallStartIndex.get(currentPart);
       int partLength = currentPart.getText().length();
-      ITextFormat toggledFormat = TextFormat.deriveFormat(currentPart.getFormat(), fontStyle);
+      ITextFormat toggledFormat = formatTransformer.transform(currentPart.getFormat());
       if (currentOffset == partStart) {
         // das Erste/Einzige modifizieren
         ITextPart[] splittedParts = currentPart.split(0, Math.min(partLength, tailStartPosition - partStart));
@@ -193,7 +228,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   }
 
   @Override
-  public boolean containsFormat(int offset, int length, IPredicate<ITextFormat> predicate) {
+  public boolean isFormatted(int offset, int length, IPredicate<ITextFormat> predicate) {
     if (textParts.size() == 0) {
       return false;
     }
@@ -201,11 +236,11 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     int endIndex = indexOfInstance(getTextPart(getEndPosition(offset, length)));
     for (int index = firstIndex; index <= endIndex; index++) {
       ITextPart currentPart = textParts.get(index);
-      if (predicate.evaluate(currentPart.getFormat())) {
-        return true;
+      if (!predicate.evaluate(currentPart.getFormat())) {
+        return false;
       }
     }
-    return false;
+    return true;
   }
 
   private int getEndPosition(int offset, int length) {
@@ -220,10 +255,5 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
 
   private void addLeadingTextParts(int startIndex, List<ITextPart> newTextParts) {
     newTextParts.addAll(textParts.subList(0, startIndex));
-  }
-
-  @Override
-  public void toggleUnderline(int offset, int length) {
-    // TODO setUnderline
   }
 }
