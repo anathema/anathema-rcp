@@ -123,27 +123,11 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   }
 
   @Override
-  public void toggleUnderline(int offset, int length) {
-    toggleFormat(offset, length, new ITransformer<ITextFormat, ITextFormat>() {
-      @Override
-      public ITextFormat transform(ITextFormat input) {
-        return TextFormat.deriveFormatWithToggledUnderline(input);
-      }
-    });
-  }
-
-  @Override
-  public void toggleFontStyle(final int offset, final int length, final TextAspect aspect) {
-    final IPredicate<ITextFormat> dominantAspectPredicate = new IPredicate<ITextFormat>() {
-      @Override
-      public boolean evaluate(ITextFormat format) {
-        return aspect.isDominant(format);
-      }
-    };
+  public void toggleAspect(final TextAspect aspect, final int offset, final int length) {
     ITransformer<ITextFormat, ITextFormat> transformer = new ITransformer<ITextFormat, ITextFormat>() {
       @Override
       public ITextFormat transform(ITextFormat input) {
-        return aspect.deriveFormat(input, isFormatted(offset, length, dominantAspectPredicate));
+        return aspect.deriveFormat(input, isDominant(aspect, offset, length));
       }
     };
     toggleFormat(offset, length, transformer);
@@ -219,7 +203,13 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   }
 
   @Override
-  public boolean isFormatted(int offset, int length, IPredicate<ITextFormat> predicate) {
+  public boolean isDominant(final TextAspect aspect, int offset, int length) {
+    final IPredicate<ITextFormat> dominantAspectPredicate = new IPredicate<ITextFormat>() {
+      @Override
+      public boolean evaluate(ITextFormat format) {
+        return aspect.isDominant(format);
+      }
+    };
     if (textParts.size() == 0) {
       return false;
     }
@@ -227,7 +217,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
     int endIndex = indexOfInstance(getTextPart(getEndPosition(offset, length)));
     for (int index = firstIndex; index <= endIndex; index++) {
       ITextPart currentPart = textParts.get(index);
-      if (!predicate.evaluate(currentPart.getFormat())) {
+      if (!dominantAspectPredicate.evaluate(currentPart.getFormat())) {
         return false;
       }
     }

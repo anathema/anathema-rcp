@@ -12,14 +12,8 @@ public enum TextAspect {
 
     @Override
     public ITextFormat deriveFormat(ITextFormat input, boolean isDominant) {
-      FontStyle derivedStyle;
-      if (isDominant) {
-        derivedStyle = input.getFontStyle().isItalic() ? FontStyle.ITALIC : FontStyle.PLAIN;
-      }
-      else {
-        derivedStyle = input.getFontStyle().isItalic() ? FontStyle.BOLD_ITALIC : FontStyle.BOLD;
-      }
-      return TextFormat.deriveFormat(input, derivedStyle);
+      FontStyle derivedStyle = FontStyle.getStyle(!isDominant, input.getFontStyle().isItalic());
+      return TextFormat.deriveFormatWithFontStyle(input, derivedStyle);
     }
 
   },
@@ -31,14 +25,20 @@ public enum TextAspect {
 
     @Override
     public ITextFormat deriveFormat(ITextFormat input, boolean isDominant) {
-      FontStyle derivedStyle;
-      if (isDominant) {
-        derivedStyle = input.getFontStyle().isBold() ? FontStyle.BOLD : FontStyle.PLAIN;
-      }
-      else {
-        derivedStyle = input.getFontStyle().isBold() ? FontStyle.BOLD_ITALIC : FontStyle.ITALIC;
-      }
-      return TextFormat.deriveFormat(input, derivedStyle);
+      FontStyle derivedStyle = FontStyle.getStyle(input.getFontStyle().isBold(), !isDominant);
+      return TextFormat.deriveFormatWithFontStyle(input, derivedStyle);
+    }
+  },
+
+  Underline {
+    @Override
+    public boolean isDominant(ITextFormat format) {
+      return format.isUnderline();
+    }
+
+    @Override
+    public ITextFormat deriveFormat(ITextFormat input, boolean isDominant) {
+      return TextFormat.deriveFormatWithUnderline(input, !isDominant);
     }
   };
 

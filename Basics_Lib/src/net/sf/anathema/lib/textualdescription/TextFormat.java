@@ -12,16 +12,16 @@ public class TextFormat implements ITextFormat {
   private final String fontName;
   private final Color textColor;
 
-  public static ITextFormat deriveFormatWithToggledUnderline(ITextFormat format) {
+  public static ITextFormat deriveFormatWithUnderline(ITextFormat format, boolean underline) {
     return new TextFormat(
         format.getFontName(),
         format.getFontStyle(),
-        !format.isUnderline(),
+        underline,
         format.getFontSize(),
         format.getColor());
   }
 
-  public static ITextFormat deriveFormat(ITextFormat format, FontStyle fontStyle) {
+  public static ITextFormat deriveFormatWithFontStyle(ITextFormat format, FontStyle fontStyle) {
     return new TextFormat(
         format.getFontName(),
         fontStyle,

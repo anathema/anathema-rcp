@@ -1,7 +1,6 @@
 package net.sf.anathema.lib.textualdescription;
 
 import static org.junit.Assert.*;
-import net.disy.commons.core.predicate.IPredicate;
 import net.disy.commons.core.text.font.FontStyle;
 
 import org.junit.Before;
@@ -11,13 +10,8 @@ public class StyledTextualDescriptionTest {
 
   private StyledTextualDescription description;
 
-  private boolean evaluateIsBold(int start, int length) {
-    return description.isFormatted(start, length, new IPredicate<ITextFormat>() {
-      @Override
-      public boolean evaluate(ITextFormat format) {
-        return format.getFontStyle().isBold();
-      }
-    });
+  private boolean isDominantlyBold(int start, int length) {
+    return description.isDominant(TextAspect.Bold, start, length);
   }
 
   @Before
@@ -27,24 +21,19 @@ public class StyledTextualDescriptionTest {
 
   @Test
   public void emptyDescriptionContainsNoFormat() throws Exception {
-    assertFalse(description.isFormatted(0, 0, new IPredicate<ITextFormat>() {
-      @Override
-      public boolean evaluate(ITextFormat input) {
-        return true;
-      }
-    }));
+    assertFalse(description.isDominant(TextAspect.Italic, 0, 0));
   }
 
   @Test
   public void doFindExistingSingleFormat() throws Exception {
     description.setText(new ITextPart[] { new TextPart("Hasä", new TextFormat(FontStyle.BOLD, true)) }); //$NON-NLS-1$
-    assertTrue(evaluateIsBold(0, 1));
+    assertTrue(isDominantlyBold(0, 1));
   }
 
   @Test
   public void doNotFindNonExistingFormat() throws Exception {
     description.setText(new ITextPart[] { new TextPart("Hasä", new TextFormat(FontStyle.ITALIC, true)) }); //$NON-NLS-1$
-    assertFalse(evaluateIsBold(0, 1));
+    assertFalse(isDominantlyBold(0, 1));
   }
 
   @Test
@@ -52,7 +41,7 @@ public class StyledTextualDescriptionTest {
     TextPart notMatchingPart = new TextPart("Hasän", new TextFormat(FontStyle.ITALIC, true)); //$NON-NLS-1$
     TextPart matchingPart = new TextPart("tum", new TextFormat(FontStyle.BOLD, false)); //$NON-NLS-1$
     description.setText(new ITextPart[] { notMatchingPart, matchingPart });
-    assertFalse(evaluateIsBold(0, 6));
+    assertFalse(isDominantlyBold(0, 6));
   }
 
   @Test
@@ -62,48 +51,48 @@ public class StyledTextualDescriptionTest {
         new TextPart("ein ", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
         new TextPart("toller ", new TextFormat(FontStyle.ITALIC, false)), //$NON-NLS-1$
         new TextPart("Hasä ", new TextFormat(FontStyle.BOLD, false))); //$NON-NLS-1$
-    assertFalse("Must not be bold.", evaluateIsBold(11, 10)); //$NON-NLS-1$
+    assertFalse("Must not be bold.", isDominantlyBold(11, 10)); //$NON-NLS-1$
   }
 
   @Test
   public void everythingIsToggledFromPlainToBold() throws Exception {
     ITextPart[] parts = { new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))}; //$NON-NLS-1$
     description.setText(parts);
-    description.toggleFontStyle(0, 3, TextAspect.Bold);
-    assertTrue(evaluateIsBold(0, 3));
+    description.toggleAspect(TextAspect.Bold, 0, 3);
+    assertTrue(isDominantlyBold(0, 3));
   }
 
   @Test
   public void everythingIsToggledFromBoldToPlain() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.BOLD, true))); //$NON-NLS-1$
-    description.toggleFontStyle(0, 3, TextAspect.Bold);
-    assertFalse(evaluateIsBold(0, 3));
+    description.toggleAspect(TextAspect.Bold, 0, 3);
+    assertFalse(isDominantlyBold(0, 3));
   }
 
   @Test
   public void onlyLeadingPartialTextPartBolded() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
-    description.toggleFontStyle(0, 2, TextAspect.Bold);
-    assertTrue(evaluateIsBold(0, 2));
-    assertFalse(evaluateIsBold(2, 1));
+    description.toggleAspect(TextAspect.Bold, 0, 2);
+    assertTrue(isDominantlyBold(0, 2));
+    assertFalse(isDominantlyBold(2, 1));
   }
 
   @Test
   public void onlyTailingPartialTextPartBolded() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
-    description.toggleFontStyle(2, 1, TextAspect.Bold);
-    assertFalse(evaluateIsBold(0, 2));
-    assertTrue(evaluateIsBold(2, 1));
+    description.toggleAspect(TextAspect.Bold, 2, 1);
+    assertFalse(isDominantlyBold(0, 2));
+    assertTrue(isDominantlyBold(2, 1));
   }
 
   @Test
   public void tailingAndNextTextPartBolded() throws Exception {
     description.setText(
         new TextPart("ein", new TextFormat(FontStyle.PLAIN, true)), new TextPart("Hasä", new TextFormat(FontStyle.PLAIN, false))); //$NON-NLS-1$ //$NON-NLS-2$
-    description.toggleFontStyle(2, 3, TextAspect.Bold);
-    assertFalse(evaluateIsBold(0, 2));
-    assertTrue(evaluateIsBold(2, 3));
-    assertFalse(evaluateIsBold(5, 1));
+    description.toggleAspect(TextAspect.Bold, 2, 3);
+    assertFalse(isDominantlyBold(0, 2));
+    assertTrue(isDominantlyBold(2, 3));
+    assertFalse(isDominantlyBold(5, 1));
   }
 
   @Test
@@ -111,7 +100,7 @@ public class StyledTextualDescriptionTest {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
         new TextPart("toller", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
         new TextPart("Hasä", new TextFormat(FontStyle.PLAIN, false))); //$NON-NLS-1$
-    description.toggleFontStyle(1, 11, TextAspect.Bold);
+    description.toggleAspect(TextAspect.Bold, 1, 11);
     ITextPart[] textParts = description.getTextParts();
     assertStyleAndLength(textParts[0], FontStyle.PLAIN, 1);
     assertStyleAndLength(textParts[1], FontStyle.BOLD, 2);
@@ -123,7 +112,7 @@ public class StyledTextualDescriptionTest {
   @Test
   public void middleOfTextPartIsBolded() throws Exception {
     description.setText(new TextPart("Ein toller Hasä", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
-    description.toggleFontStyle(4, 6, TextAspect.Bold);
+    description.toggleAspect(TextAspect.Bold, 4, 6);
     ITextPart[] textParts = description.getTextParts();
     assertStyleAndLength(textParts[0], FontStyle.PLAIN, 4);
     assertStyleAndLength(textParts[1], FontStyle.BOLD, 6);
@@ -133,8 +122,8 @@ public class StyledTextualDescriptionTest {
   @Test
   public void middleOfTextPartIsUnbolded() throws Exception {
     description.setText(new TextPart("Ein toller Hasä", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
-    description.toggleFontStyle(4, 6, TextAspect.Bold);
-    description.toggleFontStyle(4, 6, TextAspect.Bold);
+    description.toggleAspect(TextAspect.Bold, 4, 6);
+    description.toggleAspect(TextAspect.Bold, 4, 6);
     ITextPart[] textParts = description.getTextParts();
     assertStyleAndLength(textParts[0], FontStyle.PLAIN, 4);
     assertStyleAndLength(textParts[1], FontStyle.PLAIN, 6);
@@ -150,7 +139,7 @@ public class StyledTextualDescriptionTest {
   public void plainestPartDictatesBehaviour() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, false)), //$NON-NLS-1$
         new TextPart("toller", new TextFormat(FontStyle.BOLD, false))); //$NON-NLS-1$
-    description.toggleFontStyle(0, 5, TextAspect.Bold);
+    description.toggleAspect(TextAspect.Bold, 0, 5);
     ITextPart[] textParts = description.getTextParts();
     assertStyleAndLength(textParts[0], FontStyle.BOLD, 3);
     assertStyleAndLength(textParts[1], FontStyle.BOLD, 2);

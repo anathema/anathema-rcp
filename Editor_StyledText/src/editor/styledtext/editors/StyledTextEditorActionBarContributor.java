@@ -1,6 +1,7 @@
 package editor.styledtext.editors;
 
 import net.sf.anathema.lib.control.change.IChangeListener;
+import net.sf.anathema.lib.textualdescription.TextAspect;
 
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -12,9 +13,9 @@ import org.eclipse.ui.part.EditorActionBarContributor;
 public class StyledTextEditorActionBarContributor extends EditorActionBarContributor {
 
   private IStyledTextAction[] actions = {
-      new TextModificationAction("B", new BoldModification()),
-      new TextModificationAction("I", new ItalicsModification()),
-      new TextModificationAction("U", new UnderlineModification()) };
+      new TextModificationAction("B", new AspectedTextModification(TextAspect.Bold)),
+      new TextModificationAction("I", new AspectedTextModification(TextAspect.Italic)),
+      new TextModificationAction("U", new AspectedTextModification(TextAspect.Underline)) };
   private final ISelectionChangedListener selectionListener = new ISelectionChangedListener() {
     public void selectionChanged(SelectionChangedEvent event) {
       updateState();

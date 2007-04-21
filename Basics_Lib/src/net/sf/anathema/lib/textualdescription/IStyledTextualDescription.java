@@ -1,6 +1,5 @@
 package net.sf.anathema.lib.textualdescription;
 
-import net.disy.commons.core.predicate.IPredicate;
 
 public interface IStyledTextualDescription extends ITextualDescription {
 
@@ -14,9 +13,7 @@ public interface IStyledTextualDescription extends ITextualDescription {
 
   public void replaceText(int offset, int length, String newText);
 
-  public boolean isFormatted(int offset, int length, IPredicate<ITextFormat> predicate);
+  public boolean isDominant(TextAspect aspect, int offset, int length);
 
-  public void toggleFontStyle(int offset, int length, TextAspect aspect);
-
-  public void toggleUnderline(int offset, int length);
+  public void toggleAspect(TextAspect aspect, int offset, int length);
 }
