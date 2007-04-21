@@ -106,12 +106,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
         currentOffset += splittedParts[1].getText().length();
       }
     }
-    commitChanges(block);
-  }
-
-  private void commitChanges(TextModificationBlock block) {
-    block.commit();
-    setDirty(true);
+    block.commit(this);
   }
 
   public void replaceText(int startTextPosition, int length, String newText) {
@@ -132,7 +127,7 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       block.add(new TextPart(newTextBuilder.toString(), block.getStartTextPart().getFormat()));
       block.add(new TextPart(endTextPartText, tailingTextPart.getFormat()));
     }
-    commitChanges(block);
+    block.commit(this);
   }
 
   @Override

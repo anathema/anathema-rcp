@@ -2,11 +2,7 @@ package net.sf.anathema.lib.textualdescription;
 
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 
-public interface ITextualDescription {
-
-  public boolean isDirty();
-
-  public void setDirty(boolean isDirty);
+public interface ITextualDescription extends IModifiable {
 
   public boolean isEmpty();
 

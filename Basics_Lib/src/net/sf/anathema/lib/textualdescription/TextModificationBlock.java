@@ -52,9 +52,10 @@ public class TextModificationBlock {
     newTextParts.addAll(textPartCollection.subList(0, getStartTextPartIndex()));
   }
 
-  public void commit() {
+  public void commit(IModifiable modifiable) {
     addTailingTextParts();
     textPartCollection.setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
+    modifiable.setDirty(true);
   }
 
   public void add(ITextPart textPart) {
