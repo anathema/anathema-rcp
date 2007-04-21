@@ -3,24 +3,25 @@
 
 <product name="Arc" id="Anathema_RCP.product" application="Anathema_RCP.application" useFeatures="false">
 
-
    <configIni use="default"/>
 
    <windowImages/>
 
    <splash
       startupProgressRect="0,0,0,0" />
-
    <plugins>
       <plugin id="Anathema_RCP"/>
+      <plugin id="Basics_Item"/>
       <plugin id="Basics_JFace"/>
       <plugin id="Basics_Lib"/>
+      <plugin id="Basics_SvgTree"/>
+      <plugin id="Editor_StyledText"/>
       <plugin id="com.ibm.icu"/>
+      <plugin id="com.ibm.icu.source"/>
       <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.core.commands"/>
       <plugin id="org.eclipse.core.contenttype"/>
       <plugin id="org.eclipse.core.expressions"/>
-      <plugin id="org.eclipse.core.filebuffers"/>
       <plugin id="org.eclipse.core.filesystem"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
@@ -43,17 +44,8 @@
       <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.text"/>
       <plugin id="org.eclipse.ui"/>
-      <plugin id="org.eclipse.ui.editors"/>
-      <plugin id="org.eclipse.ui.forms"/>
-      <plugin id="org.eclipse.ui.ide"/>
-      <plugin id="org.eclipse.ui.views"/>
-      <plugin id="org.eclipse.ui.win32" fragment="true"/>
       <plugin id="org.eclipse.ui.workbench"/>
-      <plugin id="org.eclipse.ui.workbench.texteditor"/>
       <plugin id="org.eclipse.update.configurator"/>
-      <plugin id="org.eclipse.update.core"/>
-      <plugin id="org.eclipse.update.core.win32" fragment="true"/>
-      <plugin id="org.eclipse.update.ui"/>
    </plugins>
 
 </product>
