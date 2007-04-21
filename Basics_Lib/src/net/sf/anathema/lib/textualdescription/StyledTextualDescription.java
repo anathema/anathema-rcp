@@ -81,42 +81,34 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
         return aspect.deriveFormat(input, isDominant(aspect, offset, length));
       }
     };
-    int blockEndPosition = getBlockEndPosition(offset, length);
-    int startTextPartIndex = textPartCollection.indexOf(textPartCollection.getTextPartByTextPosition(offset));
-    int endTextPartIndex = textPartCollection.indexOf(textPartCollection.getTextPartByTextPosition(blockEndPosition));
-    List<ITextPart> newTextParts = new ArrayList<ITextPart>();
-    int tailStartPosition = blockEndPosition + 1;
-    addLeadingTextParts(startTextPartIndex, newTextParts);
+    TextModificationBlock block = new TextModificationBlock(textPartCollection, offset, length);
     int currentOffset = offset;
-    for (int index = startTextPartIndex; index <= endTextPartIndex; index++) {
+    for (int index = block.getStartTextPartIndex(); index <= block.getEndTextPartIndex(); index++) {
       ITextPart currentPart = textPartCollection.get(index);
       int partStart = textPartCollection.getStartPosition(currentPart);
       int partLength = currentPart.getText().length();
       ITextFormat toggledFormat = transformer.transform(currentPart.getFormat());
       if (currentOffset == partStart) {
-        // das Erste/Einzige modifizieren
-        ITextPart[] splittedParts = currentPart.split(0, Math.min(partLength, tailStartPosition - partStart));
-        newTextParts.add(new TextPart(splittedParts[0].getText(), toggledFormat));
+        ITextPart[] splittedParts = currentPart.split(0, Math.min(partLength, block.getTailStartPosition() - partStart));
+        block.add(new TextPart(splittedParts[0].getText(), toggledFormat));
         if (splittedParts.length > 1) {
-          newTextParts.add(splittedParts[1]);
+          block.add(splittedParts[1]);
         }
         currentOffset += partLength;
       }
       else {
-        // das zweite Modifizieren
-        ITextPart[] splittedParts = currentPart.split(currentOffset - partStart, Math.min(partLength, tailStartPosition
-            - partStart));
-        newTextParts.add(splittedParts[0]);
-        newTextParts.add(new TextPart(splittedParts[1].getText(), toggledFormat));
+        ITextPart[] splittedParts = currentPart.split(currentOffset - partStart, Math.min(
+            partLength,
+            block.getTailStartPosition() - partStart));
+        block.add(splittedParts[0]);
+        block.add(new TextPart(splittedParts[1].getText(), toggledFormat));
         if (splittedParts.length > 2) {
-          newTextParts.add(splittedParts[2]);
+          block.add(splittedParts[2]);
         }
         currentOffset += splittedParts[1].getText().length();
       }
-
     }
-    addTailingTextParts(endTextPartIndex, newTextParts);
-    setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
+    block.commit();
   }
 
   public void replaceText(int startTextPosition, int length, String newText) {
