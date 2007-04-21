@@ -1,6 +1,5 @@
 package net.sf.anathema.lib.textualdescription;
 
-
 public interface IStyledTextualDescription extends ITextualDescription {
 
   public void setText(ITextPart... textParts);
