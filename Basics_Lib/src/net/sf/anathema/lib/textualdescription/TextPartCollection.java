@@ -74,7 +74,7 @@ public class TextPartCollection {
   }
 
   public int getStartPosition(ITextPart textPart) {
-    return  overallStartPosition.get(textPart);
+    return overallStartPosition.get(textPart);
   }
 
   public int size() {
@@ -83,9 +83,5 @@ public class TextPartCollection {
 
   public List<ITextPart> subList(int fromIndex, int toIndex) {
     return textParts.subList(fromIndex, toIndex);
-  }
-
-  public int getIndexOfTextPosition(int offset) {
-    return  indexOf(getTextPartByTextPosition(offset));
   }
 }
