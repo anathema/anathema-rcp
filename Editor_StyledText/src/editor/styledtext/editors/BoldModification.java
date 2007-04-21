@@ -1,9 +1,9 @@
 package editor.styledtext.editors;
 
 
-import net.disy.commons.core.text.font.FontStyle;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
 import net.sf.anathema.lib.textualdescription.ITextFormat;
+import net.sf.anathema.lib.textualdescription.TextAspect;
 
 public class BoldModification extends AbstractTextModification {
 
@@ -14,6 +14,6 @@ public class BoldModification extends AbstractTextModification {
 
   @Override
   public void perform(IStyledTextualDescription content, int offset, int length) {
-    content.toggleFontStyle(offset, length, FontStyle.BOLD);
+    content.toggleFontStyle(offset, length, TextAspect.Bold);
   }
 }

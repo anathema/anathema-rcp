@@ -69,21 +69,21 @@ public class StyledTextualDescriptionTest {
   public void everythingIsToggledFromPlainToBold() throws Exception {
     ITextPart[] parts = { new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))}; //$NON-NLS-1$
     description.setText(parts);
-    description.toggleFontStyle(0, 3, FontStyle.BOLD);
+    description.toggleFontStyle(0, 3, TextAspect.Bold);
     assertTrue(evaluateIsBold(0, 3));
   }
 
   @Test
   public void everythingIsToggledFromBoldToPlain() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.BOLD, true))); //$NON-NLS-1$
-    description.toggleFontStyle(0, 3, FontStyle.BOLD);
+    description.toggleFontStyle(0, 3, TextAspect.Bold);
     assertFalse(evaluateIsBold(0, 3));
   }
 
   @Test
   public void onlyLeadingPartialTextPartBolded() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
-    description.toggleFontStyle(0, 2, FontStyle.BOLD);
+    description.toggleFontStyle(0, 2, TextAspect.Bold);
     assertTrue(evaluateIsBold(0, 2));
     assertFalse(evaluateIsBold(2, 1));
   }
@@ -91,7 +91,7 @@ public class StyledTextualDescriptionTest {
   @Test
   public void onlyTailingPartialTextPartBolded() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
-    description.toggleFontStyle(2, 1, FontStyle.BOLD);
+    description.toggleFontStyle(2, 1, TextAspect.Bold);
     assertFalse(evaluateIsBold(0, 2));
     assertTrue(evaluateIsBold(2, 1));
   }
@@ -100,7 +100,7 @@ public class StyledTextualDescriptionTest {
   public void tailingAndNextTextPartBolded() throws Exception {
     description.setText(
         new TextPart("ein", new TextFormat(FontStyle.PLAIN, true)), new TextPart("Hasä", new TextFormat(FontStyle.PLAIN, false))); //$NON-NLS-1$ //$NON-NLS-2$
-    description.toggleFontStyle(2, 3, FontStyle.BOLD);
+    description.toggleFontStyle(2, 3, TextAspect.Bold);
     assertFalse(evaluateIsBold(0, 2));
     assertTrue(evaluateIsBold(2, 3));
     assertFalse(evaluateIsBold(5, 1));
@@ -111,7 +111,7 @@ public class StyledTextualDescriptionTest {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
         new TextPart("toller", new TextFormat(FontStyle.PLAIN, true)), //$NON-NLS-1$
         new TextPart("Hasä", new TextFormat(FontStyle.PLAIN, false))); //$NON-NLS-1$
-    description.toggleFontStyle(1, 11, FontStyle.BOLD);
+    description.toggleFontStyle(1, 11, TextAspect.Bold);
     ITextPart[] textParts = description.getTextParts();
     assertStyleAndLength(textParts[0], FontStyle.PLAIN, 1);
     assertStyleAndLength(textParts[1], FontStyle.BOLD, 2);
@@ -123,7 +123,7 @@ public class StyledTextualDescriptionTest {
   @Test
   public void middleOfTextPartIsBolded() throws Exception {
     description.setText(new TextPart("Ein toller Hasä", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
-    description.toggleFontStyle(4, 6, FontStyle.BOLD);
+    description.toggleFontStyle(4, 6, TextAspect.Bold);
     ITextPart[] textParts = description.getTextParts();
     assertStyleAndLength(textParts[0], FontStyle.PLAIN, 4);
     assertStyleAndLength(textParts[1], FontStyle.BOLD, 6);
@@ -133,8 +133,8 @@ public class StyledTextualDescriptionTest {
   @Test
   public void middleOfTextPartIsUnbolded() throws Exception {
     description.setText(new TextPart("Ein toller Hasä", new TextFormat(FontStyle.PLAIN, true))); //$NON-NLS-1$
-    description.toggleFontStyle(4, 6, FontStyle.BOLD);
-    description.toggleFontStyle(4, 6, FontStyle.BOLD);
+    description.toggleFontStyle(4, 6, TextAspect.Bold);
+    description.toggleFontStyle(4, 6, TextAspect.Bold);
     ITextPart[] textParts = description.getTextParts();
     assertStyleAndLength(textParts[0], FontStyle.PLAIN, 4);
     assertStyleAndLength(textParts[1], FontStyle.PLAIN, 6);
@@ -150,7 +150,7 @@ public class StyledTextualDescriptionTest {
   public void plainestPartDictatesBehaviour() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, false)), //$NON-NLS-1$
         new TextPart("toller", new TextFormat(FontStyle.BOLD, false))); //$NON-NLS-1$
-    description.toggleFontStyle(0, 5, FontStyle.BOLD);
+    description.toggleFontStyle(0, 5, TextAspect.Bold);
     ITextPart[] textParts = description.getTextParts();
     assertStyleAndLength(textParts[0], FontStyle.BOLD, 3);
     assertStyleAndLength(textParts[1], FontStyle.BOLD, 2);

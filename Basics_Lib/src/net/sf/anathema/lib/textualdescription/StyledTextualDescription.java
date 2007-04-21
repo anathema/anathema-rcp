@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import net.disy.commons.core.predicate.IPredicate;
-import net.disy.commons.core.text.font.FontStyle;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
@@ -134,28 +133,20 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
   }
 
   @Override
-  public void toggleFontStyle(final int offset, final int length, final FontStyle fontStyle) {
-    toggleFormat(offset, length, new ITransformer<ITextFormat, ITextFormat>() {
+  public void toggleFontStyle(final int offset, final int length, final TextAspect aspect) {
+    final IPredicate<ITextFormat> dominantAspectPredicate = new IPredicate<ITextFormat>() {
+      @Override
+      public boolean evaluate(ITextFormat format) {
+        return aspect.isDominant(format);
+      }
+    };
+    ITransformer<ITextFormat, ITextFormat> transformer = new ITransformer<ITextFormat, ITextFormat>() {
       @Override
       public ITextFormat transform(ITextFormat input) {
-        boolean isFormatted = isFormatted(offset, length, new IPredicate<ITextFormat>() {
-          @Override
-          public boolean evaluate(ITextFormat format) {
-            return format.getFontStyle() == fontStyle;
-          }
-        });
-        FontStyle targetStyle = isFormatted ? createErasedFontStyle(input, fontStyle) : fontStyle;
-        return TextFormat.deriveFormat(input, targetStyle);
+        return aspect.deriveFormat(input, isFormatted(offset, length, dominantAspectPredicate));
       }
-
-      private FontStyle createErasedFontStyle(ITextFormat input, FontStyle fontStyle) {
-        FontStyle inputStyle = input.getFontStyle();
-        if (fontStyle == FontStyle.BOLD) {
-          return inputStyle.isItalic() ? FontStyle.ITALIC : FontStyle.PLAIN;
-        }
-        return inputStyle.isBold() ? FontStyle.BOLD : FontStyle.PLAIN;
-      }
-    });
+    };
+    toggleFormat(offset, length, transformer);
   }
 
   private void toggleFormat(int offset, int length, ITransformer<ITextFormat, ITextFormat> formatTransformer) {
