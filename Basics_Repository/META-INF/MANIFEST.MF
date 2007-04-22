@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Basics_Repository Plug-in
+Bundle-SymbolicName: net.sf.anathema.basics.repository
+Bundle-Version: 1.0.0
