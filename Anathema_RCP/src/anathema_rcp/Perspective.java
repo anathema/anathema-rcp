@@ -1,9 +1,9 @@
 package anathema_rcp;
 
+import net.sf.anathema.basics.repository.RepositoryView;
+
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
-
-import anathema_rcp.repository.RepositoryView;
 
 public class Perspective implements IPerspectiveFactory {
 

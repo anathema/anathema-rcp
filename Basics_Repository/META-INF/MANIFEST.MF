@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Basics_Repository Plug-in
-Bundle-SymbolicName: net.sf.anathema.basics.repository
+Bundle-SymbolicName: net.sf.anathema.basics.repository;singleton:=true
 Bundle-Version: 1.0.0
+Export-Package: net.sf.anathema.basics.repository
+Require-Bundle: net.sf.anathema.basics.jface,
+ org.eclipse.ui,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime

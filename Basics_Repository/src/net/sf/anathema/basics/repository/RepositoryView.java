@@ -1,6 +1,7 @@
-package anathema_rcp.repository;
+package net.sf.anathema.basics.repository;
 
 import net.sf.anathema.basics.jface.FileEditorInput;
+import net.sf.anathema.basics.repository.view.RepositoryContentProvider;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.IOpenListener;
@@ -16,7 +17,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 public class RepositoryView extends ViewPart {
-  public static final String ID = "Anathema_RCP.view";
+  public static final String ID = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
 
   private TreeViewer viewer;
 
@@ -24,7 +25,7 @@ public class RepositoryView extends ViewPart {
   public void createPartControl(Composite parent) {
     viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
     viewer.setContentProvider(new RepositoryContentProvider());
-    viewer.setLabelProvider(new RepositoryLabelProvider());
+    viewer.setLabelProvider(new net.sf.anathema.basics.repository.view.RepositoryLabelProvider());
     viewer.setInput(getViewSite());
     viewer.addOpenListener(new IOpenListener() {
       public void open(OpenEvent event) {

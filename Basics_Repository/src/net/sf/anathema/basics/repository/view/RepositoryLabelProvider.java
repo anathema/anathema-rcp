@@ -1,4 +1,4 @@
-package anathema_rcp.repository;
+package net.sf.anathema.basics.repository.view;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -7,7 +7,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
-class RepositoryLabelProvider extends LabelProvider implements ITableLabelProvider {
+public class RepositoryLabelProvider extends LabelProvider implements ITableLabelProvider {
   public String getColumnText(Object obj, int index) {
     IResource resource = (IResource) obj;
     return resource.getName();

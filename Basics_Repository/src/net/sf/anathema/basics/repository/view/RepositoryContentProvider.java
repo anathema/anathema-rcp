@@ -1,4 +1,4 @@
-package anathema_rcp.repository;
+package net.sf.anathema.basics.repository.view;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
