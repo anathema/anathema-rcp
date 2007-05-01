@@ -42,6 +42,7 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   private BasicItemData itemData;
   private StyledTextView contentView;
 
+  //TODO: Speichere Notes als Items mit Repo-Attributen (mit ID und PrintName)  
   @Override
   public void doSave(IProgressMonitor monitor) {
     IFileEditorInput editorInput = (IFileEditorInput) getEditorInput();
