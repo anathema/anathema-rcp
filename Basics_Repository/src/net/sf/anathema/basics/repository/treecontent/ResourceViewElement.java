@@ -47,15 +47,10 @@ public class ResourceViewElement implements IViewElement {
   }
 
   @Override
-  public void openEditor(IWorkbenchPage page) {
+  public void openEditor(IWorkbenchPage page) throws PartInitException {
     IFile file = (IFile) resource;
     IEditorInput input = new FileEditorInput(file);
     IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-    try {
-      page.openEditor(input, defaultEditor.getId());
-    }
-    catch (PartInitException e) {
-      e.printStackTrace();
-    }
+    page.openEditor(input, defaultEditor.getId());
   }
 }
