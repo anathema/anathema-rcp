@@ -25,7 +25,7 @@ public class ItemTypeProvider {
     List<IItemType> itemTypes = new ArrayList<IItemType>();
     for (IPluginExtension pluginExtension : configurationProvider.getExtensions(REPOSITORY_ITEMTYPES)) {
       for (IExtensionElement extensionElement : pluginExtension.getElements()) {
-        itemTypes.add(new ItemType(extensionElement));
+        itemTypes.add(new ItemType(pluginExtension.getContributorId(), extensionElement));
       }
     }
     return itemTypes;

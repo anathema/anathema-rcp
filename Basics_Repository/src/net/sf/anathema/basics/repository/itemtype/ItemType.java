@@ -1,27 +1,53 @@
 package net.sf.anathema.basics.repository.itemtype;
 
+import java.net.URL;
+import java.util.HashMap;
+
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
+import org.osgi.framework.Bundle;
 
 public class ItemType implements IItemType {
 
   private final IExtensionElement configurationNode;
+  private final String pluginId;
 
-  public ItemType(IExtensionElement configurationNode) {
+  public ItemType(String pluginId, IExtensionElement configurationNode) {
+    this.pluginId = pluginId;
     this.configurationNode = configurationNode;
   }
 
   @Override
   public String getName() {
-    return configurationNode.getAttribute("type"); //$NON-NLS-1$
+    return getAttribute("type"); //$NON-NLS-1$
   }
 
   @Override
   public String getProjectName() {
-    return configurationNode.getAttribute("project"); //$NON-NLS-1$
+    return getAttribute("project"); //$NON-NLS-1$
   }
 
   @Override
   public String getFileExtension() {
-    return configurationNode.getAttribute("file-extension"); //$NON-NLS-1$
+    return getAttribute("file-extension"); //$NON-NLS-1$
+  }
+
+  @Override
+  public URL getIconUrl() {
+    String iconPath = getAttribute("icon"); //$NON-NLS-1$
+    if (iconPath == null) {
+      return null;
+    }
+    Bundle bundle = Platform.getBundle(pluginId);
+    IPath path = new Path(iconPath);
+    return FileLocator.find(bundle, path, null);
+  }
+
+  private String getAttribute(String name) {
+    return configurationNode.getAttribute(name);
   }
 }

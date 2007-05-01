@@ -17,6 +17,7 @@
          point="net.sf.anathema.repository.itemtypes">
       <itemtype
             file-extension="not"
+            icon="icons/TabNotes16.png"
             project="Notes"
             type="%itemtype.type.notes">
       </itemtype>

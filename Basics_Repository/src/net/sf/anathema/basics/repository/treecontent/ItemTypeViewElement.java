@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository.treecontent;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchPage;
@@ -69,6 +71,10 @@ public class ItemTypeViewElement implements IViewElement {
 
   @Override
   public Image getImage() {
+    URL iconUrl = type.getIconUrl();
+    if (iconUrl != null) {
+      return ImageDescriptor.createFromURL(iconUrl).createImage();
+    }
     return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
   }
 

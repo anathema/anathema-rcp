@@ -26,4 +26,9 @@ public class ExtensionFacade implements IPluginExtension {
           }
         });
   }
+
+  @Override
+  public String getContributorId() {
+    return eclipseExtension.getContributor().getName();
+  }
 }
