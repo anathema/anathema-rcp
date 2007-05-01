@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent;
 
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.IWorkbenchPage;
 
 public interface IViewElement {
 
@@ -14,4 +15,5 @@ public interface IViewElement {
 
   Image getImage();
 
+  void openEditor(IWorkbenchPage page);
 }
