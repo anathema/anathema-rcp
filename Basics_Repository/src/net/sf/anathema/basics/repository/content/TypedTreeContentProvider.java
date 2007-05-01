@@ -8,7 +8,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-public class RepositoryTreeContentProvider implements ITreeContentProvider {
+public class TypedTreeContentProvider implements ITreeContentProvider {
   public void inputChanged(Viewer v, Object oldInput, Object newInput) {
     // nothing to do
   }
