@@ -12,11 +12,16 @@ public class ItemType implements IItemType {
 
   @Override
   public String getName() {
-    return getFolderName();
+    return configurationNode.getAttribute("type"); //$NON-NLS-1$
   }
 
   @Override
-  public String getFolderName() {
-    return configurationNode.getAttribute("folder"); //$NON-NLS-1$
+  public String getProjectName() {
+    return configurationNode.getAttribute("project"); //$NON-NLS-1$
+  }
+
+  @Override
+  public String getFileExtension() {
+    return configurationNode.getAttribute("file-extension"); //$NON-NLS-1$
   }
 }

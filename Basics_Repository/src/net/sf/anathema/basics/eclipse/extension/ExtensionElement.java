@@ -4,14 +4,14 @@ import org.eclipse.core.runtime.IConfigurationElement;
 
 public class ExtensionElement implements IExtensionElement {
 
-  private final IConfigurationElement elipseElement;
+  private final IConfigurationElement eclipseElement;
 
   public ExtensionElement(IConfigurationElement elipseElement) {
-    this.elipseElement = elipseElement;
+    this.eclipseElement = elipseElement;
   }
   
   @Override
   public String getAttribute(String name) {
-    return elipseElement.getAttribute(name);
+    return eclipseElement.getAttribute(name);
   }
 }

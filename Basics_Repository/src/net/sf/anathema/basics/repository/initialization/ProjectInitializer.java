@@ -11,7 +11,7 @@ public class ProjectInitializer {
 
   public void initialize() throws Exception {
     for (IItemType itemType : new ItemTypeProvider().getItemTypes()) {
-      initProject(itemType.getFolderName());
+      initProject(itemType.getProjectName());
     }
   }
 

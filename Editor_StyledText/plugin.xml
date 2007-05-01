@@ -16,7 +16,9 @@
    <extension
          point="net.sf.anathema.repository.itemtypes">
       <itemtype
-            folder="Notes">
+            file-extension=".not"
+            project="Notes"
+            type="%itemtype.type.notes">
       </itemtype>
    </extension>
 
