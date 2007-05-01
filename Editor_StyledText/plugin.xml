@@ -13,5 +13,11 @@
             name="Styled Text Editor">
       </editor>
    </extension>
+   <extension
+         point="net.sf.anathema.repository.itemtypes">
+      <itemtype
+            folder="Notes">
+      </itemtype>
+   </extension>
 
 </plugin>
