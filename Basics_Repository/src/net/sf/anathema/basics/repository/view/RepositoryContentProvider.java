@@ -1,7 +1,6 @@
 package net.sf.anathema.basics.repository.view;
 
 import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -21,16 +20,6 @@ public class RepositoryContentProvider implements ITreeContentProvider {
   public Object[] getElements(Object parent) {
     IWorkspace workspace = ResourcesPlugin.getWorkspace();
     IWorkspaceRoot root = workspace.getRoot();
-    IProject project = root.getProject("Notes"); //$NON-NLS-1$
-    if (!project.exists()) {
-      try {
-        project.create(null);
-        project.open(null);
-      }
-      catch (CoreException e) {
-        e.printStackTrace();
-      }
-    }
     return root.getProjects();
   }
 
