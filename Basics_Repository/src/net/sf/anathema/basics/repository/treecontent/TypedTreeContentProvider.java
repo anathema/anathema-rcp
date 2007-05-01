@@ -1,10 +1,11 @@
 package net.sf.anathema.basics.repository.treecontent;
 
-import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.basics.repository.itemtype.ItemTypeProvider;
+
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
@@ -18,29 +19,26 @@ public class TypedTreeContentProvider implements ITreeContentProvider {
   }
 
   public Object[] getElements(Object parent) {
-    IWorkspace workspace = ResourcesPlugin.getWorkspace();
-    IWorkspaceRoot root = workspace.getRoot();
-    return root.getProjects();
+    List<IViewElement> list = new ArrayList<IViewElement>();
+    for (IItemType type : new ItemTypeProvider().getItemTypes()) {
+      list.add(new ItemTypeViewElement(type));
+    }
+    return list.toArray(new IViewElement[list.size()]);
   }
 
   public Object[] getChildren(Object parentElement) {
-    if (parentElement instanceof IContainer) {
-      IContainer container = (IContainer) parentElement;
-      try {
-        return container.members();
-      }
-      catch (CoreException e) {
-        return new Object[0];
-      }
-    }
-    return new Object[0];
+    return cast(parentElement).getChildren();
   }
 
   public Object getParent(Object element) {
-    return null;
+    return cast(element).getParent();
   }
 
   public boolean hasChildren(Object element) {
-    return element instanceof IContainer;
+    return cast(element).hasChildren();
+  }
+
+  private IViewElement cast(Object parentElement) {
+    return ((IViewElement) parentElement);
   }
 }

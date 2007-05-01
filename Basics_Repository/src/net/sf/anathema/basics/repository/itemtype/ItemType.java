@@ -9,7 +9,12 @@ public class ItemType implements IItemType {
   public ItemType(IExtensionElement configurationNode) {
     this.configurationNode = configurationNode;
   }
-  
+
+  @Override
+  public String getName() {
+    return getFolderName();
+  }
+
   @Override
   public String getFolderName() {
     return configurationNode.getAttribute("folder"); //$NON-NLS-1$

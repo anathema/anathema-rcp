@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.repository;
 
 import net.sf.anathema.basics.jface.FileEditorInput;
+import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
 
 import org.eclipse.core.resources.IFile;
@@ -25,7 +26,7 @@ public class RepositoryView extends ViewPart {
   public void createPartControl(Composite parent) {
     viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
     viewer.setContentProvider(new TypedTreeContentProvider());
-    viewer.setLabelProvider(new net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider());
+    viewer.setLabelProvider(new RepositoryLabelProvider());
     viewer.setInput(getViewSite());
     viewer.addOpenListener(new IOpenListener() {
       public void open(OpenEvent event) {
