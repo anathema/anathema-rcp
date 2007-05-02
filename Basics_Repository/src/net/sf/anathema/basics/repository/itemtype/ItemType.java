@@ -1,7 +1,6 @@
 package net.sf.anathema.basics.repository.itemtype;
 
 import java.net.URL;
-import java.util.HashMap;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 
