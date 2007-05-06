@@ -30,4 +30,13 @@ public class ItemTypeProvider {
     }
     return itemTypes;
   }
+
+  public IItemType getById(String id) {
+    for (IItemType type : getItemTypes()) {
+      if (type.getId().equals(id)) {
+        return type;
+      }
+    }
+    throw new IllegalArgumentException("No item type found for id " + id); //$NON-NLS-1$
+  }
 }

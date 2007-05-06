@@ -1,34 +1,26 @@
 package editor.styledtext.editors;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-
-import net.disy.commons.core.io.IOUtilities;
 import net.disy.commons.core.util.StringUtilities;
-import net.sf.anathema.basics.jface.IFileEditorInput;
-import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
+import net.sf.anathema.basics.repository.access.RepositoryUtilities;
+import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.basics.repository.itemtype.ItemTypeProvider;
+import net.sf.anathema.framework.editor.IItemEditorInput;
 import net.sf.anathema.framework.item.IItem;
 import net.sf.anathema.framework.item.data.IBasicItemData;
 import net.sf.anathema.framework.item.data.IItemDescription;
 import net.sf.anathema.framework.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
-import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
 import net.sf.anathema.lib.textualdescription.ITextView;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.StyledTextPresenter;
 import net.sf.anathema.lib.textualdescription.TextualPresenter;
-import net.sf.anathema.lib.xml.DocumentUtilities;
 
-import org.dom4j.Document;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IStorage;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -46,27 +38,29 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   private StyledTextView contentView;
   private final BasicDataItemPersister persister = new BasicDataItemPersister();
 
-  // TODO: Speichere Notes als Items mit Repo-Attributen (mit ID und PrintName)
+  public static IProject getNotesProject() {
+    ItemTypeProvider itemTypeProvider = new ItemTypeProvider();
+    IItemType notesItemType = itemTypeProvider.getById("net.sf.anathema.itemtype.Note"); //$NON-NLS-1$
+    return RepositoryUtilities.getProject(notesItemType);
+  }
+  
+
   @Override
   public void doSave(IProgressMonitor monitor) {
-    IFileEditorInput editorInput = (IFileEditorInput) getEditorInput();
-    IFile file = editorInput.getFile();
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    IItemEditorInput editorInput = getItemEditorInput();
     try {
-      persister.save(outputStream, item);
-      byte[] documentContent = outputStream.toByteArray();
-      ByteArrayInputStream source = new ByteArrayInputStream(documentContent);
-      file.setContents(source, true, true, new NullProgressMonitor());
-      item.setClean();
-      firePropertyChange(PROP_DIRTY);
+      editorInput.save(persister);
     }
     catch (Exception e) {
-      // TODO Fehlerhandlin
+      // TODO Fehlerhandling
       e.printStackTrace();
     }
-    finally {
-      IOUtilities.close(outputStream);
-    }
+    firePropertyChange(PROP_DIRTY);
+}
+
+
+  private IItemEditorInput getItemEditorInput() {
+    return (IItemEditorInput) getEditorInput();
   }
 
   @Override
@@ -77,7 +71,8 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
-      item = loadItem(((IStorageEditorInput) input).getStorage());
+      IItemEditorInput itemInput = (IItemEditorInput) input;
+      item = itemInput.loadItem(persister);
       item.addDirtyListener(new IChangeListener() {
         public void changeOccured() {
           firePropertyChange(PROP_DIRTY);
@@ -108,11 +103,6 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
       name = "Untitled Note";
     }
     setPartName(name);
-  }
-
-  protected IItem<IBasicItemData> loadItem(IStorage storage) throws PersistenceException, CoreException {
-    Document xmlDocument = DocumentUtilities.read(storage.getContents());
-    return persister.load(xmlDocument);
   }
 
   @Override

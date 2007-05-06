@@ -40,7 +40,7 @@ public class BasicDataItemPersister implements ISingleFileItemPersister<IBasicIt
   }
 
   @Override
-  public IItem<IBasicItemData> createNew(IAnathemaWizardModelTemplate template) {
+  public IItem<IBasicItemData> createNew() {
     return new AnathemaDataItem<IBasicItemData>(new BasicItemData());
   }
 }

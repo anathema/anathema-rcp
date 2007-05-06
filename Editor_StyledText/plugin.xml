@@ -18,9 +18,24 @@
       <itemtype
             file-extension="not"
             icon="icons/TabNotes16.png"
+		    id="net.sf.anathema.itemtype.Note"
             project="Notes"
             type="%itemtype.type.notes">
       </itemtype>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="net.sf.anathema.notes.popup"
+            objectClass="net.sf.anathema.basics.repository.treecontent.ItemTypeViewElement">
+         <action
+               class="editor.styledtext.popup.NewNoteActionDelegate"
+               icon="icons/TabNotes16.png"
+               id="net.sf.anathema.notes.popup.new"
+               label="%itemtype.new.note">
+         </action>
+      </objectContribution>
    </extension>
 
 </plugin>

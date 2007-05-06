@@ -1,23 +1,21 @@
 package net.sf.anathema.basics.repository.initialization;
 
+import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.itemtype.ItemTypeProvider;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 
 public class ProjectInitializer {
 
   public void initialize() throws Exception {
     for (IItemType itemType : new ItemTypeProvider().getItemTypes()) {
-      initProject(itemType.getProjectName());
+      initProject(itemType);
     }
   }
 
-  private void initProject(String projectName) throws Exception {
-    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-    IProject project = root.getProject(projectName);
+  private void initProject(IItemType itemType) throws Exception {
+    IProject project = RepositoryUtilities.getProject(itemType);
     if (project.exists()) {
       return;
     }

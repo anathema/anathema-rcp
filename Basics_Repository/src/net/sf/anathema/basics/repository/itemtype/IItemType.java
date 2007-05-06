@@ -11,4 +11,6 @@ public interface IItemType {
   public String getFileExtension();
 
   public URL getIconUrl();
+
+  public String getId();
 }

@@ -49,4 +49,9 @@ public class ItemType implements IItemType {
   private String getAttribute(String name) {
     return configurationNode.getAttribute(name);
   }
+
+  @Override
+  public String getId() {
+    return getAttribute("id"); //$NON-NLS-1$
+  }
 }

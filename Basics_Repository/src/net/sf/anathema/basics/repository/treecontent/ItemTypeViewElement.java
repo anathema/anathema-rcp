@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.repository.RepositoryPlugin;
+import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -47,8 +46,7 @@ public class ItemTypeViewElement implements IViewElement {
   }
 
   private List<IResource> getMembers() {
-    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-    IProject project = root.getProject(type.getProjectName());
+    IProject project = RepositoryUtilities.getProject(type);
     List<IResource> members = new ArrayList<IResource>();
     try {
       for (IResource resource : project.members()) {

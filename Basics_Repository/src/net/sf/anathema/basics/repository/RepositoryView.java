@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository;
 
+import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.treecontent.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
@@ -22,6 +23,7 @@ public class RepositoryView extends ViewPart {
   @Override
   public void createPartControl(Composite parent) {
     viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+    ContextMenuManager.connect(getSite(), viewer);
     viewer.setContentProvider(new TypedTreeContentProvider());
     viewer.setLabelProvider(new RepositoryLabelProvider());
     viewer.setInput(getViewSite());

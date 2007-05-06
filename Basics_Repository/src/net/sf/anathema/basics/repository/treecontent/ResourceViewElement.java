@@ -5,8 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.disy.commons.core.io.IOUtilities;
-import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
+import net.sf.anathema.framework.editor.FileItemEditorInput;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -75,8 +75,9 @@ public class ResourceViewElement implements IViewElement {
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     IFile file = (IFile) resource;
-    IEditorInput input = new FileEditorInput(file);
-    IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
+    IEditorInput input = new FileItemEditorInput(file);
+    String fileName = file.getName();
+    IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
     page.openEditor(input, defaultEditor.getId());
   }
 }
