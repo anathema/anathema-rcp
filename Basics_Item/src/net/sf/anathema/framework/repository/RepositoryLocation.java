@@ -3,7 +3,6 @@ package net.sf.anathema.framework.repository;
 import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.framework.item.IItem;
 import net.sf.anathema.framework.item.IItemRepositoryLocation;
-import net.sf.anathema.framework.item.IItemType;
 import net.sf.anathema.lib.lang.AnathemaStringUtilities;
 
 public class RepositoryLocation implements IItemRepositoryLocation {
@@ -26,9 +25,5 @@ public class RepositoryLocation implements IItemRepositoryLocation {
 
   public synchronized String getId() {
     return id;
-  }
-
-  public IItemType getItemType() {
-    return item.getItemType();
   }
 }

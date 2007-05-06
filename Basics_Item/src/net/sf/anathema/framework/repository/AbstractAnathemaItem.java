@@ -1,33 +1,28 @@
 package net.sf.anathema.framework.repository;
 
-import net.disy.commons.core.util.Ensure;
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.framework.item.IItem;
 import net.sf.anathema.framework.item.IItemListener;
 import net.sf.anathema.framework.item.IItemRepositoryLocation;
-import net.sf.anathema.framework.item.IItemType;
+import net.sf.anathema.framework.item.data.IItemData;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public abstract class AbstractAnathemaItem implements IItem {
+public abstract class AbstractAnathemaItem<D extends IItemData> implements IItem<D> {
 
   private String printName;
-  private final IItemType itemType;
   private final RepositoryLocation repositoryLocation;
   private final IIdentificate identificate;
   private final GenericControl<IItemListener> repositoryItemListeners = new GenericControl<IItemListener>();
 
-  public AbstractAnathemaItem(IItemType type) {
-    Ensure.ensureArgumentTrue("Use second constructor for nonpersisted items.", type.supportsRepository()); //$NON-NLS-1$
-    this.itemType = type;
+  public AbstractAnathemaItem() {
     this.repositoryLocation = new RepositoryLocation(this);
     this.identificate = repositoryLocation;
   }
 
-  public AbstractAnathemaItem(IItemType type, IIdentificate identificate) {
-    this.itemType = type;
+  public AbstractAnathemaItem(IIdentificate identificate) {
     this.repositoryLocation = null;
     this.identificate = identificate;
   }
@@ -48,16 +43,12 @@ public abstract class AbstractAnathemaItem implements IItem {
     });
   }
 
-  public final IItemType getItemType() {
-    return itemType;
-  }
-
   public final synchronized String getId() {
     return identificate.getId();
   }
 
   public String getIdProposal() {
-    return printName == null ? getItemType().getId() + DEFAULT_PRINT_NAME : printName;
+    return printName == null ? DEFAULT_PRINT_NAME : printName;
   }
 
   public String getDisplayName() {
@@ -81,6 +72,6 @@ public abstract class AbstractAnathemaItem implements IItem {
 
   @Override
   public String toString() {
-    return getItemType() + ": " + getDisplayName(); //$NON-NLS-1$
+    return getDisplayName();
   }
 }

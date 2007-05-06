@@ -1,14 +1,18 @@
 package editor.styledtext.editors;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
+import net.disy.commons.core.io.IOUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.jface.IFileEditorInput;
 import net.sf.anathema.basics.jface.IStorageEditorInput;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
-import net.sf.anathema.framework.item.data.BasicItemData;
-import net.sf.anathema.framework.item.data.BasicsPersister;
+import net.sf.anathema.framework.item.IItem;
+import net.sf.anathema.framework.item.data.IBasicItemData;
+import net.sf.anathema.framework.item.data.IItemDescription;
+import net.sf.anathema.framework.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -20,7 +24,6 @@ import net.sf.anathema.lib.textualdescription.TextualPresenter;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;
@@ -39,27 +42,30 @@ import org.eclipse.ui.part.EditorPart;
 
 public class NotesEditor extends EditorPart implements IStyledTextEditor {
 
-  private BasicItemData itemData;
+  private IItem<IBasicItemData> item;
   private StyledTextView contentView;
+  private final BasicDataItemPersister persister = new BasicDataItemPersister();
 
-  //TODO: Speichere Notes als Items mit Repo-Attributen (mit ID und PrintName)  
+  // TODO: Speichere Notes als Items mit Repo-Attributen (mit ID und PrintName)
   @Override
   public void doSave(IProgressMonitor monitor) {
     IFileEditorInput editorInput = (IFileEditorInput) getEditorInput();
-    BasicsPersister basicsPersister = new BasicsPersister();
-    Document document = DocumentHelper.createDocument(DocumentHelper.createElement("Note")); //$NON-NLS-1$
-    basicsPersister.save(itemData, document.getRootElement());
     IFile file = editorInput.getFile();
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     try {
-      String documentContent = DocumentUtilities.asString(document);
-      ByteArrayInputStream source = new ByteArrayInputStream(documentContent.getBytes());
+      persister.save(outputStream, item);
+      byte[] documentContent = outputStream.toByteArray();
+      ByteArrayInputStream source = new ByteArrayInputStream(documentContent);
       file.setContents(source, true, true, new NullProgressMonitor());
-      itemData.setClean();
+      item.setClean();
       firePropertyChange(PROP_DIRTY);
     }
     catch (Exception e) {
       // TODO Fehlerhandlin
       e.printStackTrace();
+    }
+    finally {
+      IOUtilities.close(outputStream);
     }
   }
 
@@ -71,15 +77,15 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
-      itemData = loadData(((IStorageEditorInput) input).getStorage());
-      itemData.addDirtyListener(new IChangeListener() {
+      item = loadItem(((IStorageEditorInput) input).getStorage());
+      item.addDirtyListener(new IChangeListener() {
         public void changeOccured() {
           firePropertyChange(PROP_DIRTY);
         }
       });
       setSite(site);
       setInput(input);
-      itemData.getDescription().getName().addTextChangedListener(new IObjectValueChangedListener<String>() {
+      getItemDescription().getName().addTextChangedListener(new IObjectValueChangedListener<String>() {
         @Override
         public void valueChanged(String newValue) {
           updatePartName();
@@ -91,26 +97,27 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
   }
-  
+
+  private IItemDescription getItemDescription() {
+    return item.getItemData().getDescription();
+  }
+
   private void updatePartName() {
-    String name = itemData.getDescription().getName().getText();
+    String name = getItemDescription().getName().getText();
     if (StringUtilities.isNullOrEmpty(name)) {
       name = "Untitled Note";
     }
     setPartName(name);
   }
 
-  protected BasicItemData loadData(IStorage storage) throws PersistenceException, CoreException {
+  protected IItem<IBasicItemData> loadItem(IStorage storage) throws PersistenceException, CoreException {
     Document xmlDocument = DocumentUtilities.read(storage.getContents());
-    BasicsPersister basicsPersister = new BasicsPersister();
-    BasicItemData newData = new BasicItemData();
-    basicsPersister.load(xmlDocument.getRootElement(), newData);
-    return newData;
+    return persister.load(xmlDocument);
   }
 
   @Override
   public boolean isDirty() {
-    return itemData.isDirty();
+    return item.isDirty();
   }
 
   @Override
@@ -125,12 +132,12 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
     nameLabel.setText("Name:"); //$NON-NLS-1$
     nameLabel.setLayoutData(createLabelData());
     final ITextView nameView = new SimpleTextView(parent);
-    final ITextualDescription nameModel = itemData.getDescription().getName();
+    final ITextualDescription nameModel = getItemDescription().getName();
     new TextualPresenter(nameView, nameModel).initPresentation();
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText("Content:"); //$NON-NLS-1$
     contentLabel.setLayoutData(createLabelData());
-    final IStyledTextualDescription contentDescription = itemData.getDescription().getContent();
+    final IStyledTextualDescription contentDescription = getItemDescription().getContent();
     contentView = new StyledTextView(parent);
     new StyledTextPresenter(contentView, contentDescription).initPresentation();
     getSite().setSelectionProvider(contentView.createSelectionProvider());
@@ -148,14 +155,14 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   @Override
   public void modifySelection(ITextModification modification) {
     Point selectionRange = contentView.getSelectionRange();
-    IStyledTextualDescription styledText = itemData.getDescription().getContent();
+    IStyledTextualDescription styledText = getItemDescription().getContent();
     modification.perform(styledText, selectionRange.x, selectionRange.y);
   }
 
   @Override
   public boolean isActiveFor(ITextModification modification) {
     Point selectionRange = contentView.getSelectionRange();
-    IStyledTextualDescription styledText = itemData.getDescription().getContent();
+    IStyledTextualDescription styledText = getItemDescription().getContent();
     return modification.isActive(styledText, selectionRange.x, selectionRange.y);
   }
 

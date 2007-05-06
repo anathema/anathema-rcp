@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import net.sf.anathema.framework.item.IItem;
-import net.sf.anathema.framework.item.IItemType;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
 import net.sf.anathema.framework.item.data.IBasicItemData;
@@ -16,38 +15,32 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class BasicDataItemPersister extends AbstractSingleFileItemPersister {
+public class BasicDataItemPersister implements ISingleFileItemPersister<IBasicItemData> {
 
   private final BasicsPersister basicItemDataPersister = new BasicsPersister();
   private final RepositoryItemPersister repositoryItemPerister = new RepositoryItemPersister();
-  private final String rootTagName;
-  private final IItemType type;
-
-  public BasicDataItemPersister(IItemType type, String rootTagName) {
-    this.type = type;
-    this.rootTagName = rootTagName;
-  }
 
   @Override
-  public void save(OutputStream stream, IItem item) throws IOException {
-    Element rootElement = DocumentHelper.createElement(rootTagName);
+  public void save(OutputStream stream, IItem<IBasicItemData> item) throws IOException {
+    Element rootElement = DocumentHelper.createElement("Item"); //$NON-NLS-1$
     repositoryItemPerister.save(rootElement, item);
-    basicItemDataPersister.save(((IBasicItemData) item.getItemData()), rootElement);
+    basicItemDataPersister.save(item.getItemData(), rootElement);
     Document document = DocumentHelper.createDocument(rootElement);
     DocumentUtilities.save(document, stream);
   }
 
   @Override
-  public IItem load(Document itemXml) throws PersistenceException {
+  public IItem<IBasicItemData> load(Document itemXml) throws PersistenceException {
     Element rootElement = itemXml.getRootElement();
     BasicItemData data = new BasicItemData();
-    AnathemaDataItem item = new AnathemaDataItem(type, data);
+    AnathemaDataItem<IBasicItemData> item = new AnathemaDataItem<IBasicItemData>(data);
     repositoryItemPerister.load(rootElement, item);
-    basicItemDataPersister.load(rootElement, (IBasicItemData) item.getItemData());
+    basicItemDataPersister.load(rootElement, item.getItemData());
     return item;
   }
 
-  public IItem createNew(IAnathemaWizardModelTemplate template) {
-    return new AnathemaDataItem(type, new BasicItemData());
+  @Override
+  public IItem<IBasicItemData> createNew(IAnathemaWizardModelTemplate template) {
+    return new AnathemaDataItem<IBasicItemData>(new BasicItemData());
   }
 }

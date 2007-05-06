@@ -1,32 +1,29 @@
 package net.sf.anathema.framework.repository;
 
 import net.disy.commons.core.util.Ensure;
-import net.sf.anathema.framework.item.IItemType;
 import net.sf.anathema.framework.item.PrintNameAdjuster;
 import net.sf.anathema.framework.item.data.IItemData;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class AnathemaDataItem extends AbstractAnathemaItem {
+public class AnathemaDataItem<D extends IItemData> extends AbstractAnathemaItem<D> {
 
-  private final IItemData itemData;
+  private final D itemData;
 
-  public AnathemaDataItem(IItemType type, IItemData itemData) {
-    super(type);
-    Ensure.ensureArgumentTrue("Use second constructor for nonpersisted items.", type.supportsRepository()); //$NON-NLS-1$
+  public AnathemaDataItem(D itemData) {
     Ensure.ensureArgumentNotNull("Use AnathemaNullDataItem for items without data.", itemData); //$NON-NLS-1$
     this.itemData = itemData;
     itemData.setPrintNameAdjuster(new PrintNameAdjuster(this));
   }
 
-  public AnathemaDataItem(IItemType type, IIdentificate identificate, IItemData itemData) {
-    super(type, identificate);
+  public AnathemaDataItem(IIdentificate identificate, D itemData) {
+    super(identificate);
     Ensure.ensureArgumentNotNull("Use AnathemaNullDataItem for items without data.", itemData); //$NON-NLS-1$
     this.itemData = itemData;
     itemData.setPrintNameAdjuster(new PrintNameAdjuster(this));
   }
 
-  public IItemData getItemData() {
+  public D getItemData() {
     return itemData;
   }
 
