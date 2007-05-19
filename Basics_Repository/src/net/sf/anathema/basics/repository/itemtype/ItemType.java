@@ -4,6 +4,7 @@ import java.net.URL;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -58,5 +59,10 @@ public class ItemType implements IItemType {
   @Override
   public String getUntitledName() {
     return getAttribute("untitledName"); //$NON-NLS-1$
+  }
+
+  @Override
+  public boolean supports(IResource resource) {
+    return getFileExtension().equals(resource.getFileExtension());
   }
 }

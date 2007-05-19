@@ -51,7 +51,7 @@ public class ItemTypeViewElement implements IViewElement {
     List<IResource> members = new ArrayList<IResource>();
     try {
       for (IResource resource : project.members()) {
-        if (type.getFileExtension().equals(resource.getFileExtension())) {
+        if (type.supports(resource)) {
           members.add(resource);
         }
       }

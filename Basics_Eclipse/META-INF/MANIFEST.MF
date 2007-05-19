@@ -5,6 +5,7 @@ Bundle-SymbolicName: net.sf.anathema.basics.eclipse
 Bundle-Version: 1.0.0
 Bundle-Activator: net.sf.anathema.basics.eclipse.EclipsePlugin
 Require-Bundle: org.eclipse.core.runtime,
- net.sf.anathema.basics.lib
+ net.sf.anathema.basics.lib,
+ org.eclipse.core.resources
 Eclipse-LazyStart: true
 Export-Package: net.sf.anathema.basics.eclipse.extension
