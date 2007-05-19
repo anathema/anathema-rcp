@@ -1,16 +1,16 @@
 package net.sf.anathema.editor.styledtext;
 
 import net.disy.commons.core.util.StringUtilities;
+import net.sf.anathema.basics.item.IItem;
+import net.sf.anathema.basics.item.IItemEditorInput;
+import net.sf.anathema.basics.item.data.IBasicItemData;
+import net.sf.anathema.basics.item.data.IItemDescription;
+import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.itemtype.ItemTypeProvider;
-import net.sf.anathema.framework.editor.IItemEditorInput;
-import net.sf.anathema.framework.item.IItem;
-import net.sf.anathema.framework.item.data.IBasicItemData;
-import net.sf.anathema.framework.item.data.IItemDescription;
-import net.sf.anathema.framework.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;

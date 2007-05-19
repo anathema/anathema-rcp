@@ -1,6 +1,6 @@
 package net.sf.anathema.basics.repository.treecontent;
 
-import net.sf.anathema.framework.editor.FileItemEditorInput;
+import net.sf.anathema.basics.repository.input.FileItemEditorInput;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;

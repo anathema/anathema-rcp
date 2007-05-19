@@ -1,6 +1,6 @@
 package net.sf.anathema.editor.styledtext.popup;
 
-import net.sf.anathema.framework.editor.NewItemEditorInput;
+import net.sf.anathema.basics.repository.input.NewItemEditorInput;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
