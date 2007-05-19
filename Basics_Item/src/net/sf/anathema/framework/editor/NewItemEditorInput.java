@@ -25,6 +25,7 @@ public class NewItemEditorInput implements IItemEditorInput {
 
   @Override
   public void save(BasicDataItemPersister persister) throws IOException, CoreException {
+    
   }
 
   @Override

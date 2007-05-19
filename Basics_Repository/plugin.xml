@@ -13,7 +13,7 @@
    <extension
          point="net.sf.anathema.item.persister">
       <persister
-            class="net.sf.anathema.basics.repository.persistence.RepositoryItemPersister">
+            class="net.sf.anathema.basics.repository.persistence.PrintNamePersister">
       </persister>
    </extension>
 
