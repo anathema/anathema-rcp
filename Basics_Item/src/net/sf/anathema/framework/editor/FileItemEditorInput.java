@@ -5,7 +5,7 @@ import java.io.IOException;
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.framework.item.IItem;
 import net.sf.anathema.framework.item.data.IBasicItemData;
-import net.sf.anathema.framework.persistence.BasicDataItemPersister;
+import net.sf.anathema.framework.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 

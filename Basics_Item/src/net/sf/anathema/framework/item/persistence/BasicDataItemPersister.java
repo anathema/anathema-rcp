@@ -1,4 +1,4 @@
-package net.sf.anathema.framework.persistence;
+package net.sf.anathema.framework.item.persistence;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -10,11 +10,11 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.framework.item.AnathemaDataItem;
 import net.sf.anathema.framework.item.IItem;
 import net.sf.anathema.framework.item.data.BasicItemData;
 import net.sf.anathema.framework.item.data.BasicsPersister;
 import net.sf.anathema.framework.item.data.IBasicItemData;
-import net.sf.anathema.framework.repository.AnathemaDataItem;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 

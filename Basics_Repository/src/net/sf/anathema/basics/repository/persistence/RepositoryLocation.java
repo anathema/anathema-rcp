@@ -1,20 +1,14 @@
-package net.sf.anathema.framework.repository;
+package net.sf.anathema.basics.repository.persistence;
 
 import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.framework.item.IItem;
-import net.sf.anathema.framework.item.IItemRepositoryLocation;
 import net.sf.anathema.lib.lang.AnathemaStringUtilities;
 
 public class RepositoryLocation implements IItemRepositoryLocation {
 
-  private final IItem item;
   private String id;
 
-  public RepositoryLocation(IItem item) {
-    this.item = item;
-  }
-
-  public String getIdProposal() {
+  public String getIdProposal(IItem< ? > item) {
     return AnathemaStringUtilities.getFileNameRepresentation(item.getPrintName());
   }
 

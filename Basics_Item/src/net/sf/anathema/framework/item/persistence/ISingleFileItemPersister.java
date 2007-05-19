@@ -1,4 +1,4 @@
-package net.sf.anathema.framework.persistence;
+package net.sf.anathema.framework.item.persistence;
 
 import java.io.IOException;
 import java.io.OutputStream;

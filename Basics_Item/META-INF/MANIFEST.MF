@@ -25,6 +25,5 @@ Export-Package: net.sf.anathema.framework.editor;
    net.sf.anathema.framework.item.change,
    net.sf.anathema.lib.textualdescription,
    net.sf.anathema.lib.control.objectvalue",
- net.sf.anathema.framework.persistence;uses:="net.sf.anathema.framework.item,org.dom4j",
- net.sf.anathema.framework.repository;uses:="net.sf.anathema.lib.util,net.sf.anathema.framework.item,net.sf.anathema.lib.control.change",
- net.sf.anathema.framework.repository.access
+ net.sf.anathema.framework.item.persistence;uses:="net.sf.anathema.framework.item,org.dom4j",
+ net.sf.anathema.framework.item.role

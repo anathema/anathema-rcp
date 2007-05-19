@@ -10,8 +10,6 @@ public interface IItem<D extends IItemData> extends IChangeManagement {
 
   public D getItemData();
 
-  public IItemRepositoryLocation getRepositoryLocation();
-
   public String getPrintName();
 
   public void setPrintName(String printName);
@@ -19,10 +17,10 @@ public interface IItem<D extends IItemData> extends IChangeManagement {
   public void addItemListener(IItemListener listener);
 
   public void removeItemListener(IItemListener listener);
-  
+
   public void addRole(IItemRole<D> role);
-  
-  public boolean hasRole(Class<? extends IItemRole<D>> roleClass);
-  
-  public <R extends IItemRole<D>> R getRole(Class<R> roleClass);
+
+  public boolean hasRole(Class< ? extends IItemRole> roleClass);
+
+  public <R extends IItemRole< ? >> R getRole(Class<R> roleClass);
 }

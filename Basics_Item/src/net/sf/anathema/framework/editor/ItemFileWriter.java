@@ -7,7 +7,7 @@ import java.io.IOException;
 import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.framework.item.IItem;
 import net.sf.anathema.framework.item.data.IItemData;
-import net.sf.anathema.framework.persistence.ISingleFileItemPersister;
+import net.sf.anathema.framework.item.persistence.ISingleFileItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;

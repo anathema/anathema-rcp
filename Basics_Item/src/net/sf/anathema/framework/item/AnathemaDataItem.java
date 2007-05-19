@@ -1,7 +1,6 @@
-package net.sf.anathema.framework.repository;
+package net.sf.anathema.framework.item;
 
 import net.disy.commons.core.util.Ensure;
-import net.sf.anathema.framework.item.PrintNameAdjuster;
 import net.sf.anathema.framework.item.data.IItemData;
 import net.sf.anathema.lib.control.change.IChangeListener;
 

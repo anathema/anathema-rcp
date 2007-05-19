@@ -2,7 +2,6 @@ package net.sf.anathema.framework.item.role;
 
 import net.sf.anathema.framework.item.IItem;
 import net.sf.anathema.framework.item.IItemListener;
-import net.sf.anathema.framework.item.IItemRepositoryLocation;
 import net.sf.anathema.framework.item.data.IItemData;
 import net.sf.anathema.lib.control.change.IChangeListener;
 
@@ -23,11 +22,6 @@ public class AbstractItemRole<D extends IItemData> implements IItemRole<D> {
   @Override
   public String getPrintName() {
     return this.base.getPrintName();
-  }
-
-  @Override
-  public IItemRepositoryLocation getRepositoryLocation() {
-    return this.base.getRepositoryLocation();
   }
 
   @Override
@@ -70,12 +64,12 @@ public class AbstractItemRole<D extends IItemData> implements IItemRole<D> {
   }
 
   @Override
-  public <R extends IItemRole<D>> R getRole(Class<R> roleClass) {
+  public <R extends IItemRole< ? >> R getRole(Class<R> roleClass) {
     return this.base.getRole(roleClass);
   }
 
   @Override
-  public boolean hasRole(Class< ? extends IItemRole<D>> roleClass) {
+  public boolean hasRole(Class< ? extends IItemRole> roleClass) {
     return this.base.hasRole(roleClass);
   }
 }

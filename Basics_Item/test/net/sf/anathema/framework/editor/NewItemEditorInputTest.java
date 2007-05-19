@@ -1,6 +1,6 @@
 package net.sf.anathema.framework.editor;
 
-import net.sf.anathema.framework.persistence.BasicDataItemPersister;
+import net.sf.anathema.framework.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
