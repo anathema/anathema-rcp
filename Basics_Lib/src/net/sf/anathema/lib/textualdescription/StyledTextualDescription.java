@@ -73,6 +73,9 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
 
   @Override
   public void toggleAspect(final TextAspect aspect, final int offset, final int length) {
+    if (textPartCollection.isEmpty()) {
+      return;
+    }
     ITransformer<ITextFormat, ITextFormat> transformer = new ITransformer<ITextFormat, ITextFormat>() {
       @Override
       public ITextFormat transform(ITextFormat input) {
@@ -112,21 +115,27 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
 
   public void replaceText(int startTextPosition, int length, String newText) {
     TextModificationBlock block = new TextModificationBlock(textPartCollection, startTextPosition, length);
-    ITextPart tailingTextPart = textPartCollection.getTextPartByTextPosition(block.getTailStartPosition());
-    int startIndexWithinTextPart = startTextPosition - textPartCollection.getStartPosition(block.getStartTextPart());
-    String originalText = block.getStartTextPart().getText();
-    StringBuilder newTextBuilder = new StringBuilder();
-    newTextBuilder.append(originalText.substring(0, startIndexWithinTextPart));
-    newTextBuilder.append(newText);
-    int endIndexWithinEndTextPart = block.getTailStartPosition() - textPartCollection.getStartPosition(tailingTextPart);
-    String endTextPartText = tailingTextPart.getText().substring(endIndexWithinEndTextPart);
-    if (block.getStartTextPart().getFormat().equals(tailingTextPart.getFormat())) {
-      newTextBuilder.append(endTextPartText);
-      block.add(new TextPart(newTextBuilder.toString(), block.getStartTextPart().getFormat()));
+    if (textPartCollection.isEmpty()) {
+      block.add(new TextPart(newText, new TextFormat()));
     }
     else {
-      block.add(new TextPart(newTextBuilder.toString(), block.getStartTextPart().getFormat()));
-      block.add(new TextPart(endTextPartText, tailingTextPart.getFormat()));
+      ITextPart tailingTextPart = textPartCollection.getTextPartByTextPosition(block.getTailStartPosition());
+      int startIndexWithinTextPart = startTextPosition - textPartCollection.getStartPosition(block.getStartTextPart());
+      String originalText = block.getStartTextPart().getText();
+      StringBuilder newTextBuilder = new StringBuilder();
+      newTextBuilder.append(originalText.substring(0, startIndexWithinTextPart));
+      newTextBuilder.append(newText);
+      int endIndexWithinEndTextPart = block.getTailStartPosition()
+          - textPartCollection.getStartPosition(tailingTextPart);
+      String endTextPartText = tailingTextPart.getText().substring(endIndexWithinEndTextPart);
+      if (block.getStartTextPart().getFormat().equals(tailingTextPart.getFormat())) {
+        newTextBuilder.append(endTextPartText);
+        block.add(new TextPart(newTextBuilder.toString(), block.getStartTextPart().getFormat()));
+      }
+      else {
+        block.add(new TextPart(newTextBuilder.toString(), block.getStartTextPart().getFormat()));
+        block.add(new TextPart(endTextPartText, tailingTextPart.getFormat()));
+      }
     }
     block.commit();
     fireTextChangedEvent();

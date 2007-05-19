@@ -14,7 +14,9 @@ public class TextModificationBlock {
     this.textPartCollection = textPartCollection;
     this.offset = offset;
     this.length = length;
-    addLeadingTextParts();
+    if (offset > 0) {
+      addLeadingTextParts();
+    }
   }
 
   public ITextPart getEndTextPart() {
@@ -53,10 +55,13 @@ public class TextModificationBlock {
   }
 
   public void commit() {
-    addTailingTextParts();
+    if (!textPartCollection.isEmpty()) {
+      addTailingTextParts();
+    }
     textPartCollection.setText(newTextParts.toArray(new ITextPart[newTextParts.size()]));
   }
 
   public void add(ITextPart textPart) {
-    newTextParts.add(textPart);  }
+    newTextParts.add(textPart);
+  }
 }

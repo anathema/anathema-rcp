@@ -23,6 +23,18 @@ public class StyledTextualDescriptionTest {
   public void emptyDescriptionContainsNoFormat() throws Exception {
     assertFalse(description.isDominant(TextAspect.Italic, 0, 0));
   }
+  
+  @Test
+  public void replaceTextForEmptyDescription() throws Exception {
+    description.replaceText(0, 0, "Hallo");
+    assertEquals(description.getTextParts(), new ITextPart[] {new TextPart("Hallo", new TextFormat())});
+  }
+
+  @Test
+  public void toggleAspectForForEmptyDescription() throws Exception {
+    description.toggleAspect(TextAspect.Bold, 0, 0);
+    assertEquals(description.getTextParts(), new ITextPart[0]);
+  }
 
   @Test
   public void doFindExistingSingleFormat() throws Exception {
