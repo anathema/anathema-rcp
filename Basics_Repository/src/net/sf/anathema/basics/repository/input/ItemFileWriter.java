@@ -25,7 +25,12 @@ public class ItemFileWriter {
       persister.save(outputStream, item);
       byte[] documentContent = outputStream.toByteArray();
       ByteArrayInputStream source = new ByteArrayInputStream(documentContent);
-      file.setContents(source, true, true, new NullProgressMonitor());
+      if (file.exists()) {
+        file.setContents(source, true, true, new NullProgressMonitor());
+      }
+      else {
+        file.create(source, true, new NullProgressMonitor());
+      }
       item.setClean();
     }
     finally {

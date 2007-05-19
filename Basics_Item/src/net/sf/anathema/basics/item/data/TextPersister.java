@@ -56,14 +56,14 @@ public class TextPersister {
   public void restoreTextualDescription(Element parent, String tagName, IStyledTextualDescription description) {
     Element textualElement = parent.element(tagName);
     if (textualElement == null) {
-      description.setDirty(false);
+      description.setClean();
       return;
     }
     List<Element> partElements = ElementUtilities.elements(textualElement, TAG_PART);
     if (partElements.size() == 0) {
       String textContent = textualElement.getText();
       description.setText(new ITextPart[] { new TextPart(textContent, new TextFormat()) });
-      description.setDirty(false);
+      description.setClean();
       return;
     }
     ITextPart[] textParts = new ITextPart[partElements.size()];
@@ -74,7 +74,7 @@ public class TextPersister {
           restoreTextFormat(partElement.element(TAG_FORMAT)));
     }
     description.setText(textParts);
-    description.setDirty(false);
+    description.setClean();
   }
 
   private ITextFormat restoreTextFormat(Element formatElement) {
@@ -88,6 +88,6 @@ public class TextPersister {
     if (textualElement != null) {
       description.setText(textualElement.getText());
     }
-    description.setDirty(false);
+    description.setClean();
   }
 }

@@ -16,15 +16,15 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
 
   public void setText(ITextPart... textParts) {
     textPartCollection.setText(textParts);
-    setDirty(true);
+    fireTextChangedEvent();
   }
 
   public ITextPart[] getTextParts() {
     return textPartCollection.getTextParts();
   }
 
-  @Override
-  protected void fireChangedEvent() {
+  private void fireTextChangedEvent() {
+    setDirty(true);
     textListeners.forAllDo(new IClosure<IStyledTextChangeListener>() {
       public void execute(IStyledTextChangeListener input) {
         input.textChanged(getTextParts());
@@ -106,7 +106,8 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
         currentOffset += splittedParts[1].getText().length();
       }
     }
-    block.commit(this);
+    block.commit();
+    fireTextChangedEvent();
   }
 
   public void replaceText(int startTextPosition, int length, String newText) {
@@ -127,7 +128,8 @@ public class StyledTextualDescription extends AbstractTextualDescription impleme
       block.add(new TextPart(newTextBuilder.toString(), block.getStartTextPart().getFormat()));
       block.add(new TextPart(endTextPartText, tailingTextPart.getFormat()));
     }
-    block.commit(this);
+    block.commit();
+    fireTextChangedEvent();
   }
 
   @Override
