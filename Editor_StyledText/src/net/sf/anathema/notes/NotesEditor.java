@@ -1,6 +1,5 @@
 package net.sf.anathema.notes;
 
-import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IItemEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
