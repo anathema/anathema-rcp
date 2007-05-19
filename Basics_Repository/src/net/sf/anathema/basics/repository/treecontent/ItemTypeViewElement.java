@@ -30,7 +30,7 @@ public class ItemTypeViewElement implements IViewElement {
   public Object[] getChildren() {
     List<IViewElement> elements = new ArrayList<IViewElement>();
     for (IResource resource : getMembers()) {
-      elements.add(new ResourceViewElement(resource, this));
+      elements.add(new ResourceViewElement(resource, new RegExPrintNameProvider(), this));
     }
     return elements.toArray(new IViewElement[elements.size()]);
   }

@@ -1,16 +1,9 @@
 package net.sf.anathema.basics.repository.treecontent;
 
-import java.io.InputStreamReader;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import net.disy.commons.core.io.IOUtilities;
-import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.framework.editor.FileItemEditorInput;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
@@ -19,13 +12,14 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 public class ResourceViewElement implements IViewElement {
-  private static final Pattern PRINT_NAME_PATTERN = Pattern.compile("<Name><!\\[CDATA\\[(.*)\\]\\]></Name>"); //$NON-NLS-1$
   private final IResource resource;
   private final IViewElement parent;
+  private final IPrintNameProvider printNameProvider;
 
-  public ResourceViewElement(IResource resource, IViewElement parent) {
+  public ResourceViewElement(IResource resource, IPrintNameProvider printNameProvider, IViewElement parent) {
     this.resource = resource;
     this.parent = parent;
+    this.printNameProvider = printNameProvider;
   }
 
   @Override
@@ -35,25 +29,7 @@ public class ResourceViewElement implements IViewElement {
 
   @Override
   public String getDisplayName() {
-    IFile file = (IFile) resource;
-    InputStreamReader reader = null;
-    try {
-      reader = new InputStreamReader(file.getContents());
-      String content = IOUtilities.readString(reader);
-      Matcher printNameMatcher = PRINT_NAME_PATTERN.matcher(content);
-      if (!printNameMatcher.find()) {
-        throw new IllegalStateException("Illegal resource format: No display name defined."); //$NON-NLS-1$
-      }
-      return printNameMatcher.group(1);
-    }
-    catch (Exception e) {
-      RepositoryPlugin.log(IStatus.ERROR, "Error reading display name.", e);
-      e.printStackTrace();
-      return resource.getName();
-    }
-    finally {
-      IOUtilities.close(reader);
-    }
+    return printNameProvider.getPrintName((IFile) resource);
   }
 
   @Override
