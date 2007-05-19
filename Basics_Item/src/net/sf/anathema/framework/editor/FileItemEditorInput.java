@@ -35,6 +35,6 @@ public class FileItemEditorInput extends FileEditorInput implements IItemEditorI
 
   @Override
   public String getToolTipText() {
-    return item.getDisplayName();
+    return item.getPrintName();
   }
 }

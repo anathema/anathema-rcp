@@ -49,7 +49,7 @@ public class NewItemEditorInput implements IItemEditorInput {
 
   @Override
   public String getToolTipText() {
-    return item.getDisplayName();
+    return item.getPrintName();
   }
 
   @SuppressWarnings("unchecked")

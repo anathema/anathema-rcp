@@ -8,23 +8,15 @@ import net.sf.anathema.framework.item.IItemRepositoryLocation;
 import net.sf.anathema.framework.item.data.IItemData;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
-import net.sf.anathema.lib.util.IIdentificate;
 
 public abstract class AbstractAnathemaItem<D extends IItemData> implements IItem<D> {
 
   private String printName;
   private final RepositoryLocation repositoryLocation;
-  private final IIdentificate identificate;
   private final GenericControl<IItemListener> repositoryItemListeners = new GenericControl<IItemListener>();
 
   public AbstractAnathemaItem() {
     this.repositoryLocation = new RepositoryLocation(this);
-    this.identificate = repositoryLocation;
-  }
-
-  public AbstractAnathemaItem(IIdentificate identificate) {
-    this.repositoryLocation = null;
-    this.identificate = identificate;
   }
 
   public void addItemListener(IItemListener listener) {
@@ -43,27 +35,23 @@ public abstract class AbstractAnathemaItem<D extends IItemData> implements IItem
     });
   }
 
-  public final synchronized String getId() {
-    return identificate.getId();
-  }
-
   public String getIdProposal() {
     return printName == null ? DEFAULT_PRINT_NAME : printName;
   }
 
-  public String getDisplayName() {
+  public String getPrintName() {
     return printName == null ? DEFAULT_PRINT_NAME : printName;
   }
 
-  public void setPrintName(String printName) {
-    if (StringUtilities.isNullOrEmpty(printName)) {
-      printName = null;
+  public void setPrintName(String newPrintName) {
+    if (StringUtilities.isNullOrEmpty(newPrintName)) {
+      newPrintName = null;
     }
-    if (ObjectUtilities.equals(this.printName, printName)) {
+    if (ObjectUtilities.equals(this.printName, newPrintName)) {
       return;
     }
-    this.printName = printName;
-    firePrintNameChanged(getDisplayName());
+    this.printName = newPrintName;
+    firePrintNameChanged(getPrintName());
   }
 
   public IItemRepositoryLocation getRepositoryLocation() {
@@ -72,6 +60,6 @@ public abstract class AbstractAnathemaItem<D extends IItemData> implements IItem
 
   @Override
   public String toString() {
-    return getDisplayName();
+    return getPrintName();
   }
 }

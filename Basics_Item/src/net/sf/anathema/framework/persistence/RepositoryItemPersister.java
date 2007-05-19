@@ -9,14 +9,14 @@ import org.dom4j.Element;
 
 public class RepositoryItemPersister implements IAnathemaXmlConstants {
 
-  public void save(Element element, IItem item) {
-    String repositoryId = item.getId();
+  public void save(Element element, IItem<?> item) {
+    String repositoryId = item.getRepositoryLocation().getId();
     Ensure.ensureNotNull("Repository item must have an id for saving.", repositoryId); //$NON-NLS-1$
     element.addAttribute(ATTRIB_REPOSITORY_ID, repositoryId);
-    element.addAttribute(ATTRIB_REPOSITORY_PRINT_NAME, item.getDisplayName());
+    element.addAttribute(ATTRIB_REPOSITORY_PRINT_NAME, item.getPrintName());
   }
 
-  public void load(Element element, IItem item) throws PersistenceException {
+  public void load(Element element, IItem<?> item) throws PersistenceException {
     item.getRepositoryLocation().setId(ElementUtilities.getRequiredAttrib(element, ATTRIB_REPOSITORY_ID));
     item.setPrintName(ElementUtilities.getRequiredAttrib(element, ATTRIB_REPOSITORY_PRINT_NAME));
   }

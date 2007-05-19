@@ -15,7 +15,7 @@ public class RepositoryLocation implements IItemRepositoryLocation {
   }
 
   public String getIdProposal() {
-    return AnathemaStringUtilities.getFileNameRepresentation(item.getDisplayName());
+    return AnathemaStringUtilities.getFileNameRepresentation(item.getPrintName());
   }
 
   public synchronized void setId(String id) {
