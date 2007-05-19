@@ -22,7 +22,7 @@ public class FileItemEditorInput extends FileEditorInput implements IItemEditorI
   }
 
   @Override
-  public void save(BasicDataItemPersister persister) throws IOException, CoreException {
+  public void save(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
     new ItemFileWriter().saveToFile(getFile(), persister, item);
   }
 

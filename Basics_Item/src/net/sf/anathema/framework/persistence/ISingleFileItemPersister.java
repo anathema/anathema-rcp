@@ -11,7 +11,7 @@ import org.dom4j.Document;
 
 public interface ISingleFileItemPersister<D extends IItemData> extends IRepositoryItemPersister<D> {
 
-  public abstract void save(OutputStream stream, IItem<D> item) throws IOException;
+  public abstract void save(OutputStream stream, IItem<D> item) throws IOException, PersistenceException;
 
   public abstract IItem<D> load(Document document) throws PersistenceException;
 }

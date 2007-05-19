@@ -1,7 +1,9 @@
-package net.sf.anathema.basics.eclipse.extension;
+package net.sf.anathema.basics.eclipse.extension.internal;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;

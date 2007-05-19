@@ -1,14 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Basics_Item
-Bundle-SymbolicName: net.sf.anathema.basics.item
+Bundle-SymbolicName: net.sf.anathema.basics.item;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Require-Bundle: net.sf.anathema.basics.lib,
  net.sf.anathema.basics.jface,
  org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.core.resources
+ org.eclipse.core.resources,
+ net.sf.anathema.basics.eclipse
 Export-Package: net.sf.anathema.framework.editor;
   uses:="org.eclipse.jface.resource,
    net.sf.anathema.framework.item,

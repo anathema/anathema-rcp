@@ -2,7 +2,8 @@ package net.sf.anathema.basics.eclipse.extension;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
-import net.sf.anathema.basics.repository.RepositoryPlugin;
+import net.sf.anathema.basics.eclipse.EclipsePlugin;
+import net.sf.anathema.basics.eclipse.extension.internal.ExtensionFacade;
 
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -15,7 +16,7 @@ public class EclipseExtensionProvider implements IExtensionProvider {
   public IPluginExtension[] getExtensions(String id) {
     IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(id);
     if (extensionPoint == null) {
-      RepositoryPlugin.log(IStatus.WARNING, "Extension point not found " + id, null);
+      EclipsePlugin.log(IStatus.WARNING, "Extension point not found " + id, null);
       return new IPluginExtension[0];
     }
     IExtension[] extensions = extensionPoint.getExtensions();
