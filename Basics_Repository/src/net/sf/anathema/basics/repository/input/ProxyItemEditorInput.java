@@ -1,0 +1,69 @@
+package net.sf.anathema.basics.repository.input;
+
+import java.io.IOException;
+
+import net.sf.anathema.basics.item.IItem;
+import net.sf.anathema.basics.item.IItemEditorInput;
+import net.sf.anathema.basics.item.data.IBasicItemData;
+import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
+import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.lib.exception.PersistenceException;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IPersistableElement;
+
+public class ProxyItemEditorInput implements IItemEditorInput {
+  
+  private IFileItemEditorInput delegateInput;
+
+  public ProxyItemEditorInput(IItemType itemType) {
+    delegateInput = new NewItemEditorInput(itemType);
+  }
+
+  @Override
+  public IItem<IBasicItemData> loadItem(BasicDataItemPersister persister) throws PersistenceException, CoreException {
+    return delegateInput.loadItem(persister);
+  }
+
+  @Override
+  public void save(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
+    delegateInput.save(persister);
+    delegateInput = new FileItemEditorInput(delegateInput.getFile());
+  }
+
+  @Override
+  public boolean exists() {
+    return delegateInput.exists();
+  }
+
+  @Override
+  public ImageDescriptor getImageDescriptor() {
+    return delegateInput.getImageDescriptor();
+  }
+
+  @Override
+  public String getName() {
+    return delegateInput.getName();
+  }
+
+  @Override
+  public IPersistableElement getPersistable() {
+    return delegateInput.getPersistable();
+  }
+
+  @Override
+  public String getToolTipText() {
+    return delegateInput.getToolTipText();
+  }
+
+  @Override
+  public Object getAdapter(Class adapter) {
+    return delegateInput.getAdapter(adapter);
+  }
+  
+  @Override
+  public boolean equals(Object arg0) {
+    return delegateInput.equals(arg0);
+  }
+}

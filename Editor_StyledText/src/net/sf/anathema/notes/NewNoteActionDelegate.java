@@ -1,6 +1,6 @@
 package net.sf.anathema.notes;
 
-import net.sf.anathema.basics.repository.input.NewItemEditorInput;
+import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -25,7 +25,7 @@ public class NewNoteActionDelegate implements IObjectActionDelegate {
   public void run(IAction action) {
     IWorkbenchPage page = targetPart.getSite().getPage();
     IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor("Hasä.not");
-    IEditorInput input = new NewItemEditorInput(NotesRepositoryUtilities.getNotesItemType());
+    IEditorInput input = new ProxyItemEditorInput(NotesRepositoryUtilities.getNotesItemType());
     try {
       page.openEditor(input, defaultEditor.getId());
     }

@@ -3,7 +3,6 @@ package net.sf.anathema.basics.repository.input;
 import java.io.IOException;
 
 import net.sf.anathema.basics.item.IItem;
-import net.sf.anathema.basics.item.IItemEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
@@ -15,17 +14,17 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
-public class NewItemEditorInput implements IItemEditorInput {
+public class NewItemEditorInput implements IFileItemEditorInput {
 
   private IItem<IBasicItemData> item;
   private final IUnusedFileFactory unusedFileFactory;
   private IFile savefile;
 
-  public NewItemEditorInput(IItemType itemType) {
+  protected NewItemEditorInput(IItemType itemType) {
     this(new UnusedFileFactory(itemType));
   }
   
-  public NewItemEditorInput(IUnusedFileFactory unusedFileFactory) {
+  protected NewItemEditorInput(IUnusedFileFactory unusedFileFactory) {
     this.unusedFileFactory = unusedFileFactory;
   }
 
@@ -77,5 +76,10 @@ public class NewItemEditorInput implements IItemEditorInput {
   @Override
   public Object getAdapter(Class adapter) {
     return null;
+  }
+
+  @Override
+  public IFile getFile() {
+    return savefile;
   }
 }
