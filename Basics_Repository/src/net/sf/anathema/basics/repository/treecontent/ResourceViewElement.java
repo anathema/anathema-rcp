@@ -19,7 +19,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 public class ResourceViewElement implements IViewElement {
-  private static final Pattern PRINT_NAME_PATTERN = Pattern.compile("repositoryPrintName=\"(.*?)\""); //$NON-NLS-1$
+  private static final Pattern PRINT_NAME_PATTERN = Pattern.compile("<Name><!\\[CDATA\\[(.*)\\]\\]></Name>"); //$NON-NLS-1$
   private final IResource resource;
   private final IViewElement parent;
 
