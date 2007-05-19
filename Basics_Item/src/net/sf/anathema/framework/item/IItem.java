@@ -2,7 +2,6 @@ package net.sf.anathema.framework.item;
 
 import net.sf.anathema.framework.item.change.IChangeManagement;
 import net.sf.anathema.framework.item.data.IItemData;
-import net.sf.anathema.framework.item.role.IItemRole;
 
 public interface IItem<D extends IItemData> extends IChangeManagement {
 
@@ -17,10 +16,4 @@ public interface IItem<D extends IItemData> extends IChangeManagement {
   public void addItemListener(IItemListener listener);
 
   public void removeItemListener(IItemListener listener);
-
-  public void addRole(IItemRole<D> role);
-
-  public boolean hasRole(Class< ? extends IItemRole> roleClass);
-
-  public <R extends IItemRole< ? >> R getRole(Class<R> roleClass);
 }
