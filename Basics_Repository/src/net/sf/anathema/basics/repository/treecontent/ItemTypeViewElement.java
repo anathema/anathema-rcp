@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
@@ -79,5 +80,19 @@ public class ItemTypeViewElement implements IViewElement {
   @Override
   public void openEditor(IWorkbenchPage page) {
     // nothing to do
+  }
+
+  @Override
+  public boolean equals(Object object) {
+    if (!(object instanceof ItemTypeViewElement)) {
+      return false;
+    }
+    ItemTypeViewElement other = (ItemTypeViewElement) object;
+    return ObjectUtilities.equals(type, other.type);
+  }
+
+  @Override
+  public int hashCode() {
+    return type.hashCode();
   }
 }

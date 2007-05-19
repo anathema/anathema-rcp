@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository.treecontent;
 
+import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.repository.input.FileItemEditorInput;
 
 import org.eclipse.core.resources.IFile;
@@ -54,5 +55,19 @@ public class ResourceViewElement implements IViewElement {
     String fileName = file.getName();
     IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
     page.openEditor(input, defaultEditor.getId());
+  }
+
+  @Override
+  public boolean equals(Object object) {
+    if (!(object instanceof ResourceViewElement)) {
+      return false;
+    }
+    ResourceViewElement other = (ResourceViewElement) object;
+    return ObjectUtilities.equals(resource, other.resource) && ObjectUtilities.equals(parent, other.parent);
+  }
+
+  @Override
+  public int hashCode() {
+    return resource.hashCode();
   }
 }

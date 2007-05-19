@@ -5,6 +5,9 @@ import net.sf.anathema.basics.repository.treecontent.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
 
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.OpenEvent;
@@ -39,15 +42,19 @@ public class RepositoryView extends ViewPart {
         }
       }
     });
+    ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
+      @Override
+      public void resourceChanged(IResourceChangeEvent event) {
+        Object[] expandedElements = viewer.getExpandedElements();
+        viewer.refresh(true);
+        viewer.setExpandedElements(expandedElements);
+      }
+    });
     viewer.refresh(true);
   }
 
   @Override
   public void setFocus() {
     viewer.getControl().setFocus();
-  }
-  
-  public void updateRepositoryTree() {
-    viewer.refresh(true);
   }
 }

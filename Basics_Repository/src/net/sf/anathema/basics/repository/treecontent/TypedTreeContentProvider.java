@@ -10,6 +10,9 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 public class TypedTreeContentProvider implements ITreeContentProvider {
+
+  private List<IViewElement> elementList;
+
   public void inputChanged(Viewer v, Object oldInput, Object newInput) {
     // nothing to do
   }
@@ -19,11 +22,18 @@ public class TypedTreeContentProvider implements ITreeContentProvider {
   }
 
   public Object[] getElements(Object parent) {
-    List<IViewElement> list = new ArrayList<IViewElement>();
-    for (IItemType type : new ItemTypeProvider().getItemTypes()) {
-      list.add(new ItemTypeViewElement(type));
+    if (elementList == null) {
+      elementList = createItemTypeElements();
     }
-    return list.toArray(new IViewElement[list.size()]);
+    return elementList.toArray(new IViewElement[elementList.size()]);
+  }
+
+  private List<IViewElement> createItemTypeElements() {
+    List<IViewElement> itemTypeElements = new ArrayList<IViewElement>();
+    for (IItemType type : new ItemTypeProvider().getItemTypes()) {
+      itemTypeElements.add(new ItemTypeViewElement(type));
+    }
+    return itemTypeElements;
   }
 
   public Object[] getChildren(Object parentElement) {
