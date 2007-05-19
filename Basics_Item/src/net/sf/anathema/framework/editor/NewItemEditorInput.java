@@ -7,6 +7,7 @@ import net.sf.anathema.framework.item.data.IBasicItemData;
 import net.sf.anathema.framework.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
@@ -14,6 +15,7 @@ import org.eclipse.ui.IPersistableElement;
 public class NewItemEditorInput implements IItemEditorInput {
 
   private IItem<IBasicItemData> item;
+  private IFile file;
 
   @Override
   public IItem<IBasicItemData> loadItem(BasicDataItemPersister persister) throws PersistenceException, CoreException {
@@ -23,7 +25,6 @@ public class NewItemEditorInput implements IItemEditorInput {
 
   @Override
   public void save(BasicDataItemPersister persister) throws IOException, CoreException {
-    // TODO Auto-generated method stub
   }
 
   @Override
@@ -51,6 +52,7 @@ public class NewItemEditorInput implements IItemEditorInput {
     return item.getDisplayName();
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
     return null;
