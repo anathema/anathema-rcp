@@ -14,6 +14,9 @@ import org.eclipse.core.runtime.IConfigurationElement;
 public class RepositoryItemPersister implements IAnathemaXmlConstants, IItemPersister {
 
   public void save(Element element, IItem< ? > item) {
+    if (item.getRepositoryLocation() == null) {
+      return;
+    }
     String repositoryId = item.getRepositoryLocation().getId();
     Ensure.ensureNotNull("Repository item must have an id for saving.", repositoryId); //$NON-NLS-1$
     element.addAttribute(ATTRIB_REPOSITORY_ID, repositoryId);
@@ -21,6 +24,9 @@ public class RepositoryItemPersister implements IAnathemaXmlConstants, IItemPers
   }
 
   public void load(Element element, IItem< ? > item) throws PersistenceException {
+    if (item.getRepositoryLocation() == null) {
+      return;
+    }
     item.getRepositoryLocation().setId(ElementUtilities.getRequiredAttrib(element, ATTRIB_REPOSITORY_ID));
     item.setPrintName(ElementUtilities.getRequiredAttrib(element, ATTRIB_REPOSITORY_PRINT_NAME));
   }
