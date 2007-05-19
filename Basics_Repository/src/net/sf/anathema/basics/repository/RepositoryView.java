@@ -39,10 +39,15 @@ public class RepositoryView extends ViewPart {
         }
       }
     });
+    viewer.refresh(true);
   }
 
   @Override
   public void setFocus() {
     viewer.getControl().setFocus();
+  }
+  
+  public void updateRepositoryTree() {
+    viewer.refresh(true);
   }
 }

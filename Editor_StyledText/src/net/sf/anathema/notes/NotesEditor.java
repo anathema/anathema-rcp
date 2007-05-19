@@ -8,6 +8,7 @@ import net.sf.anathema.basics.item.data.IItemDescription;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
+import net.sf.anathema.basics.repository.RepositoryView;
 import net.sf.anathema.editor.styledtext.IStyledTextEditor;
 import net.sf.anathema.editor.styledtext.ITextModification;
 import net.sf.anathema.lib.control.change.IChangeListener;
@@ -27,6 +28,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
@@ -39,6 +41,7 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   @Override
   public void doSave(IProgressMonitor monitor) {
     IItemEditorInput editorInput = getItemEditorInput();
+    boolean isNameDirty = item.getItemData().getDescription().getName().isDirty();
     try {
       editorInput.save(persister);
     }
@@ -46,7 +49,20 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
       // TODO Fehlerhandling
       e.printStackTrace();
     }
+    if (isNameDirty) {
+      updateRepositoryView();
+    }
     firePropertyChange(PROP_DIRTY);
+  }
+
+  private void updateRepositoryView() {
+    IViewReference[] viewReferences = getEditorSite().getWorkbenchWindow().getActivePage().getViewReferences();
+    for (IViewReference reference : viewReferences) {
+      if (RepositoryView.ID.equals(reference.getId())) {
+        RepositoryView repositoryView = (RepositoryView) reference.getPart(false);
+        repositoryView.updateRepositoryTree();
+      }
+    }
   }
 
   private IItemEditorInput getItemEditorInput() {

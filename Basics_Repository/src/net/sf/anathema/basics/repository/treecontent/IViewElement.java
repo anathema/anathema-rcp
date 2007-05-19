@@ -6,15 +6,15 @@ import org.eclipse.ui.PartInitException;
 
 public interface IViewElement {
 
-  boolean hasChildren();
+  public boolean hasChildren();
 
-  Object[] getChildren();
+  public Object[] getChildren();
 
-  Object getParent();
+  public Object getParent();
 
-  String getDisplayName();
+  public String getDisplayName();
 
-  Image getImage();
+  public Image getImage();
 
-  void openEditor(IWorkbenchPage page) throws PartInitException;
+  public void openEditor(IWorkbenchPage page) throws PartInitException;
 }
