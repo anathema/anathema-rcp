@@ -18,9 +18,10 @@
       <itemtype
             file-extension="not"
             icon="icons/TabNotes16.png"
-		    id="net.sf.anathema.itemtype.Note"
+            id="net.sf.anathema.itemtype.Note"
             project="Notes"
-            type="%itemtype.type.notes">
+            type="%itemtype.type.notes"
+            untitledName="%itemtype.untitled.note">
       </itemtype>
    </extension>
    <extension

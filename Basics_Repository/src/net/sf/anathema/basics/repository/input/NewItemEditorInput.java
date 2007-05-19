@@ -2,6 +2,7 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
@@ -19,13 +20,15 @@ public class NewItemEditorInput implements IFileItemEditorInput {
   private IItem<IBasicItemData> item;
   private final IUnusedFileFactory unusedFileFactory;
   private IFile savefile;
+  private final String untitledName;
 
   protected NewItemEditorInput(IItemType itemType) {
-    this(new UnusedFileFactory(itemType));
+    this(new UnusedFileFactory(itemType), itemType.getUntitledName());
   }
   
-  protected NewItemEditorInput(IUnusedFileFactory unusedFileFactory) {
+  protected NewItemEditorInput(IUnusedFileFactory unusedFileFactory, String untitledName) {
     this.unusedFileFactory = unusedFileFactory;
+    this.untitledName = untitledName;
   }
 
   @Override
@@ -81,5 +84,14 @@ public class NewItemEditorInput implements IFileItemEditorInput {
   @Override
   public IFile getFile() {
     return savefile;
+  }
+  
+  @Override
+  public String getDisplayName() {
+    String name = item.getItemData().getDescription().getName().getText();
+    if (StringUtilities.isNullOrEmpty(name)) {
+      name = untitledName;
+    }
+    return name;
   }
 }

@@ -16,11 +16,17 @@ public class ResourceViewElement implements IViewElement {
   private final IResource resource;
   private final IViewElement parent;
   private final IPrintNameProvider printNameProvider;
+  private final String untitledName;
 
-  public ResourceViewElement(IResource resource, IPrintNameProvider printNameProvider, IViewElement parent) {
+  public ResourceViewElement(
+      IResource resource,
+      IPrintNameProvider printNameProvider,
+      IViewElement parent,
+      String untitledName) {
     this.resource = resource;
     this.parent = parent;
     this.printNameProvider = printNameProvider;
+    this.untitledName = untitledName;
   }
 
   @Override
@@ -51,7 +57,7 @@ public class ResourceViewElement implements IViewElement {
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     IFile file = (IFile) resource;
-    IEditorInput input = new FileItemEditorInput(file);
+    IEditorInput input = new FileItemEditorInput(file, untitledName);
     String fileName = file.getName();
     IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
     page.openEditor(input, defaultEditor.getId());

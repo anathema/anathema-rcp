@@ -13,4 +13,6 @@ public interface IItemType {
   public URL getIconUrl();
 
   public String getId();
+
+  public String getUntitledName();
 }

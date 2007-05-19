@@ -14,4 +14,6 @@ public interface IItemEditorInput extends IEditorInput {
   public void save(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException;
 
   public IItem<IBasicItemData> loadItem(BasicDataItemPersister persister) throws PersistenceException, CoreException;
+
+  public String getDisplayName();
 }

@@ -88,11 +88,7 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   }
 
   private void updatePartName() {
-    String name = getItemDescription().getName().getText();
-    if (StringUtilities.isNullOrEmpty(name)) {
-      name = "Untitled Note";
-    }
-    setPartName(name);
+    setPartName(getItemEditorInput().getDisplayName());
   }
 
   @Override

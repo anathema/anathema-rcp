@@ -54,4 +54,9 @@ public class ItemType implements IItemType {
   public String getId() {
     return getAttribute("id"); //$NON-NLS-1$
   }
+
+  @Override
+  public String getUntitledName() {
+    return getAttribute("untitledName"); //$NON-NLS-1$
+  }
 }
