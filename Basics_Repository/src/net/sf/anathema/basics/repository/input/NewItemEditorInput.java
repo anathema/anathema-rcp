@@ -18,11 +18,15 @@ import org.eclipse.ui.IPersistableElement;
 public class NewItemEditorInput implements IItemEditorInput {
 
   private IItem<IBasicItemData> item;
-  private final IItemType itemType;
+  private final IUnusedFileFactory unusedFileFactory;
   private IFile savefile;
 
   public NewItemEditorInput(IItemType itemType) {
-    this.itemType = itemType;
+    this(new UnusedFileFactory(itemType));
+  }
+  
+  public NewItemEditorInput(IUnusedFileFactory unusedFileFactory) {
+    this.unusedFileFactory = unusedFileFactory;
   }
 
   @Override
@@ -39,9 +43,9 @@ public class NewItemEditorInput implements IItemEditorInput {
     new ItemFileWriter().saveToFile(savefile, persister, item);
   }
 
-  private IFile createUnusedFile() {
+  private IFile createUnusedFile() throws CoreException {
     String fileNameSuggestion = AnathemaStringUtilities.getFileNameRepresentation(item.getPrintName());
-    return new UnusedFileFactory().createUnusedFile(fileNameSuggestion, itemType);
+    return unusedFileFactory.createUnusedFile(fileNameSuggestion);
   }
 
   @Override
