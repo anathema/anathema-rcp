@@ -1,4 +1,4 @@
-package net.sf.anathema.editor.styledtext;
+package net.sf.anathema.notes;
 
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.IItem;
@@ -8,9 +8,8 @@ import net.sf.anathema.basics.item.data.IItemDescription;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
-import net.sf.anathema.basics.repository.access.RepositoryUtilities;
-import net.sf.anathema.basics.repository.itemtype.IItemType;
-import net.sf.anathema.basics.repository.itemtype.ItemTypeProvider;
+import net.sf.anathema.editor.styledtext.IStyledTextEditor;
+import net.sf.anathema.editor.styledtext.ITextModification;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
@@ -19,7 +18,6 @@ import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.StyledTextPresenter;
 import net.sf.anathema.lib.textualdescription.TextualPresenter;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
@@ -37,15 +35,6 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   private IItem<IBasicItemData> item;
   private StyledTextView contentView;
   private final BasicDataItemPersister persister = new BasicDataItemPersister();
-
-  public static IProject getNotesProject() {
-    IItemType notesItemType = getNotesItemType();
-    return RepositoryUtilities.getProject(notesItemType);
-  }
-
-  private static IItemType getNotesItemType() {
-    return new ItemTypeProvider().getById("net.sf.anathema.itemtype.Note"); //$NON-NLS-1$
-  }
 
   @Override
   public void doSave(IProgressMonitor monitor) {

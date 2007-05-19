@@ -1,4 +1,4 @@
-package net.sf.anathema.editor.styledtext.popup;
+package net.sf.anathema.notes;
 
 import net.sf.anathema.basics.repository.input.NewItemEditorInput;
 
@@ -25,7 +25,7 @@ public class NewNoteActionDelegate implements IObjectActionDelegate {
   public void run(IAction action) {
     IWorkbenchPage page = targetPart.getSite().getPage();
     IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor("Hasä.not");
-    IEditorInput input = new NewItemEditorInput();
+    IEditorInput input = new NewItemEditorInput(NotesRepositoryUtilities.getNotesItemType());
     try {
       page.openEditor(input, defaultEditor.getId());
     }
