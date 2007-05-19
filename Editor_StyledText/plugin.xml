@@ -5,8 +5,8 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="editor.styledtext.editors.NotesEditor"
-            contributorClass="editor.styledtext.editors.StyledTextEditorActionBarContributor"
+            class="net.sf.anathema.editor.styledtext.NotesEditor"
+            contributorClass="net.sf.anathema.editor.styledtext.StyledTextEditorActionBarContributor"
             extensions="not"
             icon="icons/TabNotes16.png"
             id="editor.styledtext.editors.StyledTextEditor"
@@ -30,7 +30,7 @@
             id="net.sf.anathema.notes.popup"
             objectClass="net.sf.anathema.basics.repository.treecontent.ItemTypeViewElement">
          <action
-               class="editor.styledtext.popup.NewNoteActionDelegate"
+               class="net.sf.anathema.editor.styledtext.popup.NewNoteActionDelegate"
                icon="icons/TabNotes16.png"
                id="net.sf.anathema.notes.popup.new"
                label="%itemtype.new.note">

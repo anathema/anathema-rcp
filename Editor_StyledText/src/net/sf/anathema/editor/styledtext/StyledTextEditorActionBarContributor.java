@@ -1,4 +1,4 @@
-package editor.styledtext.editors;
+package net.sf.anathema.editor.styledtext;
 
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.textualdescription.TextAspect;

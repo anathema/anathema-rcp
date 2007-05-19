@@ -1,4 +1,4 @@
-package editor.styledtext.popup;
+package net.sf.anathema.editor.styledtext.popup;
 
 import net.sf.anathema.framework.editor.NewItemEditorInput;
 

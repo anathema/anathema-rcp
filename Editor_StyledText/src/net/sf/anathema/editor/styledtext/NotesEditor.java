@@ -1,4 +1,4 @@
-package editor.styledtext.editors;
+package net.sf.anathema.editor.styledtext;
 
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
@@ -39,11 +39,13 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
   private final BasicDataItemPersister persister = new BasicDataItemPersister();
 
   public static IProject getNotesProject() {
-    ItemTypeProvider itemTypeProvider = new ItemTypeProvider();
-    IItemType notesItemType = itemTypeProvider.getById("net.sf.anathema.itemtype.Note"); //$NON-NLS-1$
+    IItemType notesItemType = getNotesItemType();
     return RepositoryUtilities.getProject(notesItemType);
   }
-  
+
+  private static IItemType getNotesItemType() {
+    return new ItemTypeProvider().getById("net.sf.anathema.itemtype.Note"); //$NON-NLS-1$
+  }
 
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -56,8 +58,7 @@ public class NotesEditor extends EditorPart implements IStyledTextEditor {
       e.printStackTrace();
     }
     firePropertyChange(PROP_DIRTY);
-}
-
+  }
 
   private IItemEditorInput getItemEditorInput() {
     return (IItemEditorInput) getEditorInput();
