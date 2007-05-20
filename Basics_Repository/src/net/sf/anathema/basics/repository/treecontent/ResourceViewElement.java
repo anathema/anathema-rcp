@@ -2,7 +2,8 @@ package net.sf.anathema.basics.repository.treecontent;
 
 import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.repository.input.FileItemEditorInput;
-import net.sf.anathema.basics.repository.treecontent.viewelement.IViewElement;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IPrintNameProvider;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;

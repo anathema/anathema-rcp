@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository.treecontent;
+package net.sf.anathema.basics.repository.treecontent.itemtype;
 
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;

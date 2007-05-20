@@ -5,8 +5,8 @@ import java.util.List;
 
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.itemtype.ItemTypeProvider;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.ItemTypeViewElement;
-import net.sf.anathema.basics.repository.treecontent.viewelement.IViewElement;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;

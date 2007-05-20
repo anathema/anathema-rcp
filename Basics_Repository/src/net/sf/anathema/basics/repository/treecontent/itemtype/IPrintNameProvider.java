@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository.treecontent;
+package net.sf.anathema.basics.repository.treecontent.itemtype;
 
 import org.eclipse.core.resources.IFile;
 

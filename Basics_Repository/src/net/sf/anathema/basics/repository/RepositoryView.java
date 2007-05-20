@@ -3,7 +3,7 @@ package net.sf.anathema.basics.repository;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
-import net.sf.anathema.basics.repository.treecontent.viewelement.IViewElement;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;

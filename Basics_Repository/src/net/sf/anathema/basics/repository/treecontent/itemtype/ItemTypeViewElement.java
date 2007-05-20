@@ -6,7 +6,6 @@ import java.util.List;
 import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
-import net.sf.anathema.basics.repository.treecontent.viewelement.IViewElement;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;

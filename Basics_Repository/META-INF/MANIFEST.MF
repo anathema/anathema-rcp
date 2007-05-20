@@ -7,8 +7,7 @@ Export-Package: net.sf.anathema.basics.repository,
  net.sf.anathema.basics.repository.access,
  net.sf.anathema.basics.repository.input,
  net.sf.anathema.basics.repository.itemtype,
- net.sf.anathema.basics.repository.treecontent.itemtype,
- net.sf.anathema.basics.repository.treecontent.viewelement
+ net.sf.anathema.basics.repository.treecontent.itemtype
 Require-Bundle: net.sf.anathema.basics.jface,
  org.eclipse.ui,
  org.eclipse.core.resources,

@@ -1,11 +1,16 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Campaign_Plot
-Bundle-SymbolicName: net.sf.anathema.campaign.plot
+Bundle-SymbolicName: net.sf.anathema.campaign.plot;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.item,
  net.sf.anathema.basics.jface,
  net.sf.anathema.basics.lib,
  net.sf.anathema.basics.repository,
- net.sf.anathema.editor.styledtext
+ net.sf.anathema.editor.styledtext,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.eclipse.ui
+Eclipse-LazyStart: true
+Bundle-Activator: net.sf.anathema.campaign.plot.PlotPlugin
