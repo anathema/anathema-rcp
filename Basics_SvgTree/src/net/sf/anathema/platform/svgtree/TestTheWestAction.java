@@ -29,7 +29,6 @@ public class TestTheWestAction extends Action implements IWindowAction {
     IEditorInput input = new SvgTreeEditorInput(document);
     IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().findEditor("svgTreeEditor");
     try {
-      System.err.println(defaultEditor.getClass());
       window.getPages()[0].openEditor(input, defaultEditor.getId());
     }
     catch (Exception e) {

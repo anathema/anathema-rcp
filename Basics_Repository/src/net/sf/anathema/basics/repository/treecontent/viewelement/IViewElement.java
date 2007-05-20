@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository.treecontent;
+package net.sf.anathema.basics.repository.treecontent.viewelement;
 
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPage;

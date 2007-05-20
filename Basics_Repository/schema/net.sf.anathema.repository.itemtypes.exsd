@@ -68,7 +68,7 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="file-extension" type="string" use="required">
+         <attribute name="file-extension" type="string">
             <annotation>
                <documentation>
                   
@@ -92,6 +92,16 @@
                </documentation>
                <appInfo>
                   <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="viewElementFactoryClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory"/>
                </appInfo>
             </annotation>
          </attribute>

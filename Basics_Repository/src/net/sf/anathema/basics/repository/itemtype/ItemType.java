@@ -2,9 +2,10 @@ package net.sf.anathema.basics.repository.itemtype;
 
 import java.net.URL;
 
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -62,7 +63,11 @@ public class ItemType implements IItemType {
   }
 
   @Override
-  public boolean supports(IResource resource) {
-    return getFileExtension().equals(resource.getFileExtension());
+  public IItemTypeViewElementFactory getViewElementFactory() throws ExtensionException {
+    IItemTypeViewElementFactory factory = configurationNode.getAttributeAsObject(
+        "viewElementFactoryClass", //$NON-NLS-1$
+        IItemTypeViewElementFactory.class);
+    factory.setItemType(this);
+    return factory;
   }
 }

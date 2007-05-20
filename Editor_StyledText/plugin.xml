@@ -21,7 +21,8 @@
             id="net.sf.anathema.itemtype.Note"
             project="Notes"
             type="%itemtype.type.notes"
-            untitledName="%itemtype.untitled.note">
+            untitledName="%itemtype.untitled.note"
+            viewElementFactoryClass="net.sf.anathema.basics.repository.treecontent.itemtype.FileItemTypeViewElementFactory">
       </itemtype>
    </extension>
    <extension

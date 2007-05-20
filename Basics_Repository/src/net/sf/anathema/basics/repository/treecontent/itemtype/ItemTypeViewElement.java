@@ -1,18 +1,13 @@
-package net.sf.anathema.basics.repository.treecontent;
+package net.sf.anathema.basics.repository.treecontent.itemtype;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.util.ObjectUtilities;
-import net.sf.anathema.basics.repository.RepositoryPlugin;
-import net.sf.anathema.basics.repository.access.RepositoryUtilities;
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.basics.repository.treecontent.viewelement.IViewElement;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
@@ -28,12 +23,17 @@ public class ItemTypeViewElement implements IViewElement {
   }
 
   @Override
-  public Object[] getChildren() {
-    List<IViewElement> elements = new ArrayList<IViewElement>();
-    for (IResource resource : getMembers()) {
-      elements.add(new ResourceViewElement(resource, new RegExPrintNameProvider(), this, type.getUntitledName()));
+  public IViewElement[] getChildren() {
+    try {
+      IItemTypeViewElementFactory elementFactory = type.getViewElementFactory();
+      List<IViewElement> elements = elementFactory.createViewElements(this);
+      return elements.toArray(new IViewElement[elements.size()]);
     }
-    return elements.toArray(new IViewElement[elements.size()]);
+    catch (ExtensionException e) {
+      // TODO: Fehlerhandling
+      e.printStackTrace();
+      return new IViewElement[0];
+    }
   }
 
   @Override
@@ -43,24 +43,7 @@ public class ItemTypeViewElement implements IViewElement {
 
   @Override
   public boolean hasChildren() {
-    return getMembers().size() != 0;
-  }
-
-  private List<IResource> getMembers() {
-    IProject project = RepositoryUtilities.getProject(type);
-    List<IResource> members = new ArrayList<IResource>();
-    try {
-      for (IResource resource : project.members()) {
-        if (type.supports(resource)) {
-          members.add(resource);
-        }
-      }
-      return members;
-    }
-    catch (CoreException e) {
-      RepositoryPlugin.log(IStatus.ERROR, "Could not retrieve project members.", e);
-      return new ArrayList<IResource>();
-    }
+    return getChildren().length != 0;
   }
 
   @Override

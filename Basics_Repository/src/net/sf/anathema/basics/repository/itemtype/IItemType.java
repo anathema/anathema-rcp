@@ -2,7 +2,8 @@ package net.sf.anathema.basics.repository.itemtype;
 
 import java.net.URL;
 
-import org.eclipse.core.resources.IResource;
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory;
 
 public interface IItemType {
 
@@ -18,5 +19,5 @@ public interface IItemType {
 
   public String getUntitledName();
 
-  public boolean supports(IResource resource);
+  public IItemTypeViewElementFactory getViewElementFactory() throws ExtensionException;
 }
