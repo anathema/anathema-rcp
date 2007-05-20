@@ -14,7 +14,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
 public class ProxyItemEditorInput implements IItemEditorInput {
-  
+
   private IFileItemEditorInput delegateInput;
   private final IItemType itemType;
 
@@ -29,9 +29,15 @@ public class ProxyItemEditorInput implements IItemEditorInput {
   }
 
   @Override
-  public void save(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
-    delegateInput.save(persister);
-    delegateInput = new FileItemEditorInput(delegateInput.getFile(), itemType.getUntitledName());
+  public IItem<IBasicItemData> save(BasicDataItemPersister persister)
+      throws IOException,
+      CoreException,
+      PersistenceException {
+    IItem<IBasicItemData> item = delegateInput.save(persister);
+    FileItemEditorInput input = new FileItemEditorInput(delegateInput.getFile(), itemType.getUntitledName());
+    input.setItem(item);
+    delegateInput = input;
+    return item;
   }
 
   @Override
@@ -63,7 +69,7 @@ public class ProxyItemEditorInput implements IItemEditorInput {
   public Object getAdapter(Class adapter) {
     return delegateInput.getAdapter(adapter);
   }
-  
+
   @Override
   public boolean equals(Object arg0) {
     return delegateInput.equals(arg0);

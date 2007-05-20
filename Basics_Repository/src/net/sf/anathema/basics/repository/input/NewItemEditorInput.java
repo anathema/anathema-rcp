@@ -38,11 +38,12 @@ public class NewItemEditorInput implements IFileItemEditorInput {
   }
 
   @Override
-  public void save(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
+  public IItem<IBasicItemData> save(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
     if (this.savefile == null) {
       this.savefile = createUnusedFile();
     }
     new ItemFileWriter().saveToFile(savefile, persister, item);
+    return item;
   }
 
   private IFile createUnusedFile() throws CoreException {

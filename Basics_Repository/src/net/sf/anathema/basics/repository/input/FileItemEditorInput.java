@@ -24,8 +24,12 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   }
 
   @Override
-  public void save(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
+  public IItem<IBasicItemData> save(BasicDataItemPersister persister)
+      throws IOException,
+      CoreException,
+      PersistenceException {
     new ItemFileWriter().saveToFile(getFile(), persister, item);
+    return item;
   }
 
   @Override
@@ -34,11 +38,15 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
     return item;
   }
 
+  public void setItem(IItem<IBasicItemData> item) {
+    this.item = item;
+  }
+
   @Override
   public String getToolTipText() {
     return item.getPrintName();
   }
-  
+
   @Override
   public String getDisplayName() {
     String name = item.getItemData().getDescription().getName().getText();
