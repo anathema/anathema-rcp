@@ -8,7 +8,6 @@ import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.campaign.plot.item.IPlotPart;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 

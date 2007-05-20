@@ -3,8 +3,8 @@ package net.sf.anathema.campaign.plot.persistence;
 import java.io.InputStream;
 
 import net.disy.commons.core.io.IOUtilities;
-import net.sf.anathema.campaign.plot.item.IPlotPart;
-import net.sf.anathema.campaign.plot.item.PlotPart;
+import net.sf.anathema.campaign.plot.repository.IPlotPart;
+import net.sf.anathema.campaign.plot.repository.PlotPart;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.ElementUtilities;
 

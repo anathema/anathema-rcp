@@ -1,7 +1,8 @@
-package net.sf.anathema.campaign.plot.item;
+package net.sf.anathema.campaign.plot.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class PlotPart implements IPlotPart {

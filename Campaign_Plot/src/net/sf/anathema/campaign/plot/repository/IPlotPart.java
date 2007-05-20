@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.plot.item;
+package net.sf.anathema.campaign.plot.repository;
 
 public interface IPlotPart {
 

@@ -6,7 +6,6 @@ import java.util.List;
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
-import net.sf.anathema.campaign.plot.item.IPlotPart;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
