@@ -18,10 +18,11 @@ import org.eclipse.core.runtime.CoreException;
 
 public class PlotPersister {
 
+  // TODO: Umstrukturierung automatisiert vornehmen
   public IPlotPart load(IFolder folder) throws PersistenceException {
     InputStream stream = null;
     try {
-      IFile file = folder.getFile("main.srs"); //$NON-NLS-1$
+      IFile file = folder.getFile("hierarchy.xml"); //$NON-NLS-1$
       stream = file.getContents();
       SAXReader saxReader = new SAXReader();
       Document document = saxReader.read(stream);
@@ -39,7 +40,7 @@ public class PlotPersister {
   }
 
   private IPlotPart load(Document document) throws PersistenceException {
-    PlotPart root = new PlotPart("main"); //$NON-NLS-1$
+    PlotPart root = new PlotPart("plot"); //$NON-NLS-1$
     Element element = document.getRootElement().element(ISeriesPersistenceConstants.TAG_PLOT);
     addChildren(root, element);
     return root;
