@@ -30,7 +30,7 @@
       <objectContribution
             adaptable="false"
             id="net.sf.anathema.notes.popup"
-            objectClass="net.sf.anathema.basics.repository.treecontent.ItemTypeViewElement">
+            objectClass="net.sf.anathema.basics.repository.treecontent.itemtype.ItemTypeViewElement">
          <action
                class="net.sf.anathema.notes.NewNoteActionDelegate"
                icon="icons/TabNotes16.png"
