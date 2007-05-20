@@ -3,9 +3,10 @@ package net.sf.anathema.campaign.plot.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
-import net.sf.anathema.campaign.plot.item.IPlotElement;
+import net.sf.anathema.campaign.plot.item.IPlotPart;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -16,22 +17,24 @@ import org.eclipse.ui.PartInitException;
 public class PlotElementViewElement implements IViewElement {
 
   private final IViewElement parent;
-  private final IPlotElement plotElement;
+  private final IPlotPart plotElement;
   private final IFolder folder;
   private List<IViewElement> children;
+  private final String untitledName;
 
-  public PlotElementViewElement(IFolder folder, IPlotElement plotElement, IViewElement parent) {
+  public PlotElementViewElement(IFolder folder, IPlotPart plotElement, IViewElement parent, String untitledName) {
     this.folder = folder;
     this.plotElement = plotElement;
     this.parent = parent;
+    this.untitledName = untitledName;
   }
 
   @Override
   public Object[] getChildren() {
     if (children == null) {
       children = new ArrayList<IViewElement>();
-      for (IPlotElement element : plotElement.getChildren()) {
-        children.add(new PlotElementViewElement(folder, element, this));
+      for (IPlotPart element : plotElement.getChildren()) {
+        children.add(new PlotElementViewElement(folder, element, this, untitledName));
       }
     }
     return children.toArray(new IViewElement[children.size()]);
@@ -39,13 +42,17 @@ public class PlotElementViewElement implements IViewElement {
 
   @Override
   public String getDisplayName() {
-    IFile elementFile = folder.getFile(plotElement.getId() + ".srs"); //$NON-NLS-1$
-    return new RegExPrintNameProvider().getPrintName(elementFile);
+    IFile elementFile = folder.getFile(plotElement.getRepositoryId() + ".srs"); //$NON-NLS-1$
+    String printName = new RegExPrintNameProvider().getPrintName(elementFile);
+    if (StringUtilities.isNullOrTrimEmpty(printName)) {
+      return untitledName;
+    }
+    return printName;
   }
 
   @Override
   public Image getImage() {
-    return null;
+    return parent.getImage();
   }
 
   @Override

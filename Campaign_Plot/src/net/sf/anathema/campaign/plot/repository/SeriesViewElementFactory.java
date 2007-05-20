@@ -8,6 +8,9 @@ import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
+import net.sf.anathema.campaign.plot.item.IPlotPart;
+import net.sf.anathema.campaign.plot.persistence.PlotPersister;
+import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -24,7 +27,14 @@ public class SeriesViewElementFactory implements IItemTypeViewElementFactory {
   public List<IViewElement> createViewElements(IViewElement parent) {
     List<IViewElement> elements = new ArrayList<IViewElement>();
     for (IFolder resource : getMembers()) {
-      elements.add(new SeriesViewElement(resource, parent, itemType.getUntitledName()));
+      IPlotPart rootPart;
+      try {
+        rootPart = new PlotPersister().load(resource);
+        elements.add(new PlotElementViewElement(resource, rootPart, parent, itemType.getUntitledName()));
+      }
+      catch (PersistenceException e) {
+        RepositoryPlugin.log(IStatus.ERROR, "Error loading series.", e);
+      }
     }
     return elements;
   }
