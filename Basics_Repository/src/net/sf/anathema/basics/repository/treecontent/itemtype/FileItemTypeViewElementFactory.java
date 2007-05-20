@@ -8,6 +8,7 @@ import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.treecontent.ResourceViewElement;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -21,27 +22,27 @@ public class FileItemTypeViewElementFactory implements IItemTypeViewElementFacto
   @Override
   public List<IViewElement> createViewElements(IViewElement parent) {
     List<IViewElement> elements = new ArrayList<IViewElement>();
-    for (IResource resource : getMembers()) {
+    for (IFile file : getMembers()) {
       RegExPrintNameProvider regExPrintNameProvider = new RegExPrintNameProvider();
-      elements.add(new ResourceViewElement(resource, regExPrintNameProvider, parent, itemType.getUntitledName()));
+      elements.add(new ResourceViewElement(file, regExPrintNameProvider, parent, itemType.getUntitledName()));
     }
     return elements;
   }
 
-  private List<IResource> getMembers() {
+  private List<IFile> getMembers() {
     IProject project = RepositoryUtilities.getProject(itemType);
-    List<IResource> members = new ArrayList<IResource>();
+    List<IFile> members = new ArrayList<IFile>();
     try {
       for (IResource resource : project.members()) {
-        if (supports(resource)) {
-          members.add(resource);
+        if (resource instanceof IFile && supports(resource)) {
+          members.add((IFile) resource);
         }
       }
       return members;
     }
     catch (CoreException e) {
       RepositoryPlugin.log(IStatus.ERROR, "Could not retrieve project members.", e);
-      return new ArrayList<IResource>();
+      return new ArrayList<IFile>();
     }
   }
 
