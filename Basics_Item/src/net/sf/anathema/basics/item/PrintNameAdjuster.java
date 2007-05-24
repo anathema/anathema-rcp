@@ -1,12 +1,13 @@
 package net.sf.anathema.basics.item;
 
+import net.sf.anathema.basics.item.data.IItemData;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 
-public class PrintNameAdjuster implements IObjectValueChangedListener<String> {
+public class PrintNameAdjuster<D extends IItemData> implements IObjectValueChangedListener<String> {
 
-  private final IItem item;
+  private final IItem<D> item;
 
-  public PrintNameAdjuster(IItem item) {
+  public PrintNameAdjuster(IItem<D> item) {
     this.item = item;
   }
 

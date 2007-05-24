@@ -11,7 +11,7 @@ public class AnathemaDataItem<D extends IItemData> extends AbstractAnathemaItem<
   public AnathemaDataItem(D itemData) {
     Ensure.ensureArgumentNotNull("Use AnathemaNullDataItem for items without data.", itemData); //$NON-NLS-1$
     this.itemData = itemData;
-    itemData.setPrintNameAdjuster(new PrintNameAdjuster(this));
+    itemData.setPrintNameAdjuster(new PrintNameAdjuster<D>(this));
   }
 
   public D getItemData() {
