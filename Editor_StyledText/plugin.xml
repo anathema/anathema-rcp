@@ -38,6 +38,10 @@
                label="%itemtype.new.note">
          </action>
       </objectContribution>
+      <viewerContribution
+            id="EmptyContribution"
+            targetID="EmptyContribution">
+      </viewerContribution>
    </extension>
 
 </plugin>
