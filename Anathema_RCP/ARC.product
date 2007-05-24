@@ -3,6 +3,7 @@
 
 <product name="Anathema" id="net.sf.anathema.rcp.product" application="net.sf.anathema.rcp.application" useFeatures="false">
 
+
    <configIni use="default"/>
 
    <launcherArgs>
@@ -10,12 +11,15 @@
 
    <windowImages/>
 
+
    <launcher name="anathema">
       <solaris/>
-      <win useIco="false">
+      <win useIco="true">
+         <ico path="/Anathema_RCP/icons/anathema.ico"/>
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
