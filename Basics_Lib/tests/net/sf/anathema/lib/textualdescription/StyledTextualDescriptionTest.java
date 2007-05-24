@@ -26,8 +26,8 @@ public class StyledTextualDescriptionTest {
   
   @Test
   public void replaceTextForEmptyDescription() throws Exception {
-    description.replaceText(0, 0, "Hallo");
-    assertEquals(description.getTextParts(), new ITextPart[] {new TextPart("Hallo", new TextFormat())});
+    description.replaceText(0, 0, "Hallo"); //$NON-NLS-1$
+    assertEquals(description.getTextParts(), new ITextPart[] {new TextPart("Hallo", new TextFormat())}); //$NON-NLS-1$
   }
 
   @Test
