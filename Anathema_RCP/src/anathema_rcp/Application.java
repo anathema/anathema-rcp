@@ -14,9 +14,9 @@ public class Application implements IPlatformRunnable {
     try {
       int returnCode = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
       if (returnCode == PlatformUI.RETURN_RESTART) {
-        return IPlatformRunnable.EXIT_RESTART;
+        return EXIT_RESTART;
       }
-      return IPlatformRunnable.EXIT_OK;
+      return EXIT_OK;
     }
     finally {
       display.dispose();
