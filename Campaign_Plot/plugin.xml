@@ -15,10 +15,10 @@
    <extension
          point="org.eclipse.ui.editors">
      <editor
-            class="net.sf.anathema.notes.NotesEditor"
+            class="net.sf.anathema.campaign.plot.PlotEditor"
             extensions="srs"
             icon="icons/TabSeries16.png"
-            id="editor.styledtext.editors.StyledTextEditor"
+            id="net.sf.anathema.plot.serieseditor"
             name="Styled Text Editor">
       </editor>
    </extension>
