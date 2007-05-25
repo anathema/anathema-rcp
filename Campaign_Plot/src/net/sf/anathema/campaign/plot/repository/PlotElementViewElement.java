@@ -6,9 +6,11 @@ import java.util.List;
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
+import net.sf.anathema.campaign.plot.PlotPlugin;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.swt.graphics.Image;
 
 public class PlotElementViewElement extends AbstractResourceViewElement {
 
@@ -33,6 +35,11 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
       }
     }
     return children.toArray(new IViewElement[children.size()]);
+  }
+
+  @Override
+  public Image getImage() {
+    return PlotPlugin.getImage("icons/Folder" + plotElement.getPlotUnit().getPersistenceString() + "16.png"); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
   @Override

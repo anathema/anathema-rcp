@@ -9,9 +9,11 @@ public class PlotPart implements IPlotPart {
 
   private final List<IPlotPart> children = new ArrayList<IPlotPart>();
   private String repositoryId;
+  private final PlotUnit plotUnit;
 
-  public PlotPart(String repositoryId) {
+  public PlotPart(String repositoryId, PlotUnit plotUnit) {
     this.repositoryId = repositoryId;
+    this.plotUnit = plotUnit;
   }
   
   @Override
@@ -24,7 +26,14 @@ public class PlotPart implements IPlotPart {
     return repositoryId;
   }
 
-  public void addChild(PlotPart newPart) {
-    children.add(newPart);
+  public PlotPart addChild(String childId) {
+    PlotPart plotPart = new PlotPart(childId, plotUnit.getSuccessor());
+    children.add(plotPart);
+    return plotPart;
+  }
+
+  @Override
+  public PlotUnit getPlotUnit() {
+    return plotUnit;
   }
 }

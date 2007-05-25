@@ -5,6 +5,7 @@ import java.io.InputStream;
 import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
+import net.sf.anathema.campaign.plot.repository.PlotUnit;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.ElementUtilities;
 
@@ -41,7 +42,7 @@ public class PlotPersister {
   }
 
   private IPlotPart load(Document document) throws PersistenceException {
-    PlotPart root = new PlotPart("main"); //$NON-NLS-1$
+    PlotPart root = new PlotPart("main", PlotUnit.Plot); //$NON-NLS-1$
     Element element = document.getRootElement().element(ISeriesPersistenceConstants.TAG_PLOT);
     addChildren(root, element);
     return root;
@@ -50,8 +51,7 @@ public class PlotPersister {
   private void addChildren(PlotPart root, Element element) throws PersistenceException {
     for (Element childElement : ElementUtilities.elements(element)) {
       String id = ElementUtilities.getRequiredAttrib(childElement, ISeriesPersistenceConstants.ATTRIB_REPOSITORY_ID);
-      PlotPart newPart = new PlotPart(id);
-      root.addChild(newPart);
+      PlotPart newPart = root.addChild(id);
       addChildren(newPart, childElement);
     }
   }
