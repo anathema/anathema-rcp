@@ -3,7 +3,7 @@ package net.sf.anathema.campaign.plot.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import net.disy.commons.core.util.Ensure;
 
 public class PlotPart implements IPlotPart {
 
@@ -15,7 +15,7 @@ public class PlotPart implements IPlotPart {
     this.repositoryId = repositoryId;
     this.plotUnit = plotUnit;
   }
-  
+
   @Override
   public IPlotPart[] getChildren() {
     return children.toArray(new IPlotPart[children.size()]);
@@ -27,7 +27,9 @@ public class PlotPart implements IPlotPart {
   }
 
   public PlotPart addChild(String childId) {
-    PlotPart plotPart = new PlotPart(childId, plotUnit.getSuccessor());
+    PlotUnit unitSuccessor = plotUnit.getSuccessor();
+    Ensure.ensureArgumentNotNull("No child can be added for plot unit:" + plotUnit, unitSuccessor); //$NON-NLS-1$
+    PlotPart plotPart = new PlotPart(childId, unitSuccessor);
     children.add(plotPart);
     return plotPart;
   }
