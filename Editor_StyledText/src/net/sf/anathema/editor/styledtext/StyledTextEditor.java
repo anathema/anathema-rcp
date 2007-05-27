@@ -39,6 +39,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   private final class SaveEditorJob extends Job {
     private final Display display;
 
+    /**Constructor has to be called from display thread to get the correct Display for execution.*/
     private SaveEditorJob(String name) {
       super(name);
       this.display = Display.getCurrent();
@@ -53,9 +54,8 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
         return Status.OK_STATUS;
       }
       catch (Exception e) {
-        // TODO Fehlerhandling und Fehlerstatus
-        e.printStackTrace();
-        return Status.OK_STATUS;
+        //TODO: Fehler selbst loggen?
+        return new Status(IStatus.ERROR, "net.sf.anathema.editor.styledtext", IStatus.OK, "Error while saving", e);
       }
     }
   }
@@ -112,7 +112,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
   }
-  
+
   private IItemDescription getItemDescription() {
     return item.getItemData().getDescription();
   }
