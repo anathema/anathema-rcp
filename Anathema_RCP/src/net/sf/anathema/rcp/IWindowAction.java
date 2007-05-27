@@ -1,4 +1,4 @@
-package anathema_rcp;
+package net.sf.anathema.rcp;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IWorkbenchWindow;

@@ -1,4 +1,4 @@
-package anathema_rcp;
+package net.sf.anathema.rcp;
 
 import net.sf.anathema.basics.repository.RepositoryView;
 

@@ -1,4 +1,4 @@
-package anathema_rcp;
+package net.sf.anathema.rcp;
 
 import org.eclipse.core.runtime.IPlatformRunnable;
 import org.eclipse.swt.widgets.Display;

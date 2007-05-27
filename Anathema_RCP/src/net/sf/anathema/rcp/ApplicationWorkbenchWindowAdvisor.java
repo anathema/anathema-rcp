@@ -1,4 +1,4 @@
-package anathema_rcp;
+package net.sf.anathema.rcp;
 
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.application.ActionBarAdvisor;

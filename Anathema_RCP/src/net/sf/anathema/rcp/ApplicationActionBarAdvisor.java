@@ -1,4 +1,4 @@
-package anathema_rcp;
+package net.sf.anathema.rcp;
 
 import java.util.ArrayList;
 import java.util.List;
