@@ -22,15 +22,9 @@ import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
-/**
- * An action bar advisor is responsible for creating, adding, and disposing of the actions added to a workbench window.
- * Each window will be populated with new actions.
- */
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
-  // Actions - important to allocate these only in makeActions, and then use them
-  // in the fill methods. This ensures that the actions aren't recreated when
-  // fillActionBars is called with FILL_PROXY.
+  private static final String MAIN_TOOLBAR_ID = "net.sf.anathema.rcp.MainToolbar"; //$NON-NLS-1$
   private IWorkbenchAction exitAction;
   private List<IAction> toolbarActions = new ArrayList<IAction>();
   private IWorkbenchAction saveAction;
@@ -42,10 +36,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
   @Override
   protected void makeActions(final IWorkbenchWindow window) {
-    // Creates the actions and registers them.
-    // Registering is needed to ensure that key bindings work.
-    // The corresponding commands keybindings are defined in the plugin.xml file.
-    // Registering also provides automatic disposal of the actions when the window is closed.
     exitAction = ActionFactory.QUIT.create(window);
     saveAction = ActionFactory.SAVE.create(window);
     saveAllAction = ActionFactory.SAVE_ALL.create(window);
@@ -56,7 +46,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
   }
 
   private void createActions(IWorkbenchWindow workbenchWindows) {
-    IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint("Anathema.MainToolbar"); //$NON-NLS-1$
+    IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(MAIN_TOOLBAR_ID);
     for (IExtension extension : extensionPoint.getExtensions()) {
       for (IConfigurationElement configurationElement : extension.getConfigurationElements()) {
         try {
