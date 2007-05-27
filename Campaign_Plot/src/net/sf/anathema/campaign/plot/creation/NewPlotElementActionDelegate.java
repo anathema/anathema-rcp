@@ -33,8 +33,8 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
   @Override
   public void run(IAction action) {
     IWorkbenchPage page = targetPart.getSite().getPage();
-    IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor("Hasä.not");
-    String unnamedName = "Unnamed Plot Element";
+    IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor("Hasä.not"); //$NON-NLS-1$
+    String unnamedName = "Unnamed Plot Element"; //$NON-NLS-1$
     IEditorInput input = new ProxyItemEditorInput(unnamedName, createNewEditorInput(unnamedName));
     try {
       page.openEditor(input, defaultEditor.getId());
@@ -51,7 +51,7 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     PlotPart plotElement = (PlotPart) plotViewElement.getPlotElement();
     IFolder folder = (IFolder) plotViewElement.getEditFile().getParent();
     IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, "srs"); //$NON-NLS-1$
-    String resourcePath = "icons/Folder" + plotElement.getPlotUnit().getSuccessor().getPersistenceString() + "16.png"; 
+    String resourcePath = "icons/Folder" + plotElement.getPlotUnit().getSuccessor().getPersistenceString() + "16.png";  //$NON-NLS-1$ //$NON-NLS-2$
     ImageDescriptor imageDescriptor = PlotPlugin.getImageDescriptor(resourcePath);
     return new NewPlotElementEditorInput(unusedFileFactory, imageDescriptor, unnamedName, plotElement, folder);
   }

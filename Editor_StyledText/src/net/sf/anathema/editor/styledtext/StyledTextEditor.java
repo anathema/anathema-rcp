@@ -15,12 +15,17 @@ import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.StyledTextPresenter;
 import net.sf.anathema.lib.textualdescription.TextualPresenter;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
@@ -35,15 +40,29 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   @Override
   public void doSave(IProgressMonitor monitor) {
-    IItemEditorInput editorInput = getItemEditorInput();
-    try {
-      editorInput.save(persister);
-    }
-    catch (Exception e) {
-      // TODO Fehlerhandling
-      e.printStackTrace();
-    }
-    firePropertyChange(PROP_DIRTY);
+    final Display display = Display.getCurrent();
+    Job saveJob = new Job("Save " + getEditorInput().getName()) {
+      @Override
+      protected IStatus run(IProgressMonitor monitor) {
+        IItemEditorInput editorInput = getItemEditorInput();
+        try {
+          editorInput.save(persister);
+        }
+        catch (Exception e) {
+          // TODO Fehlerhandling
+          e.printStackTrace();
+        }
+        display.asyncExec(new Runnable() {
+          @Override
+          public void run() {
+            firePropertyChange(PROP_DIRTY);
+          }
+        });
+        return Status.OK_STATUS;
+      }
+    };
+    saveJob.setRule(ResourcesPlugin.getWorkspace().getRoot());
+    saveJob.schedule();
   }
 
   private IItemEditorInput getItemEditorInput() {

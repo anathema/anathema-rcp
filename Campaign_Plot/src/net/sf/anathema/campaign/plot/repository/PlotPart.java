@@ -11,6 +11,10 @@ public class PlotPart implements IPlotPart {
   private String repositoryId;
   private final PlotUnit plotUnit;
   private final IPlotPart parent;
+  
+  public static PlotPart createPlotRoot() {
+    return new PlotPart("main", PlotUnit.Plot, null); //$NON-NLS-1$
+  }
 
   public PlotPart(String repositoryId, PlotUnit plotUnit, IPlotPart parent) {
     this.repositoryId = repositoryId;

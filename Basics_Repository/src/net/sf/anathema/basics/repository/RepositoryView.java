@@ -19,6 +19,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
@@ -47,12 +48,13 @@ public class RepositoryView extends ViewPart {
         }
       }
     });
+    final Display display = Display.getCurrent();
     ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
       @Override
       public void resourceChanged(IResourceChangeEvent event) {
-        Object[] expandedElements = viewer.getExpandedElements();
-        viewer.refresh(true);
-        viewer.setExpandedElements(expandedElements);
+        TreeViewRefresher treeViewRefresher = new TreeViewRefresher(viewer, display);
+        treeViewRefresher.setRule(ResourcesPlugin.getWorkspace().getRoot());
+        treeViewRefresher.schedule();
       }
     });
     viewer.refresh(true);
