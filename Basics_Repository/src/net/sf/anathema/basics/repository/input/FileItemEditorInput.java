@@ -52,11 +52,11 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
 
   @Override
   public String getToolTipText() {
-    return getDisplayName();
+    return getName();
   }
-
+  
   @Override
-  public String getDisplayName() {
+  public String getName() {
     String name = item.getItemData().getDescription().getName().getText();
     if (StringUtilities.isNullOrEmpty(name)) {
       name = untitledName;

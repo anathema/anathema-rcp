@@ -16,7 +16,7 @@ public enum PlotUnit {
   }
 
   public PlotUnit getSuccessor() {
-    return successor;
+    return successor == null ? Scene : successor;
   }
 
   public String getPersistenceString() {

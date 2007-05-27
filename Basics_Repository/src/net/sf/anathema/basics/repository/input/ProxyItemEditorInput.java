@@ -77,9 +77,4 @@ public class ProxyItemEditorInput implements IItemEditorInput {
   public boolean equals(Object arg0) {
     return delegateInput.equals(arg0);
   }
-
-  @Override
-  public String getDisplayName() {
-    return delegateInput.getDisplayName();
-  }
 }

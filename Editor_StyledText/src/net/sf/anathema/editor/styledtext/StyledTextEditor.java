@@ -86,7 +86,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   }
 
   private void updatePartName() {
-    setPartName(getItemEditorInput().getDisplayName());
+    setPartName(getItemEditorInput().getName());
   }
 
   @Override

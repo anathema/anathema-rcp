@@ -43,8 +43,12 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
   }
 
   @Override
-  protected IFile getEditFile() {
+  public IFile getEditFile() {
     return folder.getFile(plotElement.getRepositoryId() + ".srs"); //$NON-NLS-1$
+  }
+  
+  public IPlotPart getPlotElement() {
+    return plotElement;
   }
 
   @Override

@@ -23,5 +23,22 @@
            name="Styled Text Editor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="net.sf.anathema.plot.popup"
+            objectClass="net.sf.anathema.campaign.plot.repository.PlotElementViewElement">
+         <action
+               class="net.sf.anathema.campaign.plot.NewPlotElementActionDelegate"
+               id="net.sf.anathema.plotelement.popup.new"
+               label="%new.plotelement">
+         </action>
+      </objectContribution>
+      <viewerContribution
+            id="EmptyContribution"
+            targetID="EmptyContribution">
+      </viewerContribution>
+   </extension>
 
 </plugin>
