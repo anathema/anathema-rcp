@@ -23,6 +23,9 @@ public class PlotPartMove {
   }
 
   public void moveTo(RelativeLocation location) {
+    if (sourcePart == targetPart) {
+      return;
+    }
     IPlotPart parent = sourcePart.getParent();
     int sourcePartIndex = parent.indexOf(sourcePart);
     int targetPartIndex = parent.indexOf(targetPart);
