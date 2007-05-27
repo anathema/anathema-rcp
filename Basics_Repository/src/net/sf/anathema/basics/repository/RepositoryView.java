@@ -19,7 +19,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
@@ -44,7 +43,7 @@ public class RepositoryView extends ViewPart {
           element.openEditor(getViewSite().getPage());
         }
         catch (PartInitException e) {
-          RepositoryPlugin.log(IStatus.ERROR, "Couldn't open editor.", e);
+          RepositoryPlugin.log(IStatus.ERROR, Messages.RepositoryView_OpenEditorErrorMessage, e);
         }
       }
     });
@@ -69,7 +68,7 @@ public class RepositoryView extends ViewPart {
           dnd.initDragAndDrop(viewer);
         }
         catch (ExtensionException e) {
-          RepositoryPlugin.log(IStatus.ERROR, "Error initializing repository dnd.", e); //$NON-NLS-1$
+          RepositoryPlugin.log(IStatus.ERROR, Messages.RepositoryView_InitializeDndErrorMessage, e);
         }
       }
     }

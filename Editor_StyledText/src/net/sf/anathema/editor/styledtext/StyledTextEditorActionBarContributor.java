@@ -13,9 +13,12 @@ import org.eclipse.ui.part.EditorActionBarContributor;
 public class StyledTextEditorActionBarContributor extends EditorActionBarContributor {
 
   private IStyledTextAction[] actions = {
-      new TextModificationAction("B", new AspectedTextModification(TextAspect.Bold)),
-      new TextModificationAction("I", new AspectedTextModification(TextAspect.Italic)),
-      new TextModificationAction("U", new AspectedTextModification(TextAspect.Underline)) };
+      new TextModificationAction(Messages.StyledTextEditorActionBar_BoldButtonName, new AspectedTextModification(
+          TextAspect.Bold)),
+      new TextModificationAction(Messages.StyledTextEditorActionBar_ItalicsButtonName, new AspectedTextModification(
+          TextAspect.Italic)),
+      new TextModificationAction(Messages.StyledTextEditorActionBar_UnderlineButtonName, new AspectedTextModification(
+          TextAspect.Underline)) };
   private final ISelectionChangedListener selectionListener = new ISelectionChangedListener() {
     public void selectionChanged(SelectionChangedEvent event) {
       updateState();

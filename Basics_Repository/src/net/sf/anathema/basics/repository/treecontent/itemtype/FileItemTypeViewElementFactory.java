@@ -6,6 +6,7 @@ import java.util.List;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.ResourceViewElement;
 
 import org.eclipse.core.resources.IFile;
@@ -41,7 +42,7 @@ public class FileItemTypeViewElementFactory implements IItemTypeViewElementFacto
       return members;
     }
     catch (CoreException e) {
-      RepositoryPlugin.log(IStatus.ERROR, "Could not retrieve project members.", e);
+      RepositoryPlugin.log(IStatus.ERROR, BasicRepositoryMessages.RepositoryBasics_ProjectMemberRetrievingErrorMessage, e);
       return new ArrayList<IFile>();
     }
   }

@@ -14,3 +14,4 @@ Eclipse-LazyStart: true
 Bundle-ClassPath: .
 Export-Package: net.sf.anathema.editor.styledtext
 Bundle-Localization: plugin
+Bundle-Activator: net.sf.anathema.editor.styledtext.StyledTextPlugin

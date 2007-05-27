@@ -5,11 +5,11 @@ import java.util.List;
 
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.campaign.plot.PlotPlugin;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
-import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -35,11 +35,8 @@ public class SeriesViewElementFactory implements IItemTypeViewElementFactory {
         rootPart = new PlotPersister().load(folder);
         elements.add(new PlotElementViewElement(folder, rootPart, parent, itemType.getUntitledName()));
       }
-      catch (PersistenceException e) {
-        PlotPlugin.log(IStatus.ERROR, "Error loading series.", e);
-      }
-      catch (CoreException e) {
-        PlotPlugin.log(IStatus.ERROR, "Error loading series.", e);
+      catch (Exception e) {
+        PlotPlugin.log(IStatus.ERROR, Messages.SeriesViewElementFactory_LoadingSeriesErrorMessage, e);
       }
     }
     return elements;
@@ -66,7 +63,7 @@ public class SeriesViewElementFactory implements IItemTypeViewElementFactory {
       return members;
     }
     catch (CoreException e) {
-      PlotPlugin.log(IStatus.ERROR, "Could not retrieve project members.", e);
+      PlotPlugin.log(IStatus.ERROR, BasicRepositoryMessages.RepositoryBasics_ProjectMemberRetrievingErrorMessage, e);
       return new ArrayList<IFolder>();
     }
   }

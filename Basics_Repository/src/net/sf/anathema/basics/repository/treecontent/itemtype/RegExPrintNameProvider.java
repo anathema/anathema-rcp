@@ -26,7 +26,7 @@ public class RegExPrintNameProvider implements IPrintNameProvider {
       return printNameMatcher.group(1);
     }
     catch (Exception e) {
-      RepositoryPlugin.log(IStatus.ERROR, "Error reading display name.", e);
+      RepositoryPlugin.log(IStatus.ERROR, Messages.PrintNameProvider_errorReadingDisplayNameMessage, e);
       return file.getName();
     }
     finally {

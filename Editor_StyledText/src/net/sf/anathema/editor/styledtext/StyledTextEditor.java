@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -39,7 +40,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   private final class SaveEditorJob extends Job {
     private final Display display;
 
-    /**Constructor has to be called from display thread to get the correct Display for execution.*/
+    /** Constructor has to be called from display thread to get the correct Display for execution. */
     private SaveEditorJob(String name) {
       super(name);
       this.display = Display.getCurrent();
@@ -47,15 +48,15 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
     @Override
     protected IStatus run(IProgressMonitor monitor) {
+      IItemEditorInput editorInput = getItemEditorInput();
       try {
-        IItemEditorInput editorInput = getItemEditorInput();
         editorInput.save(persister);
         display.asyncExec(new FireDirtyRunnable());
         return Status.OK_STATUS;
       }
       catch (Exception e) {
-        //TODO: Fehler selbst loggen?
-        return new Status(IStatus.ERROR, "net.sf.anathema.editor.styledtext", IStatus.OK, "Error while saving", e);
+        String message = Messages.StyledTextEditor_SaveErrorMessage;
+        return StyledTextPlugin.createErrorStatus(NLS.bind(message, editorInput.getName()), e);
       }
     }
   }
@@ -73,7 +74,8 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   @Override
   public void doSave(IProgressMonitor monitor) {
-    Job saveJob = new SaveEditorJob("Save " + getEditorInput().getName());
+    String message = Messages.StyledTextEditor_SaveJobTitle;
+    Job saveJob = new SaveEditorJob(NLS.bind(message, getEditorInput().getName()));
     saveJob.setRule(ResourcesPlugin.getWorkspace().getRoot());
     saveJob.schedule();
   }

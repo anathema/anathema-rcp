@@ -64,7 +64,9 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
   @Override
   protected void fillMenuBar(IMenuManager menuBar) {
-    MenuManager fileMenu = new MenuManager("&File", IWorkbenchActionConstants.M_FILE);
+    MenuManager fileMenu = new MenuManager(
+        Messages.ApplicationActionBarAdvisor_fileMenuName,
+        IWorkbenchActionConstants.M_FILE);
     menuBar.add(fileMenu);
     fileMenu.add(exitAction);
     fileMenu.add(saveAction);

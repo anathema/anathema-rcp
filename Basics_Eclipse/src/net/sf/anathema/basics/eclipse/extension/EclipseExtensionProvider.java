@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.osgi.util.NLS;
 
 public class EclipseExtensionProvider implements IExtensionProvider {
 
@@ -16,7 +17,8 @@ public class EclipseExtensionProvider implements IExtensionProvider {
   public IPluginExtension[] getExtensions(String id) {
     IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(id);
     if (extensionPoint == null) {
-      EclipsePlugin.log(IStatus.WARNING, "Extension point not found " + id, null);
+      String message = Messages.EclipseExtensionProvider_ExtensionPointNotFoundMessage;
+      EclipsePlugin.log(IStatus.WARNING, NLS.bind(message, id), null);
       return new IPluginExtension[0];
     }
     IExtension[] extensions = extensionPoint.getExtensions();
