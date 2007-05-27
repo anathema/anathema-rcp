@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.plot.addelement;
+package net.sf.anathema.campaign.plot.creation;
 
 import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;

@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.plot.addelement;
+package net.sf.anathema.campaign.plot.creation;
 
 import java.io.IOException;
 
