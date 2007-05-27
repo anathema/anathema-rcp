@@ -16,7 +16,10 @@ public class PlotPartMove {
     if (sourcePart.getRoot() != targetPart.getRoot()) {
       return false;
     }
-    return true;
+    if (sourcePart.getParent() == targetPart.getParent()) {
+      return true;
+    }
+    return false;
   }
 
   public void moveTo(RelativeLocation location) {

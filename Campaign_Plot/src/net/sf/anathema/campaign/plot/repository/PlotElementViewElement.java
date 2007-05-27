@@ -1,5 +1,6 @@
 package net.sf.anathema.campaign.plot.repository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,9 +8,11 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceVi
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
 import net.sf.anathema.campaign.plot.PlotPlugin;
+import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.swt.graphics.Image;
 
 public class PlotElementViewElement extends AbstractResourceViewElement {
@@ -59,5 +62,9 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
   @Override
   public String toString() {
     return plotElement.getRepositoryId();
+  }
+
+  public void saveHierarchy() throws IOException, CoreException {
+    new PlotPersister().saveHierarchy(folder, plotElement);
   }
 }

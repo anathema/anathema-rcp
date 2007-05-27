@@ -9,26 +9,41 @@ import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.swt.dnd.TransferData;
 
 public final class PlotDropListener extends ViewerDropAdapter {
+  private PlotPartMove partMove;
+  private RelativeLocation location;
+  private PlotElementViewElement targetElement;
+
   public PlotDropListener(Viewer viewer) {
     super(viewer);
   }
 
   @Override
   public boolean performDrop(Object data) {
-    return false;
+    try {
+      partMove.moveTo(location);
+      targetElement.saveHierarchy();
+    }
+    catch (Exception e) {
+      // TODO Rückspulen des Moves
+      e.printStackTrace();
+      return false;
+    }
+    return true;
   }
 
   @Override
   public boolean validateDrop(Object target, int operation, TransferData transferType) {
-    if (!(target instanceof PlotElementViewElement)) {
+    int currentLocation = getCurrentLocation();
+    if (!(target instanceof PlotElementViewElement) || currentLocation == 0) {
       return false;
     }
     StructuredSelection selection = (StructuredSelection) getViewer().getSelection();
     PlotElementViewElement sourceElement = (PlotElementViewElement) selection.getFirstElement();
-    PlotElementViewElement targetElement = (PlotElementViewElement) target;
+    targetElement = (PlotElementViewElement) target;
     IPlotPart sourcePart = sourceElement.getPlotElement();
     IPlotPart targetPart = targetElement.getPlotElement();
-    RelativeLocation location = RelativeLocation.getByOrdinal(getCurrentLocation() - 1);
-    return new PlotPartMove(sourcePart, targetPart).isValid(location);
+    this.location = RelativeLocation.getByOrdinal(currentLocation - 1);
+    this.partMove = new PlotPartMove(sourcePart, targetPart);
+    return partMove.isValid(location);
   }
 }
