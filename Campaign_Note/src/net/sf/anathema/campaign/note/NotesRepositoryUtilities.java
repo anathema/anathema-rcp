@@ -1,4 +1,4 @@
-package net.sf.anathema.notes;
+package net.sf.anathema.campaign.note;
 
 import org.eclipse.core.resources.IProject;
 

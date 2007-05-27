@@ -1,9 +1,8 @@
-package net.sf.anathema.notes;
+package net.sf.anathema.campaign.note;
 
 import net.sf.anathema.basics.repository.input.NewItemEditorInput;
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
-import net.sf.anathema.editor.styledtext.StyledTextEditor;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -15,6 +14,7 @@ import org.eclipse.ui.PartInitException;
 
 public class NewNoteActionDelegate implements IObjectActionDelegate {
 
+  private static final String NOTES_EDITOR_ID = "net.sf.anathema.campaign.note.noteeditor"; //$NON-NLS-1$
   private IWorkbenchPart targetPart;
 
   @Override
@@ -28,7 +28,7 @@ public class NewNoteActionDelegate implements IObjectActionDelegate {
     IItemType itemType = NotesRepositoryUtilities.getNotesItemType();
     IEditorInput input = new ProxyItemEditorInput(itemType.getUntitledName(), new NewItemEditorInput(itemType));
     try {
-      page.openEditor(input, StyledTextEditor.ID);
+      page.openEditor(input, NOTES_EDITOR_ID);
     }
     catch (PartInitException e) {
       // TODO Fehlerhandling

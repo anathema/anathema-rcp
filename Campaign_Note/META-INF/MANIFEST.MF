@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Campaign Note
+Bundle-SymbolicName: net.sf.anathema.campaign.note;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.editor.styledtext,
+ org.eclipse.ui,
+ net.sf.anathema.basics.repository,
+ org.eclipse.core.resources,
+ net.sf.anathema.basics.item,
+ org.eclipse.core.runtime
+Bundle-Localization: plugin
