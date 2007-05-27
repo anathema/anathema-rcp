@@ -2,17 +2,21 @@ package net.sf.anathema.campaign.plot.repository;
 
 public interface IPlotPart {
   
-  public PlotUnit getPlotUnit();
+  public void addChild(IPlotPart sourcePart, int child);
 
   public IPlotPart[] getChildren();
   
-  public String getRepositoryId();
-
   public IPlotPart getParent();
 
-  public void moveChild(IPlotPart child, int targetIndex);
+  public PlotUnit getPlotUnit();
+
+  public String getRepositoryId();
+
+  public IPlotPart getRoot();
 
   public int indexOf(IPlotPart child);
 
-  public IPlotPart getRoot();
+  public void moveChild(IPlotPart child, int targetIndex);
+
+  public void removeChild(IPlotPart child);
 }

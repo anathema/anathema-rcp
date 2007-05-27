@@ -16,7 +16,7 @@ public class PlotPartMove {
     if (sourcePart.getRoot() != targetPart.getRoot()) {
       return false;
     }
-    if (sourcePart.getParent() == targetPart.getParent()) {
+    if (sourcePart.getPlotUnit() == targetPart.getPlotUnit()) {
       return true;
     }
     return false;
@@ -26,7 +26,24 @@ public class PlotPartMove {
     if (sourcePart == targetPart) {
       return;
     }
-    IPlotPart parent = sourcePart.getParent();
+    IPlotPart sourceParent = sourcePart.getParent();
+    IPlotPart targetParent = targetPart.getParent();
+    if (sourceParent == targetParent) {
+      moveSibling(location, sourceParent);
+    }
+    else {
+      moveCousin(location, sourceParent, targetParent);
+    }
+  }
+
+  private void moveCousin(RelativeLocation location, IPlotPart sourceParent, IPlotPart targetParent) {
+    sourceParent.removeChild(sourcePart);
+    int targetPartIndex = targetParent.indexOf(targetPart);
+    int targetIndex = location == RelativeLocation.Before ? targetPartIndex : targetPartIndex + 1;
+    targetParent.addChild(sourcePart, targetIndex);
+  }
+
+  private void moveSibling(RelativeLocation location, IPlotPart parent) {
     int sourcePartIndex = parent.indexOf(sourcePart);
     int targetPartIndex = parent.indexOf(targetPart);
     int targetIndex = location == RelativeLocation.Before ? targetPartIndex - 1 : targetPartIndex;

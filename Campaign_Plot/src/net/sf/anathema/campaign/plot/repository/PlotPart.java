@@ -69,4 +69,14 @@ public class PlotPart implements IPlotPart {
     }
     return parent.getRoot();
   }
+
+  @Override
+  public void addChild(IPlotPart child, int targetIndex) {
+    children.add(targetIndex, child);
+  }
+
+  @Override
+  public void removeChild(IPlotPart child) {
+    children.remove(child);
+  }
 }
