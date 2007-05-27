@@ -20,7 +20,7 @@ public class MultiEntryMap<K, V> {
     else {
       list = getList(key);
     }
-    Collections.addAll(list, value);
+    list.add(value);
   }
 
   public void replace(K key, V oldValue, V newValue) {

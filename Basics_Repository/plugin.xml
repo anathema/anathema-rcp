@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="net.sf.anathema.repository.itemtypes" name="RepositoryItemType" schema="schema/net.sf.anathema.repository.itemtypes.exsd"/>
-   <extension-point id="net.sf.anathema.repository.dnd" name="Repository DND" schema="schema/net.sf.anathema.repository.dnd.exsd"/>
+   <extension-point id="net.sf.anathema.repository.itemtypes" name="%repository.extension-point.itemtypes.name" schema="schema/net.sf.anathema.repository.itemtypes.exsd"/>
+   <extension-point id="net.sf.anathema.repository.dnd" name="%repository.extension-point.dnd.name" schema="schema/net.sf.anathema.repository.dnd.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
             class="net.sf.anathema.basics.repository.RepositoryView"
             id="net.sf.anathema.basics.repositoryview"
-            name="Repository">
+            name="%repository.view.repositorytree.name">
       </view>
    </extension>
 

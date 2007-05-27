@@ -9,8 +9,8 @@
             contributorClass="net.sf.anathema.editor.styledtext.StyledTextEditorActionBarContributor"
             extensions="not"
             icon="icons/TabNotes16.png"
-            id="editor.styledtext.editors.StyledTextEditor"
-            name="Styled Text Editor">
+            id="net.sf.anathema.campaigne.note.noteeditor"
+            name="%net.sf.anathema.campaign.note.noteeditor.name">
       </editor>
    </extension>
    <extension

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Editor StyledText
+Bundle-Name: %net.sf.anathema.editor.styledtext.BundleName
 Bundle-SymbolicName: net.sf.anathema.editor.styledtext;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.ui,

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Campaign_Plot
+Bundle-Name: %net.sf.anathema.campaign.plot.BundleName
 Bundle-SymbolicName: net.sf.anathema.campaign.plot;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.basics.eclipse,

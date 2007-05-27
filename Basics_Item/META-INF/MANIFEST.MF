@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Basics_Item
+Bundle-Name: %net.sf.anathema.basics.item.BundleName
 Bundle-SymbolicName: net.sf.anathema.basics.item;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
@@ -19,3 +19,4 @@ Export-Package: net.sf.anathema.basics.item;uses:="net.sf.anathema.lib.util,net.
    net.sf.anathema.lib.textualdescription,
    net.sf.anathema.lib.control.objectvalue",
  net.sf.anathema.basics.item.persistence;uses:="net.sf.anathema.framework.item,org.dom4j"
+Bundle-Localization: plugin

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="Anathema.MainToolbar" name="MainToolbar" schema="schema/Anathema.MainToolbar.exsd"/>
+   <extension-point id="Anathema.MainToolbar" name="%extensionPoint.mainToolbar.name" schema="schema/Anathema.MainToolbar.exsd"/>
 
    <extension
          id="application"
@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="Perspective"
+            name="%net.sf.anathema.rcp.PerspectiveName"
             class="anathema_rcp.Perspective"
             id="Anathema_RCP.perspective">
       </perspective>
@@ -25,7 +25,7 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="net.sf.anathema.rcp.application"
-            name="Anathema">
+            name="%net.sf.anathema.rcp.ProductName">
          <property
                name="appName"
                value="Anathema">

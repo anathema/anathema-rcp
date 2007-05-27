@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Anathema_RCP Plug-in
+Bundle-Name: %net.sf.anathema.rcp.BundleName
 Bundle-SymbolicName: net.sf.anathema.rcp;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.core.runtime,
@@ -8,3 +8,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  net.sf.anathema.basics.repository
 Export-Package: anathema_rcp
+Bundle-Localization: plugin

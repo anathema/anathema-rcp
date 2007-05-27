@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Basics_Eclipse
+Bundle-Name: %net.sf.anathema.basics.eclipse.BundleName
 Bundle-SymbolicName: net.sf.anathema.basics.eclipse
 Bundle-Version: 1.0.0
 Bundle-Activator: net.sf.anathema.basics.eclipse.EclipsePlugin
@@ -10,3 +10,4 @@ Require-Bundle: org.eclipse.core.runtime,
 Eclipse-LazyStart: true
 Export-Package: net.sf.anathema.basics.eclipse.extension,
  net.sf.anathema.basics.eclipse.resource
+Bundle-Localization: plugin
