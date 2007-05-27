@@ -1,5 +1,9 @@
 package net.sf.anathema.basics.repository;
 
+import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
+import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
@@ -30,6 +34,7 @@ public class RepositoryView extends ViewPart {
     viewer.setContentProvider(new TypedTreeContentProvider());
     viewer.setLabelProvider(new RepositoryLabelProvider());
     viewer.setInput(getViewSite());
+    initDragAndDrop();
     viewer.addOpenListener(new IOpenListener() {
       public void open(OpenEvent event) {
         StructuredSelection selection = (StructuredSelection) event.getSelection();
@@ -51,6 +56,22 @@ public class RepositoryView extends ViewPart {
       }
     });
     viewer.refresh(true);
+  }
+
+  private void initDragAndDrop() {
+    IPluginExtension[] extensions = new EclipseExtensionProvider().getExtensions("net.sf.anathema.repository.dnd"); //$NON-NLS-1$
+    for (IPluginExtension extension : extensions) {
+      IExtensionElement[] elements = extension.getElements();
+      for (IExtensionElement extensionElement : elements) {
+        try {
+          IRepositoryDND dnd = extensionElement.getAttributeAsObject("class", IRepositoryDND.class); //$NON-NLS-1$
+          dnd.initDragAndDrop(viewer.getControl());
+        }
+        catch (ExtensionException e) {
+          RepositoryPlugin.log(IStatus.ERROR, "Error initializing repository dnd.", e); //$NON-NLS-1$
+        }
+      }
+    }
   }
 
   @Override
