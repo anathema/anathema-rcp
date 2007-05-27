@@ -34,33 +34,44 @@ import org.eclipse.ui.part.EditorPart;
 
 public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
+  private final class SaveEditorJob extends Job {
+    private final Display display;
+
+    private SaveEditorJob(String name) {
+      super(name);
+      this.display = Display.getCurrent();
+    }
+
+    @Override
+    protected IStatus run(IProgressMonitor monitor) {
+      try {
+        IItemEditorInput editorInput = getItemEditorInput();
+        editorInput.save(persister);
+        display.asyncExec(new FireDirtyRunnable());
+        return Status.OK_STATUS;
+      }
+      catch (Exception e) {
+        // TODO Fehlerhandling und Fehlerstatus
+        e.printStackTrace();
+        return Status.OK_STATUS;
+      }
+    }
+  }
+
+  private final class FireDirtyRunnable implements Runnable {
+    @Override
+    public void run() {
+      firePropertyChange(PROP_DIRTY);
+    }
+  }
+
   private IItem<IBasicItemData> item;
   private StyledTextView contentView;
   private final BasicDataItemPersister persister = new BasicDataItemPersister();
 
   @Override
   public void doSave(IProgressMonitor monitor) {
-    final Display display = Display.getCurrent();
-    Job saveJob = new Job("Save " + getEditorInput().getName()) {
-      @Override
-      protected IStatus run(IProgressMonitor monitor) {
-        IItemEditorInput editorInput = getItemEditorInput();
-        try {
-          editorInput.save(persister);
-        }
-        catch (Exception e) {
-          // TODO Fehlerhandling
-          e.printStackTrace();
-        }
-        display.asyncExec(new Runnable() {
-          @Override
-          public void run() {
-            firePropertyChange(PROP_DIRTY);
-          }
-        });
-        return Status.OK_STATUS;
-      }
-    };
+    Job saveJob = new SaveEditorJob("Save " + getEditorInput().getName());
     saveJob.setRule(ResourcesPlugin.getWorkspace().getRoot());
     saveJob.schedule();
   }
