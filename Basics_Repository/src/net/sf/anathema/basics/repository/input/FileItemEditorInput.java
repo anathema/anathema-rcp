@@ -57,6 +57,9 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   
   @Override
   public String getName() {
+    if (item == null) {
+      return "No item"; //$NON-NLS-1$
+    }
     String name = item.getItemData().getDescription().getName().getText();
     if (StringUtilities.isNullOrEmpty(name)) {
       name = untitledName;
