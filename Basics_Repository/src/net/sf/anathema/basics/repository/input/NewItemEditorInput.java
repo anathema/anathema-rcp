@@ -9,9 +9,9 @@ import org.eclipse.jface.resource.ImageDescriptor;
 
 public class NewItemEditorInput extends AbstractNewItemEditorInput {
 
-  protected NewItemEditorInput(IItemType itemType) {
+  public NewItemEditorInput(IItemType itemType) {
     super(
-        new UnusedFileFactory(itemType),
+        new UnusedItemTypeFileFactory(itemType),
         ImageDescriptor.createFromURL(itemType.getIconUrl()),
         itemType.getUntitledName());
   }

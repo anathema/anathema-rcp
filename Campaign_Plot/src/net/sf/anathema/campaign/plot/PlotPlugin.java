@@ -2,6 +2,7 @@ package net.sf.anathema.campaign.plot;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -22,6 +23,10 @@ public class PlotPlugin extends AbstractUIPlugin {
   }
 
   public static Image getImage(String path) {
-    return imageDescriptorFromPlugin(ID, path).createImage();
+    return getImageDescriptor(path).createImage();
+  }
+
+  public static ImageDescriptor getImageDescriptor(String path) {
+    return imageDescriptorFromPlugin(ID, path);
   }
 }

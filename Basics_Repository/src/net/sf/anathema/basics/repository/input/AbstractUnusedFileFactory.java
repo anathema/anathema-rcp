@@ -1,30 +1,29 @@
 package net.sf.anathema.basics.repository.input;
 
-import net.sf.anathema.basics.repository.access.RepositoryUtilities;
-import net.sf.anathema.basics.repository.itemtype.IItemType;
-
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
-public class UnusedFileFactory implements IUnusedFileFactory {
+public abstract class AbstractUnusedFileFactory<C extends IContainer> implements IUnusedFileFactory {
 
-  private final IProject project;
+  private final C container;
   private final String fileExtension;
 
-  public UnusedFileFactory(IItemType itemType) {
-    this(RepositoryUtilities.getProject(itemType), itemType.getFileExtension());
-  }
-
-  public UnusedFileFactory(IProject project, String fileExtension) {
-    this.project = project;
+  public AbstractUnusedFileFactory(C container, String fileExtension) {
+    this.container = container;
     this.fileExtension = fileExtension;
   }
 
-  public IFile createUnusedFile(String fileNameSuggestion) throws CoreException {
+  public final IFile createUnusedFile(String fileNameSuggestion) throws CoreException {
     String fileName = createUnusedFileName(fileNameSuggestion);
-    return project.getFile(fileName);
+    return createFile(fileName);
+  }
+
+  protected abstract IFile createFile(String fileName);
+  
+  protected final C getContainer() {
+    return container;
   }
 
   private String createUnusedFileName(String fileNameSuggestion) throws CoreException {
@@ -42,7 +41,7 @@ public class UnusedFileFactory implements IUnusedFileFactory {
   }
 
   private boolean isAlreadyInUse(String fileName) throws CoreException {
-    for (IResource member : project.members()) {
+    for (IResource member : container.members()) {
       if (fileName.equalsIgnoreCase(member.getName())) {
         return true;
       }

@@ -6,7 +6,6 @@ import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IItemEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
-import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
@@ -16,11 +15,11 @@ import org.eclipse.ui.IPersistableElement;
 public class ProxyItemEditorInput implements IItemEditorInput {
 
   private IFileItemEditorInput delegateInput;
-  private final IItemType itemType;
+  private final String untitledName;
 
-  public ProxyItemEditorInput(IItemType itemType) {
-    this.itemType = itemType;
-    delegateInput = new NewItemEditorInput(itemType);
+  public ProxyItemEditorInput(String untitledName, IFileItemEditorInput initalDelegate) {
+    this.untitledName = untitledName;
+    this.delegateInput = initalDelegate;
   }
 
   @Override
@@ -36,7 +35,7 @@ public class ProxyItemEditorInput implements IItemEditorInput {
     IItem<IBasicItemData> item = delegateInput.save(persister);
     FileItemEditorInput input = new FileItemEditorInput(
         delegateInput.getFile(),
-        itemType.getUntitledName(),
+        untitledName,
         delegateInput.getImageDescriptor());
     input.setItem(item);
     delegateInput = input;
