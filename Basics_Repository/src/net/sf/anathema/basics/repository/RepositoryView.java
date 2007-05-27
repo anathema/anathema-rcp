@@ -48,11 +48,10 @@ public class RepositoryView extends ViewPart {
         }
       }
     });
-    final Display display = Display.getCurrent();
+    final TreeViewRefresher treeViewRefresher = new TreeViewRefresher(viewer);
     ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
       @Override
       public void resourceChanged(IResourceChangeEvent event) {
-        TreeViewRefresher treeViewRefresher = new TreeViewRefresher(viewer, display);
         treeViewRefresher.setRule(ResourcesPlugin.getWorkspace().getRoot());
         treeViewRefresher.schedule();
       }

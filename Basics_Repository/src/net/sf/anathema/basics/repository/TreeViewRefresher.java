@@ -12,10 +12,11 @@ public class TreeViewRefresher extends Job {
   private final TreeViewer viewer;
   private final Display display;
 
-  public TreeViewRefresher(TreeViewer viewer, Display display) {
+  /** Constructor has to be called from display thread to get the correct Display for execution. */
+  public TreeViewRefresher(TreeViewer viewer) {
     super("Refresh Repository View"); //$NON-NLS-1$
     this.viewer = viewer;
-    this.display = display;
+    this.display = Display.getCurrent();
   }
 
   @Override
