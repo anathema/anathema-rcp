@@ -11,7 +11,7 @@ public class NewItemEditorInput extends AbstractNewItemEditorInput {
 
   public NewItemEditorInput(IItemType itemType) {
     super(
-        new UnusedItemTypeFileFactory(itemType),
+        new UnusedFileFactory(itemType),
         ImageDescriptor.createFromURL(itemType.getIconUrl()),
         itemType.getUntitledName());
   }

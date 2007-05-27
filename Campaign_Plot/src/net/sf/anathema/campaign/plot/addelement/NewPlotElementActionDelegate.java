@@ -2,6 +2,7 @@ package net.sf.anathema.campaign.plot.addelement;
 
 import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
+import net.sf.anathema.basics.repository.input.UnusedFileFactory;
 import net.sf.anathema.campaign.plot.PlotPlugin;
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
@@ -49,7 +50,7 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     PlotElementViewElement plotViewElement = (PlotElementViewElement) treeSelection.getFirstElement();
     PlotPart plotElement = (PlotPart) plotViewElement.getPlotElement();
     IFolder folder = (IFolder) plotViewElement.getEditFile().getParent();
-    IUnusedFileFactory unusedFileFactory = new UnusedPlotElementFileFactory(folder, "srs"); //$NON-NLS-1$
+    IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, "srs"); //$NON-NLS-1$
     String resourcePath = "icons/Folder" + plotElement.getPlotUnit().getSuccessor().getPersistenceString() + "16.png"; 
     ImageDescriptor imageDescriptor = PlotPlugin.getImageDescriptor(resourcePath);
     return new NewPlotElementEditorInput(unusedFileFactory, imageDescriptor, unnamedName, plotElement, folder);

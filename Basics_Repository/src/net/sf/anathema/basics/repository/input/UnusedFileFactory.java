@@ -1,29 +1,32 @@
 package net.sf.anathema.basics.repository.input;
 
+import net.sf.anathema.basics.repository.access.RepositoryUtilities;
+import net.sf.anathema.basics.repository.itemtype.IItemType;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 
-public abstract class AbstractUnusedFileFactory<C extends IContainer> implements IUnusedFileFactory {
+public class UnusedFileFactory implements IUnusedFileFactory {
 
-  private final C container;
+  private final IContainer container;
   private final String fileExtension;
 
-  public AbstractUnusedFileFactory(C container, String fileExtension) {
+
+  public UnusedFileFactory(IItemType itemType) {
+    this(RepositoryUtilities.getProject(itemType), itemType.getFileExtension());
+  }
+
+  public UnusedFileFactory(IContainer container, String fileExtension) {
     this.container = container;
     this.fileExtension = fileExtension;
   }
 
   public final IFile createUnusedFile(String fileNameSuggestion) throws CoreException {
     String fileName = createUnusedFileName(fileNameSuggestion);
-    return createFile(fileName);
-  }
-
-  protected abstract IFile createFile(String fileName);
-  
-  protected final C getContainer() {
-    return container;
+    return container.getFile(new Path(fileName));
   }
 
   private String createUnusedFileName(String fileNameSuggestion) throws CoreException {
