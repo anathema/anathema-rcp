@@ -35,7 +35,6 @@ import org.eclipse.ui.part.EditorPart;
 
 public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
-
   private final class SaveEditorJob extends Job {
     private final Display display;
 
