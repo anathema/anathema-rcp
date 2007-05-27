@@ -44,6 +44,6 @@ public final class PlotDropListener extends ViewerDropAdapter {
     IPlotPart targetPart = targetElement.getPlotElement();
     this.location = RelativeLocation.getByOrdinal(currentLocation - 1);
     this.partMove = new PlotPartMove(sourcePart, targetPart);
-    return partMove.isValid(location);
+    return partMove.isValid();
   }
 }

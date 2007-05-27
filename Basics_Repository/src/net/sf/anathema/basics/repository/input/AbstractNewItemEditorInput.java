@@ -52,7 +52,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
     new ItemFileWriter().saveToFile(savefile, persister, item);
   }
 
-  protected abstract String getFileNameSuggestion(IItem<IBasicItemData> item);
+  protected abstract String getFileNameSuggestion(IItem<IBasicItemData> saveItem);
 
   @Override
   public final boolean exists() {

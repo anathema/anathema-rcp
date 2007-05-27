@@ -21,14 +21,6 @@
       </perspective>
    </extension>
    <extension
-         point="org.eclipse.ui.views">
-      <view
-            name="Repository"
-            class="anathema_rcp.repository.RepositoryView"
-            id="Anathema_RCP.view">
-      </view>
-   </extension>
-   <extension
          id="product"
          point="org.eclipse.core.runtime.products">
       <product

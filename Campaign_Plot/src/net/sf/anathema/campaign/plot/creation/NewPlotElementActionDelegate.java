@@ -23,7 +23,7 @@ import org.eclipse.ui.PlatformUI;
 public class NewPlotElementActionDelegate implements IObjectActionDelegate {
 
   private IWorkbenchPart targetPart;
-  private ISelection selection;
+  private ISelection lastSelection;
 
   @Override
   public void setActivePart(IAction action, IWorkbenchPart targetPart) {
@@ -46,7 +46,7 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
   }
 
   private NewPlotElementEditorInput createNewEditorInput(String unnamedName) {
-    TreeSelection treeSelection = (TreeSelection) selection;
+    TreeSelection treeSelection = (TreeSelection) lastSelection;
     PlotElementViewElement plotViewElement = (PlotElementViewElement) treeSelection.getFirstElement();
     PlotPart plotElement = (PlotPart) plotViewElement.getPlotElement();
     IFolder folder = (IFolder) plotViewElement.getEditFile().getParent();
@@ -58,6 +58,6 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
 
   @Override
   public void selectionChanged(IAction action, ISelection selection) {
-    this.selection = selection;
+    this.lastSelection = selection;
   }
 }

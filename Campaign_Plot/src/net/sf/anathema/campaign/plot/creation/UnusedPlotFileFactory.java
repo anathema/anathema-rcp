@@ -15,16 +15,13 @@ import org.eclipse.core.runtime.Path;
 public class UnusedPlotFileFactory implements IUnusedFileFactory {
 
   private final IContainer container;
-  private final String fileExtension;
-
 
   public UnusedPlotFileFactory(IItemType itemType) {
-    this(RepositoryUtilities.getProject(itemType), itemType.getFileExtension());
+    this(RepositoryUtilities.getProject(itemType));
   }
 
-  public UnusedPlotFileFactory(IContainer container, String fileExtension) {
+  public UnusedPlotFileFactory(IContainer container) {
     this.container = container;
-    this.fileExtension = fileExtension;
   }
 
   public final IFile createUnusedFile(String fileNameSuggestion) throws CoreException {

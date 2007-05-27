@@ -26,9 +26,7 @@ public class MoveLaterSiblingToFormerSibling {
 
   @Test
   public void isValidForAllLocations() throws Exception {
-    for (RelativeLocation location : RelativeLocation.values()) {
-      assertTrue(plotPartMove.isValid(location));
-    }
+    assertTrue(plotPartMove.isValid());
   }
 
   @Test

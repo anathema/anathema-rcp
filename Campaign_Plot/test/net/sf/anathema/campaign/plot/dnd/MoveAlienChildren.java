@@ -24,8 +24,6 @@ public class MoveAlienChildren {
 
   @Test
   public void rejectsAlienChild() throws Exception {
-    for (RelativeLocation location : RelativeLocation.values()) {
-      assertFalse(plotPartMove.isValid(location));
-    }
+    assertFalse(plotPartMove.isValid());
   }
 }

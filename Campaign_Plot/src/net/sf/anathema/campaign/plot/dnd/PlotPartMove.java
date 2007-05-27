@@ -12,7 +12,7 @@ public class PlotPartMove {
     this.targetPart = targetPart;
   }
 
-  public boolean isValid(RelativeLocation location) {
+  public boolean isValid() {
     if (sourcePart.getRoot() != targetPart.getRoot()) {
       return false;
     }

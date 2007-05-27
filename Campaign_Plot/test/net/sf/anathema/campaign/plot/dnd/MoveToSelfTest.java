@@ -26,10 +26,8 @@ public class MoveToSelfTest {
   }
 
   @Test
-  public void isValidForAllLocations() throws Exception {
-    for (RelativeLocation location : RelativeLocation.values()) {
-      assertTrue(plotPartMove.isValid(location));
-    }
+  public void isValid() throws Exception {
+    assertTrue(plotPartMove.isValid());
   }
 
   @Test
