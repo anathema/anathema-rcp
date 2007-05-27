@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Campaign Note
+Bundle-Name: %net.sf.anathema.campaign.note.BundleName
 Bundle-SymbolicName: net.sf.anathema.campaign.note;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.editor.styledtext,
