@@ -37,7 +37,7 @@ public class ProxyItemEditorInput implements IItemEditorInput {
     FileItemEditorInput input = new FileItemEditorInput(
         delegateInput.getFile(),
         itemType.getUntitledName(),
-        getImageDescriptor());
+        delegateInput.getImageDescriptor());
     input.setItem(item);
     delegateInput = input;
     return item;

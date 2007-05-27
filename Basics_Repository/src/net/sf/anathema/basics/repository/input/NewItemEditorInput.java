@@ -21,16 +21,14 @@ public class NewItemEditorInput implements IFileItemEditorInput {
   private final IUnusedFileFactory unusedFileFactory;
   private IFile savefile;
   private final String untitledName;
+  private final ImageDescriptor imageDescriptor;
 
   protected NewItemEditorInput(IItemType itemType) {
-    this(new UnusedFileFactory(itemType), itemType.getUntitledName());
+    this.unusedFileFactory = new UnusedFileFactory(itemType);
+    this.imageDescriptor = ImageDescriptor.createFromURL(itemType.getIconUrl());
+    this.untitledName = itemType.getUntitledName();
   }
   
-  protected NewItemEditorInput(IUnusedFileFactory unusedFileFactory, String untitledName) {
-    this.unusedFileFactory = unusedFileFactory;
-    this.untitledName = untitledName;
-  }
-
   @Override
   public IItem<IBasicItemData> loadItem(BasicDataItemPersister persister) throws PersistenceException, CoreException {
     item = persister.createNew();
@@ -58,7 +56,7 @@ public class NewItemEditorInput implements IFileItemEditorInput {
 
   @Override
   public ImageDescriptor getImageDescriptor() {
-    return null;
+    return imageDescriptor;
   }
 
   @Override
