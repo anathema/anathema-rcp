@@ -27,13 +27,13 @@ public class StyledTextualDescriptionTest {
   @Test
   public void replaceTextForEmptyDescription() throws Exception {
     description.replaceText(0, 0, "Hallo"); //$NON-NLS-1$
-    assertEquals(description.getTextParts(), new ITextPart[] {new TextPart("Hallo", new TextFormat())}); //$NON-NLS-1$
+    assertArrayEquals(description.getTextParts(), new ITextPart[] {new TextPart("Hallo", new TextFormat())}); //$NON-NLS-1$
   }
 
   @Test
   public void toggleAspectForForEmptyDescription() throws Exception {
     description.toggleAspect(TextAspect.Bold, 0, 0);
-    assertEquals(description.getTextParts(), new ITextPart[0]);
+    assertArrayEquals(description.getTextParts(), new ITextPart[0]);
   }
 
   @Test
