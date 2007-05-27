@@ -34,21 +34,21 @@ public class MoveToAdoptingSiblingTest {
   @Test
   public void moveBeforeAdoptingSibling() throws Exception {
     plotPartMove.moveTo(RelativeLocation.Before);
-    assertEquals(new IPlotPart[0], sourceElement.getChildren());
-    assertEquals(new IPlotPart[] { sourceElement, targetElement }, targetParent.getChildren());
+    assertArrayEquals(new IPlotPart[0], sourceElement.getChildren());
+    assertArrayEquals(new IPlotPart[] { sourceElement, targetElement }, targetParent.getChildren());
   }
 
   @Test
   public void moveAfterAdoptingSibling() throws Exception {
     plotPartMove.moveTo(RelativeLocation.After);
-    assertEquals(new IPlotPart[0], sourceElement.getChildren());
-    assertEquals(new IPlotPart[] { targetElement, sourceElement }, targetParent.getChildren());
+    assertArrayEquals(new IPlotPart[0], sourceElement.getChildren());
+    assertArrayEquals(new IPlotPart[] { targetElement, sourceElement }, targetParent.getChildren());
   }
 
   @Test
   public void moveOnAdoptingSibling() throws Exception {
     plotPartMove.moveTo(RelativeLocation.After);
-    assertEquals(new IPlotPart[0], sourceElement.getChildren());
-    assertEquals(new IPlotPart[] { targetElement, sourceElement }, targetParent.getChildren());
+    assertArrayEquals(new IPlotPart[0], sourceElement.getChildren());
+    assertArrayEquals(new IPlotPart[] { targetElement, sourceElement }, targetParent.getChildren());
   }
 }

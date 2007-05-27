@@ -32,6 +32,6 @@ public class MoveLaterSiblingToFormerSibling {
   @Test
   public void isMovedBeforeIfLocationIsBefore() throws Exception {
     plotPartMove.moveTo(RelativeLocation.Before);
-    assertEquals(new PlotPart[] { laterChild, formerChild, middleChild }, parent.getChildren());
+    assertArrayEquals(new PlotPart[] { laterChild, formerChild, middleChild }, parent.getChildren());
   }
 }

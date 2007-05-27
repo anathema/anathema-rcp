@@ -34,7 +34,7 @@ public class MoveToSelfTest {
   public void noMoveOnAllLocations() throws Exception {
     for (RelativeLocation location : RelativeLocation.values()) {
       plotPartMove.moveTo(location);
-      assertEquals(location.toString(), new IPlotPart[] { formerChild, middleChild, laterChild }, parent.getChildren());
+      assertArrayEquals(location.toString(), new IPlotPart[] { formerChild, middleChild, laterChild }, parent.getChildren());
     }
   }
 }
