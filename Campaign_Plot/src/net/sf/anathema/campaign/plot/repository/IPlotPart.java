@@ -9,4 +9,10 @@ public interface IPlotPart {
   public String getRepositoryId();
 
   public IPlotPart getParent();
+
+  public void moveChild(IPlotPart child, int targetIndex);
+
+  public int indexOf(IPlotPart child);
+
+  public IPlotPart getRoot();
 }

@@ -34,14 +34,6 @@ public class PlotPersister {
     }
   }
 
-  private IPlotPart getRoot(IPlotPart plotPart) {
-    IPlotPart parentPart = plotPart.getParent();
-    if (parentPart == null) {
-      return plotPart;
-    }
-    return getRoot(parentPart);
-  }
-
   private IPlotPart load(Document document) throws PersistenceException {
     PlotPart root = new PlotPart("main", PlotUnit.Plot, null); //$NON-NLS-1$
     Element element = document.getRootElement().element(ISeriesPersistenceConstants.TAG_PLOT);
@@ -78,7 +70,7 @@ public class PlotPersister {
   }
 
   public void saveHierarchy(IFolder folder, IPlotPart parentPart) throws IOException, CoreException {
-    IPlotPart root = getRoot(parentPart);
+    IPlotPart root = parentPart.getRoot();
     IFile file = folder.getFile(HIERARCHY_FILE_NAME);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     try {

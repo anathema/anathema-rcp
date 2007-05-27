@@ -1,9 +1,9 @@
 package net.sf.anathema.basics.repository;
 
 import org.eclipse.core.runtime.IExecutableExtension;
-import org.eclipse.swt.widgets.Control;
+import org.eclipse.jface.viewers.TreeViewer;
 
 public interface IRepositoryDND extends IExecutableExtension {
 
-  public void initDragAndDrop(Control control);
+  public void initDragAndDrop(TreeViewer viewer);
 }

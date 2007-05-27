@@ -55,4 +55,9 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
   public boolean hasChildren() {
     return plotElement.getChildren().length > 0;
   }
+  
+  @Override
+  public String toString() {
+    return plotElement.getRepositoryId();
+  }
 }

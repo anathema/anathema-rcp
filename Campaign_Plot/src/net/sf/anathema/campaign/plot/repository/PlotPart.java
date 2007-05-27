@@ -45,4 +45,28 @@ public class PlotPart implements IPlotPart {
   public IPlotPart getParent() {
     return parent;
   }
+
+  @Override
+  public void moveChild(IPlotPart child, int targetIndex) {
+    children.remove(child);
+    children.add(targetIndex, child);
+  }
+
+  @Override
+  public String toString() {
+    return getRepositoryId();
+  }
+
+  @Override
+  public int indexOf(IPlotPart child) {
+    return children.indexOf(child);
+  }
+
+  @Override
+  public IPlotPart getRoot() {
+    if (parent == null) {
+      return this;
+    }
+    return parent.getRoot();
+  }
 }

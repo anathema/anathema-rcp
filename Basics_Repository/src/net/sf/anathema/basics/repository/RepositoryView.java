@@ -65,7 +65,7 @@ public class RepositoryView extends ViewPart {
       for (IExtensionElement extensionElement : elements) {
         try {
           IRepositoryDND dnd = extensionElement.getAttributeAsObject("class", IRepositoryDND.class); //$NON-NLS-1$
-          dnd.initDragAndDrop(viewer.getControl());
+          dnd.initDragAndDrop(viewer);
         }
         catch (ExtensionException e) {
           RepositoryPlugin.log(IStatus.ERROR, "Error initializing repository dnd.", e); //$NON-NLS-1$
