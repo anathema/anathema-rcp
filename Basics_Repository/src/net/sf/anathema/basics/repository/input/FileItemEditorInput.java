@@ -12,15 +12,18 @@ import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.resource.ImageDescriptor;
 
 public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput {
 
   private IItem<IBasicItemData> item;
   private final String untitledName;
+  private final ImageDescriptor imageDescriptor;
 
-  public FileItemEditorInput(IFile file, String untitledName) {
+  public FileItemEditorInput(IFile file, String untitledName, ImageDescriptor imageDescriptor) {
     super(file);
     this.untitledName = untitledName;
+    this.imageDescriptor = imageDescriptor;
   }
 
   @Override
@@ -41,10 +44,15 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   public void setItem(IItem<IBasicItemData> item) {
     this.item = item;
   }
+  
+  @Override
+  public ImageDescriptor getImageDescriptor() {
+    return imageDescriptor;
+  }
 
   @Override
   public String getToolTipText() {
-    return item.getPrintName();
+    return getDisplayName();
   }
 
   @Override

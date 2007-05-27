@@ -34,7 +34,10 @@ public class ProxyItemEditorInput implements IItemEditorInput {
       CoreException,
       PersistenceException {
     IItem<IBasicItemData> item = delegateInput.save(persister);
-    FileItemEditorInput input = new FileItemEditorInput(delegateInput.getFile(), itemType.getUntitledName());
+    FileItemEditorInput input = new FileItemEditorInput(
+        delegateInput.getFile(),
+        itemType.getUntitledName(),
+        getImageDescriptor());
     input.setItem(item);
     delegateInput = input;
     return item;

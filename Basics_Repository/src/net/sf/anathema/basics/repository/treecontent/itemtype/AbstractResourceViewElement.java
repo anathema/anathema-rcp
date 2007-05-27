@@ -5,6 +5,7 @@ import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.input.FileItemEditorInput;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
@@ -36,7 +37,7 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   @Override
   public final void openEditor(IWorkbenchPage page) throws PartInitException {
     IFile file = getEditFile();
-    IEditorInput input = new FileItemEditorInput(file, untitledName);
+    IEditorInput input = new FileItemEditorInput(file, untitledName, ImageDescriptor.createFromImage(getImage()));
     String fileName = file.getName();
     IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
     page.openEditor(input, defaultEditor.getId());

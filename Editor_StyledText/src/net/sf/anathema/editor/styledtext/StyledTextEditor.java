@@ -67,6 +67,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
       });
       setSite(site);
       setInput(input);
+      setTitleImage(itemInput.getImageDescriptor().createImage());
       getItemDescription().getName().addTextChangedListener(new IObjectValueChangedListener<String>() {
         @Override
         public void valueChanged(String newValue) {
@@ -79,7 +80,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
   }
-
+  
   private IItemDescription getItemDescription() {
     return item.getItemData().getDescription();
   }
