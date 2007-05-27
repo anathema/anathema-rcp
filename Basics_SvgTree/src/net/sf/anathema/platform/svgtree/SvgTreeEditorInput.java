@@ -33,6 +33,7 @@ public class SvgTreeEditorInput implements IEditorInput {
     return "Tooltipp";
   }
 
+  @SuppressWarnings("unchecked")
   public Object getAdapter(Class adapter) {
     return null;
   }

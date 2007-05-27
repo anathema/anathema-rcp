@@ -2,16 +2,15 @@ package net.sf.anathema.campaign.plot.creation;
 
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.editor.styledtext.StyledTextEditor;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 
 public class NewPlotActionDelegate implements IObjectActionDelegate {
 
@@ -25,11 +24,12 @@ public class NewPlotActionDelegate implements IObjectActionDelegate {
   @Override
   public void run(IAction action) {
     IWorkbenchPage page = targetPart.getSite().getPage();
-    IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor("Hasä.not");
     IItemType itemType = PlotRepositoryUtilities.getSeriesItemType();
     IEditorInput input = new ProxyItemEditorInput(itemType.getUntitledName(), new NewPlotEditorInput(itemType));
     try {
-      page.openEditor(input, defaultEditor.getId());
+      // String editorId = defaultEditor.getId();
+      String editorId = StyledTextEditor.ID;
+      page.openEditor(input, editorId);
     }
     catch (PartInitException e) {
       // TODO Fehlerhandling

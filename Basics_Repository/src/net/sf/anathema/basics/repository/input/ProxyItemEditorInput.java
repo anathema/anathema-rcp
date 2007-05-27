@@ -67,6 +67,7 @@ public class ProxyItemEditorInput implements IItemEditorInput {
     return delegateInput.getToolTipText();
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
     return delegateInput.getAdapter(adapter);

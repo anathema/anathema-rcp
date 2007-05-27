@@ -23,6 +23,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     configurer.setInitialSize(new Point(1024, 768));
     configurer.setShowCoolBar(true);
     configurer.setShowStatusLine(true);
-    configurer.setTitle("Anathema");
+    configurer.setTitle("Anathema"); //$NON-NLS-1$
   }
 }

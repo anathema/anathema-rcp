@@ -79,9 +79,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     fileMenu.add(exitAction);
     fileMenu.add(saveAction);
     fileMenu.add(saveAllAction);
-    MenuManager grrrMenuu = new MenuManager("&Grrr", "Grrr");
-    menuBar.add(grrrMenuu);
-    addActions(grrrMenuu);
   }
 
   @Override

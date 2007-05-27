@@ -36,6 +36,7 @@ public class FileEditorInput implements IFileEditorInput {
     return file.exists();
   }
 
+  @SuppressWarnings("unchecked")
   public Object getAdapter(Class adapter) {
     if (adapter == IFile.class) {
       return file;
