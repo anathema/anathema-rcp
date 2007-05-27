@@ -87,6 +87,9 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
 
   @Override
   public String getName() {
+    if (item == null) {
+      return "No item"; //$NON-NLS-1$
+    }
     String name = item.getItemData().getDescription().getName().getText();
     if (StringUtilities.isNullOrEmpty(name)) {
       name = untitledName;
