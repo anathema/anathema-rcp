@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.ui.editors">
      <editor
-           class="net.sf.anathema.campaign.plot.PlotEditor"
+           class="net.sf.anathema.editor.styledtext.StyledTextEditor"
            contributorClass="net.sf.anathema.editor.styledtext.StyledTextEditorActionBarContributor"
            extensions="srs"
            icon="icons/TabSeries16.png"

@@ -27,7 +27,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-public abstract class AbstractStyledTextEditor extends EditorPart implements IStyledTextEditor {
+public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   private IItem<IBasicItemData> item;
   private StyledTextView contentView;
