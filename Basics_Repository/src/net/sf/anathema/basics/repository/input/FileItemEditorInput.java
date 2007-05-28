@@ -2,7 +2,6 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
-import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
@@ -17,13 +16,13 @@ import org.eclipse.jface.resource.ImageDescriptor;
 public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput {
 
   private IItem<IBasicItemData> item;
-  private final String untitledName;
   private final ImageDescriptor imageDescriptor;
+  private final ItemNameProvider provider;
 
   public FileItemEditorInput(IFile file, String untitledName, ImageDescriptor imageDescriptor) {
     super(file);
-    this.untitledName = untitledName;
     this.imageDescriptor = imageDescriptor;
+    this.provider = new ItemNameProvider(untitledName);
   }
 
   @Override
@@ -44,7 +43,7 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   public void setItem(IItem<IBasicItemData> item) {
     this.item = item;
   }
-  
+
   @Override
   public ImageDescriptor getImageDescriptor() {
     return imageDescriptor;
@@ -54,16 +53,9 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   public String getToolTipText() {
     return getName();
   }
-  
+
   @Override
   public String getName() {
-    if (item == null) {
-      return "No item"; //$NON-NLS-1$
-    }
-    String name = item.getItemData().getDescription().getName().getText();
-    if (StringUtilities.isNullOrEmpty(name)) {
-      name = untitledName;
-    }
-    return name;
+    return provider.getName(item);
   }
 }

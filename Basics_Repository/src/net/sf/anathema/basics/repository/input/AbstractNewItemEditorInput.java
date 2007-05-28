@@ -2,7 +2,6 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
-import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
@@ -18,7 +17,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   private IItem<IBasicItemData> item;
   private final IUnusedFileFactory unusedFileFactory;
   private IFile savefile;
-  private final String untitledName;
+  private final ItemNameProvider provider;
   private final ImageDescriptor imageDescriptor;
 
   public AbstractNewItemEditorInput(
@@ -27,11 +26,13 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
       String untitledName) {
     this.unusedFileFactory = unusedFileFactory;
     this.imageDescriptor = imageDescriptor;
-    this.untitledName = untitledName;
+    this.provider = new ItemNameProvider(untitledName);
   }
 
   @Override
-  public final IItem<IBasicItemData> loadItem(BasicDataItemPersister persister) throws PersistenceException, CoreException {
+  public final IItem<IBasicItemData> loadItem(BasicDataItemPersister persister)
+      throws PersistenceException,
+      CoreException {
     item = persister.createNew();
     return item;
   }
@@ -87,13 +88,6 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
 
   @Override
   public String getName() {
-    if (item == null) {
-      return "No item"; //$NON-NLS-1$
-    }
-    String name = item.getItemData().getDescription().getName().getText();
-    if (StringUtilities.isNullOrEmpty(name)) {
-      name = untitledName;
-    }
-    return name;
+    return provider.getName(item);
   }
 }
