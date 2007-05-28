@@ -33,7 +33,7 @@ public class RepositoryView extends ViewPart {
     ContextMenuManager.connect(getSite(), viewer);
     viewer.setContentProvider(new TypedTreeContentProvider());
     viewer.setLabelProvider(new RepositoryLabelProvider());
-    viewer.setInput(getViewSite());
+    viewer.setInput(getViewSite());    
     initDragAndDrop();
     viewer.addOpenListener(new IOpenListener() {
       public void open(OpenEvent event) {

@@ -2,6 +2,7 @@ package net.sf.anathema.campaign.plot.creation;
 
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.campaign.plot.PlotPlugin;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -12,7 +13,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 
 public class NewPlotActionDelegate implements IObjectActionDelegate {
-  private static final String PLOT_EDITOR_ID = "net.sf.anathema.campaign.plot.ploteditor"; //$NON-NLS-1$
   private IWorkbenchPart targetPart;
 
   @Override
@@ -26,7 +26,7 @@ public class NewPlotActionDelegate implements IObjectActionDelegate {
     IItemType itemType = PlotRepositoryUtilities.getSeriesItemType();
     IEditorInput input = new ProxyItemEditorInput(itemType.getUntitledName(), new NewPlotEditorInput(itemType));
     try {
-      page.openEditor(input, PLOT_EDITOR_ID);
+      page.openEditor(input, PlotPlugin.PLOT_EDITOR_ID);
     }
     catch (PartInitException e) {
       // TODO Fehlerhandling

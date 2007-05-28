@@ -4,21 +4,24 @@ import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
 import net.sf.anathema.basics.repository.input.UnusedFileFactory;
 import net.sf.anathema.campaign.plot.PlotPlugin;
+import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.resource.CompositeImageDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.ui.IEditorDescriptor;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 
 public class NewPlotElementActionDelegate implements IObjectActionDelegate {
 
@@ -33,11 +36,10 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
   @Override
   public void run(IAction action) {
     IWorkbenchPage page = targetPart.getSite().getPage();
-    IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor("Hasä.not"); //$NON-NLS-1$
-    String unnamedName = "Unnamed Plot Element"; //$NON-NLS-1$
+    String unnamedName = "Unnamed Plot Element";
     IEditorInput input = new ProxyItemEditorInput(unnamedName, createNewEditorInput(unnamedName));
     try {
-      page.openEditor(input, defaultEditor.getId());
+      page.openEditor(input, PlotPlugin.PLOT_EDITOR_ID);
     }
     catch (PartInitException e) {
       // TODO Fehlerhandling
@@ -51,13 +53,39 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     PlotPart plotElement = (PlotPart) plotViewElement.getPlotElement();
     IFolder folder = (IFolder) plotViewElement.getEditFile().getParent();
     IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, "srs"); //$NON-NLS-1$
-    String resourcePath = "icons/Folder" + plotElement.getPlotUnit().getSuccessor().getPersistenceString() + "16.png";  //$NON-NLS-1$ //$NON-NLS-2$
-    ImageDescriptor imageDescriptor = PlotPlugin.getImageDescriptor(resourcePath);
+    ImageDescriptor imageDescriptor = getSuccessorImage(plotElement);
     return new NewPlotElementEditorInput(unusedFileFactory, imageDescriptor, unnamedName, plotElement, folder);
+  }
+
+  private ImageDescriptor getSuccessorImage(IPlotPart plotElement) {
+    String resourcePath = "icons/Folder" + plotElement.getPlotUnit().getSuccessor().getPersistenceString() + "16.png";//$NON-NLS-1$ //$NON-NLS-2$
+    return PlotPlugin.getImageDescriptor(resourcePath);
   }
 
   @Override
   public void selectionChanged(IAction action, ISelection selection) {
     this.lastSelection = selection;
+    StructuredSelection structuredSelection = (StructuredSelection) lastSelection;
+    if (structuredSelection.getFirstElement() instanceof PlotElementViewElement) {
+      PlotElementViewElement element = (PlotElementViewElement) structuredSelection.getFirstElement();
+      final ImageDescriptor image = getSuccessorImage(element.getPlotElement());
+      action.setText("Add new " + element.getPlotElement().getPlotUnit().getSuccessor().name());
+      action.setImageDescriptor(new CompositeImageDescriptor() {
+
+        // TODO: Richtiges, kleines Overlay-Icon
+        @Override
+        protected void drawCompositeImage(int width, int height) {
+          drawImage(image.getImageData(), 0, 0);
+          String resourcePath = "icons/ButtonPlus16.png";
+          drawImage(PlotPlugin.getImageDescriptor(resourcePath).getImageData(), 5, 5);
+        }
+
+        @Override
+        protected Point getSize() {
+          ImageData data = image.getImageData();
+          return new Point(data.width, data.height);
+        }
+      });
+    }
   }
 }
