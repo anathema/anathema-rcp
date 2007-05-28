@@ -13,7 +13,7 @@ public class ItemNameProvider {
 
   public String getName(IItem<IBasicItemData> item) {
     if (item == null) {
-      return "No item"; //$NON-NLS-1$
+      return null;
     }
     String name = item.getItemData().getDescription().getName().getText();
     if (StringUtilities.isNullOrEmpty(name)) {
