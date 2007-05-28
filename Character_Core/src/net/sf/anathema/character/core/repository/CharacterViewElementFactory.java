@@ -14,7 +14,7 @@ public class CharacterViewElementFactory extends AbstractFolderBasedViewElementF
   public List<IViewElement> createViewElements(IViewElement parent) {
     List<IViewElement> elements = new ArrayList<IViewElement>();
     for (IFolder folder : getMembers()) {
-      elements.add(new CharacterViewElement(parent, folder));
+      elements.add(new CharacterViewElement(parent, folder, getItemType().getUntitledName()));
     }
     return elements;
   }
