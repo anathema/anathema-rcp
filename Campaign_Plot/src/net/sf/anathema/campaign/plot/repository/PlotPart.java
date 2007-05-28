@@ -10,8 +10,8 @@ public class PlotPart implements IPlotPart {
   private final List<IPlotPart> children = new ArrayList<IPlotPart>();
   private String repositoryId;
   private final PlotUnit plotUnit;
-  private final IPlotPart parent;
-  
+  private IPlotPart parent;
+
   public static PlotPart createPlotRoot() {
     return new PlotPart("main", PlotUnit.Plot, null); //$NON-NLS-1$
   }
@@ -82,5 +82,11 @@ public class PlotPart implements IPlotPart {
   @Override
   public void removeChild(IPlotPart child) {
     children.remove(child);
+  }
+
+  public void moveTo(IPlotPart targetParent, int targetIndex) {
+    targetParent.addChild(this, targetIndex);
+    this.parent.removeChild(this);
+    this.parent = targetParent;
   }
 }

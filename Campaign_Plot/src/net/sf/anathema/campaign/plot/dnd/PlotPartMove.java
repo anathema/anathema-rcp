@@ -26,21 +26,19 @@ public class PlotPartMove {
     if (sourcePart == targetPart) {
       return;
     }
-    IPlotPart sourceParent = sourcePart.getParent();
     IPlotPart targetParent = targetPart.getParent();
-    if (sourceParent == targetParent) {
-      moveSibling(location, sourceParent);
+    if (sourcePart.getParent() == targetParent) {
+      moveSibling(location, targetParent);
     }
     else {
-      moveCousin(location, sourceParent, targetParent);
+      moveCousin(location, targetParent);
     }
   }
 
-  private void moveCousin(RelativeLocation location, IPlotPart sourceParent, IPlotPart targetParent) {
-    sourceParent.removeChild(sourcePart);
+  private void moveCousin(RelativeLocation location, IPlotPart targetParent) {
     int targetPartIndex = targetParent.indexOf(targetPart);
     int targetIndex = location == RelativeLocation.Before ? targetPartIndex : targetPartIndex + 1;
-    targetParent.addChild(sourcePart, targetIndex);
+    sourcePart.moveTo(targetParent, targetIndex);
   }
 
   private void moveSibling(RelativeLocation location, IPlotPart parent) {
