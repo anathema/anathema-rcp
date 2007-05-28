@@ -6,6 +6,8 @@ public class Messages extends NLS {
   private static final String BUNDLE_NAME = "net.sf.anathema.editor.styledtext.messages"; //$NON-NLS-1$
 
   public static String StyledTextEditor_SaveErrorMessage;
+
+  public static String StyledTextEditor_SaveJobTask;
   public static String StyledTextEditor_SaveJobTitle;
 
   public static String StyledTextEditorActionBar_BoldButtonName;

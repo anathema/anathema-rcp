@@ -46,6 +46,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
     @Override
     protected IStatus run(IProgressMonitor monitor) {
+      monitor.beginTask(Messages.StyledTextEditor_SaveJobTask, IProgressMonitor.UNKNOWN);
       IItemEditorInput editorInput = getItemEditorInput();
       try {
         editorInput.save(persister, monitor);
@@ -55,6 +56,9 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
       catch (Exception e) {
         String message = Messages.StyledTextEditor_SaveErrorMessage;
         return StyledTextPlugin.createErrorStatus(NLS.bind(message, editorInput.getName()), e);
+      }
+      finally {
+        monitor.done();
       }
     }
   }

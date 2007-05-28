@@ -9,6 +9,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSource;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.ui.IViewSite;
 
 public class PlotRepositoryDND implements IRepositoryDND {
 
@@ -16,11 +17,11 @@ public class PlotRepositoryDND implements IRepositoryDND {
   private final Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
 
   @Override
-  public void initDragAndDrop(final TreeViewer viewer) {
+  public void initDragAndDrop(final TreeViewer viewer, IViewSite site) {
     DragSource source = new DragSource(viewer.getControl(), dndOperations);
     source.setTransfer(transfers);
     source.addDragListener(new PlotDragSourceListener(viewer));
-    viewer.addDropSupport(dndOperations, transfers, new PlotDropListener(viewer));
+    viewer.addDropSupport(dndOperations, transfers, new PlotDropListener(viewer, site));
   }
 
   @Override

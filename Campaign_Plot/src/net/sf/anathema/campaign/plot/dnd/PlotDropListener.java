@@ -3,32 +3,40 @@ package net.sf.anathema.campaign.plot.dnd;
 import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.swt.dnd.TransferData;
+import org.eclipse.ui.IViewSite;
 
 public final class PlotDropListener extends ViewerDropAdapter {
   private PlotPartMove partMove;
   private RelativeLocation location;
   private PlotElementViewElement targetElement;
+  private final IViewSite site;
 
-  public PlotDropListener(Viewer viewer) {
+  public PlotDropListener(Viewer viewer, IViewSite site) {
     super(viewer);
+    this.site = site;
   }
 
   @Override
   public boolean performDrop(Object data) {
+    //TODO Zeige Progress Monitor an. 
+    IProgressMonitor monitor = site.getActionBars().getStatusLineManager().getProgressMonitor();
+    monitor.beginTask("Moving", IProgressMonitor.UNKNOWN);
     try {
       partMove.moveTo(location);
-      //TODO: Echter Progressmonitor
-      targetElement.saveHierarchy(new NullProgressMonitor());
+      targetElement.saveHierarchy(monitor);
     }
     catch (Exception e) {
       // TODO Rückspulen des Moves
       e.printStackTrace();
       return false;
+    }
+    finally {
+      monitor.done();
     }
     return true;
   }

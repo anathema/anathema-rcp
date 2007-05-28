@@ -65,7 +65,7 @@ public class RepositoryView extends ViewPart {
       for (IExtensionElement extensionElement : elements) {
         try {
           IRepositoryDND dnd = extensionElement.getAttributeAsObject("class", IRepositoryDND.class); //$NON-NLS-1$
-          dnd.initDragAndDrop(viewer);
+          dnd.initDragAndDrop(viewer, getViewSite());
         }
         catch (ExtensionException e) {
           RepositoryPlugin.getDefaultInstance()
