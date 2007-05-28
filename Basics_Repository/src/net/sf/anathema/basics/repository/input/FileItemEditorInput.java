@@ -11,6 +11,7 @@ import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput {
@@ -26,11 +27,11 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   }
 
   @Override
-  public IItem<IBasicItemData> save(BasicDataItemPersister persister)
+  public IItem<IBasicItemData> save(BasicDataItemPersister persister, IProgressMonitor monitor)
       throws IOException,
       CoreException,
       PersistenceException {
-    new ItemFileWriter().saveToFile(getFile(), persister, item);
+    new ItemFileWriter().saveToFile(getFile(), persister, item, monitor);
     return item;
   }
 

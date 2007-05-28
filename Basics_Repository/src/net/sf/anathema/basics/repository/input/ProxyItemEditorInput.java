@@ -9,6 +9,7 @@ import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
@@ -28,11 +29,11 @@ public class ProxyItemEditorInput implements IItemEditorInput {
   }
 
   @Override
-  public IItem<IBasicItemData> save(BasicDataItemPersister persister)
+  public IItem<IBasicItemData> save(BasicDataItemPersister persister, IProgressMonitor monitor)
       throws IOException,
       CoreException,
       PersistenceException {
-    IItem<IBasicItemData> item = delegateInput.save(persister);
+    IItem<IBasicItemData> item = delegateInput.save(persister, monitor);
     FileItemEditorInput input = new FileItemEditorInput(
         delegateInput.getFile(),
         untitledName,

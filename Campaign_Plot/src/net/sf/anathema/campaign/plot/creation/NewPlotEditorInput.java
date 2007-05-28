@@ -14,6 +14,7 @@ import net.sf.anathema.lib.lang.AnathemaStringUtilities;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public class NewPlotEditorInput extends AbstractNewItemEditorInput {
@@ -26,10 +27,10 @@ public class NewPlotEditorInput extends AbstractNewItemEditorInput {
   }
 
   @Override
-  protected void saveToFile(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
-    super.saveToFile(persister);
+  protected void saveToFile(BasicDataItemPersister persister, IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+    super.saveToFile(persister, monitor);
     IFolder folder = (IFolder) getFile().getParent();
-    new PlotPersister().saveHierarchy(folder, PlotPart.createPlotRoot());
+    new PlotPersister().saveHierarchy(folder, PlotPart.createPlotRoot(), monitor);
   }
 
   @Override

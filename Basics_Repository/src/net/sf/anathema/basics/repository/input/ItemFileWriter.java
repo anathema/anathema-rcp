@@ -12,17 +12,19 @@ import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 
 public class ItemFileWriter {
 
-  public <D extends IItemData> void saveToFile(IFile file, ISingleFileItemPersister<D> persister, IItem<D> item)
-      throws IOException,
-      CoreException,
-      PersistenceException {
+  public <D extends IItemData> void saveToFile(
+      IFile file,
+      ISingleFileItemPersister<D> persister,
+      IItem<D> item,
+      IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     try {
       persister.save(outputStream, item);
-      new FileWriter().saveToFile(file, outputStream);
+      new FileWriter().saveToFile(file, outputStream, monitor);
       item.setClean();
     }
     finally {

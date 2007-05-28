@@ -48,7 +48,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     protected IStatus run(IProgressMonitor monitor) {
       IItemEditorInput editorInput = getItemEditorInput();
       try {
-        editorInput.save(persister);
+        editorInput.save(persister, monitor);
         display.asyncExec(new FireDirtyRunnable());
         return Status.OK_STATUS;
       }

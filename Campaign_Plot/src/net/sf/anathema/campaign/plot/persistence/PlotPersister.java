@@ -20,6 +20,7 @@ import org.dom4j.io.SAXReader;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 
 public class PlotPersister {
 
@@ -68,7 +69,9 @@ public class PlotPersister {
     }
   }
 
-  public void saveHierarchy(IFolder folder, IPlotPart parentPart) throws IOException, CoreException {
+  public void saveHierarchy(IFolder folder, IPlotPart parentPart, IProgressMonitor monitor)
+      throws IOException,
+      CoreException {
     IPlotPart root = parentPart.getRoot();
     IFile file = folder.getFile(HIERARCHY_FILE_NAME);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -79,7 +82,7 @@ public class PlotPersister {
         save(plotElement, plotPart);
       }
       DocumentUtilities.save(document, outputStream);
-      new FileWriter().saveToFile(file, outputStream);
+      new FileWriter().saveToFile(file, outputStream, monitor);
     }
     finally {
       IOUtilities.close(outputStream);

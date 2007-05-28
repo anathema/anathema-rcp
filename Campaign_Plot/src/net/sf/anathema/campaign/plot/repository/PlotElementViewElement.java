@@ -13,6 +13,7 @@ import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.graphics.Image;
 
 public class PlotElementViewElement extends AbstractResourceViewElement {
@@ -49,7 +50,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
   public IFile getEditFile() {
     return folder.getFile(plotElement.getRepositoryId() + ".srs"); //$NON-NLS-1$
   }
-  
+
   public IPlotPart getPlotElement() {
     return plotElement;
   }
@@ -58,13 +59,13 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
   public boolean hasChildren() {
     return plotElement.getChildren().length > 0;
   }
-  
+
   @Override
   public String toString() {
     return plotElement.getRepositoryId();
   }
 
-  public void saveHierarchy() throws IOException, CoreException {
-    new PlotPersister().saveHierarchy(folder, plotElement);
+  public void saveHierarchy(IProgressMonitor monitor) throws IOException, CoreException {
+    new PlotPersister().saveHierarchy(folder, plotElement, monitor);
   }
 }

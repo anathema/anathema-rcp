@@ -3,6 +3,7 @@ package net.sf.anathema.campaign.plot.dnd;
 import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
@@ -21,7 +22,8 @@ public final class PlotDropListener extends ViewerDropAdapter {
   public boolean performDrop(Object data) {
     try {
       partMove.moveTo(location);
-      targetElement.saveHierarchy();
+      //TODO: Echter Progressmonitor
+      targetElement.saveHierarchy(new NullProgressMonitor());
     }
     catch (Exception e) {
       // TODO Rückspulen des Moves

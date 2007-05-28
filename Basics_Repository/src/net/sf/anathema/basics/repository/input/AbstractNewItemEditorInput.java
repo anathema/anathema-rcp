@@ -9,6 +9,7 @@ import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
@@ -38,19 +39,22 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   }
 
   @Override
-  public final IItem<IBasicItemData> save(BasicDataItemPersister persister)
+  public final IItem<IBasicItemData> save(BasicDataItemPersister persister, IProgressMonitor monitor)
       throws IOException,
       CoreException,
       PersistenceException {
     if (this.savefile == null) {
       this.savefile = unusedFileFactory.createUnusedFile(getFileNameSuggestion(item));
     }
-    saveToFile(persister);
+    saveToFile(persister, monitor);
     return item;
   }
 
-  protected void saveToFile(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
-    new ItemFileWriter().saveToFile(savefile, persister, item);
+  protected void saveToFile(BasicDataItemPersister persister, IProgressMonitor monitor)
+      throws IOException,
+      CoreException,
+      PersistenceException {
+    new ItemFileWriter().saveToFile(savefile, persister, item, monitor);
   }
 
   protected abstract String getFileNameSuggestion(IItem<IBasicItemData> saveItem);

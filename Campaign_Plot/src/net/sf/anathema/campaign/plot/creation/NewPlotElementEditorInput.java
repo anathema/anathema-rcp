@@ -14,6 +14,7 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
@@ -33,11 +34,11 @@ public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
   }
 
   @Override
-  protected void saveToFile(BasicDataItemPersister persister) throws IOException, CoreException, PersistenceException {
-    super.saveToFile(persister);
+  protected void saveToFile(BasicDataItemPersister persister, IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+    super.saveToFile(persister, monitor);
     String repositoryId = getRepositoryId();
     parentPart.addChild(repositoryId);
-    new PlotPersister().saveHierarchy(seriesFolder, parentPart);
+    new PlotPersister().saveHierarchy(seriesFolder, parentPart, monitor);
   }
 
   private String getRepositoryId() {
