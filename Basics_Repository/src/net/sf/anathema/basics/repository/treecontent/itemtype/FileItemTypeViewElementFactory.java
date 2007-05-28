@@ -42,7 +42,8 @@ public class FileItemTypeViewElementFactory implements IItemTypeViewElementFacto
       return members;
     }
     catch (CoreException e) {
-      RepositoryPlugin.log(IStatus.ERROR, BasicRepositoryMessages.RepositoryBasics_ProjectMemberRetrievingErrorMessage, e);
+      String message = BasicRepositoryMessages.RepositoryBasics_ProjectMemberRetrievingErrorMessage;
+      RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, message, e);
       return new ArrayList<IFile>();
     }
   }

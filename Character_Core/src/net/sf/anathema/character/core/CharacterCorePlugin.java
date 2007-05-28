@@ -1,9 +1,10 @@
 package net.sf.anathema.character.core;
 
-import org.eclipse.core.runtime.Plugin;
+import net.sf.anathema.basics.eclipse.plugin.AbstractAnathemaUIPlugin;
+
 import org.osgi.framework.BundleContext;
 
-public class CharacterCorePlugin extends Plugin {
+public class CharacterCorePlugin extends AbstractAnathemaUIPlugin {
 
   public static final String PLUGIN_ID = "net.sf.anathema.character.core"; //$NON-NLS-1$
   private static CharacterCorePlugin plugin;
@@ -20,7 +21,12 @@ public class CharacterCorePlugin extends Plugin {
     super.stop(context);
   }
 
-  public static CharacterCorePlugin getDefault() {
+  public static CharacterCorePlugin getDefaultInstance() {
+    return plugin;
+  }
+
+  @Override
+  protected AbstractAnathemaUIPlugin getPluginInstance() {
     return plugin;
   }
 }

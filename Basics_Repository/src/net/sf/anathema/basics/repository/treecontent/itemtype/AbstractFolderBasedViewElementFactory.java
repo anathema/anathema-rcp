@@ -31,11 +31,12 @@ public abstract class AbstractFolderBasedViewElementFactory implements IItemType
       return members;
     }
     catch (CoreException e) {
-      RepositoryPlugin.log(IStatus.ERROR, BasicRepositoryMessages.RepositoryBasics_ProjectMemberRetrievingErrorMessage, e);
+      String message = BasicRepositoryMessages.RepositoryBasics_ProjectMemberRetrievingErrorMessage;
+      RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, message, e);
       return new ArrayList<IFolder>();
     }
   }
-  
+
   protected final IItemType getItemType() {
     return itemType;
   }
@@ -46,7 +47,7 @@ public abstract class AbstractFolderBasedViewElementFactory implements IItemType
   }
 
   @Override
-  public final void setInitializationData(IConfigurationElement config, String propertyName, Object data)
+  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
     // nothing to do
   }

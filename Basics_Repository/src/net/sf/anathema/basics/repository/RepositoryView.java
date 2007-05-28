@@ -43,7 +43,7 @@ public class RepositoryView extends ViewPart {
           element.openEditor(getViewSite().getPage());
         }
         catch (PartInitException e) {
-          RepositoryPlugin.log(IStatus.ERROR, Messages.RepositoryView_OpenEditorErrorMessage, e);
+          RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.RepositoryView_OpenEditorErrorMessage, e);
         }
       }
     });
@@ -68,7 +68,8 @@ public class RepositoryView extends ViewPart {
           dnd.initDragAndDrop(viewer);
         }
         catch (ExtensionException e) {
-          RepositoryPlugin.log(IStatus.ERROR, Messages.RepositoryView_InitializeDndErrorMessage, e);
+          RepositoryPlugin.getDefaultInstance()
+              .log(IStatus.ERROR, Messages.RepositoryView_InitializeDndErrorMessage, e);
         }
       }
     }
