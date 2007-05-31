@@ -4,6 +4,7 @@ import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
 import net.sf.anathema.basics.repository.input.UnusedFileFactory;
 import net.sf.anathema.campaign.plot.PlotPlugin;
+import net.sf.anathema.campaign.plot.repository.EnumInternationalizer;
 import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
@@ -15,6 +16,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.IEditorInput;
@@ -36,7 +38,7 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
   @Override
   public void run(IAction action) {
     IWorkbenchPage page = targetPart.getSite().getPage();
-    String unnamedName = "Unnamed Plot Element";
+    String unnamedName = "Unnamed Plot Element"; //$NON-NLS-1$
     IEditorInput input = new ProxyItemEditorInput(unnamedName, createNewEditorInput(unnamedName));
     try {
       page.openEditor(input, PlotPlugin.PLOT_EDITOR_ID);
@@ -67,16 +69,16 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     this.lastSelection = selection;
     StructuredSelection structuredSelection = (StructuredSelection) lastSelection;
     if (structuredSelection.getFirstElement() instanceof PlotElementViewElement) {
-      PlotElementViewElement element = (PlotElementViewElement) structuredSelection.getFirstElement();
-      final ImageDescriptor image = getSuccessorImage(element.getPlotElement());
-      action.setText("Add new " + element.getPlotElement().getPlotUnit().getSuccessor().name());
+      IPlotPart part = ((PlotElementViewElement) structuredSelection.getFirstElement()).getPlotElement();
+      final ImageDescriptor image = getSuccessorImage(part);
+      action.setText(NLS.bind(Messages.NewPlotElementActionDelegate_AddNewMessage, getPlotUnitName(part)));
       action.setImageDescriptor(new CompositeImageDescriptor() {
 
         // TODO: Richtiges, kleines Overlay-Icon
         @Override
         protected void drawCompositeImage(int width, int height) {
           drawImage(image.getImageData(), 0, 0);
-          String resourcePath = "icons/ButtonPlus16.png";
+          String resourcePath = "icons/ButtonPlus16.png"; //$NON-NLS-1$
           drawImage(PlotPlugin.getImageDescriptor(resourcePath).getImageData(), 5, 5);
         }
 
@@ -87,5 +89,10 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
         }
       });
     }
+  }
+
+  private String getPlotUnitName(IPlotPart part) {
+    return new EnumInternationalizer(net.sf.anathema.campaign.plot.repository.Messages.class).getDisplayName(part.getPlotUnit()
+        .getSuccessor());
   }
 }
