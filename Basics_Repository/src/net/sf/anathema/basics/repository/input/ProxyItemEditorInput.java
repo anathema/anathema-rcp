@@ -5,7 +5,6 @@ import java.io.IOException;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IItemEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
-import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
@@ -24,16 +23,16 @@ public class ProxyItemEditorInput implements IItemEditorInput {
   }
 
   @Override
-  public IItem<IBasicItemData> loadItem(BasicDataItemPersister persister) throws PersistenceException, CoreException {
-    return delegateInput.loadItem(persister);
+  public IItem<IBasicItemData> loadItem() throws PersistenceException, CoreException {
+    return delegateInput.loadItem();
   }
 
   @Override
-  public IItem<IBasicItemData> save(BasicDataItemPersister persister, IProgressMonitor monitor)
+  public IItem<IBasicItemData> save(IProgressMonitor monitor)
       throws IOException,
       CoreException,
       PersistenceException {
-    IItem<IBasicItemData> item = delegateInput.save(persister, monitor);
+    IItem<IBasicItemData> item = delegateInput.save(monitor);
     FileItemEditorInput input = new FileItemEditorInput(
         delegateInput.getFile(),
         untitledName,

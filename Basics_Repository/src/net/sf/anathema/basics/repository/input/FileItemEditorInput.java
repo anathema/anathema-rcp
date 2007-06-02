@@ -19,6 +19,7 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   private IItem<IBasicItemData> item;
   private final ImageDescriptor imageDescriptor;
   private final ItemNameProvider provider;
+  private final BasicDataItemPersister persister = new BasicDataItemPersister();
 
   public FileItemEditorInput(IFile file, String untitledName, ImageDescriptor imageDescriptor) {
     super(file);
@@ -27,16 +28,13 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   }
 
   @Override
-  public IItem<IBasicItemData> save(BasicDataItemPersister persister, IProgressMonitor monitor)
-      throws IOException,
-      CoreException,
-      PersistenceException {
+  public IItem<IBasicItemData> save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     new ItemFileWriter().saveToFile(getFile(), persister, item, monitor);
     return item;
   }
 
   @Override
-  public IItem<IBasicItemData> loadItem(BasicDataItemPersister persister) throws PersistenceException, CoreException {
+  public IItem<IBasicItemData> loadItem() throws PersistenceException, CoreException {
     item = persister.load(DocumentUtilities.read(getFile().getContents()));
     return item;
   }

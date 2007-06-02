@@ -20,6 +20,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   private IFile savefile;
   private final ItemNameProvider provider;
   private final ImageDescriptor imageDescriptor;
+  private final BasicDataItemPersister persister = new BasicDataItemPersister();
 
   public AbstractNewItemEditorInput(
       IUnusedFileFactory unusedFileFactory,
@@ -31,15 +32,13 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   }
 
   @Override
-  public final IItem<IBasicItemData> loadItem(BasicDataItemPersister persister)
-      throws PersistenceException,
-      CoreException {
+  public final IItem<IBasicItemData> loadItem() throws PersistenceException, CoreException {
     item = persister.createNew();
     return item;
   }
 
   @Override
-  public final IItem<IBasicItemData> save(BasicDataItemPersister persister, IProgressMonitor monitor)
+  public final IItem<IBasicItemData> save(IProgressMonitor monitor)
       throws IOException,
       CoreException,
       PersistenceException {

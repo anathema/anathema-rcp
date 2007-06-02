@@ -49,7 +49,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
       monitor.beginTask(Messages.StyledTextEditor_SaveJobTask, IProgressMonitor.UNKNOWN);
       IItemEditorInput editorInput = getItemEditorInput();
       try {
-        editorInput.save(persister, monitor);
+        editorInput.save(monitor);
         display.asyncExec(new FireDirtyRunnable());
         return Status.OK_STATUS;
       }
@@ -72,7 +72,6 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   private IItem<IBasicItemData> item;
   private StyledTextView contentView;
-  private final BasicDataItemPersister persister = new BasicDataItemPersister();
 
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -95,7 +94,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
       IItemEditorInput itemInput = (IItemEditorInput) input;
-      item = itemInput.loadItem(persister);
+      item = itemInput.loadItem();
       item.addDirtyListener(new IChangeListener() {
         public void changeOccured() {
           firePropertyChange(PROP_DIRTY);
