@@ -1,10 +1,10 @@
 package net.sf.anathema.character.description;
 
-import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
+import net.sf.anathema.lib.control.AggregatedChangeManagement;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.SimpleTextualDescription;
 
-public class CharacterDescription implements ICharacterDescription {
+public class CharacterDescription extends AggregatedChangeManagement implements ICharacterDescription {
 
   private final ITextualDescription nameDescription = new SimpleTextualDescription();
   private final ITextualDescription periphraseDescription = new SimpleTextualDescription();
@@ -13,6 +13,17 @@ public class CharacterDescription implements ICharacterDescription {
   private final ITextualDescription notes = new SimpleTextualDescription();
   private final ITextualDescription player = new SimpleTextualDescription();
   private final ITextualDescription concept = new SimpleTextualDescription();
+
+  public CharacterDescription() {
+    setChangeManagments(
+        nameDescription,
+        periphraseDescription,
+        characterization,
+        physicalDescription,
+        notes,
+        player,
+        concept);
+  }
 
   public ITextualDescription getName() {
     return nameDescription;
@@ -38,24 +49,7 @@ public class CharacterDescription implements ICharacterDescription {
     return notes;
   }
 
-  private ITextualDescription[] getAllDescriptions() {
-    return new ITextualDescription[] {
-        nameDescription,
-        periphraseDescription,
-        characterization,
-        physicalDescription,
-        notes,
-        player,
-        concept };
-  }
-
   public ITextualDescription getConcept() {
     return concept;
-  }
-
-  public void addOverallChangeListener(IObjectValueChangedListener<String> listener) {
-    for (ITextualDescription description : getAllDescriptions()) {
-      description.addTextChangedListener(listener);
-    }
   }
 }

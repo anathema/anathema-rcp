@@ -8,6 +8,7 @@ public abstract class AbstractTextualDescription implements ITextualDescription 
   private boolean dirty = true;
   private final ChangeControl dirtyChangeControl = new ChangeControl();
 
+  @Override
   public boolean isDirty() {
     return dirty;
   }
@@ -22,11 +23,13 @@ public abstract class AbstractTextualDescription implements ITextualDescription 
     dirtyChangeControl.fireChangedEvent();
   }
 
-  public void addDirtyChangeListener(IChangeListener dirtyListener) {
+  @Override
+  public void addDirtyListener(IChangeListener dirtyListener) {
     dirtyChangeControl.addChangeListener(dirtyListener);
   }
   
-  public void removeDirtyChangeListener(IChangeListener dirtyListener) {
+  @Override
+  public void removeDirtyListener(IChangeListener dirtyListener) {
     dirtyChangeControl.removeChangeListener(dirtyListener);
   }
 }

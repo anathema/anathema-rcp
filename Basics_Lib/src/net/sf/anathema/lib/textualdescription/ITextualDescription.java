@@ -1,8 +1,9 @@
 package net.sf.anathema.lib.textualdescription;
 
+import net.sf.anathema.lib.control.IChangeManagement;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 
-public interface ITextualDescription extends IModifiable {
+public interface ITextualDescription extends IChangeManagement {
 
   public boolean isEmpty();
 

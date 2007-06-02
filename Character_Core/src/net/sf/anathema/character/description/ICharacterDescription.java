@@ -1,9 +1,9 @@
 package net.sf.anathema.character.description;
 
-import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
+import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 
-public interface ICharacterDescription {
+public interface ICharacterDescription extends IItem {
 
   public ITextualDescription getName();
 
@@ -18,6 +18,4 @@ public interface ICharacterDescription {
   public ITextualDescription getPlayer();
 
   public ITextualDescription getConcept();
-  
-  public void addOverallChangeListener(IObjectValueChangedListener<String> listener);
 }

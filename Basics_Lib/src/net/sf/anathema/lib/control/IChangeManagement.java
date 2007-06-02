@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.item;
+package net.sf.anathema.lib.control;
 
 import net.sf.anathema.lib.control.change.IChangeListener;
 

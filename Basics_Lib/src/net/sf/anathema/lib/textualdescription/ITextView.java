@@ -9,4 +9,6 @@ public interface ITextView {
   public void setEnabled(boolean enabled);
 
   public void setText(String text);
+
+  public void setFocus();
 }
