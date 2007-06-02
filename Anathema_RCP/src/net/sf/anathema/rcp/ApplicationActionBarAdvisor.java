@@ -22,7 +22,6 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
-import org.eclipse.ui.internal.ActionSetSeparator;
 
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
@@ -31,6 +30,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
   private List<IAction> toolbarActions = new ArrayList<IAction>();
   private IWorkbenchAction saveAction;
   private IWorkbenchAction saveAllAction;
+  private IWorkbenchAction closeAction;
+  private IWorkbenchAction closeAllAction;
 
   public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
     super(configurer);
@@ -38,6 +39,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
   @Override
   protected void makeActions(final IWorkbenchWindow window) {
+    closeAction = ActionFactory.CLOSE.create(window);
+    closeAllAction = ActionFactory.CLOSE_ALL.create(window);
     saveAction = ActionFactory.SAVE.create(window);
     saveAllAction = ActionFactory.SAVE_ALL.create(window);
     exitAction = ActionFactory.QUIT.create(window);
@@ -70,6 +73,9 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         Messages.ApplicationActionBarAdvisor_fileMenuName,
         IWorkbenchActionConstants.M_FILE);
     menuBar.add(fileMenu);
+    fileMenu.add(closeAction);
+    fileMenu.add(closeAllAction);
+    fileMenu.add(new Separator());
     fileMenu.add(saveAction);
     fileMenu.add(saveAllAction);
     fileMenu.add(new Separator());
