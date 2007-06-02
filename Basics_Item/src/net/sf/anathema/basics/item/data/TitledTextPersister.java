@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.item.persistence;
+package net.sf.anathema.basics.item.data;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -10,9 +10,8 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.basics.item.data.BasicItemData;
-import net.sf.anathema.basics.item.data.BasicsPersister;
-import net.sf.anathema.basics.item.data.IBasicItemData;
+import net.sf.anathema.basics.item.persistence.IItemPersister;
+import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -20,13 +19,13 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class BasicDataItemPersister implements ISingleFileItemPersister<IBasicItemData> {
+public class TitledTextPersister implements ISingleFileItemPersister<ITitledText> {
 
   private final BasicsPersister basicItemDataPersister = new BasicsPersister();
   private final IExtensionProvider provider = new EclipseExtensionProvider();
 
   @Override
-  public void save(OutputStream stream, IBasicItemData itemData) throws IOException, PersistenceException {
+  public void save(OutputStream stream, ITitledText itemData) throws IOException, PersistenceException {
     Element rootElement = DocumentHelper.createElement("Item"); //$NON-NLS-1$
     basicItemDataPersister.save(itemData, rootElement);
     for (IItemPersister persister : getRegisteredPersisters()) {
@@ -52,9 +51,9 @@ public class BasicDataItemPersister implements ISingleFileItemPersister<IBasicIt
   }
 
   @Override
-  public IBasicItemData load(Document itemXml) throws PersistenceException {
+  public ITitledText load(Document itemXml) throws PersistenceException {
     Element rootElement = itemXml.getRootElement();
-    BasicItemData data = new BasicItemData();
+    TitledText data = new TitledText();
     basicItemDataPersister.load(rootElement, data);
     for (IItemPersister persister : getRegisteredPersisters()) {
       persister.load(rootElement, data);
@@ -63,7 +62,7 @@ public class BasicDataItemPersister implements ISingleFileItemPersister<IBasicIt
   }
 
   @Override
-  public IBasicItemData createNew() {
-    return new BasicItemData();
+  public ITitledText createNew() {
+    return new TitledText();
   }
 }

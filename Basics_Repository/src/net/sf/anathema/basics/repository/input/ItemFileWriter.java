@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
-import net.sf.anathema.basics.item.data.IItemData;
+import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 public class ItemFileWriter {
 
-  public <D extends IItemData> void saveToFile(
+  public <D extends IItem> void saveToFile(
       IFile file,
       ISingleFileItemPersister<D> persister,
       D item,

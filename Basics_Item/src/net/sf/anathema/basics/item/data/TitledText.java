@@ -6,16 +6,16 @@ import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.SimpleTextualDescription;
 import net.sf.anathema.lib.textualdescription.StyledTextualDescription;
 
-public class BasicItemData implements IBasicItemData {
+public class TitledText implements ITitledText {
 
   private final ITextualDescription name;
   private final IStyledTextualDescription content;
 
-  public BasicItemData() {
+  public TitledText() {
     this(""); //$NON-NLS-1$
   }
 
-  public BasicItemData(String initialName) {
+  public TitledText(String initialName) {
     this.name = new SimpleTextualDescription(initialName);
     this.content = new StyledTextualDescription();
   }

@@ -2,8 +2,8 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.data.IBasicItemData;
-import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
+import net.sf.anathema.basics.item.data.ITitledText;
+import net.sf.anathema.basics.item.data.TitledTextPersister;
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
@@ -13,12 +13,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
-public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput<IBasicItemData> {
+public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput<ITitledText> {
 
-  private IBasicItemData item;
+  private ITitledText item;
   private final ImageDescriptor imageDescriptor;
   private final ItemNameProvider provider;
-  private final BasicDataItemPersister persister = new BasicDataItemPersister();
+  private final TitledTextPersister persister = new TitledTextPersister();
 
   public FileItemEditorInput(IFile file, String untitledName, ImageDescriptor imageDescriptor) {
     super(file);
@@ -27,18 +27,18 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   }
 
   @Override
-  public IBasicItemData save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+  public ITitledText save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     new ItemFileWriter().saveToFile(getFile(), persister, item, monitor);
     return item;
   }
 
   @Override
-  public IBasicItemData loadItem() throws PersistenceException, CoreException {
+  public ITitledText loadItem() throws PersistenceException, CoreException {
     item = persister.load(DocumentUtilities.read(getFile().getContents()));
     return item;
   }
 
-  public void setItem(IBasicItemData item) {
+  public void setItem(ITitledText item) {
     this.item = item;
   }
 

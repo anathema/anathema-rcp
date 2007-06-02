@@ -1,7 +1,7 @@
 package net.sf.anathema.editor.styledtext;
 
 import net.sf.anathema.basics.item.IPersistableEditorInput;
-import net.sf.anathema.basics.item.data.IBasicItemData;
+import net.sf.anathema.basics.item.data.ITitledText;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.lib.control.change.IChangeListener;
@@ -44,7 +44,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     @Override
     protected IStatus run(IProgressMonitor monitor) {
       monitor.beginTask(Messages.StyledTextEditor_SaveJobTask, IProgressMonitor.UNKNOWN);
-      IPersistableEditorInput<IBasicItemData> editorInput = getItemEditorInput();
+      IPersistableEditorInput<ITitledText> editorInput = getItemEditorInput();
       try {
         editorInput.save(monitor);
         display.asyncExec(new FireDirtyRunnable());
@@ -67,7 +67,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     }
   }
 
-  private IBasicItemData itemData;
+  private ITitledText itemData;
   private StyledTextView contentView;
 
   @Override
@@ -79,8 +79,8 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   }
 
   @SuppressWarnings("unchecked")
-  private IPersistableEditorInput<IBasicItemData> getItemEditorInput() {
-    return (IPersistableEditorInput<IBasicItemData>) getEditorInput();
+  private IPersistableEditorInput<ITitledText> getItemEditorInput() {
+    return (IPersistableEditorInput<ITitledText>) getEditorInput();
   }
 
   @Override
@@ -92,7 +92,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
       setInput(input);
-      IPersistableEditorInput<IBasicItemData> itemInput = getItemEditorInput();
+      IPersistableEditorInput<ITitledText> itemInput = getItemEditorInput();
       itemData = itemInput.loadItem();
       itemData.addDirtyListener(new IChangeListener() {
         public void changeOccured() {

@@ -3,8 +3,8 @@ package net.sf.anathema.basics.repository.input;
 import java.io.IOException;
 
 import net.disy.commons.core.util.StringUtilities;
-import net.sf.anathema.basics.item.data.IBasicItemData;
-import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
+import net.sf.anathema.basics.item.data.ITitledText;
+import net.sf.anathema.basics.item.data.TitledTextPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.lang.AnathemaStringUtilities;
 
@@ -14,14 +14,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
-public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput<IBasicItemData> {
+public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput<ITitledText> {
 
-  private IBasicItemData item;
+  private ITitledText item;
   private final IUnusedFileFactory unusedFileFactory;
   private IFile savefile;
   private final ItemNameProvider provider;
   private final ImageDescriptor imageDescriptor;
-  private final BasicDataItemPersister persister = new BasicDataItemPersister();
+  private final TitledTextPersister persister = new TitledTextPersister();
 
   public AbstractNewItemEditorInput(
       IUnusedFileFactory unusedFileFactory,
@@ -33,13 +33,13 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   }
 
   @Override
-  public final IBasicItemData loadItem() throws PersistenceException, CoreException {
+  public final ITitledText loadItem() throws PersistenceException, CoreException {
     item = persister.createNew();
     return item;
   }
 
   @Override
-  public final IBasicItemData save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+  public final ITitledText save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     if (this.savefile == null) {
       this.savefile = unusedFileFactory.createUnusedFile(getFileNameSuggestion(item));
     }
@@ -87,7 +87,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
     return provider.getName(item);
   }
 
-  protected String getFileNameSuggestion(IBasicItemData itemData) {
+  protected String getFileNameSuggestion(ITitledText itemData) {
     String name = itemData.getName().getText();
     return StringUtilities.isNullOrTrimEmpty(name)
         ? "Unnamed" //$NON-NLS-1$
