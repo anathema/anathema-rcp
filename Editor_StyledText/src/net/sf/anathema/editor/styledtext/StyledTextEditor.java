@@ -58,7 +58,6 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart implemen
     }
   }
 
-
   @Override
   protected ITitledText getItem() {
     return titledText;
@@ -68,18 +67,22 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart implemen
   public void createPartControl(Composite parent) {
     parent.setLayout(new GridLayout(2, false));
     Label nameLabel = new Label(parent, SWT.LEFT);
-    nameLabel.setText("Name:");
+    nameLabel.setText(getColonLabel(Messages.StyledTextEditor_Name));
     nameLabel.setLayoutData(createLabelData());
     final ITextView nameView = SimpleTextView.createSingleLineView(parent);
     final ITextualDescription nameModel = getItem().getName();
     new TextualPresenter(nameView, nameModel).initPresentation();
     Label contentLabel = new Label(parent, SWT.LEFT);
-    contentLabel.setText("Content:");
+    contentLabel.setText(getColonLabel(Messages.StyledTextEditor_Content));
     contentLabel.setLayoutData(createLabelData());
     final IStyledTextualDescription contentDescription = getItem().getContent();
     contentView = new StyledTextView(parent);
     new StyledTextPresenter(contentView, contentDescription).initPresentation();
     getSite().setSelectionProvider(contentView.createSelectionProvider());
+  }
+
+  private String getColonLabel(String string) {
+    return string + ':';
   }
 
   protected GridData createLabelData() {
