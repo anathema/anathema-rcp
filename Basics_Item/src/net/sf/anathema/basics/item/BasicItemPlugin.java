@@ -1,10 +1,10 @@
-package net.sf.anathema.character.core;
+package net.sf.anathema.basics.item;
 
 import net.sf.anathema.basics.eclipse.plugin.AbstractAnathemaUIPlugin;
 
-public class CharacterCorePlugin extends AbstractAnathemaUIPlugin {
+public class BasicItemPlugin extends AbstractAnathemaUIPlugin {
 
-  public static final String PLUGIN_ID = "net.sf.anathema.character.core"; //$NON-NLS-1$
+  public static final String ID = "net.sf.anathema.basic.item"; //$NON-NLS-1$
   private static AbstractAnathemaUIPlugin instance;
 
 

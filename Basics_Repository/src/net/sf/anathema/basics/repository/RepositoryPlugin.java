@@ -8,21 +8,31 @@ import org.osgi.framework.BundleContext;
 public class RepositoryPlugin extends AbstractAnathemaUIPlugin {
 
   public static final String ID = "net.sf.anathema.basics.repository"; //$NON-NLS-1$
-  private static RepositoryPlugin instance;
+  private static AbstractAnathemaUIPlugin instance;
 
+
+  public static AbstractAnathemaUIPlugin getDefaultInstance() {
+    return instance;
+  }
+
+  @Override
+  protected final void createInstance() {
+    instance = this;
+  }
+
+  @Override
+  protected final void deleteInstance() {
+    instance = null;
+  }
+  
+  @Override
+  protected AbstractAnathemaUIPlugin getPluginInstance() {
+    return getDefaultInstance();
+  }
+  
   @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
-    instance = this;
     new ProjectInitializer().initialize();
-  }
-  
-  public static RepositoryPlugin getDefaultInstance() {
-    return instance;
-  }
-
-  @Override
-  protected AbstractAnathemaUIPlugin getPluginInstance() {
-    return instance;
   }
 }
