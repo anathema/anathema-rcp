@@ -68,13 +68,13 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart implemen
   public void createPartControl(Composite parent) {
     parent.setLayout(new GridLayout(2, false));
     Label nameLabel = new Label(parent, SWT.LEFT);
-    nameLabel.setText("Name:"); //$NON-NLS-1$
+    nameLabel.setText("Name:");
     nameLabel.setLayoutData(createLabelData());
-    final ITextView nameView = new SimpleTextView(parent);
+    final ITextView nameView = SimpleTextView.createSingleLineView(parent);
     final ITextualDescription nameModel = getItem().getName();
     new TextualPresenter(nameView, nameModel).initPresentation();
     Label contentLabel = new Label(parent, SWT.LEFT);
-    contentLabel.setText("Content:"); //$NON-NLS-1$
+    contentLabel.setText("Content:");
     contentLabel.setLayoutData(createLabelData());
     final IStyledTextualDescription contentDescription = getItem().getContent();
     contentView = new StyledTextView(parent);
