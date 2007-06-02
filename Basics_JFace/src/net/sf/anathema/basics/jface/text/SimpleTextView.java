@@ -16,9 +16,17 @@ public class SimpleTextView implements ITextView {
 
   private final Text textWidget;
   private final ObjectValueControl<String> control = new ObjectValueControl<String>();
+  
+  public static SimpleTextView createSingleLineView(Composite parent) {
+    return new SimpleTextView(parent, SWT.SINGLE);
+  }
 
-  public SimpleTextView(Composite parent) {
-    this.textWidget = new Text(parent, SWT.SINGLE | SWT.BORDER);
+  public static SimpleTextView createMultiLineView(Composite parent) {
+    return new SimpleTextView(parent, SWT.MULTI);
+  }
+
+  private SimpleTextView(Composite parent, int lineFlag) {
+    this.textWidget = new Text(parent, lineFlag | SWT.BORDER);
     this.textWidget.addModifyListener(new ModifyListener() {
       public void modifyText(ModifyEvent e) {
         control.fireValueChangedEvent(textWidget.getText());
@@ -42,6 +50,11 @@ public class SimpleTextView implements ITextView {
     if (ObjectUtilities.equals(text, textWidget.getText())) {
       return;
     }
-    textWidget.setText(text);
+    textWidget.setText(text == null ? "" : text); //$NON-NLS-1$
+  }
+  
+  @Override
+  public void setFocus() {
+    textWidget.setFocus();
   }
 }
