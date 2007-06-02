@@ -2,10 +2,11 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.IItem;
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
+import net.sf.anathema.lib.lang.AnathemaStringUtilities;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -15,7 +16,7 @@ import org.eclipse.ui.IPersistableElement;
 
 public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput {
 
-  private IItem<IBasicItemData> item;
+  private IBasicItemData item;
   private final IUnusedFileFactory unusedFileFactory;
   private IFile savefile;
   private final ItemNameProvider provider;
@@ -32,31 +33,23 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   }
 
   @Override
-  public final IItem<IBasicItemData> loadItem() throws PersistenceException, CoreException {
+  public final IBasicItemData loadItem() throws PersistenceException, CoreException {
     item = persister.createNew();
     return item;
   }
 
   @Override
-  public final IItem<IBasicItemData> save(IProgressMonitor monitor)
-      throws IOException,
-      CoreException,
-      PersistenceException {
+  public final IBasicItemData save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     if (this.savefile == null) {
       this.savefile = unusedFileFactory.createUnusedFile(getFileNameSuggestion(item));
     }
-    saveToFile(persister, monitor);
+    saveToFile(monitor);
     return item;
   }
 
-  protected void saveToFile(BasicDataItemPersister persister, IProgressMonitor monitor)
-      throws IOException,
-      CoreException,
-      PersistenceException {
+  protected void saveToFile(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     new ItemFileWriter().saveToFile(savefile, persister, item, monitor);
   }
-
-  protected abstract String getFileNameSuggestion(IItem<IBasicItemData> saveItem);
 
   @Override
   public final boolean exists() {
@@ -92,5 +85,12 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   @Override
   public String getName() {
     return provider.getName(item);
+  }
+
+  protected String getFileNameSuggestion(IBasicItemData itemData) {
+    String name = itemData.getDescription().getName().getText();
+    return StringUtilities.isNullOrTrimEmpty(name)
+        ? "Unnamed"
+        : AnathemaStringUtilities.getFileNameRepresentation(name);
   }
 }

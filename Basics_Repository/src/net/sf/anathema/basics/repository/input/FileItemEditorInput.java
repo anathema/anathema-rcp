@@ -2,7 +2,6 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.basics.jface.FileEditorInput;
@@ -16,7 +15,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 
 public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput {
 
-  private IItem<IBasicItemData> item;
+  private IBasicItemData item;
   private final ImageDescriptor imageDescriptor;
   private final ItemNameProvider provider;
   private final BasicDataItemPersister persister = new BasicDataItemPersister();
@@ -28,18 +27,18 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   }
 
   @Override
-  public IItem<IBasicItemData> save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+  public IBasicItemData save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     new ItemFileWriter().saveToFile(getFile(), persister, item, monitor);
     return item;
   }
 
   @Override
-  public IItem<IBasicItemData> loadItem() throws PersistenceException, CoreException {
+  public IBasicItemData loadItem() throws PersistenceException, CoreException {
     item = persister.load(DocumentUtilities.read(getFile().getContents()));
     return item;
   }
 
-  public void setItem(IItem<IBasicItemData> item) {
+  public void setItem(IBasicItemData item) {
     this.item = item;
   }
 

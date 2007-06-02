@@ -1,10 +1,8 @@
 package net.sf.anathema.editor.styledtext;
 
-import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IItemEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.item.data.IItemDescription;
-import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.lib.control.change.IChangeListener;
@@ -70,7 +68,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     }
   }
 
-  private IItem<IBasicItemData> item;
+  private IBasicItemData itemData;
   private StyledTextView contentView;
 
   @Override
@@ -94,8 +92,8 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
       IItemEditorInput itemInput = (IItemEditorInput) input;
-      item = itemInput.loadItem();
-      item.addDirtyListener(new IChangeListener() {
+      itemData = itemInput.loadItem();
+      itemData.addDirtyListener(new IChangeListener() {
         public void changeOccured() {
           firePropertyChange(PROP_DIRTY);
         }
@@ -117,7 +115,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   }
 
   private IItemDescription getItemDescription() {
-    return item.getItemData().getDescription();
+    return itemData.getDescription();
   }
 
   private void updatePartName() {
@@ -126,7 +124,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
 
   @Override
   public boolean isDirty() {
-    return item.isDirty();
+    return itemData.isDirty();
   }
 
   @Override

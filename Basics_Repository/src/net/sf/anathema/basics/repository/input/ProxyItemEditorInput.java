@@ -2,7 +2,6 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IItemEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -23,23 +22,23 @@ public class ProxyItemEditorInput implements IItemEditorInput {
   }
 
   @Override
-  public IItem<IBasicItemData> loadItem() throws PersistenceException, CoreException {
+  public IBasicItemData loadItem() throws PersistenceException, CoreException {
     return delegateInput.loadItem();
   }
 
   @Override
-  public IItem<IBasicItemData> save(IProgressMonitor monitor)
+  public IBasicItemData save(IProgressMonitor monitor)
       throws IOException,
       CoreException,
       PersistenceException {
-    IItem<IBasicItemData> item = delegateInput.save(monitor);
+    IBasicItemData itemData = delegateInput.save(monitor);
     FileItemEditorInput input = new FileItemEditorInput(
         delegateInput.getFile(),
         untitledName,
         delegateInput.getImageDescriptor());
-    input.setItem(item);
+    input.setItem(itemData);
     delegateInput = input;
-    return item;
+    return itemData;
   }
 
   @Override

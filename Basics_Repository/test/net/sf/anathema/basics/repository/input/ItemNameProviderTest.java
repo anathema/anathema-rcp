@@ -1,8 +1,6 @@
 package net.sf.anathema.basics.repository.input;
 
-import net.sf.anathema.basics.item.AnathemaDataItem;
 import net.sf.anathema.basics.item.data.BasicItemData;
-import net.sf.anathema.basics.item.data.IBasicItemData;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,8 +21,7 @@ public class ItemNameProviderTest {
   public void returnsItemName() throws Exception {
     BasicItemData data = new BasicItemData();
     data.getDescription().getName().setText(NAME);
-    AnathemaDataItem<IBasicItemData> item = new AnathemaDataItem<IBasicItemData>(data);
-    Assert.assertEquals(NAME, provider.getName(item));
+    Assert.assertEquals(NAME, provider.getName(data));
   }
 
   @Test
@@ -36,7 +33,6 @@ public class ItemNameProviderTest {
   public void returnsUntitledNameForUntitledItem() throws Exception {
     BasicItemData data = new BasicItemData();
     data.getDescription().getName().setText(null);
-    AnathemaDataItem<IBasicItemData> item = new AnathemaDataItem<IBasicItemData>(data);
-    Assert.assertEquals(UNTITLED, provider.getName(item));
+    Assert.assertEquals(UNTITLED, provider.getName(data));
   }
 }

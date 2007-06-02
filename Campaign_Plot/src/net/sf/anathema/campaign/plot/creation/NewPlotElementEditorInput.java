@@ -2,9 +2,7 @@ package net.sf.anathema.campaign.plot.creation;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.data.IBasicItemData;
-import net.sf.anathema.basics.item.persistence.BasicDataItemPersister;
 import net.sf.anathema.basics.repository.input.AbstractNewItemEditorInput;
 import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
@@ -34,8 +32,8 @@ public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
   }
 
   @Override
-  protected void saveToFile(BasicDataItemPersister persister, IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
-    super.saveToFile(persister, monitor);
+  protected void saveToFile(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+    super.saveToFile(monitor);
     String repositoryId = getRepositoryId();
     parentPart.addChild(repositoryId);
     new PlotPersister().saveHierarchy(seriesFolder, parentPart, monitor);
@@ -48,7 +46,7 @@ public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
   }
 
   @Override
-  protected String getFileNameSuggestion(IItem<IBasicItemData> item) {
+  protected String getFileNameSuggestion(IBasicItemData item) {
     return parentPart.getPlotUnit().getSuccessor().getPersistenceString();
   }
 }

@@ -10,8 +10,6 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.basics.item.AnathemaDataItem;
-import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.data.BasicItemData;
 import net.sf.anathema.basics.item.data.BasicsPersister;
 import net.sf.anathema.basics.item.data.IBasicItemData;
@@ -28,11 +26,11 @@ public class BasicDataItemPersister implements ISingleFileItemPersister<IBasicIt
   private final IExtensionProvider provider = new EclipseExtensionProvider();
 
   @Override
-  public void save(OutputStream stream, IItem<IBasicItemData> item) throws IOException, PersistenceException {
+  public void save(OutputStream stream, IBasicItemData itemData) throws IOException, PersistenceException {
     Element rootElement = DocumentHelper.createElement("Item"); //$NON-NLS-1$
-    basicItemDataPersister.save(item.getItemData(), rootElement);
+    basicItemDataPersister.save(itemData, rootElement);
     for (IItemPersister persister : getRegisteredPersisters()) {
-      persister.save(rootElement, item);
+      persister.save(rootElement, itemData);
     }
     Document document = DocumentHelper.createDocument(rootElement);
     DocumentUtilities.save(document, stream);
@@ -54,19 +52,18 @@ public class BasicDataItemPersister implements ISingleFileItemPersister<IBasicIt
   }
 
   @Override
-  public IItem<IBasicItemData> load(Document itemXml) throws PersistenceException {
+  public IBasicItemData load(Document itemXml) throws PersistenceException {
     Element rootElement = itemXml.getRootElement();
     BasicItemData data = new BasicItemData();
-    AnathemaDataItem<IBasicItemData> item = new AnathemaDataItem<IBasicItemData>(data);
-    basicItemDataPersister.load(rootElement, item.getItemData());
+    basicItemDataPersister.load(rootElement, data);
     for (IItemPersister persister : getRegisteredPersisters()) {
-      persister.load(rootElement, item);
+      persister.load(rootElement, data);
     }
-    return item;
+    return data;
   }
 
   @Override
-  public IItem<IBasicItemData> createNew() {
-    return new AnathemaDataItem<IBasicItemData>(new BasicItemData());
+  public IBasicItemData createNew() {
+    return new BasicItemData();
   }
 }

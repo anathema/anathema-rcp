@@ -1,7 +1,6 @@
 package net.sf.anathema.basics.repository.input;
 
 import net.disy.commons.core.util.StringUtilities;
-import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 
 public class ItemNameProvider {
@@ -11,11 +10,11 @@ public class ItemNameProvider {
     this.untitledName = untitledName;
   }
 
-  public String getName(IItem<IBasicItemData> item) {
-    if (item == null) {
+  public String getName(IBasicItemData itemData) {
+    if (itemData == null) {
       return null;
     }
-    String name = item.getItemData().getDescription().getName().getText();
+    String name = itemData.getDescription().getName().getText();
     if (StringUtilities.isNullOrEmpty(name)) {
       name = untitledName;
     }
