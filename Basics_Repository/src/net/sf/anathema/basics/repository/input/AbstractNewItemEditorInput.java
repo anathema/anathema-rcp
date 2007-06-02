@@ -88,7 +88,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   }
 
   protected String getFileNameSuggestion(IBasicItemData itemData) {
-    String name = itemData.getDescription().getName().getText();
+    String name = itemData.getName().getText();
     return StringUtilities.isNullOrTrimEmpty(name)
         ? "Unnamed"
         : AnathemaStringUtilities.getFileNameRepresentation(name);

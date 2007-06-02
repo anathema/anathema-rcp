@@ -20,7 +20,7 @@ public class ItemNameProviderTest {
   @Test
   public void returnsItemName() throws Exception {
     BasicItemData data = new BasicItemData();
-    data.getDescription().getName().setText(NAME);
+    data.getName().setText(NAME);
     Assert.assertEquals(NAME, provider.getName(data));
   }
 
@@ -32,7 +32,7 @@ public class ItemNameProviderTest {
   @Test
   public void returnsUntitledNameForUntitledItem() throws Exception {
     BasicItemData data = new BasicItemData();
-    data.getDescription().getName().setText(null);
+    data.getName().setText(null);
     Assert.assertEquals(UNTITLED, provider.getName(data));
   }
 }

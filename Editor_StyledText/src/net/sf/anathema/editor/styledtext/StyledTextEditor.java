@@ -2,7 +2,6 @@ package net.sf.anathema.editor.styledtext;
 
 import net.sf.anathema.basics.item.IItemEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
-import net.sf.anathema.basics.item.data.IItemDescription;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.lib.control.change.IChangeListener;
@@ -101,7 +100,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
       setSite(site);
       setInput(input);
       setTitleImage(itemInput.getImageDescriptor().createImage());
-      getItemDescription().getName().addTextChangedListener(new IObjectValueChangedListener<String>() {
+      itemData.getName().addTextChangedListener(new IObjectValueChangedListener<String>() {
         @Override
         public void valueChanged(String newValue) {
           updatePartName();
@@ -112,10 +111,6 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     catch (Exception e) {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
-  }
-
-  private IItemDescription getItemDescription() {
-    return itemData.getDescription();
   }
 
   private void updatePartName() {
@@ -139,12 +134,12 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     nameLabel.setText("Name:"); //$NON-NLS-1$
     nameLabel.setLayoutData(createLabelData());
     final ITextView nameView = new SimpleTextView(parent);
-    final ITextualDescription nameModel = getItemDescription().getName();
+    final ITextualDescription nameModel = itemData.getName();
     new TextualPresenter(nameView, nameModel).initPresentation();
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText("Content:"); //$NON-NLS-1$
     contentLabel.setLayoutData(createLabelData());
-    final IStyledTextualDescription contentDescription = getItemDescription().getContent();
+    final IStyledTextualDescription contentDescription = itemData.getContent();
     contentView = new StyledTextView(parent);
     new StyledTextPresenter(contentView, contentDescription).initPresentation();
     getSite().setSelectionProvider(contentView.createSelectionProvider());
@@ -162,14 +157,14 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   @Override
   public void modifySelection(ITextModification modification) {
     Point selectionRange = contentView.getSelectionRange();
-    IStyledTextualDescription styledText = getItemDescription().getContent();
+    IStyledTextualDescription styledText = itemData.getContent();
     modification.perform(styledText, selectionRange.x, selectionRange.y);
   }
 
   @Override
   public boolean isActiveFor(ITextModification modification) {
     Point selectionRange = contentView.getSelectionRange();
-    IStyledTextualDescription styledText = getItemDescription().getContent();
+    IStyledTextualDescription styledText = itemData.getContent();
     return modification.isActive(styledText, selectionRange.x, selectionRange.y);
   }
 

@@ -1,33 +1,49 @@
 package net.sf.anathema.basics.item.data;
 
 import net.sf.anathema.lib.control.change.IChangeListener;
-import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
+import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
+import net.sf.anathema.lib.textualdescription.ITextualDescription;
+import net.sf.anathema.lib.textualdescription.SimpleTextualDescription;
+import net.sf.anathema.lib.textualdescription.StyledTextualDescription;
 
 public class BasicItemData implements IBasicItemData {
 
-  private final IItemDescription description = new ItemDescription();
+  private final ITextualDescription name;
+  private final IStyledTextualDescription content;
 
-  public void setPrintNameAdjuster(IObjectValueChangedListener<String> adjuster) {
-    description.getName().addTextChangedListener(adjuster);
+  public BasicItemData() {
+    this(""); //$NON-NLS-1$
   }
 
-  public IItemDescription getDescription() {
-    return description;
+  public BasicItemData(String initialName) {
+    this.name = new SimpleTextualDescription(initialName);
+    this.content = new StyledTextualDescription();
   }
 
-  public boolean isDirty() {
-    return description.isDirty();
+  public ITextualDescription getName() {
+    return name;
+  }
+
+  public IStyledTextualDescription getContent() {
+    return content;
   }
 
   public void setClean() {
-    description.setClean();
+    name.setClean();
+    content.setClean();
+  }
+
+  public boolean isDirty() {
+    return name.isDirty() || content.isDirty();
   }
 
   public void addDirtyListener(IChangeListener changeListener) {
-    description.addDirtyListener(changeListener);
+    name.addDirtyChangeListener(changeListener);
+    content.addDirtyChangeListener(changeListener);
   }
 
   public void removeDirtyListener(IChangeListener changeListener) {
-    description.removeDirtyListener(changeListener);
+    name.removeDirtyChangeListener(changeListener);
+    content.removeDirtyChangeListener(changeListener);
   }
 }

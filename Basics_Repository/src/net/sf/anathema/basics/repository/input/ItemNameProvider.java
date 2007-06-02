@@ -14,7 +14,7 @@ public class ItemNameProvider {
     if (itemData == null) {
       return null;
     }
-    String name = itemData.getDescription().getName().getText();
+    String name = itemData.getName().getText();
     if (StringUtilities.isNullOrEmpty(name)) {
       name = untitledName;
     }
