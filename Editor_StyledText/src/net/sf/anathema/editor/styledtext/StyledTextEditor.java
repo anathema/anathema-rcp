@@ -1,7 +1,7 @@
 package net.sf.anathema.editor.styledtext;
 
 import net.sf.anathema.basics.item.IPersistableEditorInput;
-import net.sf.anathema.basics.item.data.ITitledText;
+import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
 import net.sf.anathema.lib.control.change.IChangeListener;

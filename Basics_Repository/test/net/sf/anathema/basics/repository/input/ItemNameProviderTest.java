@@ -1,6 +1,6 @@
 package net.sf.anathema.basics.repository.input;
 
-import net.sf.anathema.basics.item.data.TitledText;
+import net.sf.anathema.basics.item.text.TitledText;
 
 import org.junit.Assert;
 import org.junit.Before;

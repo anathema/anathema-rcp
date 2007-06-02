@@ -2,7 +2,7 @@ package net.sf.anathema.campaign.plot.creation;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.data.ITitledText;
+import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.repository.input.AbstractNewItemEditorInput;
 import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;

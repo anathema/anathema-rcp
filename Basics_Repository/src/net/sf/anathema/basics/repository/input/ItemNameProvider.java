@@ -1,7 +1,7 @@
 package net.sf.anathema.basics.repository.input;
 
 import net.disy.commons.core.util.StringUtilities;
-import net.sf.anathema.basics.item.data.ITitledText;
+import net.sf.anathema.basics.item.text.ITitledText;
 
 public class ItemNameProvider {
   private final String untitledName;

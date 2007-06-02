@@ -11,12 +11,11 @@ Require-Bundle: net.sf.anathema.basics.lib,
  org.eclipse.core.resources,
  net.sf.anathema.basics.eclipse
 Export-Package: net.sf.anathema.basics.item;uses:="net.sf.anathema.lib.util,net.sf.anathema.framework.item.change,net.sf.anathema.lib.control.objectvalue",
- net.sf.anathema.basics.item.change;uses:="net.sf.anathema.lib.control.change",
- net.sf.anathema.basics.item.data;
+ net.sf.anathema.basics.item.persistence;uses:="net.sf.anathema.framework.item,org.dom4j",
+ net.sf.anathema.basics.item.text;
   uses:="org.dom4j,
    net.sf.anathema.lib.control.change,
    net.sf.anathema.framework.item.change,
    net.sf.anathema.lib.textualdescription,
-   net.sf.anathema.lib.control.objectvalue",
- net.sf.anathema.basics.item.persistence;uses:="net.sf.anathema.framework.item,org.dom4j"
+   net.sf.anathema.lib.control.objectvalue"
 Bundle-Localization: plugin

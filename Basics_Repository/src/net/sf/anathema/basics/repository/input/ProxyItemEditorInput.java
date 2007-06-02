@@ -3,7 +3,7 @@ package net.sf.anathema.basics.repository.input;
 import java.io.IOException;
 
 import net.sf.anathema.basics.item.IPersistableEditorInput;
-import net.sf.anathema.basics.item.data.ITitledText;
+import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;

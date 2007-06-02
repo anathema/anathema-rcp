@@ -2,8 +2,8 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.data.ITitledText;
-import net.sf.anathema.basics.item.data.TitledTextPersister;
+import net.sf.anathema.basics.item.text.ITitledText;
+import net.sf.anathema.basics.item.text.TitledTextPersister;
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;

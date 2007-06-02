@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.item.data;
+package net.sf.anathema.basics.item.text;
 
 import java.util.List;
 

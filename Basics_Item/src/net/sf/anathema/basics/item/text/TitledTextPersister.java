@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.item.data;
+package net.sf.anathema.basics.item.text;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -21,13 +21,16 @@ import org.dom4j.Element;
 
 public class TitledTextPersister implements ISingleFileItemPersister<ITitledText> {
 
-  private final BasicsPersister basicItemDataPersister = new BasicsPersister();
+  private static final String TAG_SUMMARY = "Summary"; //$NON-NLS-1$
+  private static final String TAG_NAME = "Name"; //$NON-NLS-1$
+
+  private final TextPersister textPersister = new TextPersister();
   private final IExtensionProvider provider = new EclipseExtensionProvider();
 
   @Override
   public void save(OutputStream stream, ITitledText itemData) throws IOException, PersistenceException {
     Element rootElement = DocumentHelper.createElement("Item"); //$NON-NLS-1$
-    basicItemDataPersister.save(itemData, rootElement);
+    save(itemData, rootElement);
     for (IItemPersister persister : getRegisteredPersisters()) {
       persister.save(rootElement, itemData);
     }
@@ -54,7 +57,7 @@ public class TitledTextPersister implements ISingleFileItemPersister<ITitledText
   public ITitledText load(Document itemXml) throws PersistenceException {
     Element rootElement = itemXml.getRootElement();
     TitledText data = new TitledText();
-    basicItemDataPersister.load(rootElement, data);
+    load(rootElement, data);
     for (IItemPersister persister : getRegisteredPersisters()) {
       persister.load(rootElement, data);
     }
@@ -64,5 +67,15 @@ public class TitledTextPersister implements ISingleFileItemPersister<ITitledText
   @Override
   public ITitledText createNew() {
     return new TitledText();
+  }
+
+  private void save(ITitledText item, Element rootElement) {
+    textPersister.saveTextualDescription(rootElement, TAG_NAME, item.getName());
+    textPersister.saveTextualDescription(rootElement, TAG_SUMMARY, item.getContent());
+  }
+
+  private void load(Element parent, ITitledText item) {
+    textPersister.restoreTextualDescription(parent, TAG_NAME, item.getName());
+    textPersister.restoreTextualDescription(parent, TAG_SUMMARY, item.getContent());
   }
 }

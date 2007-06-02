@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.item.data;
+package net.sf.anathema.basics.item.text;
 
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
