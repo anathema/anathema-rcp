@@ -11,14 +11,11 @@ import net.sf.anathema.campaign.plot.repository.PlotPart;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.resource.CompositeImageDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.swt.graphics.ImageData;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPage;
@@ -70,24 +67,8 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     StructuredSelection structuredSelection = (StructuredSelection) lastSelection;
     if (structuredSelection.getFirstElement() instanceof PlotElementViewElement) {
       IPlotPart part = ((PlotElementViewElement) structuredSelection.getFirstElement()).getPlotElement();
-      final ImageDescriptor image = getSuccessorImage(part);
       action.setText(NLS.bind(Messages.NewPlotElementActionDelegate_AddNewMessage, getPlotUnitName(part)));
-      action.setImageDescriptor(new CompositeImageDescriptor() {
-
-        // TODO: Richtiges, kleines Overlay-Icon
-        @Override
-        protected void drawCompositeImage(int width, int height) {
-          drawImage(image.getImageData(), 0, 0);
-          String resourcePath = "icons/ButtonPlus16.png"; //$NON-NLS-1$
-          drawImage(PlotPlugin.getImageDescriptor(resourcePath).getImageData(), 5, 5);
-        }
-
-        @Override
-        protected Point getSize() {
-          ImageData data = image.getImageData();
-          return new Point(data.width, data.height);
-        }
-      });
+      action.setImageDescriptor(new NewIconCompositeImageDescriptor(getSuccessorImage(part)));
     }
   }
 
