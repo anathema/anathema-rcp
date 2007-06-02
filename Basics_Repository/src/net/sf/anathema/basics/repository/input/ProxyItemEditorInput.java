@@ -2,7 +2,7 @@ package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.IItemEditorInput;
+import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -11,12 +11,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
-public class ProxyItemEditorInput implements IItemEditorInput {
+public class ProxyItemEditorInput implements IPersistableEditorInput<IBasicItemData> {
 
-  private IFileItemEditorInput delegateInput;
+  private IFileItemEditorInput<IBasicItemData> delegateInput;
   private final String untitledName;
 
-  public ProxyItemEditorInput(String untitledName, IFileItemEditorInput initalDelegate) {
+  public ProxyItemEditorInput(String untitledName, IFileItemEditorInput<IBasicItemData> initalDelegate) {
     this.untitledName = untitledName;
     this.delegateInput = initalDelegate;
   }
@@ -27,10 +27,7 @@ public class ProxyItemEditorInput implements IItemEditorInput {
   }
 
   @Override
-  public IBasicItemData save(IProgressMonitor monitor)
-      throws IOException,
-      CoreException,
-      PersistenceException {
+  public IBasicItemData save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     IBasicItemData itemData = delegateInput.save(monitor);
     FileItemEditorInput input = new FileItemEditorInput(
         delegateInput.getFile(),

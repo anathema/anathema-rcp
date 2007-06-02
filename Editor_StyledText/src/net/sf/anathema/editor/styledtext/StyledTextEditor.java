@@ -1,6 +1,6 @@
 package net.sf.anathema.editor.styledtext;
 
-import net.sf.anathema.basics.item.IItemEditorInput;
+import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.data.IBasicItemData;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
@@ -44,7 +44,7 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     @Override
     protected IStatus run(IProgressMonitor monitor) {
       monitor.beginTask(Messages.StyledTextEditor_SaveJobTask, IProgressMonitor.UNKNOWN);
-      IItemEditorInput editorInput = getItemEditorInput();
+      IPersistableEditorInput<IBasicItemData> editorInput = getItemEditorInput();
       try {
         editorInput.save(monitor);
         display.asyncExec(new FireDirtyRunnable());
@@ -78,8 +78,9 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
     saveJob.schedule();
   }
 
-  private IItemEditorInput getItemEditorInput() {
-    return (IItemEditorInput) getEditorInput();
+  @SuppressWarnings("unchecked")
+  private IPersistableEditorInput<IBasicItemData> getItemEditorInput() {
+    return (IPersistableEditorInput<IBasicItemData>) getEditorInput();
   }
 
   @Override
@@ -90,7 +91,8 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     try {
-      IItemEditorInput itemInput = (IItemEditorInput) input;
+      setInput(input);
+      IPersistableEditorInput<IBasicItemData> itemInput = getItemEditorInput();
       itemData = itemInput.loadItem();
       itemData.addDirtyListener(new IChangeListener() {
         public void changeOccured() {
@@ -98,7 +100,6 @@ public class StyledTextEditor extends EditorPart implements IStyledTextEditor {
         }
       });
       setSite(site);
-      setInput(input);
       setTitleImage(itemInput.getImageDescriptor().createImage());
       itemData.getName().addTextChangedListener(new IObjectValueChangedListener<String>() {
         @Override

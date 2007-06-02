@@ -14,7 +14,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
-public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput {
+public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput<IBasicItemData> {
 
   private IBasicItemData item;
   private final IUnusedFileFactory unusedFileFactory;
@@ -90,7 +90,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   protected String getFileNameSuggestion(IBasicItemData itemData) {
     String name = itemData.getName().getText();
     return StringUtilities.isNullOrTrimEmpty(name)
-        ? "Unnamed"
+        ? "Unnamed" //$NON-NLS-1$
         : AnathemaStringUtilities.getFileNameRepresentation(name);
   }
 }

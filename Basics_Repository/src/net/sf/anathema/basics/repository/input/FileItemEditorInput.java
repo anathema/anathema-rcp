@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
-public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput {
+public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput<IBasicItemData> {
 
   private IBasicItemData item;
   private final ImageDescriptor imageDescriptor;
