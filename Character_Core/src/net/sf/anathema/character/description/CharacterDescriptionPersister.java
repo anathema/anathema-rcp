@@ -1,10 +1,16 @@
 package net.sf.anathema.character.description;
 
-import net.sf.anathema.basics.item.text.TextPersister;
+import java.io.IOException;
+import java.io.OutputStream;
 
+import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
+import net.sf.anathema.basics.item.text.TextPersister;
+import net.sf.anathema.lib.exception.PersistenceException;
+
+import org.dom4j.Document;
 import org.dom4j.Element;
 
-public class CharacterDescriptionPersister {
+public class CharacterDescriptionPersister implements ISingleFileItemPersister<ICharacterDescription> {
 
   private static final String TAG_CHARACTERIZATION = "Characterization"; //$NON-NLS-1$
   private static final String TAG_CHARACTER_NAME = "CharacterName"; //$NON-NLS-1$
@@ -17,10 +23,12 @@ public class CharacterDescriptionPersister {
 
   private final TextPersister textPersister = new TextPersister();
 
-  public void load(Element parent, ICharacterDescription description) {
+  public ICharacterDescription load(Document document) {
+    Element parent = document.getRootElement();
+    ICharacterDescription description = createNew();
     Element descriptionElement = parent.element(TAG_DESCRIPTION);
     if (descriptionElement == null) {
-      return;
+      return createNew();
     }
     textPersister.restoreTextualDescription(descriptionElement, TAG_CHARACTER_NAME, description.getName());
     textPersister.restoreTextualDescription(descriptionElement, TAG_PLAYER, description.getPlayer());
@@ -32,6 +40,7 @@ public class CharacterDescriptionPersister {
     textPersister.restoreTextualDescription(descriptionElement, TAG_PERIPHRASE, description.getPeriphrase());
     textPersister.restoreTextualDescription(descriptionElement, TAG_NOTES, description.getNotes());
     textPersister.restoreTextualDescription(descriptionElement, TAG_CONCEPT, description.getConcept());
+    return description;
   }
 
   public void save(Element parent, ICharacterDescription description) {
@@ -46,5 +55,16 @@ public class CharacterDescriptionPersister {
     textPersister.saveTextualDescription(descriptionElement, TAG_PERIPHRASE, description.getPeriphrase());
     textPersister.saveTextualDescription(descriptionElement, TAG_NOTES, description.getNotes());
     textPersister.saveTextualDescription(descriptionElement, TAG_CONCEPT, description.getConcept());
+  }
+
+  @Override
+  public void save(OutputStream stream, ICharacterDescription item) throws IOException, PersistenceException {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public ICharacterDescription createNew() {
+    return new CharacterDescription();
   }
 }

@@ -2,11 +2,15 @@ package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
+import net.sf.anathema.character.description.CharacterDescriptionEditor;
+import net.sf.anathema.character.description.CharacterDescriptionEditorInput;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -68,6 +72,8 @@ public class CharacterViewElement implements IViewElement {
 
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
-    // nothing to do
+    IFile file = characterFolder.getFile(new Path("basic.description")); //$NON-NLS-1$
+    IEditorInput input = new CharacterDescriptionEditorInput(file, ImageDescriptor.createFromImage(getImage()));
+    page.openEditor(input, CharacterDescriptionEditor.EDITOR_ID);
   }
 }

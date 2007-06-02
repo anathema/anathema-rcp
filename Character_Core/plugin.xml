@@ -12,5 +12,14 @@
             viewElementFactoryClass="net.sf.anathema.character.core.repository.CharacterViewElementFactory">
       </itemtype>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="net.sf.anathema.character.description.CharacterDescriptionEditor"
+            icon="icons/TabCharacter16.png"
+            id="net.sf.anathema.character.description.editor"
+            name="Character Description Editor">
+      </editor>
+   </extension>
 
 </plugin>
