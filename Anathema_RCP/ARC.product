@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.1"?>
 
-<product name="Anathema" id="net.sf.anathema.rcp.product" application="net.sf.anathema.rcp.application" useFeatures="false">
+<product name="%net.sf.anathema.rcp.ProductName" id="net.sf.anathema.rcp.product" application="net.sf.anathema.rcp.application" useFeatures="false">
+
 
    <configIni use="default"/>
 
@@ -10,6 +11,7 @@
 
    <windowImages/>
 
+
    <launcher name="anathema">
       <solaris/>
       <win useIco="true">
@@ -17,6 +19,7 @@
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
@@ -36,6 +39,7 @@
       <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.core.commands"/>
       <plugin id="org.eclipse.core.contenttype"/>
+      <plugin id="org.eclipse.core.databinding"/>
       <plugin id="org.eclipse.core.expressions"/>
       <plugin id="org.eclipse.core.filesystem"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
@@ -48,11 +52,13 @@
       <plugin id="org.eclipse.core.runtime.compatibility.auth"/>
       <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
       <plugin id="org.eclipse.core.variables"/>
+      <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.help"/>
       <plugin id="org.eclipse.jface"/>
+      <plugin id="org.eclipse.jface.databinding"/>
       <plugin id="org.eclipse.jface.text"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.swt"/>

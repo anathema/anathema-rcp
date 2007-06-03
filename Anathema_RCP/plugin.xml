@@ -28,7 +28,7 @@
             name="%net.sf.anathema.rcp.ProductName">
          <property
                name="appName"
-               value="Anathema">
+               value="%net.sf.anathema.rcp.ProductName">
          </property>
       </product>
    </extension>
