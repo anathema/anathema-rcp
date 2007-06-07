@@ -7,7 +7,7 @@ public interface ICharacterDescription extends IItem {
 
   public ITextualDescription getName();
 
-  public ITextualDescription getPeriphrase();
+  public ITextualDescription getPeriphrasis();
 
   public ITextualDescription getCharacterization();
 

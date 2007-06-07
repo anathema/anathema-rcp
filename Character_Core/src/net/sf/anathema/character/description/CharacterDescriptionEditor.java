@@ -19,8 +19,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 
-public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPart implements
-    IPersistableItemEditor {
+public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPart implements IPersistableItemEditor {
 
   public static final String EDITOR_ID = "net.sf.anathema.character.description.editor"; //$NON-NLS-1$
   private ICharacterDescription characterDescription;
@@ -53,7 +52,6 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
     }
   }
 
-
   @Override
   protected ICharacterDescription getItem() {
     return characterDescription;
@@ -62,22 +60,32 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
   @Override
   public void createPartControl(Composite parent) {
     parent.setLayout(new GridLayout(2, false));
-    Label nameLabel = new Label(parent, SWT.LEFT);
-    nameLabel.setText("Name:");
-    nameLabel.setLayoutData(createLabelData());
-    nameView = SimpleTextView.createSingleLineView(parent);
-    final ITextualDescription nameModel = getItem().getName();
-    new TextualPresenter(nameView, nameModel).initPresentation();
-    Label contentLabel = new Label(parent, SWT.LEFT);
-    contentLabel.setText("Physical Description:");
-    contentLabel.setLayoutData(createLabelData());
-    final ITextualDescription contentDescription = getItem().getPhysicalDescription();
-    ITextView physicalDescriptionView = SimpleTextView.createMultiLineView(parent);
-    new TextualPresenter(physicalDescriptionView, contentDescription).initPresentation();
+    nameView = initSingleLineText(parent, "Name", getItem().getName());
+    initSingleLineText(parent, "Player", getItem().getPlayer());
+    initSingleLineText(parent, "Concept", getItem().getConcept());
+    initSingleLineText(parent, "Periphrasis", getItem().getPeriphrasis());
+    initMultiLineText(parent, "Characterization", getItem().getCharacterization());
+    initMultiLineText(parent, "Physical Description", getItem().getPhysicalDescription());
+    initMultiLineText(parent, "Notes", getItem().getNotes());
   }
 
-  protected GridData createLabelData() {
-    return new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false);
+  private void initMultiLineText(Composite parent, String label, ITextualDescription description) {
+    createLabel(parent, label);
+    ITextView view = SimpleTextView.createMultiLineView(parent);
+    new TextualPresenter(view, description).initPresentation();
+  }
+
+  private ITextView initSingleLineText(Composite parent, String label, ITextualDescription description) {
+    createLabel(parent, label);
+    ITextView view = SimpleTextView.createSingleLineView(parent);
+    new TextualPresenter(view, description).initPresentation();
+    return view;
+  }
+
+  private void createLabel(Composite parent, String text) {
+    Label contentLabel = new Label(parent, SWT.LEFT);
+    contentLabel.setText(text + ":"); //$NON-NLS-1$
+    contentLabel.setLayoutData(new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false));
   }
 
   @Override

@@ -33,7 +33,7 @@ public class CharacterDescription extends AggregatedChangeManagement implements 
     return player;
   }
 
-  public ITextualDescription getPeriphrase() {
+  public ITextualDescription getPeriphrasis() {
     return periphraseDescription;
   }
 
