@@ -14,12 +14,11 @@ public class NewIconCompositeImageDescriptor extends CompositeImageDescriptor {
     this.image = image;
   }
 
-  // TODO: Richtiges, kleines Overlay-Icon
   @Override
   protected void drawCompositeImage(int width, int height) {
     drawImage(image.getImageData(), 0, 0);
-    String resourcePath = "icons/ButtonPlus16.png"; //$NON-NLS-1$
-    drawImage(PlotPlugin.getImageDescriptor(resourcePath).getImageData(), 5, 5);
+    String resourcePath = "icons/OverlayAdd12.png"; //$NON-NLS-1$
+    drawImage(PlotPlugin.getImageDescriptor(resourcePath).getImageData(), 4, 0);
   }
 
   @Override
