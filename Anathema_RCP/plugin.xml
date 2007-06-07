@@ -32,5 +32,16 @@
          </property>
       </product>
    </extension>
+   <extension
+         point="org.eclipse.ui.splashHandlers">
+      <splashHandlerProductBinding
+            productId="net.sf.anathema.rcp.product"
+            splashId="net.sf.anathema.rcp.splash">
+      </splashHandlerProductBinding>
+      <splashHandler
+            class="net.sf.anathema.rcp.SplashHandler"
+            id="net.sf.anathema.rcp.splash">
+      </splashHandler>
+   </extension>
 
 </plugin>
