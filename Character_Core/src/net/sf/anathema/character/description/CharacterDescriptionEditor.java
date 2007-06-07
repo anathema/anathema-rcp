@@ -60,13 +60,16 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
   @Override
   public void createPartControl(Composite parent) {
     parent.setLayout(new GridLayout(2, false));
-    nameView = initSingleLineText(parent, "Name", getItem().getName());
-    initSingleLineText(parent, "Player", getItem().getPlayer());
-    initSingleLineText(parent, "Concept", getItem().getConcept());
-    initSingleLineText(parent, "Periphrasis", getItem().getPeriphrasis());
-    initMultiLineText(parent, "Characterization", getItem().getCharacterization());
-    initMultiLineText(parent, "Physical Description", getItem().getPhysicalDescription());
-    initMultiLineText(parent, "Notes", getItem().getNotes());
+    nameView = initSingleLineText(parent, Messages.CharacterDescriptionEditor_Name, getItem().getName());
+    initSingleLineText(parent, Messages.CharacterDescriptionEditor_Player, getItem().getPlayer());
+    initSingleLineText(parent, Messages.CharacterDescriptionEditor_Concept, getItem().getConcept());
+    initSingleLineText(parent, Messages.CharacterDescriptionEditor_Periphrasis, getItem().getPeriphrasis());
+    initMultiLineText(parent, Messages.CharacterDescriptionEditor_Characterization, getItem().getCharacterization());
+    initMultiLineText(
+        parent,
+        Messages.CharacterDescriptionEditor_PhysicalDescription,
+        getItem().getPhysicalDescription());
+    initMultiLineText(parent, Messages.CharacterDescriptionEditor_Notes, getItem().getNotes());
   }
 
   private void initMultiLineText(Composite parent, String label, ITextualDescription description) {
@@ -85,7 +88,7 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
   private void createLabel(Composite parent, String text) {
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText(text + ":"); //$NON-NLS-1$
-    contentLabel.setLayoutData(new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false));
+    contentLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
   }
 
   @Override
