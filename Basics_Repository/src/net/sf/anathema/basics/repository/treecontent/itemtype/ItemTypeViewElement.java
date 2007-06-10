@@ -36,7 +36,7 @@ public class ItemTypeViewElement implements IViewElement {
   }
 
   @Override
-  public Object getParent() {
+  public IViewElement getParent() {
     return null;
   }
 
@@ -76,5 +76,10 @@ public class ItemTypeViewElement implements IViewElement {
   @Override
   public int hashCode() {
     return type.hashCode();
+  }
+
+  @Override
+  public Object getAdapter(Class adapter) {
+    return null;
   }
 }

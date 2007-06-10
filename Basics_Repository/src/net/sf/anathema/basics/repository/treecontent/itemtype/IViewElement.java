@@ -1,16 +1,17 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public interface IViewElement {
+public interface IViewElement extends IAdaptable {
 
   public boolean hasChildren();
 
-  public Object[] getChildren();
+  public IViewElement[] getChildren();
 
-  public Object getParent();
+  public IViewElement getParent();
 
   public String getDisplayName();
 

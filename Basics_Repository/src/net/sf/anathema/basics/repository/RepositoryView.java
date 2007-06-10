@@ -5,10 +5,13 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
+import net.sf.anathema.basics.repository.linkage.IResourceSelectable;
+import net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkAction;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -22,18 +25,23 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
-public class RepositoryView extends ViewPart {
+public class RepositoryView extends ViewPart implements IResourceSelectable {
   public static final String ID = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
 
   private TreeViewer viewer;
 
+  private TypedTreeContentProvider contentProvider;
+
   @Override
   public void createPartControl(Composite parent) {
+    getViewSite().getActionBars().getToolBarManager().add(
+        new RepositoryEditorLinkAction(getSite().getWorkbenchWindow(), this));
     viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
     ContextMenuManager.connect(getSite(), viewer);
-    viewer.setContentProvider(new TypedTreeContentProvider());
+    contentProvider = new TypedTreeContentProvider();
+    viewer.setContentProvider(contentProvider);
     viewer.setLabelProvider(new RepositoryLabelProvider());
-    viewer.setInput(getViewSite());    
+    viewer.setInput(getViewSite());
     initDragAndDrop();
     viewer.addOpenListener(new IOpenListener() {
       public void open(OpenEvent event) {
@@ -78,5 +86,11 @@ public class RepositoryView extends ViewPart {
   @Override
   public void setFocus() {
     viewer.getControl().setFocus();
+  }
+
+  @Override
+  public void setSelection(IResource resource) {
+    IViewElement viewElement = contentProvider.getViewElement(resource);
+    viewer.setSelection(new StructuredSelection(viewElement), true);
   }
 }

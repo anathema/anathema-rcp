@@ -12,6 +12,7 @@ import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.graphics.Image;
@@ -31,7 +32,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
   }
 
   @Override
-  public Object[] getChildren() {
+  public IViewElement[] getChildren() {
     if (children == null) {
       children = new ArrayList<IViewElement>();
       for (IPlotPart element : plotElement.getChildren()) {

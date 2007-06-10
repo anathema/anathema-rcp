@@ -19,8 +19,8 @@ public class ResourceViewElement extends AbstractResourceViewElement implements 
   }
 
   @Override
-  public Object[] getChildren() {
-    return new Object[0];
+  public IViewElement[] getChildren() {
+    return new IViewElement[0];
   }
 
   @Override

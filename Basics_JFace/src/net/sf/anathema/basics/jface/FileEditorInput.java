@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.jface;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
@@ -38,7 +39,7 @@ public class FileEditorInput implements IFileEditorInput {
 
   @SuppressWarnings("unchecked")
   public Object getAdapter(Class adapter) {
-    if (adapter == IFile.class) {
+    if (adapter == IResource.class) {
       return file;
     }
     return file.getAdapter(adapter);

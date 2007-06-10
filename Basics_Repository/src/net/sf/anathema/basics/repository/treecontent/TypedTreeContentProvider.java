@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.sf.anathema.basics.repository.itemtype.IItemType;
@@ -8,10 +9,11 @@ import net.sf.anathema.basics.repository.itemtype.ItemTypeProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.ItemTypeViewElement;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-public class TypedTreeContentProvider implements ITreeContentProvider {
+public class TypedTreeContentProvider implements ITreeContentProvider, IViewElementProvider {
 
   private List<IViewElement> elementList;
 
@@ -52,5 +54,31 @@ public class TypedTreeContentProvider implements ITreeContentProvider {
 
   private IViewElement cast(Object parentElement) {
     return ((IViewElement) parentElement);
+  }
+
+  @Override
+  public IViewElement getViewElement(IResource resource) {
+    if (resource == null) {
+      return null;
+    }
+    return getViewElement(resource, elementList);
+  }
+
+  private IViewElement getViewElement(IResource resource, IViewElement element) {
+    IResource elementResource = (IResource) element.getAdapter(IResource.class);
+    if (resource.equals(elementResource)) {
+      return element;
+    }
+    return getViewElement(resource, Arrays.asList(element.getChildren()));
+  }
+
+  private IViewElement getViewElement(IResource resource, Iterable<IViewElement> elements) {
+    for (IViewElement element : elements) {
+      IViewElement foundElement = getViewElement(resource, element);
+      if (foundElement != null) {
+        return foundElement;
+      }
+    }
+    return null;
   }
 }

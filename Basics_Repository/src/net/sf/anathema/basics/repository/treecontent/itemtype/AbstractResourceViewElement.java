@@ -5,6 +5,7 @@ import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.input.FileItemEditorInput;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorDescriptor;
@@ -68,5 +69,13 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   @Override
   public int hashCode() {
     return getEditFile().hashCode();
+  }
+
+  @Override
+  public Object getAdapter(Class adapter) {
+    if (adapter == IResource.class) {
+      return getEditFile();
+    }
+    return null;
   }
 }

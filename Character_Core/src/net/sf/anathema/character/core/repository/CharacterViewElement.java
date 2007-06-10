@@ -76,4 +76,9 @@ public class CharacterViewElement implements IViewElement {
     IEditorInput input = new CharacterDescriptionEditorInput(file, ImageDescriptor.createFromImage(getImage()));
     page.openEditor(input, CharacterDescriptionEditor.EDITOR_ID);
   }
+
+  @Override
+  public Object getAdapter(Class adapter) {
+    return null;
+  }
 }
