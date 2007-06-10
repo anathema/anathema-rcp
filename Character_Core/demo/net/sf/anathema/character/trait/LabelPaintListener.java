@@ -39,5 +39,6 @@ public final class LabelPaintListener implements PaintListener {
     int rectangleWidth = Math.max(0, width - labelPosition);
     rectangleToDraw.width = Math.min(rectangleWidth, label.getSize().x);
     rectangleToDraw.height = label.getSize().y;
+    label.redraw();
   }
 }
