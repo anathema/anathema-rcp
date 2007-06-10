@@ -18,7 +18,7 @@ public class NewIconCompositeImageDescriptor extends CompositeImageDescriptor {
   protected void drawCompositeImage(int width, int height) {
     drawImage(image.getImageData(), 0, 0);
     String resourcePath = "icons/OverlayAdd12.png"; //$NON-NLS-1$
-    drawImage(PlotPlugin.getImageDescriptor(resourcePath).getImageData(), 4, 0);
+    drawImage(PlotPlugin.getDefaultInstance().getImageDescriptor(resourcePath).getImageData(), 4, 0);
   }
 
   @Override

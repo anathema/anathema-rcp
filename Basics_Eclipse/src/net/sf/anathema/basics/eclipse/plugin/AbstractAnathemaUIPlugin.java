@@ -2,6 +2,7 @@ package net.sf.anathema.basics.eclipse.plugin;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -37,5 +38,9 @@ public abstract class AbstractAnathemaUIPlugin extends AbstractUIPlugin {
   public void stop(BundleContext context) throws Exception {
     deleteInstance();
     super.stop(context);
+  }
+
+  public ImageDescriptor getImageDescriptor(String path) {
+    return imageDescriptorFromPlugin(getSymbolicName(), path);
   }
 }

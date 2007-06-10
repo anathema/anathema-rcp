@@ -12,7 +12,6 @@ import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.graphics.Image;
@@ -44,7 +43,8 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
 
   @Override
   public Image getImage() {
-    return PlotPlugin.getImage("icons/Folder" + plotElement.getPlotUnit().getPersistenceString() + "16.png"); //$NON-NLS-1$ //$NON-NLS-2$
+    return PlotPlugin.getDefaultInstance().getImageDescriptor(
+        "icons/Folder" + plotElement.getPlotUnit().getPersistenceString() + "16.png").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
   @Override

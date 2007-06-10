@@ -12,10 +12,10 @@ public class Messages extends NLS {
   public static String CharacterDescriptionEditor_PhysicalDescription;
   public static String CharacterDescriptionEditor_Player;
   static {
-// initialize resource bundle
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
 
   private Messages() {
+    // nothing to do
   }
 }

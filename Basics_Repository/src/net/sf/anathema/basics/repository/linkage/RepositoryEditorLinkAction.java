@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.repository.linkage;
 
+import net.sf.anathema.basics.repository.RepositoryPlugin;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
@@ -12,7 +14,8 @@ public final class RepositoryEditorLinkAction extends Action {
   private final TopPartListener topPartListener;
 
   public RepositoryEditorLinkAction(IWorkbenchWindow workbenchWindow, IResourceSelectable repositoryView) {
-    super("Link", IAction.AS_CHECK_BOX);
+    super(Messages.RepositoryEditorLinkAction_LinkWithEditor, IAction.AS_CHECK_BOX);
+    setImageDescriptor(RepositoryPlugin.getDefaultInstance().getImageDescriptor("icons/synced.gif")); //$NON-NLS-1$
     this.repositoryView = repositoryView;
     topPartListener = new TopPartListener(this);
     workbenchWindow.getPartService().addPartListener(topPartListener);

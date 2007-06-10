@@ -58,7 +58,7 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
 
   private ImageDescriptor getSuccessorImage(IPlotPart plotElement) {
     String resourcePath = "icons/Folder" + plotElement.getPlotUnit().getSuccessor().getPersistenceString() + "16.png";//$NON-NLS-1$ //$NON-NLS-2$
-    return PlotPlugin.getImageDescriptor(resourcePath);
+    return PlotPlugin.getDefaultInstance().getImageDescriptor(resourcePath);
   }
 
   @Override
