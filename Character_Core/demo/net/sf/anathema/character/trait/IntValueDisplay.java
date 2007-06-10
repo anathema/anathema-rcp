@@ -22,30 +22,34 @@ public class IntValueDisplay implements IIntValueView {
   private final Image passiveImage;
   private final Image activeImage;
   private final GenericControl<IIntValueChangedListener> control = new GenericControl<IIntValueChangedListener>();
+  private OuterPaintListener rectanglePainter;
+  private final List<LabelPaintListener> labelPainters = new ArrayList<LabelPaintListener>();
   private final MouseInputAdapter mouseListener = new MouseInputAdapter() {
 
     private boolean isDrag;
+
+    @Override
+    public void mouseDown(MouseEvent e) {
+      isDrag = true;
+      int x = getXPosition(e.x, e.getSource());
+      fireValueChangedEventForCoordinate(x);
+      updateMarkerRectangle(x);
+    }
 
     @Override
     public void mouseMove(MouseEvent e) {
       if (!isDrag) {
         return;
       }
-      fireValueChangedEvent(e.x, e.getSource());
-      updateMarkerRectangle(e.x, e.getSource());
-    }
-
-    @Override
-    public void mouseDown(MouseEvent e) {
-      isDrag = true;
-      fireValueChangedEvent(e.x, e.getSource());
-      updateMarkerRectangle(e.x, e.getSource());
+      int x = getXPosition(e.x, e.getSource());
+      fireValueChangedEventForCoordinate(x);
+      updateMarkerRectangle(x);
     }
 
     @Override
     public void mouseUp(MouseEvent e) {
       if (isDrag) {
-        updateMarkerRectangle(e.x, e.getSource());
+        updateMarkerRectangle(0);
       }
       isDrag = false;
     }
@@ -58,30 +62,32 @@ public class IntValueDisplay implements IIntValueView {
     this.labels = new ArrayList<Label>(maxValue);
   }
 
-  protected void updateMarkerRectangle(int x, Object source) {
-    // TODO Auto-generated method stub
-
+  @Override
+  public void addIntValueChangedListener(IIntValueChangedListener listener) {
+    control.addListener(listener);
   }
 
-  protected void fireValueChangedEvent(int x, Object source) {
-    int xPosition = x;
-    if (source instanceof Label) {
-      xPosition += ((Label) source).getLocation().x; 
+  public Composite createComposite(Composite parent) {
+    Composite container = new Composite(parent, SWT.NULL);
+    mouseListener.addTo(container);
+    GridLayout gridLayout = new GridLayout(5, true);
+    gridLayout.horizontalSpacing = 2;
+    gridLayout.verticalSpacing = 2;
+    gridLayout.marginHeight = 2;
+    gridLayout.marginWidth = 2;
+    container.setLayout(gridLayout);
+    rectanglePainter = new OuterPaintListener(container);
+    container.addPaintListener(rectanglePainter);
+    for (int index = 0; index < maxValue; index++) {
+      Label newLabel = new Label(container, SWT.NULL);
+      LabelPaintListener labelRectanglePainter = new LabelPaintListener(newLabel);
+      labelPainters.add(labelRectanglePainter);
+      newLabel.addPaintListener(labelRectanglePainter);
+      newLabel.setImage(passiveImage);
+      mouseListener.addTo(newLabel);
+      labels.add(newLabel);
     }
-    if (xPosition < activeImage.getImageData().width / 3) {
-      fireValueChangedEvent(0);
-      return;
-    }
-    if (xPosition > labels.get(maxValue - 1).getLocation().x) {
-      fireValueChangedEvent(maxValue);
-      return;
-    }
-    for (int imageIndex = 0; imageIndex < maxValue; imageIndex++) {
-      if (xPosition < labels.get(imageIndex).getLocation().x) {
-        fireValueChangedEvent(imageIndex);
-        return;
-      }
-    }
+    return container;
   }
 
   private void fireValueChangedEvent(final int intValue) {
@@ -93,22 +99,29 @@ public class IntValueDisplay implements IIntValueView {
     });
   }
 
-  public Composite createComposite(Composite parent) {
-    Composite container = new Composite(parent, SWT.NULL);
-    mouseListener.addTo(container);
-    container.setLayout(new GridLayout(5, true));
-    for (int index = 0; index < maxValue; index++) {
-      Label newLabel = new Label(container, SWT.NULL);
-      newLabel.setImage(passiveImage);
-      mouseListener.addTo(newLabel);
-      labels.add(newLabel);
+  protected void fireValueChangedEventForCoordinate(int x) {
+    if (x < activeImage.getImageData().width / 3) {
+      fireValueChangedEvent(0);
+      return;
     }
-    return container;
+    if (x > labels.get(maxValue - 1).getLocation().x) {
+      fireValueChangedEvent(maxValue);
+      return;
+    }
+    for (int imageIndex = 0; imageIndex < maxValue; imageIndex++) {
+      if (x < labels.get(imageIndex).getLocation().x) {
+        fireValueChangedEvent(imageIndex);
+        return;
+      }
+    }
   }
 
-  @Override
-  public void addIntValueChangedListener(IIntValueChangedListener listener) {
-    control.addListener(listener);
+  private int getXPosition(int x, Object source) {
+    int xPosition = x;
+    if (source instanceof Label) {
+      xPosition += ((Label) source).getLocation().x;
+    }
+    return xPosition;
   }
 
   @Override
@@ -123,6 +136,13 @@ public class IntValueDisplay implements IIntValueView {
     }
     for (int index = newValue; index < maxValue; index++) {
       labels.get(index).setImage(passiveImage);
+    }
+  }
+
+  private void updateMarkerRectangle(int width) {
+    rectanglePainter.resizeMarkerRectangle(width);
+    for (LabelPaintListener labelPainter : labelPainters) {
+      labelPainter.resizeMarkerRectangle(width);
     }
   }
 }
