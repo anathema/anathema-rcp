@@ -1,5 +1,6 @@
 package net.sf.anathema.rcp;
 
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
@@ -17,9 +18,8 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
   @Override
   public void initialize(IWorkbenchConfigurer configurer) {
-    PlatformUI.getPreferenceStore().setValue(
-        org.eclipse.ui.IWorkbenchPreferenceConstants.SHOW_PROGRESS_ON_STARTUP,
-        true);
+    IPreferenceStore preferenceStore = PlatformUI.getPreferenceStore();
+    preferenceStore.setValue(org.eclipse.ui.IWorkbenchPreferenceConstants.SHOW_PROGRESS_ON_STARTUP, true);
   }
 
   @Override

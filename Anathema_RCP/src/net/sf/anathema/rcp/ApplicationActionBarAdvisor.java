@@ -86,6 +86,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
   protected void fillCoolBar(ICoolBarManager coolBar) {
     IToolBarManager toolBarManager = new ToolBarManager();
     coolBar.add(toolBarManager);
+    toolBarManager.add(saveAction);
+    toolBarManager.add(saveAllAction);
     addActions(toolBarManager);
   }
 
