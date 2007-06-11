@@ -29,7 +29,7 @@ public abstract class AbstractTraitViewDemo implements IDemo {
   protected abstract ISWTIntValueDisplay createDisplay(Image passiveImage, Image activeImage);
 
   private Image createImage(String imageName) {
-    return ImageDescriptor.createFromFile(CompositeTraitViewDemo.class, imageName).createImage();
+    return ImageDescriptor.createFromFile(AbstractTraitViewDemo.class, imageName).createImage();
   }
 
 }
