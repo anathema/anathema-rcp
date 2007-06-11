@@ -6,7 +6,6 @@ import java.util.List;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
-import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -15,7 +14,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class IntValueDisplay implements IIntValueView {
+public class CompositeIntValueDisplay implements ISWTIntValueDisplay {
 
   private List<Label> labels;
   private final int maxValue;
@@ -55,7 +54,7 @@ public class IntValueDisplay implements IIntValueView {
     }
   };
 
-  public IntValueDisplay(Image passiveImage, Image activeImage, int maxValue) {
+  public CompositeIntValueDisplay(Image passiveImage, Image activeImage, int maxValue) {
     this.passiveImage = passiveImage;
     this.activeImage = activeImage;
     this.maxValue = maxValue;

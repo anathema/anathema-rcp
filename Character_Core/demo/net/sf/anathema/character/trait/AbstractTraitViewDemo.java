@@ -8,17 +8,13 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 
-public class TraitViewDemo implements IDemo {
-
-  public static void main(String[] args) {
-    new DemoRunner().run(new TraitViewDemo());
-  }
+public abstract class AbstractTraitViewDemo implements IDemo {
 
   @Override
   public void createComposite(Composite parent) throws Exception {
-    Image passiveImage = createImage("BorderUnselectedButton16.png");
-    Image activeImage = createImage("BorderSolarButton16.png");
-    final IntValueDisplay intValueDisplay = new IntValueDisplay(passiveImage, activeImage, 5);
+    Image passiveImage = createImage("BorderUnselectedButton16.png"); //$NON-NLS-1$
+    Image activeImage = createImage("BorderSolarButton16.png"); //$NON-NLS-1$
+    final ISWTIntValueDisplay intValueDisplay = createDisplay(passiveImage, activeImage);
     intValueDisplay.addIntValueChangedListener(new IIntValueChangedListener() {
       @Override
       public void valueChanged(int newValue) {
@@ -26,11 +22,14 @@ public class TraitViewDemo implements IDemo {
       }
     });
     Composite composite = intValueDisplay.createComposite(parent);
-    composite.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
+    composite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
     composite.pack();
   }
 
+  protected abstract ISWTIntValueDisplay createDisplay(Image passiveImage, Image activeImage);
+
   private Image createImage(String imageName) {
-    return ImageDescriptor.createFromFile(TraitViewDemo.class, imageName).createImage();
+    return ImageDescriptor.createFromFile(CompositeTraitViewDemo.class, imageName).createImage();
   }
+
 }
