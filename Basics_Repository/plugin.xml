@@ -6,6 +6,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
+            allowMultiple="false"
             class="net.sf.anathema.basics.repository.RepositoryView"
             id="net.sf.anathema.basics.repositoryview"
             name="%repository.view.repositorytree.name">
