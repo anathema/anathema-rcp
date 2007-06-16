@@ -37,7 +37,7 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
     try {
       setInput(input);
       IPersistableEditorInput<ICharacterDescription> itemInput = getEditorInput();
-      characterDescription = itemInput.loadItem();
+      characterDescription = itemInput.getItem();
       getItem().addDirtyListener(new IChangeListener() {
         public void changeOccured() {
           getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(CharacterDescriptionEditor.this));

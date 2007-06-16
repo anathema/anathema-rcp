@@ -2,10 +2,15 @@ package net.sf.anathema.basics.repository.treecontent.itemtype;
 
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
+import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.input.FileItemEditorInput;
+import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorDescriptor;
@@ -38,10 +43,18 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   @Override
   public final void openEditor(IWorkbenchPage page) throws PartInitException {
     IFile file = getEditFile();
-    IEditorInput input = new FileItemEditorInput(file, untitledName, ImageDescriptor.createFromImage(getImage()));
-    String fileName = file.getName();
-    IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
-    page.openEditor(input, defaultEditor.getId());
+    try {
+      IEditorInput input = new FileItemEditorInput(file, untitledName, ImageDescriptor.createFromImage(getImage()));
+      String fileName = file.getName();
+      IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
+      page.openEditor(input, defaultEditor.getId());
+    }
+    catch (PersistenceException e) {
+      throw new PartInitException(new Status(IStatus.ERROR, RepositoryPlugin.ID, "Failed to create EditorInput.", e));
+    }
+    catch (CoreException e) {
+      throw new PartInitException(new Status(IStatus.ERROR, RepositoryPlugin.ID, "Failed to create EditorInput.", e));
+    }
   }
 
   @Override

@@ -30,11 +30,11 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
     this.unusedFileFactory = unusedFileFactory;
     this.imageDescriptor = imageDescriptor;
     this.provider = new ItemNameProvider(untitledName);
+    this.item = persister.createNew();
   }
 
   @Override
-  public final ITitledText loadItem() throws PersistenceException, CoreException {
-    item = persister.createNew();
+  public final ITitledText getItem() {
     return item;
   }
 
@@ -89,8 +89,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
 
   protected String getFileNameSuggestion(ITitledText itemData) {
     String name = itemData.getName().getText();
-    return StringUtilities.isNullOrTrimEmpty(name)
-        ? "Unnamed" //$NON-NLS-1$
+    return StringUtilities.isNullOrTrimEmpty(name) ? "Unnamed" //$NON-NLS-1$
         : AnathemaStringUtilities.getFileNameRepresentation(name);
   }
 }

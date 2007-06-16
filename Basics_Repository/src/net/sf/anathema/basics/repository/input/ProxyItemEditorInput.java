@@ -22,8 +22,8 @@ public class ProxyItemEditorInput implements IPersistableEditorInput<ITitledText
   }
 
   @Override
-  public ITitledText loadItem() throws PersistenceException, CoreException {
-    return delegateInput.loadItem();
+  public ITitledText getItem() {
+    return delegateInput.getItem();
   }
 
   @Override

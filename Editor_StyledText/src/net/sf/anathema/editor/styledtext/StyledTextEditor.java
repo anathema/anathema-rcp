@@ -42,7 +42,7 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart implemen
     try {
       setInput(input);
       IPersistableEditorInput<ITitledText> itemInput = getEditorInput();
-      titledText = itemInput.loadItem();
+      titledText = itemInput.getItem();
       getItem().addDirtyListener(new IChangeListener() {
         public void changeOccured() {
           firePropertyChange(PROP_DIRTY);

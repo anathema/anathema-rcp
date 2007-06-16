@@ -6,6 +6,7 @@ import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.lib.exception.PersistenceException;
+import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
@@ -20,9 +21,12 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
   private final ImageDescriptor imageDescriptor;
   private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
 
-  public CharacterDescriptionEditorInput(IFile file, ImageDescriptor imageDescriptor) {
+  public CharacterDescriptionEditorInput(IFile file, ImageDescriptor imageDescriptor)
+      throws PersistenceException,
+      CoreException {
     super(file);
     this.imageDescriptor = imageDescriptor;
+    this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
   }
 
   @Override
@@ -32,8 +36,7 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
   }
 
   @Override
-  public ICharacterDescription loadItem() throws PersistenceException, CoreException {
-    item = persister.load(DocumentUtilities.read(getFile().getContents()));
+  public ICharacterDescription getItem() {
     return item;
   }
 
@@ -54,6 +57,7 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
   @Override
   public String getName() {
     // TODO Idee für den Namen von Character Description im Editor
-    return "Description - " + item.getName().getText();
+    ITextualDescription name = item.getName();
+    return "Description - " + name.getText();
   }
 }

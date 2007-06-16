@@ -12,5 +12,5 @@ public interface IPersistableEditorInput<D extends IItem> extends IEditorInput {
 
   public D save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException;
 
-  public D loadItem() throws PersistenceException, CoreException;
+  public D getItem();
 }

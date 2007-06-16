@@ -2,12 +2,17 @@ package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
+import net.sf.anathema.character.core.CharacterCorePlugin;
 import net.sf.anathema.character.description.CharacterDescriptionEditor;
 import net.sf.anathema.character.description.CharacterDescriptionEditorInput;
+import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
@@ -73,8 +78,25 @@ public class CharacterViewElement implements IViewElement {
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     IFile file = characterFolder.getFile(new Path("basic.description")); //$NON-NLS-1$
-    IEditorInput input = new CharacterDescriptionEditorInput(file, ImageDescriptor.createFromImage(getImage()));
-    page.openEditor(input, CharacterDescriptionEditor.EDITOR_ID);
+    try {
+      IEditorInput input;
+      input = new CharacterDescriptionEditorInput(file, ImageDescriptor.createFromImage(getImage()));
+      page.openEditor(input, CharacterDescriptionEditor.EDITOR_ID);
+    }
+    catch (PersistenceException e) {
+      throw new PartInitException(new Status(
+          IStatus.ERROR,
+          CharacterCorePlugin.PLUGIN_ID,
+          "Failed to create EditorInput.",
+          e));
+    }
+    catch (CoreException e) {
+      throw new PartInitException(new Status(
+          IStatus.ERROR,
+          CharacterCorePlugin.PLUGIN_ID,
+          "Failed to create EditorInput.",
+          e));
+    }
   }
 
   @Override

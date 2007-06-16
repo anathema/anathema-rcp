@@ -20,10 +20,13 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   private final ItemNameProvider provider;
   private final TitledTextPersister persister = new TitledTextPersister();
 
-  public FileItemEditorInput(IFile file, String untitledName, ImageDescriptor imageDescriptor) {
+  public FileItemEditorInput(IFile file, String untitledName, ImageDescriptor imageDescriptor)
+      throws PersistenceException,
+      CoreException {
     super(file);
     this.imageDescriptor = imageDescriptor;
     this.provider = new ItemNameProvider(untitledName);
+    this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
   }
 
   @Override
@@ -33,8 +36,7 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   }
 
   @Override
-  public ITitledText loadItem() throws PersistenceException, CoreException {
-    item = persister.load(DocumentUtilities.read(getFile().getContents()));
+  public ITitledText getItem() {
     return item;
   }
 
