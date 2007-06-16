@@ -25,7 +25,7 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
     IAttributes attributes = getEditorInput().getItem();
     parent.setLayout(new GridLayout(2, false));
     for (final ITrait trait : attributes.getTraits()) {
-      new Label(parent, SWT.NULL).setText(trait.getTraitType().getId());
+      new Label(parent, SWT.NULL).setText(AttributeMessages.get(trait.getTraitType().getId()));
       final CanvasIntValueDisplay display = new CanvasIntValueDisplay(
           parent,
           passiveImage,

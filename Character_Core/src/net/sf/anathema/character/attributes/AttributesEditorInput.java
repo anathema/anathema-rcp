@@ -30,4 +30,10 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
   public IAttributes save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     return attributes;
   }
+
+  @Override
+  public String getName() {
+    // TODO Idee für den Namen von Attributes im Editor
+    return "Attributes - NAME";
+  }
 }
