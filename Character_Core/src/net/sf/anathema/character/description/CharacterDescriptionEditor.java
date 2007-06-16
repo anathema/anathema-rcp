@@ -2,6 +2,7 @@ package net.sf.anathema.character.description;
 
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
+import net.sf.anathema.basics.item.editor.FireDirtyRunnable;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
@@ -32,14 +33,14 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
   }
 
   @Override
-  public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+  public void init(final IEditorSite site, IEditorInput input) throws PartInitException {
     try {
       setInput(input);
       IPersistableEditorInput<ICharacterDescription> itemInput = getEditorInput();
       characterDescription = itemInput.loadItem();
       getItem().addDirtyListener(new IChangeListener() {
         public void changeOccured() {
-          firePropertyChange(PROP_DIRTY);
+          getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(CharacterDescriptionEditor.this));
         }
       });
       setSite(site);
