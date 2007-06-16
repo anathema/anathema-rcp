@@ -88,11 +88,15 @@ public class CanvasIntValueDisplay implements ISWTIntValueDisplay {
       @Override
       public void paintControl(PaintEvent e) {
         for (int index = 0; index < value; index++) {
-          e.gc.drawImage(activeImage, (index * slotWidth) + 1, 1);
+          addImage(e, index, activeImage);
         }
         for (int index = value; index < maxValue; index++) {
-          e.gc.drawImage(passiveImage, (index * slotWidth) + 1, 1);
+          addImage(e, index, passiveImage);
         }
+      }
+
+      private void addImage(PaintEvent e, int index, Image image) {
+        e.gc.drawImage(image, (index * slotWidth) + 1, 1);
       }
     });
     this.rectanglePainter = new OuterPaintListener(canvas);
