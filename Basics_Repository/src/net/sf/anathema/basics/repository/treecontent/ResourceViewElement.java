@@ -6,7 +6,7 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 import org.eclipse.core.resources.IFile;
 
-public class ResourceViewElement extends AbstractResourceViewElement implements IViewElement {
+public class ResourceViewElement extends AbstractResourceViewElement {
   private final IFile file;
 
   public ResourceViewElement(
