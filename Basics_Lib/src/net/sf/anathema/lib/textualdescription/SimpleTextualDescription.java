@@ -8,14 +8,10 @@ import net.sf.anathema.lib.control.objectvalue.ObjectValueControl;
 public class SimpleTextualDescription extends AbstractTextualDescription implements ITextualDescription {
 
   private final ObjectValueControl<String> textControl = new ObjectValueControl<String>();
-  private String text;
+  private String text = ""; //$NON-NLS-1$
 
   public SimpleTextualDescription() {
     // Nothing to do
-  }
-
-  public SimpleTextualDescription(String text) {
-    this.text = text;
   }
 
   public String getText() {

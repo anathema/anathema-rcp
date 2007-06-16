@@ -12,11 +12,7 @@ public class TitledText extends AggregatedChangeManagement implements ITitledTex
   private final IStyledTextualDescription content;
 
   public TitledText() {
-    this(""); //$NON-NLS-1$
-  }
-
-  public TitledText(String initialName) {
-    this.name = new SimpleTextualDescription(initialName);
+    this.name = new SimpleTextualDescription();
     this.content = new StyledTextualDescription();
     setChangeManagments(name, content);
   }
