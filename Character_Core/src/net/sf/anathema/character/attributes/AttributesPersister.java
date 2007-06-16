@@ -22,11 +22,24 @@ public class AttributesPersister implements ISingleFileItemPersister<IAttributes
   @Override
   public void save(OutputStream stream, IAttributes item) throws IOException, PersistenceException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public IAttributes createNew() {
-    return new Attributes(new Trait(new Identificate("Hasä")), new Trait(new Identificate("Jupp")));
+    return new Attributes(
+        createTrait("Strength"),
+        createTrait("Dexterity"),
+        createTrait("Stamina"),
+        createTrait("Charisma"),
+        createTrait("Manipulation"),
+        createTrait("Appearance"),
+        createTrait("Perception"),
+        createTrait("Intelligence"),
+        createTrait("Wits"));
+  }
+
+  private Trait createTrait(String id) {
+    return new Trait(new Identificate(id));
   }
 }
