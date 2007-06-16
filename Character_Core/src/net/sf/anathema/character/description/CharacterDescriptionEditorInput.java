@@ -57,7 +57,6 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
   @Override
   public String getName() {
     // TODO Idee für den Namen von Character Description im Editor
-    ITextualDescription name = item.getName();
-    return "Description - " + name.getText();
+    return "Description - " + item.getName().getText();
   }
 }
