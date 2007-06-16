@@ -2,10 +2,11 @@ package net.sf.anathema.lib.textualdescription;
 
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
+import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 import net.sf.anathema.lib.control.objectvalue.ObjectValueControl;
 
-public class SimpleTextualDescription extends AbstractTextualDescription implements ITextualDescription {
+public class SimpleTextualDescription extends ChangeManagement implements ITextualDescription {
 
   private final ObjectValueControl<String> textControl = new ObjectValueControl<String>();
   private String text = ""; //$NON-NLS-1$

@@ -1,10 +1,9 @@
-package net.sf.anathema.lib.textualdescription;
+package net.sf.anathema.lib.control;
 
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.control.change.IChangeListener;
 
-public abstract class AbstractTextualDescription implements ITextualDescription {
-
+public class ChangeManagement implements IChangeManagement {
   private boolean dirty = true;
   private final ChangeControl dirtyChangeControl = new ChangeControl();
 
@@ -12,14 +11,18 @@ public abstract class AbstractTextualDescription implements ITextualDescription 
   public boolean isDirty() {
     return dirty;
   }
-  
+
   @Override
   public void setClean() {
     setDirty(false);
   }
 
-  protected final void setDirty(boolean isDirty) {
+  public final void setDirty(boolean isDirty) {
     this.dirty = isDirty;
+    fireChangeEvent();
+  }
+
+  protected final void fireChangeEvent() {
     dirtyChangeControl.fireChangedEvent();
   }
 
@@ -27,7 +30,7 @@ public abstract class AbstractTextualDescription implements ITextualDescription 
   public void addDirtyListener(IChangeListener dirtyListener) {
     dirtyChangeControl.addChangeListener(dirtyListener);
   }
-  
+
   @Override
   public void removeDirtyListener(IChangeListener dirtyListener) {
     dirtyChangeControl.removeChangeListener(dirtyListener);

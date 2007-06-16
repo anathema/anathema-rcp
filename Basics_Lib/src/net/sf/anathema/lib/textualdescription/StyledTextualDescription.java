@@ -5,10 +5,11 @@ import java.util.Map;
 
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.lib.collection.IClosure;
+import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 
-public class StyledTextualDescription extends AbstractTextualDescription implements IStyledTextualDescription {
+public class StyledTextualDescription extends ChangeManagement implements IStyledTextualDescription {
 
   private final GenericControl<IStyledTextChangeListener> textListeners = new GenericControl<IStyledTextChangeListener>();
   private final TextPartCollection textPartCollection = new TextPartCollection();
