@@ -2,13 +2,17 @@ package net.sf.anathema.basics.item.editor;
 
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
+import net.sf.anathema.lib.control.change.IChangeListener;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-public abstract class AbstractPersistableItemEditorPart extends EditorPart implements IPersistableItemEditor {
+public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends EditorPart implements IPersistableItemEditor {
 
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -27,16 +31,15 @@ public abstract class AbstractPersistableItemEditorPart extends EditorPart imple
     super.firePropertyChange(propertyId);
   }
 
+  @SuppressWarnings("unchecked")
   @Override
-  public IPersistableEditorInput<?> getEditorInput() {
-    return (IPersistableEditorInput< ? >) super.getEditorInput();
+  public IPersistableEditorInput<I> getEditorInput() {
+    return (IPersistableEditorInput<I>) super.getEditorInput();
   }
-
-  protected abstract IItem getItem();
 
   @Override
   public boolean isDirty() {
-    return getItem().isDirty();
+    return getEditorInput().getItem().isDirty();
   }
 
   @Override
@@ -47,5 +50,25 @@ public abstract class AbstractPersistableItemEditorPart extends EditorPart imple
   @Override
   public void setPartName(String partName) {
     super.setPartName(partName);
+  }
+
+  @Override
+  public void init(final IEditorSite site, IEditorInput input) throws PartInitException {
+    try {
+      setInput(input);
+      IPersistableEditorInput<I> itemInput = getEditorInput();
+      I item = itemInput.getItem();
+      item.addDirtyListener(new IChangeListener() {
+        public void changeOccured() {
+          getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(AbstractPersistableItemEditorPart.this));
+        }
+      });
+      setSite(site);
+      setTitleImage(itemInput.getImageDescriptor().createImage());
+      setPartName(getEditorInput().getName());
+    }
+    catch (Exception e) {
+      throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
+    }
   }
 }

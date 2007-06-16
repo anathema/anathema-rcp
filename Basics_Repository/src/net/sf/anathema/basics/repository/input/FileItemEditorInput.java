@@ -16,15 +16,13 @@ import org.eclipse.jface.resource.ImageDescriptor;
 public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput<ITitledText> {
 
   private ITitledText item;
-  private final ImageDescriptor imageDescriptor;
   private final ItemNameProvider provider;
   private final TitledTextPersister persister = new TitledTextPersister();
 
   public FileItemEditorInput(IFile file, String untitledName, ImageDescriptor imageDescriptor)
       throws PersistenceException,
       CoreException {
-    super(file);
-    this.imageDescriptor = imageDescriptor;
+    super(file, imageDescriptor);
     this.provider = new ItemNameProvider(untitledName);
     this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
   }
@@ -42,11 +40,6 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
 
   public void setItem(ITitledText item) {
     this.item = item;
-  }
-
-  @Override
-  public ImageDescriptor getImageDescriptor() {
-    return imageDescriptor;
   }
 
   @Override

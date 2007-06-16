@@ -21,12 +21,22 @@
             id="net.sf.anathema.character.description.editor"
             name="%editor.name.characterdescription">
       </editor>
+      <editor
+            class="net.sf.anathema.character.attributes.AttributesEditor"
+            icon="icons/TabCharacter16.png"
+            id="net.sf.anathema.character.attributes.editor"
+            name="%editor.name.attributes">
+      </editor>
    </extension>
    <extension
          point="net.sf.anathema.character.models">
       <model
             id="net.sf.anathema.character.description.model"
             viewElementFactory="net.sf.anathema.character.description.CharacterDescriptionViewElementFactory">
+      </model>
+      <model
+            id="net.sf.anathema.character.attributes.model"
+            viewElementFactory="net.sf.anathema.character.attributes.AttributesViewElementFactory">
       </model>
    </extension>
 

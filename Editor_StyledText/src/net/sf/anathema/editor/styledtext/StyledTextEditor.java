@@ -1,8 +1,6 @@
 package net.sf.anathema.editor.styledtext;
 
-import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
-import net.sf.anathema.basics.item.editor.FireDirtyRunnable;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.item.text.ITitledText;
@@ -25,43 +23,20 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 
-public class StyledTextEditor extends AbstractPersistableItemEditorPart implements
+public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledText> implements
     IStyledTextEditor,
     IPersistableItemEditor {
 
-  private ITitledText titledText;
   private StyledTextView contentView;
 
   @Override
-  @SuppressWarnings("unchecked")
-  public IPersistableEditorInput<ITitledText> getEditorInput() {
-    return (IPersistableEditorInput<ITitledText>) super.getEditorInput();
-  }
-
-  @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-    try {
-      setInput(input);
-      IPersistableEditorInput<ITitledText> itemInput = getEditorInput();
-      titledText = itemInput.getItem();
-      getItem().addDirtyListener(new IChangeListener() {
-        public void changeOccured() {
-          getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(StyledTextEditor.this));
-        }
-      });
-      setSite(site);
-      setTitleImage(itemInput.getImageDescriptor().createImage());
-      getItem().getName().addTextChangedListener(new UpdatePartNameListener(this));
-      setPartName(getEditorInput().getName());
-    }
-    catch (Exception e) {
-      throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
-    }
+    super.init(site, input);
+    getItem().getName().addTextChangedListener(new UpdatePartNameListener(this));
   }
 
-  @Override
-  protected ITitledText getItem() {
-    return titledText;
+  private ITitledText getItem() {
+    return getEditorInput().getItem();
   }
 
   @Override

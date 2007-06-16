@@ -17,14 +17,12 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
     IFileItemEditorInput<ICharacterDescription> {
 
   private ICharacterDescription item;
-  private final ImageDescriptor imageDescriptor;
   private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
 
   public CharacterDescriptionEditorInput(IFile file, ImageDescriptor imageDescriptor)
       throws PersistenceException,
       CoreException {
-    super(file);
-    this.imageDescriptor = imageDescriptor;
+    super(file, imageDescriptor);
     this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
   }
 
@@ -41,11 +39,6 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
 
   public void setItem(ICharacterDescription item) {
     this.item = item;
-  }
-
-  @Override
-  public ImageDescriptor getImageDescriptor() {
-    return imageDescriptor;
   }
 
   @Override

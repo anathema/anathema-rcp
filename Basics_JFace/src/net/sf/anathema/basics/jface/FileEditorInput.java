@@ -7,9 +7,11 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
 public class FileEditorInput implements IFileEditorInput {
-  private IFile file;
+  private final IFile file;
+  private final ImageDescriptor imageDescriptor;
 
-  public FileEditorInput(IFile file) {
+  public FileEditorInput(IFile file, ImageDescriptor imageDescriptor) {
+    this.imageDescriptor = imageDescriptor;
     if (file == null) {
       throw new IllegalArgumentException();
     }
@@ -50,7 +52,7 @@ public class FileEditorInput implements IFileEditorInput {
   }
 
   public ImageDescriptor getImageDescriptor() {
-    return null;
+    return imageDescriptor;
   }
 
   public String getName() {
