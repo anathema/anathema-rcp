@@ -1,5 +1,6 @@
 package net.sf.anathema.character.description;
 
+import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.CharacterCorePlugin;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -72,14 +73,14 @@ public class CharacterDescriptionViewElement implements IViewElement {
       throw new PartInitException(new Status(
           IStatus.ERROR,
           CharacterCorePlugin.PLUGIN_ID,
-          Messages.CharacterDescriptionViewElement_CreateEditorInputFailedMessage,
+          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }
     catch (CoreException e) {
       throw new PartInitException(new Status(
           IStatus.ERROR,
           CharacterCorePlugin.PLUGIN_ID,
-          Messages.CharacterDescriptionViewElement_CreateEditorInputFailedMessage,
+          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }
   }

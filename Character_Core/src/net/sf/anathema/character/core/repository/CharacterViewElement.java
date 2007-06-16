@@ -37,13 +37,12 @@ public class CharacterViewElement implements IViewElement {
     for (IPluginExtension extension : new EclipseExtensionProvider().getExtensions("net.sf.anathema.character.models")) { //$NON-NLS-1$
       for (IExtensionElement extensionElement : extension.getElements()) {
         try {
-          ICharacterModelViewElementFactory factory = extensionElement.getAttributeAsObject(
-              "viewElementFactory", //$NON-NLS-1$
+          ICharacterModelViewElementFactory factory = extensionElement.getAttributeAsObject("viewElementFactory", //$NON-NLS-1$
               ICharacterModelViewElementFactory.class);
           viewElements.add(factory.create(this, characterFolder));
         }
         catch (ExtensionException e) {
-          CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, Messages.CharacterViewElement_ModelLoadError, e); 
+          CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, Messages.CharacterViewElement_ModelLoadError, e);
         }
       }
     }
@@ -94,7 +93,7 @@ public class CharacterViewElement implements IViewElement {
     getChildren()[0].openEditor(page);
   }
 
-  @SuppressWarnings("unchecked") //$NON-NLS-1$
+  @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
     return null;

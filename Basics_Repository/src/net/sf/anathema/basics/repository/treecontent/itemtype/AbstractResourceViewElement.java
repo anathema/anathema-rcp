@@ -4,6 +4,7 @@ import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.input.FileItemEditorInput;
+import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -50,10 +51,18 @@ public abstract class AbstractResourceViewElement implements IViewElement {
       page.openEditor(input, defaultEditor.getId());
     }
     catch (PersistenceException e) {
-      throw new PartInitException(new Status(IStatus.ERROR, RepositoryPlugin.ID, "Failed to create EditorInput.", e));
+      throw new PartInitException(new Status(
+          IStatus.ERROR,
+          RepositoryPlugin.ID,
+          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
+          e));
     }
     catch (CoreException e) {
-      throw new PartInitException(new Status(IStatus.ERROR, RepositoryPlugin.ID, "Failed to create EditorInput.", e));
+      throw new PartInitException(new Status(
+          IStatus.ERROR,
+          RepositoryPlugin.ID,
+          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
+          e));
     }
   }
 
