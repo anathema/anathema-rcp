@@ -2,6 +2,7 @@ package net.sf.anathema.editor.styledtext;
 
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
+import net.sf.anathema.basics.item.editor.FireDirtyRunnable;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.item.text.ITitledText;
@@ -45,7 +46,7 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart implemen
       titledText = itemInput.getItem();
       getItem().addDirtyListener(new IChangeListener() {
         public void changeOccured() {
-          firePropertyChange(PROP_DIRTY);
+          getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(StyledTextEditor.this));
         }
       });
       setSite(site);
