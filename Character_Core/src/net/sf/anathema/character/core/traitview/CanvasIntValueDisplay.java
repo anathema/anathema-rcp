@@ -4,6 +4,7 @@ import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
+import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -15,7 +16,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
-public class CanvasIntValueDisplay implements ISWTIntValueDisplay {
+public class CanvasIntValueDisplay implements IIntValueView {
 
   private final int maxValue;
   private final Image passiveImage;
@@ -54,12 +55,11 @@ public class CanvasIntValueDisplay implements ISWTIntValueDisplay {
       rectanglePainter.resizeMarkerRectangle(width);
     }
   };
-  private Canvas canvas;
+  private final Composite composite;
+  private final int slotWidth;
   private int value;
-  private int slotWidth;
 
-  //TODO: Auf SWT-Stil umbauen (parent)
-  public CanvasIntValueDisplay(Image passiveImage, Image activeImage, int maxValue) {
+  public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image activeImage, int maxValue) {
     ImageData passiveData = passiveImage.getImageData();
     ImageData activeData = activeImage.getImageData();
     Ensure.ensureArgumentEquals(passiveData.width, activeData.width);
@@ -68,6 +68,7 @@ public class CanvasIntValueDisplay implements ISWTIntValueDisplay {
     this.passiveImage = passiveImage;
     this.activeImage = activeImage;
     this.maxValue = maxValue;
+    this.composite = createComposite(parent);
   }
 
   @Override
@@ -75,8 +76,8 @@ public class CanvasIntValueDisplay implements ISWTIntValueDisplay {
     control.addListener(listener);
   }
 
-  public Composite createComposite(Composite parent) {
-    this.canvas = new Canvas(parent, SWT.DOUBLE_BUFFERED) {
+  private Composite createComposite(Composite parent) {
+    Canvas canvas = new Canvas(parent, SWT.DOUBLE_BUFFERED) {
       @Override
       public Rectangle computeTrim(int x, int y, int width, int height) {
         int preferredHeight = passiveImage.getImageData().height + 2;
@@ -139,6 +140,6 @@ public class CanvasIntValueDisplay implements ISWTIntValueDisplay {
   @Override
   public void setValue(int newValue) {
     this.value = newValue;
-    canvas.redraw();
+    composite.redraw();
   }
 }

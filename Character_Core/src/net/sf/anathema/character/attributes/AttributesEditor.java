@@ -27,10 +27,10 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
     for (final ITrait trait : attributes.getTraits()) {
       new Label(parent, SWT.NULL).setText(trait.getTraitType().getId());
       final CanvasIntValueDisplay display = new CanvasIntValueDisplay(
+          parent,
           passiveImage,
           activeImage,
           trait.getMaximalValue());
-      display.createComposite(parent);
       trait.addValueChangeListener(new IChangeListener() {
         @Override
         public void changeOccured() {
