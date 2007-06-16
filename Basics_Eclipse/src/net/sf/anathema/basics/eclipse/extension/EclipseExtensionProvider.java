@@ -14,11 +14,11 @@ import org.eclipse.osgi.util.NLS;
 public class EclipseExtensionProvider implements IExtensionProvider {
 
   @Override
-  public IPluginExtension[] getExtensions(String id) {
-    IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(id);
+  public IPluginExtension[] getExtensions(String pointId) {
+    IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(pointId);
     if (extensionPoint == null) {
       String message = Messages.EclipseExtensionProvider_ExtensionPointNotFoundMessage;
-      EclipsePlugin.log(IStatus.WARNING, NLS.bind(message, id), null);
+      EclipsePlugin.log(IStatus.WARNING, NLS.bind(message, pointId), null);
       return new IPluginExtension[0];
     }
     IExtension[] extensions = extensionPoint.getExtensions();

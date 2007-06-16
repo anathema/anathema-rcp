@@ -6,7 +6,6 @@ import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.lib.exception.PersistenceException;
-import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;

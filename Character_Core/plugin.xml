@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="net.sf.anathema.character.models" name="Character Models" schema="schema/net.sf.anathema.character.models.exsd"/>
    <extension
          point="net.sf.anathema.repository.itemtypes">
       <itemtype
@@ -20,6 +21,13 @@
             id="net.sf.anathema.character.description.editor"
             name="Character Description Editor">
       </editor>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.models">
+      <model
+            id="net.sf.anathema.character.description.model"
+            viewElementFactory="net.sf.anathema.character.description.CharacterDescriptionViewElementFactory">
+      </model>
    </extension>
 
 </plugin>
