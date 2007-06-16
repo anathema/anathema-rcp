@@ -11,6 +11,8 @@ public class Messages extends NLS {
   public static String CharacterDescriptionEditor_Periphrasis;
   public static String CharacterDescriptionEditor_PhysicalDescription;
   public static String CharacterDescriptionEditor_Player;
+  public static String CharacterDescriptionViewElement_CreateEditorInputFailedMessage;
+  public static String CharacterDescriptionViewElement_DisplayName;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
