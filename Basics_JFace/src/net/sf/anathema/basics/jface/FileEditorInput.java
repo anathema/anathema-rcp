@@ -45,7 +45,7 @@ public class FileEditorInput implements IFileEditorInput {
     return file.getAdapter(adapter);
   }
 
-  public IFile getFile() {
+  public final IFile getFile() {
     return file;
   }
 
