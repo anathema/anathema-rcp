@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait;
 
+import net.sf.anathema.character.core.traitview.ISWTIntValueDisplay;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
 
 import org.eclipse.jface.resource.ImageDescriptor;

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait;
+package net.sf.anathema.character.core.traitview;
 
 import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.lib.collection.IClosure;
@@ -58,6 +58,7 @@ public class CanvasIntValueDisplay implements ISWTIntValueDisplay {
   private int value;
   private int slotWidth;
 
+  //TODO: Auf SWT-Stil umbauen (parent)
   public CanvasIntValueDisplay(Image passiveImage, Image activeImage, int maxValue) {
     ImageData passiveData = passiveImage.getImageData();
     ImageData activeData = activeImage.getImageData();

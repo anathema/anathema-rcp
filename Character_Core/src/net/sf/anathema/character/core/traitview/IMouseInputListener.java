@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait;
+package net.sf.anathema.character.core.traitview;
 
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.MouseMoveListener;

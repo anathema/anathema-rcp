@@ -5,6 +5,7 @@ import java.io.IOException;
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
+import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -15,9 +16,9 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
 
   private IAttributes attributes;
 
-  public AttributesEditorInput(IFile file, ImageDescriptor imageDescriptor) {
+  public AttributesEditorInput(IFile file, ImageDescriptor imageDescriptor) throws PersistenceException, CoreException {
     super(file, imageDescriptor);
-    this.attributes = new Attributes();
+    this.attributes = new AttributesPersister().load(DocumentUtilities.read(file.getContents()));
   }
 
   @Override

@@ -2,8 +2,17 @@ package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
+import net.sf.anathema.character.core.trait.ITrait;
+import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
+import net.sf.anathema.lib.control.change.IChangeListener;
+import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttributes> implements IPersistableItemEditor {
 
@@ -11,8 +20,31 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
 
   @Override
   public void createPartControl(Composite parent) {
-    // TODO Auto-generated method stub
-
+    Image passiveImage = createImage("BorderUnselectedButton16.png"); //$NON-NLS-1$
+    Image activeImage = createImage("BorderSolarButton16.png"); //$NON-NLS-1$
+    IAttributes attributes = getEditorInput().getItem();
+    parent.setLayout(new GridLayout(2, false));
+    for (final ITrait trait : attributes.getTraits()) {
+      new Label(parent, SWT.NULL).setText(trait.getTraitType().getId());
+      final CanvasIntValueDisplay display = new CanvasIntValueDisplay(
+          passiveImage,
+          activeImage,
+          trait.getMaximalValue());
+      display.createComposite(parent);
+      trait.addValueChangeListener(new IChangeListener() {
+        @Override
+        public void changeOccured() {
+          display.setValue(trait.getValue());
+        }
+      });
+      display.addIntValueChangedListener(new IIntValueChangedListener() {
+        @Override
+        public void valueChanged(int newValue) {
+          trait.setValue(newValue);
+        }
+      });
+      display.setValue(trait.getValue());
+    }
   }
 
   @Override
@@ -20,4 +52,9 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
     // TODO Auto-generated method stub
 
   }
+
+  private Image createImage(String imageName) {
+    return ImageDescriptor.createFromFile(CanvasIntValueDisplay.class, imageName).createImage();
+  }
+
 }
