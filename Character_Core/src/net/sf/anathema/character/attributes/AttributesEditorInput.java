@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
+import net.sf.anathema.basics.repository.input.ItemFileWriter;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -15,10 +17,15 @@ import org.eclipse.jface.resource.ImageDescriptor;
 public class AttributesEditorInput extends FileEditorInput implements IFileItemEditorInput<IAttributes> {
 
   private IAttributes attributes;
+  private final IDisplayNameProvider displayNameProvider;
+  private final AttributesPersister attributesPersister = new AttributesPersister();
 
-  public AttributesEditorInput(IFile file, ImageDescriptor imageDescriptor) throws PersistenceException, CoreException {
+  public AttributesEditorInput(IFile file, ImageDescriptor imageDescriptor, IDisplayNameProvider displayNameProvider)
+      throws PersistenceException,
+      CoreException {
     super(file, imageDescriptor);
-    this.attributes = new AttributesPersister().load(DocumentUtilities.read(file.getContents()));
+    this.displayNameProvider = displayNameProvider;
+    this.attributes = attributesPersister.load(DocumentUtilities.read(file.getContents()));
   }
 
   @Override
@@ -28,12 +35,13 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
 
   @Override
   public IAttributes save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+    new ItemFileWriter().saveToFile(getFile(), attributesPersister, attributes, monitor);
     return attributes;
   }
 
   @Override
   public String getName() {
-    // TODO Idee für den Namen von Attributes im Editor
-    return "Attributes - NAME";
+    // TODO Auf Änderungen des Namens reagieren
+    return "Attributes - " + displayNameProvider.getDisplayName();
   }
 }

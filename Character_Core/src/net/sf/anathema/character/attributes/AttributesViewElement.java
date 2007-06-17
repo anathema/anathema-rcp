@@ -24,7 +24,7 @@ public class AttributesViewElement extends AbstractCharacterModelViewElement {
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     try {
       IEditorInput input = new AttributesEditorInput(
-          getFile("attributes.model"), ImageDescriptor.createFromImage(getImage())); //$NON-NLS-1$
+          getFile("attributes.model"), ImageDescriptor.createFromImage(getImage()), getParent()); //$NON-NLS-1$
       page.openEditor(input, AttributesEditor.EDITOR_ID);
     }
     catch (Exception e) {

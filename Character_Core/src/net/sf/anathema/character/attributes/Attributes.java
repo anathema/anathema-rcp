@@ -16,4 +16,14 @@ public class Attributes extends AggregatedChangeManagement implements IAttribute
   public ITrait[] getTraits() {
     return traits;
   }
+
+  @Override
+  public ITrait getTrait(String id) {
+    for (ITrait trait : traits) {
+      if (id.equals(trait.getTraitType().getId())) {
+        return trait;
+      }
+    }
+    throw new IllegalArgumentException("No trait found for id " + id);
+  }
 }

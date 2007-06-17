@@ -5,15 +5,13 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public interface IViewElement extends IAdaptable {
+public interface IViewElement extends IAdaptable, IDisplayNameProvider {
 
   public boolean hasChildren();
 
   public IViewElement[] getChildren();
 
   public IViewElement getParent();
-
-  public String getDisplayName();
 
   public Image getImage();
 

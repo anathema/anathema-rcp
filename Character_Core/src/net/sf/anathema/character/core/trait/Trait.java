@@ -1,6 +1,7 @@
 package net.sf.anathema.character.core.trait;
 
 import net.sf.anathema.lib.control.ChangeManagement;
+import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.IIdentificate;
 
@@ -8,6 +9,7 @@ public class Trait extends ChangeManagement implements ITrait {
 
   private final IIdentificate traitType;
   private int value;
+  private ChangeControl changeControl = new ChangeControl();
 
   public Trait(IIdentificate traitType) {
     this.traitType = traitType;
@@ -30,7 +32,7 @@ public class Trait extends ChangeManagement implements ITrait {
 
   @Override
   public void addValueChangeListener(IChangeListener listener) {
-    addDirtyListener(listener);
+    changeControl.addChangeListener(listener);
   }
 
   @Override
@@ -40,5 +42,6 @@ public class Trait extends ChangeManagement implements ITrait {
     }
     this.value = value;
     setDirty(true);
+    changeControl.fireChangedEvent();
   }
 }
