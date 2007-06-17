@@ -2,6 +2,7 @@ package net.sf.anathema.campaign.plot.repository;
 
 import java.io.InputStream;
 
+import net.sf.anathema.campaign.plot.repository.conversion.HierarchyCreation;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 

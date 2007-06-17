@@ -1,6 +1,7 @@
-package net.sf.anathema.campaign.plot.repository;
+package net.sf.anathema.campaign.plot.repository.conversion;
 
-import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -12,11 +13,10 @@ import org.dom4j.io.DocumentResult;
 import org.dom4j.io.DocumentSource;
 
 public class HierarchyCreation {
-  private static final String PATH = "net/sf/anathema/campaign/plot/repository/"; //$NON-NLS-1$
 
-  public Document run(Document sourceDocument) throws TransformerException {
+  public Document run(Document sourceDocument) throws TransformerException, FileNotFoundException {
     TransformerFactory factory = TransformerFactory.newInstance();
-    Transformer transformer = factory.newTransformer(new StreamSource(getStream("HierarchyCreation.xsl"))); //$NON-NLS-1$
+    Transformer transformer = factory.newTransformer(new StreamSource(new FileInputStream("xsl/HierarchyCreation.xsl"))); //$NON-NLS-1$
     DocumentSource source = new DocumentSource(sourceDocument);
     DocumentResult result = new DocumentResult();
     transformer.transform(source, result);
@@ -25,7 +25,4 @@ public class HierarchyCreation {
     return resultdocument;
   }
 
-  private InputStream getStream(String string) {
-    return getClass().getClassLoader().getResourceAsStream(PATH + string);
-  }
 }
