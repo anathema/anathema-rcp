@@ -1,5 +1,7 @@
 package net.sf.anathema.lib.util;
 
+import net.disy.commons.core.util.ObjectUtilities;
+
 public class Identificate implements IIdentificate {
 
   private final String id;
@@ -23,11 +25,11 @@ public class Identificate implements IIdentificate {
       return false;
     }
     Identificate other = (Identificate) obj;
-    return other.id.equals(id);
+    return ObjectUtilities.equals(other.id, id);
   }
 
   @Override
   public int hashCode() {
-    return getId().hashCode();
+    return id == null ? -1 : getId().hashCode();
   }
 }
