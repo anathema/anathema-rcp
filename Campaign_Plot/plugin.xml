@@ -6,7 +6,7 @@
       <itemtype
             icon="icons/TabSeries16.png"
             id="net.sf.anathema.itemtype.Plot"
-            project="Series"
+            project="Plot"
             type="%itemtype.type.plot"
             untitledName="%itemtype.untitled.plot"
             viewElementFactoryClass="net.sf.anathema.campaign.plot.repository.PlotViewElementFactory">
