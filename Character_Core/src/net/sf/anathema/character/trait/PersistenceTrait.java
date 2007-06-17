@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.trait;
+package net.sf.anathema.character.trait;
 
 import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.lib.control.AggregatedChangeManagement;

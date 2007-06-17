@@ -1,7 +1,7 @@
 package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.basics.item.IItem;
-import net.sf.anathema.character.core.trait.ITrait;
+import net.sf.anathema.character.trait.ITrait;
 
 public interface IAttributes extends IItem {
 

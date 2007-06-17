@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.trait;
+package net.sf.anathema.character.trait;
 
 public interface IPersistenceTrait extends IBasicTrait{
 

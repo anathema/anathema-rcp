@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.trait;
+package net.sf.anathema.character.trait;
 
 import net.sf.anathema.lib.control.IChangeManagement;
 import net.sf.anathema.lib.control.change.IChangeListener;

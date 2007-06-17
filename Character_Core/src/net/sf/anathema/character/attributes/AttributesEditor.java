@@ -2,8 +2,8 @@ package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
-import net.sf.anathema.character.core.trait.ITrait;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
+import net.sf.anathema.character.trait.ITrait;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
 

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
-import net.sf.anathema.character.core.trait.IPersistenceTrait;
-import net.sf.anathema.character.core.trait.ITrait;
-import net.sf.anathema.character.core.trait.PersistenceTrait;
-import net.sf.anathema.character.core.trait.Trait;
+import net.sf.anathema.character.trait.IPersistenceTrait;
+import net.sf.anathema.character.trait.ITrait;
+import net.sf.anathema.character.trait.PersistenceTrait;
+import net.sf.anathema.character.trait.Trait;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
