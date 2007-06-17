@@ -7,9 +7,9 @@ public interface ITrait extends IChangeManagement, IBasicTrait {
 
   public void addValueChangeListener(IChangeListener listener);
   
-  public int getValue();
-  
-  public void setValue(int value);
-
   public int getMaximalValue();
+  
+  public int getValue();
+
+  public void setValue(int value);
 }
