@@ -23,15 +23,23 @@ public final class OuterPaintListener implements PaintListener {
     if (rectangleToDraw.width == 0) {
       return;
     }
-    e.gc.drawRectangle(rectangleToDraw);
-    Color color = new Color(e.display, 120, 120, 120);
+    e.gc.drawRoundRectangle(rectangleToDraw.x, rectangleToDraw.y, rectangleToDraw.width, rectangleToDraw.height, 3, 3);
+    Color grey = new Color(e.display, 120, 120, 120);
+    Color white = new Color(e.display, 255, 255, 255);
     e.gc.setAlpha(120);
     try {
-      e.gc.setBackground(color);
-      e.gc.fillRectangle(rectangleToDraw);
+      e.gc.setBackground(grey);
+      e.gc.setForeground(white);
+      e.gc.fillGradientRectangle(
+          rectangleToDraw.x,
+          rectangleToDraw.y,
+          rectangleToDraw.width,
+          rectangleToDraw.height,
+          false);
     }
     finally {
-      color.dispose();
+      grey.dispose();
+      white.dispose();
     }
   }
 
