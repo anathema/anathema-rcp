@@ -8,7 +8,7 @@ public interface IIntValueModel {
 
   public void setValue(int value);
 
-  public void addChangeListener(IChangeListener changeListener);
+  public void addValueChangeListener(IChangeListener changeListener);
 
-  public void removeChangeListener(IChangeListener changeListener);
+  public void removeValueChangeListener(IChangeListener changeListener);
 }

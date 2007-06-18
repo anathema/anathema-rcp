@@ -31,8 +31,8 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   public DisplayTrait(IBasicTrait basicTrait, ICharacterBasics basics) {
     this.basicTrait = basicTrait;
     this.basics = basics;
-    basicTrait.getCreationModel().addChangeListener(creationListener);
-    basicTrait.getExperiencedModel().addChangeListener(experiencedListener);
+    basicTrait.getCreationModel().addValueChangeListener(creationListener);
+    basicTrait.getExperiencedModel().addValueChangeListener(experiencedListener);
   }
 
   @Override
@@ -75,8 +75,8 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public void dispose() {
-    basicTrait.getCreationModel().removeChangeListener(creationListener);
-    basicTrait.getExperiencedModel().removeChangeListener(experiencedListener);
+    basicTrait.getCreationModel().removeValueChangeListener(creationListener);
+    basicTrait.getExperiencedModel().removeValueChangeListener(experiencedListener);
     changeControl.clear();
   }
 }
