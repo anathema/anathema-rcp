@@ -33,9 +33,10 @@ public class AttributesPersister implements ISingleFileItemPersister<IAttributes
       IIdentificate traitType = new Identificate(ElementUtilities.getRequiredAttrib(traitElement, ATTRIB_ID));
       IBasicTrait trait = new BasicTrait(traitType);
       attributeTraits.add(trait);
-      trait.setCreationValue(ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_CREATION_VALUE));
+      trait.getCreationModel().setValue(ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_CREATION_VALUE));
       if (traitElement.attribute(ATTRIB_EXPERIENCED_VALUE) != null) {
-        trait.setExperiencedValue(ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE));
+        trait.getExperiencedModel().setValue(
+            ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE));
       }
     }
     Attributes attributes = new Attributes(attributeTraits.toArray(new IBasicTrait[attributeTraits.size()]));
@@ -50,9 +51,9 @@ public class AttributesPersister implements ISingleFileItemPersister<IAttributes
     for (IBasicTrait trait : item.getTraits()) {
       Element traitElement = attributesElement.addElement(TAG_TRAIT);
       traitElement.addAttribute(ATTRIB_ID, trait.getTraitType().getId());
-      int creationValue = trait.getCreationValue();
+      int creationValue = trait.getCreationModel().getValue();
       ElementUtilities.addAttribute(traitElement, ATTRIB_CREATION_VALUE, creationValue);
-      int experiencedValue = trait.getExperiencedValue();
+      int experiencedValue = trait.getExperiencedModel().getValue();
       if (experiencedValue > -1) {
         ElementUtilities.addAttribute(traitElement, ATTRIB_EXPERIENCED_VALUE, experiencedValue);
       }

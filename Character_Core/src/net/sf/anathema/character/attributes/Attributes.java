@@ -17,8 +17,8 @@ public class Attributes extends ChangeManagement implements IAttributes {
   public Attributes(IBasicTrait... traits) {
     this.traits = traits;
     for (IBasicTrait basicTrait : traits) {
-      basicTrait.addCreationChangeListener(dirtyListener);
-      basicTrait.addExperienceChangeListener(dirtyListener);
+      basicTrait.getCreationModel().addChangeListener(dirtyListener);
+      basicTrait.getExperiencedModel().addChangeListener(dirtyListener);
     }
   }
 
