@@ -12,6 +12,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 
 public class PlotViewElementFactory extends AbstractFolderBasedViewElementFactory {
@@ -27,7 +28,7 @@ public class PlotViewElementFactory extends AbstractFolderBasedViewElementFactor
         elements.add(new PlotElementViewElement(folder, rootPart, parent, getItemType().getUntitledName()));
       }
       catch (Exception e) {
-        PlotPlugin.getDefaultInstance().createErrorStatus(Messages.PlotViewElementFactory_LoadingPlotErrorMessage, e);
+        PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.PlotViewElementFactory_LoadingPlotErrorMessage, e);
       }
     }
     return elements;

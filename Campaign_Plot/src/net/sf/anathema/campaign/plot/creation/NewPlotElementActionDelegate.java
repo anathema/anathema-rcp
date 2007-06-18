@@ -10,6 +10,7 @@ import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
 
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
@@ -41,8 +42,7 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
       page.openEditor(input, PlotPlugin.PLOT_EDITOR_ID);
     }
     catch (PartInitException e) {
-      // TODO Fehlerhandling
-      e.printStackTrace();
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, "Failed to open Plot Editor.", e);
     }
   }
 
