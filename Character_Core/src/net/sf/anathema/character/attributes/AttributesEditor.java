@@ -49,8 +49,7 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
 
   @Override
   public void setFocus() {
-    // TODO Auto-generated method stub
-
+    // nothing to do
   }
 
   private Image createImage(String imageName) {
