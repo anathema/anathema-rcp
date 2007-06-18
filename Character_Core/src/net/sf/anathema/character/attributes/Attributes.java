@@ -1,25 +1,35 @@
 package net.sf.anathema.character.attributes;
 
-import net.sf.anathema.character.trait.ITrait;
-import net.sf.anathema.lib.control.AggregatedChangeManagement;
+import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.lib.control.ChangeManagement;
+import net.sf.anathema.lib.control.change.IChangeListener;
 
-public class Attributes extends AggregatedChangeManagement implements IAttributes {
+public class Attributes extends ChangeManagement implements IAttributes {
 
-  private final ITrait[] traits;
+  private final IBasicTrait[] traits;
+  private final IChangeListener dirtyListener = new IChangeListener() {
+    @Override
+    public void changeOccured() {
+      setDirty(true);
+    }
+  };
 
-  public Attributes(ITrait... traits) {
+  public Attributes(IBasicTrait... traits) {
     this.traits = traits;
-    setChangeManagments(traits);
+    for (IBasicTrait basicTrait : traits) {
+      basicTrait.addCreationChangeListener(dirtyListener);
+      basicTrait.addExperienceChangeListener(dirtyListener);
+    }
   }
 
   @Override
-  public ITrait[] getTraits() {
+  public IBasicTrait[] getTraits() {
     return traits;
   }
 
   @Override
-  public ITrait getTrait(String id) {
-    for (ITrait trait : traits) {
+  public IBasicTrait getTrait(String id) {
+    for (IBasicTrait trait : traits) {
       if (id.equals(trait.getTraitType().getId())) {
         return trait;
       }

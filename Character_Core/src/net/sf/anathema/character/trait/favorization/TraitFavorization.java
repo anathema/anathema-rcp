@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.favorization;
 
-import net.sf.anathema.character.trait.ITrait;
+import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.util.IIdentificate;
@@ -10,7 +10,7 @@ public class TraitFavorization implements ITraitFavorization {
   private FavorableState state;
   private final GenericControl<IFavorableStateChangedListener> favorableStateControl = new GenericControl<IFavorableStateChangedListener>();
   private final IIncrementChecker favoredIncrementChecker;
-  private final ITrait trait;
+  private final IDisplayTrait trait;
   private final IIdentificate caste;
   private final boolean isRequiredFavored;
   private final ICasteProvider basicData;
@@ -19,7 +19,7 @@ public class TraitFavorization implements ITraitFavorization {
       ICasteProvider basicData,
       IIdentificate caste,
       IIncrementChecker favoredIncrementChecker,
-      ITrait trait,
+      IDisplayTrait trait,
       boolean isRequiredFavored) {
     this.basicData = basicData;
     this.caste = caste;

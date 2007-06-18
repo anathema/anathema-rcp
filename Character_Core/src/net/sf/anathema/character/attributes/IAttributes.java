@@ -1,11 +1,11 @@
 package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.basics.item.IItem;
-import net.sf.anathema.character.trait.ITrait;
+import net.sf.anathema.character.trait.IBasicTrait;
 
 public interface IAttributes extends IItem {
 
-  public ITrait[] getTraits();
+  public IBasicTrait[] getTraits();
 
-  public ITrait getTrait(String id);
+  public IBasicTrait getTrait(String id);
 }

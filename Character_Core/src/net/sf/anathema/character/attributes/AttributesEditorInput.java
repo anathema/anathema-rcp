@@ -1,11 +1,17 @@
 package net.sf.anathema.character.attributes;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.basics.ICharacterBasics;
+import net.sf.anathema.character.trait.DisplayTrait;
+import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -43,5 +49,21 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
   public String getName() {
     // TODO Auf Änderungen des Namens reagieren
     return "Attributes - " + displayNameProvider.getDisplayName();
+  }
+
+  public Iterable<IDisplayTrait> createDisplayTraits() {
+    // TODO Daten in den ViewElements lagern (Basics im Parent) ??? 
+    ICharacterBasics basics = new ICharacterBasics() {
+      @Override
+      public boolean isExperienced() {
+        return false;
+      }
+    };
+    // TODO Reihenfolge und Darstellungsgruppen 
+    List<IDisplayTrait> displayTraits = new ArrayList<IDisplayTrait>();
+    for (IBasicTrait trait : getItem().getTraits()) {
+      displayTraits.add(new DisplayTrait(trait, basics));
+    }
+    return displayTraits;
   }
 }

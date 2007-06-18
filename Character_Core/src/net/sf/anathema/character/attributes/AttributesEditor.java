@@ -3,7 +3,7 @@ package net.sf.anathema.character.attributes;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
-import net.sf.anathema.character.trait.ITrait;
+import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
 
@@ -22,9 +22,9 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
   public void createPartControl(Composite parent) {
     Image passiveImage = createImage("BorderUnselectedButton16.png"); //$NON-NLS-1$
     Image activeImage = createImage("BorderSolarButton16.png"); //$NON-NLS-1$
-    IAttributes attributes = getEditorInput().getItem();
+    AttributesEditorInput editorInput = (AttributesEditorInput) getEditorInput();
     parent.setLayout(new GridLayout(2, false));
-    for (final ITrait trait : attributes.getTraits()) {
+    for (final IDisplayTrait trait : editorInput.createDisplayTraits()) {
       new Label(parent, SWT.NULL).setText(AttributeMessages.get(trait.getTraitType().getId()));
       final CanvasIntValueDisplay display = new CanvasIntValueDisplay(
           parent,
