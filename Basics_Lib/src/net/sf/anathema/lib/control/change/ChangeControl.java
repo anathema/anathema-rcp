@@ -24,4 +24,8 @@ public class ChangeControl {
   public void removeChangeListener(IChangeListener listener) {
     listeners.remove(listener);
   }
+
+  public void clear() {
+    listeners.clear();
+  }
 }
