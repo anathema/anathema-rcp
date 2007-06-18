@@ -7,15 +7,15 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 public interface IDisplayTrait extends IChangeManagement, IDisposable {
 
-  public void addValueChangeListener(IChangeListener listener);
-
-  public int getMaximalValue();
-  
-  public IIdentificate getTraitType();
-  
   public int getValue();
 
-  void removeValueChangeListener(IChangeListener listener);
-
   public void setValue(int value);
+
+  public int getMaximalValue();
+
+  public IIdentificate getTraitType();
+
+  public void addValueChangeListener(IChangeListener listener);
+
+  public void removeValueChangeListener(IChangeListener listener);
 }
