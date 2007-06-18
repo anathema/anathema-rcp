@@ -6,6 +6,7 @@ import net.sf.anathema.character.core.CharacterCorePlugin;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
@@ -44,7 +45,7 @@ public abstract class AbstractCharacterModelViewElement implements IViewElement 
 
   @Override
   public final boolean equals(Object object) {
-    if (object == null || object.getClass() == getClass()) {
+    if (object == null || object.getClass() != getClass()) {
       return false;
     }
     AbstractCharacterModelViewElement other = (AbstractCharacterModelViewElement) object;
@@ -54,6 +55,9 @@ public abstract class AbstractCharacterModelViewElement implements IViewElement 
   @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
+    if (adapter == IResource.class) {
+      return getEditFile();
+    }
     return null;
   }
 
@@ -68,4 +72,6 @@ public abstract class AbstractCharacterModelViewElement implements IViewElement 
         BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
         e));
   }
+
+  protected abstract IFile getEditFile();
 }
