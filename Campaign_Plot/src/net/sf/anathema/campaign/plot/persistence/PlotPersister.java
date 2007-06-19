@@ -25,10 +25,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 public class PlotPersister {
 
   public static final String HIERARCHY_FILE_NAME = "hierarchy.xml"; //$NON-NLS-1$
+  private static final String TAG_PLOT = "Plot"; //$NON-NLS-1$
+  private static final String ATTRIB_REPOSITORY_ID = "repositoryId"; //$NON-NLS-1$
 
   private void addChildren(PlotPart root, Element element) throws PersistenceException {
     for (Element childElement : ElementUtilities.elements(element)) {
-      String id = ElementUtilities.getRequiredAttrib(childElement, ISeriesPersistenceConstants.ATTRIB_REPOSITORY_ID);
+      String id = ElementUtilities.getRequiredAttrib(childElement, ATTRIB_REPOSITORY_ID);
       PlotPart newPart = root.addChild(id);
       addChildren(newPart, childElement);
     }
@@ -36,7 +38,7 @@ public class PlotPersister {
 
   private IPlotPart load(Document document) throws PersistenceException {
     PlotPart root = PlotPart.createPlotRoot();
-    Element element = document.getRootElement().element(ISeriesPersistenceConstants.TAG_PLOT);
+    Element element = document.getRootElement().element(TAG_PLOT);
     addChildren(root, element);
     return root;
   }
@@ -63,7 +65,7 @@ public class PlotPersister {
 
   private void save(Element parentElement, IPlotPart part) {
     Element partElement = parentElement.addElement(part.getPlotUnit().getPersistenceString());
-    partElement.addAttribute(ISeriesPersistenceConstants.ATTRIB_REPOSITORY_ID, part.getRepositoryId());
+    partElement.addAttribute(ATTRIB_REPOSITORY_ID, part.getRepositoryId());
     for (IPlotPart childPart : part.getChildren()) {
       save(partElement, childPart);
     }
@@ -77,7 +79,7 @@ public class PlotPersister {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     try {
       Document document = DocumentHelper.createDocument(DocumentHelper.createElement("hierarchy")); //$NON-NLS-1$
-      Element plotElement = document.getRootElement().addElement(ISeriesPersistenceConstants.TAG_PLOT);
+      Element plotElement = document.getRootElement().addElement(TAG_PLOT);
       for (IPlotPart plotPart : root.getChildren()) {
         save(plotElement, plotPart);
       }
