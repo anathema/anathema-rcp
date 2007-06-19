@@ -29,7 +29,7 @@ public class ItemTypeViewElement implements IViewElement {
       return elements.toArray(new IViewElement[elements.size()]);
     }
     catch (ExtensionException e) {
-      // TODO: Fehlerhandling
+      // TODO Fehlerhandling
       e.printStackTrace();
       return new IViewElement[0];
     }

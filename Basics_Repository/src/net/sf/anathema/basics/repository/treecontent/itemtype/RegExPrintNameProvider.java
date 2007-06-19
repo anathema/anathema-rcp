@@ -14,7 +14,7 @@ public class RegExPrintNameProvider implements IPrintNameProvider {
 
   private static final Pattern PRINT_NAME_PATTERN = Pattern.compile("<Name><!\\[CDATA\\[(.*)\\]\\]></Name>"); //$NON-NLS-1$
 
-  //TODO: Problem mit unbenannten Serienfiles!?
+  //TODO Problem mit unbenannten Serienfiles!?
   public String getPrintName(IFile file) {
     InputStreamReader reader = null;
     try {
