@@ -8,6 +8,7 @@ import net.sf.anathema.campaign.plot.repository.EnumInternationalizer;
 import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
+import net.sf.anathema.campaign.plot.repository.PlotUtils;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;
@@ -52,13 +53,8 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     PlotPart plotElement = (PlotPart) plotViewElement.getPlotElement();
     IFolder folder = (IFolder) plotViewElement.getEditFile().getParent();
     IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, "srs"); //$NON-NLS-1$
-    ImageDescriptor imageDescriptor = getSuccessorImage(plotElement);
+    ImageDescriptor imageDescriptor = PlotUtils.getImage(plotElement.getPlotUnit().getSuccessor());
     return new NewPlotElementEditorInput(unusedFileFactory, imageDescriptor, unnamedName, plotElement, folder);
-  }
-
-  private ImageDescriptor getSuccessorImage(IPlotPart plotElement) {
-    String resourcePath = "icons/Folder" + plotElement.getPlotUnit().getSuccessor().getPersistenceString() + "16.png";//$NON-NLS-1$ //$NON-NLS-2$
-    return PlotPlugin.getDefaultInstance().getImageDescriptor(resourcePath);
   }
 
   @Override
@@ -68,7 +64,7 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     if (structuredSelection.getFirstElement() instanceof PlotElementViewElement) {
       IPlotPart part = ((PlotElementViewElement) structuredSelection.getFirstElement()).getPlotElement();
       action.setText(NLS.bind(Messages.NewPlotElementActionDelegate_AddNewMessage, getPlotUnitName(part)));
-      action.setImageDescriptor(new NewIconCompositeImageDescriptor(getSuccessorImage(part)));
+      action.setImageDescriptor(new NewIconCompositeImageDescriptor(PlotUtils.getImage(part.getPlotUnit().getSuccessor())));
     }
   }
 

@@ -7,7 +7,6 @@ import java.util.List;
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
-import net.sf.anathema.campaign.plot.PlotPlugin;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 
 import org.eclipse.core.resources.IFile;
@@ -43,8 +42,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
 
   @Override
   public Image getImage() {
-    return PlotPlugin.getDefaultInstance().getImageDescriptor(
-        "icons/Folder" + plotElement.getPlotUnit().getPersistenceString() + "16.png").createImage(); //$NON-NLS-1$ //$NON-NLS-2$
+    return PlotUtils.getImage(plotElement.getPlotUnit()).createImage();
   }
 
   @Override
