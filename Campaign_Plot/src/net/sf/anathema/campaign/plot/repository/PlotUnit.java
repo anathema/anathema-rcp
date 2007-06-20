@@ -1,14 +1,12 @@
 package net.sf.anathema.campaign.plot.repository;
 
-import net.sf.anathema.lib.util.IIdentificate;
-
 // TODO Maybe we could eliminate PlotUnits?
 // At this point they are only necessary for I18n, which could be done via ext. points or a short XML file.
-public enum PlotUnit implements IIdentificate {
+public enum PlotUnit implements IPlotUnit {
 
   Scene, Episode, Story, Plot;
 
-  public PlotUnit getSuccessor() {
+  public IPlotUnit getSuccessor() {
     if (ordinal() == 0) {
       return Scene;
     }
@@ -18,5 +16,9 @@ public enum PlotUnit implements IIdentificate {
   @Override
   public String getId() {
     return name();
+  }
+
+  public String getName() {
+    return new EnumInternationalizer(net.sf.anathema.campaign.plot.repository.Messages.class).getDisplayName(this);
   }
 }

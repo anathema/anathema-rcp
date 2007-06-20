@@ -9,14 +9,14 @@ public class PlotPart implements IPlotPart {
 
   private final List<IPlotPart> children = new ArrayList<IPlotPart>();
   private String repositoryId;
-  private final PlotUnit plotUnit;
+  private final IPlotUnit plotUnit;
   private IPlotPart parent;
 
   public static PlotPart createPlotRoot() {
     return new PlotPart("main", PlotUnit.Plot, null); //$NON-NLS-1$
   }
 
-  public PlotPart(String repositoryId, PlotUnit plotUnit, IPlotPart parent) {
+  public PlotPart(String repositoryId, IPlotUnit plotUnit, IPlotPart parent) {
     this.repositoryId = repositoryId;
     this.plotUnit = plotUnit;
     this.parent = parent;
@@ -33,7 +33,7 @@ public class PlotPart implements IPlotPart {
   }
 
   public PlotPart addChild(String childId) {
-    PlotUnit unitSuccessor = plotUnit.getSuccessor();
+    IPlotUnit unitSuccessor = plotUnit.getSuccessor();
     Ensure.ensureArgumentNotNull("No child can be added for plot unit:" + plotUnit, unitSuccessor); //$NON-NLS-1$
     PlotPart plotPart = new PlotPart(childId, unitSuccessor, this);
     children.add(plotPart);
@@ -41,7 +41,7 @@ public class PlotPart implements IPlotPart {
   }
 
   @Override
-  public PlotUnit getPlotUnit() {
+  public IPlotUnit getPlotUnit() {
     return plotUnit;
   }
 

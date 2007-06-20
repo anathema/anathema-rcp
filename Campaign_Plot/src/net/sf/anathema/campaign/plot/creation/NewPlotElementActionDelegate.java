@@ -64,12 +64,12 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     if (structuredSelection.getFirstElement() instanceof PlotElementViewElement) {
       IPlotPart part = ((PlotElementViewElement) structuredSelection.getFirstElement()).getPlotElement();
       action.setText(NLS.bind(Messages.NewPlotElementActionDelegate_AddNewMessage, getPlotUnitName(part)));
-      action.setImageDescriptor(new NewIconCompositeImageDescriptor(PlotUtils.getImage(part.getPlotUnit().getSuccessor())));
+      action.setImageDescriptor(new NewIconCompositeImageDescriptor(PlotUtils.getImage(part.getPlotUnit()
+          .getSuccessor())));
     }
   }
 
   private String getPlotUnitName(IPlotPart part) {
-    return new EnumInternationalizer(net.sf.anathema.campaign.plot.repository.Messages.class).getDisplayName(part.getPlotUnit()
-        .getSuccessor());
+    return part.getPlotUnit().getSuccessor().getName();
   }
 }

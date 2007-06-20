@@ -8,7 +8,7 @@ public interface IPlotPart {
 
   public IPlotPart getParent();
 
-  public PlotUnit getPlotUnit();
+  public IPlotUnit getPlotUnit();
 
   public String getRepositoryId();
 
