@@ -47,6 +47,6 @@ public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
 
   @Override
   protected String getFileNameSuggestion(ITitledText item) {
-    return parentPart.getPlotUnit().getSuccessor().getPersistenceString();
+    return parentPart.getPlotUnit().getSuccessor().getId();
   }
 }

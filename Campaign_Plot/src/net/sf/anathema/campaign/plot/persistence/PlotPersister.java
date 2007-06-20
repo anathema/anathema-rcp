@@ -27,6 +27,7 @@ public class PlotPersister {
   public static final String HIERARCHY_FILE_NAME = "hierarchy.xml"; //$NON-NLS-1$
   private static final String TAG_PLOT = "Plot"; //$NON-NLS-1$
   private static final String ATTRIB_REPOSITORY_ID = "repositoryId"; //$NON-NLS-1$
+  private static final String TAG_PLOT_ELEMENT = "plotElement"; //$NON-NLS-1$
 
   private void addChildren(PlotPart root, Element element) throws PersistenceException {
     for (Element childElement : ElementUtilities.elements(element)) {
@@ -64,7 +65,7 @@ public class PlotPersister {
   }
 
   private void save(Element parentElement, IPlotPart part) {
-    Element partElement = parentElement.addElement(part.getPlotUnit().getPersistenceString());
+    Element partElement = parentElement.addElement(TAG_PLOT_ELEMENT);
     partElement.addAttribute(ATTRIB_REPOSITORY_ID, part.getRepositoryId());
     for (IPlotPart childPart : part.getChildren()) {
       save(partElement, childPart);
