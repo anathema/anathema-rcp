@@ -19,6 +19,6 @@ public enum PlotUnit implements IPlotUnit {
   }
 
   public String getName() {
-    return new EnumInternationalizer(net.sf.anathema.campaign.plot.repository.Messages.class).getDisplayName(this);
+    return new EnumInternationalizer(Messages.class).getDisplayName(this);
   }
 }
