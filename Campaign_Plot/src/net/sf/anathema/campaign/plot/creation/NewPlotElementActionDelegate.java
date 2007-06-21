@@ -4,11 +4,9 @@ import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
 import net.sf.anathema.basics.repository.input.UnusedFileFactory;
 import net.sf.anathema.campaign.plot.PlotPlugin;
-import net.sf.anathema.campaign.plot.repository.EnumInternationalizer;
 import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
-import net.sf.anathema.campaign.plot.repository.PlotUtils;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;
@@ -52,8 +50,8 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     PlotElementViewElement plotViewElement = (PlotElementViewElement) treeSelection.getFirstElement();
     PlotPart plotElement = (PlotPart) plotViewElement.getPlotElement();
     IFolder folder = (IFolder) plotViewElement.getEditFile().getParent();
-    IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, "srs"); //$NON-NLS-1$
-    ImageDescriptor imageDescriptor = PlotUtils.getImage(plotElement.getPlotUnit().getSuccessor());
+    IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, "srs"); //$NON-NLS-1$    
+    ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(plotElement.getPlotUnit().getSuccessor().getImage());
     return new NewPlotElementEditorInput(unusedFileFactory, imageDescriptor, unnamedName, plotElement, folder);
   }
 
@@ -64,8 +62,9 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
     if (structuredSelection.getFirstElement() instanceof PlotElementViewElement) {
       IPlotPart part = ((PlotElementViewElement) structuredSelection.getFirstElement()).getPlotElement();
       action.setText(NLS.bind(Messages.NewPlotElementActionDelegate_AddNewMessage, getPlotUnitName(part)));
-      action.setImageDescriptor(new NewIconCompositeImageDescriptor(PlotUtils.getImage(part.getPlotUnit()
-          .getSuccessor())));
+      action.setImageDescriptor(new NewIconCompositeImageDescriptor(ImageDescriptor.createFromURL(part.getPlotUnit()
+          .getSuccessor()
+          .getImage())));
     }
   }
 

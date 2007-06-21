@@ -24,7 +24,7 @@ public class NewPlotActionDelegate implements IObjectActionDelegate {
   @Override
   public void run(IAction action) {
     IWorkbenchPage page = targetPart.getSite().getPage();
-    IItemType itemType = PlotRepositoryUtilities.getSeriesItemType();
+    IItemType itemType = PlotRepositoryUtilities.getPlotItemType();
     IEditorInput input = new ProxyItemEditorInput(itemType.getUntitledName(), new NewPlotEditorInput(itemType));
     try {
       page.openEditor(input, PlotPlugin.PLOT_EDITOR_ID);

@@ -2,7 +2,6 @@ package net.sf.anathema.campaign.plot.dnd;
 
 import static org.junit.Assert.assertEquals;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
-import net.sf.anathema.campaign.plot.repository.PlotUnit;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +14,7 @@ public class PlotPartAdoptionTest {
 
   @Before
   public void performAdoption() {
-    PlotPart plot = new PlotPart("parentPart", PlotUnit.Plot, null); //$NON-NLS-1$
+    PlotPart plot = new PlotPart("parentPart", DummyPlotUnit.Plot, null); //$NON-NLS-1$
     targetParent = plot.addChild("targetParent"); //$NON-NLS-1$
     sourceParent = plot.addChild("sourceParent"); //$NON-NLS-1$
     sourceElement = sourceParent.addChild("sourceElement"); //$NON-NLS-1$    
