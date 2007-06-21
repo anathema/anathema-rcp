@@ -1,7 +1,7 @@
 package net.sf.anathema.campaign.plot.dnd;
 
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
-import net.sf.anathema.campaign.plot.repository.PlotUnit;
+import net.sf.anathema.campaign.plot.repository.PlotUnitProvider;
 
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -21,7 +21,6 @@ public final class PlotDragSourceListener extends DragSourceAdapter {
     event.doit = isOneInnerPlotElementSelected(selection);
   }
 
-
   private boolean isOneInnerPlotElementSelected(TreeSelection selection) {
     if (selection.size() != 1) {
       return false;
@@ -32,7 +31,7 @@ public final class PlotDragSourceListener extends DragSourceAdapter {
       return false;
     }
     PlotElementViewElement elementView = (PlotElementViewElement) firstElement;
-    return elementView.getPlotElement().getPlotUnit() != PlotUnit.Plot;
+    return elementView.getPlotElement().getPlotUnit() != new PlotUnitProvider().getRootUnit();
   }
 
   @Override

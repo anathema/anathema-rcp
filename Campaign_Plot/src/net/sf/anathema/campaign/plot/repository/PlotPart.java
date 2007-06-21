@@ -13,7 +13,8 @@ public class PlotPart implements IPlotPart {
   private IPlotPart parent;
 
   public static PlotPart createPlotRoot() {
-    return new PlotPart("main", PlotUnit.Plot, null); //$NON-NLS-1$
+    IPlotUnit rootUnit = new PlotUnitProvider().getRootUnit();
+    return new PlotPart("main", rootUnit, null); //$NON-NLS-1$
   }
 
   public PlotPart(String repositoryId, IPlotUnit plotUnit, IPlotPart parent) {

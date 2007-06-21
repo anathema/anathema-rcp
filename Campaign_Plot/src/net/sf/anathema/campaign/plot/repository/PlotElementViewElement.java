@@ -13,6 +13,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 public class PlotElementViewElement extends AbstractResourceViewElement {
@@ -42,7 +43,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
 
   @Override
   public Image getImage() {
-    return PlotUtils.getImage(plotElement.getPlotUnit()).createImage();
+    return ImageDescriptor.createFromURL(plotElement.getPlotUnit().getImage()).createImage();
   }
 
   @Override
