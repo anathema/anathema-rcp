@@ -20,6 +20,11 @@ public class ExtensionElement implements IExtensionElement {
     return eclipseElement.getAttribute(name);
   }
 
+  @Override
+  public boolean getBooleanAttribute(String name) {
+    return Boolean.valueOf(eclipseElement.getAttribute(name));
+  }
+
   public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException {
     try {
       return clazz.cast(eclipseElement.createExecutableExtension(name));

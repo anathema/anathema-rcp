@@ -7,4 +7,6 @@ public interface IExtensionElement {
   public String getAttribute(String name);
 
   public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException;
+
+  public boolean getBooleanAttribute(String name);
 }
