@@ -4,13 +4,8 @@ import java.net.URL;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.resource.ResourceUtils;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory;
-
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
-import org.osgi.framework.Bundle;
 
 public class ItemType implements IItemType {
 
@@ -40,12 +35,7 @@ public class ItemType implements IItemType {
   @Override
   public URL getIconUrl() {
     String iconPath = getAttribute("icon"); //$NON-NLS-1$
-    if (iconPath == null) {
-      return null;
-    }
-    Bundle bundle = Platform.getBundle(pluginId);
-    IPath path = new Path(iconPath);
-    return FileLocator.find(bundle, path, null);
+    return ResourceUtils.getResourceUrl(pluginId, iconPath);
   }
 
   private String getAttribute(String name) {
@@ -64,8 +54,7 @@ public class ItemType implements IItemType {
 
   @Override
   public IItemTypeViewElementFactory getViewElementFactory() throws ExtensionException {
-    IItemTypeViewElementFactory factory = configurationNode.getAttributeAsObject(
-        "viewElementFactoryClass", //$NON-NLS-1$
+    IItemTypeViewElementFactory factory = configurationNode.getAttributeAsObject("viewElementFactoryClass", //$NON-NLS-1$
         IItemTypeViewElementFactory.class);
     factory.setItemType(this);
     return factory;
