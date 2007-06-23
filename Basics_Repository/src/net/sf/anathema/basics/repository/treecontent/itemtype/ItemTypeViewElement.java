@@ -5,9 +5,12 @@ import java.util.List;
 
 import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
+import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchPage;
@@ -29,8 +32,10 @@ public class ItemTypeViewElement implements IViewElement {
       return elements.toArray(new IViewElement[elements.size()]);
     }
     catch (ExtensionException e) {
-      // TODO Fehlerhandling
-      e.printStackTrace();
+      RepositoryPlugin.getDefaultInstance().log(
+          IStatus.ERROR,
+          NLS.bind(Messages.ItemTypeViewElement_Error_FailedReadingItemsMessage, type.getName()),
+          e);
       return new IViewElement[0];
     }
   }
