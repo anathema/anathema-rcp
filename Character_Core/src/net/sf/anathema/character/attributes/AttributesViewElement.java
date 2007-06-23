@@ -5,7 +5,6 @@ import net.sf.anathema.character.core.repository.AbstractCharacterModelViewEleme
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -24,10 +23,7 @@ public class AttributesViewElement extends AbstractCharacterModelViewElement {
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     try {
-      IEditorInput input = new AttributesEditorInput(
-          getEditFile(),
-          ImageDescriptor.createFromImage(getImage()),
-          getParent());
+      IEditorInput input = new AttributesEditorInput(getEditFile(), getImageDescriptor(), getParent());
       page.openEditor(input, AttributesEditor.EDITOR_ID);
     }
     catch (Exception e) {

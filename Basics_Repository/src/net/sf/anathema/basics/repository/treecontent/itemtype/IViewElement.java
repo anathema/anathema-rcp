@@ -1,7 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -13,7 +13,7 @@ public interface IViewElement extends IAdaptable, IDisplayNameProvider {
 
   public IViewElement getParent();
 
-  public Image getImage();
+  public ImageDescriptor getImageDescriptor();
 
   public void openEditor(IWorkbenchPage page) throws PartInitException;
 }

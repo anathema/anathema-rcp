@@ -15,7 +15,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -84,8 +84,8 @@ public class CharacterViewElement implements IViewElement {
   }
 
   @Override
-  public Image getImage() {
-    return parent.getImage();
+  public ImageDescriptor getImageDescriptor() {
+    return parent.getImageDescriptor();
   }
 
   @Override

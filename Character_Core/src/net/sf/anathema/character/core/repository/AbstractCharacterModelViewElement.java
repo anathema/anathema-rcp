@@ -10,7 +10,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.PartInitException;
 
 public abstract class AbstractCharacterModelViewElement implements IViewElement {
@@ -29,8 +29,8 @@ public abstract class AbstractCharacterModelViewElement implements IViewElement 
   }
 
   @Override
-  public Image getImage() {
-    return parent.getImage();
+  public ImageDescriptor getImageDescriptor() {
+    return parent.getImageDescriptor();
   }
 
   @Override

@@ -11,7 +11,6 @@ import net.sf.anathema.basics.repository.itemtype.IItemType;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -56,13 +55,12 @@ public class ItemTypeViewElement implements IViewElement {
   }
 
   @Override
-  public Image getImage() {
+  public ImageDescriptor getImageDescriptor() {
     URL iconUrl = type.getIconUrl();
     if (iconUrl != null) {
-      // TODO Dispose of image
-      return ImageDescriptor.createFromURL(iconUrl).createImage();
+      return ImageDescriptor.createFromURL(iconUrl);
     }
-    return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
+    return PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_OBJ_ELEMENT);
   }
 
   @Override

@@ -13,7 +13,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
@@ -45,7 +44,7 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   public final void openEditor(IWorkbenchPage page) throws PartInitException {
     IFile file = getEditFile();
     try {
-      IEditorInput input = new FileItemEditorInput(file, untitledName, ImageDescriptor.createFromImage(getImage()));
+      IEditorInput input = new FileItemEditorInput(file, untitledName, getImageDescriptor());
       String fileName = file.getName();
       IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
       page.openEditor(input, defaultEditor.getId());
@@ -72,8 +71,8 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   }
 
   @Override
-  public Image getImage() {
-    return parent.getImage();
+  public ImageDescriptor getImageDescriptor() {
+    return parent.getImageDescriptor();
   }
 
   protected abstract IFile getEditFile();

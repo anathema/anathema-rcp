@@ -14,7 +14,6 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.graphics.Image;
 
 public class PlotElementViewElement extends AbstractResourceViewElement {
 
@@ -41,10 +40,9 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
     return children.toArray(new IViewElement[children.size()]);
   }
 
-  // TODO Dispose of image
   @Override
-  public Image getImage() {
-    return ImageDescriptor.createFromURL(plotElement.getPlotUnit().getImage()).createImage();
+  public ImageDescriptor getImageDescriptor() {
+    return ImageDescriptor.createFromURL(plotElement.getPlotUnit().getImage());
   }
 
   @Override

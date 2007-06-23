@@ -25,7 +25,7 @@ public class RepositoryLabelProvider extends LabelProvider implements ITableLabe
 
   @Override
   public Image getImage(Object obj) {
-    return cast(obj).getImage();
+    return cast(obj).getImageDescriptor().createImage();
   }
 
   private IViewElement cast(Object element) {
