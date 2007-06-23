@@ -56,6 +56,7 @@ public class RepositoryView extends ViewPart implements IResourceSelectable {
       }
     });
     final TreeViewRefresher treeViewRefresher = new TreeViewRefresher(viewer);
+    treeViewRefresher.setRule(ResourcesPlugin.getWorkspace().getRoot());
     ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
       @Override
       public void resourceChanged(IResourceChangeEvent event) {
