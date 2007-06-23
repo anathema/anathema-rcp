@@ -1,9 +1,11 @@
 package net.sf.anathema.campaign.plot.dnd;
 
+import net.sf.anathema.campaign.plot.PlotPlugin;
 import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotElementViewElement;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
@@ -23,7 +25,7 @@ public final class PlotDropListener extends ViewerDropAdapter {
 
   @Override
   public boolean performDrop(Object data) {
-    //TODO Zeige Progress Monitor an. 
+    // TODO Zeige Progress Monitor an. Eventuell ist die Operation zu schnell, um den Monitor zu zeigen.
     IProgressMonitor monitor = site.getActionBars().getStatusLineManager().getProgressMonitor();
     monitor.beginTask("Moving", IProgressMonitor.UNKNOWN);
     try {
@@ -32,7 +34,7 @@ public final class PlotDropListener extends ViewerDropAdapter {
     }
     catch (Exception e) {
       // TODO Rückspulen des Moves
-      e.printStackTrace();
+      PlotPlugin.getDefaultInstance().log(IStatus.WARNING, "Drag and drop failed.", e);
       return false;
     }
     finally {
