@@ -8,6 +8,7 @@
       <view
             allowMultiple="false"
             class="net.sf.anathema.basics.repository.RepositoryView"
+            icon="icons/repositoryview.gif"
             id="net.sf.anathema.basics.repositoryview"
             name="%repository.view.repositorytree.name">
       </view>
