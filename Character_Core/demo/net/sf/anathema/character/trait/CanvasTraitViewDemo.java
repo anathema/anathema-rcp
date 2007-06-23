@@ -17,7 +17,7 @@ public class CanvasTraitViewDemo implements IDemo {
   public void createComposite(Composite parent) throws Exception {
     Image passiveImage = createImage("BorderUnselectedButton16.png"); //$NON-NLS-1$
     Image activeImage = createImage("BorderSolarButton16.png"); //$NON-NLS-1$
-    final IIntValueView intValueDisplay = new CanvasIntValueDisplay(parent, passiveImage, activeImage, 5);
+    final IIntValueView intValueDisplay = new CanvasIntValueDisplay(parent, passiveImage, activeImage, 12);
     intValueDisplay.addIntValueChangedListener(new IIntValueChangedListener() {
       @Override
       public void valueChanged(int newValue) {

@@ -71,17 +71,12 @@ public class CanvasIntValueDisplay implements IIntValueView {
     this.composite = createComposite(parent);
   }
 
-  @Override
-  public void addIntValueChangedListener(IIntValueChangedListener listener) {
-    control.addListener(listener);
-  }
-
   private Composite createComposite(Composite parent) {
     Canvas canvas = new Canvas(parent, SWT.DOUBLE_BUFFERED) {
       @Override
       public Rectangle computeTrim(int x, int y, int width, int height) {
         int preferredHeight = passiveImage.getImageData().height + 2;
-        int preferredWidth = slotWidth * maxValue;
+        int preferredWidth = getXPosition(maxValue);
         return new Rectangle(x, y, preferredWidth, preferredHeight);
       }
     };
@@ -98,7 +93,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
       }
 
       private void addImage(PaintEvent e, int index, Image image) {
-        e.gc.drawImage(image, (index * slotWidth) + 1, 1);
+        e.gc.drawImage(image, 1 + getXPosition(index), 1);
       }
     });
     this.rectanglePainter = new OuterPaintListener(canvas);
@@ -111,16 +106,31 @@ public class CanvasIntValueDisplay implements IIntValueView {
       fireValueChangedEvent(0);
       return;
     }
-    if (x > (maxValue - 1) * slotWidth) {
+    if (x > getXPosition((maxValue - 1))) {
       fireValueChangedEvent(maxValue);
       return;
     }
     for (int imageIndex = 0; imageIndex < maxValue; imageIndex++) {
-      if (x < imageIndex * slotWidth) {
+      if (x < getXPosition(imageIndex)) {
         fireValueChangedEvent(imageIndex);
         return;
       }
     }
+  }
+
+  @Override
+  public void setValue(int newValue) {
+    this.value = newValue;
+    composite.redraw();
+  }
+
+  private int getXPosition(int imageIndex) {
+    return (imageIndex * slotWidth) + getWhitespaceWidth(imageIndex);
+  }
+
+  private int getWhitespaceWidth(int index) {
+    int whitespaceCount = index / 5;
+    return (whitespaceCount * slotWidth / 2);
   }
 
   private void fireValueChangedEvent(final int intValue) {
@@ -133,13 +143,12 @@ public class CanvasIntValueDisplay implements IIntValueView {
   }
 
   @Override
-  public void removeIntValueChangedListener(IIntValueChangedListener listener) {
-    control.removeListener(listener);
+  public void addIntValueChangedListener(IIntValueChangedListener listener) {
+    control.addListener(listener);
   }
 
   @Override
-  public void setValue(int newValue) {
-    this.value = newValue;
-    composite.redraw();
+  public void removeIntValueChangedListener(IIntValueChangedListener listener) {
+    control.removeListener(listener);
   }
 }
