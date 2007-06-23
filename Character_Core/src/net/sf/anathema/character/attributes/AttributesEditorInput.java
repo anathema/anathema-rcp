@@ -14,6 +14,7 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -45,7 +46,6 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
 
   @Override
   public String getName() {
-    // TODO Auf Änderungen des Namens reagieren
     return "Attributes - " + displayNameProvider.getDisplayName();
   }
 
@@ -86,5 +86,9 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
       }
     };
     return basics;
+  }
+
+  public IFolder getCharacterFolder() {
+    return (IFolder) getFile().getParent();
   }
 }

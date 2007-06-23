@@ -1,14 +1,15 @@
 package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
-import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.character.core.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
 import net.sf.anathema.lib.ui.IIntValueView;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -16,7 +17,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttributes> implements IPersistableItemEditor {
+public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttributes> {
 
   public static final String EDITOR_ID = "net.sf.anathema.character.attributes.editor"; //$NON-NLS-1$
 
@@ -36,6 +37,8 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
         new TraitPresenter().initPresentation(trait, view);
       }
     }
+    ResourcesPlugin.getWorkspace().addResourceChangeListener(
+        new CharacterPartNameListener(this, editorInput.getCharacterFolder(), parent.getDisplay()));
   }
 
   private Label createLabel(Composite parent, GridData data) {
