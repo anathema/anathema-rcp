@@ -59,6 +59,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
   };
   private final Composite composite;
   private final int slotWidth;
+  private final int whitespaceSlotWidth;
   private int value;
 
   public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image activeImage, int maxValue) {
@@ -67,6 +68,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
     Ensure.ensureArgumentEquals(passiveData.width, activeData.width);
     Ensure.ensureArgumentEquals(passiveData.height, activeData.height);
     this.slotWidth = passiveData.width + 2;
+    this.whitespaceSlotWidth = slotWidth / 2;
     this.passiveImage = passiveImage;
     this.activeImage = activeImage;
     this.maxValue = maxValue;
@@ -79,6 +81,9 @@ public class CanvasIntValueDisplay implements IIntValueView {
       public Rectangle computeTrim(int x, int y, int width, int height) {
         int preferredHeight = passiveImage.getImageData().height + 2;
         int preferredWidth = getXPosition(maxValue);
+        if (maxValue % GROUP_SIZE == 0) {
+          preferredWidth -= whitespaceSlotWidth;
+        }
         return new Rectangle(x, y, preferredWidth, preferredHeight);
       }
     };
@@ -132,7 +137,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
 
   private int getWhitespaceWidth(int index) {
     int whitespaceCount = index / GROUP_SIZE;
-    return whitespaceCount * slotWidth / 2;
+    return whitespaceCount * whitespaceSlotWidth;
   }
 
   private void fireValueChangedEvent(final int intValue) {
