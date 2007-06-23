@@ -30,7 +30,7 @@ public class NewPlotActionDelegate implements IObjectActionDelegate {
       page.openEditor(input, PlotPlugin.PLOT_EDITOR_ID);
     }
     catch (PartInitException e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, "Failed to open Plot Editor.", e);
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.Error_PlotEditorOpenFailed, e);
     }
   }
 

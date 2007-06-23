@@ -26,9 +26,10 @@ public class ExtensionPlotUnit extends Identificate implements IPlotUnit {
     return successor;
   }
 
+  //TODO Bundle-Name bestimmen
   public URL getImage() {
     String iconPath = element.getAttribute("icon"); //$NON-NLS-1$
-    return ResourceUtils.getResourceUrl("net.sf.anathema.campaign.plot", iconPath);
+    return ResourceUtils.getResourceUrl("net.sf.anathema.campaign.plot", iconPath); //$NON-NLS-1$
   }
 
   public void setSuccessor(IPlotUnit unit) {
