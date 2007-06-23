@@ -18,6 +18,8 @@ import org.eclipse.swt.widgets.Composite;
 
 public class CanvasIntValueDisplay implements IIntValueView {
 
+  private static final int GROUP_SIZE = 5;
+  private static final int HORIZONTAL_INDENT = 2;
   private final int maxValue;
   private final Image passiveImage;
   private final Image activeImage;
@@ -93,7 +95,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
       }
 
       private void addImage(PaintEvent e, int index, Image image) {
-        e.gc.drawImage(image, 1 + getXPosition(index), 1);
+        e.gc.drawImage(image, getXPosition(index), 1);
       }
     });
     this.rectanglePainter = new OuterPaintListener(canvas);
@@ -125,11 +127,11 @@ public class CanvasIntValueDisplay implements IIntValueView {
   }
 
   private int getXPosition(int imageIndex) {
-    return imageIndex * slotWidth + getWhitespaceWidth(imageIndex);
+    return HORIZONTAL_INDENT + imageIndex * slotWidth + getWhitespaceWidth(imageIndex);
   }
 
   private int getWhitespaceWidth(int index) {
-    int whitespaceCount = index / 5;
+    int whitespaceCount = index / GROUP_SIZE;
     return whitespaceCount * slotWidth / 2;
   }
 
