@@ -16,6 +16,9 @@ public class AttributeMessages extends NLS {
   public static String Intelligence;
   public static String Perception;
   public static String Wits;
+  public static String Physical;
+  public static String Social;
+  public static String Mental;
   static {
     NLS.initializeMessages(BUNDLE_NAME, AttributeMessages.class);
   }

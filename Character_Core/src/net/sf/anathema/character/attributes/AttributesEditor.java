@@ -27,15 +27,13 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
     AttributesEditorInput editorInput = (AttributesEditorInput) getEditorInput();
     parent.setLayout(new GridLayout(2, false));
     for (ITraitGroup group : editorInput.getDisplayGroups()) {
-      //TODO: i18n
-      new Label(parent, SWT.NULL).setText(group.getId());
-      new Label(parent, SWT.NULL);
+      GridData groupData = new GridData();
+      groupData.horizontalSpan = 2;
+      createLabel(parent, groupData).setText(AttributeMessages.get(group.getId()));
       for (final IDisplayTrait trait : group.getTraits()) {
         GridData data = new GridData();
         data.horizontalIndent = 5;
-        Label label = new Label(parent, SWT.NULL);
-        label.setText(AttributeMessages.get(trait.getTraitType().getId()));
-        label.setLayoutData(data);
+        createLabel(parent, data).setText(AttributeMessages.get(trait.getTraitType().getId()));
         final CanvasIntValueDisplay display = new CanvasIntValueDisplay(
             parent,
             passiveImage,
@@ -56,6 +54,12 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
         display.setValue(trait.getValue());
       }
     }
+  }
+
+  private Label createLabel(Composite parent, GridData data) {
+    Label label = new Label(parent, SWT.NULL);
+    label.setLayoutData(data);
+    return label;
   }
 
   @Override
