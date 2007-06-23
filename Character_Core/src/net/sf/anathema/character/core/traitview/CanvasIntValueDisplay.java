@@ -106,7 +106,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
       fireValueChangedEvent(0);
       return;
     }
-    if (x > getXPosition((maxValue - 1))) {
+    if (x > getXPosition(maxValue - 1)) {
       fireValueChangedEvent(maxValue);
       return;
     }
@@ -125,12 +125,12 @@ public class CanvasIntValueDisplay implements IIntValueView {
   }
 
   private int getXPosition(int imageIndex) {
-    return (imageIndex * slotWidth) + getWhitespaceWidth(imageIndex);
+    return imageIndex * slotWidth + getWhitespaceWidth(imageIndex);
   }
 
   private int getWhitespaceWidth(int index) {
     int whitespaceCount = index / 5;
-    return (whitespaceCount * slotWidth / 2);
+    return whitespaceCount * slotWidth / 2;
   }
 
   private void fireValueChangedEvent(final int intValue) {
