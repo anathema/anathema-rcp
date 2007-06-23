@@ -1,6 +1,7 @@
 package net.sf.anathema.character.trait;
 
 import net.sf.anathema.character.basics.ICharacterBasics;
+import net.sf.anathema.character.trait.rules.ITraitRules;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.control.change.IChangeListener;
@@ -27,10 +28,12 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
       }
     }
   };
+  private final ITraitRules traitRules;
 
-  public DisplayTrait(IBasicTrait basicTrait, ICharacterBasics basics) {
+  public DisplayTrait(IBasicTrait basicTrait, ICharacterBasics basics, ITraitRules traitRules) {
     this.basicTrait = basicTrait;
     this.basics = basics;
+    this.traitRules = traitRules;
     basicTrait.getCreationModel().addValueChangeListener(creationListener);
     basicTrait.getExperiencedModel().addValueChangeListener(experiencedListener);
   }
@@ -45,7 +48,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public int getMaximalValue() {
-    return 5;
+    return traitRules.getMaximalValue();
   }
 
   @Override
@@ -65,11 +68,12 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public void setValue(int value) {
+    int correctedValue = traitRules.getCorrectedValue(value);
     if (basics.isExperienced()) {
-      basicTrait.getExperiencedModel().setValue(value);
+      basicTrait.getExperiencedModel().setValue(correctedValue);
     }
     else {
-      basicTrait.getCreationModel().setValue(value);
+      basicTrait.getCreationModel().setValue(correctedValue);
     }
   }
 

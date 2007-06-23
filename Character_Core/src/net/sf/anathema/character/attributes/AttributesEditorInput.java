@@ -8,6 +8,8 @@ import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.basics.ICharacterBasics;
 import net.sf.anathema.character.trait.DisplayTrait;
+import net.sf.anathema.character.trait.rules.ITraitRules;
+import net.sf.anathema.character.trait.rules.TraitRules;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -47,23 +49,42 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
     return "Attributes - " + displayNameProvider.getDisplayName();
   }
 
-  // TODO Daten in den ViewElements lagern (Basics im Parent) ???
   public ITraitGroup[] getDisplayGroups() {
+    ICharacterBasics basics = getCharacterBasics();
+    TraitGroup[] groups = getTraitGroups();
+    ITraitRules traitRules = getTraitRules();
+    for (TraitGroup group : groups) {
+      for (String traitId : group.getTraitIds()) {
+        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), basics, traitRules));
+      }
+    }
+    return groups;
+  }
+
+  // TODO Daten mit hineinreichen (Template)
+  private ITraitRules getTraitRules() {
+    TraitRules traitRules = new TraitRules();
+    traitRules.setMiniumalValue(1);
+    return traitRules;
+  }
+
+  // TODO Daten mit hineinreichen (Template)
+  private TraitGroup[] getTraitGroups() {
+    TraitGroup[] groups = new TraitGroup[] {
+        new TraitGroup("Physical", "Strength", "Dexterity", "Stamina"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        new TraitGroup("Social", "Charisma", "Manipulation", "Appearance"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        new TraitGroup("Mental", "Perception", "Intelligence", "Wits") }; //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    return groups;
+  }
+
+  // TODO Daten in den ViewElements lagern (Basics im Parent) ???
+  private ICharacterBasics getCharacterBasics() {
     ICharacterBasics basics = new ICharacterBasics() {
       @Override
       public boolean isExperienced() {
         return false;
       }
     };
-    TraitGroup[] groups = new TraitGroup[] {
-        new TraitGroup("Physical", "Strength", "Dexterity", "Stamina"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-        new TraitGroup("Social", "Charisma", "Manipulation", "Appearance"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-        new TraitGroup("Mental", "Perception", "Intelligence", "Wits") }; //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-    for (TraitGroup group : groups) {
-      for (String traitId : group.getTraitIds()) {
-        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), basics));
-      }
-    }
-    return groups;
+    return basics;
   }
 }

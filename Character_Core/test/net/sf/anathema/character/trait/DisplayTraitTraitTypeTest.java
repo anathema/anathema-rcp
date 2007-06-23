@@ -14,7 +14,7 @@ public class DisplayTraitTraitTypeTest {
   @Before
   public void createTrait() {
     this.traitType = new Identificate("test"); //$NON-NLS-1$
-    this.trait = new DisplayTrait(new BasicTrait(traitType), null);
+    this.trait = new DisplayTrait(new BasicTrait(traitType), null, new DummyTraitRules());
   }
 
   @Test

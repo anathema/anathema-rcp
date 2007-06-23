@@ -3,24 +3,20 @@ package net.sf.anathema.character.trait;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.basics.ICharacterBasics;
 import net.sf.anathema.lib.control.change.IChangeListener;
-import net.sf.anathema.lib.util.Identificate;
 
-import org.junit.Before;
 import org.junit.Test;
 
-public class DisplayTraitExperiencedTest extends AbstractIntValueModelTest {
-  private boolean experienced = false;
+public class DisplayTraitExperiencedTest extends AbstractDisplayTraitTest {
+  private boolean experienced = true;
 
-  @Before
-  public void createTrait() {
-    ICharacterBasics basics = new ICharacterBasics() {
+  @Override
+  protected ICharacterBasics createCharacterBasics() {
+    return new ICharacterBasics() {
       @Override
       public boolean isExperienced() {
         return experienced;
       }
     };
-    this.model = new DisplayTrait(new BasicTrait(new Identificate("test")), basics); //$NON-NLS-1$
-    experienced = true;
   }
 
   @Test
