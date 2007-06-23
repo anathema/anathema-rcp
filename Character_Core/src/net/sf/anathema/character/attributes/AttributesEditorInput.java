@@ -1,8 +1,6 @@
 package net.sf.anathema.character.attributes;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
@@ -10,8 +8,6 @@ import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.basics.ICharacterBasics;
 import net.sf.anathema.character.trait.DisplayTrait;
-import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -51,19 +47,23 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
     return "Attributes - " + displayNameProvider.getDisplayName();
   }
 
-  public Iterable<IDisplayTrait> createDisplayTraits() {
-    // TODO Daten in den ViewElements lagern (Basics im Parent) ??? 
+  // TODO Daten in den ViewElements lagern (Basics im Parent) ???
+  public ITraitGroup[] getDisplayGroups() {
     ICharacterBasics basics = new ICharacterBasics() {
       @Override
       public boolean isExperienced() {
         return false;
       }
     };
-    // TODO Reihenfolge und Darstellungsgruppen 
-    List<IDisplayTrait> displayTraits = new ArrayList<IDisplayTrait>();
-    for (IBasicTrait trait : getItem().getTraits()) {
-      displayTraits.add(new DisplayTrait(trait, basics));
+    TraitGroup[] groups = new TraitGroup[] {
+        new TraitGroup("Physical", "Strength", "Dexterity", "Stamina"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        new TraitGroup("Social", "Charisma", "Manipulation", "Appearance"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        new TraitGroup("Mental", "Perception", "Intelligence", "Wits") }; //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    for (TraitGroup group : groups) {
+      for (String traitId : group.getTraitIds()) {
+        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), basics));
+      }
     }
-    return displayTraits;
+    return groups;
   }
 }

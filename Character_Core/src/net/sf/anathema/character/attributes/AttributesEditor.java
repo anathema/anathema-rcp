@@ -10,6 +10,7 @@ import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -18,33 +19,42 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
 
   public static final String EDITOR_ID = "net.sf.anathema.character.attributes.editor"; //$NON-NLS-1$
 
-  //TODO Dispose images when done.
+  // TODO Dispose images when done.
   @Override
   public void createPartControl(Composite parent) {
     Image passiveImage = createImage("BorderUnselectedButton16.png"); //$NON-NLS-1$
     Image activeImage = createImage("BorderSolarButton16.png"); //$NON-NLS-1$
     AttributesEditorInput editorInput = (AttributesEditorInput) getEditorInput();
     parent.setLayout(new GridLayout(2, false));
-    for (final IDisplayTrait trait : editorInput.createDisplayTraits()) {
-      new Label(parent, SWT.NULL).setText(AttributeMessages.get(trait.getTraitType().getId()));
-      final CanvasIntValueDisplay display = new CanvasIntValueDisplay(
-          parent,
-          passiveImage,
-          activeImage,
-          trait.getMaximalValue());
-      trait.addValueChangeListener(new IChangeListener() {
-        @Override
-        public void changeOccured() {
-          display.setValue(trait.getValue());
-        }
-      });
-      display.addIntValueChangedListener(new IIntValueChangedListener() {
-        @Override
-        public void valueChanged(int newValue) {
-          trait.setValue(newValue);
-        }
-      });
-      display.setValue(trait.getValue());
+    for (ITraitGroup group : editorInput.getDisplayGroups()) {
+      //TODO: i18n
+      new Label(parent, SWT.NULL).setText(group.getId());
+      new Label(parent, SWT.NULL);
+      for (final IDisplayTrait trait : group.getTraits()) {
+        GridData data = new GridData();
+        data.horizontalIndent = 5;
+        Label label = new Label(parent, SWT.NULL);
+        label.setText(AttributeMessages.get(trait.getTraitType().getId()));
+        label.setLayoutData(data);
+        final CanvasIntValueDisplay display = new CanvasIntValueDisplay(
+            parent,
+            passiveImage,
+            activeImage,
+            trait.getMaximalValue());
+        trait.addValueChangeListener(new IChangeListener() {
+          @Override
+          public void changeOccured() {
+            display.setValue(trait.getValue());
+          }
+        });
+        display.addIntValueChangedListener(new IIntValueChangedListener() {
+          @Override
+          public void valueChanged(int newValue) {
+            trait.setValue(newValue);
+          }
+        });
+        display.setValue(trait.getValue());
+      }
     }
   }
 
