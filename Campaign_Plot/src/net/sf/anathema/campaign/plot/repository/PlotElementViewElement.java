@@ -41,6 +41,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
     return children.toArray(new IViewElement[children.size()]);
   }
 
+  // TODO Dispose of image
   @Override
   public Image getImage() {
     return ImageDescriptor.createFromURL(plotElement.getPlotUnit().getImage()).createImage();

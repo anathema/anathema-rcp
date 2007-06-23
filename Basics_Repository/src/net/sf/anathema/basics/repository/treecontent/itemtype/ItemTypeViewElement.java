@@ -59,6 +59,7 @@ public class ItemTypeViewElement implements IViewElement {
   public Image getImage() {
     URL iconUrl = type.getIconUrl();
     if (iconUrl != null) {
+      // TODO Dispose of image
       return ImageDescriptor.createFromURL(iconUrl).createImage();
     }
     return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);

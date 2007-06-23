@@ -26,6 +26,7 @@ public class CanvasTraitViewDemo implements IDemo {
     });
   }
 
+  // TODO Dispose of image
   private Image createImage(String imageName) {
     return ImageDescriptor.createFromFile(CanvasIntValueDisplay.class, imageName).createImage();
   }

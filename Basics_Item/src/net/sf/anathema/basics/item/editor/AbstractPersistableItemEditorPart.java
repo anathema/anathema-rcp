@@ -52,6 +52,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
     super.setPartName(partName);
   }
 
+  //TODO Dispose of image
   @Override
   public void init(final IEditorSite site, IEditorInput input) throws PartInitException {
     try {
