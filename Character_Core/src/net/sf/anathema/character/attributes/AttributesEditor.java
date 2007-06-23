@@ -2,11 +2,12 @@ package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
+import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.CharacterCorePlugin;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
-import net.sf.anathema.lib.control.change.IChangeListener;
-import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
+import net.sf.anathema.character.trait.TraitPresenter;
+import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -26,31 +27,13 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
     AttributesEditorInput editorInput = (AttributesEditorInput) getEditorInput();
     parent.setLayout(new GridLayout(2, false));
     for (ITraitGroup group : editorInput.getDisplayGroups()) {
-      GridData groupData = new GridData();
-      groupData.horizontalSpan = 2;
-      createLabel(parent, groupData).setText(AttributeMessages.get(group.getId()));
+      createLabel(parent, GridDataFactory.createHorizontalSpanData(2)).setText(AttributeMessages.get(group.getId()));
       for (final IDisplayTrait trait : group.getTraits()) {
-        GridData data = new GridData();
-        data.horizontalIndent = 5;
-        createLabel(parent, data).setText(AttributeMessages.get(trait.getTraitType().getId()));
-        final CanvasIntValueDisplay display = new CanvasIntValueDisplay(
-            parent,
-            passiveImage,
-            activeImage,
-            trait.getMaximalValue());
-        trait.addValueChangeListener(new IChangeListener() {
-          @Override
-          public void changeOccured() {
-            display.setValue(trait.getValue());
-          }
-        });
-        display.addIntValueChangedListener(new IIntValueChangedListener() {
-          @Override
-          public void valueChanged(int newValue) {
-            trait.setValue(newValue);
-          }
-        });
-        display.setValue(trait.getValue());
+        String text = AttributeMessages.get(trait.getTraitType().getId());
+        createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
+        int maximumValue = trait.getMaximalValue();
+        final IIntValueView view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, maximumValue);
+        new TraitPresenter().initPresentation(trait, view);
       }
     }
   }
