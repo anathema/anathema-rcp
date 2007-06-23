@@ -1,8 +1,5 @@
 package net.sf.anathema.character.attributes;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
@@ -11,7 +8,6 @@ import net.sf.anathema.character.core.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
-import net.sf.anathema.lib.ui.IDisposable;
 import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -26,7 +22,6 @@ import org.eclipse.swt.widgets.Label;
 public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttributes> {
 
   public static final String EDITOR_ID = "net.sf.anathema.character.attributes.editor"; //$NON-NLS-1$
-  private final List<IDisposable> disposables = new ArrayList<IDisposable>();
 
   @Override
   public void createPartControl(Composite parent) {
@@ -41,11 +36,12 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
         createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
         final IIntValueView view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, trait.getMaximalValue());
         new TraitPresenter().initPresentation(trait, view);
+        addDisposable(trait);
       }
     }
     final IResourceChangeListener resourceListener = new CharacterPartNameListener(this, editorInput.getCharacterFolder(), parent.getDisplay());
     ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
-    disposables.add(new ResourceChangeListenerDisposable(resourceListener));
+    addDisposable(new ResourceChangeListenerDisposable(resourceListener));
   }
 
   private Label createLabel(Composite parent, GridData data) {
@@ -61,13 +57,5 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
 
   private Image createImage(String imageName) {
     return CharacterCorePlugin.getDefaultInstance().getImageRegistry().get(imageName);
-  }
-
-  @Override
-  public void dispose() {
-    super.dispose();
-    for(IDisposable disposable : disposables) {
-      disposable.dispose();
-    }
   }
 }

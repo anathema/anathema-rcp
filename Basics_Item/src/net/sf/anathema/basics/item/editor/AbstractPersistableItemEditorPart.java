@@ -1,8 +1,13 @@
 package net.sf.anathema.basics.item.editor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sf.anathema.basics.eclipse.resource.ImageDisposable;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.lib.control.change.IChangeListener;
+import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -12,7 +17,29 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends EditorPart implements IPersistableItemEditor {
+public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends EditorPart implements
+    IPersistableItemEditor {
+
+  private final class DirtyChangeDisposable implements IDisposable {
+    private final IPersistableEditorInput<I> itemInput;
+
+    private DirtyChangeDisposable(IPersistableEditorInput<I> itemInput) {
+      this.itemInput = itemInput;
+    }
+
+    @Override
+    public void dispose() {
+      itemInput.getItem().removeDirtyListener(dirtyChangeListener);
+    }
+  }
+
+  private final IChangeListener dirtyChangeListener = new IChangeListener() {
+    public void changeOccured() {
+      getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(AbstractPersistableItemEditorPart.this));
+    }
+  };
+
+  private final List<IDisposable> disposables = new ArrayList<IDisposable>();
 
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -25,7 +52,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
   public void doSaveAs() {
     throw new UnsupportedOperationException();
   }
-  
+
   @Override
   public void firePropertyChange(int propertyId) {
     super.firePropertyChange(propertyId);
@@ -52,24 +79,33 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
     super.setPartName(partName);
   }
 
-  //TODO Dispose of image
   @Override
   public void init(final IEditorSite site, IEditorInput input) throws PartInitException {
     try {
       setInput(input);
-      IPersistableEditorInput<I> itemInput = getEditorInput();
+      final IPersistableEditorInput<I> itemInput = getEditorInput();
       I item = itemInput.getItem();
-      item.addDirtyListener(new IChangeListener() {
-        public void changeOccured() {
-          getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(AbstractPersistableItemEditorPart.this));
-        }
-      });
+      item.addDirtyListener(dirtyChangeListener);
+      addDisposable(new DirtyChangeDisposable(itemInput));
       setSite(site);
       setTitleImage(itemInput.getImageDescriptor().createImage());
       setPartName(getEditorInput().getName());
+      disposables.add(new ImageDisposable(getTitleImage()));
     }
     catch (Exception e) {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
+  }
+
+  @Override
+  public void dispose() {
+    for (IDisposable disposable : disposables) {
+      disposable.dispose();
+    }
+    super.dispose();
+  }
+
+  protected final void addDisposable(IDisposable disposable) {
+    disposables.add(disposable);
   }
 }
