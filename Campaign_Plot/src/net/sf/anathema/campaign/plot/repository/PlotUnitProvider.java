@@ -16,7 +16,7 @@ public class PlotUnitProvider {
     Map<String, ExtensionPlotUnit> units = new HashMap<String, ExtensionPlotUnit>();
     for (IPluginExtension extension : new EclipseExtensionProvider().getExtensions("net.sf.anathema.plot.unit")) { //$NON-NLS-1$
       for (IExtensionElement element : extension.getElements()) {
-        ExtensionPlotUnit unit = new ExtensionPlotUnit(element);
+        ExtensionPlotUnit unit = new ExtensionPlotUnit(extension.getContributorId(), element);
         String parentId = element.getAttribute("parentId"); //$NON-NLS-1$
         if (parentId == null) {
           Ensure.ensureArgumentNull("Only one root unit may be defined.", root); //$NON-NLS-1$

@@ -10,9 +10,11 @@ public class ExtensionPlotUnit extends Identificate implements IPlotUnit {
 
   private final IExtensionElement element;
   private IPlotUnit successor;
+  private final String bundleId;
 
-  public ExtensionPlotUnit(IExtensionElement element) {
+  public ExtensionPlotUnit(String bundleId, IExtensionElement element) {
     super(element.getAttribute("id")); //$NON-NLS-1$
+    this.bundleId = bundleId;
     this.element = element;
   }
 
@@ -26,10 +28,9 @@ public class ExtensionPlotUnit extends Identificate implements IPlotUnit {
     return successor;
   }
 
-  //TODO Bundle-Name bestimmen
   public URL getImage() {
     String iconPath = element.getAttribute("icon"); //$NON-NLS-1$
-    return ResourceUtils.getResourceUrl("net.sf.anathema.campaign.plot", iconPath); //$NON-NLS-1$
+    return ResourceUtils.getResourceUrl(bundleId, iconPath);
   }
 
   public void setSuccessor(IPlotUnit unit) {
