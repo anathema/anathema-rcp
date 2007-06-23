@@ -1,6 +1,5 @@
 package net.sf.anathema.rcp;
 
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
@@ -20,9 +19,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
   @Override
   public void preWindowOpen() {
     IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-    configurer.setInitialSize(new Point(1024, 768));
-    configurer.setShowCoolBar(true);
-    configurer.setShowStatusLine(true);
     configurer.setShowProgressIndicator(true);
   }
 }
