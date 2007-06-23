@@ -18,6 +18,7 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
 
   public static final String EDITOR_ID = "net.sf.anathema.character.attributes.editor"; //$NON-NLS-1$
 
+  //TODO Dispose images when done.
   @Override
   public void createPartControl(Composite parent) {
     Image passiveImage = createImage("BorderUnselectedButton16.png"); //$NON-NLS-1$
