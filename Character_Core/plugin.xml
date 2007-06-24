@@ -32,11 +32,17 @@
          point="net.sf.anathema.character.models">
       <model
             id="net.sf.anathema.character.description.model"
+            modelFactory="net.sf.anathema.character.description.DescriptionModelFactory"
             viewElementFactory="net.sf.anathema.character.description.CharacterDescriptionViewElementFactory">
       </model>
       <model
             id="net.sf.anathema.character.attributes.model"
+            modelFactory="net.sf.anathema.character.attributes.AttributesFactory"
             viewElementFactory="net.sf.anathema.character.attributes.AttributesViewElementFactory">
+      </model>
+      <model
+            id="net.sf.anathema.character.basics.model"
+            modelFactory="net.sf.anathema.character.basics.BasicsFactory">
       </model>
    </extension>
 

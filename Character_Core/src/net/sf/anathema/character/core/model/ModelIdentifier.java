@@ -11,7 +11,7 @@ public class ModelIdentifier {
     this.characterFolder = characterFolder;
     this.modelId = modelId;
   }
-  
+
   @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof ModelIdentifier)) {
@@ -20,9 +20,17 @@ public class ModelIdentifier {
     ModelIdentifier other = (ModelIdentifier) obj;
     return characterFolder.equals(other.characterFolder) && modelId.equals(other.modelId);
   }
-  
+
   @Override
   public int hashCode() {
     return characterFolder.hashCode() + 7 * modelId.hashCode();
+  }
+
+  public IFolder getFolder() {
+    return characterFolder;
+  }
+
+  public String getId() {
+    return modelId;
   }
 }

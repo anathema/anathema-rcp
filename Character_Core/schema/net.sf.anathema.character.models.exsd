@@ -51,7 +51,17 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="viewElementFactory" type="string" use="required">
+         <attribute name="modelFactory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sf.anathema.character.core.model.IModelFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="viewElementFactory" type="string">
             <annotation>
                <documentation>
                   
