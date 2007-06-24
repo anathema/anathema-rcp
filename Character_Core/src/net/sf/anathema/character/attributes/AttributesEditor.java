@@ -31,6 +31,7 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
     parent.setLayout(new GridLayout(2, false));
     for (ITraitGroup group : editorInput.getDisplayGroups()) {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(2)).setText(AttributeMessages.get(group.getId()));
+      //TODO Traits are not created here, should be disposed elsewhere
       for (final IDisplayTrait trait : group.getTraits()) {
         String text = AttributeMessages.get(trait.getTraitType().getId());
         createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
