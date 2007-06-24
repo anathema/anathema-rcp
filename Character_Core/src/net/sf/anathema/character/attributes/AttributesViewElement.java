@@ -11,8 +11,11 @@ import org.eclipse.ui.PartInitException;
 
 public class AttributesViewElement extends AbstractCharacterModelViewElement {
 
+  private final IFolder characterFolder;
+
   public AttributesViewElement(IViewElement parent, IFolder characterFolder) {
     super(parent, characterFolder);
+    this.characterFolder = characterFolder;
   }
 
   @Override
@@ -27,7 +30,7 @@ public class AttributesViewElement extends AbstractCharacterModelViewElement {
           getEditFile(),
           getImageDescriptor(),
           getParent(),
-          new AttributeCharacterContext());
+          new AttributeCharacterContext(characterFolder));
       page.openEditor(input, AttributesEditor.EDITOR_ID);
     }
     catch (Exception e) {

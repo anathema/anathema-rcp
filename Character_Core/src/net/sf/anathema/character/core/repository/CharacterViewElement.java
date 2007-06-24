@@ -9,7 +9,11 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
+import net.sf.anathema.character.basics.CharacterBasics;
+import net.sf.anathema.character.basics.ICharacterBasics;
 import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.core.model.ModelIdentifier;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -29,6 +33,11 @@ public class CharacterViewElement implements IViewElement {
     this.parent = parent;
     this.characterFolder = characterFolder;
     this.unnamedTitle = unnamedTitle;
+    ModelCache modelCache = ModelCache.getInstance();
+    ModelIdentifier modelIdentifier = new ModelIdentifier(characterFolder, ICharacterBasics.MODEL_ID);
+    if (modelCache.getModel(modelIdentifier) == null) {
+      modelCache.addModel(modelIdentifier, new CharacterBasics());
+    }
   }
 
   @Override
