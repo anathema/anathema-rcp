@@ -20,5 +20,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
   public void preWindowOpen() {
     IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
     configurer.setShowProgressIndicator(true);
+    configurer.setShowFastViewBars(true);
   }
 }
