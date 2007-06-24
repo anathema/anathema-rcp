@@ -13,6 +13,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
 
   private DummyTraitRules traitRules;
   private Identificate traitType;
+  private BasicTrait basicTrait;
 
   protected abstract ICharacterBasics createCharacterBasics();
 
@@ -21,7 +22,8 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     ICharacterBasics basics = createCharacterBasics();
     this.traitRules = new DummyTraitRules();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
-    this.model = new DisplayTrait(new BasicTrait(traitType), basics, traitRules);
+    this.basicTrait = new BasicTrait(traitType);
+    this.model = new DisplayTrait(basicTrait, basics, traitRules);
   }
 
   protected final DisplayTrait getDisplayTrait() {
@@ -56,7 +58,6 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
       }
     });
     getDisplayTrait().dispose();
-    model.setValue(1);
-    assertFalse(eventReceived[0]);
+    assertEquals(0, basicTrait.getListenerCount());
   }
 }

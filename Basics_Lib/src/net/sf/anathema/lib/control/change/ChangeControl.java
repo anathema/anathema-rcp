@@ -28,4 +28,8 @@ public class ChangeControl {
   public void clear() {
     listeners.clear();
   }
+
+  public int getListenerCount() {
+    return listeners.size();
+  }
 }

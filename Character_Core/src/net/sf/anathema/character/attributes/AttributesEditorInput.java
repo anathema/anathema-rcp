@@ -49,7 +49,8 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
     return "Attributes - " + displayNameProvider.getDisplayName();
   }
 
-  public ITraitGroup[] getDisplayGroups() {
+  /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
+  public ITraitGroup[] createDisplayGroups() {
     ICharacterBasics basics = getCharacterBasics();
     TraitGroup[] groups = getTraitGroups();
     ITraitRules traitRules = getTraitRules();
@@ -70,8 +71,7 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
 
   // TODO Daten mit hineinreichen (Template)
   private TraitGroup[] getTraitGroups() {
-    TraitGroup[] groups = new TraitGroup[] {
-        new TraitGroup("Physical", "Strength", "Dexterity", "Stamina"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    TraitGroup[] groups = new TraitGroup[] { new TraitGroup("Physical", "Strength", "Dexterity", "Stamina"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         new TraitGroup("Social", "Charisma", "Manipulation", "Appearance"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         new TraitGroup("Mental", "Perception", "Intelligence", "Wits") }; //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     return groups;

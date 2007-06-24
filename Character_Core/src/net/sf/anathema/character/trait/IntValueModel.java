@@ -33,4 +33,8 @@ public class IntValueModel implements IIntValueModel {
     this.value = value;
     control.fireChangedEvent();
   }
+
+  public int getListenerCount() {
+    return control.getListenerCount();
+  }
 }

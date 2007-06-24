@@ -5,8 +5,8 @@ import net.sf.anathema.lib.util.IIdentificate;
 public class BasicTrait implements IBasicTrait {
 
   private final IIdentificate traitType;
-  private final IIntValueModel creationModel = new IntValueModel();
-  private final IIntValueModel experiencedModel = new IntValueModel();
+  private final IntValueModel creationModel = new IntValueModel();
+  private final IntValueModel experiencedModel = new IntValueModel();
 
   public BasicTrait(IIdentificate traitType) {
     this.traitType = traitType;
@@ -27,5 +27,9 @@ public class BasicTrait implements IBasicTrait {
   @Override
   public IIdentificate getTraitType() {
     return traitType;
+  }
+
+  public int getListenerCount() {
+    return creationModel.getListenerCount() + experiencedModel.getListenerCount();
   }
 }

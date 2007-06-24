@@ -39,7 +39,7 @@ public class RepositoryLabelProvider extends LabelProvider implements ITableLabe
   }
 
   private IViewElement cast(Object element) {
-    return ((IViewElement) element);
+    return (IViewElement) element;
   }
 
   @Override
