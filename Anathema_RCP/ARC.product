@@ -19,7 +19,8 @@
          <bmp/>
       </win>
    </launcher>
-
+   
+   <property  name="preferenceCustomization" value="plugin_customization.ini"/>
 
    <vm>
    </vm>
