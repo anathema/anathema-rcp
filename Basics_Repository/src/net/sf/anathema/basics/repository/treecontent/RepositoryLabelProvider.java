@@ -44,10 +44,10 @@ public class RepositoryLabelProvider extends LabelProvider implements ITableLabe
 
   @Override
   public void dispose() {
-    super.dispose();
     for (Image image : images.values()) {
       image.dispose();
     }
     images.clear();
+    super.dispose();
   }
 }
