@@ -1,10 +1,6 @@
 package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.basics.CharacterBasics;
-import net.sf.anathema.character.basics.ICharacterBasics;
-import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.repository.AbstractCharacterModelViewElement;
 
 import org.eclipse.core.resources.IFile;
