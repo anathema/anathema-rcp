@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.trait.group;
 
 import net.sf.anathema.character.trait.IDisplayTrait;
 

@@ -8,6 +8,7 @@ import net.sf.anathema.character.core.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
+import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.core.resources.IResourceChangeListener;

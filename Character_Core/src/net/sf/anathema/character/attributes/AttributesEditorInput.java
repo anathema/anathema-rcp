@@ -6,10 +6,9 @@ import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.basics.ICharacterBasics;
 import net.sf.anathema.character.trait.DisplayTrait;
-import net.sf.anathema.character.trait.rules.ITraitRules;
-import net.sf.anathema.character.trait.rules.TraitRules;
+import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -21,15 +20,19 @@ import org.eclipse.jface.resource.ImageDescriptor;
 
 public class AttributesEditorInput extends FileEditorInput implements IFileItemEditorInput<IAttributes> {
 
-  private IAttributes attributes;
+  private final IAttributes attributes;
   private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
+  private final IAttributeCharacterContext context;
 
-  public AttributesEditorInput(IFile file, ImageDescriptor imageDescriptor, IDisplayNameProvider displayNameProvider)
-      throws PersistenceException,
-      CoreException {
+  public AttributesEditorInput(
+      IFile file,
+      ImageDescriptor imageDescriptor,
+      IDisplayNameProvider displayNameProvider,
+      IAttributeCharacterContext context) throws PersistenceException, CoreException {
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
+    this.context = context;
     this.attributes = attributesPersister.load(DocumentUtilities.read(file.getContents()));
   }
 
@@ -51,41 +54,13 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
   public ITraitGroup[] createDisplayGroups() {
-    ICharacterBasics basics = getCharacterBasics();
-    TraitGroup[] groups = getTraitGroups();
-    ITraitRules traitRules = getTraitRules();
+    TraitGroup[] groups = context.getTraitGroups();
     for (TraitGroup group : groups) {
       for (String traitId : group.getTraitIds()) {
-        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), basics, traitRules));
+        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), context.getBasics(), context.getRules()));
       }
     }
     return groups;
-  }
-
-  // TODO Daten mit hineinreichen (Template)
-  private ITraitRules getTraitRules() {
-    TraitRules traitRules = new TraitRules();
-    traitRules.setMiniumalValue(1);
-    return traitRules;
-  }
-
-  // TODO Daten mit hineinreichen (Template)
-  private TraitGroup[] getTraitGroups() {
-    TraitGroup[] groups = new TraitGroup[] { new TraitGroup("Physical", "Strength", "Dexterity", "Stamina"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-        new TraitGroup("Social", "Charisma", "Manipulation", "Appearance"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-        new TraitGroup("Mental", "Perception", "Intelligence", "Wits") }; //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-    return groups;
-  }
-
-  // TODO Daten in den ViewElements lagern (Basics im Parent) ???
-  private ICharacterBasics getCharacterBasics() {
-    ICharacterBasics basics = new ICharacterBasics() {
-      @Override
-      public boolean isExperienced() {
-        return false;
-      }
-    };
-    return basics;
   }
 
   public IFolder getCharacterFolder() {

@@ -23,7 +23,11 @@ public class AttributesViewElement extends AbstractCharacterModelViewElement {
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     try {
-      IEditorInput input = new AttributesEditorInput(getEditFile(), getImageDescriptor(), getParent());
+      IEditorInput input = new AttributesEditorInput(
+          getEditFile(),
+          getImageDescriptor(),
+          getParent(),
+          new AttributeCharacterContext());
       page.openEditor(input, AttributesEditor.EDITOR_ID);
     }
     catch (Exception e) {
