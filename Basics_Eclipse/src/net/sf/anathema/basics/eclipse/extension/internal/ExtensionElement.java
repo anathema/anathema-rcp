@@ -27,6 +27,9 @@ public class ExtensionElement implements IExtensionElement {
 
   public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException {
     try {
+      if (eclipseElement.getAttribute(name) == null) {
+        return null;
+      }
       return clazz.cast(eclipseElement.createExecutableExtension(name));
     }
     catch (CoreException e) {
