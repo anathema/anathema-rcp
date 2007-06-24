@@ -2,14 +2,17 @@ package net.sf.anathema.character.trait;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.basics.ICharacterBasics;
+import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.Identificate;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest {
 
   private DummyTraitRules traitRules;
+  private Identificate traitType;
 
   protected abstract ICharacterBasics createCharacterBasics();
 
@@ -17,23 +20,43 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
   public final void createTrait() {
     ICharacterBasics basics = createCharacterBasics();
     this.traitRules = new DummyTraitRules();
-    this.model = new DisplayTrait(new BasicTrait(new Identificate("test")), basics, traitRules); //$NON-NLS-1$
+    this.traitType = new Identificate("test"); //$NON-NLS-1$
+    this.model = new DisplayTrait(new BasicTrait(traitType), basics, traitRules);
   }
-  
+
   protected final DisplayTrait getDisplayTrait() {
     return (DisplayTrait) model;
   }
-  
+
   @Test
   public void setValueRespectsTraitRules() throws Exception {
     this.traitRules.setCorrectedValue(4);
     model.setValue(2);
     assertEquals(4, model.getValue());
   }
-  
+
   @Test
   public void respectsMaximalValueFromRules() throws Exception {
     this.traitRules.setMaximalValue(6);
     assertEquals(6, getDisplayTrait().getMaximalValue());
+  }
+
+  @Test
+  public void hasBasicTraitType() throws Exception {
+    Assert.assertEquals(traitType, getDisplayTrait().getTraitType());
+  }
+
+  @Test
+  public void removesListenersWhenDisposedOf() throws Exception {
+    final boolean[] eventReceived = new boolean[] { false };
+    getDisplayTrait().addValueChangeListener(new IChangeListener() {
+      @Override
+      public void changeOccured() {
+        eventReceived[0] = true;
+      }
+    });
+    getDisplayTrait().dispose();
+    model.setValue(1);
+    assertFalse(eventReceived[0]);
   }
 }
