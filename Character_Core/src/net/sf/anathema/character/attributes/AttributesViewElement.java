@@ -9,6 +9,13 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
+//TODO Generic CharacterModelViewElement
+/*Draft: Generic character model view element 
+ * displayname via extension point
+ * filename via extension point
+ * editor id via extension point
+ * editorinputfactory via extension point. create(editfile, imagedescriptor, nameprovider)
+ */
 public class AttributesViewElement extends AbstractCharacterModelViewElement {
 
   private final IFolder characterFolder;
