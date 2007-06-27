@@ -8,6 +8,7 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 
@@ -25,4 +26,9 @@ public class AttributeEditorInputFactory implements IEditorInputFactory {
         characterFolder));
   }
 
+  @Override
+  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
+      throws CoreException {
+    // nothing to do
+  }
 }

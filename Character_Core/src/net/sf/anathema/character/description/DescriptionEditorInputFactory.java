@@ -3,6 +3,7 @@ package net.sf.anathema.character.description;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 
@@ -21,5 +22,11 @@ public class DescriptionEditorInputFactory implements IEditorInputFactory {
       IDisplayNameProvider nameProvider,
       IModelProvider modelProvider) throws PersistenceException, CoreException {
     return new CharacterDescriptionEditorInput(modelFile, descriptor);
+  }
+
+  @Override
+  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
+      throws CoreException {
+// nothing to do
   }
 }

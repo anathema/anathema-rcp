@@ -44,6 +44,9 @@
 
    <element name="model">
       <complexType>
+         <sequence minOccurs="0" maxOccurs="1">
+            <element ref="displayConfiguration"/>
+         </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
@@ -61,13 +64,42 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="viewElementFactory" type="string">
+         <attribute name="filename" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="displayConfiguration">
+      <complexType>
+         <attribute name="editorId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="editorInputFactory" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="net.sf.anathema.character.core.repository.ICharacterModelViewElementFactory"/>
+                  <meta.attribute kind="java" basedOn="net.sf.anathema.character.core.repository.IEditorInputFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="displayName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
                </appInfo>
             </annotation>
          </attribute>

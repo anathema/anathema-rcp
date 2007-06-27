@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
-import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
-import net.sf.anathema.character.core.CharacterCorePlugin;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
@@ -36,15 +33,11 @@ public class CharacterViewElement implements IViewElement {
     List<IViewElement> viewElements = new ArrayList<IViewElement>();
     for (IPluginExtension extension : new EclipseExtensionProvider().getExtensions("net.sf.anathema.character.models")) { //$NON-NLS-1$
       for (IExtensionElement extensionElement : extension.getElements()) {
-        try {
-          ICharacterModelViewElementFactory factory = extensionElement.getAttributeAsObject("viewElementFactory", //$NON-NLS-1$
-              ICharacterModelViewElementFactory.class);
-          if (factory != null) {
-            viewElements.add(factory.create(this, characterFolder));
-          }
-        }
-        catch (ExtensionException e) {
-          CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, Messages.CharacterViewElement_ModelLoadError, e);
+        IExtensionElement configurationElement = extensionElement.getElement("displayConfiguration"); //$NON-NLS-1$
+        if (configurationElement != null) {
+          String filename = extensionElement.getAttribute("filename"); //$NON-NLS-1$
+          ModelDisplayConfiguration configuration = new ModelDisplayConfiguration(filename, configurationElement);
+          viewElements.add(new ModelViewElement(this, characterFolder, configuration));
         }
       }
     }

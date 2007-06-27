@@ -16,6 +16,15 @@ public class ExtensionElement implements IExtensionElement {
   }
 
   @Override
+  public IExtensionElement getElement(String name) {
+    IConfigurationElement[] children = eclipseElement.getChildren(name);
+    if (children.length == 0) {
+      return null;
+    }
+    return new ExtensionElement(children[0]);
+  }
+
+  @Override
   public String getAttribute(String name) {
     return eclipseElement.getAttribute(name);
   }

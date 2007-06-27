@@ -1,5 +1,6 @@
 package net.sf.anathema.character.core.repository;
 
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -18,7 +19,7 @@ public interface IModelDisplayConfiguration {
   public IEditorInput createEditorInput(
       IFolder characterFolder,
       ImageDescriptor descriptor,
-      IDisplayNameProvider provider) throws PersistenceException, CoreException;
+      IDisplayNameProvider provider) throws PersistenceException, CoreException, ExtensionException;
 
   public String getEditorId();
 }

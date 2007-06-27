@@ -1,8 +1,8 @@
 package net.sf.anathema.character.core.repository;
 
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
+import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.attributes.AttributeEditorInputFactory;
-import net.sf.anathema.character.attributes.AttributesEditor;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -14,27 +14,38 @@ import org.eclipse.ui.IEditorInput;
 
 public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
 
+  private final String filename;
+  private final IExtensionElement configurationElement;
+
+  public ModelDisplayConfiguration(String filename, IExtensionElement configurationElement) {
+    this.filename = filename;
+    this.configurationElement = configurationElement;
+  }
+
   @Override
   public String getDisplayName() {
-    return "Attributes";
+    return configurationElement.getAttribute("displayName"); //$NON-NLS-1$
   }
 
   @Override
   public String getEditorId() {
-    return AttributesEditor.EDITOR_ID;
+    return configurationElement.getAttribute("editorId"); //$NON-NLS-1$
   }
 
   @Override
   public IFile getModelFile(IFolder characterFolder) {
-    return characterFolder.getFile("attributes.model");
+    return characterFolder.getFile(filename);
   }
 
   @Override
   public IEditorInput createEditorInput(
       IFolder characterFolder,
       ImageDescriptor descriptor,
-      IDisplayNameProvider provider) throws PersistenceException, CoreException {
-    return new AttributeEditorInputFactory().create(
+      IDisplayNameProvider provider) throws PersistenceException, CoreException, ExtensionException {
+    IEditorInputFactory factory = configurationElement.getAttributeAsObject(
+        "editorInputFactory", //$NON-NLS-1$
+        IEditorInputFactory.class);
+    return factory.create(
         getModelFile(characterFolder),
         characterFolder,
         descriptor,
