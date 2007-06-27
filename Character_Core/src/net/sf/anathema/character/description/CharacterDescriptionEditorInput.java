@@ -12,6 +12,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.osgi.util.NLS;
 
 public class CharacterDescriptionEditorInput extends FileEditorInput implements
     IFileItemEditorInput<ICharacterDescription> {
@@ -48,7 +49,6 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
 
   @Override
   public String getName() {
-    // TODO Idee für den Namen von Character Description im Editor
-    return "Description - " + item.getName().getText();
+    return NLS.bind(Messages.CharacterDescriptionEditorInput_Description_Message, item.getName().getText());
   }
 }

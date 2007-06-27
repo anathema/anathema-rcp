@@ -35,7 +35,7 @@
             id="net.sf.anathema.character.description.model"
             modelFactory="net.sf.anathema.character.description.DescriptionModelFactory">
          <displayConfiguration
-               displayName="Description"
+               displayName="%viewelement.name.description"
                editorId="net.sf.anathema.character.description.editor"
                editorInputFactory="net.sf.anathema.character.description.DescriptionEditorInputFactory">
          </displayConfiguration>
@@ -45,7 +45,7 @@
             id="net.sf.anathema.character.attributes.model"
             modelFactory="net.sf.anathema.character.attributes.AttributesFactory">
          <displayConfiguration
-               displayName="Attributes"
+               displayName="%viewelement.name.attributes"
                editorId="net.sf.anathema.character.attributes.editor"
                editorInputFactory="net.sf.anathema.character.attributes.AttributeEditorInputFactory">
          </displayConfiguration>

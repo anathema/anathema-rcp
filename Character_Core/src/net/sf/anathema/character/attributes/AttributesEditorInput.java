@@ -49,7 +49,7 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
 
   @Override
   public String getName() {
-    return "Attributes - " + displayNameProvider.getDisplayName();
+    return displayNameProvider.getDisplayName();
   }
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */

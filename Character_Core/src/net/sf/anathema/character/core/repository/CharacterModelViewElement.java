@@ -77,7 +77,10 @@ public class CharacterModelViewElement implements IViewElement {
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     try {
-      IEditorInput input = configuration.createEditorInput(characterFolder, getImageDescriptor(), getParent());
+      IEditorInput input = configuration.createEditorInput(
+          characterFolder,
+          getImageDescriptor(),
+          new DisplayNameProvider(getDisplayName(), getParent()));
       page.openEditor(input, configuration.getEditorId());
     }
     catch (Exception e) {

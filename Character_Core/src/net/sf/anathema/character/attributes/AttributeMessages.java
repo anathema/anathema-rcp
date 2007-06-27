@@ -32,7 +32,10 @@ public class AttributeMessages extends NLS {
       return (String) AttributeMessages.class.getField(attributeId).get(null);
     }
     catch (Exception e) {
-      CharacterCorePlugin.getDefaultInstance().log(IStatus.WARNING, "No name defined for Attribute" + attributeId, e);
+      CharacterCorePlugin.getDefaultInstance().log(
+          IStatus.WARNING,
+          NLS.bind(Messages.AttributeMessages_I18nFailed, attributeId),
+          e);
       return attributeId;
     }
   }

@@ -8,9 +8,9 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.core.CharacterCorePlugin;
-import net.sf.anathema.character.core.repository.Messages;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.osgi.util.NLS;
 
 public class ModelCache implements IModelProvider {
 
@@ -37,19 +37,18 @@ public class ModelCache implements IModelProvider {
   private Object createModel(ModelIdentifier identifier) {
     for (IPluginExtension extension : new EclipseExtensionProvider().getExtensions("net.sf.anathema.character.models")) { //$NON-NLS-1$
       for (IExtensionElement extensionElement : extension.getElements()) {
-        if (extensionElement.getAttribute("id").equals(identifier.getId())) {
+        if (extensionElement.getAttribute("id").equals(identifier.getId())) { //$NON-NLS-1$
           try {
             IModelFactory factory = extensionElement.getAttributeAsObject("modelFactory", //$NON-NLS-1$
                 IModelFactory.class);
             return factory.create(identifier.getFolder());
           }
           catch (ExtensionException e) {
-            CharacterCorePlugin.getDefaultInstance()
-                .log(IStatus.ERROR, Messages.CharacterViewElement_ModelLoadError, e);
+            CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, Messages.ModelCache_ModelLoadError, e);
           }
         }
       }
     }
-    throw new IllegalArgumentException("Model not found: " + identifier.getId());
+    throw new IllegalArgumentException(NLS.bind(Messages.ModelCache_ModelNotFound_Message, identifier.getId()));
   }
 }
