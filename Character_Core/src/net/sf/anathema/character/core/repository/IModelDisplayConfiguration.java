@@ -22,4 +22,6 @@ public interface IModelDisplayConfiguration {
       IDisplayNameProvider provider) throws PersistenceException, CoreException, ExtensionException;
 
   public String getEditorId();
+
+  public ImageDescriptor getImageDescriptor();
 }

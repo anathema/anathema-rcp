@@ -38,7 +38,7 @@ public class CharacterModelViewElement implements IViewElement {
 
   @Override
   public ImageDescriptor getImageDescriptor() {
-    return parent.getImageDescriptor();
+    return configuration.getImageDescriptor();
   }
 
   @Override

@@ -36,7 +36,10 @@ public class CharacterViewElement implements IViewElement {
         IExtensionElement configurationElement = extensionElement.getElement("displayConfiguration"); //$NON-NLS-1$
         if (configurationElement != null) {
           String filename = extensionElement.getAttribute("filename"); //$NON-NLS-1$
-          ModelDisplayConfiguration configuration = new ModelDisplayConfiguration(filename, configurationElement);
+          ModelDisplayConfiguration configuration = new ModelDisplayConfiguration(
+              extension.getContributorId(),
+              filename,
+              configurationElement);
           viewElements.add(new CharacterModelViewElement(this, characterFolder, configuration));
         }
       }
