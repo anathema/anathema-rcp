@@ -20,11 +20,9 @@ public class AttributeEditorInputFactory implements IEditorInputFactory {
       ImageDescriptor descriptor,
       IDisplayNameProvider nameProvider,
       IModelProvider modelProvider) throws PersistenceException, CoreException {
-    return new AttributesEditorInput(
-        modelFile,
-        descriptor,
-        nameProvider,
-        new AttributeCharacterContext(characterFolder));
+    return new AttributesEditorInput(modelFile, descriptor, nameProvider, new AttributeCharacterContext(
+        modelProvider,
+        characterFolder));
   }
 
 }
