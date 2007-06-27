@@ -12,7 +12,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 
-public class ModelConfiguration implements IModelConfiguration {
+public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
 
   @Override
   public String getDisplayName() {

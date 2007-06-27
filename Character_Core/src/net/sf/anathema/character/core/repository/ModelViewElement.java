@@ -16,9 +16,9 @@ import org.eclipse.ui.PartInitException;
 public class ModelViewElement extends AbstractCharacterModelViewElement {
 
   private final IFolder characterFolder;
-  private final IModelConfiguration configuration;
+  private final IModelDisplayConfiguration configuration;
 
-  public ModelViewElement(IViewElement parent, IFolder characterFolder, IModelConfiguration configuration) {
+  public ModelViewElement(IViewElement parent, IFolder characterFolder, IModelDisplayConfiguration configuration) {
     super(parent, characterFolder);
     this.characterFolder = characterFolder;
     this.configuration = configuration;

@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 
-public interface IModelConfiguration {
+public interface IModelDisplayConfiguration {
 
   public String getDisplayName();
 
