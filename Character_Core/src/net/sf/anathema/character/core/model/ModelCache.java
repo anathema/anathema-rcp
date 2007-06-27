@@ -12,12 +12,12 @@ import net.sf.anathema.character.core.repository.Messages;
 
 import org.eclipse.core.runtime.IStatus;
 
-public class ModelCache {
+public class ModelCache implements IModelProvider {
 
-  private static final ModelCache instance = new ModelCache();
+  private static final IModelProvider instance = new ModelCache();
   private Map<ModelIdentifier, Object> modelsByIdentifier = new HashMap<ModelIdentifier, Object>();
 
-  public static ModelCache getInstance() {
+  public static IModelProvider getInstance() {
     return instance;
   }
 

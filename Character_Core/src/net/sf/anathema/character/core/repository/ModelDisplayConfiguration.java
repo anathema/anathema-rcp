@@ -1,9 +1,9 @@
 package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.attributes.AttributeCharacterContext;
+import net.sf.anathema.character.attributes.AttributeEditorInputFactory;
 import net.sf.anathema.character.attributes.AttributesEditor;
-import net.sf.anathema.character.attributes.AttributesEditorInput;
+import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -34,10 +34,11 @@ public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
       IFolder characterFolder,
       ImageDescriptor descriptor,
       IDisplayNameProvider provider) throws PersistenceException, CoreException {
-    return new AttributesEditorInput(
+    return new AttributeEditorInputFactory().create(
         getModelFile(characterFolder),
+        characterFolder,
         descriptor,
         provider,
-        new AttributeCharacterContext(characterFolder));
+        ModelCache.getInstance());
   }
 }

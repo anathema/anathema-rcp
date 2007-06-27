@@ -1,14 +1,15 @@
 package net.sf.anathema.character.description;
 
+import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
+import net.sf.anathema.lib.exception.PersistenceException;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
-
-import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
-import net.sf.anathema.lib.exception.PersistenceException;
 
 public class DescriptionModelDisplayConfiguration implements IModelDisplayConfiguration {
 
@@ -17,7 +18,12 @@ public class DescriptionModelDisplayConfiguration implements IModelDisplayConfig
       IFolder characterFolder,
       ImageDescriptor descriptor,
       IDisplayNameProvider provider) throws PersistenceException, CoreException {
-    return new CharacterDescriptionEditorInput(getModelFile(characterFolder), descriptor);
+    return new DescriptionEditorInputFactory().create(
+        getModelFile(characterFolder),
+        characterFolder,
+        descriptor,
+        provider,
+        ModelCache.getInstance());
   }
 
   @Override
@@ -34,5 +40,4 @@ public class DescriptionModelDisplayConfiguration implements IModelDisplayConfig
   public IFile getModelFile(IFolder characterFolder) {
     return characterFolder.getFile("basic.description");
   }
-
 }
