@@ -1,5 +1,7 @@
 package net.sf.anathema.character.attributes;
 
+import org.eclipse.osgi.util.NLS;
+
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.IChangeListener;
@@ -34,6 +36,6 @@ public class Attributes extends ChangeManagement implements IAttributes {
         return trait;
       }
     }
-    throw new IllegalArgumentException("No trait found for id " + id);
+    throw new IllegalArgumentException(NLS.bind(Messages.Attributes_NotFound_Message, id));
   }
 }

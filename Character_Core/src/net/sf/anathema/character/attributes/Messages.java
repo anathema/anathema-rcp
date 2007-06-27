@@ -12,4 +12,6 @@ public class Messages extends NLS {
   private Messages() {
     // nothing to do
   }
+
+  public static String Attributes_NotFound_Message;
 }
