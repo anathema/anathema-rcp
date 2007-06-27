@@ -8,19 +8,27 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public abstract class AbstractCharacterModelViewElement implements IViewElement {
+public class CharacterModelViewElement implements IViewElement {
 
   private final IViewElement parent;
   private final IFolder folder;
+  private final IFolder characterFolder;
+  private final IModelDisplayConfiguration configuration;
 
-  public AbstractCharacterModelViewElement(IViewElement parent, IFolder characterFolder) {
+  public CharacterModelViewElement(
+      IViewElement parent,
+      IFolder characterFolder,
+      IModelDisplayConfiguration configuration) {
     this.parent = parent;
     this.folder = characterFolder;
+    this.characterFolder = characterFolder;
+    this.configuration = configuration;
   }
 
   @Override
@@ -48,7 +56,7 @@ public abstract class AbstractCharacterModelViewElement implements IViewElement 
     if (object == null || object.getClass() != getClass()) {
       return false;
     }
-    AbstractCharacterModelViewElement other = (AbstractCharacterModelViewElement) object;
+    CharacterModelViewElement other = (CharacterModelViewElement) object;
     return folder.equals(other.folder);
   }
 
@@ -61,17 +69,27 @@ public abstract class AbstractCharacterModelViewElement implements IViewElement 
     return null;
   }
 
-  protected final IFile getFile(String filename) {
-    return folder.getFile(new Path(filename));
+  @Override
+  public String getDisplayName() {
+    return configuration.getDisplayName();
   }
 
-  protected final PartInitException createEditorInputException(Exception e) {
-    return new PartInitException(new Status(
-        IStatus.ERROR,
-        CharacterCorePlugin.PLUGIN_ID,
-        BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
-        e));
+  @Override
+  public void openEditor(IWorkbenchPage page) throws PartInitException {
+    try {
+      IEditorInput input = configuration.createEditorInput(characterFolder, getImageDescriptor(), getParent());
+      page.openEditor(input, configuration.getEditorId());
+    }
+    catch (Exception e) {
+      throw new PartInitException(new Status(
+          IStatus.ERROR,
+          CharacterCorePlugin.PLUGIN_ID,
+          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
+          e));
+    }
   }
 
-  protected abstract IFile getEditFile();
+  private IFile getEditFile() {
+    return configuration.getModelFile(characterFolder);
+  }
 }
