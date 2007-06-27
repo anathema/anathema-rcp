@@ -11,7 +11,7 @@ public class AttributesViewElementFactory implements ICharacterModelViewElementF
 
   @Override
   public IViewElement create(IViewElement parent, IFolder characterFolder) {
-    return new AttributesViewElement(parent, characterFolder);
+    return new AttributesViewElement(parent, characterFolder, new ModelConfiguration());
   }
 
   @Override
