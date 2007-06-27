@@ -1,7 +1,6 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.core.repository.AbstractCharacterModelViewElement;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -14,12 +13,12 @@ import org.eclipse.ui.PartInitException;
  * Draft: Generic character model view element displayname via extension point filename via extension point editor id
  * via extension point editorinputfactory via extension point. create(editfile, imagedescriptor, nameprovider)
  */
-public class AttributesViewElement extends AbstractCharacterModelViewElement {
+public class ModelViewElement extends AbstractCharacterModelViewElement {
 
   private final IFolder characterFolder;
   private final IModelConfiguration configuration;
 
-  public AttributesViewElement(IViewElement parent, IFolder characterFolder, IModelConfiguration configuration) {
+  public ModelViewElement(IViewElement parent, IFolder characterFolder, IModelConfiguration configuration) {
     super(parent, characterFolder);
     this.characterFolder = characterFolder;
     this.configuration = configuration;

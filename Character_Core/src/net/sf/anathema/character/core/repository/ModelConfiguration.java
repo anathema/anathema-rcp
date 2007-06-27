@@ -1,6 +1,9 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.attributes.AttributeCharacterContext;
+import net.sf.anathema.character.attributes.AttributesEditor;
+import net.sf.anathema.character.attributes.AttributesEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
