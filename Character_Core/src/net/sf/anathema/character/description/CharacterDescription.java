@@ -1,5 +1,8 @@
 package net.sf.anathema.character.description;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+
 import net.sf.anathema.lib.control.AggregatedChangeManagement;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.SimpleTextualDescription;
@@ -51,5 +54,11 @@ public class CharacterDescription extends AggregatedChangeManagement implements 
 
   public ITextualDescription getConcept() {
     return concept;
+  }
+
+  @Override
+  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
+      throws CoreException {
+    // nothing to do
   }
 }

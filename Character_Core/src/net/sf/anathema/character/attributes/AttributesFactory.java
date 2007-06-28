@@ -11,8 +11,10 @@ import org.eclipse.core.runtime.CoreException;
 
 public class AttributesFactory extends AbstractExecutableExtension implements IModelFactory {
 
+  private final AttributesPersister attributesPersister = new AttributesPersister();
+
   @Override
   public IModel create(IFile modelFile) throws PersistenceException, CoreException {
-    return new AttributesPersister().load(DocumentUtilities.read(modelFile.getContents()));
+    return attributesPersister.load(DocumentUtilities.read(modelFile.getContents()));
   }
 }

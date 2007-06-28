@@ -2,9 +2,9 @@ package net.sf.anathema.character.description;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.lib.exception.PersistenceException;
-import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -15,8 +15,6 @@ import org.eclipse.ui.IEditorInput;
 
 public class DescriptionEditorInputFactory implements IEditorInputFactory {
 
-  private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
-
   @Override
   public IEditorInput create(
       IFile modelFile,
@@ -24,7 +22,8 @@ public class DescriptionEditorInputFactory implements IEditorInputFactory {
       ImageDescriptor descriptor,
       IDisplayNameProvider nameProvider,
       IModelProvider modelProvider) throws PersistenceException, CoreException {
-    ICharacterDescription description = persister.load(DocumentUtilities.read(modelFile.getContents()));
+    ModelIdentifier identifier = new ModelIdentifier(characterFolder, ICharacterDescription.MODEL_ID);
+    ICharacterDescription description = (ICharacterDescription) modelProvider.getModel(identifier);
     return new CharacterDescriptionEditorInput(modelFile, descriptor, description);
   }
 

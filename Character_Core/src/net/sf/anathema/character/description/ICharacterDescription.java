@@ -1,9 +1,11 @@
 package net.sf.anathema.character.description;
 
-import net.sf.anathema.basics.item.IItem;
+import net.sf.anathema.character.core.model.IModel;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 
-public interface ICharacterDescription extends IItem {
+public interface ICharacterDescription extends IModel {
+
+  public static String MODEL_ID = "net.sf.anathema.character.description.model"; //$NON-NLS-1$
 
   public ITextualDescription getName();
 
