@@ -4,7 +4,6 @@ import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.CharacterCorePlugin;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
@@ -64,7 +63,7 @@ public class CharacterModelViewElement implements IViewElement {
   @Override
   public Object getAdapter(Class adapter) {
     if (adapter == IResource.class) {
-      return getEditFile();
+      return configuration.getModelFile(characterFolder);
     }
     return null;
   }
@@ -90,9 +89,5 @@ public class CharacterModelViewElement implements IViewElement {
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }
-  }
-
-  private IFile getEditFile() {
-    return configuration.getModelFile(characterFolder);
   }
 }

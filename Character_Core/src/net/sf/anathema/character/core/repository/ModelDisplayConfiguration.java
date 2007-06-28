@@ -16,30 +16,28 @@ import org.eclipse.ui.IEditorInput;
 public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
 
   private final String filename;
-  private final IExtensionElement configurationElement;
+  private final IExtensionElement displayElement;
   private final String pluginId;
 
-  public ModelDisplayConfiguration(String pluginId, String filename, IExtensionElement configurationElement) {
+  public ModelDisplayConfiguration(String pluginId, String filename, IExtensionElement displayElement) {
     this.pluginId = pluginId;
     this.filename = filename;
-    this.configurationElement = configurationElement;
+    this.displayElement = displayElement;
   }
 
   @Override
   public String getDisplayName() {
-    return configurationElement.getAttribute("displayName"); //$NON-NLS-1$
+    return displayElement.getAttribute("displayName"); //$NON-NLS-1$
   }
 
   @Override
   public ImageDescriptor getImageDescriptor() {
-    return ImageDescriptor.createFromURL(ResourceUtils.getResourceUrl(
-        pluginId,
-        configurationElement.getAttribute("icon"))); //$NON-NLS-1$
+    return ImageDescriptor.createFromURL(ResourceUtils.getResourceUrl(pluginId, displayElement.getAttribute("icon"))); //$NON-NLS-1$
   }
 
   @Override
   public String getEditorId() {
-    return configurationElement.getAttribute("editorId"); //$NON-NLS-1$
+    return displayElement.getAttribute("editorId"); //$NON-NLS-1$
   }
 
   @Override
@@ -52,13 +50,9 @@ public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
       IFolder characterFolder,
       ImageDescriptor descriptor,
       IDisplayNameProvider provider) throws PersistenceException, CoreException, ExtensionException {
-    IEditorInputFactory factory = configurationElement.getAttributeAsObject("editorInputFactory", //$NON-NLS-1$
+    IEditorInputFactory factory = displayElement.getAttributeAsObject("editorInputFactory", //$NON-NLS-1$
         IEditorInputFactory.class);
-    return factory.create(
-        getModelFile(characterFolder),
-        characterFolder,
-        descriptor,
-        provider,
-        ModelCache.getInstance());
+    IFile modelFile = getModelFile(characterFolder);
+    return factory.create(modelFile, characterFolder, descriptor, provider, ModelCache.getInstance());
   }
 }
