@@ -18,10 +18,6 @@ import org.eclipse.osgi.util.NLS;
 
 public class ModelExtensionPoint {
 
-  private interface IConfigurationClosure {
-    public void perform(IExtensionElement element);
-  }
-
   private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.models"; //$NON-NLS-1$
   private static final String ATTRIB_MODEL_FACTORY = "modelFactory"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
