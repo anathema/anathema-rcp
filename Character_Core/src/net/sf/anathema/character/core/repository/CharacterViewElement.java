@@ -1,13 +1,8 @@
 package net.sf.anathema.character.core.repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
-import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
+import net.sf.anathema.character.core.model.ModelExtensionPoint;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -30,21 +25,7 @@ public class CharacterViewElement implements IViewElement {
 
   @Override
   public IViewElement[] getChildren() {
-    List<IViewElement> viewElements = new ArrayList<IViewElement>();
-    for (IPluginExtension extension : new EclipseExtensionProvider().getExtensions("net.sf.anathema.character.models")) { //$NON-NLS-1$
-      for (IExtensionElement extensionElement : extension.getElements()) {
-        IExtensionElement configurationElement = extensionElement.getElement("displayConfiguration"); //$NON-NLS-1$
-        if (configurationElement != null) {
-          String filename = extensionElement.getAttribute("filename"); //$NON-NLS-1$
-          ModelDisplayConfiguration configuration = new ModelDisplayConfiguration(
-              extension.getContributorId(),
-              filename,
-              configurationElement);
-          viewElements.add(new CharacterModelViewElement(this, characterFolder, configuration));
-        }
-      }
-    }
-    return viewElements.toArray(new IViewElement[viewElements.size()]);
+    return new ModelExtensionPoint().createViewElements(this, characterFolder);
   }
 
   @Override
