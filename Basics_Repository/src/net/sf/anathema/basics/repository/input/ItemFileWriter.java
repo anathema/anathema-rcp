@@ -20,6 +20,7 @@ public class ItemFileWriter {
       ISingleFileItemPersister<D> persister,
       D item,
       IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+    // TODO: File erzeugen, wenn es noch nicht exisitiert.
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     try {
       persister.save(outputStream, item);
