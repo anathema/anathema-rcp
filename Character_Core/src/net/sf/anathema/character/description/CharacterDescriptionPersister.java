@@ -3,8 +3,8 @@ package net.sf.anathema.character.description;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
 import net.sf.anathema.basics.item.text.TextPersister;
+import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -12,7 +12,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class CharacterDescriptionPersister implements ISingleFileItemPersister<ICharacterDescription> {
+public class CharacterDescriptionPersister implements IModelPersister<ICharacterDescription> {
 
   private static final String TAG_CHARACTERIZATION = "Characterization"; //$NON-NLS-1$
   private static final String TAG_CHARACTER_NAME = "Name"; //$NON-NLS-1$

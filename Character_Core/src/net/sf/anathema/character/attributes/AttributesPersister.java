@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
+import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -18,7 +18,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class AttributesPersister implements ISingleFileItemPersister<IAttributes> {
+public class AttributesPersister implements IModelPersister<IAttributes> {
 
   private static final String TAG_ATTRIBUTES = "attributes"; //$NON-NLS-1$
   private static final String ATTRIB_EXPERIENCED_VALUE = "experiencedValue"; //$NON-NLS-1$
