@@ -1,6 +1,8 @@
 package net.sf.anathema.character.basics;
 
-public final class CharacterBasics implements ICharacterBasics {
+import net.sf.anathema.character.core.model.AbstractModel;
+
+public final class CharacterBasics extends AbstractModel implements ICharacterBasics {
   @Override
   public boolean isExperienced() {
     return false;

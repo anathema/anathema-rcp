@@ -1,12 +1,12 @@
 package net.sf.anathema.character.attributes;
 
-import org.eclipse.osgi.util.NLS;
-
+import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.IChangeListener;
 
-public class Attributes extends ChangeManagement implements IAttributes {
+import org.eclipse.osgi.util.NLS;
+
+public class Attributes extends AbstractModel implements IAttributes {
 
   private final IBasicTrait[] traits;
   private final IChangeListener dirtyListener = new IChangeListener() {

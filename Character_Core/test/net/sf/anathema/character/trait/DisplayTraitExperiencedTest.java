@@ -1,6 +1,8 @@
 package net.sf.anathema.character.trait;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import net.sf.anathema.character.basics.DummyCharacterBasics;
 import net.sf.anathema.character.basics.ICharacterBasics;
 import net.sf.anathema.lib.control.change.IChangeListener;
 
@@ -11,7 +13,7 @@ public class DisplayTraitExperiencedTest extends AbstractDisplayTraitTest {
 
   @Override
   protected ICharacterBasics createCharacterBasics() {
-    return new ICharacterBasics() {
+    return new DummyCharacterBasics() {
       @Override
       public boolean isExperienced() {
         return experienced;

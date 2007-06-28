@@ -1,5 +1,9 @@
 package net.sf.anathema.character.core.model;
 
-public interface IModel {
-// nothing to do
+import net.sf.anathema.basics.item.IItem;
+
+import org.eclipse.core.runtime.IExecutableExtension;
+
+public interface IModel extends IItem, IExecutableExtension {
+  // nothing to do
 }
