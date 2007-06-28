@@ -2,6 +2,7 @@ package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -21,9 +22,10 @@ public class AttributeEditorInputFactory implements IEditorInputFactory {
       ImageDescriptor descriptor,
       IDisplayNameProvider nameProvider,
       IModelProvider modelProvider) throws PersistenceException, CoreException {
-    return new AttributesEditorInput(modelFile, descriptor, nameProvider, new AttributeCharacterContext(
-        modelProvider,
-        characterFolder));
+    ModelIdentifier modelIdentifier = new ModelIdentifier(characterFolder, IAttributes.MODEL_ID);
+    IAttributes attributes = (IAttributes) modelProvider.getModel(modelIdentifier);
+    AttributeCharacterContext context = new AttributeCharacterContext(modelProvider, characterFolder);
+    return new AttributesEditorInput(modelFile, descriptor, nameProvider, attributes, context);
   }
 
   @Override

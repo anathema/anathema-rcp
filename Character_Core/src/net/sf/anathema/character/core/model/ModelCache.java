@@ -20,7 +20,9 @@ public class ModelCache implements IModelProvider {
     Object model = modelsByIdentifier.get(identifier);
     if (model == null) {
       model = new ModelExtensionPoint().createModel(identifier);
-      addModel(identifier, model);
+      if (model != null) {
+        addModel(identifier, model);
+      }
     }
     return model;
   }

@@ -6,7 +6,6 @@ import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.lib.exception.PersistenceException;
-import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -20,11 +19,9 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
   private ICharacterDescription item;
   private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
 
-  public CharacterDescriptionEditorInput(IFile file, ImageDescriptor imageDescriptor)
-      throws PersistenceException,
-      CoreException {
+  public CharacterDescriptionEditorInput(IFile file, ImageDescriptor imageDescriptor, ICharacterDescription description) {
     super(file, imageDescriptor);
-    this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
+    this.item = description;
   }
 
   @Override

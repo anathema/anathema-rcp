@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
-import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
@@ -22,7 +21,7 @@ public class ModelExtensionPoint {
   private static final String ATTRIB_MODEL_FACTORY = "modelFactory"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
 
-  public Object createModel(ModelIdentifier identifier) {
+  public Object createModel(ModelIdentifier identifier){
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
         if (extensionElement.getAttribute(ATTRIB_ID).equals(identifier.getId())) {
@@ -32,7 +31,7 @@ public class ModelExtensionPoint {
             String filename = extensionElement.getAttribute("filename"); //$NON-NLS-1$
             return factory.create(characterFolder.getFile(filename));
           }
-          catch (ExtensionException e) {
+          catch (Exception e) {
             CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, Messages.ModelCache_ModelLoadError, e);
           }
         }

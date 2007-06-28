@@ -10,7 +10,6 @@ import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.exception.PersistenceException;
-import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -29,11 +28,12 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
       IFile file,
       ImageDescriptor imageDescriptor,
       IDisplayNameProvider displayNameProvider,
-      IAttributeCharacterContext context) throws PersistenceException, CoreException {
+      IAttributes attributes,
+      IAttributeCharacterContext context) {
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
     this.context = context;
-    this.attributes = attributesPersister.load(DocumentUtilities.read(file.getContents()));
+    this.attributes = attributes;
   }
 
   @Override
