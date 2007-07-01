@@ -15,11 +15,11 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
   private Identificate traitType;
   private BasicTrait basicTrait;
 
-  protected abstract IExperience createCharacterBasics();
+  protected abstract IExperience createExperience();
 
   @Before
   public final void createTrait() {
-    IExperience basics = createCharacterBasics();
+    IExperience basics = createExperience();
     this.traitRules = new DummyTraitRules();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
@@ -28,13 +28,6 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
 
   protected final DisplayTrait getDisplayTrait() {
     return (DisplayTrait) model;
-  }
-
-  @Test
-  public void setValueRespectsTraitRules() throws Exception {
-    this.traitRules.setCorrectedValue(4);
-    model.setValue(2);
-    assertEquals(4, model.getValue());
   }
 
   @Test

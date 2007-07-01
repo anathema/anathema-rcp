@@ -3,15 +3,15 @@ package net.sf.anathema.character.trait.experience;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.experience.IExperience;
 
-public class DummyExperienceModel extends AbstractModel implements IExperience {
+public class DummyExperience extends AbstractModel implements IExperience {
 
   private boolean experienced;
 
-  public DummyExperienceModel() {
+  public DummyExperience() {
     this(false);
   }
 
-  public DummyExperienceModel(boolean experienced) {
+  public DummyExperience(boolean experienced) {
     this.experienced = experienced;
   }
 

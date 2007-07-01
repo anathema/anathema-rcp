@@ -1,7 +1,9 @@
 package net.sf.anathema.character.trait;
 
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.rules.IRuleTrait;
 import net.sf.anathema.character.trait.rules.ITraitRules;
+import net.sf.anathema.character.trait.rules.RuleTrait;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.control.change.IChangeListener;
@@ -11,7 +13,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   private final IBasicTrait basicTrait;
   private final IExperience experience;
-  private final ITraitRules traitRules;
+  private final IRuleTrait ruleTrait;
   private final ChangeControl changeControl = new ChangeControl();
   private final IChangeListener creationListener = new IChangeListener() {
     @Override
@@ -31,24 +33,21 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   };
 
   public DisplayTrait(IBasicTrait basicTrait, IExperience experience, ITraitRules traitRules) {
+    this.ruleTrait = new RuleTrait(basicTrait, experience, traitRules);
     this.basicTrait = basicTrait;
     this.experience = experience;
-    this.traitRules = traitRules;
     basicTrait.getCreationModel().addValueChangeListener(creationListener);
     basicTrait.getExperiencedModel().addValueChangeListener(experiencedListener);
   }
 
   @Override
   public int getValue() {
-    if (experience.isExperienced() && basicTrait.getExperiencedModel().getValue() > -1) {
-      return basicTrait.getExperiencedModel().getValue();
-    }
-    return basicTrait.getCreationModel().getValue();
+    return ruleTrait.getValue();
   }
 
   @Override
   public int getMaximalValue() {
-    return traitRules.getMaximalValue();
+    return ruleTrait.getMaximalValue();
   }
 
   @Override
@@ -68,13 +67,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public void setValue(int value) {
-    int correctedValue = traitRules.getCorrectedValue(value);
-    if (experience.isExperienced()) {
-      basicTrait.getExperiencedModel().setValue(correctedValue);
-    }
-    else {
-      basicTrait.getCreationModel().setValue(correctedValue);
-    }
+    ruleTrait.setValue(value);
   }
 
   @Override

@@ -3,7 +3,7 @@ package net.sf.anathema.character.trait;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.experience.DummyExperienceModel;
+import net.sf.anathema.character.trait.experience.DummyExperience;
 import net.sf.anathema.lib.control.change.IChangeListener;
 
 import org.junit.Test;
@@ -12,8 +12,8 @@ public class DisplayTraitExperiencedTest extends AbstractDisplayTraitTest {
   private boolean experienced = true;
 
   @Override
-  protected IExperience createCharacterBasics() {
-    return new DummyExperienceModel() {
+  protected IExperience createExperience() {
+    return new DummyExperience() {
       @Override
       public boolean isExperienced() {
         return experienced;

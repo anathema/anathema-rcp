@@ -8,11 +8,9 @@ public final class TraitRules implements ITraitRules {
     this.minimalValue = minimalValue;
   }
 
-  public int getCorrectedValue(int value) {
-    if (value < minimalValue) {
-      return minimalValue;
-    }
-    return value;
+  @Override
+  public int getMinimalValue() {
+    return minimalValue;
   }
 
   @Override
