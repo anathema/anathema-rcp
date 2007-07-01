@@ -46,9 +46,12 @@ public class RuleTrait implements IRuleTrait {
 
   @Override
   public int getValue() {
-    if (experience.isExperienced() && basicTrait.getExperiencedModel().getValue() > -1) {
-      return basicTrait.getExperiencedModel().getValue();
+    int experiencedValue = basicTrait.getExperiencedModel().getValue();
+    int creationValue = basicTrait.getCreationModel().getValue();
+    boolean isExperienced = experience.isExperienced();
+    if (isExperienced && experiencedValue >= creationValue) {
+      return experiencedValue;
     }
-    return basicTrait.getCreationModel().getValue();
+    return creationValue;
   }
 }

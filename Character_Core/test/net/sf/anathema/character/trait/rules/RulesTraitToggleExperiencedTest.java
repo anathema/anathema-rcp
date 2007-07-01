@@ -12,28 +12,37 @@ import org.junit.Test;
 
 public class RulesTraitToggleExperiencedTest {
 
-  private static final int CREATION_VALUE = 3;
+  private static final int LESSER_CREATION_VALUE = 3;
   private static final int EXPERIENCED_VALUE = 5;
   private IExperience experience;
   private RuleTrait ruleTrait;
+  private BasicTrait basicTrait;
 
   @Before
   public void createRules() throws Exception {
     this.experience = new Experience();
-    BasicTrait basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
+    this.basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
     this.ruleTrait = new RuleTrait(basicTrait, experience, new DummyTraitTemplate());
-    basicTrait.getCreationModel().setValue(CREATION_VALUE);
+    basicTrait.getCreationModel().setValue(LESSER_CREATION_VALUE);
     basicTrait.getExperiencedModel().setValue(EXPERIENCED_VALUE);
   }
   
   @Test
-  public void foo() throws Exception {
-    assertEquals(CREATION_VALUE, ruleTrait.getValue());
+  public void withLesserCreationValueValuesAreToggledOnExperienceChange() throws Exception {
+    assertEquals(LESSER_CREATION_VALUE, ruleTrait.getValue());
     experience.setExperienced(true);
     assertEquals(EXPERIENCED_VALUE, ruleTrait.getValue());
     experience.setExperienced(false);
-    assertEquals(CREATION_VALUE, ruleTrait.getValue());
+    assertEquals(LESSER_CREATION_VALUE, ruleTrait.getValue());
+  }
+
+  @Test
+  public void withHigherCreationValueValuesAreToggledOnExperienceChange() throws Exception {
+    int higherCreationValue = EXPERIENCED_VALUE + 1;
+    basicTrait.getCreationModel().setValue(higherCreationValue);
     experience.setExperienced(true);
-    assertEquals(EXPERIENCED_VALUE, ruleTrait.getValue());
+    assertEquals(higherCreationValue, ruleTrait.getValue());
+    assertEquals(higherCreationValue, basicTrait.getCreationModel().getValue());
+    assertEquals(EXPERIENCED_VALUE, basicTrait.getExperiencedModel().getValue());
   }
 }
