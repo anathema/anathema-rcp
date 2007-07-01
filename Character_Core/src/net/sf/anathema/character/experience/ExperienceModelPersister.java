@@ -8,20 +8,20 @@ import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.dom4j.Document;
 
-public class ExperienceModelPersister implements IModelPersister<IExperienceModel> {
+public class ExperienceModelPersister implements IModelPersister<IExperience> {
 
   @Override
-  public IExperienceModel load(Document document) throws PersistenceException {
+  public IExperience load(Document document) throws PersistenceException {
     return createNew();
   }
 
   @Override
-  public void save(OutputStream stream, IExperienceModel item) throws IOException, PersistenceException {
+  public void save(OutputStream stream, IExperience item) throws IOException, PersistenceException {
     // nothing to do
   }
 
   @Override
-  public IExperienceModel createNew() {
+  public IExperience createNew() {
     return new ExperienceModel();
   }
 }

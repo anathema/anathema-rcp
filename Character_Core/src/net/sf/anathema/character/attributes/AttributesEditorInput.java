@@ -19,7 +19,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 
 public class AttributesEditorInput extends FileEditorInput implements IFileItemEditorInput<IAttributes> {
 
-  private final IAttributes attributes;
   private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
   private final IAttributeCharacterContext context;
@@ -28,23 +27,21 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
       IFile file,
       ImageDescriptor imageDescriptor,
       IDisplayNameProvider displayNameProvider,
-      IAttributes attributes,
       IAttributeCharacterContext context) {
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
     this.context = context;
-    this.attributes = attributes;
   }
 
   @Override
   public IAttributes getItem() {
-    return attributes;
+    return context.getAttribute();
   }
 
   @Override
   public IAttributes save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
-    new ItemFileWriter().saveToFile(getFile(), attributesPersister, attributes, monitor);
-    return attributes;
+    new ItemFileWriter().saveToFile(getFile(), attributesPersister, getItem(), monitor);
+    return getItem();
   }
 
   @Override
@@ -57,7 +54,7 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
     TraitGroup[] groups = context.getTraitGroups();
     for (TraitGroup group : groups) {
       for (String traitId : group.getTraitIds()) {
-        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), context.getExperienceModel(), context.getRules()));
+        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), context.getExperience(), context.getRules()));
       }
     }
     return groups;

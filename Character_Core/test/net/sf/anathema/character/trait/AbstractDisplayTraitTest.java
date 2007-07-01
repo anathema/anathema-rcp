@@ -1,7 +1,7 @@
 package net.sf.anathema.character.trait;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.experience.IExperienceModel;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.Identificate;
 
@@ -15,11 +15,11 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
   private Identificate traitType;
   private BasicTrait basicTrait;
 
-  protected abstract IExperienceModel createCharacterBasics();
+  protected abstract IExperience createCharacterBasics();
 
   @Before
   public final void createTrait() {
-    IExperienceModel basics = createCharacterBasics();
+    IExperience basics = createCharacterBasics();
     this.traitRules = new DummyTraitRules();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
