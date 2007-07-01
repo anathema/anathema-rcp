@@ -10,12 +10,13 @@ import net.sf.anathema.lib.util.IIdentificate;
 public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   private final IBasicTrait basicTrait;
-  private final IExperience basics;
+  private final IExperience experience;
+  private final ITraitRules traitRules;
   private final ChangeControl changeControl = new ChangeControl();
   private final IChangeListener creationListener = new IChangeListener() {
     @Override
     public void changeOccured() {
-      if (!basics.isExperienced()) {
+      if (!experience.isExperienced()) {
         changeControl.fireChangedEvent();
       }
     }
@@ -23,16 +24,15 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   private final IChangeListener experiencedListener = new IChangeListener() {
     @Override
     public void changeOccured() {
-      if (basics.isExperienced()) {
+      if (experience.isExperienced()) {
         changeControl.fireChangedEvent();
       }
     }
   };
-  private final ITraitRules traitRules;
 
-  public DisplayTrait(IBasicTrait basicTrait, IExperience basics, ITraitRules traitRules) {
+  public DisplayTrait(IBasicTrait basicTrait, IExperience experience, ITraitRules traitRules) {
     this.basicTrait = basicTrait;
-    this.basics = basics;
+    this.experience = experience;
     this.traitRules = traitRules;
     basicTrait.getCreationModel().addValueChangeListener(creationListener);
     basicTrait.getExperiencedModel().addValueChangeListener(experiencedListener);
@@ -40,7 +40,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public int getValue() {
-    if (basics.isExperienced() && basicTrait.getExperiencedModel().getValue() > -1) {
+    if (experience.isExperienced() && basicTrait.getExperiencedModel().getValue() > -1) {
       return basicTrait.getExperiencedModel().getValue();
     }
     return basicTrait.getCreationModel().getValue();
@@ -69,7 +69,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   @Override
   public void setValue(int value) {
     int correctedValue = traitRules.getCorrectedValue(value);
-    if (basics.isExperienced()) {
+    if (experience.isExperienced()) {
       basicTrait.getExperiencedModel().setValue(correctedValue);
     }
     else {
