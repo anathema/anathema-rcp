@@ -11,6 +11,5 @@ public class AbstractModel extends ChangeManagement implements IModel{
   public final void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
     // nothing to do
-    System.err.println(config);
   }
 }

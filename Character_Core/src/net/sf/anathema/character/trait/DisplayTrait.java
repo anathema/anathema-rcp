@@ -15,20 +15,10 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   private final IExperience experience;
   private final IRuleTrait ruleTrait;
   private final ChangeControl changeControl = new ChangeControl();
-  private final IChangeListener creationListener = new IChangeListener() {
+  private final IChangeListener changeListener = new IChangeListener() {
     @Override
     public void changeOccured() {
-      if (!experience.isExperienced()) {
-        changeControl.fireChangedEvent();
-      }
-    }
-  };
-  private final IChangeListener experiencedListener = new IChangeListener() {
-    @Override
-    public void changeOccured() {
-      if (experience.isExperienced()) {
-        changeControl.fireChangedEvent();
-      }
+      changeControl.fireChangedEvent();
     }
   };
 
@@ -36,8 +26,9 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitRules);
     this.basicTrait = basicTrait;
     this.experience = experience;
-    basicTrait.getCreationModel().addValueChangeListener(creationListener);
-    basicTrait.getExperiencedModel().addValueChangeListener(experiencedListener);
+    basicTrait.getCreationModel().addValueChangeListener(changeListener);
+    basicTrait.getExperiencedModel().addValueChangeListener(changeListener);
+    experience.addChangeListener(changeListener);
   }
 
   @Override
@@ -72,8 +63,9 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public void dispose() {
-    basicTrait.getCreationModel().removeValueChangeListener(creationListener);
-    basicTrait.getExperiencedModel().removeValueChangeListener(experiencedListener);
+    basicTrait.getCreationModel().removeValueChangeListener(changeListener);
+    basicTrait.getExperiencedModel().removeValueChangeListener(changeListener);
+    experience.removeChangeListener(changeListener);
     changeControl.clear();
   }
 }

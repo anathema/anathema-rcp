@@ -3,7 +3,7 @@ package net.sf.anathema.lib.control.change;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChangeControl {
+public class ChangeControl implements IChangeable {
 
   private final List<IChangeListener> listeners = new ArrayList<IChangeListener>();
 
