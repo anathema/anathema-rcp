@@ -4,7 +4,7 @@ import net.sf.anathema.character.core.model.IModel;
 
 public interface IExperience extends IModel {
 
-  public static final String MODEL_ID = "net.sf.anathema.character.basics.model"; //$NON-NLS-1$
+  public static final String MODEL_ID = "net.sf.anathema.character.experience.model"; //$NON-NLS-1$
 
   public boolean isExperienced();
 }

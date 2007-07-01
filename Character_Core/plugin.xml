@@ -37,7 +37,7 @@
       </model>
       <model
             filename="experience.model"
-            id="net.sf.anathema.character.basics.model"
+            id="net.sf.anathema.character.experience.model"
             modelFactory="net.sf.anathema.character.experience.ExperienceModelFactory">
       </model>
    </extension>
