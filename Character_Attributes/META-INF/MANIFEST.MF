@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Character Attributes Plug-in
+Bundle-SymbolicName: net.sf.anathema.character.attributes
+Bundle-Version: 1.0.0
+Bundle-Activator: net.sf.anathema.character.attributes.AttributesPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ net.sf.anathema.basics.item,
+ net.sf.anathema.character.core
+Eclipse-LazyStart: true
