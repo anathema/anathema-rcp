@@ -8,7 +8,7 @@ public interface IAttributeCharacterContext {
 
   public IExperience getExperience();
   
-  public IAttributes getAttribute();
+  public IAttributes getAttributes();
 
   public TraitGroup[] getTraitGroups();
 

@@ -42,7 +42,7 @@ public class AttributeCharacterContext implements IAttributeCharacterContext {
   }
 
   @Override
-  public IAttributes getAttribute() {
+  public IAttributes getAttributes() {
     return (IAttributes) getModel(IAttributes.MODEL_ID);
   }
 

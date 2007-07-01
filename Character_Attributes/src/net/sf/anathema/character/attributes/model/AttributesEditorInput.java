@@ -35,7 +35,7 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
 
   @Override
   public IAttributes getItem() {
-    return context.getAttribute();
+    return context.getAttributes();
   }
 
   @Override
