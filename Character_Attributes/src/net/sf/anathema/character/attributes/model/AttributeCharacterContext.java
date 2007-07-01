@@ -4,15 +4,15 @@ import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.rules.ITraitRules;
-import net.sf.anathema.character.trait.rules.TraitRules;
+import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.rules.TraitTemplate;
 
 import org.eclipse.core.resources.IFolder;
 
 public class AttributeCharacterContext implements IAttributeCharacterContext {
 
   private final TraitGroup[] groups;
-  private final TraitRules traitRules;
+  private final TraitTemplate traitRules;
   private final IFolder characterFolder;
   private final IModelProvider modelProvider;
 
@@ -22,13 +22,13 @@ public class AttributeCharacterContext implements IAttributeCharacterContext {
     this.groups = new TraitGroup[] { new TraitGroup("Physical", "Strength", "Dexterity", "Stamina"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         new TraitGroup("Social", "Charisma", "Manipulation", "Appearance"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         new TraitGroup("Mental", "Perception", "Intelligence", "Wits") }; //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-    this.traitRules = new TraitRules();
+    this.traitRules = new TraitTemplate();
     traitRules.setMiniumalValue(1);
 
   }
 
   @Override
-  public ITraitRules getRules() {
+  public ITraitTemplate getRules() {
     return traitRules;
   }
 

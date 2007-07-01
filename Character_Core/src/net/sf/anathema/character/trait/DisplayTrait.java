@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait;
 
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.rules.IRuleTrait;
-import net.sf.anathema.character.trait.rules.ITraitRules;
+import net.sf.anathema.character.trait.rules.ITraitTemplate;
 import net.sf.anathema.character.trait.rules.RuleTrait;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
@@ -32,7 +32,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     }
   };
 
-  public DisplayTrait(IBasicTrait basicTrait, IExperience experience, ITraitRules traitRules) {
+  public DisplayTrait(IBasicTrait basicTrait, IExperience experience, ITraitTemplate traitRules) {
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitRules);
     this.basicTrait = basicTrait;
     this.experience = experience;

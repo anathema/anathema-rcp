@@ -7,9 +7,9 @@ public class RuleTrait implements IRuleTrait {
 
   private final IBasicTrait basicTrait;
   private final IExperience experience;
-  private final ITraitRules traitRules;
+  private final ITraitTemplate traitRules;
 
-  public RuleTrait(IBasicTrait basicTrait, IExperience experience, ITraitRules traitRules) {
+  public RuleTrait(IBasicTrait basicTrait, IExperience experience, ITraitTemplate traitRules) {
     this.basicTrait = basicTrait;
     this.experience = experience;
     this.traitRules = traitRules;
@@ -22,16 +22,26 @@ public class RuleTrait implements IRuleTrait {
 
   @Override
   public void setValue(int value) {
-    int correctedValue = value;
-    if (value < traitRules.getMinimalValue()) {
-      correctedValue = traitRules.getMinimalValue();
-    }
+    int correctedValue = getCorrectedValue(value);
     if (experience.isExperienced()) {
       basicTrait.getExperiencedModel().setValue(correctedValue);
     }
     else {
       basicTrait.getCreationModel().setValue(correctedValue);
     }
+  }
+
+  private int getCorrectedValue(int value) {
+    if (experience.isExperienced() && value < basicTrait.getCreationModel().getValue()) {
+      return basicTrait.getCreationModel().getValue();
+    }
+    if (value < traitRules.getMinimalValue()) {
+      return traitRules.getMinimalValue();
+    }
+    if (value > traitRules.getMaximalValue()) {
+      return traitRules.getMaximalValue();
+    }
+    return value;
   }
 
   @Override

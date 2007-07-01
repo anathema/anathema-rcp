@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest {
 
-  private DummyTraitRules traitRules;
+  private DummyTraitTemplate traitTemplate;
   private Identificate traitType;
   private BasicTrait basicTrait;
 
@@ -20,10 +20,10 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
   @Before
   public final void createTrait() {
     IExperience basics = createExperience();
-    this.traitRules = new DummyTraitRules();
+    this.traitTemplate = new DummyTraitTemplate();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
-    this.model = new DisplayTrait(basicTrait, basics, traitRules);
+    this.model = new DisplayTrait(basicTrait, basics, traitTemplate);
   }
 
   protected final DisplayTrait getDisplayTrait() {
@@ -32,7 +32,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
 
   @Test
   public void respectsMaximalValueFromRules() throws Exception {
-    this.traitRules.setMaximalValue(6);
+    this.traitTemplate.setMaximalValue(6);
     assertEquals(6, getDisplayTrait().getMaximalValue());
   }
 

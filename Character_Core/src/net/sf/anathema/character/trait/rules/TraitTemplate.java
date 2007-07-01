@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.rules;
 
-public final class TraitRules implements ITraitRules {
+public final class TraitTemplate implements ITraitTemplate {
 
   private int minimalValue;
 

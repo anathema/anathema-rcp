@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.rules;
 
-public interface ITraitRules {
+public interface ITraitTemplate {
 
   public int getMaximalValue();
   
