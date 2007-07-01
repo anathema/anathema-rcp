@@ -6,7 +6,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
 
 public class AttributeMessages extends NLS {
-  private static final String BUNDLE_NAME = "net.sf.anathema.character.attributes.model.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "net.sf.anathema.character.attributes.model.attributemessages"; //$NON-NLS-1$
   public static String Strength;
   public static String Dexterity;
   public static String Stamina;
