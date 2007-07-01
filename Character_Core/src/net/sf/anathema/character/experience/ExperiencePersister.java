@@ -14,7 +14,7 @@ import org.dom4j.Element;
 
 public class ExperiencePersister implements IModelPersister<IExperience> {
 
-  private static final String TAG_MODEL = "model";
+  private static final String TAG_MODEL = "model"; //$NON-NLS-1$
   private static final String ATTRIB_EXPERIENCED = "experienced"; //$NON-NLS-1$
 
   @Override

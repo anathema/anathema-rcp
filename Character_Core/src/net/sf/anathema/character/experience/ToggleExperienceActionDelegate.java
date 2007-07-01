@@ -34,10 +34,11 @@ public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
     ModelIdentifier modelIdentifier = new ModelIdentifier(folder, IExperience.MODEL_ID);
     IFile file = new ModelExtensionPoint().getModelFile(modelIdentifier);
     try {
+      //TODO Progressmonitor?
       new ItemFileWriter().saveToFile(file, persister, model, new NullProgressMonitor());
     }
     catch (Exception e) {
-      CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, "Error saving experienced model", e);
+      CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);
     }
   }
 
