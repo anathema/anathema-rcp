@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait;
+package net.sf.anathema.character.trait.display;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

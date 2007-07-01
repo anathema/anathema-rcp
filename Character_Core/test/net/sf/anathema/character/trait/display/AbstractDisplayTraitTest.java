@@ -1,7 +1,11 @@
-package net.sf.anathema.character.trait;
+package net.sf.anathema.character.trait.display;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.AbstractIntValueModelTest;
+import net.sf.anathema.character.trait.BasicTrait;
+import net.sf.anathema.character.trait.DisplayTrait;
+import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.Identificate;
 

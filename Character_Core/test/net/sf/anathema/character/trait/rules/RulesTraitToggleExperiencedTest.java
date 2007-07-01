@@ -1,10 +1,10 @@
 package net.sf.anathema.character.trait.rules;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
-import net.sf.anathema.character.trait.experience.DummyExperience;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -19,7 +19,7 @@ public class RulesTraitToggleExperiencedTest {
 
   @Before
   public void createRules() throws Exception {
-    this.experience = new DummyExperience(false);
+    this.experience = new Experience();
     BasicTrait basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
     this.ruleTrait = new RuleTrait(basicTrait, experience, new DummyTraitTemplate());
     basicTrait.getCreationModel().setValue(CREATION_VALUE);
