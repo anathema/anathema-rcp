@@ -15,7 +15,7 @@ public final class Experience extends AbstractModel implements IExperience {
 
   @Override
   public void setExperienced(boolean experienced) {
-    if (this.experienced = experienced) {
+    if (this.experienced == experienced) {
       return;
     }
     this.experienced = experienced;
