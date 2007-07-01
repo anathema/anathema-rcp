@@ -8,7 +8,7 @@ import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.dom4j.Document;
 
-public class ExperienceModelPersister implements IModelPersister<IExperience> {
+public class ExperiencePersister implements IModelPersister<IExperience> {
 
   @Override
   public IExperience load(Document document) throws PersistenceException {
@@ -22,6 +22,6 @@ public class ExperienceModelPersister implements IModelPersister<IExperience> {
 
   @Override
   public IExperience createNew() {
-    return new ExperienceModel();
+    return new Experience();
   }
 }
