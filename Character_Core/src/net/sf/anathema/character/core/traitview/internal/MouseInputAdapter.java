@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.traitview;
+package net.sf.anathema.character.core.traitview.internal;
 
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;

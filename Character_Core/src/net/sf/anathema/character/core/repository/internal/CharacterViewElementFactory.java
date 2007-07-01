@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.repository;
+package net.sf.anathema.character.core.repository.internal;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.model;
+package net.sf.anathema.character.core.model.internal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,10 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.CharacterCorePlugin;
-import net.sf.anathema.character.core.repository.CharacterModelViewElement;
-import net.sf.anathema.character.core.repository.ModelDisplayConfiguration;
+import net.sf.anathema.character.core.model.IModelFactory;
+import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.core.repository.internal.CharacterModelViewElement;
+import net.sf.anathema.character.core.repository.internal.ModelDisplayConfiguration;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;

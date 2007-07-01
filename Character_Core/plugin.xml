@@ -10,7 +10,7 @@
             project="Character"
             type="%itemtype.type.character"
             untitledName="%itemtype.untitled.character"
-            viewElementFactoryClass="net.sf.anathema.character.core.repository.CharacterViewElementFactory">
+            viewElementFactoryClass="net.sf.anathema.character.core.repository.internal.CharacterViewElementFactory">
       </itemtype>
    </extension>
    <extension

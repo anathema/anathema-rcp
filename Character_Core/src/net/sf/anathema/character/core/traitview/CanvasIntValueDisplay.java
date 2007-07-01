@@ -1,6 +1,8 @@
 package net.sf.anathema.character.core.traitview;
 
 import net.disy.commons.core.util.Ensure;
+import net.sf.anathema.character.core.traitview.internal.MouseInputAdapter;
+import net.sf.anathema.character.core.traitview.internal.OuterPaintListener;
 import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;

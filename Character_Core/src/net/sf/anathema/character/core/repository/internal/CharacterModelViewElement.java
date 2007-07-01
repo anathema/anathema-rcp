@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.repository;
+package net.sf.anathema.character.core.repository.internal;
 
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;

@@ -1,7 +1,10 @@
-package net.sf.anathema.character.core.model;
+package net.sf.anathema.character.core.model.internal;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.model.ModelIdentifier;
 
 public class ModelCache implements IModelProvider {
 

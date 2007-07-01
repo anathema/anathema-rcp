@@ -1,8 +1,8 @@
-package net.sf.anathema.character.core.repository;
+package net.sf.anathema.character.core.repository.internal;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
-import net.sf.anathema.character.core.model.ModelExtensionPoint;
+import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;

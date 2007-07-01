@@ -17,7 +17,6 @@ Bundle-Localization: plugin
 Export-Package: net.sf.anathema.character.core.listening,
  net.sf.anathema.character.core.model,
  net.sf.anathema.character.core.repository,
- net.sf.anathema.character.core.template,
  net.sf.anathema.character.core.traitview,
  net.sf.anathema.character.experience,
  net.sf.anathema.character.trait,
