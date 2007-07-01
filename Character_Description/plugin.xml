@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="net.sf.anathema.character.description.CharacterDescriptionEditor"
+            class="net.sf.anathema.character.description.model.CharacterDescriptionEditor"
             icon="icons/TabCharacter16.png"
             id="net.sf.anathema.character.description.editor"
             name="%editor.name.characterdescription">
@@ -15,11 +15,11 @@
       <model
             filename="basic.description"
             id="net.sf.anathema.character.description.model"
-            modelFactory="net.sf.anathema.character.description.DescriptionModelFactory">
+            modelFactory="net.sf.anathema.character.description.model.DescriptionModelFactory">
          <displayConfiguration
                displayName="%viewelement.name.description"
                editorId="net.sf.anathema.character.description.editor"
-               editorInputFactory="net.sf.anathema.character.description.DescriptionEditorInputFactory"
+               editorInputFactory="net.sf.anathema.character.description.model.DescriptionEditorInputFactory"
                icon="icons/TabCharacter16.png">
          </displayConfiguration>
       </model>

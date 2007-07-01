@@ -1,4 +1,4 @@
-package net.sf.anathema.character.description;
+package net.sf.anathema.character.description.model;
 
 import net.sf.anathema.character.core.model.IModel;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;

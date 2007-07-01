@@ -1,4 +1,4 @@
-package net.sf.anathema.character.description;
+package net.sf.anathema.character.description.model;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;

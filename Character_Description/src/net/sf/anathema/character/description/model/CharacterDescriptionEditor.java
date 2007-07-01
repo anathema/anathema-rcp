@@ -1,4 +1,4 @@
-package net.sf.anathema.character.description;
+package net.sf.anathema.character.description.model;
 
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
