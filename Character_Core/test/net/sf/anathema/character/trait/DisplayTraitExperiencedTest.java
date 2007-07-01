@@ -2,8 +2,8 @@ package net.sf.anathema.character.trait;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import net.sf.anathema.character.basics.DummyCharacterBasics;
-import net.sf.anathema.character.basics.ICharacterBasics;
+import net.sf.anathema.character.experience.DummyCharacterBasics;
+import net.sf.anathema.character.experience.ICharacterBasics;
 import net.sf.anathema.lib.control.change.IChangeListener;
 
 import org.junit.Test;

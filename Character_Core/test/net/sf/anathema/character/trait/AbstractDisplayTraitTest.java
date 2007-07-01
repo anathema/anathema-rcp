@@ -1,7 +1,7 @@
 package net.sf.anathema.character.trait;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.basics.ICharacterBasics;
+import net.sf.anathema.character.experience.ICharacterBasics;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.Identificate;
 

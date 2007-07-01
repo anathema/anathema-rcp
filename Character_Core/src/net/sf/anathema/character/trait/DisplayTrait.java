@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait;
 
-import net.sf.anathema.character.basics.ICharacterBasics;
+import net.sf.anathema.character.experience.ICharacterBasics;
 import net.sf.anathema.character.trait.rules.ITraitRules;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;

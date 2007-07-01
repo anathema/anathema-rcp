@@ -1,4 +1,4 @@
-package net.sf.anathema.character.basics;
+package net.sf.anathema.character.experience;
 
 import java.io.IOException;
 import java.io.OutputStream;

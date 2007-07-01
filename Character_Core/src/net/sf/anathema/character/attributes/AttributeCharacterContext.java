@@ -1,8 +1,8 @@
 package net.sf.anathema.character.attributes;
 
-import net.sf.anathema.character.basics.ICharacterBasics;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.experience.ICharacterBasics;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitRules;
 import net.sf.anathema.character.trait.rules.TraitRules;
