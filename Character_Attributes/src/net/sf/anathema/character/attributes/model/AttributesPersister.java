@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.attributes.model;
 
 import java.io.IOException;
 import java.io.OutputStream;

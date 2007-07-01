@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelFactory;

@@ -11,7 +11,6 @@
 
    <windowImages/>
 
-
    <launcher name="anathema">
       <solaris/>
       <win useIco="true">
@@ -19,8 +18,7 @@
          <bmp/>
       </win>
    </launcher>
-   
-   <property  name="preferenceCustomization" value="plugin_customization.ini"/>
+
 
    <vm>
    </vm>
@@ -34,6 +32,7 @@
       <plugin id="net.sf.anathema.basics.repository"/>
       <plugin id="net.sf.anathema.campaign.note"/>
       <plugin id="net.sf.anathema.campaign.plot"/>
+      <plugin id="net.sf.anathema.character.attributes"/>
       <plugin id="net.sf.anathema.character.core"/>
       <plugin id="net.sf.anathema.editor.styledtext"/>
       <plugin id="net.sf.anathema.rcp"/>

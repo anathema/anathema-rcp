@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sf.anathema.character.models">
+      <model
+            filename="attributes.model"
+            id="net.sf.anathema.character.attributes.model"
+            modelFactory="net.sf.anathema.character.attributes.model.AttributesFactory">
+         <displayConfiguration
+               displayName="%viewelement.name.attributes"
+               editorId="net.sf.anathema.character.attributes.editor"
+               editorInputFactory="net.sf.anathema.character.attributes.model.AttributeEditorInputFactory"
+               icon="icons/TabCharacter16.png">
+         </displayConfiguration>
+      </model>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="net.sf.anathema.character.attributes.model.AttributesEditor"
+            icon="icons/TabCharacter16.png"
+            id="net.sf.anathema.character.attributes.editor"
+            name="%editor.name.attributes">
+      </editor>
+   </extension>
+
+</plugin>

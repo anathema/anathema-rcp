@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core;
+package net.sf.anathema.character.core.listening;
 
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 

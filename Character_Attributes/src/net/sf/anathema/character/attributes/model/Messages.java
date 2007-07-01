@@ -1,9 +1,9 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.attributes.model;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-  private static final String BUNDLE_NAME = "net.sf.anathema.character.attributes.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "net.sf.anathema.character.attributes.model.messages"; //$NON-NLS-1$
   public static String AttributeMessages_I18nFailed;
   public static String Attributes_NotFound_Message;
   static {

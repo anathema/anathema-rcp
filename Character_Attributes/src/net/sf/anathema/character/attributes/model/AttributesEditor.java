@@ -1,10 +1,10 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
-import net.sf.anathema.character.core.CharacterCorePlugin;
-import net.sf.anathema.character.core.CharacterPartNameListener;
+import net.sf.anathema.character.attributes.AttributesPlugin;
+import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
@@ -26,8 +26,8 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
 
   @Override
   public void createPartControl(Composite parent) {
-    Image passiveImage = createImage(CharacterCorePlugin.UNSELECTED_BUTTON);
-    Image activeImage = createImage(CharacterCorePlugin.SELECTED_BUTTON);
+    Image passiveImage = createImage(AttributesPlugin.UNSELECTED_BUTTON);
+    Image activeImage = createImage(AttributesPlugin.SELECTED_BUTTON);
     AttributesEditorInput editorInput = (AttributesEditorInput) getEditorInput();
     parent.setLayout(new GridLayout(2, false));
     for (ITraitGroup group : editorInput.createDisplayGroups()) {
@@ -60,6 +60,6 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
   }
 
   private Image createImage(String imageName) {
-    return CharacterCorePlugin.getDefaultInstance().getImageRegistry().get(imageName);
+    return AttributesPlugin.getDefaultInstance().getImageRegistry().get(imageName);
   }
 }

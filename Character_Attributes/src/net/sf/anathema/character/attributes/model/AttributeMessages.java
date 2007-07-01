@@ -1,12 +1,12 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.attributes.model;
 
-import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.character.attributes.AttributesPlugin;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
 
 public class AttributeMessages extends NLS {
-  private static final String BUNDLE_NAME = "net.sf.anathema.character.attributes.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "net.sf.anathema.character.attributes.model.messages"; //$NON-NLS-1$
   public static String Strength;
   public static String Dexterity;
   public static String Stamina;
@@ -32,7 +32,7 @@ public class AttributeMessages extends NLS {
       return (String) AttributeMessages.class.getField(attributeId).get(null);
     }
     catch (Exception e) {
-      CharacterCorePlugin.getDefaultInstance().log(
+      AttributesPlugin.getDefaultInstance().log(
           IStatus.WARNING,
           NLS.bind(Messages.AttributeMessages_I18nFailed, attributeId),
           e);

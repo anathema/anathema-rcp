@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.IModelProvider;
