@@ -35,8 +35,8 @@ public class AttributesPersister implements IModelPersister<IAttributes> {
       attributeTraits.add(trait);
       trait.getCreationModel().setValue(ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_CREATION_VALUE));
       if (traitElement.attribute(ATTRIB_EXPERIENCED_VALUE) != null) {
-        trait.getExperiencedModel().setValue(
-            ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE));
+        int experiencedValue = ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE);
+        trait.getExperiencedModel().setValue(experiencedValue);
       }
     }
     Attributes attributes = new Attributes(attributeTraits.toArray(new IBasicTrait[attributeTraits.size()]));
