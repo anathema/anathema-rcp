@@ -21,5 +21,24 @@
             modelFactory="net.sf.anathema.character.experience.ExperienceFactory">
       </model>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="net.sf.anathema.notes.popup"
+            objectClass="net.sf.anathema.character.core.repository.internal.CharacterViewElement">
+         <action
+               class="net.sf.anathema.character.experience.ToggleExperienceActionDelegate"
+               enablesFor="1"
+               id="net.sf.anathema.character.experience.toggle"
+               label="%character.experience.toggle"
+               style="toggle">
+         </action>
+      </objectContribution>
+      <viewerContribution
+            id="EmptyContribution"
+            targetID="EmptyContribution">
+      </viewerContribution>
+   </extension>
 
 </plugin>

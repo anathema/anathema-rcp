@@ -75,6 +75,9 @@ public class CharacterViewElement implements IViewElement {
   @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
+    if (adapter.isInstance(characterFolder)) {
+      return characterFolder;
+    }
     return null;
   }
 }
