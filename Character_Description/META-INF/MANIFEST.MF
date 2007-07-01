@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Character Description Plug-in
+Bundle-SymbolicName: net.sf.anathema.character.description;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: net.sf.anathema.character.description.DescriptionPlugin
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ net.sf.anathema.basics.eclipse,
+ net.sf.anathema.basics.jface,
+ net.sf.anathema.basics.lib,
+ net.sf.anathema.character.core
+Eclipse-LazyStart: true

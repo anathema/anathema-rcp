@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="net.sf.anathema.character.models" name="%extension-point.name.charactermodels" schema="schema/net.sf.anathema.character.models.exsd"/>
    <extension
-         point="net.sf.anathema.repository.itemtypes">
-      <itemtype
+         point="org.eclipse.ui.editors">
+      <editor
+            class="net.sf.anathema.character.description.CharacterDescriptionEditor"
             icon="icons/TabCharacter16.png"
-            id="net.sf.anathema.itemtype.Character"
-            project="Character"
-            type="%itemtype.type.character"
-            untitledName="%itemtype.untitled.character"
-            viewElementFactoryClass="net.sf.anathema.character.core.repository.internal.CharacterViewElementFactory">
-      </itemtype>
+            id="net.sf.anathema.character.description.editor"
+            name="%editor.name.characterdescription">
+      </editor>
    </extension>
    <extension
          point="net.sf.anathema.character.models">
@@ -25,11 +22,6 @@
                editorInputFactory="net.sf.anathema.character.description.DescriptionEditorInputFactory"
                icon="icons/TabCharacter16.png">
          </displayConfiguration>
-      </model>
-      <model
-            filename="experience.model"
-            id="net.sf.anathema.character.experience.model"
-            modelFactory="net.sf.anathema.character.experience.ExperienceFactory">
       </model>
    </extension>
 
