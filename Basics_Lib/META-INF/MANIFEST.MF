@@ -5,7 +5,6 @@ Bundle-SymbolicName: net.sf.anathema.basics.lib
 Bundle-Version: 1.0.0
 Bundle-ClassPath: lib/disy-commons-core.jar,
  .,
- lib/easymock.jar,
  lib/dom4j-1.6.1.jar
 Export-Package: net.disy.commons.core.exception,
  net.disy.commons.core.geometry,

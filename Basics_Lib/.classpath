@@ -3,10 +3,10 @@
 	<classpathentry excluding="**/.svn/**" kind="src" path="src"/>
 	<classpathentry excluding="**/.svn/**" kind="src" path="tests"/>
 	<classpathentry exported="true" kind="lib" path="lib/dom4j-1.6.1.jar" sourcepath="lib/dom4j-1.6.1-src.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/easymock.jar" sourcepath="lib/easymock-src.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/disy-commons-core.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Easy Mock"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
