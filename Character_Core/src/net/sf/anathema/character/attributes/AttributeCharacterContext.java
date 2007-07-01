@@ -2,7 +2,7 @@ package net.sf.anathema.character.attributes;
 
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
-import net.sf.anathema.character.experience.ICharacterBasics;
+import net.sf.anathema.character.experience.IExperienceModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitRules;
 import net.sf.anathema.character.trait.rules.TraitRules;
@@ -33,8 +33,8 @@ public class AttributeCharacterContext implements IAttributeCharacterContext {
   }
 
   @Override
-  public ICharacterBasics getBasics() {
-    return (ICharacterBasics) modelProvider.getModel(new ModelIdentifier(characterFolder, ICharacterBasics.MODEL_ID));
+  public IExperienceModel getBasics() {
+    return (IExperienceModel) modelProvider.getModel(new ModelIdentifier(characterFolder, IExperienceModel.MODEL_ID));
   }
 
   @Override

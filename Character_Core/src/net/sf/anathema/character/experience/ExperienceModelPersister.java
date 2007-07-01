@@ -8,20 +8,20 @@ import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.dom4j.Document;
 
-public class CharacterBasicsPersister implements IModelPersister<ICharacterBasics> {
+public class ExperienceModelPersister implements IModelPersister<IExperienceModel> {
 
   @Override
-  public ICharacterBasics load(Document document) throws PersistenceException {
+  public IExperienceModel load(Document document) throws PersistenceException {
     return createNew();
   }
 
   @Override
-  public void save(OutputStream stream, ICharacterBasics item) throws IOException, PersistenceException {
+  public void save(OutputStream stream, IExperienceModel item) throws IOException, PersistenceException {
     // nothing to do
   }
 
   @Override
-  public ICharacterBasics createNew() {
-    return new CharacterBasics();
+  public IExperienceModel createNew() {
+    return new ExperienceModel();
   }
 }

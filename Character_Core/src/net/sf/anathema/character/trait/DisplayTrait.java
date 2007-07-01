@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait;
 
-import net.sf.anathema.character.experience.ICharacterBasics;
+import net.sf.anathema.character.experience.IExperienceModel;
 import net.sf.anathema.character.trait.rules.ITraitRules;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
@@ -10,7 +10,7 @@ import net.sf.anathema.lib.util.IIdentificate;
 public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   private final IBasicTrait basicTrait;
-  private final ICharacterBasics basics;
+  private final IExperienceModel basics;
   private final ChangeControl changeControl = new ChangeControl();
   private final IChangeListener creationListener = new IChangeListener() {
     @Override
@@ -30,7 +30,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   };
   private final ITraitRules traitRules;
 
-  public DisplayTrait(IBasicTrait basicTrait, ICharacterBasics basics, ITraitRules traitRules) {
+  public DisplayTrait(IBasicTrait basicTrait, IExperienceModel basics, ITraitRules traitRules) {
     this.basicTrait = basicTrait;
     this.basics = basics;
     this.traitRules = traitRules;

@@ -1,13 +1,13 @@
 package net.sf.anathema.character.trait;
 
-import net.sf.anathema.character.experience.DummyCharacterBasics;
-import net.sf.anathema.character.experience.ICharacterBasics;
+import net.sf.anathema.character.experience.IExperienceModel;
+import net.sf.anathema.character.trait.experience.DummyExperienceModel;
 
 
 public class DisplayTraitCreationTest extends AbstractDisplayTraitTest {
 
   @Override
-  protected ICharacterBasics createCharacterBasics() {
-    return new DummyCharacterBasics();
+  protected IExperienceModel createCharacterBasics() {
+    return new DummyExperienceModel();
   }
 }

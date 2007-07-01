@@ -4,9 +4,9 @@ import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelFactory;
 import net.sf.anathema.character.core.model.IModelPersister;
 
-public class CharacterBasicsFactory extends AbstractModelFactory  implements IModelFactory {
+public class ExperienceModelFactory extends AbstractModelFactory  implements IModelFactory {
 
-  private final IModelPersister<?> persister = new CharacterBasicsPersister();
+  private final IModelPersister<?> persister = new ExperienceModelPersister();
   
   @Override
   protected IModelPersister< ? > getPersister() {
