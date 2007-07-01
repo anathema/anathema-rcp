@@ -78,4 +78,12 @@ public class ElementUtilities {
   public static List<Element> elements(Element parent, String tagName) {
     return parent.elements(tagName);
   }
+
+  public static boolean getRequiredBooleanAttrib(Element element, String name) throws PersistenceException {
+    String attributeValue = element.attributeValue(name);
+    if (attributeValue == null) {
+      throw new PersistenceException("Required boolean attribute " + name + " not found."); //$NON-NLS-1$ //$NON-NLS-2$
+    }
+    return Boolean.parseBoolean(attributeValue);
+  }
 }
