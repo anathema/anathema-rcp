@@ -6,7 +6,7 @@ import net.sf.anathema.character.trait.rules.ITraitRules;
 
 public interface IAttributeCharacterContext {
 
-  public IExperienceModel getBasics();
+  public IExperienceModel getExperienceModel();
 
   public TraitGroup[] getTraitGroups();
 

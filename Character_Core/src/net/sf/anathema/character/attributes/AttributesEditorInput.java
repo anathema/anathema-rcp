@@ -57,7 +57,7 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
     TraitGroup[] groups = context.getTraitGroups();
     for (TraitGroup group : groups) {
       for (String traitId : group.getTraitIds()) {
-        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), context.getBasics(), context.getRules()));
+        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), context.getExperienceModel(), context.getRules()));
       }
     }
     return groups;

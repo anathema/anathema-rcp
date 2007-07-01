@@ -33,7 +33,7 @@ public class AttributeCharacterContext implements IAttributeCharacterContext {
   }
 
   @Override
-  public IExperienceModel getBasics() {
+  public IExperienceModel getExperienceModel() {
     return (IExperienceModel) modelProvider.getModel(new ModelIdentifier(characterFolder, IExperienceModel.MODEL_ID));
   }
 
