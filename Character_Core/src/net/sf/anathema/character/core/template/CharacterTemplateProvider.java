@@ -1,6 +1,8 @@
 package net.sf.anathema.character.core.template;
 
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,29 +16,37 @@ import org.eclipse.core.runtime.Path;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   private static final Pattern REFERENCE_PATTERN = Pattern.compile("reference=\"(.*)\""); //$NON-NLS-1$
-
-  @Override
-  public boolean isTemplateAvailable(IFolder characterFolder) {
-    String templateReference = getTemplateReference(characterFolder);
-    return "net.sf.anathema.core.StaticTemplate".equals(templateReference); //$NON-NLS-1$
-  }
-
-  private String getTemplateReference(IFolder characterFolder) {
-    IFile templateFile = characterFolder.getFile(new Path("template.xml")); //$NON-NLS-1$
-    return getTemplateReference(templateFile);
-  }
-
-  @Override
-  public ICharacterTemplate getTemplate(IFolder characterFolder) {
-    if (!isTemplateAvailable(characterFolder)) {
-      throw new UnsupportedOperationException("Template for not available for folder " + characterFolder);
-    }
-    return new ICharacterTemplate() {
+  private List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
+  
+  public CharacterTemplateProvider() {
+    allTemplates.add(new ICharacterTemplate() {
+      
+      public String getId() {
+        return "net.sf.anathema.core.StaticTemplate"; //$NON-NLS-1$
+      }
+      
       @Override
       public boolean supportsModel(String modelId) {
         return true;
       }
-    };
+    });
+  }
+
+  @Override
+  public boolean isTemplateAvailable(IFolder characterFolder) {
+    return getTemplate(characterFolder) != null;
+  }
+
+  @Override
+  public ICharacterTemplate getTemplate(IFolder characterFolder) {
+    IFile templateFile = characterFolder.getFile(new Path("template.xml")); //$NON-NLS-1$
+    String templateReference = getTemplateReference(templateFile);
+    for (ICharacterTemplate template : allTemplates) {
+      if (template.getId().equals(templateReference)) {
+        return template;
+      }
+    }
+    return null;
   }
 
   private String getTemplateReference(IFile file) {
