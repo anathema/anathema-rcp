@@ -17,9 +17,26 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
 
   @Override
   public boolean isTemplateAvailable(IFolder characterFolder) {
-    IFile templateFile = characterFolder.getFile(new Path("template.xml")); //$NON-NLS-1$
-    String templateReference = getTemplateReference(templateFile);
+    String templateReference = getTemplateReference(characterFolder);
     return "net.sf.anathema.core.StaticTemplate".equals(templateReference); //$NON-NLS-1$
+  }
+
+  private String getTemplateReference(IFolder characterFolder) {
+    IFile templateFile = characterFolder.getFile(new Path("template.xml")); //$NON-NLS-1$
+    return getTemplateReference(templateFile);
+  }
+
+  @Override
+  public ICharacterTemplate getTemplate(IFolder characterFolder) {
+    if (!isTemplateAvailable(characterFolder)) {
+      throw new UnsupportedOperationException("Template for not available for folder " + characterFolder);
+    }
+    return new ICharacterTemplate() {
+      @Override
+      public boolean supportsModel(String modelId) {
+        return true;
+      }
+    };
   }
 
   private String getTemplateReference(IFile file) {

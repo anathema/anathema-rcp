@@ -12,6 +12,8 @@ import net.sf.anathema.character.core.model.IModelFactory;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.repository.internal.CharacterModelViewElement;
 import net.sf.anathema.character.core.repository.internal.ModelDisplayConfiguration;
+import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
+import net.sf.anathema.character.core.template.ICharacterTemplate;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -60,13 +62,18 @@ public class ModelExtensionPoint {
     return null;
   }
 
-  public IViewElement[] createViewElements(IViewElement parent, IFolder characterFolder) {
+  public IViewElement[] createViewElements(
+      IViewElement parent,
+      IFolder characterFolder,
+      ICharacterTemplateProvider templateProvider) {
+    ICharacterTemplate template = templateProvider.getTemplate(characterFolder);
     List<IViewElement> viewElements = new ArrayList<IViewElement>();
     for (IPluginExtension extension : getPluginExtensions()) {
-      for (IExtensionElement extensionElement : extension.getElements()) {
-        IExtensionElement configurationElement = extensionElement.getElement("displayConfiguration"); //$NON-NLS-1$
-        if (configurationElement != null) {
-          String filename = extensionElement.getAttribute(ATTRIB_FILENAME);
+      for (IExtensionElement modelElement : extension.getElements()) {
+        String modelId = modelElement.getAttribute(ATTRIB_ID);
+        IExtensionElement configurationElement = modelElement.getElement("displayConfiguration"); //$NON-NLS-1$
+        if (configurationElement != null && template.supportsModel(modelId)) {
+          String filename = modelElement.getAttribute(ATTRIB_FILENAME);
           String contributorId = extension.getContributorId();
           ModelDisplayConfiguration configuration = new ModelDisplayConfiguration(
               contributorId,

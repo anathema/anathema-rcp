@@ -3,6 +3,7 @@ package net.sf.anathema.character.core.repository.internal;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
+import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -16,16 +17,22 @@ public class CharacterViewElement implements IViewElement {
   private final IFolder characterFolder;
   private final IViewElement parent;
   private final String unnamedTitle;
+  private final ICharacterTemplateProvider templateProvider;
 
-  public CharacterViewElement(IViewElement parent, IFolder characterFolder, String unnamedTitle) {
+  public CharacterViewElement(
+      IViewElement parent,
+      IFolder characterFolder,
+      String unnamedTitle,
+      ICharacterTemplateProvider templateProvider) {
     this.parent = parent;
     this.characterFolder = characterFolder;
     this.unnamedTitle = unnamedTitle;
+    this.templateProvider = templateProvider;
   }
 
   @Override
   public IViewElement[] getChildren() {
-    return new ModelExtensionPoint().createViewElements(this, characterFolder);
+    return new ModelExtensionPoint().createViewElements(this, characterFolder, templateProvider);
   }
 
   @Override
