@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository;
+package net.sf.anathema.basics.repository.view;
 
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.jface.viewers.TreeViewer;

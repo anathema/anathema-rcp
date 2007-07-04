@@ -3,7 +3,7 @@ package net.sf.anathema.basics.repository.treecontent.itemtype;
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
-import net.sf.anathema.basics.repository.input.FileItemEditorInput;
+import net.sf.anathema.basics.repository.input.internal.FileItemEditorInput;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.lib.exception.PersistenceException;
 

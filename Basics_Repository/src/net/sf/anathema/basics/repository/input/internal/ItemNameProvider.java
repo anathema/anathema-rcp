@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository.input;
+package net.sf.anathema.basics.repository.input.internal;
 
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.text.ITitledText;

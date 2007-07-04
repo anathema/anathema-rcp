@@ -7,11 +7,10 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
-            class="net.sf.anathema.basics.repository.RepositoryView"
+            class="net.sf.anathema.basics.repository.view.internal.RepositoryView"
             icon="icons/repositoryview.gif"
             id="net.sf.anathema.basics.repositoryview"
             name="%repository.view.repositorytree.name">
       </view>
-   </extension>
-
+   </extension>   
 </plugin>

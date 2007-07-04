@@ -7,6 +7,7 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.basics.repository.itemtype.internal.ItemType;
 
 public class ItemTypeProvider {
 

@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository;
+package net.sf.anathema.basics.repository.view.internal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,13 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
+import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.linkage.IResourceSelectable;
 import net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkAction;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
+import net.sf.anathema.basics.repository.view.IRepositoryDND;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IResource;

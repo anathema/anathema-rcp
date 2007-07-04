@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
@@ -19,6 +20,7 @@ import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.actions.ContributionItemFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
@@ -32,6 +34,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
   private IWorkbenchAction saveAllAction;
   private IWorkbenchAction closeAction;
   private IWorkbenchAction closeAllAction;
+  private IContributionItem viewList;
 
   public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
     super(configurer);
@@ -39,6 +42,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
   @Override
   protected void makeActions(final IWorkbenchWindow window) {
+    viewList = ContributionItemFactory.VIEWS_SHORTLIST.create(window);
     closeAction = ActionFactory.CLOSE.create(window);
     closeAllAction = ActionFactory.CLOSE_ALL.create(window);
     saveAction = ActionFactory.SAVE.create(window);
@@ -80,6 +84,9 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     fileMenu.add(saveAllAction);
     fileMenu.add(new Separator());
     fileMenu.add(exitAction);
+    MenuManager viewMenu = new MenuManager(Messages.ApplicationActionBarAdvisor_viewMenuName);
+    menuBar.add(viewMenu);
+    viewMenu.add(viewList);
   }
 
   @Override

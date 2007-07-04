@@ -1,10 +1,11 @@
-package net.sf.anathema.basics.repository.itemtype;
+package net.sf.anathema.basics.repository.itemtype.internal;
 
 import java.net.URL;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.resource.ResourceUtils;
+import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory;
 
 public class ItemType implements IItemType {

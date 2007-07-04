@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository;
+package net.sf.anathema.basics.repository.view.internal;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
