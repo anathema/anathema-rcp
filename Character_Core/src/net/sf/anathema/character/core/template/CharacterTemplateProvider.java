@@ -15,17 +15,19 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
+  public static final String TEMPLATE_FILE_NAME = "template.xml"; //$NON-NLS-1$
   public static String STATIC_TEMPLATE_ID = "net.sf.anathema.core.StaticTemplate"; //$NON-NLS-1$
-  private static final Pattern REFERENCE_PATTERN = Pattern.compile("reference=\"(.*)\""); //$NON-NLS-1$
+  public static final String ATTRIB_REFERENCE = "reference"; //$NON-NLS-1$
+  private static final Pattern REFERENCE_PATTERN = Pattern.compile(ATTRIB_REFERENCE + "=\"(.*)\""); //$NON-NLS-1$
   private List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
-  
+
   public CharacterTemplateProvider() {
     allTemplates.add(new ICharacterTemplate() {
-      
+
       public String getId() {
         return STATIC_TEMPLATE_ID;
       }
-      
+
       @Override
       public boolean supportsModel(String modelId) {
         return true;
@@ -40,7 +42,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
 
   @Override
   public ICharacterTemplate getTemplate(IFolder characterFolder) {
-    IFile templateFile = characterFolder.getFile(new Path("template.xml")); //$NON-NLS-1$
+    IFile templateFile = characterFolder.getFile(new Path(TEMPLATE_FILE_NAME));
     String templateReference = getTemplateReference(templateFile);
     for (ICharacterTemplate template : allTemplates) {
       if (template.getId().equals(templateReference)) {

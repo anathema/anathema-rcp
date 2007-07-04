@@ -45,10 +45,10 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
   }
 
   private void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
-    Element rootElement = DocumentHelper.createElement("template");
+    Element rootElement = DocumentHelper.createElement("template"); //$NON-NLS-1$
     Document document = DocumentHelper.createDocument(rootElement);
-    rootElement.addAttribute("reference", templateName);
-    IFile templateFile = characterFolder.getFile("template.xml");
+    rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, templateName);
+    IFile templateFile = characterFolder.getFile(CharacterTemplateProvider.TEMPLATE_FILE_NAME);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     DocumentUtilities.save(document, outputStream);
     new FileWriter().saveToFile(templateFile, outputStream, new NullProgressMonitor());
@@ -57,7 +57,7 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
   private IFolder createUnusedFolder(IProject project, String suggestedFolderName) {
     int count = 0;
     IFolder folder = project.getFolder(suggestedFolderName);
-    while(folder.exists()) {
+    while (folder.exists()) {
       folder = project.getFolder(suggestedFolderName + ++count);
     }
     return folder;
