@@ -1,6 +1,6 @@
 package net.sf.anathema.campaign.plot.dnd;
 
-import net.sf.anathema.basics.repository.IRepositoryDND;
+import net.sf.anathema.basics.repository.view.IRepositoryDND;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
