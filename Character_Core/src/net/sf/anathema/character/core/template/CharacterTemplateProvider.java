@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
+  public static String STATIC_TEMPLATE_ID = "net.sf.anathema.core.StaticTemplate"; //$NON-NLS-1$
   private static final Pattern REFERENCE_PATTERN = Pattern.compile("reference=\"(.*)\""); //$NON-NLS-1$
   private List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
   
@@ -22,7 +23,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
     allTemplates.add(new ICharacterTemplate() {
       
       public String getId() {
-        return "net.sf.anathema.core.StaticTemplate"; //$NON-NLS-1$
+        return STATIC_TEMPLATE_ID;
       }
       
       @Override
