@@ -46,6 +46,7 @@
       <complexType>
          <sequence minOccurs="0" maxOccurs="1">
             <element ref="displayConfiguration"/>
+            <element ref="pointConfiguration" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
@@ -64,7 +65,7 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="filename" type="string" use="required">
+         <attribute name="filename" type="string">
             <annotation>
                <documentation>
                   
@@ -115,6 +116,21 @@
                </documentation>
                <appInfo>
                   <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="pointConfiguration">
+      <complexType>
+         <attribute name="experiencePointCalculator" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.experiencepoints.IExperiencePointCalculator"/>
                </appInfo>
             </annotation>
          </attribute>

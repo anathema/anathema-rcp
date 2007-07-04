@@ -32,6 +32,7 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
 
   @Override
   public void run(IAction action) {
+    //TODO Show a progress monitor?
     try {
       String templateName = CharacterTemplateProvider.STATIC_TEMPLATE_ID;
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
@@ -40,7 +41,7 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
       saveTemplate(characterFolder, templateName);
     }
     catch (Exception e) {
-      CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, "Error creating Character", e);
+      CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, "Error creating Character.", e);
     }
   }
 

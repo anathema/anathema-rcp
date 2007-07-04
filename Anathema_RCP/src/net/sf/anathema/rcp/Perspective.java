@@ -9,7 +9,7 @@ public class Perspective implements IPerspectiveFactory {
     String editorArea = layout.getEditorArea();
     layout.setEditorAreaVisible(true);
     layout.setFixed(false);
-    //TODO: Konstante ID nicht mehrfach deklarieren. Abhängigkeit dennoch vermeiden! 
+    // TODO Konstante ID nicht mehrfach deklarieren. Abhängigkeit dennoch vermeiden!
     String id = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
     layout.addShowViewShortcut(id);
     layout.addStandaloneView(id, true, IPageLayout.LEFT, 0.25f, editorArea);
