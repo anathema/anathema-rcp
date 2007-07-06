@@ -22,6 +22,7 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -31,7 +32,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
-public class RepositoryView extends ViewPart implements IResourceSelectable {
+public class RepositoryView extends ViewPart implements IResourceSelectable, ICollapsableTree {
   public static final String ID = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
 
   private final List<IDisposable> disposables = new ArrayList<IDisposable>();
@@ -40,9 +41,6 @@ public class RepositoryView extends ViewPart implements IResourceSelectable {
 
   @Override
   public void createPartControl(Composite parent) {
-    RepositoryEditorLinkAction linkAction = new RepositoryEditorLinkAction(getSite().getWorkbenchWindow(), this);
-    getViewSite().getActionBars().getToolBarManager().add(linkAction);
-    disposables.add(linkAction);
     viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
     ContextMenuManager.connect(getSite(), viewer);
     contentProvider = new TypedTreeContentProvider();
@@ -77,7 +75,15 @@ public class RepositoryView extends ViewPart implements IResourceSelectable {
         ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
       }
     });
+    createActions();
     viewer.refresh(true);
+  }
+
+  private void createActions() {
+    IToolBarManager toolbar = getViewSite().getActionBars().getToolBarManager();
+    RepositoryEditorLinkAction linkAction = new RepositoryEditorLinkAction(getSite().getWorkbenchWindow(), this);
+    toolbar.add(linkAction);
+    disposables.add(linkAction);
   }
 
   private void initDragAndDrop() {
@@ -106,6 +112,11 @@ public class RepositoryView extends ViewPart implements IResourceSelectable {
   public void setSelection(IResource resource) {
     IViewElement viewElement = contentProvider.getViewElement(resource);
     viewer.setSelection(new StructuredSelection(viewElement), true);
+  }
+
+  @Override
+  public void collapseAll() {
+    viewer.collapseAll();
   }
 
   @Override

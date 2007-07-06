@@ -12,5 +12,21 @@
             id="net.sf.anathema.basics.repositoryview"
             name="%repository.view.repositorytree.name">
       </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="net.sf.anathema.basics.repository.view.action"
+            targetID="net.sf.anathema.basics.repositoryview">
+         <action
+               class="net.sf.anathema.basics.repository.view.internal.CollapseTreeAction"
+               icon="icons/collapseall.gif"
+               id="net.sf.anathema.basics.repository.view.collapse"
+               label="Collapse All"
+               style="push"
+               toolbarPath="main"
+               tooltip="Collapse All">
+         </action>
+      </viewContribution>
    </extension>   
 </plugin>
