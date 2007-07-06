@@ -1,13 +1,8 @@
 package net.sf.anathema.campaign.plot.repository;
 
-import java.io.IOException;
-
 import net.sf.anathema.campaign.plot.PlotPlugin;
-import net.sf.anathema.campaign.plot.creation.Messages;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
