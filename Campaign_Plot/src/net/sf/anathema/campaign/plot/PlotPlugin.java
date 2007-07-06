@@ -29,8 +29,8 @@ public class PlotPlugin extends AbstractAnathemaUIPlugin {
     }
   }
 
-  // TODO Import-Action anbieten
   // TODO XSLT statt Kopie
+  // TODO Progressmonitor?
   private void convertFileSystem(IFolder folder) throws CoreException {
     IFile hierarchyFile = folder.getFile(PlotPersister.HIERARCHY_FILE_NAME);
     if (!hierarchyFile.exists()) {
