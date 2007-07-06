@@ -22,19 +22,19 @@
                class="net.sf.anathema.basics.repository.view.internal.CollapseTreeAction"
                icon="icons/collapseall.gif"
                id="net.sf.anathema.basics.repository.view.collapse"
-               label="Collapse All"
+               label="%repository.view.actions.collapse"
                style="push"
                toolbarPath="main"
-               tooltip="Collapse All">
+               tooltip="%repository.view.actions.collapse">
          </action>
          <action
                class="net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkActionDelegate"
                icon="icons/synced.gif"
                id="net.sf.anathema.basics.repository.view.link"
-               label="Link with Editor"
+               label="%repository.view.actions.link"
                style="toggle"
                toolbarPath="main"
-               tooltip="Link with Editor">
+               tooltip="%repository.view.actions.link">
          </action>
       </viewContribution>
    </extension>   
