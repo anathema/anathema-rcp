@@ -28,7 +28,7 @@
                tooltip="%repository.view.actions.link">
          </action>
          <action
-               class="net.sf.anathema.basics.repository.view.internal.CollapseTreeAction"
+               class="net.sf.anathema.basics.repository.view.internal.CollapseTreeActionDelegate"
                icon="icons/collapseall.gif"
                id="net.sf.anathema.basics.repository.view.collapse"
                label="%repository.view.actions.collapse"
@@ -37,5 +37,24 @@
                tooltip="%repository.view.actions.collapse">
          </action>
       </viewContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="net.sf.anathema.basics.repository.element.popup"
+            objectClass="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement">
+         <action
+               class="net.sf.anathema.basics.repository.view.internal.ExpandViewElementActionDelegate"
+               icon="icons/expandall.gif"
+               id="net.sf.anathema.basics.repository.expand"
+               label="%repository.view.actions.expand"
+               tooltip="%repository.view.actions.expand">
+         </action>
+      </objectContribution>
+      <viewerContribution
+            id="EmptyContribution"
+            targetID="EmptyContribution">
+      </viewerContribution>
    </extension>   
 </plugin>

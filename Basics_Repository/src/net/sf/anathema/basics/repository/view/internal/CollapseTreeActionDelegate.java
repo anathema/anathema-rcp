@@ -7,7 +7,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 
-public class CollapseTreeAction implements IViewActionDelegate {
+public class CollapseTreeActionDelegate implements IViewActionDelegate {
 
   private ICollapsableTree collapsable;
 

@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -32,7 +33,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
-public class RepositoryView extends ViewPart implements IResourceSelector, IViewEditorLinker, ICollapsableTree {
+public class RepositoryView extends ViewPart implements
+    IResourceSelector,
+    IViewEditorLinker,
+    ICollapsableTree,
+    IExpandableTree {
   public static final String ID = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
 
   private final List<IDisposable> disposables = new ArrayList<IDisposable>();
@@ -118,6 +123,11 @@ public class RepositoryView extends ViewPart implements IResourceSelector, IView
   @Override
   public void collapseAll() {
     viewer.collapseAll();
+  }
+
+  @Override
+  public void expand(IViewElement element) {
+    viewer.expandToLevel(element, AbstractTreeViewer.ALL_LEVELS);
   }
 
   @Override
