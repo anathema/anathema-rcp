@@ -1,28 +1,31 @@
 package net.sf.anathema.basics.repository.linkage;
 
-import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartService;
 import org.eclipse.ui.IWorkbenchWindow;
 
-public final class RepositoryEditorLinkAction extends Action implements IDisposable {
-  private final IResourceSelectable repositoryView;
+public final class ViewEditorLinker implements IDisposable, Runnable, IViewEditorLinker {
+  private final IResourceSelector selector;
   private final TopPartListener topPartListener;
   private final IPartService partService;
+  private boolean enabled;
 
-  public RepositoryEditorLinkAction(IWorkbenchWindow workbenchWindow, IResourceSelectable repositoryView) {
-    super(Messages.RepositoryEditorLinkAction_LinkWithEditor, IAction.AS_CHECK_BOX);
-    setImageDescriptor(RepositoryPlugin.getDefaultInstance().getImageDescriptor("icons/synced.gif")); //$NON-NLS-1$
-    this.repositoryView = repositoryView;
+  public ViewEditorLinker(IWorkbenchWindow workbenchWindow, IResourceSelector selector) {
+    this.selector = selector;
     topPartListener = new TopPartListener(this);
     partService = workbenchWindow.getPartService();
     partService.addPartListener(topPartListener);
+  }
+
+  public void setLinkEnabled(boolean enabled) {
+    this.enabled = enabled;
+    if (enabled) {
+      updateLink();
+    }
   }
 
   @Override
@@ -31,7 +34,7 @@ public final class RepositoryEditorLinkAction extends Action implements IDisposa
   }
 
   private void updateLink() {
-    if (!isChecked()) {
+    if (!enabled) {
       return;
     }
     IEditorPart topPart = topPartListener.getTopPart();
@@ -40,7 +43,7 @@ public final class RepositoryEditorLinkAction extends Action implements IDisposa
     }
     IEditorInput editorInput = topPart.getEditorInput();
     IResource resource = (IResource) editorInput.getAdapter(IResource.class);
-    repositoryView.setSelection(resource);
+    selector.setSelection(resource);
   }
 
   @Override

@@ -27,6 +27,15 @@
                toolbarPath="main"
                tooltip="Collapse All">
          </action>
+         <action
+               class="net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkActionDelegate"
+               icon="icons/synced.gif"
+               id="net.sf.anathema.basics.repository.view.link"
+               label="Link with Editor"
+               style="toggle"
+               toolbarPath="main"
+               tooltip="Link with Editor">
+         </action>
       </viewContribution>
    </extension>   
 </plugin>

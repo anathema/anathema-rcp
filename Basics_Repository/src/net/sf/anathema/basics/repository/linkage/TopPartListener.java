@@ -1,22 +1,18 @@
-/**
- * 
- */
 package net.sf.anathema.basics.repository.linkage;
 
-import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 
 public final class TopPartListener implements IPartListener {
-  
-  private final IAction action;
+
+  private final Runnable runnable;
   private IEditorPart topPart;
 
-  public TopPartListener(IAction action) {
-    this.action = action;
+  public TopPartListener(Runnable runnable) {
+    this.runnable = runnable;
   }
-  
+
   @Override
   public void partActivated(IWorkbenchPart part) {
     // nothing to do
@@ -26,7 +22,7 @@ public final class TopPartListener implements IPartListener {
   public void partBroughtToTop(IWorkbenchPart part) {
     if (part instanceof IEditorPart) {
       topPart = (IEditorPart) part;
-      action.run();
+      runnable.run();
     }
   }
 
@@ -46,7 +42,7 @@ public final class TopPartListener implements IPartListener {
   public void partOpened(IWorkbenchPart part) {
     // nothing to do
   }
-  
+
   public IEditorPart getTopPart() {
     return topPart;
   }

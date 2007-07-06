@@ -9,8 +9,9 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
-import net.sf.anathema.basics.repository.linkage.IResourceSelectable;
-import net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkAction;
+import net.sf.anathema.basics.repository.linkage.IResourceSelector;
+import net.sf.anathema.basics.repository.linkage.IViewEditorLinker;
+import net.sf.anathema.basics.repository.linkage.ViewEditorLinker;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
@@ -22,7 +23,6 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -32,15 +32,19 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
-public class RepositoryView extends ViewPart implements IResourceSelectable, ICollapsableTree {
+public class RepositoryView extends ViewPart implements IResourceSelector, IViewEditorLinker, ICollapsableTree {
   public static final String ID = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
 
   private final List<IDisposable> disposables = new ArrayList<IDisposable>();
   private TreeViewer viewer;
   private TypedTreeContentProvider contentProvider;
 
+  private ViewEditorLinker linker;
+
   @Override
   public void createPartControl(Composite parent) {
+    this.linker = new ViewEditorLinker(getSite().getWorkbenchWindow(), this);
+    disposables.add(linker);
     viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
     ContextMenuManager.connect(getSite(), viewer);
     contentProvider = new TypedTreeContentProvider();
@@ -75,15 +79,7 @@ public class RepositoryView extends ViewPart implements IResourceSelectable, ICo
         ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
       }
     });
-    createActions();
     viewer.refresh(true);
-  }
-
-  private void createActions() {
-    IToolBarManager toolbar = getViewSite().getActionBars().getToolBarManager();
-    RepositoryEditorLinkAction linkAction = new RepositoryEditorLinkAction(getSite().getWorkbenchWindow(), this);
-    toolbar.add(linkAction);
-    disposables.add(linkAction);
   }
 
   private void initDragAndDrop() {
@@ -112,6 +108,11 @@ public class RepositoryView extends ViewPart implements IResourceSelectable, ICo
   public void setSelection(IResource resource) {
     IViewElement viewElement = contentProvider.getViewElement(resource);
     viewer.setSelection(new StructuredSelection(viewElement), true);
+  }
+
+  @Override
+  public void setLinkEnabled(boolean enabled) {
+    linker.setLinkEnabled(enabled);
   }
 
   @Override
