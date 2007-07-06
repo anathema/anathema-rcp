@@ -13,6 +13,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public class PlotElementViewElement extends AbstractResourceViewElement {
@@ -66,5 +67,17 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
 
   public void saveHierarchy(IProgressMonitor monitor) throws IOException, CoreException {
     new PlotPersister().saveHierarchy(folder, plotElement, monitor);
+  }
+
+  public void delete() throws CoreException, IOException {
+    NullProgressMonitor monitor = new NullProgressMonitor();
+    if (plotElement.getParent() != null) {
+      plotElement.getParent().removeChild(plotElement);
+      getEditFile().delete(true, false, monitor);
+      saveHierarchy(monitor);
+    }
+    else {
+      getEditFile().getParent().delete(true, monitor);
+    }
   }
 }

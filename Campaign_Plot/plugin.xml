@@ -35,6 +35,11 @@
                id="net.sf.anathema.plotelement.popup.new"
                label="%new.plotelement">
          </action>
+         <action
+               class="net.sf.anathema.campaign.plot.repository.DeletePlotElementActionDelegate"
+               id="net.sf.anathema.plotelement.popup.delete"
+               label="%delete.plotelement">
+         </action>
       </objectContribution>
       <viewerContribution
             id="EmptyContribution"

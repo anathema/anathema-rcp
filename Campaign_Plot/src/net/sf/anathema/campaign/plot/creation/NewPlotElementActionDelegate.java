@@ -14,7 +14,6 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IObjectActionDelegate;
@@ -25,7 +24,7 @@ import org.eclipse.ui.PartInitException;
 public class NewPlotElementActionDelegate implements IObjectActionDelegate {
 
   private IWorkbenchPart targetPart;
-  private ISelection lastSelection;
+  private PlotElementViewElement plotElementViewElement;
 
   @Override
   public void setActivePart(IAction action, IWorkbenchPart targetPart) {
@@ -46,10 +45,8 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
   }
 
   private NewPlotElementEditorInput createNewEditorInput(String unnamedName) {
-    TreeSelection treeSelection = (TreeSelection) lastSelection;
-    PlotElementViewElement plotViewElement = (PlotElementViewElement) treeSelection.getFirstElement();
-    PlotPart plotElement = (PlotPart) plotViewElement.getPlotElement();
-    IFolder folder = (IFolder) plotViewElement.getEditFile().getParent();
+    PlotPart plotElement = (PlotPart) plotElementViewElement.getPlotElement();
+    IFolder folder = (IFolder) plotElementViewElement.getEditFile().getParent();
     IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, "srs"); //$NON-NLS-1$    
     ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(plotElement.getPlotUnit().getSuccessor().getImage());
     return new NewPlotElementEditorInput(unusedFileFactory, imageDescriptor, unnamedName, plotElement, folder);
@@ -57,10 +54,10 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
 
   @Override
   public void selectionChanged(IAction action, ISelection selection) {
-    this.lastSelection = selection;
-    StructuredSelection structuredSelection = (StructuredSelection) lastSelection;
+    StructuredSelection structuredSelection = (StructuredSelection) selection;
     if (structuredSelection.getFirstElement() instanceof PlotElementViewElement) {
-      IPlotPart part = ((PlotElementViewElement) structuredSelection.getFirstElement()).getPlotElement();
+      this.plotElementViewElement = ((PlotElementViewElement) structuredSelection.getFirstElement());
+      IPlotPart part = plotElementViewElement.getPlotElement();
       action.setText(NLS.bind(Messages.NewPlotElementActionDelegate_AddNewMessage, getPlotUnitName(part)));
       action.setImageDescriptor(new NewIconCompositeImageDescriptor(ImageDescriptor.createFromURL(part.getPlotUnit()
           .getSuccessor()
