@@ -19,15 +19,6 @@
             id="net.sf.anathema.basics.repository.view.action"
             targetID="net.sf.anathema.basics.repositoryview">
          <action
-               class="net.sf.anathema.basics.repository.view.internal.CollapseTreeAction"
-               icon="icons/collapseall.gif"
-               id="net.sf.anathema.basics.repository.view.collapse"
-               label="%repository.view.actions.collapse"
-               style="push"
-               toolbarPath="main"
-               tooltip="%repository.view.actions.collapse">
-         </action>
-         <action
                class="net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkActionDelegate"
                icon="icons/synced.gif"
                id="net.sf.anathema.basics.repository.view.link"
@@ -35,6 +26,15 @@
                style="toggle"
                toolbarPath="main"
                tooltip="%repository.view.actions.link">
+         </action>
+         <action
+               class="net.sf.anathema.basics.repository.view.internal.CollapseTreeAction"
+               icon="icons/collapseall.gif"
+               id="net.sf.anathema.basics.repository.view.collapse"
+               label="%repository.view.actions.collapse"
+               style="push"
+               toolbarPath="main"
+               tooltip="%repository.view.actions.collapse">
          </action>
       </viewContribution>
    </extension>   
