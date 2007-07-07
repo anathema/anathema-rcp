@@ -41,19 +41,6 @@
                label="%delete.plotelement">
          </action>
       </objectContribution>
-      <viewerContribution
-            id="EmptyContribution"
-            targetID="EmptyContribution">
-      </viewerContribution>
-   </extension>
-   <extension
-         point="net.sf.anathema.repository.dnd">
-      <dndFactory
-            class="net.sf.anathema.campaign.plot.dnd.PlotRepositoryDND">
-      </dndFactory>
-   </extension>
-   <extension
-         point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
             id="net.sf.anathema.campaign.plot.itemtype.popup"
@@ -69,6 +56,12 @@
             id="EmptyContribution"
             targetID="EmptyContribution">
       </viewerContribution>
+   </extension>
+   <extension
+         point="net.sf.anathema.repository.dnd">
+      <dndFactory
+            class="net.sf.anathema.campaign.plot.dnd.PlotRepositoryDND">
+      </dndFactory>
    </extension>
    <extension
          point="net.sf.anathema.plot.unit">
