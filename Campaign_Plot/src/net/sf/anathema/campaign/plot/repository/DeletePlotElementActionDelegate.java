@@ -5,6 +5,7 @@ import net.sf.anathema.campaign.plot.PlotPlugin;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -26,9 +27,18 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
 
   @Override
   public void run(IAction action) {
+    boolean confirmed = MessageDialog.openQuestion(
+        targetPart.getSite().getShell(),
+        Messages.DeletePlotElementActionDelegate_Confirm_Dialog_Title,
+        NLS.bind(Messages.DeletePlotElementActionDelegate_Confirm_Dialog_Message, element.getPlotElement()
+            .getPlotUnit()
+            .getName(), element.getDisplayName()));
+    if (!confirmed) {
+      return;
+    }
     IWorkbenchPage page = targetPart.getSite().getPage();
     for (IEditorReference reference : page.getEditorReferences()) {
-      //TODO Performancekrückig?
+      // TODO Performancekrückig?
       if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
         closeEditorsForDeletion(page, reference);
       }
@@ -37,19 +47,19 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
       element.delete();
     }
     catch (Exception e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, "Could not delete plot element.", e);
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.DeletePlotElementActionDelegate_Deletion_Error, e);
     }
   }
 
   private void closeEditorsForDeletion(IWorkbenchPage page, IEditorReference reference) {
     closeEditor(page, reference, element);
     for (IViewElement child : element.getChildren()) {
-      closeEditor(page, reference, child);      
+      closeEditor(page, reference, child);
     }
   }
 
-  private void closeEditor(IWorkbenchPage page, IEditorReference reference, IViewElement element) {
-    if (element.getDisplayName().equals(reference.getName())) {
+  private void closeEditor(IWorkbenchPage page, IEditorReference reference, IViewElement editorElement) {
+    if (editorElement.getDisplayName().equals(reference.getName())) {
       page.closeEditor(reference.getEditor(false), true);
     }
   }
@@ -60,7 +70,10 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     if (structuredSelection.getFirstElement() instanceof IPlotElementViewElement) {
       element = (IPlotElementViewElement) structuredSelection.getFirstElement();
       IPlotUnit unit = element.getPlotElement().getPlotUnit();
-      action.setText(NLS.bind("Delete {0} \"{1}\"", unit.getName(), element.getDisplayName()));
+      action.setText(NLS.bind(
+          Messages.DeletePlotElementActionDelegate_DeleteActionText_Message,
+          unit.getName(),
+          element.getDisplayName()));
       action.setImageDescriptor(new DeleteIconCompositeImageDescriptor(ImageDescriptor.createFromURL(unit.getImage())));
     }
   }
