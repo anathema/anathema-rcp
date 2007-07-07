@@ -26,6 +26,10 @@ public class TextPersister {
     if (StringUtilities.isNullOrEmpty(text)) {
       return;
     }
+    saveText(parent, tagName, text);
+  }
+
+  public void saveText(Element parent, String tagName, String text) {
     parent.addElement(tagName).addCDATA(text);
   }
 

@@ -70,7 +70,7 @@ public class TitledTextPersister implements ISingleFileItemPersister<ITitledText
   }
 
   private void save(ITitledText item, Element rootElement) {
-    textPersister.saveTextualDescription(rootElement, TAG_NAME, item.getName());
+    textPersister.saveText(rootElement, TAG_NAME, item.getName().getText());
     textPersister.saveTextualDescription(rootElement, TAG_SUMMARY, item.getContent());
   }
 
