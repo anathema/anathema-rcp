@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
-public class PlotElementViewElement extends AbstractResourceViewElement {
+public class PlotElementViewElement extends AbstractResourceViewElement implements IPlotElementViewElement {
 
   private final IPlotPart plotElement;
   private final IFolder folder;
