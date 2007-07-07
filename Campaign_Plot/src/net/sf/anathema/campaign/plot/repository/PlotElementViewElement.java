@@ -70,22 +70,26 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
   }
 
   public void delete() throws CoreException, IOException {
-    //TODO Monitor
+    // TODO Monitor
     NullProgressMonitor monitor = new NullProgressMonitor();
-    if (plotElement.getParent() != null) {
-      deleteFromHierarchy(monitor);
-      saveHierarchy(monitor);
+    if (plotElement.getParent() == null) {
+      getEditFile().getParent().delete(true, monitor);
     }
     else {
-      getEditFile().getParent().delete(true, monitor);
+      deleteFromHierarchy(monitor);
     }
   }
 
-  private void deleteFromHierarchy(IProgressMonitor monitor) throws CoreException {    
+  private void deleteFromHierarchy(IProgressMonitor monitor) throws CoreException, IOException {
     for (PlotElementViewElement element : getChildren()) {
       element.deleteFromHierarchy(monitor);
     }
     plotElement.getParent().removeChild(plotElement);
+    /*
+     * Die Hierarchie muss jedes mal gespeichert werden, um das Element auch aus dem Baumansicht zu entfernen. Geschieht
+     * das nicht, taucht das Element für einen Augenblick mit seinem Dateinamen auf, bevor es gelöscht wird.
+     */
+    saveHierarchy(monitor);
     getEditFile().delete(true, false, monitor);
   }
 }
