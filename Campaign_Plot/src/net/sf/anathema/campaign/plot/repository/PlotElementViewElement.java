@@ -20,7 +20,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
 
   private final IPlotPart plotElement;
   private final IFolder folder;
-  private List<IViewElement> children;
+  private List<PlotElementViewElement> children;
   private final String untitledName;
 
   public PlotElementViewElement(IFolder folder, IPlotPart plotElement, IViewElement parent, String untitledName) {
@@ -31,14 +31,14 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
   }
 
   @Override
-  public IViewElement[] getChildren() {
+  public PlotElementViewElement[] getChildren() {
     if (children == null) {
-      children = new ArrayList<IViewElement>();
+      children = new ArrayList<PlotElementViewElement>();
       for (IPlotPart element : plotElement.getChildren()) {
         children.add(new PlotElementViewElement(folder, element, this, untitledName));
       }
     }
-    return children.toArray(new IViewElement[children.size()]);
+    return children.toArray(new PlotElementViewElement[children.size()]);
   }
 
   @Override
@@ -70,14 +70,22 @@ public class PlotElementViewElement extends AbstractResourceViewElement {
   }
 
   public void delete() throws CoreException, IOException {
+    //TODO Monitor
     NullProgressMonitor monitor = new NullProgressMonitor();
     if (plotElement.getParent() != null) {
-      plotElement.getParent().removeChild(plotElement);
-      getEditFile().delete(true, false, monitor);
+      deleteFromHierarchy(monitor);
       saveHierarchy(monitor);
     }
     else {
       getEditFile().getParent().delete(true, monitor);
     }
+  }
+
+  private void deleteFromHierarchy(IProgressMonitor monitor) throws CoreException {    
+    for (PlotElementViewElement element : getChildren()) {
+      element.deleteFromHierarchy(monitor);
+    }
+    plotElement.getParent().removeChild(plotElement);
+    getEditFile().delete(true, false, monitor);
   }
 }
