@@ -1,6 +1,8 @@
 package net.sf.anathema.character.experiencepoints;
 
-public class ExperiencePointViewInput {
+public class ExperiencePointViewInput implements IExperiencePointViewInput {
+
+  private int currentTimeMillis = (int) System.currentTimeMillis();
 
   public IExperiencePointEntry[] getEntries() {
     return new IExperiencePointEntry[] { new IExperiencePointEntry() {
@@ -23,7 +25,7 @@ public class ExperiencePointViewInput {
 
       @Override
       public int getExperiencePoints() {
-        return (int) System.currentTimeMillis();
+        return currentTimeMillis;
       }
     } };
   }

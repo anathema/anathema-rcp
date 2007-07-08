@@ -20,7 +20,7 @@ public class ExperiencePointsView extends DisposableViewPart {
     }
   });
   private Composite component;
-  private ExperiencePointViewInput viewInput;
+  private IExperiencePointViewInput viewInput;
   private Composite lastParent;
   private final ExperiencePointViewInputFactory inputFactory = new ExperiencePointViewInputFactory();
 
@@ -32,7 +32,7 @@ public class ExperiencePointsView extends DisposableViewPart {
   }
 
   private void createComposite() {
-    ExperiencePointViewInput newInput = getNewExperiencePointViewInput();
+    IExperiencePointViewInput newInput = getNewExperiencePointViewInput();
     if (newInput == viewInput) {
       return;
     }
@@ -56,7 +56,7 @@ public class ExperiencePointsView extends DisposableViewPart {
     createComposite();
   }
 
-  private ExperiencePointViewInput getNewExperiencePointViewInput() {
+  private IExperiencePointViewInput getNewExperiencePointViewInput() {
     IEditorPart topPart = topPartListener.getTopPart();
     return inputFactory.createEditorInput(topPart, viewInput);
   }

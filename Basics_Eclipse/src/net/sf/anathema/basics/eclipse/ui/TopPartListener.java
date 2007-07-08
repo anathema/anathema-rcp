@@ -30,6 +30,7 @@ public final class TopPartListener implements IPartListener {
   public void partClosed(IWorkbenchPart part) {
     if (part == topPart) {
       topPart = null;
+      runnable.run();
     }
   }
 

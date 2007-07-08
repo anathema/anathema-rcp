@@ -4,7 +4,12 @@ import org.eclipse.ui.IEditorPart;
 
 public class ExperiencePointViewInputFactory {
 
-  public ExperiencePointViewInput createEditorInput(IEditorPart topPart, ExperiencePointViewInput viewInput) {
+  private static final NullExperiencePointViewInput nullInput = new NullExperiencePointViewInput();
+
+  public IExperiencePointViewInput createEditorInput(IEditorPart topPart, IExperiencePointViewInput viewInput) {
+    if (topPart == null) {
+      return nullInput;
+    }
     return new ExperiencePointViewInput();
   }
 }
