@@ -7,7 +7,7 @@ public class NullExperiencePointViewInput implements IExperiencePointViewInput {
   private IExperiencePointEntry[] experiencePointEntries = new IExperiencePointEntry[0];
 
   @Override
-  public IExperiencePointEntry[] getEntries() {
+  public IExperiencePointEntry[] createEntries() {
     return experiencePointEntries;
   }
 

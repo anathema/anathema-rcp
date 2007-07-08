@@ -16,7 +16,7 @@ public class ExperiencePointViewInput implements IExperiencePointViewInput {
     return folder;
   }
 
-  public IExperiencePointEntry[] getEntries() {
+  public IExperiencePointEntry[] createEntries() {
     return new IExperiencePointEntry[] { new IExperiencePointEntry() {
 
       @Override

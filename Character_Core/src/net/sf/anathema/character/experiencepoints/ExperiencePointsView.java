@@ -44,7 +44,7 @@ public class ExperiencePointsView extends DisposableViewPart {
     component = new Composite(lastParent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
     component.setLayout(new GridLayout(2, false));
-    for (IExperiencePointEntry entry : newInput.getEntries()) {
+    for (IExperiencePointEntry entry : newInput.createEntries()) {
       Label nameLabel = new Label(component, SWT.LEFT);
       nameLabel.setText(entry.getModelDisplayName());
       nameLabel.setLayoutData(GridDataFactory.createHorizontalFill());
