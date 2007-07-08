@@ -9,7 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IModel;
 import net.sf.anathema.character.core.model.IModelFactory;
-import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.repository.internal.CharacterModelViewElement;
 import net.sf.anathema.character.core.repository.internal.ModelDisplayConfiguration;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
@@ -26,7 +26,7 @@ public class ModelExtensionPoint {
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String ATTRIB_MODEL_FACTORY = "modelFactory"; //$NON-NLS-1$
 
-  public Object createModel(ModelIdentifier identifier) {
+  public Object createModel(IModelIdentifier identifier) {
     IExtensionElement extensionElement = getModelElement(identifier);
     if (extensionElement == null) {
       throw new IllegalArgumentException(NLS.bind(Messages.ModelCache_ModelNotFound_Message, identifier.getId()));
@@ -42,16 +42,16 @@ public class ModelExtensionPoint {
     }
   }
 
-  public IFile getModelFile(ModelIdentifier identifier) {
+  public IFile getModelFile(IModelIdentifier identifier) {
     return getFile(identifier, getModelElement(identifier));
   }
 
-  private IFile getFile(ModelIdentifier identifier, IExtensionElement modelElement) {
+  private IFile getFile(IModelIdentifier identifier, IExtensionElement modelElement) {
     String filename = modelElement.getAttribute(ATTRIB_FILENAME);
     return identifier.getFolder().getFile(filename);
   }
 
-  private IExtensionElement getModelElement(ModelIdentifier identifier) {
+  private IExtensionElement getModelElement(IModelIdentifier identifier) {
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
         if (extensionElement.getAttribute(ATTRIB_ID).equals(identifier.getId())) {

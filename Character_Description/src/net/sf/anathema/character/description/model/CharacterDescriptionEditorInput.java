@@ -2,19 +2,20 @@ package net.sf.anathema.character.description.model;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.jface.FileEditorInput;
-import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
+import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
 
-public class CharacterDescriptionEditorInput extends FileEditorInput implements
-    IFileItemEditorInput<ICharacterDescription> {
+public class CharacterDescriptionEditorInput extends AbstractCharacterModelEditorInput<ICharacterDescription> {
 
   private ICharacterDescription item;
   private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
@@ -47,5 +48,10 @@ public class CharacterDescriptionEditorInput extends FileEditorInput implements
   @Override
   public String getName() {
     return NLS.bind(Messages.CharacterDescriptionEditorInput_Description_Message, item.getName().getText());
+  }
+
+  @Override
+  protected IModelIdentifier getModelIdentifier() {
+    return new ModelIdentifier((IFolder) getFile().getParent(), ICharacterDescription.MODEL_ID);
   }
 }

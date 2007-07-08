@@ -2,10 +2,11 @@ package net.sf.anathema.character.attributes.model;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.jface.FileEditorInput;
-import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
@@ -17,7 +18,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
-public class AttributesEditorInput extends FileEditorInput implements IFileItemEditorInput<IAttributes> {
+public class AttributesEditorInput extends AbstractCharacterModelEditorInput<IAttributes> {
 
   private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
@@ -62,5 +63,10 @@ public class AttributesEditorInput extends FileEditorInput implements IFileItemE
 
   public IFolder getCharacterFolder() {
     return (IFolder) getFile().getParent();
+  }
+
+  @Override
+  protected IModelIdentifier getModelIdentifier() {
+    return new ModelIdentifier(getCharacterFolder(), IAttributes.MODEL_ID);
   }
 }

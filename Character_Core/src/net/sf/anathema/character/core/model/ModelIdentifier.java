@@ -2,7 +2,7 @@ package net.sf.anathema.character.core.model;
 
 import org.eclipse.core.resources.IFolder;
 
-public class ModelIdentifier {
+public class ModelIdentifier implements IModelIdentifier {
 
   private final IFolder characterFolder;
   private final String modelId;

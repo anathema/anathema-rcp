@@ -2,6 +2,7 @@ package net.sf.anathema.character.experience;
 
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.model.internal.ModelCache;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
@@ -31,7 +32,7 @@ public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
   @Override
   public void run(IAction action) {
     model.setExperienced(action.isChecked());
-    ModelIdentifier modelIdentifier = new ModelIdentifier(folder, IExperience.MODEL_ID);
+    IModelIdentifier modelIdentifier = new ModelIdentifier(folder, IExperience.MODEL_ID);
     IFile file = new ModelExtensionPoint().getModelFile(modelIdentifier);
     try {
       //TODO Progressmonitor?
