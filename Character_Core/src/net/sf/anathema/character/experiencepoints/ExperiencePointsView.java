@@ -22,6 +22,7 @@ public class ExperiencePointsView extends DisposableViewPart {
   private Composite component;
   private ExperiencePointViewInput viewInput;
   private Composite lastParent;
+  private final ExperiencePointViewInputFactory inputFactory = new ExperiencePointViewInputFactory();
 
   @Override
   public void createPartControl(Composite parent) {
@@ -57,7 +58,7 @@ public class ExperiencePointsView extends DisposableViewPart {
 
   private ExperiencePointViewInput getNewExperiencePointViewInput() {
     IEditorPart topPart = topPartListener.getTopPart();
-    return new ExperiencePointViewInputFactory().getEditorInput(topPart, viewInput);
+    return inputFactory.createEditorInput(topPart, viewInput);
   }
 
   @Override
