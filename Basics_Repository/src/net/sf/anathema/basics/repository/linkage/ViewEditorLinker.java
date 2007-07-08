@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository.linkage;
 
+import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IResource;

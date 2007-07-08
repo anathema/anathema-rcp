@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository.linkage;
+package net.sf.anathema.basics.eclipse.ui;
 
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
