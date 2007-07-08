@@ -1,25 +1,25 @@
 package net.sf.anathema.basics.repository.linkage;
 
+import net.sf.anathema.basics.eclipse.ui.PartListenerDisposable;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
+import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IPartService;
 import org.eclipse.ui.IWorkbenchWindow;
 
 public final class ViewEditorLinker implements IDisposable, Runnable, IViewEditorLinker {
   private final IResourceSelector selector;
   private final TopPartListener topPartListener;
-  private final IPartService partService;
   private boolean enabled;
+  private final AggregatedDisposable disposables = new AggregatedDisposable();
 
   public ViewEditorLinker(IWorkbenchWindow workbenchWindow, IResourceSelector selector) {
     this.selector = selector;
     topPartListener = new TopPartListener(this);
-    partService = workbenchWindow.getPartService();
-    partService.addPartListener(topPartListener);
+    disposables.addDisposable(new PartListenerDisposable(topPartListener, workbenchWindow.getPartService()));
   }
 
   public void setLinkEnabled(boolean enabled) {
@@ -49,6 +49,6 @@ public final class ViewEditorLinker implements IDisposable, Runnable, IViewEdito
 
   @Override
   public void dispose() {
-    partService.removePartListener(topPartListener);
+    disposables.dispose();
   }
 }

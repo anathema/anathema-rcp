@@ -1,12 +1,10 @@
 package net.sf.anathema.basics.item.editor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.sf.anathema.basics.eclipse.resource.ImageDisposable;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.lib.control.change.IChangeListener;
+import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -39,7 +37,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
     }
   };
 
-  private final List<IDisposable> disposables = new ArrayList<IDisposable>();
+  private final AggregatedDisposable disposables = new AggregatedDisposable();
 
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -90,7 +88,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
       setSite(site);
       setTitleImage(itemInput.getImageDescriptor().createImage());
       setPartName(getEditorInput().getName());
-      disposables.add(new ImageDisposable(getTitleImage()));
+      addDisposable(new ImageDisposable(getTitleImage()));
     }
     catch (Exception e) {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
@@ -99,13 +97,11 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   @Override
   public void dispose() {
-    for (IDisposable disposable : disposables) {
-      disposable.dispose();
-    }
+    disposables.dispose();
     super.dispose();
   }
 
   protected final void addDisposable(IDisposable disposable) {
-    disposables.add(disposable);
+    disposables.addDisposable(disposable);
   }
 }
