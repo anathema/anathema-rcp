@@ -1,5 +1,8 @@
 package net.sf.anathema.character.experiencepoints;
 
-public interface IExperiencePointCalculator {
+import org.eclipse.core.runtime.IExecutableExtension;
 
+public interface IExperiencePointCalculator extends IExecutableExtension {
+
+  public int getPoints();
 }

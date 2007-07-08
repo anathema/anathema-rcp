@@ -1,10 +1,15 @@
 package net.sf.anathema.character.experiencepoints;
 
+import net.disy.commons.core.util.ArrayUtilities;
+import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.character.core.model.internal.IPointConfiguration;
+import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+
 import org.eclipse.core.resources.IFolder;
 
 public class ExperiencePointViewInput implements IExperiencePointViewInput {
 
-  private int currentTimeMillis = (int) System.currentTimeMillis();
   private final IFolder folder;
 
   public ExperiencePointViewInput(IFolder folder) {
@@ -17,28 +22,27 @@ public class ExperiencePointViewInput implements IExperiencePointViewInput {
   }
 
   public IExperiencePointEntry[] createEntries() {
-    return new IExperiencePointEntry[] { new IExperiencePointEntry() {
+    IPointConfiguration[] pointConfigurations = new ModelExtensionPoint().getPointConfigurations(
+        new CharacterTemplateProvider(),
+        folder);
+    return ArrayUtilities.transform(
+        pointConfigurations,
+        IExperiencePointEntry.class,
+        new ITransformer<IPointConfiguration, IExperiencePointEntry>() {
+          @Override
+          public IExperiencePointEntry transform(final IPointConfiguration input) {
+            return new IExperiencePointEntry() {
+              @Override
+              public String getModelDisplayName() {
+                return input.getName();
+              }
 
-      @Override
-      public String getModelDisplayName() {
-        return "Hasäntum";
-      }
-
-      @Override
-      public int getExperiencePoints() {
-        return 5;
-      }
-    }, new IExperiencePointEntry() {
-
-      @Override
-      public String getModelDisplayName() {
-        return "Lamapuit";
-      }
-
-      @Override
-      public int getExperiencePoints() {
-        return currentTimeMillis;
-      }
-    } };
+              @Override
+              public String getExperiencePoints() {
+                return input.getExperiencePoints();
+              }
+            };
+          }
+        });
   }
 }

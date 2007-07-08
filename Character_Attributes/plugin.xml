@@ -13,6 +13,10 @@
                editorInputFactory="net.sf.anathema.character.attributes.model.AttributeEditorInputFactory"
                icon="icons/TabCharacter16.png">
          </displayConfiguration>
+         <pointConfiguration
+               experiencePointCalculator="net.sf.anathema.character.attributes.model.AttributeExperienceCalculator"
+               name="Attributes">
+         </pointConfiguration>
       </model>
    </extension>
    <extension

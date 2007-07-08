@@ -4,5 +4,5 @@ public interface IExperiencePointEntry {
 
   public String getModelDisplayName();
   
-  public int getExperiencePoints();
+  public String getExperiencePoints();
 }

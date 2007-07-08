@@ -49,7 +49,7 @@ public class ExperiencePointsView extends DisposableViewPart {
       nameLabel.setText(entry.getModelDisplayName());
       nameLabel.setLayoutData(GridDataFactory.createHorizontalFill());
       Label pointLabel = new Label(component, SWT.RIGHT);
-      pointLabel.setText(String.valueOf(entry.getExperiencePoints()));
+      pointLabel.setText(entry.getExperiencePoints());
       pointLabel.setLayoutData(GridDataFactory.createRightAlign());
     }
     lastParent.layout(true);
