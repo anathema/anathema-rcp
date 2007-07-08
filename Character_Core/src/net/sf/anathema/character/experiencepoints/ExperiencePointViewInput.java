@@ -1,8 +1,20 @@
 package net.sf.anathema.character.experiencepoints;
 
+import org.eclipse.core.resources.IFolder;
+
 public class ExperiencePointViewInput implements IExperiencePointViewInput {
 
   private int currentTimeMillis = (int) System.currentTimeMillis();
+  private final IFolder folder;
+
+  public ExperiencePointViewInput(IFolder folder) {
+    this.folder = folder;
+  }
+
+  @Override
+  public IFolder getFolder() {
+    return folder;
+  }
 
   public IExperiencePointEntry[] getEntries() {
     return new IExperiencePointEntry[] { new IExperiencePointEntry() {

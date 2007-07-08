@@ -18,6 +18,9 @@ public class ExperiencePointViewInputFactory {
     if (modelIdentifier == null) {
       return nullInput;
     }
-    return new ExperiencePointViewInput();
+    if (viewInput != null && modelIdentifier.getFolder().equals(viewInput.getFolder())) {
+      return viewInput;
+    }
+    return new ExperiencePointViewInput(modelIdentifier.getFolder());
   }
 }

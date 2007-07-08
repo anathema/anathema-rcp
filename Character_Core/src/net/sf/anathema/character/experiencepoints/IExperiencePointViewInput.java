@@ -1,7 +1,10 @@
 package net.sf.anathema.character.experiencepoints;
 
+import org.eclipse.core.resources.IFolder;
+
 public interface IExperiencePointViewInput {
 
-  public abstract IExperiencePointEntry[] getEntries();
+  public IExperiencePointEntry[] getEntries();
 
+  public IFolder getFolder();
 }

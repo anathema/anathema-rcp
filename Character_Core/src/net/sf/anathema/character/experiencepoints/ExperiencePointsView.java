@@ -36,6 +36,10 @@ public class ExperiencePointsView extends DisposableViewPart {
     if (newInput == viewInput) {
       return;
     }
+    if (component != null) {
+      component.dispose();
+    }
+    this.viewInput = newInput;
     lastParent.setLayout(new GridLayout(1, false));
     component = new Composite(lastParent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
@@ -52,7 +56,6 @@ public class ExperiencePointsView extends DisposableViewPart {
   }
 
   protected void updateToEditorChange() {
-    component.dispose();
     createComposite();
   }
 
