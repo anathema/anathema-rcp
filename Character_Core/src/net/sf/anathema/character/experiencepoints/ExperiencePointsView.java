@@ -1,7 +1,7 @@
 package net.sf.anathema.character.experiencepoints;
 
 import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
-import net.sf.anathema.basics.eclipse.ui.PartListenerDisposable;
+import net.sf.anathema.basics.eclipse.ui.PartListening;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 
 import org.eclipse.swt.SWT;
@@ -18,7 +18,7 @@ public class ExperiencePointsView  extends DisposableViewPart {
 
   @Override
   public void createPartControl(Composite parent) {
-    addDisposable(new PartListenerDisposable(topPartListener, getSite().getWorkbenchWindow().getPartService()));
+    addDisposable(new PartListening(topPartListener, getSite().getWorkbenchWindow().getPartService()));
     new Composite(parent, SWT.NONE);
   }
 
