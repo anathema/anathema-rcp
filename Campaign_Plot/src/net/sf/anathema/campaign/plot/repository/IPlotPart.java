@@ -1,12 +1,10 @@
 package net.sf.anathema.campaign.plot.repository;
 
-public interface IPlotPart {
+public interface IPlotPart extends IPlotChild {
 
   public void addChild(IPlotPart sourcePart, int child);
 
   public IPlotPart[] getChildren();
-
-  public IPlotPart getParent();
 
   public IPlotUnit getPlotUnit();
 
