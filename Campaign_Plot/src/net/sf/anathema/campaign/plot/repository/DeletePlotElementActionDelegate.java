@@ -1,6 +1,5 @@
 package net.sf.anathema.campaign.plot.repository;
 
-import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.campaign.plot.PlotPlugin;
 
 import org.eclipse.core.runtime.IStatus;
@@ -63,11 +62,16 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
         return;
       }
     }
-    for (IViewElement child : element.getChildren()) {
+    closeChildren(page, reference, element.getChildren());
+  }
+
+  private void closeChildren(IWorkbenchPage page, IEditorReference reference, IPlotElementViewElement[] children) {
+    for (IPlotElementViewElement child : children) {
       if (child.getDisplayName().equals(reference.getName())) {
         page.closeEditor(reference.getEditor(false), false);
         return;
       }
+      closeChildren(page, reference, child.getChildren());
     }
   }
 
