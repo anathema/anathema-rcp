@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
-public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
+public class NewPlotElementEditorInput extends AbstractNewItemEditorInput implements INewPlotElementEditorInput {
 
   private final PlotPart parentPart;
   private final IFolder seriesFolder;
@@ -48,5 +48,18 @@ public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
   @Override
   protected String getFileNameSuggestion(ITitledText item) {
     return parentPart.getPlotUnit().getSuccessor().getName();
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public Object getAdapter(Class adapter) {
+    if (INewPlotElementEditorInput.class.isAssignableFrom(adapter)) {
+      return this;
+    }
+    return super.getAdapter(adapter);
+  }
+
+  public PlotPart getParentPart() {
+    return parentPart;
   }
 }

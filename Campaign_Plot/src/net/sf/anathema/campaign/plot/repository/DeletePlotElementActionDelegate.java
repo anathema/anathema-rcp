@@ -2,6 +2,7 @@ package net.sf.anathema.campaign.plot.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.campaign.plot.PlotPlugin;
+import net.sf.anathema.campaign.plot.creation.INewPlotElementEditorInput;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.action.IAction;
@@ -14,6 +15,7 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
 
 public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
 
@@ -37,12 +39,12 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
       return;
     }
     IWorkbenchPage page = targetPart.getSite().getPage();
-    for (IEditorReference reference : page.getEditorReferences()) {
-      if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
-        closeEditorsForDeletion(page, reference);
-      }
-    }
     try {
+      for (IEditorReference reference : page.getEditorReferences()) {
+        if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
+          closeEditorsForDeletion(page, reference);
+        }
+      }
       element.delete();
     }
     catch (Exception e) {
@@ -50,17 +52,24 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     }
   }
 
-  private void closeEditorsForDeletion(IWorkbenchPage page, IEditorReference reference) {
-    closeEditor(page, reference, element);
-    // TODO [140441] Schließe Editor für neue Plotelement beim Löschen
-    for (IViewElement child : element.getChildren()) {
-      closeEditor(page, reference, child);
+  private void closeEditorsForDeletion(IWorkbenchPage page, IEditorReference reference) throws PartInitException {
+    if (element.getDisplayName().equals(reference.getName())) {
+      page.closeEditor(reference.getEditor(false), false);
+      return;
     }
-  }
-
-  private void closeEditor(IWorkbenchPage page, IEditorReference reference, IViewElement editorElement) {
-    if (editorElement.getDisplayName().equals(reference.getName())) {
-      page.closeEditor(reference.getEditor(false), true);
+    INewPlotElementEditorInput input = (INewPlotElementEditorInput) reference.getEditorInput().getAdapter(
+        INewPlotElementEditorInput.class);
+    if (input != null) {
+      if (element.getPlotElement().equals(input.getParentPart())) {
+        page.closeEditor(reference.getEditor(false), false);
+        return;
+      }
+    }
+    for (IViewElement child : element.getChildren()) {
+      if (child.getDisplayName().equals(reference.getName())) {
+        page.closeEditor(reference.getEditor(false), false);
+        return;
+      }
     }
   }
 
