@@ -104,6 +104,7 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
   }
 
   private boolean mustBeClosed(IPlotElementViewElement currentElement, IEditorReference reference) {
+    // TODO 140514 Do not close unrelated plot editors with identical names
     return currentElement.getDisplayName().equals(reference.getName());
   }
 

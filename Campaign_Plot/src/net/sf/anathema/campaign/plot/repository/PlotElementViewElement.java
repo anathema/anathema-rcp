@@ -35,6 +35,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
     if (children == null) {
       children = new ArrayList<PlotElementViewElement>();
       for (IPlotPart element : plotElement.getChildren()) {
+        // TODO 140516 Correct save name for newly created unnamed plot elements
         children.add(new PlotElementViewElement(folder, element, this, untitledName));
       }
     }
