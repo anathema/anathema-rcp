@@ -74,7 +74,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Object getAdapter(Class adapter) {
+  public Object getAdapter(Class adapter) {
     return null;
   }
 
