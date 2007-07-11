@@ -38,7 +38,6 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     }
     IWorkbenchPage page = targetPart.getSite().getPage();
     for (IEditorReference reference : page.getEditorReferences()) {
-      // TODO Performancekrückig?
       if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
         closeEditorsForDeletion(page, reference);
       }
@@ -53,6 +52,7 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
 
   private void closeEditorsForDeletion(IWorkbenchPage page, IEditorReference reference) {
     closeEditor(page, reference, element);
+    // TODO [140441] Schließe Editor für neue Plotelement beim Löschen
     for (IViewElement child : element.getChildren()) {
       closeEditor(page, reference, child);
     }
