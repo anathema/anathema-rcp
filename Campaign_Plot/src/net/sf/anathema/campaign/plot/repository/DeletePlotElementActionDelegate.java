@@ -40,7 +40,7 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     try {
       for (IEditorReference reference : page.getEditorReferences()) {
         if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
-          closeEditorsForDeletion(page, reference);
+          closeEditorsForDeletion(page, reference, element);
         }
       }
       element.delete();
@@ -50,29 +50,61 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     }
   }
 
-  private void closeEditorsForDeletion(IWorkbenchPage page, IEditorReference reference) throws PartInitException {
-    if (element.getDisplayName().equals(reference.getName())) {
-      page.closeEditor(reference.getEditor(false), false);
-      return;
+  private boolean closeEditorsForDeletion(
+      IWorkbenchPage page,
+      IEditorReference reference,
+      IPlotElementViewElement currentElement) throws PartInitException {
+    if (closeEditorForElement(page, reference, currentElement)) {
+      return true;
     }
-    IPlotChild newChild = (IPlotChild) reference.getEditorInput().getAdapter(IPlotChild.class);
-    if (newChild != null) {
-      if (element.getPlotElement().equals(newChild.getParent())) {
-        page.closeEditor(reference.getEditor(false), false);
-        return;
-      }
+    if (closeUnsavedChildren(page, reference, currentElement)) {
+      return true;
     }
-    closeChildren(page, reference, element.getChildren());
+    if (closeSavedChildren(page, reference, currentElement.getChildren())) {
+      return true;
+    }
+    return false;
   }
 
-  private void closeChildren(IWorkbenchPage page, IEditorReference reference, IPlotElementViewElement[] children) {
-    for (IPlotElementViewElement child : children) {
-      if (child.getDisplayName().equals(reference.getName())) {
-        page.closeEditor(reference.getEditor(false), false);
-        return;
-      }
-      closeChildren(page, reference, child.getChildren());
+  private boolean closeEditorForElement(
+      IWorkbenchPage page,
+      IEditorReference reference,
+      IPlotElementViewElement currentElement) {
+    if (mustBeClosed(currentElement, reference)) {
+      performClose(page, reference);
+      return true;
     }
+    return false;
+  }
+
+  private boolean closeUnsavedChildren(
+      IWorkbenchPage page,
+      IEditorReference reference,
+      IPlotElementViewElement currentElement) throws PartInitException {
+    IPlotChild newChild = (IPlotChild) reference.getEditorInput().getAdapter(IPlotChild.class);
+    if (newChild != null && currentElement.getPlotElement().equals(newChild.getParent())) {
+      performClose(page, reference);
+      return true;
+    }
+    return false;
+  }
+
+  private boolean closeSavedChildren(IWorkbenchPage page, IEditorReference reference, IPlotElementViewElement[] children)
+      throws PartInitException {
+    for (IPlotElementViewElement child : children) {
+      if (closeEditorsForDeletion(page, reference, child)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private void performClose(IWorkbenchPage page, IEditorReference reference) {
+    page.closeEditor(reference.getEditor(false), false);
+  }
+
+  private boolean mustBeClosed(IPlotElementViewElement currentElement, IEditorReference reference) {
+    return currentElement.getDisplayName().equals(reference.getName());
   }
 
   @Override
