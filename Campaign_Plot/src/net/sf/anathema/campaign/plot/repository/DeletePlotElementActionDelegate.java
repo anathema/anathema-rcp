@@ -81,10 +81,7 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     if (structuredSelection.getFirstElement() instanceof IPlotElementViewElement) {
       element = (IPlotElementViewElement) structuredSelection.getFirstElement();
       IPlotUnit unit = element.getPlotElement().getPlotUnit();
-      action.setText(NLS.bind(
-          Messages.DeletePlotElementActionDelegate_DeleteActionText_Message,
-          unit.getName(),
-          element.getDisplayName()));
+      action.setText(NLS.bind(Messages.DeletePlotElementActionDelegate_DeleteActionText_Message, unit.getName()));
       action.setImageDescriptor(new DeleteIconCompositeImageDescriptor(ImageDescriptor.createFromURL(unit.getImage())));
     }
   }
