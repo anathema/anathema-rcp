@@ -2,7 +2,6 @@ package net.sf.anathema.campaign.plot.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.campaign.plot.PlotPlugin;
-import net.sf.anathema.campaign.plot.creation.INewPlotElementEditorInput;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.action.IAction;
@@ -57,10 +56,9 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
       page.closeEditor(reference.getEditor(false), false);
       return;
     }
-    INewPlotElementEditorInput input = (INewPlotElementEditorInput) reference.getEditorInput().getAdapter(
-        INewPlotElementEditorInput.class);
-    if (input != null) {
-      if (element.getPlotElement().equals(input.getParentPart())) {
+    IPlotChild newChild = (IPlotChild) reference.getEditorInput().getAdapter(IPlotChild.class);
+    if (newChild != null) {
+      if (element.getPlotElement().equals(newChild.getParent())) {
         page.closeEditor(reference.getEditor(false), false);
         return;
       }

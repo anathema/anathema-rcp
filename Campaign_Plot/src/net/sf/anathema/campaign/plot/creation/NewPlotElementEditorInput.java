@@ -6,6 +6,7 @@ import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.repository.input.AbstractNewItemEditorInput;
 import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
+import net.sf.anathema.campaign.plot.repository.IPlotChild;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -15,7 +16,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
-public class NewPlotElementEditorInput extends AbstractNewItemEditorInput implements INewPlotElementEditorInput {
+public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
 
   private final PlotPart parentPart;
   private final IFolder seriesFolder;
@@ -53,7 +54,7 @@ public class NewPlotElementEditorInput extends AbstractNewItemEditorInput implem
   @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
-    if (INewPlotElementEditorInput.class.isAssignableFrom(adapter)) {
+    if (IPlotChild.class.isAssignableFrom(adapter)) {
       return this;
     }
     return super.getAdapter(adapter);
