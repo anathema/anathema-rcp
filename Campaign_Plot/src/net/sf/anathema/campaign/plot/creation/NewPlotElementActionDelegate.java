@@ -34,7 +34,9 @@ public class NewPlotElementActionDelegate implements IObjectActionDelegate {
   @Override
   public void run(IAction action) {
     IWorkbenchPage page = targetPart.getSite().getPage();
-    String untitledName = Messages.NewPlotElementActionDelegate_UntitledElementName;
+    String untitledName = NLS.bind(
+        Messages.NewPlotElementActionDelegate_UntitledElementNameMessage,
+        getPlotUnitName(plotElementViewElement.getPlotElement()));
     IEditorInput input = new ProxyItemEditorInput(untitledName, createNewEditorInput(untitledName));
     try {
       page.openEditor(input, PlotPlugin.PLOT_EDITOR_ID);

@@ -8,6 +8,7 @@ public class Messages extends NLS {
   public static String DeletePlotElementActionDelegate_Confirm_Dialog_Title;
   public static String DeletePlotElementActionDelegate_DeleteActionText_Message;
   public static String DeletePlotElementActionDelegate_Deletion_Error;
+  public static String PlotElementViewElement_UntitledElementNameMessage;
   public static String PlotViewElementFactory_LoadingPlotErrorMessage;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);

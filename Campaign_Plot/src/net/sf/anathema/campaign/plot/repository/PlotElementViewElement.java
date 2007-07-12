@@ -15,19 +15,18 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.osgi.util.NLS;
 
 public class PlotElementViewElement extends AbstractResourceViewElement implements IPlotElementViewElement {
 
   private final IPlotPart plotElement;
   private final IFolder folder;
   private List<PlotElementViewElement> children;
-  private final String untitledName;
 
   public PlotElementViewElement(IFolder folder, IPlotPart plotElement, IViewElement parent, String untitledName) {
     super(untitledName, parent, new RegExPrintNameProvider());
     this.folder = folder;
     this.plotElement = plotElement;
-    this.untitledName = untitledName;
   }
 
   @Override
@@ -35,7 +34,9 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
     if (children == null) {
       children = new ArrayList<PlotElementViewElement>();
       for (IPlotPart element : plotElement.getChildren()) {
-        // TODO 140516 Correct save name for newly created unnamed plot elements
+        String untitledName = NLS.bind(
+            Messages.PlotElementViewElement_UntitledElementNameMessage,
+            plotElement.getPlotUnit().getSuccessor().getName());
         children.add(new PlotElementViewElement(folder, element, this, untitledName));
       }
     }
