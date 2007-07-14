@@ -13,5 +13,6 @@ public class Perspective implements IPerspectiveFactory {
     String id = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
     layout.addShowViewShortcut(id);
     layout.addStandaloneView(id, true, IPageLayout.LEFT, 0.25f, editorArea);
+    layout.addStandaloneView("net.sf.anathema.character.experiencepoints", true, IPageLayout.BOTTOM, 0.8f, editorArea);
   }
 }
