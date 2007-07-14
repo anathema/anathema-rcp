@@ -13,20 +13,28 @@ public class PointViewInputFactory {
   private static final NullExperiencePointViewInput nullInput = new NullExperiencePointViewInput();
   private final ModelExtensionPoint modelExtensionPoint = new ModelExtensionPoint();
   private final CharacterTemplateProvider templateProvider = new CharacterTemplateProvider();
+  private IPointViewInput lastInput;
 
-  public IPointViewInput createEditorInput(IEditorInputProvider inputProvider, IPointViewInput viewInput) {
+  public IPointViewInput createEditorInput(IEditorInputProvider inputProvider) {
     if (inputProvider == null) {
-      return nullInput;
+      return rememberInput(nullInput);
     }
     IEditorInput editorInput = inputProvider.getEditorInput();
     IModelIdentifier modelIdentifier = (IModelIdentifier) editorInput.getAdapter(IModelIdentifier.class);
     if (modelIdentifier == null) {
-      return nullInput;
+      return rememberInput(nullInput);
     }
     ICharacterId characterId = modelIdentifier.getCharacterId();
-    if (viewInput != null && characterId.equals(viewInput.getCharacterId())) {
-      return viewInput;
+    if (lastInput != null && characterId.equals(lastInput.getCharacterId())) {
+      return lastInput;
     }
-    return new PointViewInput(characterId, modelExtensionPoint.getExperiencePointConfigurations(templateProvider, characterId));
+    return rememberInput(new PointViewInput(characterId, modelExtensionPoint.getExperiencePointConfigurations(
+        templateProvider,
+        characterId)));
+  }
+
+  private IPointViewInput rememberInput(IPointViewInput input) {
+    this.lastInput = input;
+    return input;
   }
 }

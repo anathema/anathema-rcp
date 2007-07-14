@@ -33,7 +33,7 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
   }
 
   private void createComposite() {
-    IPointViewInput newInput = inputFactory.createEditorInput(getEditorInputProvider(), viewInput);
+    IPointViewInput newInput = inputFactory.createEditorInput(getEditorInputProvider());
     if (newInput == viewInput) {
       return;
     }

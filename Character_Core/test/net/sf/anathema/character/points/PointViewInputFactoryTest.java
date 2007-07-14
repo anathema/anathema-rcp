@@ -27,7 +27,7 @@ public class PointViewInputFactoryTest {
 
   @Test
   public void nullInputProviderReturnsEmptyViewInput() throws Exception {
-    IPointViewInput newInput = viewInputFactory.createEditorInput(null, null);
+    IPointViewInput newInput = viewInputFactory.createEditorInput(null);
     assertEmptyViewElement(newInput);
   }
 
@@ -38,7 +38,7 @@ public class PointViewInputFactoryTest {
     IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
     EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput);
     EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider, null);
+    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
     assertEmptyViewElement(newInput);
     EasyMock.verify(inputProvider, editorInput);
   }
@@ -53,11 +53,26 @@ public class PointViewInputFactoryTest {
     IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
     EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput);
     EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider, null);
+    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
     assertNotNull(newInput);
     assertNotNull(newInput.getCharacterId());
     assertTrue(newInput.createEntries().length != 0);
     EasyMock.verify(inputProvider, editorInput);
+  }
+
+  @Test
+  public void createsNoNewInputForIdenticalCharacterEditorInput() throws Exception {
+    DummyCharacterId characterId = new DummyCharacterId();
+    addTemplateHandle(characterId);
+    IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
+    ModelIdentifier egalIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
+    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(egalIdentifier).anyTimes();
+    IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
+    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
+    EasyMock.replay(inputProvider, editorInput);
+    IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
+    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
+    assertEquals(oldInput, newInput);
   }
 
   private void addTemplateHandle(DummyCharacterId characterId) {
