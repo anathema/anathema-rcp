@@ -1,4 +1,4 @@
-package net.sf.anathema.character.experiencepoints;
+package net.sf.anathema.character.points;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;

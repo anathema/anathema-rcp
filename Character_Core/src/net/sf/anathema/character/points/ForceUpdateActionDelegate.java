@@ -1,4 +1,4 @@
-package net.sf.anathema.character.experiencepoints;
+package net.sf.anathema.character.points;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.experiencepoints;
+package net.sf.anathema.character.points;
 
 import org.eclipse.core.resources.IFolder;
 

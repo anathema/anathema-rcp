@@ -1,4 +1,4 @@
-package net.sf.anathema.character.experiencepoints;
+package net.sf.anathema.character.points;
 
 import net.sf.anathema.basics.item.editor.IEditorInputProvider;
 import net.sf.anathema.character.core.model.IModelIdentifier;
