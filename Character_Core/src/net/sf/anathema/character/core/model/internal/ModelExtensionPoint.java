@@ -102,7 +102,9 @@ public class ModelExtensionPoint {
     return new EclipseExtensionProvider().getExtensions(EXTENSION_POINT_ID);
   }
 
-  public IPointConfiguration[] getExperiencePointConfigurations(ICharacterTemplateProvider provider, ICharacterId characterId) {
+  public IPointConfiguration[] getExperiencePointConfigurations(
+      ICharacterTemplateProvider provider,
+      ICharacterId characterId) {
     return getPointConfigurations(provider, characterId, ATTRIB_EXPERIENCE_POINT_CALCULATOR);
   }
 
@@ -122,21 +124,21 @@ public class ModelExtensionPoint {
         IExtensionElement configurationElement = modelElement.getElement("pointConfiguration"); //$NON-NLS-1$
         if (configurationElement != null && template.supportsModel(modelId)) {
           String name = configurationElement.getAttribute(ATTRIB_NAME);
-          IPointHandler calculator = null;
+          IPointHandler handler = null;
           try {
-            calculator = configurationElement.getAttributeAsObject(pointCalculatorAttribute, IPointHandler.class);
+            handler = configurationElement.getAttributeAsObject(pointCalculatorAttribute, IPointHandler.class);
           }
           catch (ExtensionException e) {
             CharacterCorePlugin.getDefaultInstance().log(
                 IStatus.ERROR,
-                "Failed to instantiate experience point calculator.",
+                Messages.ModelExtensionPoint_CalculatorLoadError,
                 e);
           }
-          if (calculator == null) {
+          if (handler == null) {
             configurations.add(new MissingCalculatorPointConfigurations(name));
           }
           else {
-            configurations.add(new PointConfiguration(name, calculator));
+            configurations.add(new PointConfiguration(name, handler));
           }
         }
       }

@@ -68,7 +68,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         }
         catch (CoreException e) {
           Platform.getLog(Platform.getBundle(PLUGIN_ID)).log(
-              new Status(IStatus.WARNING, PLUGIN_ID, "Couldn't create actions from extension point.", e));
+              new Status(IStatus.WARNING, PLUGIN_ID, Messages.ApplicationActionBarAdvisor_ActionCreationError, e));
         }
       }
     }

@@ -27,14 +27,14 @@ public final class PlotDropListener extends ViewerDropAdapter {
   public boolean performDrop(Object data) {
     // TODO Zeige Progress Monitor an. Eventuell ist die Operation zu schnell, um den Monitor zu zeigen.
     IProgressMonitor monitor = site.getActionBars().getStatusLineManager().getProgressMonitor();
-    monitor.beginTask("Moving", IProgressMonitor.UNKNOWN);
+    monitor.beginTask("Moving", IProgressMonitor.UNKNOWN); //$NON-NLS-1$
     try {
       partMove.moveTo(location);
       targetElement.saveHierarchy(monitor);
     }
     catch (Exception e) {
       // TODO Rückspulen des Moves
-      PlotPlugin.getDefaultInstance().log(IStatus.WARNING, "Drag and drop failed.", e);
+      PlotPlugin.getDefaultInstance().log(IStatus.WARNING, Messages.PlotDropListener_DragFailedWarning, e);
       return false;
     }
     finally {

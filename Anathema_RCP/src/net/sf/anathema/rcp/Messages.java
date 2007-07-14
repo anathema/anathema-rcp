@@ -5,6 +5,8 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
   private static final String BUNDLE_NAME = "net.sf.anathema.rcp.messages"; //$NON-NLS-1$
   
+  public static String ApplicationActionBarAdvisor_ActionCreationError;
+
   public static String ApplicationActionBarAdvisor_viewMenuName;
 
   public static String ApplicationActionBarAdvisor_fileMenuName;

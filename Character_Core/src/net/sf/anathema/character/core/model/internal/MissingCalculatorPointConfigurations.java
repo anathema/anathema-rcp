@@ -17,6 +17,6 @@ public class MissingCalculatorPointConfigurations implements IPointConfiguration
 
   @Override
   public String getPoints(ICharacterId characterId) {
-    return "N/A";
+    return Messages.MissingCalculatorPointConfigurations_PointsNA;
   }
 }

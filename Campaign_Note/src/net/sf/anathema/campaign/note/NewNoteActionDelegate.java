@@ -36,7 +36,7 @@ public class NewNoteActionDelegate implements IObjectActionDelegate {
     }
     catch (PartInitException e) {
       Platform.getLog(Platform.getBundle(PLUGIN_ID)).log(
-          new Status(IStatus.ERROR, PLUGIN_ID, "Couldn't create editor for new note.", e));
+          new Status(IStatus.ERROR, PLUGIN_ID, Messages.NewNoteActionDelegate_NoteCreationError, e));
     }
   }
 
