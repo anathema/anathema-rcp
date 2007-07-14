@@ -7,7 +7,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IContributionManager;
@@ -28,6 +30,7 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
   private static final String MAIN_TOOLBAR_ID = "net.sf.anathema.rcp.MainToolbar"; //$NON-NLS-1$
+  private static final String PLUGIN_ID = "net.sf.anathema.rcp"; //$NON-NLS-1$
   private IWorkbenchAction exitAction;
   private List<IAction> toolbarActions = new ArrayList<IAction>();
   private IWorkbenchAction saveAction;
@@ -64,8 +67,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
           toolbarActions.add(action);
         }
         catch (CoreException e) {
-          // TODO Fehlerhandling
-          e.printStackTrace();
+          Platform.getLog(Platform.getBundle(PLUGIN_ID)).log(
+              new Status(IStatus.WARNING, PLUGIN_ID, "Couldn't create actions from extension point.", e));
         }
       }
     }

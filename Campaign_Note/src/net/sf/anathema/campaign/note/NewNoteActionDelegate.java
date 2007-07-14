@@ -4,6 +4,9 @@ import net.sf.anathema.basics.repository.input.NewItemEditorInput;
 import net.sf.anathema.basics.repository.input.ProxyItemEditorInput;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorInput;
@@ -14,6 +17,7 @@ import org.eclipse.ui.PartInitException;
 
 public class NewNoteActionDelegate implements IObjectActionDelegate {
 
+  private static final String PLUGIN_ID = "net.sf.anathema.campaign.note"; //$NON-NLS-1$
   private static final String NOTES_EDITOR_ID = "net.sf.anathema.campaign.note.noteeditor"; //$NON-NLS-1$
   private IWorkbenchPart targetPart;
 
@@ -31,8 +35,8 @@ public class NewNoteActionDelegate implements IObjectActionDelegate {
       page.openEditor(input, NOTES_EDITOR_ID);
     }
     catch (PartInitException e) {
-      // TODO Fehlerhandling
-      e.printStackTrace();
+      Platform.getLog(Platform.getBundle(PLUGIN_ID)).log(
+          new Status(IStatus.ERROR, PLUGIN_ID, "Couldn't create editor for new note.", e));
     }
   }
 
