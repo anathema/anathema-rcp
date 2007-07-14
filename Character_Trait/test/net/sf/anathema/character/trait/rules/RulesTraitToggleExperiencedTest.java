@@ -5,6 +5,7 @@ import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
+import net.sf.anathema.character.trait.rules.internal.RuleTrait;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;

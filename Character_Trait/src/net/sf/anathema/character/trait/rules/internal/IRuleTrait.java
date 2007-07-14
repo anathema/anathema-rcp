@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.rules;
+package net.sf.anathema.character.trait.rules.internal;
 
 public interface IRuleTrait {
 

@@ -1,7 +1,8 @@
-package net.sf.anathema.character.trait.rules;
+package net.sf.anathema.character.trait.rules.internal;
 
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
 public class RuleTrait implements IRuleTrait {
 

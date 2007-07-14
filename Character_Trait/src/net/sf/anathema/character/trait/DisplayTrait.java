@@ -1,9 +1,9 @@
 package net.sf.anathema.character.trait;
 
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.rules.IRuleTrait;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.RuleTrait;
+import net.sf.anathema.character.trait.rules.internal.IRuleTrait;
+import net.sf.anathema.character.trait.rules.internal.RuleTrait;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.control.change.IChangeListener;
