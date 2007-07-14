@@ -57,7 +57,7 @@
             allowMultiple="false"
             class="net.sf.anathema.character.experiencepoints.ExperiencePointsView"
             id="net.sf.anathema.character.experiencepoints"
-            name="Experience Points">
+            name="%experiencepoints.view.name">
       </view>
    </extension>
    <extension
