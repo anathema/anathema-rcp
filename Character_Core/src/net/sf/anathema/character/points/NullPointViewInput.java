@@ -2,13 +2,13 @@ package net.sf.anathema.character.points;
 
 import net.sf.anathema.character.core.model.ICharacterId;
 
-public class NullExperiencePointViewInput implements IPointViewInput {
+public class NullPointViewInput implements IPointViewInput {
 
-  private IPointEntry[] experiencePointEntries = new IPointEntry[0];
+  private IPointEntry[] pointEntries = new IPointEntry[0];
 
   @Override
   public IPointEntry[] createEntries() {
-    return experiencePointEntries;
+    return pointEntries;
   }
 
   @Override

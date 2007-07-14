@@ -10,7 +10,7 @@ import org.eclipse.ui.IEditorInput;
 
 public class PointViewInputFactory {
 
-  private static final NullExperiencePointViewInput nullInput = new NullExperiencePointViewInput();
+  private static final NullPointViewInput nullInput = new NullPointViewInput();
   private final ModelExtensionPoint modelExtensionPoint = new ModelExtensionPoint();
   private final CharacterTemplateProvider templateProvider = new CharacterTemplateProvider();
   private IPointViewInput lastInput;
