@@ -3,12 +3,14 @@ package net.sf.anathema.character.experiencepoints;
 import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
 import net.sf.anathema.basics.eclipse.ui.PartListening;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
+import net.sf.anathema.basics.item.editor.IEditorInputProvider;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.IEditorPart;
 
 public class PointsView extends DisposableViewPart implements IUpdatableView {
 
@@ -31,12 +33,17 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
   }
 
   private void createComposite() {
-    IPointViewInput newInput = inputFactory.createEditorInput(getSite().getPage().getActiveEditor(), viewInput);
+    IPointViewInput newInput = inputFactory.createEditorInput(getEditorInputProvider(), viewInput);
     if (newInput == viewInput) {
       return;
     }
     this.viewInput = newInput;
     forceUpdate();
+  }
+
+  private IEditorInputProvider getEditorInputProvider() {
+    IEditorPart activeEditor = getSite().getPage().getActiveEditor();
+    return activeEditor instanceof IEditorInputProvider ? (IEditorInputProvider) activeEditor : null;
   }
 
   public void forceUpdate() {

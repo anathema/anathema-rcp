@@ -16,7 +16,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends EditorPart implements
-    IPersistableItemEditor {
+    IPersistableItemEditor, IEditorInputProvider {
 
   private final class DirtyChangeDisposable implements IDisposable {
     private final IPersistableEditorInput<I> itemInput;
