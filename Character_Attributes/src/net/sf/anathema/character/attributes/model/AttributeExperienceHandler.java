@@ -1,15 +1,19 @@
 package net.sf.anathema.character.attributes.model;
 
+import java.util.Random;
+
 import net.sf.anathema.character.experiencepoints.IExperiencePointCalculator;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 
-public class AttributeExperienceCalculator implements IExperiencePointCalculator {
+public class AttributeExperienceHandler implements IExperiencePointCalculator {
+
+  private static Random random = new Random();
 
   @Override
   public int getPoints() {
-    return 2;
+    return random.nextInt();
   }
 
   @Override
