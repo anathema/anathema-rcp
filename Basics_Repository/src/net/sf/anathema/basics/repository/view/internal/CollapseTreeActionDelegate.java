@@ -1,7 +1,5 @@
 package net.sf.anathema.basics.repository.view.internal;
 
-import net.disy.commons.core.util.Ensure;
-
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
@@ -13,7 +11,6 @@ public class CollapseTreeActionDelegate implements IViewActionDelegate {
 
   @Override
   public void init(IViewPart view) {
-    Ensure.ensureArgumentInstanceOf(view, ICollapsableTree.class);
     this.collapsable = (ICollapsableTree) view;
   }
 

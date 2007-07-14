@@ -1,7 +1,5 @@
 package net.sf.anathema.basics.repository.linkage;
 
-import net.disy.commons.core.util.Ensure;
-
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
@@ -12,7 +10,6 @@ public final class RepositoryEditorLinkActionDelegate implements IViewActionDele
 
   @Override
   public void init(IViewPart view) {
-    Ensure.ensureArgumentInstanceOf(view, IViewEditorLinker.class);
     this.linker = (IViewEditorLinker) view;
   }
 
