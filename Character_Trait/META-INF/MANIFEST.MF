@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Character Trait Plug-in
+Bundle-SymbolicName: net.sf.anathema.character.trait
+Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.character.core,
+ net.sf.anathema.basics.lib,
+ org.eclipse.core.runtime,
+ net.sf.anathema.basics.item,
+ org.eclipse.core.commands
+Export-Package: net.sf.anathema.character.trait,
+ net.sf.anathema.character.trait.group,
+ net.sf.anathema.character.trait.rules

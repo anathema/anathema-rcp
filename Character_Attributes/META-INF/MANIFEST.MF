@@ -13,5 +13,6 @@ Require-Bundle: org.eclipse.ui,
  net.sf.anathema.basics.eclipse,
  org.eclipse.core.resources,
  net.sf.anathema.basics.repository,
- net.sf.anathema.basics.jface
+ net.sf.anathema.basics.jface,
+ net.sf.anathema.character.trait
 Eclipse-LazyStart: true
