@@ -7,6 +7,7 @@ import net.sf.anathema.basics.repository.input.AbstractNewItemEditorInput;
 import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 import net.sf.anathema.campaign.plot.repository.IPlotChild;
+import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -55,12 +56,14 @@ public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
   @Override
   public Object getAdapter(Class adapter) {
     if (IPlotChild.class.isAssignableFrom(adapter)) {
-      return this;
+      return new IPlotChild() {
+        @Override
+        public IPlotPart getParent() {
+          return parentPart;
+        }
+
+      };
     }
     return super.getAdapter(adapter);
-  }
-
-  public PlotPart getParentPart() {
-    return parentPart;
-  }
+  } 
 }
