@@ -16,7 +16,7 @@ import net.sf.anathema.character.core.repository.internal.CharacterModelViewElem
 import net.sf.anathema.character.core.repository.internal.ModelDisplayConfiguration;
 import net.sf.anathema.character.core.template.ICharacterTemplate;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
-import net.sf.anathema.character.experiencepoints.IExperiencePointCalculator;
+import net.sf.anathema.character.experiencepoints.IExperiencePointHandler;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -109,11 +109,11 @@ public class ModelExtensionPoint {
         IExtensionElement configurationElement = modelElement.getElement("pointConfiguration"); //$NON-NLS-1$
         if (configurationElement != null && template.supportsModel(modelId)) {
           String name = configurationElement.getAttribute(ATTRIB_NAME);
-          IExperiencePointCalculator calculator = null;
+          IExperiencePointHandler calculator = null;
           try {
             calculator = configurationElement.getAttributeAsObject(
                 ATTRIB_EXPERIENCE_POINT_CALCULATOR,
-                IExperiencePointCalculator.class);
+                IExperiencePointHandler.class);
           }
           catch (ExtensionException e) {
             CharacterCorePlugin.getDefaultInstance().log(

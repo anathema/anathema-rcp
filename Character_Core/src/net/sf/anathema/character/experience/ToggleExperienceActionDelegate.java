@@ -3,8 +3,8 @@ package net.sf.anathema.character.experience;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.character.core.CharacterCorePlugin;
 import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
-import net.sf.anathema.character.core.model.internal.ModelCache;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 import net.sf.anathema.character.core.repository.internal.CharacterViewElement;
 

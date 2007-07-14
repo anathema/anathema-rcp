@@ -39,7 +39,7 @@ public class ExperiencePointViewInput implements IExperiencePointViewInput {
 
               @Override
               public String getExperiencePoints() {
-                return input.getExperiencePoints();
+                return input.getExperiencePoints(folder);
               }
             };
           }
