@@ -9,9 +9,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.IEditorPart;
 
-public class ExperiencePointsView extends DisposableViewPart implements IUpdatableView {
+public class PointsView extends DisposableViewPart implements IUpdatableView {
 
   private TopPartListener topPartListener = new TopPartListener(new Runnable() {
     @Override
@@ -20,9 +19,9 @@ public class ExperiencePointsView extends DisposableViewPart implements IUpdatab
     }
   });
   private Composite component;
-  private IExperiencePointViewInput viewInput;
+  private IPointViewInput viewInput;
   private Composite lastParent;
-  private final ExperiencePointViewInputFactory inputFactory = new ExperiencePointViewInputFactory();
+  private final PointViewInputFactory inputFactory = new PointViewInputFactory();
 
   @Override
   public void createPartControl(Composite parent) {
@@ -32,7 +31,7 @@ public class ExperiencePointsView extends DisposableViewPart implements IUpdatab
   }
 
   private void createComposite() {
-    IExperiencePointViewInput newInput = getNewExperiencePointViewInput();
+    IPointViewInput newInput = inputFactory.createEditorInput(getSite().getPage().getActiveEditor(), viewInput);
     if (newInput == viewInput) {
       return;
     }
@@ -48,7 +47,7 @@ public class ExperiencePointsView extends DisposableViewPart implements IUpdatab
     component = new Composite(lastParent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
     component.setLayout(new GridLayout(2, false));
-    for (IExperiencePointEntry entry : viewInput.createEntries()) {
+    for (IPointEntry entry : viewInput.createEntries()) {
       Label nameLabel = new Label(component, SWT.LEFT);
       nameLabel.setText(entry.getModelDisplayName());
       nameLabel.setLayoutData(GridDataFactory.createHorizontalFill());
@@ -57,11 +56,6 @@ public class ExperiencePointsView extends DisposableViewPart implements IUpdatab
       pointLabel.setLayoutData(GridDataFactory.createRightAlign());
     }
     lastParent.layout(true);
-  }
-
-  private IExperiencePointViewInput getNewExperiencePointViewInput() {
-    IEditorPart topPart = getSite().getPage().getActiveEditor();
-    return inputFactory.createEditorInput(topPart, viewInput);
   }
 
   @Override

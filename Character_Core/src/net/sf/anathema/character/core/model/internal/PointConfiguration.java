@@ -2,16 +2,16 @@ package net.sf.anathema.character.core.model.internal;
 
 import org.eclipse.core.resources.IFolder;
 
-import net.sf.anathema.character.experiencepoints.IExperiencePointHandler;
+import net.sf.anathema.character.core.model.IPointHandler;
 
 public class PointConfiguration implements IPointConfiguration {
 
   private final String name;
-  private final IExperiencePointHandler calculator;
+  private final IPointHandler handler;
 
-  public PointConfiguration(String name, IExperiencePointHandler calculator) {
+  public PointConfiguration(String name, IPointHandler handler) {
     this.name = name;
-    this.calculator = calculator;
+    this.handler = handler;
   }
 
   @Override
@@ -20,7 +20,7 @@ public class PointConfiguration implements IPointConfiguration {
   }
 
   @Override
-  public String getExperiencePoints(IFolder folder) {
-    return String.valueOf(calculator.getPoints(folder));
+  public String getPoints(IFolder folder) {
+    return String.valueOf(handler.getPoints(folder));
   }
 }

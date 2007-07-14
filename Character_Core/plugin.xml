@@ -55,7 +55,7 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
-            class="net.sf.anathema.character.experiencepoints.ExperiencePointsView"
+            class="net.sf.anathema.character.experiencepoints.PointsView"
             id="net.sf.anathema.character.experiencepoints"
             name="%experiencepoints.view.name">
       </view>

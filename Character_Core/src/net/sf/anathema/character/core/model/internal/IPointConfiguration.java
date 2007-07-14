@@ -6,5 +6,5 @@ public interface IPointConfiguration {
 
   public String getName();
 
-  public String getExperiencePoints(IFolder folder);
+  public String getPoints(IFolder folder);
 }

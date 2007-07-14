@@ -1,6 +1,6 @@
 package net.sf.anathema.character.experiencepoints;
 
-public interface IExperiencePointEntry {
+public interface IPointEntry {
 
   public String getModelDisplayName();
   

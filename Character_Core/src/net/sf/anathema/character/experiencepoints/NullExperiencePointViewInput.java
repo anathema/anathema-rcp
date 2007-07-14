@@ -2,12 +2,12 @@ package net.sf.anathema.character.experiencepoints;
 
 import org.eclipse.core.resources.IFolder;
 
-public class NullExperiencePointViewInput implements IExperiencePointViewInput {
+public class NullExperiencePointViewInput implements IPointViewInput {
 
-  private IExperiencePointEntry[] experiencePointEntries = new IExperiencePointEntry[0];
+  private IPointEntry[] experiencePointEntries = new IPointEntry[0];
 
   @Override
-  public IExperiencePointEntry[] createEntries() {
+  public IPointEntry[] createEntries() {
     return experiencePointEntries;
   }
 

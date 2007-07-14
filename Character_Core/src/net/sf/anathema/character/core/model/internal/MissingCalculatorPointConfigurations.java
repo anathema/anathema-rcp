@@ -16,7 +16,7 @@ public class MissingCalculatorPointConfigurations implements IPointConfiguration
   }
 
   @Override
-  public String getExperiencePoints(IFolder folder) {
+  public String getPoints(IFolder folder) {
     return "N/A";
   }
 }
