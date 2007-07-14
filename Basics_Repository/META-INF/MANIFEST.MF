@@ -10,9 +10,6 @@ Export-Package: net.sf.anathema.basics.repository.access,
  net.sf.anathema.basics.repository.treecontent.itemtype,
  net.sf.anathema.basics.repository.view
 Require-Bundle: net.sf.anathema.basics.jface,
- org.eclipse.ui,
- org.eclipse.core.resources,
- org.eclipse.core.runtime,
  net.sf.anathema.basics.lib,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.item
