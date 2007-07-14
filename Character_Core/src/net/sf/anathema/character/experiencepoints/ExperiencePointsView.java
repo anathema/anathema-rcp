@@ -16,7 +16,7 @@ public class ExperiencePointsView extends DisposableViewPart implements IUpdatab
   private TopPartListener topPartListener = new TopPartListener(new Runnable() {
     @Override
     public void run() {
-      updateToEditorChange();
+      createComposite();
     }
   });
   private Composite component;
@@ -59,12 +59,8 @@ public class ExperiencePointsView extends DisposableViewPart implements IUpdatab
     lastParent.layout(true);
   }
 
-  protected void updateToEditorChange() {
-    createComposite();
-  }
-
   private IExperiencePointViewInput getNewExperiencePointViewInput() {
-    IEditorPart topPart = topPartListener.getTopPart();
+    IEditorPart topPart = getSite().getPage().getActiveEditor();
     return inputFactory.createEditorInput(topPart, viewInput);
   }
 

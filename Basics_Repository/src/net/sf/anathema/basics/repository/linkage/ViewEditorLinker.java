@@ -15,8 +15,10 @@ public final class ViewEditorLinker implements IDisposable, Runnable, IViewEdito
   private final TopPartListener topPartListener;
   private boolean enabled;
   private final AggregatedDisposable disposables = new AggregatedDisposable();
+  private final IWorkbenchWindow workbenchWindow;
 
   public ViewEditorLinker(IWorkbenchWindow workbenchWindow, IResourceSelector selector) {
+    this.workbenchWindow = workbenchWindow;
     this.selector = selector;
     topPartListener = new TopPartListener(this);
     disposables.addDisposable(new PartListening(topPartListener, workbenchWindow.getPartService()));
@@ -38,7 +40,7 @@ public final class ViewEditorLinker implements IDisposable, Runnable, IViewEdito
     if (!enabled) {
       return;
     }
-    IEditorPart topPart = topPartListener.getTopPart();
+    IEditorPart topPart = workbenchWindow.getActivePage().getActiveEditor();
     if (topPart == null) {
       return;
     }

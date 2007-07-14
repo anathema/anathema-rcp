@@ -43,8 +43,4 @@ public final class TopPartListener implements IPartListener {
   public void partOpened(IWorkbenchPart part) {
     // nothing to do
   }
-
-  public IEditorPart getTopPart() {
-    return topPart;
-  }
 }
