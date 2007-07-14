@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractFolderBasedViewElementFactory;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.core.model.CharacterId;
+import net.sf.anathema.character.core.model.internal.CharacterId;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 

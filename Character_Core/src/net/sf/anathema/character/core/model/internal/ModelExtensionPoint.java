@@ -7,9 +7,9 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.CharacterCorePlugin;
-import net.sf.anathema.character.core.model.CharacterId;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModel;
 import net.sf.anathema.character.core.model.IModelFactory;
@@ -20,7 +20,6 @@ import net.sf.anathema.character.core.repository.internal.ModelDisplayConfigurat
 import net.sf.anathema.character.core.template.ICharacterTemplate;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
@@ -51,11 +50,11 @@ public class ModelExtensionPoint {
     }
   }
 
-  public IFile getModelFile(IModelIdentifier identifier) {
+  public IContentHandle getModelContent(IModelIdentifier identifier) {
     return getFile(identifier, getModelElement(identifier));
   }
 
-  private IFile getFile(IModelIdentifier identifier, IExtensionElement modelElement) {
+  private IContentHandle getFile(IModelIdentifier identifier, IExtensionElement modelElement) {
     String filename = modelElement.getAttribute(ATTRIB_FILENAME);
     return identifier.getCharacterId().getContents(filename);
   }

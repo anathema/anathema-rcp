@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.model;
 
+import net.sf.anathema.character.core.model.internal.CharacterId;
+
 import org.eclipse.core.resources.IFolder;
 
 

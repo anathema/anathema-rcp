@@ -1,5 +1,6 @@
 package net.sf.anathema.character.experience;
 
+import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.character.core.CharacterCorePlugin;
 import net.sf.anathema.character.core.model.IModelIdentifier;
@@ -8,7 +9,6 @@ import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 import net.sf.anathema.character.core.repository.internal.CharacterViewElement;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -33,10 +33,10 @@ public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
   public void run(IAction action) {
     model.setExperienced(action.isChecked());
     IModelIdentifier modelIdentifier = new ModelIdentifier(folder, IExperience.MODEL_ID);
-    IFile file = new ModelExtensionPoint().getModelFile(modelIdentifier);
+    IContentHandle content = new ModelExtensionPoint().getModelContent(modelIdentifier);
     try {
       //TODO Progressmonitor?
-      new ItemFileWriter().saveToFile(file, persister, model, new NullProgressMonitor());
+      new ItemFileWriter().save(content, persister, model, new NullProgressMonitor());
     }
     catch (Exception e) {
       CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);

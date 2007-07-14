@@ -1,22 +1,22 @@
 package net.sf.anathema.character.core.model;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 
 public abstract class AbstractModelFactory extends AbstractExecutableExtension implements IModelFactory {
 
   @Override
-  public final IModel create(IFile modelFile) throws PersistenceException, CoreException {
+  public IModel create(IContentHandle modelContent) throws PersistenceException, CoreException {
     IModelPersister<?> persister = getPersister();
-    if (!modelFile.exists()) {
+    if (!modelContent.exists()) {
       return persister.createNew();
     }
-    Document document = DocumentUtilities.read(modelFile.getContents());
+    Document document = DocumentUtilities.read(modelContent.getContents());
     return persister.load(document);
   }
 

@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.disy.commons.core.io.IOUtilities;
+import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.CharacterCorePlugin;
 import net.sf.anathema.character.core.model.ICharacterId;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
@@ -41,8 +41,8 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
 
   @Override
   public ICharacterTemplate getTemplate(ICharacterId characterId) {
-    IFile file = characterId.getContents(TEMPLATE_FILE_NAME);
-    String templateReference = getTemplateReference(file);
+    IContentHandle content = characterId.getContents(TEMPLATE_FILE_NAME);
+    String templateReference = getTemplateReference(content);
     for (ICharacterTemplate template : allTemplates) {
       if (template.getId().equals(templateReference)) {
         return template;
@@ -51,12 +51,12 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
     return null;
   }
 
-  private String getTemplateReference(IFile file) {
+  private String getTemplateReference(IContentHandle content) {
     InputStreamReader reader = null;
     try {
-      reader = new InputStreamReader(file.getContents());
-      String content = IOUtilities.readString(reader);
-      Matcher printNameMatcher = REFERENCE_PATTERN.matcher(content);
+      reader = new InputStreamReader(content.getContents());
+      String contentString = IOUtilities.readString(reader);
+      Matcher printNameMatcher = REFERENCE_PATTERN.matcher(contentString);
       if (!printNameMatcher.find()) {
         throw new IllegalStateException("Illegal resource format: No template reference defined."); //$NON-NLS-1$
       }

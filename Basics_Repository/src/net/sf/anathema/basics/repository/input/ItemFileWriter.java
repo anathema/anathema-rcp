@@ -4,7 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import net.disy.commons.core.io.IOUtilities;
+import net.sf.anathema.basics.eclipse.resource.FileContentHandle;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
+import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -20,10 +22,18 @@ public class ItemFileWriter {
       ISingleFileItemPersister<D> persister,
       D item,
       IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+    save(new FileContentHandle(file), persister, item, monitor);
+  }
+
+  public <D extends IItem> void save(
+      IContentHandle content,
+      ISingleFileItemPersister<D> persister,
+      D item,
+      IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     try {
       persister.save(outputStream, item);
-      new FileWriter().saveToFile(file, outputStream, monitor);
+      new FileWriter().save(content, outputStream, monitor);
       item.setClean();
     }
     finally {
