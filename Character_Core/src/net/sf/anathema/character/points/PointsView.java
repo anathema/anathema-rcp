@@ -22,12 +22,12 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
   });
   private Composite component;
   private IPointViewInput viewInput;
-  private Composite lastParent;
+  private Composite parent;
   private final PointViewInputFactory inputFactory = new PointViewInputFactory();
 
   @Override
-  public void createPartControl(Composite parent) {
-    this.lastParent = parent;
+  public void createPartControl(Composite parentComposite) {
+    this.parent = parentComposite;
     addDisposable(new PartListening(topPartListener, getSite().getWorkbenchWindow().getPartService()));
     createComposite();
   }
@@ -50,8 +50,8 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
     if (component != null) {
       component.dispose();
     }
-    lastParent.setLayout(new GridLayout(1, false));
-    component = new Composite(lastParent, SWT.NONE);
+    parent.setLayout(new GridLayout(1, false));
+    component = new Composite(parent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
     component.setLayout(new GridLayout(2, false));
     for (IPointEntry entry : viewInput.createEntries()) {
@@ -62,7 +62,7 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
       pointLabel.setText(entry.getExperiencePoints());
       pointLabel.setLayoutData(GridDataFactory.createRightAlign());
     }
-    lastParent.layout(true);
+    parent.layout(true);
   }
 
   @Override
