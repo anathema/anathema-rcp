@@ -11,6 +11,8 @@ import org.eclipse.ui.IEditorInput;
 public class PointViewInputFactory {
 
   private static final NullExperiencePointViewInput nullInput = new NullExperiencePointViewInput();
+  private final ModelExtensionPoint modelExtensionPoint = new ModelExtensionPoint();
+  private final CharacterTemplateProvider templateProvider = new CharacterTemplateProvider();
 
   public IPointViewInput createEditorInput(IEditorInputProvider inputProvider, IPointViewInput viewInput) {
     if (inputProvider == null) {
@@ -25,8 +27,6 @@ public class PointViewInputFactory {
     if (viewInput != null && folder.equals(viewInput.getFolder())) {
       return viewInput;
     }
-    return new PointViewInput(folder, new ModelExtensionPoint().getExperiencePointConfigurations(
-        new CharacterTemplateProvider(),
-        folder));
+    return new PointViewInput(folder, modelExtensionPoint.getExperiencePointConfigurations(templateProvider, folder));
   }
 }
