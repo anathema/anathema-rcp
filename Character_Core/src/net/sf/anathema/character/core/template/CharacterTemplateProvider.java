@@ -8,11 +8,10 @@ import java.util.regex.Pattern;
 
 import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.character.core.model.ICharacterId;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   public static final String TEMPLATE_FILE_NAME = "template.xml"; //$NON-NLS-1$
@@ -36,14 +35,14 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   }
 
   @Override
-  public boolean isTemplateAvailable(IFolder characterFolder) {
-    return getTemplate(characterFolder) != null;
+  public boolean isTemplateAvailable(ICharacterId characterId) {
+    return getTemplate(characterId) != null;
   }
 
   @Override
-  public ICharacterTemplate getTemplate(IFolder characterFolder) {
-    IFile templateFile = characterFolder.getFile(new Path(TEMPLATE_FILE_NAME));
-    String templateReference = getTemplateReference(templateFile);
+  public ICharacterTemplate getTemplate(ICharacterId characterId) {
+    IFile file = characterId.getContents(TEMPLATE_FILE_NAME);
+    String templateReference = getTemplateReference(file);
     for (ICharacterTemplate template : allTemplates) {
       if (template.getId().equals(templateReference)) {
         return template;

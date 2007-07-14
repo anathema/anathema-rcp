@@ -2,13 +2,18 @@ package net.sf.anathema.character.core.model;
 
 import org.eclipse.core.resources.IFolder;
 
+
 public class ModelIdentifier implements IModelIdentifier {
 
-  private final IFolder characterFolder;
+  private final ICharacterId characterId;
   private final String modelId;
 
-  public ModelIdentifier(IFolder characterFolder, String modelId) {
-    this.characterFolder = characterFolder;
+  public ModelIdentifier(IFolder folder, String modelId) {
+    this(new CharacterId(folder), modelId);
+  }
+
+  public ModelIdentifier(ICharacterId characterId, String modelId) {
+    this.characterId = characterId;
     this.modelId = modelId;
   }
 
@@ -18,19 +23,19 @@ public class ModelIdentifier implements IModelIdentifier {
       return false;
     }
     ModelIdentifier other = (ModelIdentifier) obj;
-    return characterFolder.equals(other.characterFolder) && modelId.equals(other.modelId);
+    return characterId.equals(other.characterId) && modelId.equals(other.modelId);
   }
 
   @Override
   public int hashCode() {
-    return characterFolder.hashCode() + 7 * modelId.hashCode();
+    return characterId.hashCode() + 7 * modelId.hashCode();
   }
 
-  public IFolder getFolder() {
-    return characterFolder;
+  public ICharacterId getCharacterId() {
+    return characterId;
   }
 
-  public String getId() {
+  public String getModelId() {
     return modelId;
   }
 }

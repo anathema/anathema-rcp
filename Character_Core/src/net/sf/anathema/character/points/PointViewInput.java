@@ -2,23 +2,22 @@ package net.sf.anathema.character.points;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.internal.IPointConfiguration;
-
-import org.eclipse.core.resources.IFolder;
 
 public class PointViewInput implements IPointViewInput {
 
-  private final IFolder folder;
+  private final ICharacterId characterId;
   private final IPointConfiguration[] pointConfigurations;
 
-  public PointViewInput(IFolder folder, IPointConfiguration[] pointConfigurations) {
-    this.folder = folder;
+  public PointViewInput(ICharacterId characterId, IPointConfiguration[] pointConfigurations) {
+    this.characterId = characterId;
     this.pointConfigurations = pointConfigurations;
   }
 
   @Override
-  public IFolder getFolder() {
-    return folder;
+  public ICharacterId getCharacterId() {
+    return characterId;
   }
 
   public IPointEntry[] createEntries() {
@@ -36,7 +35,7 @@ public class PointViewInput implements IPointViewInput {
 
               @Override
               public String getExperiencePoints() {
-                return input.getPoints(folder);
+                return input.getPoints(characterId);
               }
             };
           }

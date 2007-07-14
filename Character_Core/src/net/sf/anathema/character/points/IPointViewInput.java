@@ -1,10 +1,10 @@
 package net.sf.anathema.character.points;
 
-import org.eclipse.core.resources.IFolder;
+import net.sf.anathema.character.core.model.ICharacterId;
 
 public interface IPointViewInput {
 
   public IPointEntry[] createEntries();
 
-  public IFolder getFolder();
+  public ICharacterId getCharacterId();
 }

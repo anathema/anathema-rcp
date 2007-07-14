@@ -9,6 +9,8 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.character.core.model.CharacterId;
+import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModel;
 import net.sf.anathema.character.core.model.IModelFactory;
 import net.sf.anathema.character.core.model.IModelIdentifier;
@@ -36,7 +38,7 @@ public class ModelExtensionPoint {
   public Object createModel(IModelIdentifier identifier) {
     IExtensionElement extensionElement = getModelElement(identifier);
     if (extensionElement == null) {
-      throw new IllegalArgumentException(NLS.bind(Messages.ModelCache_ModelNotFound_Message, identifier.getId()));
+      throw new IllegalArgumentException(NLS.bind(Messages.ModelCache_ModelNotFound_Message, identifier.getModelId()));
     }
     try {
       IModelFactory factory = extensionElement.getAttributeAsObject(ATTRIB_MODEL_FACTORY, IModelFactory.class);
@@ -55,13 +57,13 @@ public class ModelExtensionPoint {
 
   private IFile getFile(IModelIdentifier identifier, IExtensionElement modelElement) {
     String filename = modelElement.getAttribute(ATTRIB_FILENAME);
-    return identifier.getFolder().getFile(filename);
+    return identifier.getCharacterId().getContents(filename);
   }
 
   private IExtensionElement getModelElement(IModelIdentifier identifier) {
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
-        if (extensionElement.getAttribute(ATTRIB_ID).equals(identifier.getId())) {
+        if (extensionElement.getAttribute(ATTRIB_ID).equals(identifier.getModelId())) {
           return extensionElement;
         }
       }
@@ -73,7 +75,7 @@ public class ModelExtensionPoint {
       IViewElement parent,
       IFolder characterFolder,
       ICharacterTemplateProvider templateProvider) {
-    ICharacterTemplate template = templateProvider.getTemplate(characterFolder);
+    ICharacterTemplate template = templateProvider.getTemplate(new CharacterId(characterFolder));
     List<IViewElement> viewElements = new ArrayList<IViewElement>();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
@@ -101,19 +103,19 @@ public class ModelExtensionPoint {
     return new EclipseExtensionProvider().getExtensions(EXTENSION_POINT_ID);
   }
 
-  public IPointConfiguration[] getExperiencePointConfigurations(ICharacterTemplateProvider provider, IFolder folder) {
-    return getPointConfigurations(provider, folder, ATTRIB_EXPERIENCE_POINT_CALCULATOR);
+  public IPointConfiguration[] getExperiencePointConfigurations(ICharacterTemplateProvider provider, ICharacterId characterId) {
+    return getPointConfigurations(provider, characterId, ATTRIB_EXPERIENCE_POINT_CALCULATOR);
   }
 
-  public IPointConfiguration[] getBonusPointConfigurations(ICharacterTemplateProvider provider, IFolder folder) {
-    return getPointConfigurations(provider, folder, ATTRIB_BONUS_POINT_CALCULATOR);
+  public IPointConfiguration[] getBonusPointConfigurations(ICharacterTemplateProvider provider, ICharacterId characterId) {
+    return getPointConfigurations(provider, characterId, ATTRIB_BONUS_POINT_CALCULATOR);
   }
 
   private IPointConfiguration[] getPointConfigurations(
       ICharacterTemplateProvider provider,
-      IFolder folder,
+      ICharacterId characterId,
       String pointCalculatorAttribute) {
-    ICharacterTemplate template = provider.getTemplate(folder);
+    ICharacterTemplate template = provider.getTemplate(characterId);
     List<IPointConfiguration> configurations = new ArrayList<IPointConfiguration>();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {

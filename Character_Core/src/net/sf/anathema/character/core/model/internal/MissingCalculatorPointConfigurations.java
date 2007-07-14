@@ -1,6 +1,6 @@
 package net.sf.anathema.character.core.model.internal;
 
-import org.eclipse.core.resources.IFolder;
+import net.sf.anathema.character.core.model.ICharacterId;
 
 public class MissingCalculatorPointConfigurations implements IPointConfiguration {
 
@@ -16,7 +16,7 @@ public class MissingCalculatorPointConfigurations implements IPointConfiguration
   }
 
   @Override
-  public String getPoints(IFolder folder) {
+  public String getPoints(ICharacterId characterId) {
     return "N/A";
   }
 }

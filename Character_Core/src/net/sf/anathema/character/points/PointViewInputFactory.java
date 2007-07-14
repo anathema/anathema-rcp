@@ -1,11 +1,11 @@
 package net.sf.anathema.character.points;
 
 import net.sf.anathema.basics.item.editor.IEditorInputProvider;
+import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.ui.IEditorInput;
 
 public class PointViewInputFactory {
@@ -23,10 +23,10 @@ public class PointViewInputFactory {
     if (modelIdentifier == null) {
       return nullInput;
     }
-    IFolder folder = modelIdentifier.getFolder();
-    if (viewInput != null && folder.equals(viewInput.getFolder())) {
+    ICharacterId characterId = modelIdentifier.getCharacterId();
+    if (viewInput != null && characterId.equals(viewInput.getCharacterId())) {
       return viewInput;
     }
-    return new PointViewInput(folder, modelExtensionPoint.getExperiencePointConfigurations(templateProvider, folder));
+    return new PointViewInput(characterId, modelExtensionPoint.getExperiencePointConfigurations(templateProvider, characterId));
   }
 }

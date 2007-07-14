@@ -1,6 +1,6 @@
 package net.sf.anathema.character.points;
 
-import org.eclipse.core.resources.IFolder;
+import net.sf.anathema.character.core.model.ICharacterId;
 
 public class NullExperiencePointViewInput implements IPointViewInput {
 
@@ -12,7 +12,7 @@ public class NullExperiencePointViewInput implements IPointViewInput {
   }
 
   @Override
-  public IFolder getFolder() {
+  public ICharacterId getCharacterId() {
     return null;
   }
 }

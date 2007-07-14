@@ -1,7 +1,6 @@
 package net.sf.anathema.character.core.model.internal;
 
-import org.eclipse.core.resources.IFolder;
-
+import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IPointHandler;
 
 public class PointConfiguration implements IPointConfiguration {
@@ -20,7 +19,7 @@ public class PointConfiguration implements IPointConfiguration {
   }
 
   @Override
-  public String getPoints(IFolder folder) {
-    return String.valueOf(handler.getPoints(folder));
+  public String getPoints(ICharacterId characterId) {
+    return String.valueOf(handler.getPoints(characterId));
   }
 }

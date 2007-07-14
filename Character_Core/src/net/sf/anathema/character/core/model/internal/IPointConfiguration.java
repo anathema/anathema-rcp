@@ -1,10 +1,10 @@
 package net.sf.anathema.character.core.model.internal;
 
-import org.eclipse.core.resources.IFolder;
+import net.sf.anathema.character.core.model.ICharacterId;
 
 public interface IPointConfiguration {
 
   public String getName();
 
-  public String getPoints(IFolder folder);
+  public String getPoints(ICharacterId characterId);
 }

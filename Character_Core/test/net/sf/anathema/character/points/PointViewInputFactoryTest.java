@@ -16,7 +16,7 @@ public class PointViewInputFactoryTest {
 
   private void assertEmptyViewElement(IPointViewInput newInput) {
     assertNotNull(newInput);
-    assertNull(newInput.getFolder());
+    assertNull(newInput.getCharacterId());
     assertArrayEquals(new IPointEntry[0], newInput.createEntries());
   }
 
