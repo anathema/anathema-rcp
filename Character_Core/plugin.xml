@@ -60,5 +60,21 @@
             name="Experience Points">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="net.sf.anathema.character.experiencepoints.action"
+            targetID="net.sf.anathema.character.experiencepoints">
+         <action
+               class="net.sf.anathema.character.experiencepoints.ForceUpdateActionDelegate"
+               icon="icons/nav_refresh.gif"
+               id="net.sf.anathema.character.experiencepoints.action.update"
+               label="%experiencepoints.view.update"
+               style="push"
+               toolbarPath="main"
+               tooltip="%experiencepoints.view.update">
+         </action>
+      </viewContribution>
+   </extension>
 
 </plugin>

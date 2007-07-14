@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorPart;
 
-public class ExperiencePointsView extends DisposableViewPart {
+public class ExperiencePointsView extends DisposableViewPart implements IUpdatableView {
 
   private TopPartListener topPartListener = new TopPartListener(new Runnable() {
     @Override
@@ -36,15 +36,19 @@ public class ExperiencePointsView extends DisposableViewPart {
     if (newInput == viewInput) {
       return;
     }
+    this.viewInput = newInput;
+    forceUpdate();
+  }
+
+  public void forceUpdate() {
     if (component != null) {
       component.dispose();
     }
-    this.viewInput = newInput;
     lastParent.setLayout(new GridLayout(1, false));
     component = new Composite(lastParent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
     component.setLayout(new GridLayout(2, false));
-    for (IExperiencePointEntry entry : newInput.createEntries()) {
+    for (IExperiencePointEntry entry : viewInput.createEntries()) {
       Label nameLabel = new Label(component, SWT.LEFT);
       nameLabel.setText(entry.getModelDisplayName());
       nameLabel.setLayoutData(GridDataFactory.createHorizontalFill());
