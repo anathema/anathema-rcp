@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.model;
+package net.sf.anathema.character.attributes.experiencepoints;
 
 import java.util.Random;
 

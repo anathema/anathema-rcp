@@ -14,7 +14,7 @@
                icon="icons/TabCharacter16.png">
          </displayConfiguration>
          <pointConfiguration
-               experiencePointCalculator="net.sf.anathema.character.attributes.model.AttributeExperienceHandler"
+               experiencePointCalculator="net.sf.anathema.character.attributes.experiencepoints.AttributeExperienceHandler"
                name="Attributes">
          </pointConfiguration>
       </model>
