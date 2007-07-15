@@ -1,16 +1,11 @@
 package net.sf.anathema.campaign.plot.repository;
 
-import net.sf.anathema.campaign.plot.PlotPlugin;
-
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IObjectActionDelegate;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 
 public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
@@ -34,19 +29,7 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     if (!confirmed) {
       return;
     }
-    IWorkbenchPage page = targetPart.getSite().getPage();
-    PlotElementCloseHandler closeHandler = new PlotElementCloseHandler(new PageEditorCloser(page), element);
-    try {
-      for (IEditorReference reference : page.getEditorReferences()) {
-        if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
-          closeHandler.closeIfRequired(reference);
-        }
-      }
-      element.delete();
-    }
-    catch (Exception e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.DeletePlotElementActionDelegate_Deletion_Error, e);
-    }
+    new PlotElementDeleter(targetPart.getSite().getPage(), element).delete();
   }
 
   @Override

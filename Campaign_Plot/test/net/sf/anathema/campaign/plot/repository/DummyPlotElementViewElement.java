@@ -20,6 +20,7 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
   private final List<IPlotElementViewElement> children = new ArrayList<IPlotElementViewElement>();
   private String name;
   private IFolder parent;
+  private boolean deleted;
 
   public DummyPlotElementViewElement() {
     this.plotPart = new PlotPart("id", DummyPlotUnit.Plot, null); //$NON-NLS-1$
@@ -31,7 +32,11 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
 
   @Override
   public void delete() throws CoreException, IOException {
-    throw new UnsupportedOperationException("Not yet implemented"); //$NON-NLS-1$
+    deleted = true;
+  }
+
+  public boolean isDeleted() {
+    return deleted;
   }
 
   public void addChild(IPlotElementViewElement child) {
