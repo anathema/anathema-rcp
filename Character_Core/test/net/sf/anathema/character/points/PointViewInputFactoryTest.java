@@ -39,7 +39,7 @@ public class PointViewInputFactoryTest {
   }
 
   @Test
-  public void createsEntriesForCharacterEditorInput() throws Exception {
+  public void createsEntriesForCharacter() throws Exception {
     EasyMock.replay(inputProvider, editorInput);
     IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
     assertNotNull(newInput);
@@ -49,7 +49,7 @@ public class PointViewInputFactoryTest {
   }
 
   @Test
-  public void createsNoNewInputForIdenticalCharacterEditorInput() throws Exception {
+  public void createsNoNewInputForIdenticalCharacter() throws Exception {
     EasyMock.replay(inputProvider, editorInput);
     IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
     IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
@@ -57,7 +57,7 @@ public class PointViewInputFactoryTest {
   }
 
   @Test
-  public void createsNewInputForIdenticalCharacterEditorInputIfExperienceStateChanged() throws Exception {
+  public void createsNewInputForIdenticalCharacterIfExperienceStateChanged() throws Exception {
     EasyMock.replay(inputProvider, editorInput);
     IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
     setExperienced();
