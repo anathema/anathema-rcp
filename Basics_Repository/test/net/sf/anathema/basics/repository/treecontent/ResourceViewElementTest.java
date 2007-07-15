@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,4 +34,8 @@ public class ResourceViewElementTest {
     assertFalse(element.hasChildren());
   }
 
+  @Test
+  public void adaptsToIResourceAsFile() throws Exception {
+    assertEquals(file, element.getAdapter(IResource.class));
+  }
 }
