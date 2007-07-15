@@ -13,7 +13,6 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PartInitException;
 
 public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
 
@@ -37,10 +36,11 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
       return;
     }
     IWorkbenchPage page = targetPart.getSite().getPage();
+    PlotElementCloseHandler closeHandler = new PlotElementCloseHandler(new PageEditorCloser(page), element);
     try {
       for (IEditorReference reference : page.getEditorReferences()) {
         if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
-          closeEditorsForDeletion(page, reference, element);
+          closeHandler.closeIfRequired(reference);
         }
       }
       element.delete();
@@ -48,64 +48,6 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     catch (Exception e) {
       PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.DeletePlotElementActionDelegate_Deletion_Error, e);
     }
-  }
-
-  private boolean closeEditorsForDeletion(
-      IWorkbenchPage page,
-      IEditorReference reference,
-      IPlotElementViewElement currentElement) throws PartInitException {
-    if (closeEditorForElement(page, reference, currentElement)) {
-      return true;
-    }
-    if (closeUnsavedChildren(page, reference, currentElement)) {
-      return true;
-    }
-    if (closeSavedChildren(page, reference, currentElement.getChildren())) {
-      return true;
-    }
-    return false;
-  }
-
-  private boolean closeEditorForElement(
-      IWorkbenchPage page,
-      IEditorReference reference,
-      IPlotElementViewElement currentElement) {
-    if (mustBeClosed(currentElement, reference)) {
-      performClose(page, reference);
-      return true;
-    }
-    return false;
-  }
-
-  private boolean closeUnsavedChildren(
-      IWorkbenchPage page,
-      IEditorReference reference,
-      IPlotElementViewElement currentElement) throws PartInitException {
-    IPlotChild newChild = (IPlotChild) reference.getEditorInput().getAdapter(IPlotChild.class);
-    if (newChild != null && currentElement.getPlotElement().equals(newChild.getParent())) {
-      performClose(page, reference);
-      return true;
-    }
-    return false;
-  }
-
-  private boolean closeSavedChildren(IWorkbenchPage page, IEditorReference reference, IPlotElementViewElement[] children)
-      throws PartInitException {
-    for (IPlotElementViewElement child : children) {
-      if (closeEditorsForDeletion(page, reference, child)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  private void performClose(IWorkbenchPage page, IEditorReference reference) {
-    page.closeEditor(reference.getEditor(false), false);
-  }
-
-  private boolean mustBeClosed(IPlotElementViewElement currentElement, IEditorReference reference) {
-    // TODO 140514 Do not close unrelated plot editors with identical names
-    return currentElement.getDisplayName().equals(reference.getName());
   }
 
   @Override
