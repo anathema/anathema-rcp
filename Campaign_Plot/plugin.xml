@@ -37,6 +37,7 @@
          </action>
          <action
                class="net.sf.anathema.campaign.plot.repository.DeletePlotElementActionDelegate"
+               icon="icons/delete_obj.gif"
                id="net.sf.anathema.plotelement.popup.delete"
                label="%delete.plotelement">
          </action>

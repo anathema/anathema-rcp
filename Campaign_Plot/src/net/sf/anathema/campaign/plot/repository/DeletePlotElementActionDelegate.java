@@ -5,7 +5,6 @@ import net.sf.anathema.campaign.plot.PlotPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.osgi.util.NLS;
@@ -55,9 +54,6 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
     StructuredSelection structuredSelection = (StructuredSelection) selection;
     if (structuredSelection.getFirstElement() instanceof IPlotElementViewElement) {
       element = (IPlotElementViewElement) structuredSelection.getFirstElement();
-      IPlotUnit unit = element.getPlotElement().getPlotUnit();
-      action.setText(NLS.bind(Messages.DeletePlotElementActionDelegate_DeleteActionText_Message, unit.getName()));
-      action.setImageDescriptor(new DeleteIconCompositeImageDescriptor(ImageDescriptor.createFromURL(unit.getImage())));
     }
   }
 }
