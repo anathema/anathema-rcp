@@ -15,43 +15,27 @@ import org.junit.Test;
 public class PointViewInputFactoryTest {
 
   private PointViewInputFactory viewInputFactory;
-
-  private void assertEmptyViewElement(IPointViewInput newInput) {
-    assertNotNull(newInput);
-    assertNull(newInput.getCharacterId());
-    assertArrayEquals(new IPointEntry[0], newInput.createEntries());
-  }
+  private DummyCharacterId characterId;
+  private ModelIdentifier modelIdentifier;
 
   @Before
   public void createViewInputFactory() throws Exception {
     this.viewInputFactory = new PointViewInputFactory();
   }
 
-  @Test
-  public void nullInputProviderReturnsEmptyViewInput() throws Exception {
-    IPointViewInput newInput = viewInputFactory.createEditorInput(null);
-    assertEmptyViewElement(newInput);
-  }
-
-  @Test
-  public void nonCharacterEditorInputReturnsEmptyViewInput() throws Exception {
-    IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(null);
-    IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
-    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput);
-    EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
-    assertEmptyViewElement(newInput);
-    EasyMock.verify(inputProvider, editorInput);
+  @Before
+  public void createCharacter() {
+    this.characterId = new DummyCharacterId();
+    characterId.addContentHandle(
+        "template.xml", new DummyContentHandle("<template reference=\"net.sf.anathema.core.StaticTemplate\" />")); //$NON-NLS-1$//$NON-NLS-2$
+    characterId.addContentHandle("experience.model", new DummyContentHandle("<model experienced=\"false\"/>")); //$NON-NLS-1$ //$NON-NLS-2$
+    this.modelIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
   }
 
   @Test
   public void createsEntriesForCharacterEditorInput() throws Exception {
-    DummyCharacterId characterId = new DummyCharacterId();
-    addTemplateHandle(characterId);
     IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
-    ModelIdentifier egalIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(egalIdentifier);
+    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier);
     IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
     EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput);
     EasyMock.replay(inputProvider, editorInput);
@@ -64,11 +48,8 @@ public class PointViewInputFactoryTest {
 
   @Test
   public void createsNoNewInputForIdenticalCharacterEditorInput() throws Exception {
-    DummyCharacterId characterId = new DummyCharacterId();
-    addTemplateHandle(characterId);
     IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
-    ModelIdentifier egalIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(egalIdentifier).anyTimes();
+    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
     IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
     EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
     EasyMock.replay(inputProvider, editorInput);
@@ -79,29 +60,33 @@ public class PointViewInputFactoryTest {
 
   @Test
   public void createsNewInputForIdenticalCharacterEditorInputIfExperienceStateChanged() throws Exception {
-    DummyCharacterId characterId = new DummyCharacterId();
-    addTemplateHandle(characterId);
-    addExperienceHandle(characterId);
     IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
-    ModelIdentifier egalIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(egalIdentifier).anyTimes();
+    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
     IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
     EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
     EasyMock.replay(inputProvider, editorInput);
     IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
-    IExperience experience = (IExperience) ModelCache.getInstance().getModel(
-        new ModelIdentifier(characterId, IExperience.MODEL_ID));
-    experience.setExperienced(true);
+    setExperienced();
     IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
     assertFalse(oldInput.equals(newInput));
   }
 
-  private void addTemplateHandle(DummyCharacterId characterId) {
-    characterId.addContentHandle(
-        "template.xml", new DummyContentHandle("<template reference=\"net.sf.anathema.core.StaticTemplate\" />")); //$NON-NLS-1$//$NON-NLS-2$
+  @Test
+  public void createsNoNewInputForIdenticalCharacterIfExperienceStateDidNotChangeBetweenCalls() throws Exception {
+    IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
+    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
+    IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
+    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
+    EasyMock.replay(inputProvider, editorInput);
+    setExperienced();
+    IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
+    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
+    assertEquals(oldInput, newInput);
   }
 
-  private void addExperienceHandle(DummyCharacterId characterId) {
-    characterId.addContentHandle("experience.model", new DummyContentHandle("<model experienced=\"false\"/>")); //$NON-NLS-1$
+  private void setExperienced() {
+    IExperience experience = (IExperience) ModelCache.getInstance().getModel(
+        new ModelIdentifier(characterId, IExperience.MODEL_ID));
+    experience.setExperienced(true);
   }
 }
