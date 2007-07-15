@@ -37,7 +37,9 @@ public class PointViewInputFactory {
         && lastExperienced == experience.isExperienced()) {
       return lastInput;
     }
-    this.lastExperienced = experience.isExperienced();
+    if (experience != null) {
+      this.lastExperienced = experience.isExperienced();
+    }
     return rememberInput(new PointViewInput(characterId, modelExtensionPoint.getExperiencePointConfigurations(
         templateProvider,
         characterId)));
