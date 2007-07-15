@@ -15,6 +15,8 @@ public class NoUnsavedElementCloseHandlerTest {
   private DummyPlotElementViewElement element;
   private DummyCloser closer;
   private IFileEditorInput input;
+  private IFile editorFile;
+  private IFolder parentFolder;
 
   @Before
   public void createHandler() {
@@ -22,6 +24,10 @@ public class NoUnsavedElementCloseHandlerTest {
     this.element = new DummyPlotElementViewElement();
     this.handler = new PlotElementCloseHandler(closer, element);
     this.input = EasyMock.createNiceMock(IFileEditorInput.class);
+    this.editorFile = EasyMock.createMock(IFile.class);
+    this.parentFolder = EasyMock.createMock(IFolder.class);
+    EasyMock.expect(editorFile.getParent()).andReturn(parentFolder).anyTimes();
+    element.setParentFolder(parentFolder);
   }
 
   @Test
@@ -52,7 +58,24 @@ public class NoUnsavedElementCloseHandlerTest {
     EasyMock.expect(input.getAdapter(IPlotChild.class)).andReturn(new PlotPartPlotChild(element.getPlotElement()));
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
 
-    EasyMock.expect(reference.getName()).andReturn("Unborn").anyTimes(); //$NON-NLS-1$
+    EasyMock.replay(reference, input);
+    handler.closeIfRequired(reference);
+    assertTrue(closer.isClosed());
+    EasyMock.verify(reference, input);
+  }
+
+  // Going with the earlier names, I would have loved to call this "unborn children".
+  @Test
+  public void closesEditorHandlingUnsavedChildOfElementsChild() throws Exception {
+    IEditorReference reference = EasyMock.createNiceMock(IEditorReference.class);
+    EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
+    EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(null);
+    DummyPlotElementViewElement child = new DummyPlotElementViewElement();
+    element.addChild(child);
+    EasyMock.expect(input.getAdapter(IPlotChild.class))
+        .andReturn(new PlotPartPlotChild(child.getPlotElement()))
+        .anyTimes();
+    EasyMock.expect(reference.getEditor(false)).andReturn(null);
     EasyMock.replay(reference, input);
     handler.closeIfRequired(reference);
     assertTrue(closer.isClosed());
@@ -82,21 +105,17 @@ public class NoUnsavedElementCloseHandlerTest {
     EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
 
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
-    IFile file = EasyMock.createMock(IFile.class);
-    EasyMock.expect(input.getFile()).andReturn(file).anyTimes();
-
-    IFolder parent = EasyMock.createMock(IFolder.class);
-    EasyMock.expect(file.getParent()).andReturn(parent).anyTimes();
+    EasyMock.expect(input.getFile()).andReturn(editorFile).anyTimes();
 
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
 
     DummyPlotElementViewElement child = new DummyPlotElementViewElement();
-    child.setParentFolder(parent);
+    child.setParentFolder(parentFolder);
     element.addChild(child);
-    EasyMock.replay(reference, input, file);
+    EasyMock.replay(reference, input, editorFile);
     handler.closeIfRequired(reference);
     assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input, file);
+    EasyMock.verify(reference, input, editorFile);
   }
 
   @Test
@@ -105,22 +124,18 @@ public class NoUnsavedElementCloseHandlerTest {
     EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
 
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
-    IFile file = EasyMock.createMock(IFile.class);
-    EasyMock.expect(input.getFile()).andReturn(file).anyTimes();
-
-    IFolder parent = EasyMock.createMock(IFolder.class);
-    EasyMock.expect(file.getParent()).andReturn(parent).anyTimes();
+    EasyMock.expect(input.getFile()).andReturn(editorFile).anyTimes();
 
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
 
     element.addChild(new DummyPlotElementViewElement());
     DummyPlotElementViewElement secondChild = new DummyPlotElementViewElement();
-    secondChild.setParentFolder(parent);
+    secondChild.setParentFolder(parentFolder);
     element.addChild(secondChild);
-    EasyMock.replay(reference, input, file);
+    EasyMock.replay(reference, input, editorFile);
     handler.closeIfRequired(reference);
     assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input, file);
+    EasyMock.verify(reference, input, editorFile);
   }
 
   @Test
@@ -129,24 +144,20 @@ public class NoUnsavedElementCloseHandlerTest {
     EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
 
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
-    IFile file = EasyMock.createMock(IFile.class);
-    EasyMock.expect(input.getFile()).andReturn(file).anyTimes();
-
-    IFolder parent = EasyMock.createMock(IFolder.class);
-    EasyMock.expect(file.getParent()).andReturn(parent).anyTimes();
+    EasyMock.expect(input.getFile()).andReturn(editorFile).anyTimes();
 
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
 
     EasyMock.expect(reference.getName()).andReturn("GrandChild").anyTimes(); //$NON-NLS-1$
     DummyPlotElementViewElement grandchild = new DummyPlotElementViewElement();
-    grandchild.setParentFolder(parent);
+    grandchild.setParentFolder(parentFolder);
     DummyPlotElementViewElement child = new DummyPlotElementViewElement();
-    child.setParentFolder(parent);
+    child.setParentFolder(parentFolder);
     element.addChild(child);
     child.addChild(grandchild);
-    EasyMock.replay(reference, input, file);
+    EasyMock.replay(reference, input, editorFile);
     handler.closeIfRequired(reference);
     assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input, file);
+    EasyMock.verify(reference, input, editorFile);
   }
 }
