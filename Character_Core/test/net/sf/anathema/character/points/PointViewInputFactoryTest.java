@@ -17,6 +17,8 @@ public class PointViewInputFactoryTest {
   private PointViewInputFactory viewInputFactory;
   private DummyCharacterId characterId;
   private ModelIdentifier modelIdentifier;
+  private IEditorInput editorInput;
+  private IEditorInputProvider inputProvider;
 
   @Before
   public void createViewInputFactory() throws Exception {
@@ -24,20 +26,20 @@ public class PointViewInputFactoryTest {
   }
 
   @Before
-  public void createCharacter() {
+  public void createCharacterAndEditorInput() {
     this.characterId = new DummyCharacterId();
     characterId.addContentHandle(
         "template.xml", new DummyContentHandle("<template reference=\"net.sf.anathema.core.StaticTemplate\" />")); //$NON-NLS-1$//$NON-NLS-2$
     characterId.addContentHandle("experience.model", new DummyContentHandle("<model experienced=\"false\"/>")); //$NON-NLS-1$ //$NON-NLS-2$
     this.modelIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
+    this.editorInput = EasyMock.createStrictMock(IEditorInput.class);
+    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
+    this.inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
+    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
   }
 
   @Test
   public void createsEntriesForCharacterEditorInput() throws Exception {
-    IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier);
-    IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
-    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput);
     EasyMock.replay(inputProvider, editorInput);
     IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
     assertNotNull(newInput);
@@ -48,10 +50,6 @@ public class PointViewInputFactoryTest {
 
   @Test
   public void createsNoNewInputForIdenticalCharacterEditorInput() throws Exception {
-    IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
-    IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
-    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
     EasyMock.replay(inputProvider, editorInput);
     IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
     IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
@@ -60,10 +58,6 @@ public class PointViewInputFactoryTest {
 
   @Test
   public void createsNewInputForIdenticalCharacterEditorInputIfExperienceStateChanged() throws Exception {
-    IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
-    IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
-    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
     EasyMock.replay(inputProvider, editorInput);
     IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
     setExperienced();
@@ -73,10 +67,6 @@ public class PointViewInputFactoryTest {
 
   @Test
   public void createsNoNewInputForIdenticalCharacterIfExperienceStateDidNotChangeBetweenCalls() throws Exception {
-    IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
-    IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
-    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
     EasyMock.replay(inputProvider, editorInput);
     setExperienced();
     IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
