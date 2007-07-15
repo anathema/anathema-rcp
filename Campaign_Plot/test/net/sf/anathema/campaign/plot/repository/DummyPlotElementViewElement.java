@@ -21,6 +21,7 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
   private String name;
   private IFolder parent;
   private boolean deleted;
+  private boolean closed;
 
   public DummyPlotElementViewElement() {
     this.plotPart = new PlotPart("id", DummyPlotUnit.Plot, null); //$NON-NLS-1$
@@ -98,5 +99,14 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
       return false;
     }
     return parent.equals(potentialParent);
+  }
+
+  @Override
+  public void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
+    this.closed = true;
+  }
+
+  public boolean isClosed() {
+    return closed;
   }
 }
