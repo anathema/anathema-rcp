@@ -16,10 +16,18 @@ import org.eclipse.ui.PartInitException;
 
 public class DummyPlotElementViewElement implements IPlotElementViewElement {
 
-  private final PlotPart plotPart = new PlotPart("id", DummyPlotUnit.Plot, null); //$NON-NLS-1$
+  private final PlotPart plotPart;
   private final List<IPlotElementViewElement> children = new ArrayList<IPlotElementViewElement>();
   private String name;
   private IFolder parent;
+
+  public DummyPlotElementViewElement() {
+    this.plotPart = new PlotPart("id", DummyPlotUnit.Plot, null); //$NON-NLS-1$
+  }
+
+  public DummyPlotElementViewElement(IPlotPart plotElement) {
+    this.plotPart = new PlotPart("id", DummyPlotUnit.Plot, plotElement); //$NON-NLS-1$
+  }
 
   @Override
   public void delete() throws CoreException, IOException {

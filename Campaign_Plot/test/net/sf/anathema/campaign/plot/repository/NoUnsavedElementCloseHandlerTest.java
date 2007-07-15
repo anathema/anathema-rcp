@@ -64,13 +64,13 @@ public class NoUnsavedElementCloseHandlerTest {
     EasyMock.verify(reference, input);
   }
 
-  // Going with the earlier names, I would have loved to call this "unborn children".
   @Test
-  public void closesEditorHandlingUnsavedChildOfElementsChild() throws Exception {
+  public void closesEditorHandlingUnsavedGrandchild() throws Exception {
     IEditorReference reference = EasyMock.createNiceMock(IEditorReference.class);
     EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(null);
-    DummyPlotElementViewElement child = new DummyPlotElementViewElement();
+    DummyPlotElementViewElement child = new DummyPlotElementViewElement(element.getPlotElement());
+    element.getPlotElement().addChild(child.getPlotElement(), 0);
     element.addChild(child);
     EasyMock.expect(input.getAdapter(IPlotChild.class))
         .andReturn(new PlotPartPlotChild(child.getPlotElement()))
