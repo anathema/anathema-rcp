@@ -10,7 +10,7 @@ import org.eclipse.ui.IEditorReference;
 import org.junit.Before;
 import org.junit.Test;
 
-public class NoUnsavedElementCloseHandlerTest {
+public class PlotElementCloseHandlerTest {
   private PlotElementCloseHandler handler;
   private DummyPlotElementViewElement element;
   private DummyCloser closer;
