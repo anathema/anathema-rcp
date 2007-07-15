@@ -6,7 +6,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IObjectActionDelegate;
@@ -51,7 +51,7 @@ public class DeletePlotElementActionDelegate implements IObjectActionDelegate {
 
   @Override
   public void selectionChanged(IAction action, ISelection selection) {
-    StructuredSelection structuredSelection = (StructuredSelection) selection;
+    IStructuredSelection structuredSelection = (IStructuredSelection) selection;
     if (structuredSelection.getFirstElement() instanceof IPlotElementViewElement) {
       element = (IPlotElementViewElement) structuredSelection.getFirstElement();
     }
