@@ -44,6 +44,9 @@ public class FileEditorInput implements IFileEditorInput {
     if (adapter == IResource.class) {
       return file;
     }
+    if (adapter == IFileEditorInput.class) {
+      return this;
+    }
     return file.getAdapter(adapter);
   }
 

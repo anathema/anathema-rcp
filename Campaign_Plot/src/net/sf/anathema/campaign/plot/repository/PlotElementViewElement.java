@@ -9,6 +9,7 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
@@ -80,6 +81,11 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
     else {
       deleteFromHierarchy(monitor);
     }
+  }
+
+  @Override
+  public boolean isPartOf(IContainer parent) {
+    return folder.equals(parent);
   }
 
   private void deleteFromHierarchy(IProgressMonitor monitor) throws CoreException, IOException {

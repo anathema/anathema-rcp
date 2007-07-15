@@ -1,5 +1,7 @@
 package net.sf.anathema.campaign.plot.repository;
 
+import net.sf.anathema.basics.jface.IFileEditorInput;
+
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 
@@ -14,8 +16,7 @@ public class PlotElementCloseHandler {
   }
 
   public void closeIfRequired(IEditorReference reference) throws PartInitException {
-    IPlotElementViewElement currentElement = element;
-    closeIfRequired(reference, currentElement);
+    closeIfRequired(reference, element);
   }
 
   private boolean closeIfRequired(IEditorReference reference, IPlotElementViewElement currentElement)
@@ -38,8 +39,10 @@ public class PlotElementCloseHandler {
     return false;
   }
 
-  private boolean mustBeClosed(IPlotElementViewElement currentElement, IEditorReference reference) {
-    // TODO 140514 Do not close unrelated plot editors with identical names
-    return currentElement.getDisplayName().equals(reference.getName());
+  private boolean mustBeClosed(IPlotElementViewElement currentElement, IEditorReference reference)
+      throws PartInitException {
+    IFileEditorInput input = (IFileEditorInput) reference.getEditorInput().getAdapter(IFileEditorInput.class);
+    return input != null && currentElement.isPartOf(input.getFile().getParent());
+
   }
 }

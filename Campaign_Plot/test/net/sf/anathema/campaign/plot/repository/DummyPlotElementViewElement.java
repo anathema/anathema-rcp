@@ -7,6 +7,8 @@ import java.util.List;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.campaign.plot.dnd.DummyPlotUnit;
 
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
@@ -16,11 +18,8 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
 
   private final PlotPart plotPart = new PlotPart("id", DummyPlotUnit.Plot, null); //$NON-NLS-1$
   private final List<IPlotElementViewElement> children = new ArrayList<IPlotElementViewElement>();
-  private final String name;
-
-  public DummyPlotElementViewElement(String name) {
-    this.name = name;
-  }
+  private String name;
+  private IFolder parent;
 
   @Override
   public void delete() throws CoreException, IOException {
@@ -70,5 +69,21 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
   @Override
   public String getDisplayName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setParentFolder(IFolder parent) {
+    this.parent = parent;
+  }
+
+  @Override
+  public boolean isPartOf(IContainer potentialParent) {
+    if (parent == null) {
+      return false;
+    }
+    return parent.equals(potentialParent);
   }
 }
