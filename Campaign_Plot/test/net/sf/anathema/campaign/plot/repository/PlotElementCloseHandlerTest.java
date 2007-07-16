@@ -46,15 +46,19 @@ public class PlotElementCloseHandlerTest {
   @Test
   public void closesEditorHandlingElement() throws Exception {
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
-    IFile file = EasyMock.createMock(IFile.class);
-    EasyMock.expect(input.getFile()).andReturn(file);
-
     IFolder parent = EasyMock.createMock(IFolder.class);
-    EasyMock.expect(file.getParent()).andReturn(parent);
+    IFile file = createMockFile(parent);
+    EasyMock.expect(input.getFile()).andReturn(file);
 
     element.setParentFolder(parent);
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
     assertCloserIsClosed(true, file);
+  }
+
+  private IFile createMockFile(IFolder parent) {
+    IFile file = EasyMock.createMock(IFile.class);
+    EasyMock.expect(file.getParent()).andReturn(parent);
+    return file;
   }
 
   // Going with the earlier names, I would have loved to call this "unborn children".
@@ -82,10 +86,8 @@ public class PlotElementCloseHandlerTest {
   @Test
   public void doesNotCloseEditorsByNameAlone() throws Exception {
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
-    IFile file = EasyMock.createMock(IFile.class);
+    IFile file = createMockFile(null);
     EasyMock.expect(input.getFile()).andReturn(file);
-
-    EasyMock.expect(file.getParent()).andReturn(null);
     element.setName("DisplayName"); //$NON-NLS-1$
     EasyMock.expect(reference.getName()).andReturn("DisplayName").anyTimes(); //$NON-NLS-1$
     assertCloserIsClosed(false, file);
