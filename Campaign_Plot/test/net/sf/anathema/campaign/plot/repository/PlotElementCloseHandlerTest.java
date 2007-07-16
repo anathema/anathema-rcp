@@ -20,6 +20,15 @@ public class PlotElementCloseHandlerTest {
   private IFolder parentFolder;
   private IEditorReference reference;
 
+  private void assertCloserIsClosed(boolean closed, Object... additionalMocks) throws PartInitException {
+    EasyMock.replay(reference, input, editorFile);
+    EasyMock.replay(additionalMocks);
+    handler.closeIfRequired(reference);
+    assertEquals(closed, closer.isClosed());
+    EasyMock.verify(reference, input, editorFile);
+    EasyMock.verify(additionalMocks);
+  }
+
   @Before
   public void createHandler() throws Exception {
     this.closer = new DummyCloser();
@@ -45,10 +54,7 @@ public class PlotElementCloseHandlerTest {
 
     element.setParentFolder(parent);
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
-    EasyMock.replay(reference, input, file);
-    handler.closeIfRequired(reference);
-    assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input, file);
+    assertCloserIsClosed(true, file);
   }
 
   // Going with the earlier names, I would have loved to call this "unborn children".
@@ -57,11 +63,7 @@ public class PlotElementCloseHandlerTest {
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(null);
     EasyMock.expect(input.getAdapter(IPlotChild.class)).andReturn(new PlotPartPlotChild(element.getPlotElement()));
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
-
-    EasyMock.replay(reference, input);
-    handler.closeIfRequired(reference);
-    assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input);
+    assertCloserIsClosed(true);
   }
 
   @Test
@@ -74,10 +76,7 @@ public class PlotElementCloseHandlerTest {
         .andReturn(new PlotPartPlotChild(child.getPlotElement()))
         .anyTimes();
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
-    EasyMock.replay(reference, input);
-    handler.closeIfRequired(reference);
-    assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input);
+    assertCloserIsClosed(true);
   }
 
   @Test
@@ -89,10 +88,7 @@ public class PlotElementCloseHandlerTest {
     EasyMock.expect(file.getParent()).andReturn(null);
     element.setName("DisplayName"); //$NON-NLS-1$
     EasyMock.expect(reference.getName()).andReturn("DisplayName").anyTimes(); //$NON-NLS-1$
-    EasyMock.replay(reference, input, file);
-    handler.closeIfRequired(reference);
-    assertFalse(closer.isClosed());
-    EasyMock.verify(reference, input, file);
+    assertCloserIsClosed(false, file);
   }
 
   @Test
@@ -105,10 +101,7 @@ public class PlotElementCloseHandlerTest {
     DummyPlotElementViewElement child = new DummyPlotElementViewElement();
     child.setParentFolder(parentFolder);
     element.addChild(child);
-    EasyMock.replay(reference, input, editorFile);
-    handler.closeIfRequired(reference);
-    assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input, editorFile);
+    assertCloserIsClosed(true);
   }
 
   @Test
@@ -122,10 +115,7 @@ public class PlotElementCloseHandlerTest {
     DummyPlotElementViewElement secondChild = new DummyPlotElementViewElement();
     secondChild.setParentFolder(parentFolder);
     element.addChild(secondChild);
-    EasyMock.replay(reference, input, editorFile);
-    handler.closeIfRequired(reference);
-    assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input, editorFile);
+    assertCloserIsClosed(true);
   }
 
   @Test
@@ -142,9 +132,6 @@ public class PlotElementCloseHandlerTest {
     child.setParentFolder(parentFolder);
     element.addChild(child);
     child.addChild(grandchild);
-    EasyMock.replay(reference, input, editorFile);
-    handler.closeIfRequired(reference);
-    assertTrue(closer.isClosed());
-    EasyMock.verify(reference, input, editorFile);
+    assertCloserIsClosed(true);
   }
 }
