@@ -7,6 +7,7 @@ import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.PartInitException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,9 +18,10 @@ public class PlotElementCloseHandlerTest {
   private IFileEditorInput input;
   private IFile editorFile;
   private IFolder parentFolder;
+  private IEditorReference reference;
 
   @Before
-  public void createHandler() {
+  public void createHandler() throws Exception {
     this.closer = new DummyCloser();
     this.element = new DummyPlotElementViewElement();
     this.handler = new PlotElementCloseHandler(closer, element);
@@ -28,12 +30,12 @@ public class PlotElementCloseHandlerTest {
     this.parentFolder = EasyMock.createMock(IFolder.class);
     EasyMock.expect(editorFile.getParent()).andReturn(parentFolder).anyTimes();
     element.setParentFolder(parentFolder);
+    reference = EasyMock.createMock(IEditorReference.class);
+    EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
   }
 
   @Test
   public void closesEditorHandlingElement() throws Exception {
-    IEditorReference reference = EasyMock.createMock(IEditorReference.class);
-    EasyMock.expect(reference.getEditorInput()).andReturn(input);
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
     IFile file = EasyMock.createMock(IFile.class);
     EasyMock.expect(input.getFile()).andReturn(file);
@@ -52,8 +54,6 @@ public class PlotElementCloseHandlerTest {
   // Going with the earlier names, I would have loved to call this "unborn children".
   @Test
   public void closesEditorHandlingUnsavedChild() throws Exception {
-    IEditorReference reference = EasyMock.createNiceMock(IEditorReference.class);
-    EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(null);
     EasyMock.expect(input.getAdapter(IPlotChild.class)).andReturn(new PlotPartPlotChild(element.getPlotElement()));
     EasyMock.expect(reference.getEditor(false)).andReturn(null);
@@ -66,8 +66,6 @@ public class PlotElementCloseHandlerTest {
 
   @Test
   public void closesEditorHandlingUnsavedGrandchild() throws Exception {
-    IEditorReference reference = EasyMock.createNiceMock(IEditorReference.class);
-    EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(null);
     DummyPlotElementViewElement child = new DummyPlotElementViewElement(element.getPlotElement());
     element.getPlotElement().addChild(child.getPlotElement(), 0);
@@ -84,8 +82,6 @@ public class PlotElementCloseHandlerTest {
 
   @Test
   public void doesNotCloseEditorsByNameAlone() throws Exception {
-    IEditorReference reference = EasyMock.createMock(IEditorReference.class);
-    EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
     IFile file = EasyMock.createMock(IFile.class);
     EasyMock.expect(input.getFile()).andReturn(file);
@@ -101,9 +97,6 @@ public class PlotElementCloseHandlerTest {
 
   @Test
   public void closesEditorHandlingChild() throws Exception {
-    IEditorReference reference = EasyMock.createNiceMock(IEditorReference.class);
-    EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
-
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
     EasyMock.expect(input.getFile()).andReturn(editorFile).anyTimes();
 
@@ -120,9 +113,6 @@ public class PlotElementCloseHandlerTest {
 
   @Test
   public void closesEditorHandlingYoungerChild() throws Exception {
-    IEditorReference reference = EasyMock.createNiceMock(IEditorReference.class);
-    EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
-
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
     EasyMock.expect(input.getFile()).andReturn(editorFile).anyTimes();
 
@@ -140,9 +130,6 @@ public class PlotElementCloseHandlerTest {
 
   @Test
   public void closesEditorHandlingGrandchild() throws Exception {
-    IEditorReference reference = EasyMock.createNiceMock(IEditorReference.class);
-    EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
-
     EasyMock.expect(input.getAdapter(IFileEditorInput.class)).andReturn(input).anyTimes();
     EasyMock.expect(input.getFile()).andReturn(editorFile).anyTimes();
 
