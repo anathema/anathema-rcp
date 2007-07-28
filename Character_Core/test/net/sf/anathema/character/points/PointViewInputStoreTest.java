@@ -1,7 +1,6 @@
 package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
@@ -19,7 +18,6 @@ public class PointViewInputStoreTest {
   private DummyCharacterId characterId;
   private ModelIdentifier modelIdentifier;
   private IEditorInput editorInput;
-  private IEditorInputProvider inputProvider;
 
   @Before
   public void createViewInputFactory() throws Exception {
@@ -35,43 +33,41 @@ public class PointViewInputStoreTest {
     this.modelIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
     this.editorInput = EasyMock.createStrictMock(IEditorInput.class);
     EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
-    this.inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
-    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput).anyTimes();
   }
 
   @Test
   public void createsEntriesForCharacter() throws Exception {
-    EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
+    EasyMock.replay(editorInput);
+    IPointViewInput newInput = viewInputFactory.getViewInput(editorInput);
     assertNotNull(newInput);
     assertNotNull(newInput.getCharacterId());
     assertTrue(newInput.createEntries().length != 0);
-    EasyMock.verify(inputProvider, editorInput);
+    EasyMock.verify(editorInput);
   }
 
   @Test
   public void createsNoNewInputForIdenticalCharacter() throws Exception {
-    EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput oldInput = viewInputFactory.getViewInput(inputProvider);
-    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
+    EasyMock.replay(editorInput);
+    IPointViewInput oldInput = viewInputFactory.getViewInput(editorInput);
+    IPointViewInput newInput = viewInputFactory.getViewInput(editorInput);
     assertEquals(oldInput, newInput);
   }
 
   @Test
   public void createsNewInputForIdenticalCharacterIfExperienceStateChanged() throws Exception {
-    EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput oldInput = viewInputFactory.getViewInput(inputProvider);
+    EasyMock.replay(editorInput);
+    IPointViewInput oldInput = viewInputFactory.getViewInput(editorInput);
     setExperienced();
-    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
+    IPointViewInput newInput = viewInputFactory.getViewInput(editorInput);
     assertFalse(oldInput.equals(newInput));
   }
 
   @Test
   public void createsNoNewInputForIdenticalCharacterIfExperienceStateDidNotChangeBetweenCalls() throws Exception {
-    EasyMock.replay(inputProvider, editorInput);
+    EasyMock.replay(editorInput);
     setExperienced();
-    IPointViewInput oldInput = viewInputFactory.getViewInput(inputProvider);
-    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
+    IPointViewInput oldInput = viewInputFactory.getViewInput(editorInput);
+    IPointViewInput newInput = viewInputFactory.getViewInput(editorInput);
     assertEquals(oldInput, newInput);
   }
 

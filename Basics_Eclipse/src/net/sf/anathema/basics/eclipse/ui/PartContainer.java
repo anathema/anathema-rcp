@@ -6,7 +6,7 @@ import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IPartService;
 import org.eclipse.ui.IWorkbenchWindow;
 
-public class PartContainer implements IPartContainer{
+public class PartContainer implements IPartContainer {
 
   private final IPartService partService;
   private final IWorkbenchWindow workbenchWindow;
@@ -15,7 +15,7 @@ public class PartContainer implements IPartContainer{
     this.workbenchWindow = workbenchWindow;
     this.partService = workbenchWindow.getPartService();
   }
-  
+
   @Override
   public void addPartListener(IPartListener listener) {
     partService.addPartListener(listener);
@@ -27,15 +27,10 @@ public class PartContainer implements IPartContainer{
   }
 
   public IEditorInput getEditorInput() {
-    IEditorPart topPart = workbenchWindow.getActivePage().getActiveEditor();
-    if (topPart == null) {
+    IEditorPart activeEditor = workbenchWindow.getActivePage().getActiveEditor();
+    if (activeEditor == null) {
       return null;
     }
-    return topPart.getEditorInput();
-  }
-
-  public IEditorInputProvider getEditorInputProvider() {
-    IEditorPart activeEditor = workbenchWindow.getActivePage().getActiveEditor();
-    return activeEditor instanceof IEditorInputProvider ? (IEditorInputProvider) activeEditor : null;
+    return activeEditor.getEditorInput();
   }
 }

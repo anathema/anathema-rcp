@@ -1,7 +1,6 @@
 package net.sf.anathema.basics.item.editor;
 
 import net.sf.anathema.basics.eclipse.resource.ImageDisposable;
-import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.lib.control.change.IChangeListener;
@@ -17,7 +16,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends EditorPart implements
-    IPersistableItemEditor, IEditorInputProvider {
+    IPersistableItemEditor {
 
   private final class DirtyChangeDisposable implements IDisposable {
     private final IPersistableEditorInput<I> itemInput;

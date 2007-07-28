@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.eclipse.ui;
 
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPartListener;
 
 public interface IPartContainer {
@@ -8,5 +9,5 @@ public interface IPartContainer {
 
   public void removePartListener(IPartListener listener);
 
-  public IEditorInputProvider getEditorInputProvider();
+  public IEditorInput getEditorInput();
 }

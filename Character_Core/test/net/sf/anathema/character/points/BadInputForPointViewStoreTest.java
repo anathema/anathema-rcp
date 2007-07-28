@@ -1,7 +1,6 @@
 package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 
@@ -34,11 +33,9 @@ public class BadInputForPointViewStoreTest {
   public void nonCharacterEditorInputReturnsEmptyViewInput() throws Exception {
     IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
     EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(null);
-    IEditorInputProvider inputProvider = EasyMock.createStrictMock(IEditorInputProvider.class);
-    EasyMock.expect(inputProvider.getEditorInput()).andReturn(editorInput);
-    EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
+    EasyMock.replay(editorInput);
+    IPointViewInput newInput = viewInputFactory.getViewInput(editorInput);
     assertEmptyViewElement(newInput);
-    EasyMock.verify(inputProvider, editorInput);
+    EasyMock.verify(editorInput);
   }
 }

@@ -1,7 +1,6 @@
 package net.sf.anathema.character.points;
 
 import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
-import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
@@ -11,6 +10,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.IEditorInput;
 
 public class PointsView extends DisposableViewPart implements IUpdateable {
 
@@ -53,8 +53,8 @@ public class PointsView extends DisposableViewPart implements IUpdateable {
     updateName();
   }
 
-  private IEditorInputProvider getEditorInputProvider() {
-    return getPartContainer().getEditorInputProvider();
+  private IEditorInput getEditorInputProvider() {
+    return getPartContainer().getEditorInput();
   }
 
   private IPartContainer getPartContainer() {

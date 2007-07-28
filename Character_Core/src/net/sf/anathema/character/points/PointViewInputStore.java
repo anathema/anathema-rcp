@@ -1,6 +1,5 @@
 package net.sf.anathema.character.points;
 
-import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
@@ -9,6 +8,8 @@ import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.model.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.IExperience;
+
+import org.eclipse.ui.IEditorInput;
 
 public class PointViewInputStore {
 
@@ -21,8 +22,8 @@ public class PointViewInputStore {
     this.factory = new PointViewInputFactory(provider, new CharacterTemplateProvider());
   }
 
-  public IPointViewInput getViewInput(IEditorInputProvider inputProvider) {
-    IModelIdentifier modelIdentifier = new ModelIdentifierProvider().getModelIdentifier(inputProvider);
+  public IPointViewInput getViewInput(IEditorInput editorInput) {
+    IModelIdentifier modelIdentifier = new ModelIdentifierProvider().getModelIdentifier(editorInput);
     if (modelIdentifier == null) {
       return storeInput(nullInput);
     }
