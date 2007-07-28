@@ -1,8 +1,6 @@
 package net.sf.anathema.character.points;
 
 import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
-import net.sf.anathema.basics.eclipse.ui.PartListening;
-import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 import net.sf.anathema.basics.item.editor.IEditorInputProvider;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
@@ -15,12 +13,6 @@ import org.eclipse.ui.IEditorPart;
 
 public class PointsView extends DisposableViewPart implements IUpdateable {
 
-  private TopPartListener topPartListener = new TopPartListener(new Runnable() {
-    @Override
-    public void run() {
-      update();
-    }
-  });
   private Composite component;
   private IPointViewInput viewInput;
   private Composite parent;
@@ -30,8 +22,8 @@ public class PointsView extends DisposableViewPart implements IUpdateable {
   @Override
   public void createPartControl(Composite parentComposite) {
     this.parent = parentComposite;
-    addDisposable(new PartListening(topPartListener, getSite().getWorkbenchWindow().getPartService()));
-    updateHandler.addUpdateable(this);
+    updateHandler.init(getSite(), this);
+    addDisposable(updateHandler);
     update();
   }
 
@@ -64,7 +56,7 @@ public class PointsView extends DisposableViewPart implements IUpdateable {
     parent.layout(true);
     updateName();
   }
-  
+
   private void updateName() {
     setPartName(updateHandler.getTitle());
   }
