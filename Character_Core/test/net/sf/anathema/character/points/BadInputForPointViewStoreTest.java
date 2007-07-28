@@ -3,14 +3,15 @@ package net.sf.anathema.character.points;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.item.editor.IEditorInputProvider;
 import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BadInputForPointViewFactoryTest {
-  private PointViewInputFactory viewInputFactory;
+public class BadInputForPointViewStoreTest {
+  private PointViewInputStore viewInputFactory;
 
   private void assertEmptyViewElement(IPointViewInput newInput) {
     assertNotNull(newInput);
@@ -20,7 +21,7 @@ public class BadInputForPointViewFactoryTest {
 
   @Before
   public void createViewInputFactory() throws Exception {
-    this.viewInputFactory = new PointViewInputFactory();
+    this.viewInputFactory = new PointViewInputStore(new ModelExtensionPoint());
   }
 
   @Test

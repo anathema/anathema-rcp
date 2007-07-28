@@ -5,6 +5,7 @@ import net.sf.anathema.basics.item.editor.IEditorInputProvider;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 import net.sf.anathema.character.experience.IExperience;
 
 import org.easymock.EasyMock;
@@ -12,9 +13,9 @@ import org.eclipse.ui.IEditorInput;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PointViewInputFactoryTest {
+public class PointViewInputStoreTest {
 
-  private PointViewInputFactory viewInputFactory;
+  private PointViewInputStore viewInputFactory;
   private DummyCharacterId characterId;
   private ModelIdentifier modelIdentifier;
   private IEditorInput editorInput;
@@ -22,7 +23,7 @@ public class PointViewInputFactoryTest {
 
   @Before
   public void createViewInputFactory() throws Exception {
-    this.viewInputFactory = new PointViewInputFactory();
+    this.viewInputFactory = new PointViewInputStore(new ModelExtensionPoint());
   }
 
   @Before

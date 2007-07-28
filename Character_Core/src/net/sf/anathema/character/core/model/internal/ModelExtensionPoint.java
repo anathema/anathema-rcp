@@ -24,7 +24,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
 
-public class ModelExtensionPoint {
+public class ModelExtensionPoint implements IPointConfigurationProvider {
 
   private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.models"; //$NON-NLS-1$
   private static final String ATTRIB_FILENAME = "filename"; //$NON-NLS-1$

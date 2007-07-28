@@ -5,19 +5,23 @@ import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
-import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
+import net.sf.anathema.character.core.model.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.IExperience;
 
 import org.eclipse.ui.IEditorInput;
 
-public class PointViewInputFactory {
+public class PointViewInputStore {
 
   private static final NullPointViewInput nullInput = new NullPointViewInput();
-  private final ModelExtensionPoint modelExtensionPoint = new ModelExtensionPoint();
+  private IPointConfigurationProvider configurationProvider;
   private final CharacterTemplateProvider templateProvider = new CharacterTemplateProvider();
   private IPointViewInput lastInput;
   private boolean lastExperienced;
+
+  public PointViewInputStore(IPointConfigurationProvider provider) {
+    this.configurationProvider = provider;
+  }
 
   public IPointViewInput createEditorInput(IEditorInputProvider inputProvider) {
     if (inputProvider == null) {
@@ -40,7 +44,7 @@ public class PointViewInputFactory {
     if (experience != null) {
       this.lastExperienced = experience.isExperienced();
     }
-    return rememberInput(new PointViewInput(characterId, modelExtensionPoint.getExperiencePointConfigurations(
+    return rememberInput(new PointViewInput(characterId, configurationProvider.getExperiencePointConfigurations(
         templateProvider,
         characterId)));
   }

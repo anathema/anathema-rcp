@@ -5,6 +5,7 @@ import net.sf.anathema.basics.eclipse.ui.PartListening;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 import net.sf.anathema.basics.item.editor.IEditorInputProvider;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
+import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -23,7 +24,7 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
   private Composite component;
   private IPointViewInput viewInput;
   private Composite parent;
-  private final PointViewInputFactory inputFactory = new PointViewInputFactory();
+  private final PointViewInputStore inputFactory = new PointViewInputStore(new ModelExtensionPoint());
 
   @Override
   public void createPartControl(Composite parentComposite) {
