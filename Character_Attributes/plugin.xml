@@ -15,7 +15,7 @@
          </displayConfiguration>
          <pointConfiguration
                bonusPointCalculator="net.sf.anathema.character.attributes.points.AttributeBonusPointHandler"
-               experiencePointCalculator="net.sf.anathema.character.attributes.experiencepoints.AttributeExperienceHandler"
+               experiencePointCalculator="net.sf.anathema.character.attributes.points.AttributeExperienceHandler"
                name="%character.attributes.pointconfiguration">
          </pointConfiguration>
       </model>

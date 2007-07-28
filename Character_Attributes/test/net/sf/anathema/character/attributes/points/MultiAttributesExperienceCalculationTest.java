@@ -1,8 +1,8 @@
-package net.sf.anathema.character.attributes.experience;
+package net.sf.anathema.character.attributes.points;
 
 import static org.junit.Assert.assertEquals;
-import net.sf.anathema.character.attributes.experiencepoints.AttributeExperienceCalculator;
 import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.points.AttributeExperienceCalculator;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.lib.util.Identificate;
 

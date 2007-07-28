@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.experiencepoints;
+package net.sf.anathema.character.attributes.points;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.IAttributes;
