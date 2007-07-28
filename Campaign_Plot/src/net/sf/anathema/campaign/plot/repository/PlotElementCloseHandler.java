@@ -1,5 +1,6 @@
 package net.sf.anathema.campaign.plot.repository;
 
+import net.sf.anathema.basics.item.editor.IEditorCloser;
 import net.sf.anathema.basics.jface.IFileEditorInput;
 
 import org.eclipse.ui.IEditorInput;

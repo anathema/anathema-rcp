@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
@@ -85,5 +87,15 @@ public class ItemTypeViewElement implements IViewElement {
   @Override
   public Object getAdapter(Class adapter) {
     return null;
+  }
+
+  @Override
+  public boolean canBeDeleted() {
+    return false;
+  }
+
+  @Override
+  public void delete(IWorkbenchPage page) throws CoreException, IOException {
+    throw new UnsupportedOperationException("Cannot be deleted."); //$NON-NLS-1$
   }
 }

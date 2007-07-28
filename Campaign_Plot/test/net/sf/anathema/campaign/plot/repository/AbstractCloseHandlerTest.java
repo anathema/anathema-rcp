@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.item.editor.DummyCloser;
 import net.sf.anathema.basics.jface.IFileEditorInput;
 
 import org.easymock.EasyMock;

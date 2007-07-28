@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.item.editor.PageEditorCloser;
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
@@ -77,12 +78,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
   }
 
   @Override
-  public void delete(IWorkbenchPage page) throws CoreException, IOException {
-    closeRelatedEditors(page);
-    delete();
-  }
-
-  private void delete() throws CoreException, IOException {
+  protected void delete() throws CoreException, IOException {
     // TODO Monitor
     NullProgressMonitor monitor = new NullProgressMonitor();
     if (plotElement.getParent() == null) {
@@ -94,17 +90,18 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
   }
 
   @Override
-  public boolean isPartOf(IContainer parent) {
-    return folder.equals(parent);
-  }
-
-  private void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
+  protected void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
     PlotElementCloseHandler closeHandler = new PlotElementCloseHandler(new PageEditorCloser(page), this);
     for (IEditorReference reference : page.getEditorReferences()) {
       if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
         closeHandler.closeIfRequired(reference);
       }
     }
+  }
+
+  @Override
+  public boolean isPartOf(IContainer parent) {
+    return folder.equals(parent);
   }
 
   private void deleteFromHierarchy(IProgressMonitor monitor) throws CoreException, IOException {

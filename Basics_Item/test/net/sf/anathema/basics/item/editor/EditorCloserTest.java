@@ -1,4 +1,6 @@
-package net.sf.anathema.campaign.plot.repository;
+package net.sf.anathema.basics.item.editor;
+
+import net.sf.anathema.basics.item.editor.PageEditorCloser;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorPart;

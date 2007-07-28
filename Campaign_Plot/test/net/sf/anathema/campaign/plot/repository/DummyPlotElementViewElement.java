@@ -104,4 +104,9 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
   public boolean isClosed() {
     return closed;
   }
+
+  @Override
+  public boolean canBeDeleted() {
+    return true;
+  }
 }

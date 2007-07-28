@@ -38,4 +38,9 @@ public class ResourceViewElementTest {
   public void adaptsToIResourceAsFile() throws Exception {
     assertEquals(file, element.getAdapter(IResource.class));
   }
+
+  @Test
+  public void canBeDeleted() throws Exception {
+    assertTrue(element.canBeDeleted());
+  }
 }

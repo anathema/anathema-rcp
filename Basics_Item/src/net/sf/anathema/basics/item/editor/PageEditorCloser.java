@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.plot.repository;
+package net.sf.anathema.basics.item.editor;
 
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;

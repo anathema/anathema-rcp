@@ -51,6 +51,12 @@
                label="%repository.view.actions.expand"
                tooltip="%repository.view.actions.expand">
          </action>
+         <action
+               class="net.sf.anathema.basics.repository.treecontent.DeleteViewElementActionDelegate"
+               icon="icons/delete_obj.gif"
+               id="net.sf.anathema.plotelement.popup.delete"
+               label="%repository.view.actions.delete">
+         </action>
       </objectContribution>
       <viewerContribution
             id="EmptyContribution"

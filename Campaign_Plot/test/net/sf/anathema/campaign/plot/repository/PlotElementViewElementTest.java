@@ -21,4 +21,9 @@ public class PlotElementViewElementTest {
     PlotElementViewElement element = new PlotElementViewElement(folder, null, null, null);
     assertFalse(element.isPartOf(EasyMock.createMock(IFolder.class)));
   }
+
+  @Test
+  public void canBeDeleted() throws Exception {
+    assertTrue(new PlotElementViewElement(null, null, null, null).canBeDeleted());
+  }
 }

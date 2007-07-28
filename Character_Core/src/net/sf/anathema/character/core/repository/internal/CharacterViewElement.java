@@ -1,5 +1,8 @@
 package net.sf.anathema.character.core.repository.internal;
 
+import java.io.IOException;
+
+import net.sf.anathema.basics.item.editor.PageEditorCloser;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
@@ -7,8 +10,11 @@ import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -86,5 +92,29 @@ public class CharacterViewElement implements IViewElement {
       return characterFolder;
     }
     return null;
+  }
+
+  @Override
+  public boolean canBeDeleted() {
+    return true;
+  }
+
+  @Override
+  public void delete(IWorkbenchPage page) throws CoreException, IOException {
+    closeRelatedEditors(page);
+    delete();
+  }
+
+  private void delete() throws CoreException {
+    // TODO Monitor
+    NullProgressMonitor monitor = new NullProgressMonitor();
+    characterFolder.delete(true, monitor);
+  }
+
+  private void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
+    CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(new PageEditorCloser(page), this);
+    for (IEditorReference reference : page.getEditorReferences()) {
+      closeHandler.closeIfRequired(reference);
+    }
   }
 }

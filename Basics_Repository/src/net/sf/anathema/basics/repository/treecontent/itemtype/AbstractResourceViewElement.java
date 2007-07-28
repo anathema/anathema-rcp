@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
+import java.io.IOException;
+
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
@@ -99,4 +101,19 @@ public abstract class AbstractResourceViewElement implements IViewElement {
     }
     return null;
   }
+
+  @Override
+  public final boolean canBeDeleted() {
+    return true;
+  }
+
+  @Override
+  public void delete(IWorkbenchPage page) throws CoreException, IOException {
+    closeRelatedEditors(page);
+    delete();
+  }
+
+  protected abstract void delete() throws CoreException, IOException;
+
+  protected abstract void closeRelatedEditors(IWorkbenchPage page) throws PartInitException;
 }
