@@ -15,8 +15,6 @@ public class CharacterElementCloseHandler {
   }
 
   public void closeIfRequired(IEditorReference reference) {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("not yet implemented.");
   }
-
 }
