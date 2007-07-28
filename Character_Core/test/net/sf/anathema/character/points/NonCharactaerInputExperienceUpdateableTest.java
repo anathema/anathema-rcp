@@ -21,7 +21,6 @@ public class NonCharactaerInputExperienceUpdateableTest {
 
   @Test
   public void returnsNullForNonCharacterEditorInput() throws Exception {
-    experienceUpdateable.update();
     assertNull(experienceUpdateable.getExperience());
   }
 }

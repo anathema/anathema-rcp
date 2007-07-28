@@ -23,6 +23,7 @@ public final class ExperienceUpdateable implements IUpdateable, IExperienceProvi
   public ExperienceUpdateable(IPartContainer partContainer, IModelProvider modelProvider) {
     this.partContainer = partContainer;
     this.modelProvider = modelProvider;
+    update();
   }
 
   @Override

@@ -6,6 +6,7 @@ import net.sf.anathema.character.core.CharacterObjectMother;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 
 import org.easymock.EasyMock;
@@ -20,6 +21,7 @@ public class CharacterInputExperienceUpdateableTest {
 
   @Before
   public void createUpdateable() throws Exception {
+    this.experience = new Experience();
     ICharacterId characterId = new DummyCharacterId();
     IEditorInput editedInput = CharacterObjectMother.createCharacterEditorInput(new ModelIdentifier(characterId, "Egal")); //$NON-NLS-1$
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
@@ -31,7 +33,13 @@ public class CharacterInputExperienceUpdateableTest {
 
   @Test
   public void returnsExperience() throws Exception {
-    experienceUpdateable.update();
     assertSame(experience, experienceUpdateable.getExperience());
+  }
+
+  @Test
+  public void experienceIsUpdated() throws Exception {
+    // Nice Mock Returns null on second call
+    experienceUpdateable.update();
+    assertNull(experienceUpdateable.getExperience());
   }
 }
