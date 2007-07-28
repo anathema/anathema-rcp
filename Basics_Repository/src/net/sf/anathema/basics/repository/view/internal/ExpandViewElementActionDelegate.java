@@ -26,5 +26,8 @@ public class ExpandViewElementActionDelegate implements IObjectActionDelegate {
   @Override
   public void selectionChanged(IAction action, ISelection selection) {
     this.element = (IViewElement) ((StructuredSelection) selection).getFirstElement();
+    if (element != null) {
+      action.setEnabled(element.getChildren().length != 0);
+    }
   }
 }
