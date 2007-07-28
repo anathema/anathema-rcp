@@ -10,7 +10,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.IEditorInput;
 
 public class PointsView extends DisposableViewPart implements IUpdatable {
 
@@ -32,7 +31,7 @@ public class PointsView extends DisposableViewPart implements IUpdatable {
     if (component != null) {
       component.dispose();
     }
-    this.viewInput = inputStore.getViewInput(getEditorInputProvider());
+    this.viewInput = inputStore.getViewInput(getPartContainer().getEditorInput());
     parent.setLayout(new GridLayout(1, false));
     component = new Composite(parent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
@@ -46,19 +45,11 @@ public class PointsView extends DisposableViewPart implements IUpdatable {
       pointLabel.setLayoutData(GridDataFactory.createRightAlign());
     }
     parent.layout(true);
-    updateName();
-  }
-
-  private IEditorInput getEditorInputProvider() {
-    return getPartContainer().getEditorInput();
+    setPartName(updateHandler.getTitle());
   }
 
   private IPartContainer getPartContainer() {
     return new PartContainer(getSite().getWorkbenchWindow());
-  }
-
-  private void updateName() {
-    setPartName(updateHandler.getTitle());
   }
 
   @Override
