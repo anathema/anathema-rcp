@@ -76,7 +76,13 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
     new PlotPersister().saveHierarchy(folder, plotElement, monitor);
   }
 
-  public void delete() throws CoreException, IOException {
+  @Override
+  public void delete(IWorkbenchPage page) throws CoreException, IOException {
+    closeRelatedEditors(page);
+    delete();
+  }
+
+  private void delete() throws CoreException, IOException {
     // TODO Monitor
     NullProgressMonitor monitor = new NullProgressMonitor();
     if (plotElement.getParent() == null) {
@@ -92,8 +98,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
     return folder.equals(parent);
   }
 
-  @Override
-  public void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
+  private void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
     PlotElementCloseHandler closeHandler = new PlotElementCloseHandler(new PageEditorCloser(page), this);
     for (IEditorReference reference : page.getEditorReferences()) {
       if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {

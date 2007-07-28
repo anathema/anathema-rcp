@@ -17,8 +17,7 @@ public class PlotElementDeleter {
 
   public void delete() {
     try {
-      element.closeRelatedEditors(page);
-      element.delete();
+      element.delete(page);
     }
     catch (Exception e) {
       PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.DeletePlotElementActionDelegate_Deletion_Error, e);

@@ -32,7 +32,7 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
   }
 
   @Override
-  public void delete() throws CoreException, IOException {
+  public void delete(IWorkbenchPage page) throws CoreException, IOException {
     deleted = true;
   }
 
@@ -99,11 +99,6 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
       return false;
     }
     return parent.equals(potentialParent);
-  }
-
-  @Override
-  public void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
-    this.closed = true;
   }
 
   public boolean isClosed() {

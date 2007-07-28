@@ -17,7 +17,6 @@ public class PlotElementDeleterTest {
     EasyMock.replay(page);
     PlotElementDeleter deleter = new PlotElementDeleter(page, element);
     deleter.delete();
-    assertTrue(element.isClosed());
     assertTrue(element.isDeleted());
   }
 }
