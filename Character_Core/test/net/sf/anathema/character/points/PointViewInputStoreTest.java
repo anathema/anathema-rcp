@@ -42,7 +42,7 @@ public class PointViewInputStoreTest {
   @Test
   public void createsEntriesForCharacter() throws Exception {
     EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
+    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
     assertNotNull(newInput);
     assertNotNull(newInput.getCharacterId());
     assertTrue(newInput.createEntries().length != 0);
@@ -52,17 +52,17 @@ public class PointViewInputStoreTest {
   @Test
   public void createsNoNewInputForIdenticalCharacter() throws Exception {
     EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
-    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
+    IPointViewInput oldInput = viewInputFactory.getViewInput(inputProvider);
+    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
     assertEquals(oldInput, newInput);
   }
 
   @Test
   public void createsNewInputForIdenticalCharacterIfExperienceStateChanged() throws Exception {
     EasyMock.replay(inputProvider, editorInput);
-    IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
+    IPointViewInput oldInput = viewInputFactory.getViewInput(inputProvider);
     setExperienced();
-    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
+    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
     assertFalse(oldInput.equals(newInput));
   }
 
@@ -70,8 +70,8 @@ public class PointViewInputStoreTest {
   public void createsNoNewInputForIdenticalCharacterIfExperienceStateDidNotChangeBetweenCalls() throws Exception {
     EasyMock.replay(inputProvider, editorInput);
     setExperienced();
-    IPointViewInput oldInput = viewInputFactory.createEditorInput(inputProvider);
-    IPointViewInput newInput = viewInputFactory.createEditorInput(inputProvider);
+    IPointViewInput oldInput = viewInputFactory.getViewInput(inputProvider);
+    IPointViewInput newInput = viewInputFactory.getViewInput(inputProvider);
     assertEquals(oldInput, newInput);
   }
 

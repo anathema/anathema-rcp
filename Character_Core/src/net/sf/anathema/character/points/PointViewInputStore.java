@@ -22,7 +22,7 @@ public class PointViewInputStore {
     this.factory = new PointViewInputFactory(provider, new CharacterTemplateProvider());
   }
 
-  public IPointViewInput createEditorInput(IEditorInputProvider inputProvider) {
+  public IPointViewInput getViewInput(IEditorInputProvider inputProvider) {
     if (inputProvider == null) {
       return storeInput(nullInput);
     }

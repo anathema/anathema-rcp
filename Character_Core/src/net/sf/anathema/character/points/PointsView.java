@@ -18,7 +18,7 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
   private TopPartListener topPartListener = new TopPartListener(new Runnable() {
     @Override
     public void run() {
-      createComposite();
+      forceUpdate();
     }
   });
   private Composite component;
@@ -30,15 +30,6 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
   public void createPartControl(Composite parentComposite) {
     this.parent = parentComposite;
     addDisposable(new PartListening(topPartListener, getSite().getWorkbenchWindow().getPartService()));
-    createComposite();
-  }
-
-  private void createComposite() {
-    IPointViewInput newInput = inputFactory.createEditorInput(getEditorInputProvider());
-    if (newInput == viewInput) {
-      return;
-    }
-    this.viewInput = newInput;
     forceUpdate();
   }
 
@@ -51,6 +42,11 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
     if (component != null) {
       component.dispose();
     }
+    IPointViewInput newInput = inputFactory.getViewInput(getEditorInputProvider());
+    if (newInput == viewInput) {
+      return;
+    }
+    this.viewInput = newInput;
     parent.setLayout(new GridLayout(1, false));
     component = new Composite(parent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
