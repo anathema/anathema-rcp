@@ -6,6 +6,7 @@ import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.model.internal.IPointConfigurationProvider;
+import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.IExperience;
 
@@ -17,6 +18,10 @@ public class PointViewInputStore {
   private IPointViewInput lastInput;
   private boolean lastExperienced;
   private final PointViewInputFactory factory;
+  
+  public PointViewInputStore() {
+    this(new ModelExtensionPoint());
+  }
 
   public PointViewInputStore(IPointConfigurationProvider provider) {
     this.factory = new PointViewInputFactory(provider, new CharacterTemplateProvider());
