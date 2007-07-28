@@ -32,11 +32,7 @@ public class PointsView extends DisposableViewPart implements IUpdatable {
     if (component != null) {
       component.dispose();
     }
-    IPointViewInput newInput = inputStore.getViewInput(getEditorInputProvider());
-    if (newInput == viewInput) {
-      return;
-    }
-    this.viewInput = newInput;
+    this.viewInput = inputStore.getViewInput(getEditorInputProvider());
     parent.setLayout(new GridLayout(1, false));
     component = new Composite(parent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
