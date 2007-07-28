@@ -36,8 +36,7 @@ public class PointViewInputStore {
       return storeInput(nullInput);
     }
     ICharacterId characterId = modelIdentifier.getCharacterId();
-    IExperience experience = (IExperience) ModelCache.getInstance().getModel(
-        new ModelIdentifier(characterId, IExperience.MODEL_ID));
+    IExperience experience = getExperienceModel(characterId);
     if (lastInput != null
         && characterId.equals(lastInput.getCharacterId())
         && experience != null
@@ -48,6 +47,11 @@ public class PointViewInputStore {
       this.lastExperienced = experience.isExperienced();
     }
     return storeInput(factory.create(characterId, lastExperienced));
+  }
+
+  private IExperience getExperienceModel(ICharacterId characterId) {
+    ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, IExperience.MODEL_ID);
+    return (IExperience) ModelCache.getInstance().getModel(modelIdentifier);
   }
 
   private IPointViewInput storeInput(IPointViewInput input) {
