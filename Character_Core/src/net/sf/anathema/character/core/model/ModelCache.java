@@ -8,17 +8,17 @@ import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 public class ModelCache implements IModelProvider {
 
   private static final IModelProvider instance = new ModelCache();
-  private Map<ModelIdentifier, Object> modelsByIdentifier = new HashMap<ModelIdentifier, Object>();
+  private Map<IModelIdentifier, Object> modelsByIdentifier = new HashMap<IModelIdentifier, Object>();
 
   public static IModelProvider getInstance() {
     return instance;
   }
 
-  public void addModel(ModelIdentifier identifier, Object model) {
+  public void addModel(IModelIdentifier identifier, Object model) {
     modelsByIdentifier.put(identifier, model);
   }
 
-  public Object getModel(ModelIdentifier identifier) {
+  public Object getModel(IModelIdentifier identifier) {
     Object model = modelsByIdentifier.get(identifier);
     if (model == null) {
       model = new ModelExtensionPoint().createModel(identifier);

@@ -1,14 +1,16 @@
 package net.sf.anathema.character.points;
 
 public final class UpdateRunnable implements Runnable {
-  private final IUpdateable updateable;
+  private final IUpdateable[] allUpdateable;
 
-  public UpdateRunnable(IUpdateable updateable) {
-    this.updateable = updateable;
+  public UpdateRunnable(IUpdateable... updateable) {
+    this.allUpdateable = updateable;
   }
 
   @Override
   public void run() {
-    updateable.update();
+    for (IUpdateable updateable : this.allUpdateable) {
+      updateable.update();
+    }
   }
 }

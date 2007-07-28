@@ -6,16 +6,18 @@ import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.IDisposable;
 
-public class PointViewUpdateHandler implements IDisposable{
+
+public class PointViewUpdateHandler implements IDisposable {
 
   private AggregatedDisposable disposables = new AggregatedDisposable();
-  
+
   public String getTitle() {
     return "Hasäntum";
   }
 
   public void init(IPartContainer partContainer, IUpdateable updateable) {
-    TopPartListener topPartListener = new TopPartListener(new UpdateRunnable(updateable));
+    UpdateRunnable runnable = new UpdateRunnable(new ExperienceUpdateable(partContainer), updateable);
+    TopPartListener topPartListener = new TopPartListener(runnable);
     disposables.addDisposable(new PartListening(topPartListener, partContainer));
   }
 
