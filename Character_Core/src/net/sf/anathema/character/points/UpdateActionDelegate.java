@@ -5,18 +5,18 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 
-public class ForceUpdateActionDelegate implements IViewActionDelegate {
+public class UpdateActionDelegate implements IViewActionDelegate {
 
-  private IUpdatableView view;
+  private IUpdateable view;
 
   @Override
   public void init(IViewPart viewPart) {
-    this.view = (IUpdatableView) viewPart;
+    this.view = (IUpdateable) viewPart;
   }
 
   @Override
   public void run(IAction action) {
-    view.forceUpdate();
+    view.update();
   }
 
   @Override

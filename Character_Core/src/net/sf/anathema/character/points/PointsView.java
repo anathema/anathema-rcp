@@ -13,24 +13,26 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorPart;
 
-public class PointsView extends DisposableViewPart implements IUpdatableView {
+public class PointsView extends DisposableViewPart implements IUpdateable {
 
   private TopPartListener topPartListener = new TopPartListener(new Runnable() {
     @Override
     public void run() {
-      forceUpdate();
+      update();
     }
   });
   private Composite component;
   private IPointViewInput viewInput;
   private Composite parent;
   private final PointViewInputStore inputStore = new PointViewInputStore(new ModelExtensionPoint());
+  private final PointViewUpdateHandler updateHandler = new PointViewUpdateHandler();
 
   @Override
   public void createPartControl(Composite parentComposite) {
     this.parent = parentComposite;
     addDisposable(new PartListening(topPartListener, getSite().getWorkbenchWindow().getPartService()));
-    forceUpdate();
+    updateHandler.addUpdateable(this);
+    update();
   }
 
   private IEditorInputProvider getEditorInputProvider() {
@@ -38,7 +40,7 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
     return activeEditor instanceof IEditorInputProvider ? (IEditorInputProvider) activeEditor : null;
   }
 
-  public void forceUpdate() {
+  public void update() {
     if (component != null) {
       component.dispose();
     }
@@ -64,7 +66,7 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
   }
   
   private void updateName() {
-    setPartName("Hasäntum");
+    setPartName(updateHandler.getTitle());
   }
 
   @Override
