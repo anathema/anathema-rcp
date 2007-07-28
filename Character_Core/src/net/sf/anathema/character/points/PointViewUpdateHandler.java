@@ -17,7 +17,7 @@ public class PointViewUpdateHandler implements IDisposable {
   }
 
   public void init(IPartContainer partContainer, IUpdatable updateable) {
-    experienceUpdateable = new ExperienceUpdatable(partContainer);
+    experienceUpdateable = new ExperienceUpdatable(partContainer, updateable);
     UpdateRunnable runnable = new UpdateRunnable(experienceUpdateable, updateable);
     TopPartListener topPartListener = new TopPartListener(runnable);
     disposables.addDisposable(new PartListening(topPartListener, partContainer));

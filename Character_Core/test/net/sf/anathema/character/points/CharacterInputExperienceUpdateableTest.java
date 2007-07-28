@@ -18,6 +18,7 @@ public class CharacterInputExperienceUpdateableTest {
 
   private ExperienceUpdatable experienceUpdateable;
   private IExperience experience;
+  private IUpdatable modelChangeUpdatable;
 
   @Before
   public void createUpdateable() throws Exception {
@@ -26,9 +27,11 @@ public class CharacterInputExperienceUpdateableTest {
     IEditorInput editedInput = CharacterObjectMother.createCharacterEditorInput(new ModelIdentifier(characterId, "Egal")); //$NON-NLS-1$
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
     IModelProvider provider = EasyMock.createMock(IModelProvider.class);
-    EasyMock.expect(provider.getModel(new ModelIdentifier(characterId, IExperience.MODEL_ID))).andReturn(experience);
+    ModelIdentifier experienceIdentifier = new ModelIdentifier(characterId, IExperience.MODEL_ID);
+    EasyMock.expect(provider.getModel(experienceIdentifier)).andReturn(experience).anyTimes();
     EasyMock.replay(provider);
-    experienceUpdateable = new ExperienceUpdatable(partContainer, provider);
+    modelChangeUpdatable = EasyMock.createStrictMock(IUpdatable.class);
+    experienceUpdateable = new ExperienceUpdatable(partContainer, modelChangeUpdatable, provider);
   }
 
   @Test
@@ -38,8 +41,26 @@ public class CharacterInputExperienceUpdateableTest {
 
   @Test
   public void experienceIsUpdated() throws Exception {
-    // Nice Mock Returns null on second call
+    experience = null;
     experienceUpdateable.update();
     assertNull(experienceUpdateable.getExperience());
+  }
+  
+  @Test
+  public void updatableIsNotifiedForModelChange() throws Exception {
+    modelChangeUpdatable.update();
+    EasyMock.replay(modelChangeUpdatable);
+    experience.setExperienced(!experience.isExperienced());
+    EasyMock.verify(modelChangeUpdatable);
+  }
+  
+  @Test
+  public void noNotificationForChangesOnOldModel() throws Exception {
+    IExperience oldExperience = experience;
+    this.experience = new Experience();
+    experienceUpdateable.update();
+    EasyMock.replay(modelChangeUpdatable);
+    oldExperience.setExperienced(!oldExperience.isExperienced());
+    EasyMock.verify(modelChangeUpdatable);
   }
 }
