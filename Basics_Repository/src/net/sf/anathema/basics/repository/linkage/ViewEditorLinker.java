@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository.linkage;
 
+import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.eclipse.ui.PartListening;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
@@ -7,7 +8,6 @@ import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 
 public final class ViewEditorLinker implements IDisposable, Runnable, IViewEditorLinker {
@@ -15,13 +15,13 @@ public final class ViewEditorLinker implements IDisposable, Runnable, IViewEdito
   private final TopPartListener topPartListener;
   private boolean enabled;
   private final AggregatedDisposable disposables = new AggregatedDisposable();
-  private final IWorkbenchWindow workbenchWindow;
+  private final PartContainer partContainer;
 
   public ViewEditorLinker(IWorkbenchWindow workbenchWindow, IResourceSelector selector) {
-    this.workbenchWindow = workbenchWindow;
     this.selector = selector;
     topPartListener = new TopPartListener(this);
-    disposables.addDisposable(new PartListening(topPartListener, workbenchWindow.getPartService()));
+    partContainer = new PartContainer(workbenchWindow);
+    disposables.addDisposable(new PartListening(topPartListener, partContainer));
   }
 
   public void setLinkEnabled(boolean enabled) {
@@ -40,11 +40,7 @@ public final class ViewEditorLinker implements IDisposable, Runnable, IViewEdito
     if (!enabled) {
       return;
     }
-    IEditorPart topPart = workbenchWindow.getActivePage().getActiveEditor();
-    if (topPart == null) {
-      return;
-    }
-    IEditorInput editorInput = topPart.getEditorInput();
+    IEditorInput editorInput = partContainer.getEditorInput();
     IResource resource = (IResource) editorInput.getAdapter(IResource.class);
     selector.setSelection(resource);
   }

@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.item.editor;
+package net.sf.anathema.basics.eclipse.ui;
 
 import org.eclipse.ui.IEditorInput;
 

@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.item.editor;
 
 import net.sf.anathema.basics.eclipse.resource.ImageDisposable;
+import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.lib.control.change.IChangeListener;

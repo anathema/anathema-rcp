@@ -1,6 +1,6 @@
 package net.sf.anathema.character.points;
 
-import net.sf.anathema.basics.item.editor.IEditorInputProvider;
+import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;

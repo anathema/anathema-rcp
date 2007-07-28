@@ -1,7 +1,9 @@
 package net.sf.anathema.character.points;
 
 import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
-import net.sf.anathema.basics.item.editor.IEditorInputProvider;
+import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
+import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 
@@ -9,7 +11,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.IEditorPart;
 
 public class PointsView extends DisposableViewPart implements IUpdateable {
 
@@ -22,14 +23,9 @@ public class PointsView extends DisposableViewPart implements IUpdateable {
   @Override
   public void createPartControl(Composite parentComposite) {
     this.parent = parentComposite;
-    updateHandler.init(getSite(), this);
+    updateHandler.init(getPartContainer(), this);
     addDisposable(updateHandler);
     update();
-  }
-
-  private IEditorInputProvider getEditorInputProvider() {
-    IEditorPart activeEditor = getSite().getPage().getActiveEditor();
-    return activeEditor instanceof IEditorInputProvider ? (IEditorInputProvider) activeEditor : null;
   }
 
   public void update() {
@@ -55,6 +51,14 @@ public class PointsView extends DisposableViewPart implements IUpdateable {
     }
     parent.layout(true);
     updateName();
+  }
+
+  private IEditorInputProvider getEditorInputProvider() {
+    return getPartContainer().getEditorInputProvider();
+  }
+
+  private IPartContainer getPartContainer() {
+    return new PartContainer(getSite().getWorkbenchWindow());
   }
 
   private void updateName() {
