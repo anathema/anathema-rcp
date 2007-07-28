@@ -9,7 +9,7 @@ import org.eclipse.ui.IEditorInput;
 public class CharacterObjectMother {
 
   public static IEditorInput createCharacterEditorInput(IModelIdentifier modelIdentifier) {
-    IEditorInput editorInput = EasyMock.createMock(IEditorInput.class);
+    IEditorInput editorInput = EasyMock.createNiceMock(IEditorInput.class);
     EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier);
     EasyMock.replay(editorInput);
     return editorInput;
@@ -20,7 +20,7 @@ public class CharacterObjectMother {
   }
 
   public static IPartContainer createPartContainerWithActiveEditorInput(IEditorInput editedInput) {
-    IPartContainer partContainer = EasyMock.createMock(IPartContainer.class);
+    IPartContainer partContainer = EasyMock.createNiceMock(IPartContainer.class);
     EasyMock.expect(partContainer.getEditorInput()).andReturn(editedInput);
     EasyMock.replay(partContainer);
     return partContainer;
