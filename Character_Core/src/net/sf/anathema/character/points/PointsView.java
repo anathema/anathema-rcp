@@ -24,7 +24,7 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
   private Composite component;
   private IPointViewInput viewInput;
   private Composite parent;
-  private final PointViewInputStore inputFactory = new PointViewInputStore(new ModelExtensionPoint());
+  private final PointViewInputStore inputStore = new PointViewInputStore(new ModelExtensionPoint());
 
   @Override
   public void createPartControl(Composite parentComposite) {
@@ -42,7 +42,7 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
     if (component != null) {
       component.dispose();
     }
-    IPointViewInput newInput = inputFactory.getViewInput(getEditorInputProvider());
+    IPointViewInput newInput = inputStore.getViewInput(getEditorInputProvider());
     if (newInput == viewInput) {
       return;
     }
@@ -60,6 +60,11 @@ public class PointsView extends DisposableViewPart implements IUpdatableView {
       pointLabel.setLayoutData(GridDataFactory.createRightAlign());
     }
     parent.layout(true);
+    updateName();
+  }
+  
+  private void updateName() {
+    setPartName("Hasäntum");
   }
 
   @Override

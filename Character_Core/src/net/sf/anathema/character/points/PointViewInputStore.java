@@ -22,12 +22,16 @@ public class PointViewInputStore {
     this.factory = new PointViewInputFactory(provider, new CharacterTemplateProvider());
   }
 
-  public IPointViewInput getViewInput(IEditorInputProvider inputProvider) {
+  private IModelIdentifier getModelIdentifier(IEditorInputProvider inputProvider) {
     if (inputProvider == null) {
-      return storeInput(nullInput);
+      return null;
     }
     IEditorInput editorInput = inputProvider.getEditorInput();
-    IModelIdentifier modelIdentifier = (IModelIdentifier) editorInput.getAdapter(IModelIdentifier.class);
+    return (IModelIdentifier) editorInput.getAdapter(IModelIdentifier.class);
+  }
+
+  public IPointViewInput getViewInput(IEditorInputProvider inputProvider) {
+    IModelIdentifier modelIdentifier = getModelIdentifier(inputProvider);
     if (modelIdentifier == null) {
       return storeInput(nullInput);
     }
