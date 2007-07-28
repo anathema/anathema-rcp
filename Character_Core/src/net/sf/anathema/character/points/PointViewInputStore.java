@@ -6,6 +6,7 @@ import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.model.internal.IPointConfigurationProvider;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.IExperience;
 
 import org.eclipse.ui.IEditorInput;
@@ -18,7 +19,7 @@ public class PointViewInputStore {
   private final PointViewInputFactory factory;
 
   public PointViewInputStore(IPointConfigurationProvider provider) {
-    this.factory = new PointViewInputFactory(provider);
+    this.factory = new PointViewInputFactory(provider, new CharacterTemplateProvider());
   }
 
   public IPointViewInput createEditorInput(IEditorInputProvider inputProvider) {
@@ -42,7 +43,7 @@ public class PointViewInputStore {
     if (experience != null) {
       this.lastExperienced = experience.isExperienced();
     }
-    return storeInput(factory.create(characterId));
+    return storeInput(factory.create(characterId, lastExperienced));
   }
 
   private IPointViewInput storeInput(IPointViewInput input) {
