@@ -11,7 +11,7 @@ import net.sf.anathema.character.experience.IExperience;
 
 import org.eclipse.ui.IEditorInput;
 
-public final class ExperienceUpdateable implements IUpdateable {
+public final class ExperienceUpdateable implements IUpdateable, IExperienceProvider {
   private final IPartContainer partContainer;
   private IExperience experience = null;
   private final IModelProvider modelProvider;

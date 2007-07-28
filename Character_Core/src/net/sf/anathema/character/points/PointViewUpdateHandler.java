@@ -10,13 +10,15 @@ import net.sf.anathema.lib.ui.IDisposable;
 public class PointViewUpdateHandler implements IDisposable {
 
   private AggregatedDisposable disposables = new AggregatedDisposable();
+  private ExperienceUpdateable experienceUpdateable;
 
   public String getTitle() {
-    return "Hasäntum";
+    return new ExperienceViewTitleFactory(experienceUpdateable).create();
   }
 
   public void init(IPartContainer partContainer, IUpdateable updateable) {
-    UpdateRunnable runnable = new UpdateRunnable(new ExperienceUpdateable(partContainer), updateable);
+    experienceUpdateable = new ExperienceUpdateable(partContainer);
+    UpdateRunnable runnable = new UpdateRunnable(experienceUpdateable, updateable);
     TopPartListener topPartListener = new TopPartListener(runnable);
     disposables.addDisposable(new PartListening(topPartListener, partContainer));
   }

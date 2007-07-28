@@ -4,6 +4,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IPartService;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 
 public class PartContainer implements IPartContainer {
@@ -27,7 +28,11 @@ public class PartContainer implements IPartContainer {
   }
 
   public IEditorInput getEditorInput() {
-    IEditorPart activeEditor = workbenchWindow.getActivePage().getActiveEditor();
+    IWorkbenchPage activePage = workbenchWindow.getActivePage();
+    if (activePage == null) {
+      return null;
+    }
+    IEditorPart activeEditor = activePage.getActiveEditor();
     if (activeEditor == null) {
       return null;
     }
