@@ -18,4 +18,9 @@ public class CharacterId implements ICharacterId {
   public IContentHandle getContents(String fileName) {
     return new FileContentHandle(folder.getFile(fileName));
   }
+  
+  @Override
+  public String toString() {
+    return folder.getName();
+  }
 }
