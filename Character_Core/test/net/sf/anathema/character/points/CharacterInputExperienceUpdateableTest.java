@@ -16,7 +16,7 @@ import org.junit.Test;
 
 public class CharacterInputExperienceUpdateableTest {
 
-  private ExperienceUpdateable experienceUpdateable;
+  private ExperienceUpdatable experienceUpdateable;
   private IExperience experience;
 
   @Before
@@ -28,7 +28,7 @@ public class CharacterInputExperienceUpdateableTest {
     IModelProvider provider = EasyMock.createMock(IModelProvider.class);
     EasyMock.expect(provider.getModel(new ModelIdentifier(characterId, IExperience.MODEL_ID))).andReturn(experience);
     EasyMock.replay(provider);
-    experienceUpdateable = new ExperienceUpdateable(partContainer, provider);
+    experienceUpdateable = new ExperienceUpdatable(partContainer, provider);
   }
 
   @Test

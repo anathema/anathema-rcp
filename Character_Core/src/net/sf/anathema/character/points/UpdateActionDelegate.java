@@ -7,11 +7,11 @@ import org.eclipse.ui.IViewPart;
 
 public class UpdateActionDelegate implements IViewActionDelegate {
 
-  private IUpdateable view;
+  private IUpdatable view;
 
   @Override
   public void init(IViewPart viewPart) {
-    this.view = (IUpdateable) viewPart;
+    this.view = (IUpdatable) viewPart;
   }
 
   @Override

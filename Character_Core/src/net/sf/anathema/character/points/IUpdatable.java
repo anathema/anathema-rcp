@@ -1,6 +1,6 @@
 package net.sf.anathema.character.points;
 
-public interface IUpdateable {
+public interface IUpdatable {
 
   public void update();
 }

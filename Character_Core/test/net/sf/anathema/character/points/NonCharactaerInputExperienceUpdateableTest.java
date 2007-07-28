@@ -10,13 +10,13 @@ import org.junit.Test;
 
 public class NonCharactaerInputExperienceUpdateableTest {
 
-  private ExperienceUpdateable experienceUpdateable;
+  private ExperienceUpdatable experienceUpdateable;
 
   @Before
   public void createUpdateable() throws Exception {
     IEditorInput editedInput = CharacterObjectMother.createNonCharacterEditorInput();
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
-    experienceUpdateable = new ExperienceUpdateable(partContainer, null);
+    experienceUpdateable = new ExperienceUpdatable(partContainer, null);
   }
 
   @Test

@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 
-public class PointsView extends DisposableViewPart implements IUpdateable {
+public class PointsView extends DisposableViewPart implements IUpdatable {
 
   private Composite component;
   private IPointViewInput viewInput;
