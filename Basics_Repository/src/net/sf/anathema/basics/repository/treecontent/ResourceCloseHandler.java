@@ -10,20 +10,20 @@ import net.sf.anathema.basics.jface.IFileEditorInput;
 
 public class ResourceCloseHandler {
 
-  private final IEditorCloser pageEditorCloser;
-  private final IResourceViewElement resourceViewElement;
+  private final IEditorCloser closer;
+  private final IResourceViewElement element;
 
-  public ResourceCloseHandler(IEditorCloser pageEditorCloser, IResourceViewElement resourceViewElement) {
-    this.pageEditorCloser = pageEditorCloser;
-    this.resourceViewElement = resourceViewElement;
+  public ResourceCloseHandler(IEditorCloser closer, IResourceViewElement element) {
+    this.closer = closer;
+    this.element = element;
   }
 
   public void closeIfRequired(IEditorReference reference) throws PartInitException {
     IEditorInput editorInput = reference.getEditorInput();
     IFileEditorInput input = (IFileEditorInput) editorInput.getAdapter(IFileEditorInput.class);
     IFile file = input.getFile();
-    if (resourceViewElement.getEditFile().equals(file)) {
-      pageEditorCloser.close(reference.getEditor(false));
+    if (element.getEditFile().equals(file)) {
+      closer.close(reference.getEditor(false));
     }
   }
 }

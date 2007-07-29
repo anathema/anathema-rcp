@@ -6,6 +6,8 @@ import net.sf.anathema.basics.item.editor.PageEditorCloser;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
+import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.model.internal.CharacterId;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
@@ -111,9 +113,15 @@ public class CharacterViewElement implements IViewElement, IPageDelible {
   }
 
   private void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
-    CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(new PageEditorCloser(page), this);
+    CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(
+        new PageEditorCloser(page),
+        getCharacterId());
     for (IEditorReference reference : page.getEditorReferences()) {
       closeHandler.closeIfRequired(reference);
     }
+  }
+
+  private ICharacterId getCharacterId() {
+    return new CharacterId(characterFolder);
   }
 }

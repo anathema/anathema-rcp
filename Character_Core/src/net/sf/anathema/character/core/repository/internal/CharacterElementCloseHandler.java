@@ -1,20 +1,26 @@
 package net.sf.anathema.character.core.repository.internal;
 
 import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.PartInitException;
 
 import net.sf.anathema.basics.item.editor.IEditorCloser;
+import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.model.IModelIdentifier;
 
 public class CharacterElementCloseHandler {
 
   private final IEditorCloser closer;
-  private final CharacterViewElement element;
+  private final ICharacterId id;
 
-  public CharacterElementCloseHandler(IEditorCloser closer, CharacterViewElement element) {
+  public CharacterElementCloseHandler(IEditorCloser closer, ICharacterId id) {
     this.closer = closer;
-    this.element = element;
+    this.id = id;
   }
 
-  public void closeIfRequired(IEditorReference reference) {
-    throw new UnsupportedOperationException("not yet implemented.");
+  public void closeIfRequired(IEditorReference reference) throws PartInitException {
+    IModelIdentifier identifier = (IModelIdentifier) reference.getEditorInput().getAdapter(IModelIdentifier.class);
+    if (identifier != null && identifier.getCharacterId().equals(id)) {
+      closer.close(reference.getEditor(false));
+    }
   }
 }

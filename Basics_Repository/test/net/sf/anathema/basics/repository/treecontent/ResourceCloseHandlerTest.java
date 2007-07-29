@@ -15,7 +15,6 @@ public class ResourceCloseHandlerTest {
 
   private ResourceCloseHandler resourceCloseHandler;
   private DummyCloser closer;
-  private DummyResourceViewElement element;
   private IFileEditorInput input;
   private IFile editorFile;
   private IEditorReference reference;
@@ -23,7 +22,7 @@ public class ResourceCloseHandlerTest {
   @Before
   public void createHandler() throws PartInitException {
     this.closer = new DummyCloser();
-    this.element = new DummyResourceViewElement();
+    DummyResourceViewElement element = new DummyResourceViewElement();
     this.resourceCloseHandler = new ResourceCloseHandler(closer, element);
     this.input = EasyMock.createMock(IFileEditorInput.class);
     this.editorFile = EasyMock.createMock(IFile.class);
