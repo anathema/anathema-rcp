@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.repository.treecontent.deletion.AbstractPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
-import net.sf.anathema.campaign.plot.PlotPlugin;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 
 import org.eclipse.core.resources.IContainer;
@@ -18,9 +19,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
 
 public class PlotElementViewElement extends AbstractResourceViewElement implements IPlotElementViewElement {
 
@@ -77,30 +75,25 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
   }
 
   @Override
-  protected void delete() throws CoreException, IOException {
-    // TODO Monitor
-    NullProgressMonitor monitor = new NullProgressMonitor();
-    if (plotElement.getParent() == null) {
-      getEditFile().getParent().delete(true, monitor);
-    }
-    else {
-      deleteFromHierarchy(monitor);
-    }
-  }
-
-  @Override
-  protected void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
-    PlotElementCloseHandler closeHandler = new PlotElementCloseHandler(this);
-    for (IEditorReference reference : page.getEditorReferences()) {
-      if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
-        closeHandler.closeIfRequired(reference);
-      }
-    }
-  }
-
-  @Override
   public boolean isPartOf(IContainer parent) {
     return folder.equals(parent);
+  }
+
+  @Override
+  protected IPageDelible createDelible() {
+    return new AbstractPageDelible(new PlotElementCloseHandler(this)) {
+      @Override
+      protected void delete() throws CoreException, IOException {
+        // TODO Monitor
+        NullProgressMonitor monitor = new NullProgressMonitor();
+        if (plotElement.getParent() == null) {
+          getEditFile().getParent().delete(true, monitor);
+        }
+        else {
+          deleteFromHierarchy(monitor);
+        }
+      }
+    };
   }
 
   private void deleteFromHierarchy(IProgressMonitor monitor) throws CoreException, IOException {

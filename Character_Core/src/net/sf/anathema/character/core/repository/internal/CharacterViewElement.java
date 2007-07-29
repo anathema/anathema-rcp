@@ -1,25 +1,21 @@
 package net.sf.anathema.character.core.repository.internal;
 
-import net.sf.anathema.basics.repository.treecontent.deletion.AbstractPageDelible;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.ResourcePageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
-import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.internal.CharacterId;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class CharacterViewElement extends AbstractPageDelible implements IViewElement {
+public class CharacterViewElement implements IViewElement {
 
   private final IFolder characterFolder;
   private final IViewElement parent;
@@ -93,25 +89,10 @@ public class CharacterViewElement extends AbstractPageDelible implements IViewEl
       return characterFolder;
     }
     if (adapter == IPageDelible.class) {
-      return this;
+      return new ResourcePageDelible(
+          new CharacterElementCloseHandler(new CharacterId(characterFolder)),
+          characterFolder);
     }
     return null;
-  }
-
-  @Override
-  protected void delete() throws CoreException {
-    characterFolder.delete(true, new NullProgressMonitor());
-  }
-
-  @Override
-  protected void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
-    CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(getCharacterId());
-    for (IEditorReference reference : page.getEditorReferences()) {
-      closeHandler.closeIfRequired(reference);
-    }
-  }
-
-  private ICharacterId getCharacterId() {
-    return new CharacterId(characterFolder);
   }
 }

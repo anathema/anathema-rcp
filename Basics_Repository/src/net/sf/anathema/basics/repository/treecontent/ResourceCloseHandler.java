@@ -8,26 +8,26 @@ import org.eclipse.ui.PartInitException;
 import net.sf.anathema.basics.item.editor.EditorCloser;
 import net.sf.anathema.basics.item.editor.IEditorCloser;
 import net.sf.anathema.basics.jface.IFileEditorInput;
+import net.sf.anathema.basics.repository.treecontent.deletion.ICloseHandler;
 
-public class ResourceCloseHandler {
+public class ResourceCloseHandler implements ICloseHandler {
 
   private final IEditorCloser closer;
-  private final IResourceViewElement element;
+  private final IFile file;
 
-  public ResourceCloseHandler(IResourceViewElement element) {
-    this(new EditorCloser(), element);
+  public ResourceCloseHandler(IFile file) {
+    this(new EditorCloser(), file);
   }
 
-  public ResourceCloseHandler(IEditorCloser closer, IResourceViewElement element) {
+  public ResourceCloseHandler(IEditorCloser closer, IFile file) {
     this.closer = closer;
-    this.element = element;
+    this.file = file;
   }
 
   public void closeIfRequired(IEditorReference reference) throws PartInitException {
     IEditorInput editorInput = reference.getEditorInput();
     IFileEditorInput input = (IFileEditorInput) editorInput.getAdapter(IFileEditorInput.class);
-    IFile file = input.getFile();
-    if (element.getEditFile().equals(file)) {
+    if (file.equals(input.getFile())) {
       closer.close(reference.getEditor(false));
     }
   }

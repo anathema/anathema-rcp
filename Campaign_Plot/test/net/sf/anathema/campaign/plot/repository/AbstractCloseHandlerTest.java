@@ -61,6 +61,7 @@ public class AbstractCloseHandlerTest {
     EasyMock.expect(editorFile.getParent()).andReturn(parentFolder).anyTimes();
     element.setParentFolder(parentFolder);
     reference = EasyMock.createMock(IEditorReference.class);
+    EasyMock.expect(reference.getId()).andReturn("net.sf.anathema.campaign.plot.ploteditor").anyTimes(); //$NON-NLS-1$
     EasyMock.expect(reference.getEditorInput()).andReturn(input).anyTimes();
   }
 }

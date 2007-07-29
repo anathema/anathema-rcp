@@ -5,10 +5,11 @@ import org.eclipse.ui.PartInitException;
 
 import net.sf.anathema.basics.item.editor.EditorCloser;
 import net.sf.anathema.basics.item.editor.IEditorCloser;
+import net.sf.anathema.basics.repository.treecontent.deletion.ICloseHandler;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 
-public class CharacterElementCloseHandler {
+public class CharacterElementCloseHandler implements ICloseHandler {
 
   private final IEditorCloser closer;
   private final ICharacterId id;

@@ -5,7 +5,6 @@ import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.input.internal.FileItemEditorInput;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
-import net.sf.anathema.basics.repository.treecontent.deletion.AbstractPageDelible;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -21,7 +20,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-public abstract class AbstractResourceViewElement extends AbstractPageDelible implements IViewElement {
+public abstract class AbstractResourceViewElement implements IViewElement {
 
   private final String untitledName;
   private final IViewElement parent;
@@ -100,8 +99,10 @@ public abstract class AbstractResourceViewElement extends AbstractPageDelible im
       return getEditFile();
     }
     if (adapter == IPageDelible.class) {
-      return this;
+      return createDelible();
     }
     return null;
   }
+
+  protected abstract IPageDelible createDelible();
 }
