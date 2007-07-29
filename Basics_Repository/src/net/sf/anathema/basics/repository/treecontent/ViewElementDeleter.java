@@ -1,7 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent;
 
 import net.sf.anathema.basics.repository.RepositoryPlugin;
-import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.ui.IWorkbenchPage;
@@ -10,7 +10,7 @@ public class ViewElementDeleter {
 
   private IWorkbenchPage page;
 
-  public void delete(IViewElement element) {
+  public void delete(IPageDelible element) {
     try {
       element.delete(page);
     }

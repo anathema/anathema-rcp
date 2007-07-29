@@ -2,6 +2,7 @@ package net.sf.anathema.basics.repository.treecontent;
 
 import java.io.IOException;
 
+import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 import org.eclipse.core.resources.IFile;
@@ -10,7 +11,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class DummyResourceViewElement implements IResourceViewElement {
+public class DummyResourceViewElement implements IResourceViewElement, IPageDelible {
 
   private IFile editorFile;
   private boolean deleted;
@@ -22,11 +23,6 @@ public class DummyResourceViewElement implements IResourceViewElement {
   @Override
   public IFile getEditFile() {
     return editorFile;
-  }
-
-  @Override
-  public boolean canBeDeleted() {
-    return true;
   }
 
   @Override

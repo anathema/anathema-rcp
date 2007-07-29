@@ -1,14 +1,11 @@
 package net.sf.anathema.character.core.repository.internal;
 
-import java.io.IOException;
-
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.CharacterCorePlugin;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -92,15 +89,5 @@ public class CharacterModelViewElement implements IViewElement {
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }
-  }
-
-  @Override
-  public boolean canBeDeleted() {
-    return false;
-  }
-
-  @Override
-  public void delete(IWorkbenchPage page) throws CoreException, IOException {
-    throw new UnsupportedOperationException("Cannot be deleted"); //$NON-NLS-1$
   }
 }

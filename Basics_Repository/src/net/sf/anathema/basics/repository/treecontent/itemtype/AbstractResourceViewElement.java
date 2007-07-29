@@ -21,7 +21,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-public abstract class AbstractResourceViewElement implements IViewElement {
+public abstract class AbstractResourceViewElement implements IViewElement, IPageDelible {
 
   private final String untitledName;
   private final IViewElement parent;
@@ -99,12 +99,10 @@ public abstract class AbstractResourceViewElement implements IViewElement {
     if (adapter == IResource.class) {
       return getEditFile();
     }
+    if (adapter == IPageDelible.class) {
+      return this;
+    }
     return null;
-  }
-
-  @Override
-  public final boolean canBeDeleted() {
-    return true;
   }
 
   @Override

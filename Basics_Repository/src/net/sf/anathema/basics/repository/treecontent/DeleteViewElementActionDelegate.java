@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository.treecontent;
 
+import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 import org.eclipse.jface.action.IAction;
@@ -34,7 +35,7 @@ public class DeleteViewElementActionDelegate implements IObjectActionDelegate {
     if (!confirmed) {
       return;
     }
-    deleter.delete(element);
+    deleter.delete((IPageDelible) element.getAdapter(IPageDelible.class));
   }
 
   @Override
@@ -42,7 +43,7 @@ public class DeleteViewElementActionDelegate implements IObjectActionDelegate {
     IStructuredSelection structuredSelection = (IStructuredSelection) selection;
     if (structuredSelection.getFirstElement() instanceof IViewElement) {
       element = (IViewElement) structuredSelection.getFirstElement();
-      action.setEnabled(element.canBeDeleted());
+      action.setEnabled(element.getAdapter(IPageDelible.class) != null);
     }
   }
 }

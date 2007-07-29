@@ -3,6 +3,7 @@ package net.sf.anathema.character.core.repository.internal;
 import java.io.IOException;
 
 import net.sf.anathema.basics.item.editor.PageEditorCloser;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
 import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
@@ -18,7 +19,7 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class CharacterViewElement implements IViewElement {
+public class CharacterViewElement implements IViewElement, IPageDelible {
 
   private final IFolder characterFolder;
   private final IViewElement parent;
@@ -91,12 +92,10 @@ public class CharacterViewElement implements IViewElement {
     if (adapter.isInstance(characterFolder)) {
       return characterFolder;
     }
+    if (adapter == IPageDelible.class) {
+      return this;
+    }
     return null;
-  }
-
-  @Override
-  public boolean canBeDeleted() {
-    return true;
   }
 
   @Override

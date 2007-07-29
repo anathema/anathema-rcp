@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.campaign.plot.dnd.DummyPlotUnit;
 
@@ -14,7 +15,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class DummyPlotElementViewElement implements IPlotElementViewElement {
+public class DummyPlotElementViewElement implements IPlotElementViewElement, IPageDelible {
 
   private final PlotPart plotPart;
   private final List<IPlotElementViewElement> children = new ArrayList<IPlotElementViewElement>();
@@ -103,10 +104,5 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement {
 
   public boolean isClosed() {
     return closed;
-  }
-
-  @Override
-  public boolean canBeDeleted() {
-    return true;
   }
 }
