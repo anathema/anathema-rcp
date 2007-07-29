@@ -1,12 +1,12 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
-import java.io.IOException;
-
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.input.internal.FileItemEditorInput;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
+import net.sf.anathema.basics.repository.treecontent.deletion.AbstractPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -21,7 +21,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-public abstract class AbstractResourceViewElement implements IViewElement, IPageDelible {
+public abstract class AbstractResourceViewElement extends AbstractPageDelible implements IViewElement {
 
   private final String untitledName;
   private final IViewElement parent;
@@ -104,14 +104,4 @@ public abstract class AbstractResourceViewElement implements IViewElement, IPage
     }
     return null;
   }
-
-  @Override
-  public void delete(IWorkbenchPage page) throws CoreException, IOException {
-    closeRelatedEditors(page);
-    delete();
-  }
-
-  protected abstract void delete() throws CoreException, IOException;
-
-  protected abstract void closeRelatedEditors(IWorkbenchPage page) throws PartInitException;
 }

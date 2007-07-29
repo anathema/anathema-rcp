@@ -1,6 +1,6 @@
 package net.sf.anathema.basics.repository.treecontent;
 
-import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 import org.eclipse.jface.action.IAction;

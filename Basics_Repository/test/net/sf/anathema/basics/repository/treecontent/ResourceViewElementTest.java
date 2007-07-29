@@ -1,7 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;

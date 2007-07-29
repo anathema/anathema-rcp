@@ -2,7 +2,7 @@ package net.sf.anathema.basics.repository.treecontent;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 import org.eclipse.core.resources.IFile;

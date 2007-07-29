@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository.treecontent.itemtype;
+package net.sf.anathema.basics.repository.treecontent.deletion;
 
 import java.io.IOException;
 

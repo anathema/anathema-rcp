@@ -2,7 +2,6 @@ package net.sf.anathema.basics.repository.treecontent;
 
 import java.io.IOException;
 
-import net.sf.anathema.basics.item.editor.PageEditorCloser;
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IPrintNameProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
@@ -49,7 +48,7 @@ public class ResourceViewElement extends AbstractResourceViewElement implements 
 
   @Override
   protected void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
-    ResourceCloseHandler closeHandler = new ResourceCloseHandler(new PageEditorCloser(page), this);
+    ResourceCloseHandler closeHandler = new ResourceCloseHandler(this);
     for (IEditorReference reference : page.getEditorReferences()) {
       closeHandler.closeIfRequired(reference);
     }

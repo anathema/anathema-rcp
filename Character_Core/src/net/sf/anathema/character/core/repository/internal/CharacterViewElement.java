@@ -1,9 +1,7 @@
 package net.sf.anathema.character.core.repository.internal;
 
-import java.io.IOException;
-
-import net.sf.anathema.basics.item.editor.PageEditorCloser;
-import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.AbstractPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
 import net.sf.anathema.character.core.model.ICharacterId;
@@ -21,7 +19,7 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class CharacterViewElement implements IViewElement, IPageDelible {
+public class CharacterViewElement extends AbstractPageDelible implements IViewElement {
 
   private final IFolder characterFolder;
   private final IViewElement parent;
@@ -101,21 +99,13 @@ public class CharacterViewElement implements IViewElement, IPageDelible {
   }
 
   @Override
-  public void delete(IWorkbenchPage page) throws CoreException, IOException {
-    closeRelatedEditors(page);
-    delete();
+  protected void delete() throws CoreException {
+    characterFolder.delete(true, new NullProgressMonitor());
   }
 
-  private void delete() throws CoreException {
-    // TODO Monitor
-    NullProgressMonitor monitor = new NullProgressMonitor();
-    characterFolder.delete(true, monitor);
-  }
-
-  private void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
-    CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(
-        new PageEditorCloser(page),
-        getCharacterId());
+  @Override
+  protected void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
+    CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(getCharacterId());
     for (IEditorReference reference : page.getEditorReferences()) {
       closeHandler.closeIfRequired(reference);
     }

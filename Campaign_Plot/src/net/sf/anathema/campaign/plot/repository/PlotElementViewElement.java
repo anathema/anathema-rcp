@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.basics.item.editor.PageEditorCloser;
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
@@ -91,7 +90,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
 
   @Override
   protected void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
-    PlotElementCloseHandler closeHandler = new PlotElementCloseHandler(new PageEditorCloser(page), this);
+    PlotElementCloseHandler closeHandler = new PlotElementCloseHandler(this);
     for (IEditorReference reference : page.getEditorReferences()) {
       if (reference.getId().equals(PlotPlugin.PLOT_EDITOR_ID)) {
         closeHandler.closeIfRequired(reference);

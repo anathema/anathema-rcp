@@ -1,5 +1,6 @@
 package net.sf.anathema.campaign.plot.repository;
 
+import net.sf.anathema.basics.item.editor.EditorCloser;
 import net.sf.anathema.basics.item.editor.IEditorCloser;
 import net.sf.anathema.basics.jface.IFileEditorInput;
 
@@ -11,6 +12,10 @@ public class PlotElementCloseHandler {
 
   private final IEditorCloser closer;
   private final IPlotElementViewElement element;
+
+  public PlotElementCloseHandler(IPlotElementViewElement element) {
+    this(new EditorCloser(), element);
+  }
 
   public PlotElementCloseHandler(IEditorCloser closer, IPlotElementViewElement element) {
     this.closer = closer;

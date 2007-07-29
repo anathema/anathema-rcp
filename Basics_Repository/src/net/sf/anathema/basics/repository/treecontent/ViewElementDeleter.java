@@ -1,7 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent;
 
 import net.sf.anathema.basics.repository.RepositoryPlugin;
-import net.sf.anathema.basics.repository.treecontent.itemtype.IPageDelible;
+import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.ui.IWorkbenchPage;

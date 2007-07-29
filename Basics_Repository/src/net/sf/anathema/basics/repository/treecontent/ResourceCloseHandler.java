@@ -5,6 +5,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 
+import net.sf.anathema.basics.item.editor.EditorCloser;
 import net.sf.anathema.basics.item.editor.IEditorCloser;
 import net.sf.anathema.basics.jface.IFileEditorInput;
 
@@ -12,6 +13,10 @@ public class ResourceCloseHandler {
 
   private final IEditorCloser closer;
   private final IResourceViewElement element;
+
+  public ResourceCloseHandler(IResourceViewElement element) {
+    this(new EditorCloser(), element);
+  }
 
   public ResourceCloseHandler(IEditorCloser closer, IResourceViewElement element) {
     this.closer = closer;
