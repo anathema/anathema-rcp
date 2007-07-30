@@ -53,14 +53,35 @@
          </action>
          <action
                class="net.sf.anathema.basics.repository.treecontent.DeleteViewElementActionDelegate"
+               definitionId="net.sf.anathema.basics.repository.delete.command"
                icon="icons/delete_obj.gif"
-               id="net.sf.anathema.plotelement.popup.delete"
-               label="%repository.view.actions.delete">
+               id="net.sf.anathema.basics.repository.delete.action"
+               label="%repository.view.actions.delete"
+               tooltip="%repository.view.actions.delete">
          </action>
       </objectContribution>
       <viewerContribution
             id="EmptyContribution"
             targetID="EmptyContribution">
       </viewerContribution>
-   </extension>   
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="net.sf.anathema.basics.repository.delete.command"
+            name="%repository.view.actions.delete">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="net.sf.anathema.basics.repository.delete.command"
+            schemeId="net.sf.anathema.basics.repository.scheme"
+            sequence="DEL">
+      </key>
+      <scheme
+            id="net.sf.anathema.basics.repository.scheme"
+            name="%repository.binding.scheme">
+      </scheme>
+   </extension>
 </plugin>
