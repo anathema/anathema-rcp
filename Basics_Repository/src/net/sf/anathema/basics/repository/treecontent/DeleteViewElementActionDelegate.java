@@ -28,6 +28,9 @@ public class DeleteViewElementActionDelegate implements IObjectActionDelegate {
 
   @Override
   public void run(IAction action) {
+    if (!action.isEnabled() || element == null) {
+      return;
+    }
     boolean confirmed = MessageDialog.openQuestion(
         shell,
         Messages.DeleteViewElementActionDelegate_Confirm_Dialog_Title,
@@ -41,7 +44,7 @@ public class DeleteViewElementActionDelegate implements IObjectActionDelegate {
   @Override
   public void selectionChanged(IAction action, ISelection selection) {
     IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-    if (structuredSelection.getFirstElement() instanceof IViewElement) {
+    if (structuredSelection != null && structuredSelection.getFirstElement() instanceof IViewElement) {
       element = (IViewElement) structuredSelection.getFirstElement();
       action.setEnabled(element.getAdapter(IPageDelible.class) != null);
     }
