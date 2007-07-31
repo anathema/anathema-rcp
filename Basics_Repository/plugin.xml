@@ -81,7 +81,8 @@
       </key>
       <scheme
             id="net.sf.anathema.basics.repository.scheme"
-            name="%repository.binding.scheme">
+            name="%repository.binding.scheme"
+            parentId="org.eclipse.ui.defaultAcceleratorConfiguration">
       </scheme>
    </extension>
 </plugin>
