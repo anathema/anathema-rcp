@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.repository.internal;
 
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
+import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.deletion.ResourcePageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
@@ -22,6 +24,7 @@ public class CharacterViewElement implements IViewElement {
   private final IViewElement parent;
   private final String unnamedTitle;
   private final ICharacterTemplateProvider templateProvider;
+  private final DefaultAdaptable adaptable = new DefaultAdaptable();
 
   public CharacterViewElement(
       IViewElement parent,
@@ -32,6 +35,25 @@ public class CharacterViewElement implements IViewElement {
     this.characterFolder = characterFolder;
     this.unnamedTitle = unnamedTitle;
     this.templateProvider = templateProvider;
+    initAdaptable();
+  }
+
+  private void initAdaptable() {
+    adaptable.add(IResource.class, new IProvider<IResource>() {
+      @Override
+      public IResource get() {
+        return characterFolder;
+      }
+    });
+    adaptable.add(IPageDelible.class, new IProvider<IPageDelible>() {
+      @Override
+      public IPageDelible get() {
+        CharacterId characterId = new CharacterId(characterFolder);
+        CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(characterId);
+        return new ResourcePageDelible(closeHandler, characterFolder);
+      }
+
+    });
   }
 
   @Override
@@ -86,14 +108,6 @@ public class CharacterViewElement implements IViewElement {
   @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
-    if (IResource.class.isAssignableFrom(adapter)) {
-      return characterFolder;
-    }
-    if (adapter == IPageDelible.class) {
-      return new ResourcePageDelible(
-          new CharacterElementCloseHandler(new CharacterId(characterFolder)),
-          characterFolder);
-    }
-    return null;
+    return adaptable.getAdapter(adapter);
   }
 }
