@@ -11,5 +11,6 @@ Require-Bundle: net.sf.anathema.basics.item,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.repository,
  net.sf.anathema.basics.jface,
- net.sf.anathema.character.trait
+ net.sf.anathema.character.trait,
+ net.sf.anathema.character.experience
 Eclipse-LazyStart: true
