@@ -17,3 +17,4 @@ Require-Bundle: net.sf.anathema.basics.jface,
 Bundle-Activator: net.sf.anathema.basics.repository.RepositoryPlugin
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
+Import-Package: org.junit;version="4.3.1";resolution:=optional
