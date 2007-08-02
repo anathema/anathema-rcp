@@ -1,7 +1,6 @@
 package net.sf.anathema.character.core.repository.internal;
 
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.deletion.ResourcePageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
@@ -39,21 +38,14 @@ public class CharacterViewElement implements IViewElement {
   }
 
   private void initAdaptable() {
-    adaptable.add(IResource.class, new IProvider<IResource>() {
-      @Override
-      public IResource get() {
-        return characterFolder;
-      }
-    });
-    adaptable.add(IPageDelible.class, new IProvider<IPageDelible>() {
-      @Override
-      public IPageDelible get() {
-        CharacterId characterId = new CharacterId(characterFolder);
-        CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(characterId);
-        return new ResourcePageDelible(closeHandler, characterFolder);
-      }
+    adaptable.add(IResource.class, characterFolder);
+    adaptable.add(IPageDelible.class, createPageDelible());
+  }
 
-    });
+  private IPageDelible createPageDelible() {
+    CharacterId characterId = new CharacterId(characterFolder);
+    CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(characterId);
+    return new ResourcePageDelible(closeHandler, characterFolder);
   }
 
   @Override

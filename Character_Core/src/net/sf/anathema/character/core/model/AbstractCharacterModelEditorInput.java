@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.model;
 
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
+import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 
@@ -12,13 +14,16 @@ public abstract class AbstractCharacterModelEditorInput<M extends IModel> extend
   public AbstractCharacterModelEditorInput(IFile file, ImageDescriptor imageDescriptor) {
     super(file, imageDescriptor);
   }
-
+  
   @Override
-  public Object getAdapter(Class adapter) {
-    if (IModelIdentifier.class.isAssignableFrom(adapter)) {
-      return getModelIdentifier();
-    }
-    return super.getAdapter(adapter);
+  protected void initDefaultAdaptable(DefaultAdaptable defaultAdaptable) {
+    super.initDefaultAdaptable(defaultAdaptable);
+    defaultAdaptable.add(IModelIdentifier.class, new IProvider<IModelIdentifier>() {
+      @Override
+      public IModelIdentifier get() {
+        return getModelIdentifier();
+      }
+    });
   }
 
   protected abstract IModelIdentifier getModelIdentifier();
