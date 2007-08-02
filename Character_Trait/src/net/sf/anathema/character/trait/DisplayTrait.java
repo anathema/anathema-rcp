@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait;
 
-import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.experience.model.IExperience;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 import net.sf.anathema.character.trait.rules.internal.IRuleTrait;
 import net.sf.anathema.character.trait.rules.internal.RuleTrait;

@@ -7,7 +7,8 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.lib,
  org.eclipse.core.runtime,
  net.sf.anathema.basics.item,
- org.eclipse.core.commands
+ org.eclipse.core.commands,
+ net.sf.anathema.character.experience
 Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.group,
  net.sf.anathema.character.trait.rules

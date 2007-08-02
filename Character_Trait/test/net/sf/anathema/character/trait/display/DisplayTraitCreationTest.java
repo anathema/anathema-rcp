@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.display;
 
-import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.experience.model.IExperience;
 import net.sf.anathema.character.trait.experience.DummyExperience;
 
 

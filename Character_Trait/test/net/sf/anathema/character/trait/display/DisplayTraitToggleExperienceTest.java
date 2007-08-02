@@ -1,8 +1,8 @@
 package net.sf.anathema.character.trait.display;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.experience.Experience;
-import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.experience.model.Experience;
+import net.sf.anathema.character.experience.model.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
