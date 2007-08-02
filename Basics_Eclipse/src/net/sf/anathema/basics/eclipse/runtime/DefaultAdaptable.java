@@ -33,4 +33,8 @@ public class DefaultAdaptable implements IAdaptable {
   public <T> void add(Class<T> clazz, IProvider<T> provider) {
     objectProvidersByClass.put(clazz, provider);
   }
+
+  public <T> void add(Class<T> clazz, final T object) {
+    add(clazz, new StaticProvider<T>(object));
+  }
 }
