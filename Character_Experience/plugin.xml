@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sf.anathema.character.models">
+      <model
+            filename="experience.model"
+            id="net.sf.anathema.character.experience.model"
+            modelFactory="net.sf.anathema.character.experience.model.ExperienceFactory">
+      </model>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="net.sf.anathema.character.popup"
+            objectClass="net.sf.anathema.character.core.repository.CharacterViewElement">
+         <action
+               class="net.sf.anathema.character.experience.model.ToggleExperienceActionDelegate"
+               enablesFor="1"
+               id="net.sf.anathema.character.experience.toggle"
+               label="%character.experience.toggle"
+               style="toggle">
+         </action>
+      </objectContribution>
+      <viewerContribution
+            id="EmptyContribution"
+            targetID="EmptyContribution">
+      </viewerContribution>
+   </extension>
+
+</plugin>

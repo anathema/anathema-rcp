@@ -1,5 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Character Experience Plug-in
-Bundle-SymbolicName: net.sf.anathema.character.experience
+Bundle-SymbolicName: net.sf.anathema.character.experience;singleton:=true
 Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.basics.lib,
+ net.sf.anathema.character.core,
+ net.sf.anathema.basics.item,
+ net.sf.anathema.basics.eclipse,
+ net.sf.anathema.basics.repository
+Bundle-Activator: net.sf.anathema.character.experience.CharacterExperiencePlugin
+Eclipse-LazyStart: true
+Export-Package: net.sf.anathema.character.experience.model
