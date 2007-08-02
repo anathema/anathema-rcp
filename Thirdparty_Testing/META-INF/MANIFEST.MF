@@ -6,3 +6,4 @@ Bundle-Version: 1.0.0
 Export-Package: org.easymock
 Bundle-ClassPath: lib/easymock.jar,
  .
+Require-Bundle: org.junit4;visibility:=reexport
