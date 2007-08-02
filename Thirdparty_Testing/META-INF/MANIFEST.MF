@@ -3,3 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Thirdparty_Testing Plug-in
 Bundle-SymbolicName: Thirdparty_Testing
 Bundle-Version: 1.0.0
+Export-Package: org.easymock
+Bundle-ClassPath: lib/easymock.jar,
+ .
