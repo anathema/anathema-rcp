@@ -16,9 +16,15 @@ public class DefaultAdaptable implements IAdaptable {
   }
 
   private Object getObjectFor(Class<?> adapter) {
+    if (objectProvidersByClass.containsKey(adapter)) {
+      return objectProvidersByClass.get(adapter).get();
+    }
     for (Class<?> clazz : objectProvidersByClass.keySet()) {
       if (clazz.isAssignableFrom(adapter)) {
-        return objectProvidersByClass.get(clazz).get();
+        Object object = objectProvidersByClass.get(clazz).get();
+        if (adapter.isInstance(object)) {
+          return object;
+        }
       }
     }
     return null;
