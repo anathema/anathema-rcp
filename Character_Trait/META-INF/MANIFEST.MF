@@ -12,3 +12,4 @@ Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.group,
  net.sf.anathema.character.trait.rules
 Bundle-Localization: plugin
+Import-Package: org.junit;version="4.3.1";resolution:=optional
