@@ -7,7 +7,8 @@ Require-Bundle: org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.jface.text,
  org.eclipse.ui;visibility:=reexport,
- net.sf.anathema.basics.lib
+ net.sf.anathema.basics.lib,
+ net.sf.anathema.basics.eclipse
 Export-Package: net.sf.anathema.basics.jface,
  net.sf.anathema.basics.jface.context,
  net.sf.anathema.basics.jface.selection,

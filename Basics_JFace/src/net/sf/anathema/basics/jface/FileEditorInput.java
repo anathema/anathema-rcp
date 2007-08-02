@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.jface;
 
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IStorage;
@@ -9,6 +11,7 @@ import org.eclipse.ui.IPersistableElement;
 public class FileEditorInput implements IFileEditorInput {
   private final IFile file;
   private final ImageDescriptor imageDescriptor;
+  private DefaultAdaptable adaptable = new DefaultAdaptable();
 
   public FileEditorInput(IFile file, ImageDescriptor imageDescriptor) {
     this.imageDescriptor = imageDescriptor;
@@ -16,6 +19,12 @@ public class FileEditorInput implements IFileEditorInput {
       throw new IllegalArgumentException();
     }
     this.file = file;
+    initDefaultAdaptable(adaptable);
+  }
+  
+  protected void initDefaultAdaptable(DefaultAdaptable defaultAdaptable) {
+    defaultAdaptable.add(IResource.class, file);
+    defaultAdaptable.add(IFileEditorInput.class, this);
   }
 
   @Override
@@ -40,12 +49,10 @@ public class FileEditorInput implements IFileEditorInput {
   }
 
   @SuppressWarnings("unchecked")
-  public Object getAdapter(Class adapter) {
-    if (adapter == IResource.class) {
-      return file;
-    }
-    if (adapter == IFileEditorInput.class) {
-      return this;
+  public final Object getAdapter(Class adapter) {
+    Object adaptedObject = adaptable.getAdapter(adapter);
+    if (adaptedObject != null) {
+      return adaptedObject;
     }
     return file.getAdapter(adapter);
   }
