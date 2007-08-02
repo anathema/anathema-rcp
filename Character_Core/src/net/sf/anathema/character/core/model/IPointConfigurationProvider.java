@@ -1,6 +1,5 @@
-package net.sf.anathema.character.core.model.internal;
+package net.sf.anathema.character.core.model;
 
-import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 public interface IPointConfigurationProvider {

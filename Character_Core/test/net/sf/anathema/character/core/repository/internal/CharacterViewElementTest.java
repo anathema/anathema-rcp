@@ -2,6 +2,7 @@ package net.sf.anathema.character.core.repository.internal;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
+import net.sf.anathema.character.core.repository.CharacterViewElement;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFolder;

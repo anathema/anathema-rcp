@@ -14,27 +14,7 @@
       </itemtype>
    </extension>
    <extension
-         point="net.sf.anathema.character.models">
-      <model
-            filename="experience.model"
-            id="net.sf.anathema.character.experience.model"
-            modelFactory="net.sf.anathema.character.experience.ExperienceFactory">
-      </model>
-   </extension>
-   <extension
          point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="net.sf.anathema.character.popup"
-            objectClass="net.sf.anathema.character.core.repository.internal.CharacterViewElement">
-         <action
-               class="net.sf.anathema.character.experience.ToggleExperienceActionDelegate"
-               enablesFor="1"
-               id="net.sf.anathema.character.experience.toggle"
-               label="%character.experience.toggle"
-               style="toggle">
-         </action>
-      </objectContribution>
       <viewerContribution
             id="EmptyContribution"
             targetID="EmptyContribution">
@@ -50,31 +30,6 @@
                label="%itemtype.new.character">
          </action>
       </objectContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.views">
-      <view
-            allowMultiple="false"
-            class="net.sf.anathema.character.points.PointsView"
-            id="net.sf.anathema.character.experiencepoints"
-            name="%experiencepoints.view.name">
-      </view>
-   </extension>
-   <extension
-         point="org.eclipse.ui.viewActions">
-      <viewContribution
-            id="net.sf.anathema.character.experiencepoints.action"
-            targetID="net.sf.anathema.character.experiencepoints">
-         <action
-               class="net.sf.anathema.character.points.UpdateActionDelegate"
-               icon="icons/nav_refresh.gif"
-               id="net.sf.anathema.character.experiencepoints.action.update"
-               label="%experiencepoints.view.update"
-               style="push"
-               toolbarPath="main"
-               tooltip="%experiencepoints.view.update">
-         </action>
-      </viewContribution>
    </extension>
 
 </plugin>

@@ -3,7 +3,6 @@ package net.sf.anathema.character.core.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
 
 public class ModelCache implements IModelProvider {
 

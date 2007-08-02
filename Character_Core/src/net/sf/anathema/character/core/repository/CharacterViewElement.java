@@ -1,12 +1,13 @@
-package net.sf.anathema.character.core.repository.internal;
+package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.deletion.ResourcePageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
+import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.model.internal.CharacterId;
-import net.sf.anathema.character.core.model.internal.ModelExtensionPoint;
+import net.sf.anathema.character.core.repository.internal.CharacterElementCloseHandler;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.eclipse.core.resources.IFile;
