@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="net.sf.anathema.character.experiencepoints.action"
+            targetID="net.sf.anathema.character.experiencepoints">
+         <action
+               class="net.sf.anathema.character.points.model.UpdateActionDelegate"
+               icon="icons/nav_refresh.gif"
+               id="net.sf.anathema.character.experiencepoints.action.update"
+               label="%points.view.update"
+               style="push"
+               toolbarPath="main"
+               tooltip="%points.view.update">
+         </action>
+      </viewContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            class="net.sf.anathema.character.points.model.PointsView"
+            id="net.sf.anathema.character.points"
+            name="%points.view.name">
+      </view>
+   </extension>
+
+</plugin>

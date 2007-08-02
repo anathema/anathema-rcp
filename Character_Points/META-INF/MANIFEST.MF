@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Character_Points Plug-in
+Bundle-SymbolicName: net.sf.anathema.character.points;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.basics.eclipse,
+ net.sf.anathema.basics.lib,
+ net.sf.anathema.character.core,
+ net.sf.anathema.character.experience,
+ net.sf.anathema.character.trait,
+ net.sf.anathema.basics.item,
+ net.sf.anathema.basics.jface
+Export-Package: net.sf.anathema.character.points.model
+Eclipse-LazyStart: true
