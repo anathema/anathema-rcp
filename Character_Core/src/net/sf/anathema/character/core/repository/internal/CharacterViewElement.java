@@ -10,6 +10,7 @@ import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
@@ -85,7 +86,7 @@ public class CharacterViewElement implements IViewElement {
   @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
-    if (adapter.isInstance(characterFolder)) {
+    if (IResource.class.isAssignableFrom(adapter)) {
       return characterFolder;
     }
     if (adapter == IPageDelible.class) {
