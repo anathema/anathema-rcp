@@ -49,4 +49,3 @@ Export-Package: net.disy.commons.core.exception,
  org.dom4j.xpp
 Bundle-Localization: plugin
 Require-Bundle: Thirdparty_Testing;resolution:=optional;visibility:=reexport
-Import-Package: org.junit;version="4.3.1"
