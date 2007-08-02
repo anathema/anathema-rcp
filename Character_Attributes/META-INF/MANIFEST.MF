@@ -13,4 +13,3 @@ Require-Bundle: net.sf.anathema.basics.item,
  net.sf.anathema.basics.jface,
  net.sf.anathema.character.trait
 Eclipse-LazyStart: true
-Import-Package: org.junit;version="4.3.1"
