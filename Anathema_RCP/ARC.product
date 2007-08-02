@@ -23,6 +23,7 @@
 
    <plugins>
       <plugin id="com.ibm.icu"/>
+      <plugin id="com.ibm.icu36.data.update" fragment="true"/>
       <plugin id="net.sf.anathema.basics.eclipse"/>
       <plugin id="net.sf.anathema.basics.item"/>
       <plugin id="net.sf.anathema.basics.jface"/>
@@ -33,6 +34,9 @@
       <plugin id="net.sf.anathema.character.attributes"/>
       <plugin id="net.sf.anathema.character.core"/>
       <plugin id="net.sf.anathema.character.description"/>
+      <plugin id="net.sf.anathema.character.experience"/>
+      <plugin id="net.sf.anathema.character.points"/>
+      <plugin id="net.sf.anathema.character.trait"/>
       <plugin id="net.sf.anathema.editor.styledtext"/>
       <plugin id="net.sf.anathema.rcp"/>
       <plugin id="org.eclipse.ant.core"/>
