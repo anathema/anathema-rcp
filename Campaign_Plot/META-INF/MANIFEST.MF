@@ -12,3 +12,4 @@ Require-Bundle: net.sf.anathema.basics.eclipse,
 Eclipse-LazyStart: true
 Bundle-Activator: net.sf.anathema.campaign.plot.PlotPlugin
 Bundle-Localization: plugin
+Import-Package: org.junit;version="4.3.1"
