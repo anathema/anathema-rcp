@@ -1,9 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Thirdparty_Testing Plug-in
+Bundle-Name: %net.sf.anathema.thirdparty.testing.BundleName
 Bundle-SymbolicName: Thirdparty_Testing
 Bundle-Version: 1.0.0
 Export-Package: org.easymock
 Bundle-ClassPath: lib/easymock.jar,
  .
 Require-Bundle: org.junit4;visibility:=reexport
+Bundle-Localization: plugin

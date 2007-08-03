@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Points Plug-in
+Bundle-Name: %net.sf.anathema.character.points.BundleName
 Bundle-SymbolicName: net.sf.anathema.character.points;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.basics.eclipse,

@@ -5,7 +5,7 @@
          point="org.eclipse.ui.viewActions">
       <viewContribution
             id="net.sf.anathema.character.experiencepoints.action"
-            targetID="net.sf.anathema.character.experiencepoints">
+            targetID="net.sf.anathema.character.points">
          <action
                class="net.sf.anathema.character.points.model.UpdateActionDelegate"
                icon="icons/nav_refresh.gif"

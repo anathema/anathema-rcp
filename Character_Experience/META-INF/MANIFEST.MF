@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character Experience Plug-in
+Bundle-Name: %net.sf.anathema.character.experience.BundleName
 Bundle-SymbolicName: net.sf.anathema.character.experience;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.basics.lib,
