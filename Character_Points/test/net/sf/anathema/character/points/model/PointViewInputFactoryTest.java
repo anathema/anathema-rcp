@@ -3,10 +3,12 @@ package net.sf.anathema.character.points.model;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IPointConfiguration;
-import net.sf.anathema.character.core.model.IPointConfigurationProvider;
-import net.sf.anathema.character.core.model.IPointHandler;
-import net.sf.anathema.character.core.model.PointConfiguration;
+import net.sf.anathema.character.points.IPointConfiguration;
+import net.sf.anathema.character.points.IPointConfigurationProvider;
+import net.sf.anathema.character.points.IPointEntry;
+import net.sf.anathema.character.points.IPointHandler;
+import net.sf.anathema.character.points.PointConfiguration;
+import net.sf.anathema.character.points.PointViewInputFactory;
 
 import org.easymock.EasyMock;
 import org.junit.Before;

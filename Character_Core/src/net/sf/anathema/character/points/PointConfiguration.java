@@ -1,4 +1,6 @@
-package net.sf.anathema.character.core.model;
+package net.sf.anathema.character.points;
+
+import net.sf.anathema.character.core.model.ICharacterId;
 
 
 public class PointConfiguration implements IPointConfiguration {

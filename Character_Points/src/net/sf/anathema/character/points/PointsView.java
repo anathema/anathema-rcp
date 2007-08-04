@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points.model;
+package net.sf.anathema.character.points;
 
 import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;

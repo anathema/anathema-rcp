@@ -1,14 +1,14 @@
-package net.sf.anathema.character.points.model;
+package net.sf.anathema.character.points;
 
 import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.IPointConfigurationProvider;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.model.IExperience;
+import net.sf.anathema.character.points.IPointConfigurationProvider;
+import net.sf.anathema.character.points.PointConfigurationExtensionPoint;
 
 import org.eclipse.ui.IEditorInput;
 
@@ -20,7 +20,7 @@ public class PointViewInputStore {
   private final PointViewInputFactory factory;
   
   public PointViewInputStore() {
-    this(new ModelExtensionPoint());
+    this(new PointConfigurationExtensionPoint());
   }
 
   public PointViewInputStore(IPointConfigurationProvider provider) {

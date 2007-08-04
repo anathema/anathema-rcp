@@ -3,9 +3,9 @@ package net.sf.anathema.character.attributes.points;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IPointHandler;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.points.IPointHandler;
 
 public class AttributeExperienceHandler extends AbstractExecutableExtension implements IPointHandler {
 

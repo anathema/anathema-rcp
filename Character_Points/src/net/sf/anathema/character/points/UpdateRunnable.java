@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points.model;
+package net.sf.anathema.character.points;
 
 public final class UpdateRunnable implements Runnable {
   private final IUpdatable[] allUpdateable;

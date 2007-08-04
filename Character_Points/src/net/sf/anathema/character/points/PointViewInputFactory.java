@@ -1,9 +1,9 @@
-package net.sf.anathema.character.points.model;
+package net.sf.anathema.character.points;
 
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IPointConfiguration;
-import net.sf.anathema.character.core.model.IPointConfigurationProvider;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
+import net.sf.anathema.character.points.IPointConfiguration;
+import net.sf.anathema.character.points.IPointConfigurationProvider;
 
 public class PointViewInputFactory {
 

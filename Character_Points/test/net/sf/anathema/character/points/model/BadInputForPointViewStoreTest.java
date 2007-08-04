@@ -2,10 +2,10 @@ package net.sf.anathema.character.points.model;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.ModelExtensionPoint;
-import net.sf.anathema.character.points.model.IPointEntry;
-import net.sf.anathema.character.points.model.IPointViewInput;
-import net.sf.anathema.character.points.model.PointViewInputStore;
+import net.sf.anathema.character.points.IPointEntry;
+import net.sf.anathema.character.points.IPointViewInput;
+import net.sf.anathema.character.points.PointConfigurationExtensionPoint;
+import net.sf.anathema.character.points.PointViewInputStore;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;
@@ -23,7 +23,7 @@ public class BadInputForPointViewStoreTest {
 
   @Before
   public void createViewInputFactory() throws Exception {
-    this.viewInputFactory = new PointViewInputStore(new ModelExtensionPoint());
+    this.viewInputFactory = new PointViewInputStore(new PointConfigurationExtensionPoint());
   }
 
   @Test
