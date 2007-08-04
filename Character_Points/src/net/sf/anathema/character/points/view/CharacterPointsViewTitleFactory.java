@@ -13,8 +13,10 @@ public class CharacterPointsViewTitleFactory {
   public String create() {
     IExperience experience = provider.getExperience();
     if (experience == null) {
-      return "Character Points";
+      return Messages.CharacterPointsViewTitleFactory_NeutralTitle;
     }
-    return experience.isExperienced() ? "Experience Points" : "Bonus Points";
+    return experience.isExperienced()
+        ? Messages.CharacterPointsViewTitleFactory_ExperiencedTitle
+        : Messages.CharacterPointsViewTitleFactory_InexperiencedTitle;
   }
 }
