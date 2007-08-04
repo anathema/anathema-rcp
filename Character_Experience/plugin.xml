@@ -6,7 +6,7 @@
       <model
             filename="experience.model"
             id="net.sf.anathema.character.experience.model"
-            modelFactory="net.sf.anathema.character.experience.model.ExperienceFactory">
+            modelFactory="net.sf.anathema.character.experience.internal.ExperienceFactory">
       </model>
    </extension>
    <extension
@@ -16,7 +16,7 @@
             id="net.sf.anathema.character.popup"
             objectClass="net.sf.anathema.character.core.repository.CharacterViewElement">
          <action
-               class="net.sf.anathema.character.experience.model.ToggleExperienceActionDelegate"
+               class="net.sf.anathema.character.experience.internal.ToggleExperienceActionDelegate"
                enablesFor="1"
                id="net.sf.anathema.character.experience.toggle"
                label="%character.experience.toggle"

@@ -1,6 +1,6 @@
 package net.sf.anathema.character.points.view;
 
-import net.sf.anathema.character.experience.model.IExperience;
+import net.sf.anathema.character.experience.IExperience;
 
 public interface IExperienceProvider {
 

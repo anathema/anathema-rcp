@@ -1,4 +1,4 @@
-package net.sf.anathema.character.experience.model;
+package net.sf.anathema.character.experience;
 
 import net.sf.anathema.character.core.model.IModel;
 import net.sf.anathema.lib.control.change.IChangeable;

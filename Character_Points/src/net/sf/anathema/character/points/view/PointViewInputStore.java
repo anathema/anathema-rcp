@@ -6,7 +6,7 @@ import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
-import net.sf.anathema.character.experience.model.IExperience;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
 

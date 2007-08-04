@@ -1,11 +1,11 @@
 package net.sf.anathema.character.trait.rules;
 
-import static org.junit.Assert.*;
-import net.sf.anathema.character.experience.model.IExperience;
+import static org.junit.Assert.assertEquals;
+import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.experience.DummyExperience;
 import net.sf.anathema.character.trait.rules.internal.RuleTrait;
 import net.sf.anathema.lib.util.Identificate;
 
@@ -39,7 +39,8 @@ public class RuleTraitOnExperienceTest {
     this.traitRules = new DummyTraitTemplate();
     this.traitRules.setMinimalValue(MIN_VALUE);
     this.traitRules.setMaximalValue(MAX_VALUE);
-    this.experience = new DummyExperience(true);
+    this.experience = new DummyExperience();
+    this.experience.setExperienced(true);
     this.basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
     this.basicTrait.getCreationModel().setValue(CREATION_VALUE);
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitRules);

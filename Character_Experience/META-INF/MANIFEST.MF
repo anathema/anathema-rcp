@@ -8,7 +8,6 @@ Require-Bundle: net.sf.anathema.basics.lib,
  net.sf.anathema.basics.item,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.repository
-Bundle-Activator: net.sf.anathema.character.experience.CharacterExperiencePlugin
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
-Export-Package: net.sf.anathema.character.experience.model
+Export-Package: net.sf.anathema.character.experience

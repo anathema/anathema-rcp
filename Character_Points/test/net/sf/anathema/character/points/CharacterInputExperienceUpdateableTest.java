@@ -6,8 +6,8 @@ import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
-import net.sf.anathema.character.experience.model.Experience;
-import net.sf.anathema.character.experience.model.IExperience;
+import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.view.ExperienceUpdatable;
 import net.sf.anathema.character.points.view.IUpdatable;
 
@@ -24,7 +24,7 @@ public class CharacterInputExperienceUpdateableTest {
 
   @Before
   public void createUpdateable() throws Exception {
-    this.experience = new Experience();
+    this.experience = new DummyExperience();
     ICharacterId characterId = new DummyCharacterId();
     IEditorInput editedInput = CharacterObjectMother.createCharacterEditorInput(new ModelIdentifier(characterId, "Egal")); //$NON-NLS-1$
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
@@ -59,7 +59,7 @@ public class CharacterInputExperienceUpdateableTest {
   @Test
   public void noNotificationForChangesOnOldModel() throws Exception {
     IExperience oldExperience = experience;
-    this.experience = new Experience();
+    this.experience = new DummyExperience();
     experienceUpdateable.update();
     EasyMock.replay(modelChangeUpdatable);
     oldExperience.setExperienced(!oldExperience.isExperienced());

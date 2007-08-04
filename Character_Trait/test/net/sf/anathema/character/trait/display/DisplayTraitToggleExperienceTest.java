@@ -1,8 +1,8 @@
 package net.sf.anathema.character.trait.display;
 
-import static org.junit.Assert.*;
-import net.sf.anathema.character.experience.model.Experience;
-import net.sf.anathema.character.experience.model.IExperience;
+import static org.junit.Assert.assertEquals;
+import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
@@ -26,7 +26,7 @@ public class DisplayTraitToggleExperienceTest {
     IBasicTrait basicTrait = new BasicTrait(new Identificate("Wies‰‰‰")); //$NON-NLS-1$
     basicTrait.getCreationModel().setValue(CREATION_VALUE);
     basicTrait.getExperiencedModel().setValue(EXPERIENCE_VALUE);
-    experience = new Experience();
+    experience = new DummyExperience();
     this.displayTrait = new DisplayTrait(basicTrait, experience, new DummyTraitTemplate());
   }
   
