@@ -14,7 +14,6 @@ import net.sf.anathema.character.experience.internal.Messages;
 import net.sf.anathema.character.experience.plugin.IExperiencePluginConstants;
 
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -44,7 +43,7 @@ public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
       new ItemFileWriter().save(content, persister, model, new NullProgressMonitor());
     }
     catch (Exception e) {
-      logger.log(IStatus.ERROR, Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);
+      logger.error(Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);
     }
   }
 

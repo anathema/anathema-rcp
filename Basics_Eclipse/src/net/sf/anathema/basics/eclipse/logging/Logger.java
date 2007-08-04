@@ -14,8 +14,8 @@ public class Logger {
     this.bundleName = bundleName;
   }
 
-  public final void log(int severity, String message, Throwable throwable) {
-    getLog().log(new Status(severity, bundleName, IStatus.OK, message, throwable));
+  public final void error(String message, Throwable throwable) {
+    getLog().log(createErrorStatus(message, throwable));
   }
 
   public final ILog getLog() {
@@ -23,7 +23,7 @@ public class Logger {
     return Platform.getLog(bundle);
   }
 
-  public final IStatus createErrorStatus(String message, Exception e) {
-    return new Status(IStatus.ERROR, bundleName, IStatus.OK, message, e);
+  public final IStatus createErrorStatus(String message, Throwable throwable) {
+    return new Status(IStatus.ERROR, bundleName, IStatus.OK, message, throwable);
   }
 }

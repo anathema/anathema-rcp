@@ -14,7 +14,6 @@ import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.plugin.PointPluginConstants;
 
-import org.eclipse.core.runtime.IStatus;
 
 public class PointConfigurationExtensionPoint implements IPointConfigurationProvider {
 
@@ -51,8 +50,7 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
             handler = configurationElement.getAttributeAsObject(pointCalculatorAttribute, IPointHandler.class);
           }
           catch (ExtensionException e) {
-            logger.log(
-                IStatus.ERROR,
+            logger.error(
                 Messages.PointConfigurationExtensionPoint_CalculatorLoadError,
                 e);
           }

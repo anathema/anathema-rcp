@@ -17,7 +17,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -44,8 +43,7 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
       saveTemplate(characterFolder, templateName);
     }
     catch (Exception e) {
-      logger.log(
-          IStatus.ERROR,
+      logger.error(
           Messages.NewCharacterActionDelegate_CharacterCreationError,
           e);
     }

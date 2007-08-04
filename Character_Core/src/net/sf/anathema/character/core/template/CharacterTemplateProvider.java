@@ -12,7 +12,6 @@ import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 
-import org.eclipse.core.runtime.IStatus;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
 
@@ -67,7 +66,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
     }
     catch (Exception e) {
       String message = Messages.CharacterTemplateProvider_NoTemplateReferenceMessage;
-      logger.log(IStatus.ERROR, message, e);
+      logger.error(message, e);
       return null;
     }
     finally {
