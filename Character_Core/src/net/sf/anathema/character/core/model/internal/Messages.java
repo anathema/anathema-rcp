@@ -4,10 +4,8 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
   private static final String BUNDLE_NAME = "net.sf.anathema.character.core.model.messages"; //$NON-NLS-1$
-  public static String MissingCalculatorPointConfigurations_PointsNA;
   public static String ModelCache_ModelLoadError;
   public static String ModelCache_ModelNotFound_Message;
-  public static String ModelExtensionPoint_CalculatorLoadError;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
