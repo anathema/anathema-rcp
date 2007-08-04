@@ -3,7 +3,7 @@ package net.sf.anathema.character.description;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-  private static final String BUNDLE_NAME = "net.sf.anathema.character.description.model.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "net.sf.anathema.character.description.messages"; //$NON-NLS-1$
   public static String CharacterDescriptionEditor_Characterization;
   public static String CharacterDescriptionEditor_Concept;
   public static String CharacterDescriptionEditor_Name;
