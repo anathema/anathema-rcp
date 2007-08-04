@@ -82,6 +82,7 @@ public class ItemTypeViewElement implements IViewElement {
     return type.hashCode();
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
     return null;
