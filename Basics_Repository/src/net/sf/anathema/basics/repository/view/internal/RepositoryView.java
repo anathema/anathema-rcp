@@ -112,8 +112,7 @@ public class RepositoryView extends ViewPart implements
 
   @Override
   public void setSelection(IResource resource) {
-    IViewElement viewElement = contentProvider.getViewElement(resource);
-    viewer.setSelection(new StructuredSelection(viewElement), true);
+    new RepositoryResourceSelector(contentProvider, new RevealingSelector(viewer)).setSelection(resource);
   }
 
   @Override
