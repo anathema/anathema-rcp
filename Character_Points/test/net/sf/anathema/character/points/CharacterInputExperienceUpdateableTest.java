@@ -8,7 +8,7 @@ import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.points.view.ExperienceUpdatable;
+import net.sf.anathema.character.points.view.CharacterPointsUpdatable;
 import net.sf.anathema.character.points.view.IUpdatable;
 
 import org.easymock.EasyMock;
@@ -18,7 +18,7 @@ import org.junit.Test;
 
 public class CharacterInputExperienceUpdateableTest {
 
-  private ExperienceUpdatable experienceUpdateable;
+  private CharacterPointsUpdatable experienceUpdateable;
   private IExperience experience;
   private IUpdatable modelChangeUpdatable;
 
@@ -33,7 +33,7 @@ public class CharacterInputExperienceUpdateableTest {
     EasyMock.expect(provider.getModel(experienceIdentifier)).andReturn(experience).anyTimes();
     EasyMock.replay(provider);
     modelChangeUpdatable = EasyMock.createStrictMock(IUpdatable.class);
-    experienceUpdateable = new ExperienceUpdatable(partContainer, modelChangeUpdatable, provider);
+    experienceUpdateable = new CharacterPointsUpdatable(partContainer, modelChangeUpdatable, provider);
   }
 
   @Test

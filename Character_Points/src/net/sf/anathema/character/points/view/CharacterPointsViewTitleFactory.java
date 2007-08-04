@@ -2,11 +2,11 @@ package net.sf.anathema.character.points.view;
 
 import net.sf.anathema.character.experience.IExperience;
 
-public class ExperienceViewTitleFactory {
+public class CharacterPointsViewTitleFactory {
 
   private final IExperienceProvider provider;
 
-  public ExperienceViewTitleFactory(IExperienceProvider provider) {
+  public CharacterPointsViewTitleFactory(IExperienceProvider provider) {
     this.provider = provider;
   }
 

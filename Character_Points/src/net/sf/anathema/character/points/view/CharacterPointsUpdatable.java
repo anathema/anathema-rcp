@@ -12,7 +12,7 @@ import net.sf.anathema.lib.control.change.IChangeListener;
 
 import org.eclipse.ui.IEditorInput;
 
-public final class ExperienceUpdatable implements IUpdatable, IExperienceProvider {
+public final class CharacterPointsUpdatable implements IUpdatable, IExperienceProvider {
   private final IPartContainer partContainer;
   private IExperience experience = null;
   private final IModelProvider modelProvider;
@@ -24,11 +24,11 @@ public final class ExperienceUpdatable implements IUpdatable, IExperienceProvide
     }
   };
 
-  public ExperienceUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable) {
+  public CharacterPointsUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable) {
     this(partContainer, modelChangeUpdatable, ModelCache.getInstance());
   }
 
-  public ExperienceUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable, IModelProvider modelProvider) {
+  public CharacterPointsUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable, IModelProvider modelProvider) {
     this.partContainer = partContainer;
     this.modelChangeUpdatable = modelChangeUpdatable;
     this.modelProvider = modelProvider;

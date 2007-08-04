@@ -3,7 +3,7 @@ package net.sf.anathema.character.points;
 import static org.junit.Assert.assertEquals;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.points.view.ExperienceViewTitleFactory;
+import net.sf.anathema.character.points.view.CharacterPointsViewTitleFactory;
 import net.sf.anathema.character.points.view.IExperienceProvider;
 
 import org.easymock.EasyMock;
@@ -12,13 +12,13 @@ import org.junit.Test;
 
 public class ExperienceTitleFactoryTest {
 
-  private ExperienceViewTitleFactory factory;
+  private CharacterPointsViewTitleFactory factory;
   private IExperienceProvider experienceProvider;
 
   @Before
   public void createFactory() {
     this.experienceProvider = EasyMock.createNiceMock(IExperienceProvider.class);
-    this.factory = new ExperienceViewTitleFactory(experienceProvider);
+    this.factory = new CharacterPointsViewTitleFactory(experienceProvider);
   }
 
   @Test
