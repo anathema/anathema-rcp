@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.points.configuration.internal;
 
 import org.eclipse.osgi.util.NLS;
 

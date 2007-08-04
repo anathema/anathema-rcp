@@ -5,7 +5,7 @@ import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
-import net.sf.anathema.character.points.IPointHandler;
+import net.sf.anathema.character.points.configuration.IPointHandler;
 
 public class AttributeExperienceHandler extends AbstractExecutableExtension implements IPointHandler {
 

@@ -1,9 +1,9 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.points.view;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.points.IPointConfiguration;
+import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 
 public class PointViewInput implements IPointViewInput {
 

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.points.configuration;
 
 import net.sf.anathema.character.core.model.ICharacterId;
 

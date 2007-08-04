@@ -8,8 +8,8 @@ import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.model.Experience;
 import net.sf.anathema.character.experience.model.IExperience;
-import net.sf.anathema.character.points.ExperienceUpdatable;
-import net.sf.anathema.character.points.IUpdatable;
+import net.sf.anathema.character.points.view.ExperienceUpdatable;
+import net.sf.anathema.character.points.view.IUpdatable;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;

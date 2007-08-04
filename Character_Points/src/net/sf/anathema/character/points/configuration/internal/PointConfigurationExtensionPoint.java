@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.points.configuration.internal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.template.ICharacterTemplate;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
+import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.plugin.PointPluginConstants;
 
 import org.eclipse.core.runtime.IStatus;

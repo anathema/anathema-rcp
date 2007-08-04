@@ -5,9 +5,9 @@ import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.model.IExperience;
-import net.sf.anathema.character.points.IPointViewInput;
-import net.sf.anathema.character.points.PointConfigurationExtensionPoint;
-import net.sf.anathema.character.points.PointViewInputStore;
+import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
+import net.sf.anathema.character.points.view.IPointViewInput;
+import net.sf.anathema.character.points.view.PointViewInputStore;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;

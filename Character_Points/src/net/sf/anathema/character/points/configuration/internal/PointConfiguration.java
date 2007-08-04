@@ -1,6 +1,7 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.points.configuration.internal;
 
 import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.points.configuration.IPointHandler;
 
 
 public class PointConfiguration implements IPointConfiguration {

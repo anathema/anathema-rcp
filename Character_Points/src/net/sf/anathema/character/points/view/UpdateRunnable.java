@@ -1,4 +1,5 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.points.view;
+
 
 public final class UpdateRunnable implements Runnable {
   private final IUpdatable[] allUpdateable;

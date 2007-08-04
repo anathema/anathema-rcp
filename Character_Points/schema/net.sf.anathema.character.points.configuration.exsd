@@ -67,7 +67,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.core.model.IPointHandler"/>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.points.configuration.IPointHandler"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -77,7 +77,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.core.model.IPointHandler"/>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.points.configuration.IPointHandler"/>
                </appInfo>
             </annotation>
          </attribute>

@@ -8,7 +8,7 @@
             id="net.sf.anathema.character.experiencepoints.action"
             targetID="net.sf.anathema.character.points">
          <action
-               class="net.sf.anathema.character.points.UpdateActionDelegate"
+               class="net.sf.anathema.character.points.view.UpdateActionDelegate"
                icon="icons/nav_refresh.gif"
                id="net.sf.anathema.character.experiencepoints.action.update"
                label="%points.view.update"
@@ -22,7 +22,7 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
-            class="net.sf.anathema.character.points.PointsView"
+            class="net.sf.anathema.character.points.view.PointsView"
             id="net.sf.anathema.character.points"
             name="%points.view.name">
       </view>

@@ -1,4 +1,5 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.points.view;
+
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;

@@ -2,8 +2,8 @@ package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.model.Experience;
-import net.sf.anathema.character.points.ExperienceViewTitleFactory;
-import net.sf.anathema.character.points.IExperienceProvider;
+import net.sf.anathema.character.points.view.ExperienceViewTitleFactory;
+import net.sf.anathema.character.points.view.IExperienceProvider;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
