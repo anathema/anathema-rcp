@@ -1,7 +1,8 @@
 package net.sf.anathema.basics.item.editor;
 
-import net.sf.anathema.basics.item.BasicItemPlugin;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
+import net.sf.anathema.basics.item.plugin.IBasicItemPluginConstants;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -15,7 +16,8 @@ public final class SaveEditorJob extends Job {
   private final Display display;
   private final IPersistableEditorInput< ? > editorInput;
   private final Runnable postSave;
-
+  private static final Logger logger = new Logger(IBasicItemPluginConstants.PLUGIN_ID);
+  
   public SaveEditorJob(IPersistableItemEditor editorPart) {
     this(editorPart.getEditorInput(), new FireDirtyRunnable(editorPart));
   }
@@ -42,7 +44,7 @@ public final class SaveEditorJob extends Job {
     }
     catch (Exception e) {
       String message = Messages.StyledTextEditor_SaveErrorMessage;
-      return BasicItemPlugin.getDefaultInstance().createErrorStatus(NLS.bind(message, editorInput.getName()), e);
+      return logger.createErrorStatus(NLS.bind(message, editorInput.getName()), e);
     }
     finally {
       monitor.done();

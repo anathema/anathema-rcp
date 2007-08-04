@@ -3,9 +3,10 @@ package net.sf.anathema.character.core.create;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
-import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -25,6 +26,8 @@ import org.eclipse.ui.IWorkbenchPart;
 
 public class NewCharacterActionDelegate implements IObjectActionDelegate {
 
+  private static final Logger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
+  
   @Override
   public void setActivePart(IAction action, IWorkbenchPart targetPart) {
     // nothing to do
@@ -41,7 +44,7 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
       saveTemplate(characterFolder, templateName);
     }
     catch (Exception e) {
-      CharacterCorePlugin.getDefaultInstance().log(
+      logger.log(
           IStatus.ERROR,
           Messages.NewCharacterActionDelegate_CharacterCreationError,
           e);

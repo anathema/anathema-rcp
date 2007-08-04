@@ -7,13 +7,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.disy.commons.core.io.IOUtilities;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.character.core.CharacterCorePlugin;
 import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 
 import org.eclipse.core.runtime.IStatus;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
+
+  private static final Logger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
   public static final String TEMPLATE_FILE_NAME = "template.xml"; //$NON-NLS-1$
   public static String STATIC_TEMPLATE_ID = "net.sf.anathema.core.StaticTemplate"; //$NON-NLS-1$
   public static final String ATTRIB_REFERENCE = "reference"; //$NON-NLS-1$
@@ -64,7 +67,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
     }
     catch (Exception e) {
       String message = Messages.CharacterTemplateProvider_NoTemplateReferenceMessage;
-      CharacterCorePlugin.getDefaultInstance().log(IStatus.ERROR, message, e);
+      logger.log(IStatus.ERROR, message, e);
       return null;
     }
     finally {

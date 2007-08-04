@@ -22,4 +22,8 @@ public class Logger {
     Bundle bundle = Platform.getBundle(bundleName);
     return Platform.getLog(bundle);
   }
+
+  public final IStatus createErrorStatus(String message, Exception e) {
+    return new Status(IStatus.ERROR, bundleName, IStatus.OK, message, e);
+  }
 }

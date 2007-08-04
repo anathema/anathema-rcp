@@ -2,7 +2,7 @@ package net.sf.anathema.character.core.repository.internal;
 
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
@@ -85,7 +85,7 @@ public class CharacterModelViewElement implements IViewElement {
     catch (Exception e) {
       throw new PartInitException(new Status(
           IStatus.ERROR,
-          CharacterCorePlugin.PLUGIN_ID,
+          ICharacterCorePluginConstants.PLUGIN_ID,
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }
