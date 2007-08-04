@@ -45,7 +45,7 @@ public final class EditorViewLinker {
       page.bringToTop(page.findEditor(editorInput));
     }
     catch (Exception e) {
-      RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, "Could not bring editor to top.", e);
+      RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.EditorViewLinker_ErrorMessage, e);
     }
   }
 
