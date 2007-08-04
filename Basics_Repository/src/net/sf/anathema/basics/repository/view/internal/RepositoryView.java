@@ -9,6 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
+import net.sf.anathema.basics.repository.linkage.EditorViewLinker;
 import net.sf.anathema.basics.repository.linkage.IResourceSelector;
 import net.sf.anathema.basics.repository.linkage.IViewEditorLinker;
 import net.sf.anathema.basics.repository.linkage.ViewEditorLinker;
@@ -25,7 +26,9 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.IOpenListener;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.OpenEvent;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
@@ -44,13 +47,16 @@ public class RepositoryView extends ViewPart implements
   private TreeViewer viewer;
   private TypedTreeContentProvider contentProvider;
 
-  private ViewEditorLinker linker;
+  private ViewEditorLinker viewLinker;
+
+  private EditorViewLinker editorLinker;
 
   @Override
   public void createPartControl(Composite parent) {
-    this.linker = new ViewEditorLinker(getSite().getWorkbenchWindow(), this);
-    disposables.add(linker);
-    viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+    this.viewLinker = new ViewEditorLinker(getSite().getWorkbenchWindow(), this);
+    disposables.add(viewLinker);
+    this.viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+    this.editorLinker = new EditorViewLinker(getSite().getWorkbenchWindow(), viewer);
     ContextMenuManager.connect(getSite(), viewer);
     contentProvider = new TypedTreeContentProvider();
     viewer.setContentProvider(contentProvider);
@@ -67,6 +73,12 @@ public class RepositoryView extends ViewPart implements
         catch (PartInitException e) {
           RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.RepositoryView_OpenEditorErrorMessage, e);
         }
+      }
+    });
+    viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+      @Override
+      public void selectionChanged(SelectionChangedEvent event) {
+        editorLinker.update();
       }
     });
     final TreeViewRefresher treeViewRefresher = new TreeViewRefresher(viewer);
@@ -117,7 +129,8 @@ public class RepositoryView extends ViewPart implements
 
   @Override
   public void setLinkEnabled(boolean enabled) {
-    linker.setLinkEnabled(enabled);
+    viewLinker.setLinkEnabled(enabled);
+    editorLinker.setLinkEnabled(enabled);
   }
 
   @Override

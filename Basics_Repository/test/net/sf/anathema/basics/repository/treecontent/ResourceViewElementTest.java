@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 
 import org.easymock.EasyMock;
@@ -43,5 +44,10 @@ public class ResourceViewElementTest {
   @Test
   public void canBeDeleted() throws Exception {
     assertTrue(element.getAdapter(IPageDelible.class) instanceof IPageDelible);
+  }
+
+  @Test
+  public void providesEditorInputs() throws Exception {
+    assertTrue(element.getAdapter(IEditorInputProvider.class) instanceof IEditorInputProvider);
   }
 }

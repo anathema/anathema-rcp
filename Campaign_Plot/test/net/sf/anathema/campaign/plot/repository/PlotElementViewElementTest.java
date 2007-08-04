@@ -1,7 +1,7 @@
 package net.sf.anathema.campaign.plot.repository;
 
 import static org.junit.Assert.*;
-
+import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 
 import org.easymock.EasyMock;
@@ -27,5 +27,10 @@ public class PlotElementViewElementTest {
   @Test
   public void canBeDeleted() throws Exception {
     assertTrue(new PlotElementViewElement(null, null, null, null).getAdapter(IPageDelible.class) instanceof IPageDelible);
+  }
+
+  @Test
+  public void providesEditorInputs() throws Exception {
+    assertTrue(new PlotElementViewElement(null, null, null, null).getAdapter(IEditorInputProvider.class) instanceof IEditorInputProvider);
   }
 }

@@ -1,11 +1,17 @@
 package net.sf.anathema.character.core.repository.internal;
 
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
+import net.sf.anathema.basics.eclipse.runtime.IProvider;
+import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
+import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -19,6 +25,7 @@ public class CharacterModelViewElement implements IViewElement {
   private final IFolder folder;
   private final IFolder characterFolder;
   private final IModelDisplayConfiguration configuration;
+  private final DefaultAdaptable adaptable = new DefaultAdaptable();
 
   public CharacterModelViewElement(
       IViewElement parent,
@@ -28,6 +35,27 @@ public class CharacterModelViewElement implements IViewElement {
     this.folder = characterFolder;
     this.characterFolder = characterFolder;
     this.configuration = configuration;
+    initAdaptable();
+  }
+
+  private void initAdaptable() {
+    adaptable.add(IResource.class, new IProvider<IResource>() {
+      @Override
+      public IResource get() {
+        return configuration.getModelFile(characterFolder);
+      }
+    });
+    adaptable.add(IEditorInputProvider.class, new IProvider<IEditorInputProvider>() {
+      @Override
+      public IEditorInputProvider get() {
+        return new IEditorInputProvider() {
+          @Override
+          public IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
+            return CharacterModelViewElement.this.getEditorInput();
+          }
+        };
+      }
+    });
   }
 
   @Override
@@ -62,10 +90,7 @@ public class CharacterModelViewElement implements IViewElement {
   @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
-    if (adapter == IResource.class) {
-      return configuration.getModelFile(characterFolder);
-    }
-    return null;
+    return adaptable.getAdapter(adapter);
   }
 
   @Override
@@ -76,10 +101,7 @@ public class CharacterModelViewElement implements IViewElement {
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     try {
-      IEditorInput input = configuration.createEditorInput(
-          characterFolder,
-          getImageDescriptor(),
-          new DisplayNameProvider(getDisplayName(), getParent()));
+      IEditorInput input = getEditorInput();
       page.openEditor(input, configuration.getEditorId());
     }
     catch (Exception e) {
@@ -89,5 +111,13 @@ public class CharacterModelViewElement implements IViewElement {
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }
+  }
+
+  private IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
+    IEditorInput input = configuration.createEditorInput(
+        characterFolder,
+        getImageDescriptor(),
+        new DisplayNameProvider(getDisplayName(), getParent()));
+    return input;
   }
 }

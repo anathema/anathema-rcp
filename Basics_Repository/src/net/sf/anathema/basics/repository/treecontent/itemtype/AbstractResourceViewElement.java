@@ -2,6 +2,7 @@ package net.sf.anathema.basics.repository.treecontent.itemtype;
 
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
+import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.input.internal.FileItemEditorInput;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
@@ -43,10 +44,9 @@ public abstract class AbstractResourceViewElement implements IViewElement {
 
   @Override
   public final void openEditor(IWorkbenchPage page) throws PartInitException {
-    IFile file = getEditFile();
     try {
-      IEditorInput input = new FileItemEditorInput(file, untitledName, getImageDescriptor());
-      String fileName = file.getName();
+      IEditorInput input = getEditorInput();
+      String fileName = getEditFile().getName();
       IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
       page.openEditor(input, defaultEditor.getId());
     }
@@ -64,6 +64,10 @@ public abstract class AbstractResourceViewElement implements IViewElement {
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }
+  }
+
+  public IEditorInput getEditorInput() throws PersistenceException, CoreException {
+    return new FileItemEditorInput(getEditFile(), untitledName, getImageDescriptor());
   }
 
   @Override
@@ -93,6 +97,7 @@ public abstract class AbstractResourceViewElement implements IViewElement {
     return getEditFile().hashCode();
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
     if (adapter == IResource.class) {
@@ -100,6 +105,14 @@ public abstract class AbstractResourceViewElement implements IViewElement {
     }
     if (adapter == IPageDelible.class) {
       return createDelible();
+    }
+    if (adapter == IEditorInputProvider.class) {
+      return new IEditorInputProvider() {
+        @Override
+        public IEditorInput getEditorInput() throws PersistenceException, CoreException {
+          return AbstractResourceViewElement.this.getEditorInput();
+        }
+      };
     }
     return null;
   }
