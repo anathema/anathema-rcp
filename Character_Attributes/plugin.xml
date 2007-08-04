@@ -13,11 +13,6 @@
                editorInputFactory="net.sf.anathema.character.attributes.model.AttributeEditorInputFactory"
                icon="icons/TabCharacter16.png">
          </displayConfiguration>
-         <pointConfiguration
-               bonusPointCalculator="net.sf.anathema.character.attributes.points.AttributeBonusPointHandler"
-               experiencePointCalculator="net.sf.anathema.character.attributes.points.AttributeExperienceHandler"
-               name="%character.attributes.pointconfiguration">
-         </pointConfiguration>
       </model>
    </extension>
    <extension
@@ -28,6 +23,15 @@
             id="net.sf.anathema.character.attributes.editor"
             name="%editor.name.attributes">
       </editor>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.points.configuration">
+      <pointConfiguration
+            bonusPointCalculator="net.sf.anathema.character.attributes.points.AttributeBonusPointHandler"
+            experiencePointCalculator="net.sf.anathema.character.attributes.points.AttributeExperienceHandler"
+            modelId="net.sf.anathema.character.attributes.model"
+            name="%character.attributes.pointconfiguration">
+      </pointConfiguration>
    </extension>
 
 </plugin>

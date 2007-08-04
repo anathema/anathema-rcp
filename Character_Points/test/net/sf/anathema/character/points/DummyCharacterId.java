@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points.model;
+package net.sf.anathema.character.points;
 
 import java.util.HashMap;
 import java.util.Map;

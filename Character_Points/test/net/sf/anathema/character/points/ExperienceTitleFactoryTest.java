@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points.model;
+package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.model.Experience;

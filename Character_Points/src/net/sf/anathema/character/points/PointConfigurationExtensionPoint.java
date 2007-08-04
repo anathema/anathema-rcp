@@ -7,21 +7,22 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.core.CharacterCorePlugin;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.internal.Messages;
 import net.sf.anathema.character.core.template.ICharacterTemplate;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
+import net.sf.anathema.character.points.plugin.PointPluginConstants;
 
 import org.eclipse.core.runtime.IStatus;
 
 public class PointConfigurationExtensionPoint implements IPointConfigurationProvider {
 
-  private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.models"; //$NON-NLS-1$
+  private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.points.configuration"; //$NON-NLS-1$
   private static final String ATTRIB_NAME = "name"; //$NON-NLS-1$
   private static final String ATTRIB_EXPERIENCE_POINT_CALCULATOR = "experiencePointCalculator"; //$NON-NLS-1$
   private static final String ATTRIB_BONUS_POINT_CALCULATOR = "bonusPointCalculator"; //$NON-NLS-1$
-  private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
+  private static final String ATTRIB_MODEL_ID = "modelId"; //$NON-NLS-1$
+  private static final Logger logger = new Logger(PointPluginConstants.PLUGIN_ID);
 
   public IPointConfiguration[] getExperiencePointConfigurations(
       ICharacterTemplateProvider provider,
@@ -40,9 +41,8 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
     ICharacterTemplate template = provider.getTemplate(characterId);
     List<IPointConfiguration> configurations = new ArrayList<IPointConfiguration>();
     for (IPluginExtension extension : getPluginExtensions()) {
-      for (IExtensionElement modelElement : extension.getElements()) {
-        String modelId = modelElement.getAttribute(ATTRIB_ID);
-        IExtensionElement configurationElement = modelElement.getElement("pointConfiguration"); //$NON-NLS-1$
+      for (IExtensionElement configurationElement : extension.getElements()) {
+        String modelId = configurationElement.getAttribute(ATTRIB_MODEL_ID);
         if (configurationElement != null && template.supportsModel(modelId)) {
           String name = configurationElement.getAttribute(ATTRIB_NAME);
           IPointHandler handler = null;
@@ -50,9 +50,9 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
             handler = configurationElement.getAttributeAsObject(pointCalculatorAttribute, IPointHandler.class);
           }
           catch (ExtensionException e) {
-            CharacterCorePlugin.getDefaultInstance().log(
+            logger.log(
                 IStatus.ERROR,
-                Messages.ModelExtensionPoint_CalculatorLoadError,
+                Messages.PointConfigurationExtensionPoint_CalculatorLoadError,
                 e);
           }
           if (handler == null) {

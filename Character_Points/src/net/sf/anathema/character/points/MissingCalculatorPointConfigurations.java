@@ -1,7 +1,6 @@
 package net.sf.anathema.character.points;
 
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.internal.Messages;
 
 public class MissingCalculatorPointConfigurations implements IPointConfiguration {
 
