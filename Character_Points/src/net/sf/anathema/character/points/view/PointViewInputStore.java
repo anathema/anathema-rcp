@@ -9,13 +9,14 @@ import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
+import net.sf.anathema.view.valuelist.IValueListInputStore;
 
 import org.eclipse.ui.IEditorInput;
 
 public class PointViewInputStore implements IValueListInputStore {
 
   private static final NullPointViewInput nullInput = new NullPointViewInput();
-  private IPointViewInput lastInput;
+  private ICharacterValueEntryFactory lastInput;
   private boolean lastExperienced;
   private final PointViewInputFactory factory;
   
@@ -27,7 +28,7 @@ public class PointViewInputStore implements IValueListInputStore {
     this.factory = new PointViewInputFactory(provider, new CharacterTemplateProvider());
   }
 
-  public IPointViewInput getViewInput(IEditorInput editorInput) {
+  public ICharacterValueEntryFactory getViewInput(IEditorInput editorInput) {
     IModelIdentifier modelIdentifier = new ModelIdentifierProvider().getModelIdentifier(editorInput);
     if (modelIdentifier == null) {
       return storeInput(nullInput);
@@ -51,7 +52,7 @@ public class PointViewInputStore implements IValueListInputStore {
     return (IExperience) ModelCache.getInstance().getModel(modelIdentifier);
   }
 
-  private IPointViewInput storeInput(IPointViewInput input) {
+  private ICharacterValueEntryFactory storeInput(ICharacterValueEntryFactory input) {
     this.lastInput = input;
     return input;
   }

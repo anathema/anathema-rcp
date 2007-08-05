@@ -8,7 +8,7 @@
             id="net.sf.anathema.character.experiencepoints.action"
             targetID="net.sf.anathema.character.points">
          <action
-               class="net.sf.anathema.character.points.view.UpdateActionDelegate"
+               class="net.sf.anathema.view.valuelist.UpdateActionDelegate"
                icon="icons/nav_refresh.gif"
                id="net.sf.anathema.character.experiencepoints.action.update"
                label="%points.view.update"

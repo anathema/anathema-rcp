@@ -1,7 +1,5 @@
 package net.sf.anathema.view.valuelist;
 
-
-
 public final class UpdateRunnable implements Runnable {
   private final IUpdatable[] allUpdateable;
 

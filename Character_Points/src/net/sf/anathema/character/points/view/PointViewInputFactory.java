@@ -15,7 +15,7 @@ public class PointViewInputFactory {
     this.templateProvider = templateProvider;
   }
 
-  public IPointViewInput create(ICharacterId characterId, boolean experienced) {
+  public ICharacterValueEntryFactory create(ICharacterId characterId, boolean experienced) {
     return new PointViewInput(characterId, getPointConfigurations(characterId, experienced));
   }
 

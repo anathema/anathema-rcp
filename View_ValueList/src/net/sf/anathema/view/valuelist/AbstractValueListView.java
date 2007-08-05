@@ -1,12 +1,9 @@
-package net.sf.anathema.character.points.view;
+package net.sf.anathema.view.valuelist;
 
 import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
-import net.sf.anathema.view.valuelist.IUpdatable;
-import net.sf.anathema.view.valuelist.IValueEntry;
-import net.sf.anathema.view.valuelist.IViewUpdateHandler;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -16,7 +13,7 @@ import org.eclipse.swt.widgets.Label;
 public abstract class AbstractValueListView extends DisposableViewPart implements IUpdatable {
 
   private Composite component;
-  private IPointViewInput viewInput;
+  private IValueEntryFactory viewInput;
   private Composite parent;
   private final IValueListInputStore inputStore;
   private final IViewUpdateHandler updateHandler;
