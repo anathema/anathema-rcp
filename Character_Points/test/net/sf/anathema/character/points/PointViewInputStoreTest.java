@@ -8,7 +8,6 @@ import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
 import net.sf.anathema.character.points.view.ICharacterValueEntryFactory;
 import net.sf.anathema.character.points.view.PointViewInputStore;
-import net.sf.anathema.view.valuelist.IValueEntryFactory;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;
@@ -41,7 +40,7 @@ public class PointViewInputStoreTest {
   @Test
   public void createsEntriesForCharacter() throws Exception {
     EasyMock.replay(editorInput);
-    ICharacterValueEntryFactory newInput = viewInputFactory.getViewInput(editorInput);
+    ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(editorInput);
     assertNotNull(newInput);
     assertNotNull(newInput.getCharacterId());
     assertTrue(newInput.createEntries().length != 0);
@@ -51,17 +50,17 @@ public class PointViewInputStoreTest {
   @Test
   public void createsNoNewInputForIdenticalCharacter() throws Exception {
     EasyMock.replay(editorInput);
-    IValueEntryFactory oldInput = viewInputFactory.getViewInput(editorInput);
-    IValueEntryFactory newInput = viewInputFactory.getViewInput(editorInput);
+    ICharacterValueEntryFactory oldInput = viewInputFactory.getEntriesFactory(editorInput);
+    ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(editorInput);
     assertEquals(oldInput, newInput);
   }
 
   @Test
   public void createsNewInputForIdenticalCharacterIfExperienceStateChanged() throws Exception {
     EasyMock.replay(editorInput);
-    IValueEntryFactory oldInput = viewInputFactory.getViewInput(editorInput);
+    ICharacterValueEntryFactory oldInput = viewInputFactory.getEntriesFactory(editorInput);
     setExperienced();
-    IValueEntryFactory newInput = viewInputFactory.getViewInput(editorInput);
+    ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(editorInput);
     assertFalse(oldInput.equals(newInput));
   }
 
@@ -69,8 +68,8 @@ public class PointViewInputStoreTest {
   public void createsNoNewInputForIdenticalCharacterIfExperienceStateDidNotChangeBetweenCalls() throws Exception {
     EasyMock.replay(editorInput);
     setExperienced();
-    IValueEntryFactory oldInput = viewInputFactory.getViewInput(editorInput);
-    IValueEntryFactory newInput = viewInputFactory.getViewInput(editorInput);
+    ICharacterValueEntryFactory oldInput = viewInputFactory.getEntriesFactory(editorInput);
+    ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(editorInput);
     assertEquals(oldInput, newInput);
   }
 

@@ -28,7 +28,7 @@ public class BadInputForPointViewStoreTest {
 
   @Test
   public void nullInputProviderReturnsEmptyViewInput() throws Exception {
-    ICharacterValueEntryFactory newInput = viewInputFactory.getViewInput(null);
+    ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(null);
     assertEmptyViewElement(newInput);
   }
 
@@ -37,7 +37,7 @@ public class BadInputForPointViewStoreTest {
     IEditorInput editorInput = EasyMock.createStrictMock(IEditorInput.class);
     EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(null);
     EasyMock.replay(editorInput);
-    ICharacterValueEntryFactory newInput = viewInputFactory.getViewInput(editorInput);
+    ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(editorInput);
     assertEmptyViewElement(newInput);
     EasyMock.verify(editorInput);
   }

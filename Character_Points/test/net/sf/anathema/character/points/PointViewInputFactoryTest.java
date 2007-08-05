@@ -7,7 +7,7 @@ import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.points.configuration.internal.PointConfiguration;
-import net.sf.anathema.character.points.view.PointViewInputFactory;
+import net.sf.anathema.character.points.view.PointValueEntryFactoryFactory;
 import net.sf.anathema.view.valuelist.IValueEntry;
 
 import org.easymock.EasyMock;
@@ -41,13 +41,13 @@ public class PointViewInputFactoryTest {
         expectedValue)) };
   }
 
-  private PointViewInputFactory factory;
+  private PointValueEntryFactoryFactory factory;
   private IPointConfigurationProvider pointConfigurationProvider;
 
   @Before
   public void createFactory() throws Exception {
     this.pointConfigurationProvider = EasyMock.createMock(IPointConfigurationProvider.class);
-    this.factory = new PointViewInputFactory(pointConfigurationProvider, null);
+    this.factory = new PointValueEntryFactoryFactory(pointConfigurationProvider, null);
   }
 
   @Test

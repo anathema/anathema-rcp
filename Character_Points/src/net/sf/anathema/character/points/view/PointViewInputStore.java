@@ -9,26 +9,32 @@ import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
+import net.sf.anathema.view.valuelist.IValueEntry;
 import net.sf.anathema.view.valuelist.IValueListInputStore;
 
 import org.eclipse.ui.IEditorInput;
 
 public class PointViewInputStore implements IValueListInputStore {
 
-  private static final NullPointViewInput nullInput = new NullPointViewInput();
+  private static final NullCharacterValueEntryFactory nullInput = new NullCharacterValueEntryFactory();
   private ICharacterValueEntryFactory lastInput;
   private boolean lastExperienced;
-  private final PointViewInputFactory factory;
+  private final PointValueEntryFactoryFactory factory;
   
   public PointViewInputStore() {
     this(new PointConfigurationExtensionPoint());
   }
 
   public PointViewInputStore(IPointConfigurationProvider provider) {
-    this.factory = new PointViewInputFactory(provider, new CharacterTemplateProvider());
+    this.factory = new PointValueEntryFactoryFactory(provider, new CharacterTemplateProvider());
+  }
+  
+  public IValueEntry[] getEntries(IEditorInput editorInput) {
+    ICharacterValueEntryFactory entriesFactory = getEntriesFactory(editorInput);
+    return entriesFactory.createEntries();
   }
 
-  public ICharacterValueEntryFactory getViewInput(IEditorInput editorInput) {
+  public ICharacterValueEntryFactory getEntriesFactory(IEditorInput editorInput) {
     IModelIdentifier modelIdentifier = new ModelIdentifierProvider().getModelIdentifier(editorInput);
     if (modelIdentifier == null) {
       return storeInput(nullInput);

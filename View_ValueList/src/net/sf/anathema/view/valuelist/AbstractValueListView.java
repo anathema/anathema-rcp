@@ -34,12 +34,11 @@ public abstract class AbstractValueListView extends DisposableViewPart implement
     if (component != null) {
       component.dispose();
     }
-    IValueEntryFactory entriesFactory = inputStore.getViewInput(getPartContainer().getEditorInput());
     parent.setLayout(new GridLayout(1, false));
     component = new Composite(parent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
     component.setLayout(new GridLayout(2, false));
-    for (IValueEntry entry : entriesFactory.createEntries()) {
+    for (IValueEntry entry : inputStore.getEntries(getPartContainer().getEditorInput())) {
       Label nameLabel = new Label(component, SWT.LEFT);
       nameLabel.setText(entry.getDisplayName());
       nameLabel.setLayoutData(GridDataFactory.createHorizontalFill());

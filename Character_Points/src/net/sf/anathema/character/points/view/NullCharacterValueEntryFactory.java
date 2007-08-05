@@ -3,7 +3,7 @@ package net.sf.anathema.character.points.view;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.view.valuelist.IValueEntry;
 
-public class NullPointViewInput implements ICharacterValueEntryFactory {
+public class NullCharacterValueEntryFactory implements ICharacterValueEntryFactory {
 
   private IValueEntry[] pointEntries = new IValueEntry[0];
 
