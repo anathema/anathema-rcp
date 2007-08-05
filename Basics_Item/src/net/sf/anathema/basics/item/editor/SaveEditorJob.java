@@ -39,6 +39,7 @@ public final class SaveEditorJob extends Job {
     monitor.beginTask(Messages.StyledTextEditor_SaveJobTask, IProgressMonitor.UNKNOWN);
     try {
       editorInput.save(monitor);
+      //TODO NOW: Exception wenn Device bereits disposed und trotzdem gesaved
       display.asyncExec(postSave);
       return Status.OK_STATUS;
     }

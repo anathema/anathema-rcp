@@ -1,6 +1,7 @@
 package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;

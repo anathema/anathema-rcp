@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.core.fake;
 
 import java.util.HashMap;
 import java.util.Map;

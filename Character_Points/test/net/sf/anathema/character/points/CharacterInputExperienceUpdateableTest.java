@@ -3,6 +3,7 @@ package net.sf.anathema.character.points;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
+import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
