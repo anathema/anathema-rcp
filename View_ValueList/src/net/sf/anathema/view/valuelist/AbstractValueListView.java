@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Label;
 public abstract class AbstractValueListView extends DisposableViewPart implements IUpdatable {
 
   private Composite component;
-  private IValueEntryFactory viewInput;
   private Composite parent;
   private final IValueListInputStore inputStore;
   private final IViewUpdateHandler updateHandler;
@@ -35,12 +34,12 @@ public abstract class AbstractValueListView extends DisposableViewPart implement
     if (component != null) {
       component.dispose();
     }
-    this.viewInput = inputStore.getViewInput(getPartContainer().getEditorInput());
+    IValueEntryFactory entriesFactory = inputStore.getViewInput(getPartContainer().getEditorInput());
     parent.setLayout(new GridLayout(1, false));
     component = new Composite(parent, SWT.NONE);
     component.setLayoutData(GridDataFactory.createFillBoth());
     component.setLayout(new GridLayout(2, false));
-    for (IValueEntry entry : viewInput.createEntries()) {
+    for (IValueEntry entry : entriesFactory.createEntries()) {
       Label nameLabel = new Label(component, SWT.LEFT);
       nameLabel.setText(entry.getDisplayName());
       nameLabel.setLayoutData(GridDataFactory.createHorizontalFill());
@@ -49,7 +48,10 @@ public abstract class AbstractValueListView extends DisposableViewPart implement
       pointLabel.setLayoutData(GridDataFactory.createRightAlign());
     }
     parent.layout(true);
-    setPartName(updateHandler.getTitle());
+    String newTitle = updateHandler.getTitle();
+    if (newTitle != null) {
+      setPartName(newTitle);
+    }
   }
 
   private IPartContainer getPartContainer() {

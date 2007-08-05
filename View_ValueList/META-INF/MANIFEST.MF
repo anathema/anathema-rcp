@@ -4,7 +4,7 @@ Bundle-Name: %net.sf.anathema.view.valuelist.Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.view.valuelist
 Bundle-Version: 1.0.0
 Eclipse-LazyStart: true
-Require-Bundle: net.sf.anathema.basics.eclipse,
+Require-Bundle: net.sf.anathema.basics.eclipse;visibility:=reexport,
  net.sf.anathema.basics.jface,
  net.sf.anathema.basics.lib
 Export-Package: net.sf.anathema.view.valuelist

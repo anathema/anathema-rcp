@@ -7,5 +7,4 @@ Eclipse-LazyStart: true
 Bundle-Localization: plugin
 Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.lib,
- net.sf.anathema.basics.eclipse,
- net.sf.anathema.basics.jface
+ net.sf.anathema.view.valuelist
