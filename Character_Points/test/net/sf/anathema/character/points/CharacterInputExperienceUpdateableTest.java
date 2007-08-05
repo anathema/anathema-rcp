@@ -9,7 +9,7 @@ import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.view.CharacterPointsUpdatable;
-import net.sf.anathema.character.points.view.IUpdatable;
+import net.sf.anathema.view.valuelist.IUpdatable;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;

@@ -12,7 +12,7 @@ import net.sf.anathema.character.points.configuration.internal.PointConfiguratio
 
 import org.eclipse.ui.IEditorInput;
 
-public class PointViewInputStore {
+public class PointViewInputStore implements IValueListInputStore {
 
   private static final NullPointViewInput nullInput = new NullPointViewInput();
   private IPointViewInput lastInput;

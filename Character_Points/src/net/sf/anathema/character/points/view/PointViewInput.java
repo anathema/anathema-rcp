@@ -4,6 +4,7 @@ import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
+import net.sf.anathema.view.valuelist.IValueEntry;
 
 public class PointViewInput implements IPointViewInput {
 
@@ -20,21 +21,21 @@ public class PointViewInput implements IPointViewInput {
     return characterId;
   }
 
-  public IPointEntry[] createEntries() {
+  public IValueEntry[] createEntries() {
     return ArrayUtilities.transform(
         pointConfigurations,
-        IPointEntry.class,
-        new ITransformer<IPointConfiguration, IPointEntry>() {
+        IValueEntry.class,
+        new ITransformer<IPointConfiguration, IValueEntry>() {
           @Override
-          public IPointEntry transform(final IPointConfiguration input) {
-            return new IPointEntry() {
+          public IValueEntry transform(final IPointConfiguration input) {
+            return new IValueEntry() {
               @Override
-              public String getModelDisplayName() {
+              public String getDisplayName() {
                 return input.getName();
               }
 
               @Override
-              public String getExperiencePoints() {
+              public String getValue() {
                 return input.getPoints(characterId);
               }
             };

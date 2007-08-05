@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.lib.control.change.IChangeListener;
+import net.sf.anathema.view.valuelist.IUpdatable;
 
 import org.eclipse.ui.IEditorInput;
 

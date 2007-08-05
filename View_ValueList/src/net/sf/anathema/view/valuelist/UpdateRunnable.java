@@ -1,4 +1,5 @@
-package net.sf.anathema.character.points.view;
+package net.sf.anathema.view.valuelist;
+
 
 
 public final class UpdateRunnable implements Runnable {

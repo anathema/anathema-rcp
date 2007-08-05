@@ -3,9 +3,10 @@ package net.sf.anathema.character.points;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
-import net.sf.anathema.character.points.view.IPointEntry;
 import net.sf.anathema.character.points.view.IPointViewInput;
+import net.sf.anathema.character.points.view.IValueListInputStore;
 import net.sf.anathema.character.points.view.PointViewInputStore;
+import net.sf.anathema.view.valuelist.IValueEntry;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;
@@ -13,12 +14,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class BadInputForPointViewStoreTest {
-  private PointViewInputStore viewInputFactory;
+  private IValueListInputStore viewInputFactory;
 
   private void assertEmptyViewElement(IPointViewInput newInput) {
     assertNotNull(newInput);
     assertNull(newInput.getCharacterId());
-    assertArrayEquals(new IPointEntry[0], newInput.createEntries());
+    assertArrayEquals(new IValueEntry[0], newInput.createEntries());
   }
 
   @Before

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points.view;
+package net.sf.anathema.view.valuelist;
 
 public interface IUpdatable {
 

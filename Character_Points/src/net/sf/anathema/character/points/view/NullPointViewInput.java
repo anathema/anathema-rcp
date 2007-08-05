@@ -1,13 +1,14 @@
 package net.sf.anathema.character.points.view;
 
 import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.view.valuelist.IValueEntry;
 
 public class NullPointViewInput implements IPointViewInput {
 
-  private IPointEntry[] pointEntries = new IPointEntry[0];
+  private IValueEntry[] pointEntries = new IValueEntry[0];
 
   @Override
-  public IPointEntry[] createEntries() {
+  public IValueEntry[] createEntries() {
     return pointEntries;
   }
 

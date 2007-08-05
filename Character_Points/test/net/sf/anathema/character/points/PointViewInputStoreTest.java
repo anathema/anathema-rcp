@@ -7,6 +7,7 @@ import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
 import net.sf.anathema.character.points.view.IPointViewInput;
+import net.sf.anathema.character.points.view.IValueListInputStore;
 import net.sf.anathema.character.points.view.PointViewInputStore;
 
 import org.easymock.EasyMock;
@@ -16,7 +17,7 @@ import org.junit.Test;
 
 public class PointViewInputStoreTest {
 
-  private PointViewInputStore viewInputFactory;
+  private IValueListInputStore viewInputFactory;
   private DummyCharacterId characterId;
   private ModelIdentifier modelIdentifier;
   private IEditorInput editorInput;

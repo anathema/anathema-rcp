@@ -7,8 +7,8 @@ import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.points.configuration.internal.PointConfiguration;
-import net.sf.anathema.character.points.view.IPointEntry;
 import net.sf.anathema.character.points.view.PointViewInputFactory;
+import net.sf.anathema.view.valuelist.IValueEntry;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
@@ -29,10 +29,10 @@ public class PointViewInputFactoryTest {
     }
   }
 
-  private void assertPointEntryCreated(String expectedDisplayName, int expectedValue, IPointEntry[] entries) {
+  private void assertPointEntryCreated(String expectedDisplayName, int expectedValue, IValueEntry[] entries) {
     assertEquals(1, entries.length);
-    assertEquals(expectedDisplayName, entries[0].getModelDisplayName());
-    assertEquals(String.valueOf(expectedValue), entries[0].getExperiencePoints());
+    assertEquals(expectedDisplayName, entries[0].getDisplayName());
+    assertEquals(String.valueOf(expectedValue), entries[0].getValue());
     EasyMock.verify(pointConfigurationProvider);
   }
 
