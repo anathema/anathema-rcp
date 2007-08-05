@@ -1,20 +1,10 @@
 package net.sf.anathema.character.freebies;
 
-import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
+import net.sf.anathema.view.valuelist.AbstractValueListView;
 
-import org.eclipse.swt.widgets.Composite;
+public class FreebiesView extends AbstractValueListView {
 
-public class FreebiesView extends DisposableViewPart {
-
-  @Override
-  public void createPartControl(Composite parent) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void setFocus() {
-    // TODO Auto-generated method stub
-
+  public FreebiesView() {
+    super(new FreebiesViewInputStore(), new FreebiesViewUpdateHandler());
   }
 }
