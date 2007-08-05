@@ -7,7 +7,7 @@
             allowMultiple="false"
             class="net.sf.anathema.character.freebies.FreebiesView"
             id="net.sf.anathema.character.freebies"
-            name="Freebies">
+            name="%Freebies.View.Title">
       </view>
    </extension>
 
