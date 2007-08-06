@@ -4,8 +4,8 @@ import net.sf.anathema.view.valuelist.AbstractValueListView;
 import net.sf.anathema.view.valuelist.IUpdatable;
 
 public class PointsView extends AbstractValueListView implements IUpdatable {
-  
+
   public PointsView() {
-    super(new PointViewInputStore(), new PointViewUpdateHandler());
+    super(new CharacterPointsEntryProvider(), new PointViewUpdateHandler());
   }
 }

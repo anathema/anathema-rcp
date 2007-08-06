@@ -14,10 +14,10 @@ public abstract class AbstractValueListView extends DisposableViewPart implement
 
   private Composite component;
   private Composite parent;
-  private final IValueListInputStore inputStore;
+  private final IValueListEntryProvider inputStore;
   private final IViewUpdateHandler updateHandler;
 
-  public AbstractValueListView(IValueListInputStore inputStore, IViewUpdateHandler updateHandler) {
+  public AbstractValueListView(IValueListEntryProvider inputStore, IViewUpdateHandler updateHandler) {
     this.inputStore = inputStore;
     this.updateHandler = updateHandler;
   }

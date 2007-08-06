@@ -5,6 +5,6 @@ import net.sf.anathema.view.valuelist.AbstractValueListView;
 public class FreebiesView extends AbstractValueListView {
 
   public FreebiesView() {
-    super(new FreebiesViewInputStore(new FreebiePointEntryFactory()), new FreebiesViewUpdateHandler());
+    super(new FreebiePointInputProvider(new FreebiePointEntryFactory()), new FreebiesViewUpdateHandler());
   }
 }

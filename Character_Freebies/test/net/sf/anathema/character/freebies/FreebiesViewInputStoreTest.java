@@ -12,13 +12,13 @@ import org.junit.Test;
 
 public class FreebiesViewInputStoreTest {
 
-  private FreebiesViewInputStore store;
+  private FreebiePointInputProvider store;
   private IFreebiePointEntryFactory factory;
 
   @Before
   public void createStore() throws Exception {
     factory = EasyMock.createMock(IFreebiePointEntryFactory.class);
-    store = new FreebiesViewInputStore(factory);
+    store = new FreebiePointInputProvider(factory);
   }
 
   @Test
