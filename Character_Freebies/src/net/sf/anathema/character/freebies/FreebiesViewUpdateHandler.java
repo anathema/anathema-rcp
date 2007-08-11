@@ -1,11 +1,16 @@
 package net.sf.anathema.character.freebies;
 
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.basics.eclipse.ui.PartListening;
+import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.view.valuelist.IUpdatable;
 import net.sf.anathema.view.valuelist.IViewUpdateHandler;
+import net.sf.anathema.view.valuelist.UpdateRunnable;
 
-public class FreebiesViewUpdateHandler extends AggregatedDisposable implements IViewUpdateHandler {
+public class FreebiesViewUpdateHandler implements IViewUpdateHandler {
+
+  private AggregatedDisposable disposables = new AggregatedDisposable();
 
   @Override
   public String getTitle() {
@@ -13,7 +18,14 @@ public class FreebiesViewUpdateHandler extends AggregatedDisposable implements I
   }
 
   @Override
-  public void init(IPartContainer partContainer, IUpdatable updatable) {
-    // TODO Auto-generated method stub
+  public void init(IPartContainer partContainer, IUpdatable updateable) {
+    UpdateRunnable runnable = new UpdateRunnable(updateable);
+    TopPartListener topPartListener = new TopPartListener(runnable);
+    disposables.addDisposable(new PartListening(topPartListener, partContainer));
+  }
+  
+  @Override
+  public void dispose() {
+    disposables.dispose();
   }
 }
