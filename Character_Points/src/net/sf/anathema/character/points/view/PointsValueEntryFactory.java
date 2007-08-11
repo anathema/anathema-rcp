@@ -8,6 +8,24 @@ import net.sf.anathema.view.valuelist.IValueEntry;
 
 public class PointsValueEntryFactory implements ICharacterValueEntryFactory {
 
+  private final class PointConfigurationValueEntry implements IValueEntry {
+    private final IPointConfiguration pointConfiguration;
+
+    private PointConfigurationValueEntry(IPointConfiguration pointConfiguration) {
+      this.pointConfiguration = pointConfiguration;
+    }
+
+    @Override
+    public String getDisplayName() {
+      return pointConfiguration.getName();
+    }
+
+    @Override
+    public String getValue() {
+      return pointConfiguration.getPoints(characterId);
+    }
+  }
+
   private final ICharacterId characterId;
   private final IPointConfiguration[] pointConfigurations;
 
@@ -27,18 +45,8 @@ public class PointsValueEntryFactory implements ICharacterValueEntryFactory {
         IValueEntry.class,
         new ITransformer<IPointConfiguration, IValueEntry>() {
           @Override
-          public IValueEntry transform(final IPointConfiguration input) {
-            return new IValueEntry() {
-              @Override
-              public String getDisplayName() {
-                return input.getName();
-              }
-
-              @Override
-              public String getValue() {
-                return input.getPoints(characterId);
-              }
-            };
+          public IValueEntry transform(final IPointConfiguration pointConfiguration) {
+            return new PointConfigurationValueEntry(pointConfiguration);
           }
         });
   }
