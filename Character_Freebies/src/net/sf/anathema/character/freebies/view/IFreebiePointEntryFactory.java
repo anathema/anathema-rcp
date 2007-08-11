@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies;
+package net.sf.anathema.character.freebies.view;
 
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.view.valuelist.IValueEntry;

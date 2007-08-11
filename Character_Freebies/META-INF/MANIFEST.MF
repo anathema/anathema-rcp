@@ -8,3 +8,4 @@ Bundle-Localization: plugin
 Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.lib,
  net.sf.anathema.view.valuelist
+Export-Package: net.sf.anathema.character.freebies.configuration

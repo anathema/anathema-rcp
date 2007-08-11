@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="net.sf.anathema.character.freebies.credit" name="Credit Manager" schema="schema/net.sf.anathema.character.freebies.credit.exsd"/>
+   <extension-point id="net.sf.anathema.character.freebies.configurations" name="Freebies Handler" schema="schema/net.sf.anathema.character.freebies.configurations.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
-            class="net.sf.anathema.character.freebies.FreebiesView"
+            class="net.sf.anathema.character.freebies.view.FreebiesView"
             id="net.sf.anathema.character.freebies"
             name="%Freebies.View.Title">
       </view>

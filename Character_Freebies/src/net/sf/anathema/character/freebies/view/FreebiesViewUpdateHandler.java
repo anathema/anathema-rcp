@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies;
+package net.sf.anathema.character.freebies.view;
 
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.basics.eclipse.ui.PartListening;
