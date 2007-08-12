@@ -84,7 +84,7 @@ public class CharacterModelViewElement implements IViewElement {
       return false;
     }
     CharacterModelViewElement other = (CharacterModelViewElement) object;
-    return folder.equals(other.folder);
+    return folder.equals(other.folder) && configuration.equals(other.configuration);
   }
 
   @SuppressWarnings("unchecked")

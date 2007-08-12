@@ -56,4 +56,13 @@ public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
     IFile modelFile = getModelFile(characterFolder);
     return factory.create(modelFile, characterFolder, descriptor, provider, ModelCache.getInstance());
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof ModelDisplayConfiguration)) {
+      return false;
+    }
+    ModelDisplayConfiguration other = (ModelDisplayConfiguration) obj;
+    return filename.equals(other.filename);
+  }
 }

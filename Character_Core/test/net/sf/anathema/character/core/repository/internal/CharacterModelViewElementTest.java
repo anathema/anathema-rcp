@@ -13,11 +13,13 @@ public class CharacterModelViewElementTest {
 
   private CharacterModelViewElement element;
   private IFolder folder;
+  private IModelDisplayConfiguration configuration;
 
   @Before
   public void createElement() {
     this.folder = EasyMock.createMock(IFolder.class);
-    this.element = new CharacterModelViewElement(null, folder, null);
+    this.configuration = EasyMock.createMock(IModelDisplayConfiguration.class);
+    this.element = new CharacterModelViewElement(null, folder, configuration);
   }
 
   @Test
@@ -39,14 +41,25 @@ public class CharacterModelViewElementTest {
   public void doesNotEqualOtherCharacterModelElementWithoutFolder() throws Exception {
     assertFalse(element.equals(new CharacterModelViewElement(null, null, null)));
   }
-  
+
   @Test
   public void equalsSelf() throws Exception {
-    assertTrue(element.equals(element));
+    assertEquals(element, element);
   }
-  
+
   @Test
-  public void equalsOtherElementWithSameFolder() throws Exception {
-    assertTrue(element.equals(new CharacterModelViewElement(null, folder, null)));
+  public void doesNotEqualOtherElementWithSameFolderOnly() throws Exception {
+    assertFalse(element.equals(new CharacterModelViewElement(null, folder, null)));
   }
+
+  @Test
+  public void doesNotEqualOtherElementWithSameConfigurationOnly() throws Exception {
+    assertFalse(element.equals(new CharacterModelViewElement(null, null, configuration)));
+  }
+
+  @Test
+  public void equalsOtherElementWithSameFolderAndConfiguration() throws Exception {
+    assertEquals(element, new CharacterModelViewElement(null, folder, configuration));
+  }
+
 }
