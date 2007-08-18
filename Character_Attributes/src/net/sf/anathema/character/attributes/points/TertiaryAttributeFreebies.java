@@ -4,10 +4,10 @@ import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 
-public class TertiaryAttributePoints extends AbstractExecutableExtension implements IFreebiesHandler {
+public class TertiaryAttributeFreebies extends AbstractExecutableExtension implements IFreebiesHandler {
 
   @Override
-  public int getPoints(ICharacterId id) {
-    return new PrioritylessFreebiesHandler().getPoints(id, AttributeFreebiesCalculator.TERTIARY);
+  public int getPoints(ICharacterId id, int credit) {
+    return new PrioritylessAttributeFreebies().getPoints(id, AttributeFreebiesCalculator.TERTIARY, credit);
   }
 }

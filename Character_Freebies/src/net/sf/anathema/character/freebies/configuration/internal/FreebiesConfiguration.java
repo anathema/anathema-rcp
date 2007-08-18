@@ -19,7 +19,11 @@ public class FreebiesConfiguration implements IFreebiesConfiguration {
 
   @Override
   public String getCredit(ICharacterId characterId) {
-    return String.valueOf(manager.getCredit(characterId, creditId));
+    return String.valueOf(getCreditValue(characterId));
+  }
+
+  private int getCreditValue(ICharacterId characterId) {
+    return manager.getCredit(characterId, creditId);
   }
 
   @Override
@@ -29,6 +33,6 @@ public class FreebiesConfiguration implements IFreebiesConfiguration {
 
   @Override
   public String getPoints(ICharacterId characterId) {
-    return String.valueOf(handler.getPoints(characterId));
+    return String.valueOf(handler.getPoints(characterId, getCreditValue(characterId)));
   }
 }

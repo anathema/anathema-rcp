@@ -37,17 +37,17 @@
          point="net.sf.anathema.character.freebies.configurations">
       <FreebiesConfiguration
             creditId="net.sf.anathema.character.attributes.freebies.primary"
-            handlerClass="net.sf.anathema.character.attributes.points.PrimaryAttributePoints"
+            handlerClass="net.sf.anathema.character.attributes.points.PrimaryAttributeFreebies"
             name="%PrimaryAttributes">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             creditId="net.sf.anathema.character.attributes.freebies.primary"
-            handlerClass="net.sf.anathema.character.attributes.points.SecondaryAttributePoints"
+            handlerClass="net.sf.anathema.character.attributes.points.SecondaryAttributeFreebies"
             name="%SecondaryAttributes">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             creditId="net.sf.anathema.character.attributes.freebies.tertiary"
-            handlerClass="net.sf.anathema.character.attributes.points.TertiaryAttributePoints"
+            handlerClass="net.sf.anathema.character.attributes.points.TertiaryAttributeFreebies"
             name="%TertiaryAttributes">
       </FreebiesConfiguration>
    </extension>
