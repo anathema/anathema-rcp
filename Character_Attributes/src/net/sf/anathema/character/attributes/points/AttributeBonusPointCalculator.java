@@ -20,6 +20,6 @@ public class AttributeBonusPointCalculator {
   }
 
   private int calculate(IBasicTrait trait) {
-    return Math.max(0, (trait.getCreationModel().getValue() - 1) *  4);
+    return Math.max(0, (trait.getCreationModel().getValue() - IAttributes.ATTRIBUTE_CALCULATION_BASE) *  4);
   }
 }

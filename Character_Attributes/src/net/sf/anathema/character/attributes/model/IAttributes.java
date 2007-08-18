@@ -6,6 +6,7 @@ import net.sf.anathema.character.trait.IBasicTrait;
 public interface IAttributes extends IModel {
 
   public static final String MODEL_ID = "net.sf.anathema.character.attributes.model"; //$NON-NLS-1$
+  public static final int ATTRIBUTE_CALCULATION_BASE = 1;
 
   public IBasicTrait[] getTraits();
 
