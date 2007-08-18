@@ -30,7 +30,7 @@ public class AttributeFreebiesCalculatorTest {
     traitGroups[0].addTraitId("trait"); //$NON-NLS-1$
     IAttributes attributes = Attributes.create(traitGroups);
     attributes.getTrait("trait").getCreationModel().setValue(2); //$NON-NLS-1$
-    assertPointsSpent(2, 0, 0, attributes);
+    assertPointsSpent(1, 0, 0, attributes);
   }
 
 
@@ -41,7 +41,7 @@ public class AttributeFreebiesCalculatorTest {
     IAttributes attributes = Attributes.create(traitGroups);
     attributes.getTrait("lower").getCreationModel().setValue(2); //$NON-NLS-1$
     attributes.getTrait("higher").getCreationModel().setValue(5); //$NON-NLS-1$
-    assertPointsSpent(5, 2, 0, attributes);
+    assertPointsSpent(4, 1, 0, attributes);
   }
 
   private void assertPointsSpent(int primary, int secondary, int tertiary, IAttributes attributes) {

@@ -16,7 +16,8 @@ public final class AttributeGroupPointsTransformer implements ITransformer<ITrai
   public AttributeGroupPoints transform(ITraitGroup group) {
     int pointsSpent = 0;
     for (String traitId : group.getTraitIds()) {
-      pointsSpent += attributes.getTrait(traitId).getCreationModel().getValue();
+      int creationValue = attributes.getTrait(traitId).getCreationModel().getValue();
+      pointsSpent += Math.max(0, creationValue - 1);
     }
     return new AttributeGroupPoints(pointsSpent);
   }
