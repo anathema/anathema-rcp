@@ -2,14 +2,13 @@ package net.sf.anathema.character.attributes.model;
 
 import java.io.IOException;
 
+import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
-import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -52,13 +51,10 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<IAt
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
   public IDisplayTraitGroup[] createDisplayGroups() {
-    TraitGroup[] groups = context.getTraitGroups();
-    for (TraitGroup group : groups) {
-      for (String traitId : group.getTraitIds()) {
-        group.addTrait(new DisplayTrait(getItem().getTrait(traitId), context.getExperience(), context.getRules()));
-      }
-    }
-    return groups;
+    return ArrayUtilities.transform(
+        context.getTraitGroups(),
+        IDisplayTraitGroup.class,
+        new TraitGroupToDisplayTraitGroupTransformer(context));
   }
 
   public IFolder getCharacterFolder() {
