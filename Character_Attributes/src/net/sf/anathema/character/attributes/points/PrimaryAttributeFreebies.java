@@ -8,6 +8,6 @@ public class PrimaryAttributeFreebies extends AbstractExecutableExtension implem
   
   @Override
   public int getPoints(ICharacterId id, int credit) {
-    return new PrioritylessAttributeFreebies().getPoints(id, AttributeFreebiesCalculator.PRIMARY, credit);
+    return new PrioritylessAttributeFreebies().getPoints(id, AttributePointCalculator.PRIMARY, credit);
   }
 }

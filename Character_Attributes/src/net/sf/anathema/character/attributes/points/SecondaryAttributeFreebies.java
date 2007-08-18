@@ -8,6 +8,6 @@ public class SecondaryAttributeFreebies extends AbstractExecutableExtension impl
 
   @Override
   public int getPoints(ICharacterId id, int credit) {
-    return new PrioritylessAttributeFreebies().getPoints(id, AttributeFreebiesCalculator.SECONDARY, credit);
+    return new PrioritylessAttributeFreebies().getPoints(id, AttributePointCalculator.SECONDARY, credit);
   }
 }

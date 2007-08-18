@@ -8,6 +8,6 @@ public class TertiaryAttributeFreebies extends AbstractExecutableExtension imple
 
   @Override
   public int getPoints(ICharacterId id, int credit) {
-    return new PrioritylessAttributeFreebies().getPoints(id, AttributeFreebiesCalculator.TERTIARY, credit);
+    return new PrioritylessAttributeFreebies().getPoints(id, AttributePointCalculator.TERTIARY, credit);
   }
 }

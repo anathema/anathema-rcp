@@ -1,6 +1,6 @@
 package net.sf.anathema.character.attributes.points;
 
-import static net.sf.anathema.character.attributes.points.AttributeFreebiesCalculator.*;
+import static net.sf.anathema.character.attributes.points.AttributePointCalculator.*;
 import static org.junit.Assert.assertEquals;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.attributes.model.IAttributes;
@@ -8,7 +8,7 @@ import net.sf.anathema.character.attributes.model.IAttributes;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AttributeFreebiesCalculatorTest {
+public class AttributePointCalculatorTest {
 
   private DummyTraitGroup[] traitGroups;
 
@@ -45,7 +45,7 @@ public class AttributeFreebiesCalculatorTest {
   }
 
   private void assertPointsSpent(int primary, int secondary, int tertiary, IAttributes attributes) {
-    AttributeFreebiesCalculator freebiesCalculator = new AttributeFreebiesCalculator(attributes, traitGroups);
+    AttributePointCalculator freebiesCalculator = new AttributePointCalculator(attributes, traitGroups);
     assertEquals(primary, freebiesCalculator.pointsSpentFor(PRIMARY));
     assertEquals(secondary, freebiesCalculator.pointsSpentFor(SECONDARY));
     assertEquals(tertiary, freebiesCalculator.pointsSpentFor(TERTIARY));

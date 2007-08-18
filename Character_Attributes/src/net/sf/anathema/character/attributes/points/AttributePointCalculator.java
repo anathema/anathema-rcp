@@ -6,7 +6,7 @@ import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 
-public class AttributeFreebiesCalculator {
+public class AttributePointCalculator {
 
   public static class PriorityGroup {
 
@@ -27,7 +27,7 @@ public class AttributeFreebiesCalculator {
   final IAttributes attributes;
   private final ITraitGroup[] groups;
 
-  public AttributeFreebiesCalculator(IAttributes attributes, ITraitGroup[] groups) {
+  public AttributePointCalculator(IAttributes attributes, ITraitGroup[] groups) {
     this.attributes = attributes;
     this.groups = groups;
   }
