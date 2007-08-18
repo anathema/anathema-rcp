@@ -5,9 +5,9 @@ import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 
 public class PrimaryAttributePoints extends AbstractExecutableExtension implements IFreebiesHandler {
-
+  
   @Override
   public String getPoints(ICharacterId id) {
-    return "Tum";
+    return new PrioritylessFreebiesHandler().getPoints(id, AttributeFreebiesCalculator.PRIMARY);
   }
 }

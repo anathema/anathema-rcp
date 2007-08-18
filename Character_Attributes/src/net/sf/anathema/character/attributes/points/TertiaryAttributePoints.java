@@ -8,6 +8,6 @@ public class TertiaryAttributePoints extends AbstractExecutableExtension impleme
 
   @Override
   public String getPoints(ICharacterId id) {
-    return "toll";
+    return new PrioritylessFreebiesHandler().getPoints(id, AttributeFreebiesCalculator.TERTIARY);
   }
 }
