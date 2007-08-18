@@ -11,4 +11,6 @@ public interface IExtensionElement {
   public boolean getBooleanAttribute(String name);
 
   public IExtensionElement getElement(String name);
+
+  public String getName();
 }

@@ -13,7 +13,8 @@
    <element name="extension">
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="pointConfiguration"/>
+            <element ref="pointConfiguration" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="pointGroup" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -43,7 +44,56 @@
    </element>
 
    <element name="pointConfiguration">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="groupReference"/>
+         </appInfo>
+      </annotation>
       <complexType>
+         <attribute name="groupReference" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="experiencePointCalculator" type="string" use="default" value="net.sf.anathema.character.points.configuration.NullPointHandler">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.points.configuration.IPointHandler"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="bonusPointCalculator" type="string" use="default" value="net.sf.anathema.character.points.configuration.NullPointHandler">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.points.configuration.IPointHandler"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="pointGroup">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="name"/>
+         </appInfo>
+      </annotation>
+      <complexType>
+         <attribute name="groupId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
@@ -59,26 +109,6 @@
                <documentation>
                   
                </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="experiencePointCalculator" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.points.configuration.IPointHandler"/>
-               </appInfo>
-            </annotation>
-         </attribute>
-         <attribute name="bonusPointCalculator" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.points.configuration.IPointHandler"/>
-               </appInfo>
             </annotation>
          </attribute>
       </complexType>

@@ -1,6 +1,6 @@
 package net.sf.anathema.character.points;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.points.configuration.IPointHandler;
@@ -37,8 +37,9 @@ public class PointViewInputFactoryTest {
   }
 
   private IPointConfiguration[] createPointConfigurations(String expectedDisplayName, int expectedValue) {
-    return new IPointConfiguration[] { new PointConfiguration(expectedDisplayName, new StaticValuePointHandler(
-        expectedValue)) };
+    PointConfiguration pointConfiguration = new PointConfiguration(expectedDisplayName);
+    pointConfiguration.addHandler(new StaticValuePointHandler(expectedValue));
+    return new IPointConfiguration[] { pointConfiguration };
   }
 
   private PointValueEntryFactoryFactory factory;

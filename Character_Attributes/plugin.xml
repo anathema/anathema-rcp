@@ -29,9 +29,13 @@
       <pointConfiguration
             bonusPointCalculator="net.sf.anathema.character.attributes.points.AttributeBonusPointHandler"
             experiencePointCalculator="net.sf.anathema.character.attributes.points.AttributeExperienceHandler"
+            groupReference="attributepoints">
+      </pointConfiguration>
+      <pointGroup
+            groupId="attributepoints"
             modelId="net.sf.anathema.character.attributes.model"
             name="%character.attributes.pointconfiguration">
-      </pointConfiguration>
+      </pointGroup>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.configurations">

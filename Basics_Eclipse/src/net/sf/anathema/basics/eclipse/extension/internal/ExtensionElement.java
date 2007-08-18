@@ -45,4 +45,9 @@ public class ExtensionElement implements IExtensionElement {
       throw new ExtensionException(e);
     }
   }
+
+  @Override
+  public String getName() {
+    return eclipseElement.getName();
+  }
 }
