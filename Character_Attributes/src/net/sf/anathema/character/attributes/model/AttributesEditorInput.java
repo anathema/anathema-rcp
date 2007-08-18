@@ -8,7 +8,7 @@ import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.trait.DisplayTrait;
-import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -51,7 +51,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<IAt
   }
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
-  public ITraitGroup[] createDisplayGroups() {
+  public IDisplayTraitGroup[] createDisplayGroups() {
     TraitGroup[] groups = context.getTraitGroups();
     for (TraitGroup group : groups) {
       for (String traitId : group.getTraitIds()) {

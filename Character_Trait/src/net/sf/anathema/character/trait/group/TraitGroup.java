@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.sf.anathema.character.trait.IDisplayTrait;
 
-public class TraitGroup implements ITraitGroup {
+public class TraitGroup implements IDisplayTraitGroup, ITraitGroup {
 
   private final String[] traitIds;
   private final String id;

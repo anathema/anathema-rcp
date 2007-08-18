@@ -8,7 +8,7 @@ import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
-import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -30,7 +30,7 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
     Image activeImage = createImage(AttributesPlugin.SELECTED_BUTTON);
     AttributesEditorInput editorInput = (AttributesEditorInput) getEditorInput();
     parent.setLayout(new GridLayout(2, false));
-    for (ITraitGroup group : editorInput.createDisplayGroups()) {
+    for (IDisplayTraitGroup group : editorInput.createDisplayGroups()) {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(2)).setText(AttributeMessages.get(group.getId()));
       for (final IDisplayTrait trait : group.getTraits()) {
         String text = AttributeMessages.get(trait.getTraitType().getId());

@@ -8,7 +8,6 @@ import java.util.List;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
@@ -64,12 +63,6 @@ public class AttributesPersister implements IModelPersister<IAttributes> {
 
   @Override
   public IAttributes createNew() {
-    List<IBasicTrait> basicTraits = new ArrayList<IBasicTrait>();
-    for (TraitGroup group : new AttributeTemplate().getGroups()) {
-      for (String traitId : group.getTraitIds()) {
-        basicTraits.add(new BasicTrait(new Identificate(traitId)));
-      }
-    }
-    return new Attributes(basicTraits.toArray(new BasicTrait[basicTraits.size()]));
+    return Attributes.create(new AttributeTemplate().getGroups());
   }
 }
