@@ -12,10 +12,10 @@ public class PrioritylessFreebiesHandler {
 
   private final ModelCache modelCache = new ModelCache();
 
-  public String getPoints(ICharacterId id, PriorityGroup priority) {
+  public int getPoints(ICharacterId id, PriorityGroup priority) {
     IAttributes attributes = (IAttributes) modelCache.getModel(new ModelIdentifier(id, IAttributes.MODEL_ID));
     TraitGroup[] groups = new AttributeTemplate().getGroups();
     AttributeFreebiesCalculator calculator = new AttributeFreebiesCalculator(attributes, groups);
-    return String.valueOf(calculator.pointsSpentFor(priority));
+    return calculator.pointsSpentFor(priority);
   }
 }

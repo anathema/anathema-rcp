@@ -7,7 +7,7 @@ import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 public class SecondaryAttributePoints extends AbstractExecutableExtension implements IFreebiesHandler {
 
   @Override
-  public String getPoints(ICharacterId id) {
+  public int getPoints(ICharacterId id) {
     return new PrioritylessFreebiesHandler().getPoints(id, AttributeFreebiesCalculator.SECONDARY);
   }
 }
