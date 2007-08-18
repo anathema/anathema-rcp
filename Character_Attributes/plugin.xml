@@ -26,16 +26,19 @@
    </extension>
    <extension
          point="net.sf.anathema.character.points.configuration">
-      <pointConfiguration
-            bonusPointCalculator="net.sf.anathema.character.attributes.points.AttributeBonusPointHandler"
-            experiencePointCalculator="net.sf.anathema.character.attributes.points.AttributeExperienceHandler"
-            groupReference="attributepoints">
-      </pointConfiguration>
       <pointGroup
             groupId="attributepoints"
             modelId="net.sf.anathema.character.attributes.model"
             name="%character.attributes.pointconfiguration">
       </pointGroup>
+      <bonusPointCalculator
+            groupReference="attributepoints"
+            handlerClass="net.sf.anathema.character.attributes.points.AttributeBonusPointHandler">
+      </bonusPointCalculator>
+      <experiencePointCalculator
+            groupReference="attributepoints"
+            handlerClass="net.sf.anathema.character.attributes.points.AttributeExperienceHandler">
+      </experiencePointCalculator>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.configurations">
