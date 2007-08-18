@@ -6,7 +6,5 @@ public interface IFreebiesConfiguration {
 
   public String getName();
 
-  public String getPoints(ICharacterId id);
-
-  public String getCredit(ICharacterId id);
+  public IFreebiesResult getFreebies(ICharacterId characterId);
 }

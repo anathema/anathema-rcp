@@ -11,17 +11,28 @@ public class MissingFreebiesConfiguration implements IFreebiesConfiguration {
   }
 
   @Override
-  public String getCredit(ICharacterId id) {
-    return null;
-  }
-
-  @Override
   public String getName() {
     return entryName;
   }
 
   @Override
-  public String getPoints(ICharacterId id) {
-    return null;
+  public IFreebiesResult getFreebies(ICharacterId characterId) {
+    return new IFreebiesResult() {
+
+      @Override
+      public String getCredit() {
+        return null;
+      }
+
+      @Override
+      public String getPoints() {
+        return null;
+      }
+
+      @Override
+      public boolean isValid() {
+        return false;
+      }
+    };
   }
 }

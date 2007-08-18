@@ -18,21 +18,14 @@ public class FreebiesConfiguration implements IFreebiesConfiguration {
   }
 
   @Override
-  public String getCredit(ICharacterId characterId) {
-    return String.valueOf(getCreditValue(characterId));
-  }
-
-  private int getCreditValue(ICharacterId characterId) {
-    return manager.getCredit(characterId, creditId);
-  }
-
-  @Override
   public String getName() {
     return entryName;
   }
 
   @Override
-  public String getPoints(ICharacterId characterId) {
-    return String.valueOf(handler.getPoints(characterId, getCreditValue(characterId)));
+  public IFreebiesResult getFreebies(ICharacterId characterId) {
+    int credit = manager.getCredit(characterId, creditId);
+    int value = handler.getPoints(characterId, credit);
+    return new FreebiesResult(credit, value);
   }
 }

@@ -2,6 +2,7 @@ package net.sf.anathema.character.freebies.view;
 
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.freebies.configuration.internal.IFreebiesConfiguration;
+import net.sf.anathema.character.freebies.configuration.internal.IFreebiesResult;
 import net.sf.anathema.view.valuelist.IValueEntry;
 
 public final class FreebiesValueEntry implements IValueEntry {
@@ -15,9 +16,13 @@ public final class FreebiesValueEntry implements IValueEntry {
 
   @Override
   public String getValue() {
-    String points = configuration.getPoints(id);
-    String credits = configuration.getCredit(id);
-    return points != null && credits != null ? points + " / " + credits : "Missing";
+    IFreebiesResult freebies = configuration.getFreebies(id);
+    if (!freebies.isValid()) {
+      return "Missing"; 
+    }
+    String points = freebies.getPoints();
+    String credits = freebies.getCredit();
+    return points + " / " + credits;
   }
 
   @Override
