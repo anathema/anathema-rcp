@@ -28,16 +28,15 @@ public class FreebiesConfigurationExtensionPoint implements IFreebiesConfigurati
     List<IFreebiesConfiguration> configurations = new ArrayList<IFreebiesConfiguration>();
     for (IPluginExtension extension : extensionProvider.getExtensions(FREEBIES_CONFIGURATION_ID)) {
       for (IExtensionElement element : extension.getElements()) {
-        String creditId = element.getAttribute("creditId"); //$NON-NLS-1$
-        if (creditManager.hasCredit(templateId, creditId)) {
-          String entryName = element.getAttribute("name"); //$NON-NLS-1$
-          try {
-            IFreebiesHandler handler = element.getAttributeAsObject("handlerClass", IFreebiesHandler.class); //$NON-NLS-1$
-            configurations.add(new FreebiesConfiguration(entryName, creditId, handler, creditManager));
+        String entryName = element.getAttribute("name"); //$NON-NLS-1$
+        try {
+          IFreebiesHandler handler = element.getAttributeAsObject("handlerClass", IFreebiesHandler.class); //$NON-NLS-1$
+          if (creditManager.hasCredit(templateId, handler.getCreditId())) {
+            configurations.add(new FreebiesConfiguration(entryName, handler, creditManager));
           }
-          catch (ExtensionException e) {
-            configurations.add(new MissingFreebiesConfiguration(entryName));
-          }
+        }
+        catch (ExtensionException e) {
+          configurations.add(new MissingFreebiesConfiguration(entryName));
         }
       }
     }

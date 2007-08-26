@@ -9,11 +9,9 @@ public class FreebiesConfiguration implements IFreebiesConfiguration {
   private final IFreebiesHandler handler;
   private final String entryName;
   private final ICreditManager manager;
-  private final String creditId;
 
-  public FreebiesConfiguration(String entryName, String creditId, IFreebiesHandler handler, ICreditManager manager) {
+  public FreebiesConfiguration(String entryName, IFreebiesHandler handler, ICreditManager manager) {
     this.entryName = entryName;
-    this.creditId = creditId;
     this.handler = handler;
     this.manager = manager;
   }
@@ -25,7 +23,7 @@ public class FreebiesConfiguration implements IFreebiesConfiguration {
 
   @Override
   public IFreebiesResult getFreebies(ICharacterId characterId) {
-    int credit = manager.getCredit(characterId, creditId);
+    int credit = manager.getCredit(characterId, handler.getCreditId());
     int value = handler.getPoints(characterId, credit);
     return new FreebiesResult(credit, value);
   }

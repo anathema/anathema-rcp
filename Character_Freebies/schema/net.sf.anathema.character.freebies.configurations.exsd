@@ -49,13 +49,6 @@
          </appInfo>
       </annotation>
       <complexType>
-         <attribute name="creditId" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
          <attribute name="handlerClass" type="string" use="required">
             <annotation>
                <documentation>
