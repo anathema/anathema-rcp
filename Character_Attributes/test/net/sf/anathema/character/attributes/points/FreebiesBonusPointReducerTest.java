@@ -16,6 +16,20 @@ import org.junit.Test;
 
 public class FreebiesBonusPointReducerTest {
 
+  public static final class DummyCreditManager implements ICreditManager {
+    private static final int DEFAULT_CREDIT = 3;
+
+    @Override
+    public boolean hasCredit(String templateId, String creditId) {
+      return true;
+    }
+
+    @Override
+    public int getCredit(ICharacterId characterId, String creditId) {
+      return DEFAULT_CREDIT;
+    }
+  }
+
   private FreebiesBonusPointReducer reducer;
   private IAttributes attributes;
   private ICharacterId characterId;
@@ -25,18 +39,7 @@ public class FreebiesBonusPointReducerTest {
     this.attributes = Attributes.create(new AttributeTemplate().getGroups());
     this.characterId = EasyMock.createMock(ICharacterId.class);
     IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
-    this.reducer = new FreebiesBonusPointReducer(modelProvider, new ICreditManager() {
-    
-      @Override
-      public boolean hasCredit(String templateId, String creditId) {
-        return true;
-      }
-    
-      @Override
-      public int getCredit(ICharacterId characterId, String creditId) {
-        return 3;
-      }
-    });
+    this.reducer = new FreebiesBonusPointReducer(modelProvider, new DummyCreditManager());
   }
   
   @Test
@@ -46,26 +49,33 @@ public class FreebiesBonusPointReducerTest {
   
   @Test
   public void returns0ForAllAttributes1() throws Exception {
-    for (IBasicTrait trait : attributes.getTraits() ) {
-      trait.getCreationModel().setValue(1);
-    }
+    setAllAttributesTo(1);
     assertEquals(0, reducer.getPoints(characterId));
   }
   
   @Test
   public void returnsNegative4ForOneAttributeAt2() throws Exception {
-    for (IBasicTrait trait : attributes.getTraits() ) {
-      trait.getCreationModel().setValue(1);
-    }
+    setAllAttributesTo(1);
     attributes.getTraits()[0].getCreationModel().setValue(2);
     assertEquals(-4, reducer.getPoints(characterId));
   }
   
   @Test
   public void returnsNegative36ForAllAttributeAt2() throws Exception {
-    for (IBasicTrait trait : attributes.getTraits() ) {
-      trait.getCreationModel().setValue(2);
-    }
+    setAllAttributesTo(2);
     assertEquals(-36, reducer.getPoints(characterId));
+  }
+  
+  @Test
+  public void noReductionCalculatedForPointsExceedingCredit() throws Exception {
+    setAllAttributesTo(2);
+    attributes.getTraits()[0].getCreationModel().setValue(3);
+    assertEquals(-36, reducer.getPoints(characterId));
+  }
+
+  private void setAllAttributesTo(int value) {
+    for (IBasicTrait trait : attributes.getTraits() ) {
+      trait.getCreationModel().setValue(value);
+    }
   }
 }
