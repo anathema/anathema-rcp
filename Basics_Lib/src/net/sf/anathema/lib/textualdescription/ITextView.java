@@ -6,6 +6,8 @@ public interface ITextView {
 
   public void addTextChangedListener(IObjectValueChangedListener<String> listener);
 
+  public void removeTextChangeListener(IObjectValueChangedListener<String> listener);
+
   public void setEnabled(boolean enabled);
 
   public void setText(String text);

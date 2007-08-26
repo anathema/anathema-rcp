@@ -2,11 +2,22 @@ package net.sf.anathema.lib.textualdescription;
 
 import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
+import net.sf.anathema.lib.ui.IDisposable;
 
-public class TextualPresenter {
+public class TextualPresenter implements IDisposable {
   
   private final ITextView textView;
   private final ITextualDescription textualDescription;
+  private final IObjectValueChangedListener<String> modelListener = new IObjectValueChangedListener<String>() {
+    public void valueChanged(String newValue) {
+      textView.setText(newValue);
+    }
+  };
+  private final IObjectValueChangedListener<String> viewListener = new IObjectValueChangedListener<String>() {
+    public void valueChanged(String newValue) {
+      textualDescription.setText(newValue);
+    }
+  };
 
   public TextualPresenter(final ITextView textView, final ITextualDescription textualDescription) {
     Ensure.ensureArgumentNotNull(textView);
@@ -16,16 +27,14 @@ public class TextualPresenter {
   }
 
   public void initPresentation() {
-    textView.addTextChangedListener(new IObjectValueChangedListener<String>() {
-      public void valueChanged(String newValue) {
-        textualDescription.setText(newValue);
-      }
-    });
+    textView.addTextChangedListener(viewListener);
     textView.setText(textualDescription.getText());
-    textualDescription.addTextChangedListener(new IObjectValueChangedListener<String>() {
-      public void valueChanged(String newValue) {
-        textView.setText(newValue);
-      }
-    });
+    textualDescription.addTextChangedListener(modelListener);
+  }
+
+  @Override
+  public void dispose() {
+    textView.removeTextChangeListener(viewListener);
+    textualDescription.removeTextChangeListener(modelListener);
   }
 }

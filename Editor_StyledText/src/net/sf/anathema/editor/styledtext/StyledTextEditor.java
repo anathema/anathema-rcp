@@ -47,7 +47,7 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
     nameLabel.setLayoutData(createLabelData());
     final ITextView nameView = SimpleTextView.createSingleLineView(parent);
     final ITextualDescription nameModel = getItem().getName();
-    new TextualPresenter(nameView, nameModel).initPresentation();
+    addDisposable(new TextualPresenter(nameView, nameModel)).initPresentation();
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText(getColonLabel(Messages.StyledTextEditor_Content));
     contentLabel.setLayoutData(createLabelData());

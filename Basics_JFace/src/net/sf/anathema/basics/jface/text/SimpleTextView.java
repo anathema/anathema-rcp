@@ -44,6 +44,11 @@ public class SimpleTextView implements ITextView {
   }
 
   @Override
+  public void removeTextChangeListener(IObjectValueChangedListener<String> listener) {
+    control.removeObjectValueChangeListener(listener);
+  }
+
+  @Override
   public void setEnabled(boolean enabled) {
     textWidget.setEnabled(enabled);
   }

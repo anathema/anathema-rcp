@@ -7,8 +7,9 @@ public class AggregatedDisposable implements IDisposable {
 
   private final List<IDisposable> disposables = new ArrayList<IDisposable>();
 
-  public void addDisposable(IDisposable disposable) {
+  public final<T extends IDisposable> T addDisposable(T disposable) {
     disposables.add(disposable);
+    return disposable;
   }
 
   @Override

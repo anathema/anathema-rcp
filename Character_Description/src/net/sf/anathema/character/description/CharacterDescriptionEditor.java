@@ -50,13 +50,13 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
   private void initMultiLineText(Composite parent, String label, ITextualDescription description) {
     createLabel(parent, label);
     ITextView view = SimpleTextView.createMultiLineView(parent);
-    new TextualPresenter(view, description).initPresentation();
+    addDisposable(new TextualPresenter(view, description)).initPresentation();
   }
 
   private ITextView initSingleLineText(Composite parent, String label, ITextualDescription description) {
     createLabel(parent, label);
     ITextView view = SimpleTextView.createSingleLineView(parent);
-    new TextualPresenter(view, description).initPresentation();
+    addDisposable(new TextualPresenter(view, description)).initPresentation();
     return view;
   }
 
