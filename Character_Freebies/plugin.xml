@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="net.sf.anathema.character.freebies.credit" name="Credit Manager" schema="schema/net.sf.anathema.character.freebies.credit.exsd"/>
-   <extension-point id="net.sf.anathema.character.freebies.configurations" name="Freebies Handler" schema="schema/net.sf.anathema.character.freebies.configurations.exsd"/>
+   <extension-point id="net.sf.anathema.character.freebies.credit" name="%character.freebies.credit.name" schema="schema/net.sf.anathema.character.freebies.credit.exsd"/>
+   <extension-point id="net.sf.anathema.character.freebies.configurations" name="%character.freebies.configurations.name" schema="schema/net.sf.anathema.character.freebies.configurations.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
