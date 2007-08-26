@@ -1,11 +1,12 @@
 package net.sf.anathema.character.description;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-
 import net.sf.anathema.lib.control.AggregatedChangeManagement;
+import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.SimpleTextualDescription;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 
 public class CharacterDescription extends AggregatedChangeManagement implements ICharacterDescription {
 
@@ -59,6 +60,16 @@ public class CharacterDescription extends AggregatedChangeManagement implements 
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
+    // nothing to do
+  }
+
+  @Override
+  public void addChangeListener(IChangeListener modelChangeListener) {
+    // nothing to do
+  }
+
+  @Override
+  public void removeChangeListener(IChangeListener modelChangeListener) {
     // nothing to do
   }
 }

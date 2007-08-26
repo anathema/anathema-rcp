@@ -14,7 +14,7 @@ public class PrioritylessAttributeFreebies {
   private final IModelProvider modelProvider;
   
   public PrioritylessAttributeFreebies() {
-    this(new ModelCache());
+    this(ModelCache.getInstance());
   }
   
   public PrioritylessAttributeFreebies(IModelProvider modelProvider) {

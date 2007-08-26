@@ -19,10 +19,10 @@ public class ChangeManagement implements IChangeManagement {
 
   public final void setDirty(boolean isDirty) {
     this.dirty = isDirty;
-    fireChangeEvent();
+    fireDirtyChanged();
   }
 
-  protected final void fireChangeEvent() {
+  protected final void fireDirtyChanged() {
     dirtyChangeControl.fireChangedEvent();
   }
 

@@ -6,6 +6,7 @@ import java.util.List;
 import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.lib.control.change.IChangeListener;
 
 public class DummyAttributes extends AbstractModel  implements IAttributes {
 
@@ -28,5 +29,15 @@ public class DummyAttributes extends AbstractModel  implements IAttributes {
       }
     }
     return null;
+  }
+
+  @Override
+  public void addChangeListener(IChangeListener modelChangeListener) {
+    // nothing to do
+  }
+
+  @Override
+  public void removeChangeListener(IChangeListener modelChangeListener) {
+    // nothing to do
   }
 }

@@ -23,7 +23,7 @@ public class FreebiesViewUpdateHandlerTest {
 
   @Before
   public void createPartContainer() throws Exception {
-    partContainer = EasyMock.createMock(IPartContainer.class);
+    partContainer = EasyMock.createNiceMock(IPartContainer.class);
   }
 
   @Test

@@ -8,6 +8,10 @@ public class ModelCache implements IModelProvider {
 
   private static final IModelProvider instance = new ModelCache();
   private Map<IModelIdentifier, Object> modelsByIdentifier = new HashMap<IModelIdentifier, Object>();
+  
+  private ModelCache() {
+    // nothing to do
+  }
 
   public static IModelProvider getInstance() {
     return instance;
@@ -17,7 +21,7 @@ public class ModelCache implements IModelProvider {
     modelsByIdentifier.put(identifier, model);
   }
 
-  public Object getModel(IModelIdentifier identifier) {
+  public IModel getModel(IModelIdentifier identifier) {
     Object model = modelsByIdentifier.get(identifier);
     if (model == null) {
       model = new ModelExtensionPoint().createModel(identifier);
@@ -25,6 +29,6 @@ public class ModelCache implements IModelProvider {
         addModel(identifier, model);
       }
     }
-    return model;
+    return (IModel) model;
   }
 }

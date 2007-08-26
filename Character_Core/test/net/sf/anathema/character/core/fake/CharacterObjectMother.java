@@ -2,7 +2,9 @@ package net.sf.anathema.character.core.fake;
 
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.model.IModel;
 import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 
 import org.easymock.EasyMock;
@@ -12,7 +14,7 @@ public class CharacterObjectMother {
 
   public static IEditorInput createCharacterEditorInput(IModelIdentifier modelIdentifier) {
     IEditorInput editorInput = EasyMock.createNiceMock(IEditorInput.class);
-    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier);
+    EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();
     EasyMock.replay(editorInput);
     return editorInput;
   }
@@ -27,8 +29,15 @@ public class CharacterObjectMother {
 
   public static IPartContainer createPartContainerWithActiveEditorInput(IEditorInput editedInput) {
     IPartContainer partContainer = EasyMock.createNiceMock(IPartContainer.class);
-    EasyMock.expect(partContainer.getEditorInput()).andReturn(editedInput);
+    EasyMock.expect(partContainer.getEditorInput()).andReturn(editedInput).anyTimes();
     EasyMock.replay(partContainer);
     return partContainer;
+  }
+
+  public static IModelProvider createModelProvider(IModelIdentifier identifier, IModel model) {
+    IModelProvider modelProvider = EasyMock.createNiceMock(IModelProvider.class);
+    EasyMock.expect(modelProvider.getModel(identifier)).andReturn(model).anyTimes();
+    EasyMock.replay(modelProvider);
+    return modelProvider;
   }
 }

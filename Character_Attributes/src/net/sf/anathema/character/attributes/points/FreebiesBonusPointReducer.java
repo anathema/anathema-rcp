@@ -15,7 +15,7 @@ public class FreebiesBonusPointReducer extends AbstractExecutableExtension imple
   private final IFreebiesHandler[] freebiesHandlers;
 
   public FreebiesBonusPointReducer() {
-    this(new ModelCache(), new CreditManager());
+    this(ModelCache.getInstance(), new CreditManager());
   }
 
   public FreebiesBonusPointReducer(IModelProvider modelProvider, ICreditManager creditManager) {
