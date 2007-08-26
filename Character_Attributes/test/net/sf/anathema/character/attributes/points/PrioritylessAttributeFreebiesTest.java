@@ -5,13 +5,12 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import net.sf.anathema.character.attributes.AttributeObjectMother;
 import net.sf.anathema.character.attributes.model.AttributeTemplate;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.attributes.model.IAttributes;
-import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.IModelProvider;
 
-import org.easymock.EasyMock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -43,15 +42,8 @@ public class PrioritylessAttributeFreebiesTest {
   public void spentFreebiesFitIntoCredits() throws Exception {
     IAttributes attributes = Attributes.create(new AttributeTemplate().getGroups());
     attributes.getTraits()[0].getCreationModel().setValue(attributeValue);
-    IModelProvider modelProvider = createModelProvider(attributes);
+    IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes);
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(modelProvider);
     assertEquals(freebiesPoints, freebies.getPoints(null, AttributePointCalculator.PRIMARY, 3));
-  }
-
-  private IModelProvider createModelProvider(IAttributes attributes) {
-    IModelProvider modelProvider = EasyMock.createNiceMock(IModelProvider.class);
-    EasyMock.expect(modelProvider.getModel(EasyMock.isA(IModelIdentifier.class))).andReturn(attributes);
-    EasyMock.replay(modelProvider);
-    return modelProvider;
   }
 }

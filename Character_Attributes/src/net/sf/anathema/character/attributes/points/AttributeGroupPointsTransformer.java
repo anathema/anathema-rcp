@@ -1,6 +1,7 @@
 package net.sf.anathema.character.attributes.points;
 
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.character.attributes.model.IAttributeConstants;
 import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 
@@ -17,7 +18,7 @@ public final class AttributeGroupPointsTransformer implements ITransformer<ITrai
     int pointsSpent = 0;
     for (String traitId : group.getTraitIds()) {
       int creationValue = attributes.getTrait(traitId).getCreationModel().getValue();
-      pointsSpent += Math.max(0, creationValue - IAttributes.ATTRIBUTE_CALCULATION_BASE);
+      pointsSpent += Math.max(0, creationValue - IAttributeConstants.ATTRIBUTE_CALCULATION_BASE);
     }
     return new AttributeGroupPoints(pointsSpent);
   }
