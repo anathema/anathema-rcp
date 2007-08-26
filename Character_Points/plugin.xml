@@ -3,22 +3,6 @@
 <plugin>
    <extension-point id="net.sf.anathema.character.points.configuration" name="%extension-point.name.point.configuration" schema="schema/net.sf.anathema.character.points.configuration.exsd"/>
    <extension
-         point="org.eclipse.ui.viewActions">
-      <viewContribution
-            id="net.sf.anathema.character.experiencepoints.action"
-            targetID="net.sf.anathema.character.points">
-         <action
-               class="net.sf.anathema.view.valuelist.UpdateActionDelegate"
-               icon="icons/nav_refresh.gif"
-               id="net.sf.anathema.character.experiencepoints.action.update"
-               label="%points.view.update"
-               style="push"
-               toolbarPath="main"
-               tooltip="%points.view.update">
-         </action>
-      </viewContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
