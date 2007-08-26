@@ -1,5 +1,7 @@
 package net.sf.anathema.character.experience.internal;
 
+import java.util.HashMap;
+
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
@@ -20,6 +22,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.commands.ICommandService;
 
 public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
 
@@ -27,9 +30,11 @@ public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
   private final ExperiencePersister persister = new ExperiencePersister();
   private IExperience model;
   private IFolder folder;
+  private IWorkbenchPart targetPart;
 
   @Override
   public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+    this.targetPart = targetPart;
     // nothing to do
   }
 
@@ -39,12 +44,15 @@ public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
     IModelIdentifier modelIdentifier = new ModelIdentifier(folder, IExperience.MODEL_ID);
     IContentHandle content = new ModelExtensionPoint().getModelContent(modelIdentifier);
     try {
-      //TODO Progressmonitor?
+      // TODO Progressmonitor?
       new ItemFileWriter().save(content, persister, model, new NullProgressMonitor());
     }
     catch (Exception e) {
       logger.error(Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);
     }
+    ICommandService commandService = (ICommandService) targetPart.getSite().getWorkbenchWindow().getService(
+        ICommandService.class);
+    commandService.refreshElements("net.sf.anathema.character.experience.toggle", new HashMap());
   }
 
   @Override

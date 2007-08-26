@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
+import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -17,6 +18,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.commands.ICommandService;
@@ -27,7 +29,6 @@ import org.eclipse.ui.menus.UIElement;
 public class ToggleExperienceCommandHandler extends AbstractHandler implements IElementUpdater {
   private static final Logger logger = new Logger(IExperiencePluginConstants.PLUGIN_ID);
   private final ExperiencePersister persister = new ExperiencePersister();
-  private IExperience experience;
 
   @Override
   public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -37,7 +38,7 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
       return null;
     }
     ModelIdentifier experienceIdentifier = new ModelIdentifier(currentIdentifier.getCharacterId(), IExperience.MODEL_ID);
-    this.experience = (IExperience) ModelCache.getInstance().getModel(experienceIdentifier);
+    IExperience experience = (IExperience) ModelCache.getInstance().getModel(experienceIdentifier);
     experience.setExperienced(!experience.isExperienced());
     IContentHandle content = new ModelExtensionPoint().getModelContent(experienceIdentifier);
     try {
@@ -56,6 +57,18 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
 
   @Override
   public void updateElement(UIElement element, Map parameters) {
+    IWorkbenchWindow window = (IWorkbenchWindow) parameters.get("org.eclipse.ui.IWorkbenchWindow"); //$NON-NLS-1$
+    PartContainer partContainer = new PartContainer(window);
+    IEditorInput input = partContainer.getEditorInput();
+    if (input == null) {
+      return;
+    }
+    IModelIdentifier modelIdentifier = (IModelIdentifier) input.getAdapter(IModelIdentifier.class);
+    if (modelIdentifier == null) {
+      return;
+    }
+    IExperience experience = (IExperience) ModelCache.getInstance().getModel(
+        new ModelIdentifier(modelIdentifier.getCharacterId(), IExperience.MODEL_ID));
     element.setChecked(experience.isExperienced());
   }
 }
