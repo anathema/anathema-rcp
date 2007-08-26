@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Points_En Fragment
+Bundle-Name: %net.sf.anathema.character.points.fragment.en
 Bundle-SymbolicName: net.sf.anathema.character.points.i18n.en
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.points;bundle-version="1.0.0"
+Bundle-Localization: plugin
