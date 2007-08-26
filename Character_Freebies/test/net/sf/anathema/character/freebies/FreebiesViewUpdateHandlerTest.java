@@ -38,6 +38,7 @@ public class FreebiesViewUpdateHandlerTest {
   public void updatableIsCalledWhenEditorPartIsBroughtToTop() throws Exception {
     IUpdatable updatable = EasyMock.createMock(IUpdatable.class);
     updatable.update();
+    updatable.update();
     InstanceOf matcher = new InstanceOf(TopPartListener.class);
     EasyMock.reportMatcher(matcher);
     partContainer.addPartListener(null);

@@ -10,7 +10,9 @@ public final class UpdateRunnable implements Runnable {
   @Override
   public void run() {
     for (IUpdatable updateable : this.allUpdateable) {
-      updateable.update();
+      if (updateable != null) {
+        updateable.update();
+      }
     }
   }
 }

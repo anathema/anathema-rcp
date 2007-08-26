@@ -1,10 +1,11 @@
 package net.sf.anathema.character.points;
 
-import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.model.IModel;
+import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.DummyExperience;
@@ -17,7 +18,7 @@ import org.eclipse.ui.IEditorInput;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CharacterInputExperienceUpdateableTest {
+public class CharacterInputExperienceSwitchingUpdateableTest {
 
   private CharacterPointsUpdatable experienceUpdateable;
   private IExperience experience;
@@ -29,24 +30,23 @@ public class CharacterInputExperienceUpdateableTest {
     ICharacterId characterId = new DummyCharacterId();
     IEditorInput editedInput = CharacterObjectMother.createCharacterEditorInput(new ModelIdentifier(characterId, "Egal")); //$NON-NLS-1$
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
-    IModelProvider provider = EasyMock.createMock(IModelProvider.class);
-    ModelIdentifier experienceIdentifier = new ModelIdentifier(characterId, IExperience.MODEL_ID);
-    EasyMock.expect(provider.getModel(experienceIdentifier)).andReturn(experience).anyTimes();
-    EasyMock.replay(provider);
+    IModelProvider provider = new IModelProvider() {
+      @Override
+      public IModel getModel(IModelIdentifier identifier) {
+        return experience;
+      }
+    };
     modelChangeUpdatable = EasyMock.createStrictMock(IUpdatable.class);
     experienceUpdateable = new CharacterPointsUpdatable(partContainer, modelChangeUpdatable, provider);
   }
 
   @Test
-  public void returnsExperience() throws Exception {
-    assertSame(experience, experienceUpdateable.getExperience());
-  }
-  
-  @Test
-  public void updatableIsNotifiedForModelChange() throws Exception {
-    modelChangeUpdatable.update();
+  public void noNotificationForChangesOnOldModel() throws Exception {
+    IExperience oldExperience = experience;
+    this.experience = new DummyExperience();
+    experienceUpdateable.update();
     EasyMock.replay(modelChangeUpdatable);
-    experience.setExperienced(!experience.isExperienced());
+    oldExperience.setExperienced(!oldExperience.isExperienced());
     EasyMock.verify(modelChangeUpdatable);
   }
 }

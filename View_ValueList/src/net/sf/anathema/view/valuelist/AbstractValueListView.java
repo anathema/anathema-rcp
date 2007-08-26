@@ -27,7 +27,6 @@ public abstract class AbstractValueListView extends DisposableViewPart implement
     this.parent = parentComposite;
     updateHandler.init(getPartContainer(), this);
     addDisposable(updateHandler);
-    update();
   }
 
   public void update() {

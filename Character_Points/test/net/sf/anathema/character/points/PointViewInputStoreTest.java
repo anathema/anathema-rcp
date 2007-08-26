@@ -31,8 +31,8 @@ public class PointViewInputStoreTest {
   public void createCharacterAndEditorInput() {
     this.characterId = new DummyCharacterId();
     characterId.addContentHandle(
-        "template.xml", new DummyContentHandle("<template reference=\"net.sf.anathema.core.StaticTemplate\" />")); //$NON-NLS-1$//$NON-NLS-2$
-    characterId.addContentHandle("experience.model", new DummyContentHandle("<model experienced=\"false\"/>")); //$NON-NLS-1$ //$NON-NLS-2$
+        "template.xml", new DummyContentHandler("<template reference=\"net.sf.anathema.core.StaticTemplate\" />")); //$NON-NLS-1$//$NON-NLS-2$
+    characterId.addContentHandle("experience.model", new DummyContentHandler("<model experienced=\"false\"/>")); //$NON-NLS-1$ //$NON-NLS-2$
     this.modelIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
     this.editorInput = EasyMock.createStrictMock(IEditorInput.class);
     EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();

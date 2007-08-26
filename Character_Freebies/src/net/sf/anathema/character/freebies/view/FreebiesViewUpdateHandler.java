@@ -33,6 +33,7 @@ public class FreebiesViewUpdateHandler implements IViewUpdateHandler {
   public void init(IPartContainer partContainer, IUpdatable updateable) {
     CurrentModelUpdatable modelUpdatable = new CurrentModelUpdatable(updateable, partContainer, modelProvider);
     UpdateRunnable runnable = new UpdateRunnable(updateable, modelUpdatable);
+    runnable.run();
     TopPartListener topPartListener = new TopPartListener(runnable);
     disposables.addDisposable(modelUpdatable);
     disposables.addDisposable(new PartListening(topPartListener, partContainer));

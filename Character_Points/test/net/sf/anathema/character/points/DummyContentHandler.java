@@ -13,11 +13,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
-public class DummyContentHandle implements IContentHandle {
+public class DummyContentHandler implements IContentHandle {
 
   private String content;
 
-  public DummyContentHandle(String content) {
+  public DummyContentHandler(String content) {
     this.content = content;
   }
 

@@ -20,6 +20,7 @@ public class PointViewUpdateHandler implements IViewUpdateHandler {
   public void init(IPartContainer partContainer, IUpdatable updateable) {
     experienceUpdateable = new CharacterPointsUpdatable(partContainer, updateable);
     UpdateRunnable runnable = new UpdateRunnable(experienceUpdateable, updateable);
+    runnable.run();
     TopPartListener topPartListener = new TopPartListener(runnable);
     disposables.addDisposable(new PartListening(topPartListener, partContainer));
   }
