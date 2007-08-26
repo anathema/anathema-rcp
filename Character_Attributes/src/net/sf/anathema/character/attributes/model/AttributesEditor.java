@@ -4,6 +4,7 @@ import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.attributes.AttributesPlugin;
+import net.sf.anathema.character.core.editors.ICharacterEditor;
 import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
@@ -20,7 +21,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttributes> {
+public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttributes> implements ICharacterEditor {
 
   public static final String EDITOR_ID = "net.sf.anathema.character.attributes.editor"; //$NON-NLS-1$
 

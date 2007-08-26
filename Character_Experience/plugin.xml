@@ -28,5 +28,44 @@
             targetID="EmptyContribution">
       </viewerContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="Character_Experience.toolbar">
+            <command
+                  commandId="net.sf.anathema.character.experience.toggle"
+                  label="XP"
+                  style="toggle"
+                  tooltip="Toggle Experience">
+               <visibleWhen>
+                  <reference
+                        definitionId="activeEditor.isInstanceOf.ICharacterEditor">
+                  </reference></visibleWhen>
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="net.sf.anathema.character.experience.internal.ToggleExperienceCommandHandler"
+            id="net.sf.anathema.character.experience.toggle"
+            name="Toggle Experience">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="activeEditor.isInstanceOf.ICharacterEditor">
+         <with
+               variable="activeEditor">
+            <instanceof
+                  value="net.sf.anathema.character.core.editors.ICharacterEditor">
+            </instanceof>
+         </with>
+      </definition>
+   </extension>
 
 </plugin>

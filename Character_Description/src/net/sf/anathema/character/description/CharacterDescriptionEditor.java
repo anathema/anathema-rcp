@@ -4,6 +4,7 @@ import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
+import net.sf.anathema.character.core.editors.ICharacterEditor;
 import net.sf.anathema.lib.textualdescription.ITextView;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.TextualPresenter;
@@ -17,7 +18,9 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 
-public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPart<ICharacterDescription> implements IPersistableItemEditor {
+public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPart<ICharacterDescription> implements
+    IPersistableItemEditor,
+    ICharacterEditor {
 
   public static final String EDITOR_ID = "net.sf.anathema.character.description.editor"; //$NON-NLS-1$
   private ITextView nameView;
@@ -40,7 +43,7 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
         getItem().getPhysicalDescription());
     initMultiLineText(parent, Messages.CharacterDescriptionEditor_Notes, getItem().getNotes());
   }
-  
+
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     super.init(site, input);
