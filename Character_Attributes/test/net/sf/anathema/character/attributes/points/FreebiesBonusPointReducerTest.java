@@ -7,6 +7,7 @@ import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
 
 import org.easymock.EasyMock;
@@ -24,7 +25,18 @@ public class FreebiesBonusPointReducerTest {
     this.attributes = Attributes.create(new AttributeTemplate().getGroups());
     this.characterId = EasyMock.createMock(ICharacterId.class);
     IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
-    this.reducer = new FreebiesBonusPointReducer(modelProvider);
+    this.reducer = new FreebiesBonusPointReducer(modelProvider, new ICreditManager() {
+    
+      @Override
+      public boolean hasCredit(String templateId, String creditId) {
+        return true;
+      }
+    
+      @Override
+      public int getCredit(ICharacterId characterId, String creditId) {
+        return 3;
+      }
+    });
   }
   
   @Test

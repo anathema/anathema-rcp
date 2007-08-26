@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies.configuration.internal;
+package net.sf.anathema.character.freebies.configuration;
 
 import net.sf.anathema.character.core.model.ICharacterId;
 

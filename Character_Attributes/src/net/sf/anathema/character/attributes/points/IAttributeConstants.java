@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.model;
+package net.sf.anathema.character.attributes.points;
 
 public interface IAttributeConstants {
   public static final int BONUS_POINT_COST = 4;

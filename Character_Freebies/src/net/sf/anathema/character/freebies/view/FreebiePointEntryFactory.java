@@ -3,7 +3,7 @@ package net.sf.anathema.character.freebies.view;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.freebies.configuration.internal.CreditManager;
+import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.internal.FreebiesConfigurationExtensionPoint;
 import net.sf.anathema.character.freebies.configuration.internal.IFreebiesConfiguration;
 import net.sf.anathema.view.valuelist.IValueEntry;
