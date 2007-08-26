@@ -17,7 +17,7 @@ public class NonCharactaerInputExperienceUpdateableTest {
   public void createUpdateable() throws Exception {
     IEditorInput editedInput = CharacterObjectMother.createNonCharacterEditorInput();
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
-    experienceUpdateable = new CharacterPointsUpdatable(partContainer, null);
+    experienceUpdateable = new CharacterPointsUpdatable(partContainer, null, null);
   }
 
   @Test

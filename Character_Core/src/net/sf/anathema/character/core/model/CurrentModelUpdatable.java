@@ -1,12 +1,9 @@
-package net.sf.anathema.character.freebies.view;
+package net.sf.anathema.character.core.model;
 
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
-import net.sf.anathema.character.core.model.IModel;
-import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.ui.IDisposable;
-import net.sf.anathema.view.valuelist.IUpdatable;
+import net.sf.anathema.lib.ui.IUpdatable;
 
 import org.eclipse.ui.IEditorInput;
 

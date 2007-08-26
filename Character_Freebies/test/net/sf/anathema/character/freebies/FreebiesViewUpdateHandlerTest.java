@@ -3,8 +3,8 @@ package net.sf.anathema.character.freebies;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 import net.sf.anathema.character.freebies.view.FreebiesViewUpdateHandler;
+import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.test.matcher.InstanceOf;
-import net.sf.anathema.view.valuelist.IUpdatable;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorPart;

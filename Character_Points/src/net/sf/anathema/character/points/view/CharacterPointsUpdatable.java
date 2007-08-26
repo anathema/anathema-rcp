@@ -5,11 +5,10 @@ import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.lib.control.change.IChangeListener;
-import net.sf.anathema.view.valuelist.IUpdatable;
+import net.sf.anathema.lib.ui.IUpdatable;
 
 import org.eclipse.ui.IEditorInput;
 
@@ -24,10 +23,6 @@ public final class CharacterPointsUpdatable implements IUpdatable, IExperiencePr
       modelChangeUpdatable.update();
     }
   };
-
-  public CharacterPointsUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable) {
-    this(partContainer, modelChangeUpdatable, ModelCache.getInstance());
-  }
 
   public CharacterPointsUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable, IModelProvider modelProvider) {
     this.partContainer = partContainer;

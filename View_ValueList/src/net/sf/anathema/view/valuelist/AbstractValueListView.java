@@ -4,6 +4,7 @@ import net.sf.anathema.basics.eclipse.ui.DisposableViewPart;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
+import net.sf.anathema.lib.ui.IUpdatable;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;

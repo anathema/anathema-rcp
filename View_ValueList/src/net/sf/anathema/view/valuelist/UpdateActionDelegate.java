@@ -1,5 +1,7 @@
 package net.sf.anathema.view.valuelist;
 
+import net.sf.anathema.lib.ui.IUpdatable;
+
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;

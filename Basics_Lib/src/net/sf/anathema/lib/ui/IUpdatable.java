@@ -1,4 +1,4 @@
-package net.sf.anathema.view.valuelist;
+package net.sf.anathema.lib.ui;
 
 public interface IUpdatable {
 
