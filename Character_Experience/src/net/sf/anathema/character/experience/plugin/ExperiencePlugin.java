@@ -29,12 +29,12 @@ public class ExperiencePlugin extends AbstractUIPlugin {
   @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
-    PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(listener);
+    getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(listener);
   }
 
   @Override
   public void stop(BundleContext context) throws Exception {
-    IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+    IWorkbenchWindow window = getWorkbench().getActiveWorkbenchWindow();
     if (window != null) {
       window.getActivePage().removePartListener(listener);
     }
