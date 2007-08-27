@@ -12,7 +12,7 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.experience.plugin.IExperiencePluginConstants;
+import net.sf.anathema.character.experience.plugin.ExperiencePlugin;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -21,14 +21,17 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.commands.IElementUpdater;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.menus.UIElement;
 
 public class ToggleExperienceCommandHandler extends AbstractHandler implements IElementUpdater {
-  private static final Logger logger = new Logger(IExperiencePluginConstants.PLUGIN_ID);
+  private static final Logger logger = new Logger(ExperiencePlugin.PLUGIN_ID);
   private final ExperiencePersister persister = new ExperiencePersister();
+  private CommandRefreshChangeListener listener;
+  private IExperience experience;
 
   @Override
   public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -56,7 +59,8 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
   }
 
   @Override
-  public void updateElement(UIElement element, Map parameters) {
+  public void updateElement(final UIElement element, Map parameters) {
+    resetListening();
     IWorkbenchWindow window = (IWorkbenchWindow) parameters.get("org.eclipse.ui.IWorkbenchWindow"); //$NON-NLS-1$
     PartContainer partContainer = new PartContainer(window);
     IEditorInput input = partContainer.getEditorInput();
@@ -67,8 +71,18 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
     if (modelIdentifier == null) {
       return;
     }
-    IExperience experience = (IExperience) ModelCache.getInstance().getModel(
+    this.listener = new CommandRefreshChangeListener(element);
+    this.experience = (IExperience) ModelCache.getInstance().getModel(
         new ModelIdentifier(modelIdentifier.getCharacterId(), IExperience.MODEL_ID));
+    experience.addChangeListener(listener);
     element.setChecked(experience.isExperienced());
+  }
+
+  private void resetListening() {
+    if (experience != null) {
+      this.experience.removeChangeListener(listener);
+    }
+    this.experience = null;
+    this.listener = null;
   }
 }

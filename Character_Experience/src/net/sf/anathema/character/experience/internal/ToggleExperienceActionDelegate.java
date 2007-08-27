@@ -1,7 +1,5 @@
 package net.sf.anathema.character.experience.internal;
 
-import java.util.HashMap;
-
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
@@ -11,9 +9,7 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.experience.internal.ExperiencePersister;
-import net.sf.anathema.character.experience.internal.Messages;
-import net.sf.anathema.character.experience.plugin.IExperiencePluginConstants;
+import net.sf.anathema.character.experience.plugin.ExperiencePlugin;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -22,19 +18,16 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.commands.ICommandService;
 
 public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
 
-  private static final Logger logger = new Logger(IExperiencePluginConstants.PLUGIN_ID);
+  private static final Logger logger = new Logger(ExperiencePlugin.PLUGIN_ID);
   private final ExperiencePersister persister = new ExperiencePersister();
   private IExperience model;
   private IFolder folder;
-  private IWorkbenchPart targetPart;
 
   @Override
   public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-    this.targetPart = targetPart;
     // nothing to do
   }
 
@@ -50,9 +43,6 @@ public class ToggleExperienceActionDelegate implements IObjectActionDelegate {
     catch (Exception e) {
       logger.error(Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);
     }
-    ICommandService commandService = (ICommandService) targetPart.getSite().getWorkbenchWindow().getService(
-        ICommandService.class);
-    commandService.refreshElements("net.sf.anathema.character.experience.toggle", new HashMap());
   }
 
   @Override

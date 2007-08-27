@@ -12,3 +12,4 @@ Require-Bundle: net.sf.anathema.basics.lib,
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
 Export-Package: net.sf.anathema.character.experience
+Bundle-Activator: net.sf.anathema.character.experience.plugin.ExperiencePlugin
