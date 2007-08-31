@@ -38,7 +38,7 @@
                   commandId="net.sf.anathema.character.experience.toggle"
                   label="XP"
                   style="toggle"
-                  tooltip="Toggle Experience">
+                  tooltip="%net.sf.anathema.character.experience.toggle.tooltip">
                <visibleWhen>
                   <reference
                         definitionId="activeEditor.isInstanceOf.ICharacterEditor">
