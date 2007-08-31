@@ -16,6 +16,7 @@ import net.sf.anathema.character.experience.plugin.ExperiencePlugin;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -26,7 +27,6 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.menus.UIElement;
 
 public class ToggleExperienceCommandHandler extends AbstractHandler implements IElementUpdater {
-  private static final Logger logger = new Logger(ExperiencePlugin.PLUGIN_ID);
   private final ExperiencePersister persister = new ExperiencePersister();
   private CommandRefreshChangeListener listener;
   private IExperience experience;
@@ -47,7 +47,10 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
       new ItemFileWriter().save(content, persister, model, new NullProgressMonitor());
     }
     catch (Exception e) {
-      logger.error(Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);
+      ExperiencePlugin.getDefaultInstance().log(
+          IStatus.ERROR,
+          Messages.ToggleExperienceActionDelegate_ErrorSavingModel,
+          e);
       throw new ExecutionException(Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);
     }
     IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
