@@ -1,7 +1,5 @@
 package net.sf.anathema.character.experience.plugin;
 
-import java.util.HashMap;
-
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
 
 import org.eclipse.ui.IPartListener;
@@ -21,7 +19,7 @@ public class ExperiencePlugin extends AbstractUIPlugin {
       ICommandService commandService = (ICommandService) PlatformUI.getWorkbench()
           .getActiveWorkbenchWindow()
           .getService(ICommandService.class);
-      commandService.refreshElements(EXPERIENCE_TOGGLE_COMMAND, new HashMap());
+      commandService.refreshElements(EXPERIENCE_TOGGLE_COMMAND, null);
     }
   };
   private final IPartListener listener = new TopPartListener(runnable);

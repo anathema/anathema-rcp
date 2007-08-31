@@ -1,7 +1,5 @@
 package net.sf.anathema.character.experience.internal;
 
-import java.util.HashMap;
-
 import net.sf.anathema.character.experience.plugin.ExperiencePlugin;
 import net.sf.anathema.lib.control.change.IChangeListener;
 
@@ -18,6 +16,6 @@ public final class CommandRefreshChangeListener implements IChangeListener {
   @Override
   public void changeOccured() {
     ICommandService service = (ICommandService) element.getServiceLocator().getService(ICommandService.class);
-    service.refreshElements(ExperiencePlugin.EXPERIENCE_TOGGLE_COMMAND, new HashMap());
+    service.refreshElements(ExperiencePlugin.EXPERIENCE_TOGGLE_COMMAND, null);
   }
 }

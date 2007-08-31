@@ -1,6 +1,5 @@
 package net.sf.anathema.character.experience.internal;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.logging.Logger;
@@ -40,12 +39,12 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
       return null;
     }
     ModelIdentifier experienceIdentifier = new ModelIdentifier(currentIdentifier.getCharacterId(), IExperience.MODEL_ID);
-    IExperience experience = (IExperience) ModelCache.getInstance().getModel(experienceIdentifier);
-    experience.setExperienced(!experience.isExperienced());
+    IExperience model = (IExperience) ModelCache.getInstance().getModel(experienceIdentifier);
+    model.setExperienced(!model.isExperienced());
     IContentHandle content = new ModelExtensionPoint().getModelContent(experienceIdentifier);
     try {
       // TODO Progressmonitor?
-      new ItemFileWriter().save(content, persister, experience, new NullProgressMonitor());
+      new ItemFileWriter().save(content, persister, model, new NullProgressMonitor());
     }
     catch (Exception e) {
       logger.error(Messages.ToggleExperienceActionDelegate_ErrorSavingModel, e);
@@ -53,10 +52,11 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
     }
     IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
     ICommandService commandService = (ICommandService) window.getService(ICommandService.class);
-    commandService.refreshElements(event.getCommand().getId(), new HashMap());
+    commandService.refreshElements(event.getCommand().getId(), null);
     return null;
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public void updateElement(final UIElement element, Map parameters) {
     resetListening();
