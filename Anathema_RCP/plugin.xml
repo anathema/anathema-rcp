@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="net.sf.anathema.rcp.MainToolbar" name="%extensionPoint.mainToolbar.name" schema="schema/Anathema.MainToolbar.exsd"/>
 
    <extension
          id="application"
@@ -42,6 +41,52 @@
             class="net.sf.anathema.rcp.SplashHandler"
             id="net.sf.anathema.rcp.splash">
       </splashHandler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?before=viewList">
+         <menu
+               id="net.sf.anathema.rcp.menu.file"
+               label="%net.sf.anathema.rcp.menu.file.name"
+               mnemonic="%net.sf.anathema.rcp.menu.file.mnemonic">
+            <command
+                  commandId="org.eclipse.ui.file.close">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.closeAll">
+            </command>
+            <separator
+                  name="separator"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.file.save">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.saveAll">
+            </command>
+            <separator
+                  name="separator"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.file.exit">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="net.sf.anathema.rcp.toolbar.save">
+            <command
+                  commandId="org.eclipse.ui.file.save">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.saveAll">
+            </command>
+         </toolbar>
+      </menuContribution>
    </extension>
 
 </plugin>
