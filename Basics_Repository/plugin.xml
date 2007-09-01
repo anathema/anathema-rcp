@@ -14,22 +14,6 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.ui.viewActions">
-      <viewContribution
-            id="net.sf.anathema.basics.repository.view.action"
-            targetID="net.sf.anathema.basics.repositoryview">
-         <action
-               class="net.sf.anathema.basics.repository.view.internal.CollapseTreeActionDelegate"
-               icon="icons/collapseall.gif"
-               id="net.sf.anathema.basics.repository.view.collapse"
-               label="%repository.view.actions.collapse"
-               style="push"
-               toolbarPath="main"
-               tooltip="%repository.view.actions.collapse">
-         </action>
-      </viewContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.commands">
       <command
             id="net.sf.anathema.basics.commands.delete"
@@ -43,6 +27,11 @@
             defaultHandler="net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkHandler"
             id="net.sf.anathema.commands.editorlink"
             name="%repository.view.actions.link">
+      </command>
+      <command
+            defaultHandler="net.sf.anathema.basics.repository.view.internal.CollapseTreeHandler"
+            id="net.sf.anathema.commands.collapseall"
+            name="%repository.view.actions.collapse">
       </command>
    </extension>
    <extension
@@ -79,6 +68,13 @@
       </menuContribution>
       <menuContribution
             locationURI="toolbar:net.sf.anathema.basics.repositoryview">
+         <command
+               commandId="net.sf.anathema.commands.collapseall"
+               icon="icons/collapseall.gif"
+               label="%repository.view.actions.collapse"
+               style="push"
+               tooltip="%repository.view.actions.collapse">
+         </command>
          <command
                commandId="net.sf.anathema.commands.editorlink"
                icon="icons/synced.gif"
