@@ -11,7 +11,7 @@ import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.linkage.EditorViewLinker;
 import net.sf.anathema.basics.repository.linkage.IResourceSelector;
-import net.sf.anathema.basics.repository.linkage.IViewEditorLinker;
+import net.sf.anathema.basics.repository.linkage.ILinker;
 import net.sf.anathema.basics.repository.linkage.ViewEditorLinker;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
@@ -36,11 +36,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
-public class RepositoryView extends ViewPart implements
-    IResourceSelector,
-    IViewEditorLinker,
-    ICollapsableTree,
-    IExpandableTree {
+public class RepositoryView extends ViewPart implements IResourceSelector, ILinker, ICollapsableTree, IExpandableTree {
   public static final String ID = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
 
   private final List<IDisposable> disposables = new ArrayList<IDisposable>();
@@ -128,9 +124,9 @@ public class RepositoryView extends ViewPart implements
   }
 
   @Override
-  public void setLinkEnabled(boolean enabled) {
-    viewLinker.setLinkEnabled(enabled);
-    editorLinker.setLinkEnabled(enabled);
+  public void toggleLink() {
+    viewLinker.toggleLink();
+    editorLinker.toggleLink();
   }
 
   @Override

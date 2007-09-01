@@ -25,9 +25,8 @@ public class EditorViewLinkerTest {
     window = EasyMock.createMock(IWorkbenchWindow.class);
     provider = EasyMock.createMock(ISelectionProvider.class);
     linker = new EditorViewLinker(window, provider);
-    linker.setLinkEnabled(true);
+    linker.toggleLink();
   }
-
 
   @Test
   public void bringsEditorToFront() throws Exception {
@@ -42,7 +41,7 @@ public class EditorViewLinkerTest {
     IEditorPart editor = EasyMock.createMock(IEditorPart.class);
     EasyMock.expect(page.findEditor(input)).andReturn(editor);
     page.bringToTop(editor);
-    EasyMock.replay(window, provider, page);    
+    EasyMock.replay(window, provider, page);
     linker.update();
     EasyMock.verify(page);
   }

@@ -11,7 +11,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 
-public final class EditorViewLinker {
+public final class EditorViewLinker implements ILinker {
 
   private final IWorkbenchWindow workbenchWindow;
   private final ISelectionProvider provider;
@@ -49,7 +49,8 @@ public final class EditorViewLinker {
     }
   }
 
-  public void setLinkEnabled(boolean enabled) {
-    this.enabled = enabled;
+  @Override
+  public void toggleLink() {
+    this.enabled = !enabled;
   }
 }

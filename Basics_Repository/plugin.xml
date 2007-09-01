@@ -19,15 +19,6 @@
             id="net.sf.anathema.basics.repository.view.action"
             targetID="net.sf.anathema.basics.repositoryview">
          <action
-               class="net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkActionDelegate"
-               icon="icons/synced.gif"
-               id="net.sf.anathema.basics.repository.view.link"
-               label="%repository.view.actions.link"
-               style="toggle"
-               toolbarPath="main"
-               tooltip="%repository.view.actions.link">
-         </action>
-         <action
                class="net.sf.anathema.basics.repository.view.internal.CollapseTreeActionDelegate"
                icon="icons/collapseall.gif"
                id="net.sf.anathema.basics.repository.view.collapse"
@@ -47,6 +38,11 @@
       <command
             id="net.sf.anathema.commands.treeexpand"
             name="Expand All">
+      </command>
+      <command
+            defaultHandler="net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkHandler"
+            id="net.sf.anathema.commands.editorlink"
+            name="%repository.view.actions.link">
       </command>
    </extension>
    <extension
@@ -79,6 +75,16 @@
                label="%repository.view.actions.delete"
                style="push"
                tooltip="%repository.view.actions.delete">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:net.sf.anathema.basics.repositoryview">
+         <command
+               commandId="net.sf.anathema.commands.editorlink"
+               icon="icons/synced.gif"
+               label="%repository.view.actions.link"
+               style="toggle"
+               tooltip="%repository.view.actions.link">
          </command>
       </menuContribution>
    </extension>

@@ -10,7 +10,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchWindow;
 
-public final class ViewEditorLinker implements IDisposable, Runnable, IViewEditorLinker {
+public final class ViewEditorLinker implements IDisposable, Runnable, ILinker {
   private final IResourceSelector selector;
   private final TopPartListener topPartListener;
   private boolean enabled;
@@ -24,8 +24,9 @@ public final class ViewEditorLinker implements IDisposable, Runnable, IViewEdito
     disposables.addDisposable(new PartListening(topPartListener, partContainer));
   }
 
-  public void setLinkEnabled(boolean enabled) {
-    this.enabled = enabled;
+  @Override
+  public void toggleLink() {
+    this.enabled = !enabled;
     if (enabled) {
       updateLink();
     }
