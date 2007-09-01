@@ -2,7 +2,6 @@ package net.sf.anathema.character.experience.internal;
 
 import java.util.Map;
 
-import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
