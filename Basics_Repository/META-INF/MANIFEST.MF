@@ -13,7 +13,8 @@ Export-Package: net.sf.anathema.basics.repository.access,
 Require-Bundle: net.sf.anathema.basics.jface,
  net.sf.anathema.basics.lib,
  net.sf.anathema.basics.eclipse,
- net.sf.anathema.basics.item
+ net.sf.anathema.basics.item,
+ org.eclipse.core.expressions
 Bundle-Activator: net.sf.anathema.basics.repository.RepositoryPlugin
 Eclipse-LazyStart: true
 Bundle-Localization: plugin

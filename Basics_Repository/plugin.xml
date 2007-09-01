@@ -45,15 +45,8 @@
             id="net.sf.anathema.basics.repository.element.popup"
             objectClass="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement">
          <action
-               class="net.sf.anathema.basics.repository.view.internal.ExpandViewElementActionDelegate"
-               icon="icons/expandall.gif"
-               id="net.sf.anathema.basics.repository.expand"
-               label="%repository.view.actions.expand"
-               tooltip="%repository.view.actions.expand">
-         </action>
-         <action
                class="net.sf.anathema.basics.repository.treecontent.DeleteViewElementActionDelegate"
-               definitionId="net.sf.anathema.basics.repository.delete.command"
+               definitionId="net.sf.anathema.basics.commands.delete"
                icon="icons/delete_obj.gif"
                id="net.sf.anathema.basics.repository.delete.action"
                label="%repository.view.actions.delete"
@@ -68,14 +61,18 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="net.sf.anathema.basics.repository.delete.command"
+            id="net.sf.anathema.basics.commands.delete"
             name="%repository.view.actions.delete">
+      </command>
+      <command
+            id="net.sf.anathema.commands.treeexpand"
+            name="Expand All">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="net.sf.anathema.basics.repository.delete.command"
+            commandId="net.sf.anathema.basics.commands.delete"
             schemeId="net.sf.anathema.basics.repository.scheme"
             sequence="DEL">
       </key>
@@ -84,5 +81,58 @@
             name="%repository.binding.scheme"
             parentId="org.eclipse.ui.defaultAcceleratorConfiguration">
       </scheme>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:net.sf.anathema.basics.repositoryview">
+         <command
+               commandId="net.sf.anathema.commands.treeexpand"
+               icon="icons/expandall.gif"
+               label="%repository.view.actions.expand"
+               style="push"
+               tooltip="%repository.view.actions.expand">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="net.sf.anathema.basics.repository.view.internal.ExpandViewElementHandler"
+            commandId="net.sf.anathema.commands.treeexpand">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <and>
+                        <instanceof
+                              value="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement">
+                        </instanceof>
+                        <test
+                              forcePluginActivation="true"
+                              property="net.sf.anathema.basics.repository.hasChildren"
+                              value="true">
+                        </test>
+                     </and>
+                  </iterate>
+               </and>
+            </with></activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="net.sf.anathema.basics.repository.view.internal.HasChildrenTester"
+            id="net.sf.anathema.testers.haschildren"
+            namespace="net.sf.anathema.basics.repository"
+            properties="hasChildren"
+            type="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement">
+      </propertyTester>
    </extension>
 </plugin>
