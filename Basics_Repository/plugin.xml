@@ -39,26 +39,6 @@
       </viewContribution>
    </extension>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="net.sf.anathema.basics.repository.element.popup"
-            objectClass="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement">
-         <action
-               class="net.sf.anathema.basics.repository.treecontent.DeleteViewElementActionDelegate"
-               definitionId="net.sf.anathema.basics.commands.delete"
-               icon="icons/delete_obj.gif"
-               id="net.sf.anathema.basics.repository.delete.action"
-               label="%repository.view.actions.delete"
-               tooltip="%repository.view.actions.delete">
-         </action>
-      </objectContribution>
-      <viewerContribution
-            id="EmptyContribution"
-            targetID="EmptyContribution">
-      </viewerContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.commands">
       <command
             id="net.sf.anathema.basics.commands.delete"
@@ -93,6 +73,13 @@
                style="push"
                tooltip="%repository.view.actions.expand">
          </command>
+         <command
+               commandId="net.sf.anathema.basics.commands.delete"
+               icon="icons/delete_obj.gif"
+               label="%repository.view.actions.delete"
+               style="push"
+               tooltip="%repository.view.actions.delete">
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -101,28 +88,45 @@
             class="net.sf.anathema.basics.repository.view.internal.ExpandViewElementHandler"
             commandId="net.sf.anathema.commands.treeexpand">
          <activeWhen>
-            <with
-                  variable="selection">
-               <and>
-                  <count
-                        value="1">
-                  </count>
+            <and>
+               <reference
+                     definitionId="net.sf.anathema.definitions.singleViewElementSelection">
+               </reference>
+               <with
+                     variable="selection">
                   <iterate
                         ifEmpty="false"
                         operator="and">
-                     <and>
-                        <instanceof
-                              value="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement">
-                        </instanceof>
-                        <test
-                              forcePluginActivation="true"
-                              property="net.sf.anathema.basics.repository.hasChildren"
-                              value="true">
-                        </test>
-                     </and>
+                     <test
+                           forcePluginActivation="true"
+                           property="net.sf.anathema.basics.repository.hasChildren"
+                           value="true">
+                     </test>
                   </iterate>
-               </and>
-            </with></activeWhen>
+               </with>
+            </and></activeWhen>
+      </handler>
+      <handler
+            class="net.sf.anathema.basics.repository.treecontent.DeleteViewElementHandler"
+            commandId="net.sf.anathema.basics.commands.delete">
+         <activeWhen>
+            <and>
+               <reference
+                     definitionId="net.sf.anathema.definitions.singleViewElementSelection">
+               </reference>
+               <with
+                     variable="selection">
+                  <iterate>
+                     <adapt
+                           type="net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible">
+                        <instanceof
+                              value="net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible">
+                        </instanceof>
+                     </adapt>
+                  </iterate>
+               </with>
+            </and>
+         </activeWhen>
       </handler>
    </extension>
    <extension
@@ -134,5 +138,34 @@
             properties="hasChildren"
             type="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement">
       </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="net.sf.anathema.definitions.singleViewElementSelection">
+         <with
+               variable="selection">
+            <count
+                  value="1">
+            </count>
+            <iterate
+                  ifEmpty="false"
+                  operator="and">
+               <instanceof
+                     value="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement">
+               </instanceof>
+            </iterate>
+         </with>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement"
+            class="net.sf.anathema.basics.repository.treecontent.itemtype.ViewElementPageDelibleAdapterFactory">
+         <adapter
+               type="net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible">
+         </adapter>
+      </factory>
    </extension>
 </plugin>
