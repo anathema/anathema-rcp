@@ -10,7 +10,11 @@ public interface IExtensionElement {
 
   public boolean getBooleanAttribute(String name);
 
+  public int getIntegerAttribute(String name);
+
   public IExtensionElement getElement(String name);
+
+  public IExtensionElement[] getElements();
 
   public String getName();
 }

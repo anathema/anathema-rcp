@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.eclipse.extension.internal;
 
+import net.disy.commons.core.util.ArrayUtilities;
+import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 
@@ -29,9 +31,26 @@ public class ExtensionElement implements IExtensionElement {
     return eclipseElement.getAttribute(name);
   }
 
+  public IExtensionElement[] getElements() {
+    return ArrayUtilities.transform(
+        eclipseElement.getChildren(),
+        IExtensionElement.class,
+        new ITransformer<IConfigurationElement, IExtensionElement>() {
+          @Override
+          public IExtensionElement transform(IConfigurationElement element) {
+            return new ExtensionElement(element);
+          }
+        });
+  }
+
   @Override
   public boolean getBooleanAttribute(String name) {
     return Boolean.valueOf(eclipseElement.getAttribute(name));
+  }
+  
+  @Override
+  public int getIntegerAttribute(String name) {
+    return Integer.valueOf(eclipseElement.getAttribute(name));
   }
 
   public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException {
