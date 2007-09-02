@@ -13,7 +13,7 @@
    <element name="extension">
       <complexType>
          <sequence>
-            <element ref="credit" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="creditList" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -42,16 +42,24 @@
       </complexType>
    </element>
 
-   <element name="credit">
+   <element name="creditList">
       <complexType>
-         <attribute name="id" type="string" use="required">
+         <sequence>
+            <element ref="credit" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="templateId" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="templateId" type="string" use="required">
+      </complexType>
+   </element>
+
+   <element name="credit">
+      <complexType>
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
                   

@@ -17,7 +17,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
 
   private static final Logger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
   public static final String TEMPLATE_FILE_NAME = "template.xml"; //$NON-NLS-1$
-  public static String STATIC_TEMPLATE_ID = "net.sf.anathema.charactertype.mortal"; //$NON-NLS-1$
+  public static String STATIC_TEMPLATE_ID = "net.sf.anathema.charactertype.heroicmortal"; //$NON-NLS-1$
   public static final String ATTRIB_REFERENCE = "reference"; //$NON-NLS-1$
   private static final Pattern REFERENCE_PATTERN = Pattern.compile(ATTRIB_REFERENCE + "=\"(.*)\""); //$NON-NLS-1$
   private List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
