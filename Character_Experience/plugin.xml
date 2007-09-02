@@ -50,7 +50,6 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="net.sf.anathema.character.experience.internal.ToggleExperienceCommandHandler"
             id="net.sf.anathema.character.experience.toggle"
             name="Toggle Experience">
       </command>
@@ -61,11 +60,32 @@
             id="activeEditor.isInstanceOf.ICharacterEditor">
          <with
                variable="activeEditor">
-            <instanceof
-                  value="net.sf.anathema.character.core.editors.ICharacterEditor">
-            </instanceof>
+            <test
+                  forcePluginActivation="true"
+                  property="net.sf.anathema.character.isCharacterEditor"
+                  value="true">
+            </test>
          </with>
       </definition>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="net.sf.anathema.character.experience.internal.ToggleExperienceCommandHandler"
+            commandId="net.sf.anathema.character.experience.toggle">
+         <activeWhen>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="net.sf.anathema.character.experience.internal.IsCharacterEditorTester"
+            id="net.sf.anathema.testers.isCharacterEditor"
+            namespace="net.sf.anathema.character"
+            properties="isCharacterEditor"
+            type="org.eclipse.ui.IEditorPart">
+      </propertyTester>
    </extension>
 
 </plugin>
