@@ -3,8 +3,8 @@ package net.sf.anathema.character.experience.internal;
 import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
+import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
@@ -15,32 +15,31 @@ import net.sf.anathema.character.experience.plugin.ExperiencePlugin;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.commands.IElementUpdater;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.menus.UIElement;
 
-public class ToggleExperienceCommandHandler extends AbstractHandler implements IElementUpdater {
+public class ToggleExperienceSelectionHandler extends AbstractHandler implements IElementUpdater {
   private final ExperiencePersister persister = new ExperiencePersister();
-  private final ExperienceListening listening = new ExperienceListening();
 
   @Override
   public Object execute(ExecutionEvent event) throws ExecutionException {
-    IEditorPart editor = HandlerUtil.getActiveEditorChecked(event);
-    IModelIdentifier currentIdentifier = (IModelIdentifier) editor.getEditorInput().getAdapter(IModelIdentifier.class);
-    if (currentIdentifier == null) {
-      throw new ExecutionException(
-          "This handler should not be active when the current editor is not a character editor.");//$NON-NLS-1$
+    ISelection selection = HandlerUtil.getCurrentSelectionChecked(event);
+    ModelIdentifier identifier = getExperienceIdentifier(selection);
+    if (identifier == null) {
+      throw new ExecutionException("This handler should not be active when the current selection is empty."); //$NON-NLS-1$
     }
-    ModelIdentifier experienceIdentifier = new ModelIdentifier(currentIdentifier.getCharacterId(), IExperience.MODEL_ID);
-    IExperience model = (IExperience) ModelCache.getInstance().getModel(experienceIdentifier);
+    IExperience model = (IExperience) ModelCache.getInstance().getModel(identifier);
     model.setExperienced(!model.isExperienced());
-    IContentHandle content = new ModelExtensionPoint().getModelContent(experienceIdentifier);
+    IContentHandle content = new ModelExtensionPoint().getModelContent(identifier);
     try {
       // TODO Progressmonitor?
       new ItemFileWriter().save(content, persister, model, new NullProgressMonitor());
@@ -58,23 +57,31 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
     return null;
   }
 
+  private ModelIdentifier getExperienceIdentifier(ISelection selection) {
+    if (selection.isEmpty() || !(selection instanceof IStructuredSelection)) {
+      return null;
+    }
+    StructuredSelection structuredSelection = (StructuredSelection) selection;
+    IViewElement element = (IViewElement) structuredSelection.getFirstElement();
+    IFolder folder = (IFolder) element.getAdapter(IFolder.class);
+    ModelIdentifier identifier = new ModelIdentifier(folder, IExperience.MODEL_ID);
+    return identifier;
+  }
+
   @SuppressWarnings("unchecked")
   @Override
   public void updateElement(final UIElement element, Map parameters) {
-    listening.reset();
     IWorkbenchWindow window = (IWorkbenchWindow) parameters.get("org.eclipse.ui.IWorkbenchWindow"); //$NON-NLS-1$
-    PartContainer partContainer = new PartContainer(window);
-    IEditorInput input = partContainer.getEditorInput();
-    if (input == null) {
+    ISelection selection = window.getSelectionService().getSelection();
+    if (selection == null) {
       return;
     }
-    IModelIdentifier modelIdentifier = (IModelIdentifier) input.getAdapter(IModelIdentifier.class);
+    IModelIdentifier modelIdentifier = getExperienceIdentifier(selection);
     if (modelIdentifier == null) {
       return;
     }
     IExperience experience = (IExperience) ModelCache.getInstance().getModel(
         new ModelIdentifier(modelIdentifier.getCharacterId(), IExperience.MODEL_ID));
-    listening.init(window, experience);
     element.setChecked(experience.isExperienced());
   }
 }

@@ -10,25 +10,6 @@
       </model>
    </extension>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="net.sf.anathema.character.popup"
-            objectClass="net.sf.anathema.character.core.repository.CharacterViewElement">
-         <action
-               class="net.sf.anathema.character.experience.internal.ToggleExperienceActionDelegate"
-               enablesFor="1"
-               id="net.sf.anathema.character.experience.toggle"
-               label="%character.experience.toggle"
-               style="toggle">
-         </action>
-      </objectContribution>
-      <viewerContribution
-            id="EmptyContribution"
-            targetID="EmptyContribution">
-      </viewerContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
@@ -41,10 +22,31 @@
                   tooltip="%net.sf.anathema.character.experience.toggle.tooltip">
                <visibleWhen>
                   <reference
-                        definitionId="activeEditor.isInstanceOf.ICharacterEditor">
+                        definitionId="activeEditor.is.CharacterEditor">
                   </reference></visibleWhen>
             </command>
          </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:net.sf.anathema.basics.repositoryview">
+         <command
+               commandId="net.sf.anathema.character.experience.toggle"
+               label="%character.experience.toggle"
+               style="toggle"
+               tooltip="%character.experience.toggle">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="net.sf.anathema.character.core.repository.CharacterViewElement">
+                     </instanceof>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -57,7 +59,7 @@
    <extension
          point="org.eclipse.core.expressions.definitions">
       <definition
-            id="activeEditor.isInstanceOf.ICharacterEditor">
+            id="activeEditor.is.CharacterEditor">
          <with
                variable="activeEditor">
             <test
@@ -71,9 +73,31 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="net.sf.anathema.character.experience.internal.ToggleExperienceCommandHandler"
+            class="net.sf.anathema.character.experience.internal.ToggleExperienceEditorHandler"
             commandId="net.sf.anathema.character.experience.toggle">
          <activeWhen>
+            <reference
+                  definitionId="activeEditor.is.CharacterEditor">
+            </reference>
+         </activeWhen>
+      </handler>
+      <handler
+            class="net.sf.anathema.character.experience.internal.ToggleExperienceSelectionHandler"
+            commandId="net.sf.anathema.character.experience.toggle">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <count
+                     value="1">
+               </count>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="net.sf.anathema.character.core.repository.CharacterViewElement">
+                  </instanceof>
+               </iterate>
+            </with>
          </activeWhen>
       </handler>
    </extension>
