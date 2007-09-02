@@ -27,8 +27,7 @@ import org.eclipse.ui.menus.UIElement;
 
 public class ToggleExperienceCommandHandler extends AbstractHandler implements IElementUpdater {
   private final ExperiencePersister persister = new ExperiencePersister();
-  private CommandRefreshChangeListener listener;
-  private IExperience experience;
+  private final ExperienceListening listening = new ExperienceListening();
 
   @Override
   public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -62,7 +61,7 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
   @SuppressWarnings("unchecked")
   @Override
   public void updateElement(final UIElement element, Map parameters) {
-    resetListening();
+    listening.reset();
     IWorkbenchWindow window = (IWorkbenchWindow) parameters.get("org.eclipse.ui.IWorkbenchWindow"); //$NON-NLS-1$
     PartContainer partContainer = new PartContainer(window);
     IEditorInput input = partContainer.getEditorInput();
@@ -73,18 +72,9 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
     if (modelIdentifier == null) {
       return;
     }
-    this.listener = new CommandRefreshChangeListener(element);
-    this.experience = (IExperience) ModelCache.getInstance().getModel(
+    IExperience experience = (IExperience) ModelCache.getInstance().getModel(
         new ModelIdentifier(modelIdentifier.getCharacterId(), IExperience.MODEL_ID));
-    experience.addChangeListener(listener);
+    listening.init(window, experience);
     element.setChecked(experience.isExperienced());
-  }
-
-  private void resetListening() {
-    if (experience != null) {
-      this.experience.removeChangeListener(listener);
-    }
-    this.experience = null;
-    this.listener = null;
   }
 }
