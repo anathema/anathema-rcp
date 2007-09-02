@@ -1,5 +1,6 @@
 package net.sf.anathema.character.attributes.points;
 
+import static net.sf.anathema.character.attributes.points.IAttributeConstants.*;
 import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.trait.IBasicTrait;
 
@@ -20,7 +21,6 @@ public class AttributeBonusPointCalculator {
   }
 
   private int calculate(IBasicTrait trait) {
-    return Math.max(0, (trait.getCreationModel().getValue() - IAttributeConstants.ATTRIBUTE_CALCULATION_BASE)
-        * IAttributeConstants.BONUS_POINT_COST);
+    return Math.max(0, (trait.getCreationModel().getValue() - ATTRIBUTE_CALCULATION_BASE) * BONUS_POINT_COST);
   }
 }
