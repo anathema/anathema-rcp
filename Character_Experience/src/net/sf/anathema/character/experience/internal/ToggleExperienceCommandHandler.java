@@ -35,7 +35,8 @@ public class ToggleExperienceCommandHandler extends AbstractHandler implements I
     IEditorPart editor = HandlerUtil.getActiveEditorChecked(event);
     IModelIdentifier currentIdentifier = (IModelIdentifier) editor.getEditorInput().getAdapter(IModelIdentifier.class);
     if (currentIdentifier == null) {
-      return null;
+      throw new ExecutionException(
+          "This handler should not be active when the current editor is not a character editor.");//$NON-NLS-1$
     }
     ModelIdentifier experienceIdentifier = new ModelIdentifier(currentIdentifier.getCharacterId(), IExperience.MODEL_ID);
     IExperience model = (IExperience) ModelCache.getInstance().getModel(experienceIdentifier);
