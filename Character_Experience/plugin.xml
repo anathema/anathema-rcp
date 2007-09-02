@@ -85,19 +85,25 @@
             class="net.sf.anathema.character.experience.internal.ToggleExperienceSelectionHandler"
             commandId="net.sf.anathema.character.experience.toggle">
          <activeWhen>
-            <with
-                  variable="selection">
-               <count
-                     value="1">
-               </count>
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <instanceof
-                        value="net.sf.anathema.character.core.repository.CharacterViewElement">
-                  </instanceof>
-               </iterate>
-            </with>
+            <and>
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="net.sf.anathema.character.experience.activateExperience">
+                  </test>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="net.sf.anathema.character.core.repository.CharacterViewElement">
+                     </instanceof>
+                  </iterate>
+               </with>
+            </and>
          </activeWhen>
       </handler>
    </extension>
@@ -109,6 +115,13 @@
             namespace="net.sf.anathema.character"
             properties="isCharacterEditor"
             type="org.eclipse.ui.IEditorPart">
+      </propertyTester>
+      <propertyTester
+            class="net.sf.anathema.character.experience.internal.ActivateExperienceTester"
+            id="net.sf.anathema.testers.activateExperience"
+            namespace="net.sf.anathema.character.experience"
+            properties="activateExperience"
+            type="java.lang.Object">
       </propertyTester>
    </extension>
 
