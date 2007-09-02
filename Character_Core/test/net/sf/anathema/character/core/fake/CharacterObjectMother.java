@@ -40,12 +40,4 @@ public class CharacterObjectMother {
     EasyMock.replay(modelProvider);
     return modelProvider;
   }
-
-  public static DummyCharacterId createCharacter(String templateId) {
-    DummyCharacterId characterId = new DummyCharacterId();
-    characterId.addContentHandle("template.xml", new DummyContentHandler("<template reference=\""
-        + templateId
-        + "\" />")); //$NON-NLS-1$
-    return characterId;
-  }
 }

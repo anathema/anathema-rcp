@@ -1,9 +1,9 @@
 package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.core.fake.DummyContentHandler;
+import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
@@ -31,7 +31,7 @@ public class PointViewInputStoreTest {
 
   @Before
   public void createCharacterAndEditorInput() {
-    this.characterId = CharacterObjectMother.createCharacter("net.sf.anathema.charactertype.heroicmortal"); //$NON-NLS-1$
+    this.characterId = TemplateProviderObjectMother.createCharacterId("net.sf.anathema.charactertype.heroicmortal"); //$NON-NLS-1$
     characterId.addContentHandle("experience.model", new DummyContentHandler("<model experienced=\"false\"/>")); //$NON-NLS-1$ //$NON-NLS-2$
     this.modelIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
     this.editorInput = EasyMock.createStrictMock(IEditorInput.class);

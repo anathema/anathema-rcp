@@ -8,10 +8,8 @@ import java.util.Collection;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.core.fake.CharacterObjectMother;
+import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.template.ICharacterTemplate;
-import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
@@ -27,7 +25,7 @@ public class CreditManagerTest {
   private static final String CREDIT_ID = "creditId"; //$NON-NLS-1$
   private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.freebies.credits"; //$NON-NLS-1$
   private static final String TEMPLATE_ID = "template"; //$NON-NLS-1$
-  private static final ICharacterId CHARACTER_ID = CharacterObjectMother.createCharacter(TEMPLATE_ID);
+  private ICharacterId characterId;
   private CreditManager manager;
 
   @Parameters
@@ -52,9 +50,11 @@ public class CreditManagerTest {
 
   @Before
   public void createManager() throws Exception {
-    ICharacterTemplateProvider templateProvider = initTemplateProvider();
+    this.characterId = TemplateProviderObjectMother.createCharacterId(TEMPLATE_ID);
     IExtensionProvider provider = EasyMock.createMock(IExtensionProvider.class);
-    this.manager = new CreditManager(provider, templateProvider);
+    this.manager = new CreditManager(provider, TemplateProviderObjectMother.createTemplateProvider(
+        characterId,
+        TEMPLATE_ID));
     FakeExtensionElement element = createCreditsElement();
     createExtension(element, provider);
   }
@@ -66,16 +66,7 @@ public class CreditManagerTest {
 
   @Test
   public void assertAmount() {
-    assertEquals(expectedCredit, manager.getCredit(CHARACTER_ID, CREDIT_ID));
-  }
-
-  private ICharacterTemplateProvider initTemplateProvider() {
-    ICharacterTemplateProvider templateProvider = EasyMock.createMock(ICharacterTemplateProvider.class);
-    ICharacterTemplate template = EasyMock.createMock(ICharacterTemplate.class);
-    EasyMock.expect(templateProvider.getTemplate(CHARACTER_ID)).andReturn(template);
-    EasyMock.expect(template.getId()).andReturn(TEMPLATE_ID);
-    EasyMock.replay(template, templateProvider);
-    return templateProvider;
+    assertEquals(expectedCredit, manager.getCredit(characterId, CREDIT_ID));
   }
 
   private void createExtension(FakeExtensionElement element, IExtensionProvider provider) {
