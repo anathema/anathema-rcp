@@ -35,10 +35,13 @@
       <plugin id="net.sf.anathema.character.core"/>
       <plugin id="net.sf.anathema.character.description"/>
       <plugin id="net.sf.anathema.character.experience"/>
+      <plugin id="net.sf.anathema.character.freebies"/>
       <plugin id="net.sf.anathema.character.points"/>
+      <plugin id="net.sf.anathema.character.points.i18n.en" fragment="true"/>
       <plugin id="net.sf.anathema.character.trait"/>
       <plugin id="net.sf.anathema.editor.styledtext"/>
       <plugin id="net.sf.anathema.rcp"/>
+      <plugin id="net.sf.anathema.view.valuelist"/>
       <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.core.commands"/>
       <plugin id="org.eclipse.core.contenttype"/>
