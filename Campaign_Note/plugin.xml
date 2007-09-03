@@ -14,24 +14,6 @@
       </itemtype>
    </extension>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="net.sf.anathema.notes.popup"
-            objectClass="net.sf.anathema.basics.repository.treecontent.itemtype.ItemTypeViewElement">
-         <action
-               class="net.sf.anathema.campaign.note.NewNoteActionDelegate"
-               icon="icons/TabNotes16.png"
-               id="net.sf.anathema.notes.popup.new"
-               label="%itemtype.new.note">
-         </action>
-      </objectContribution>
-      <viewerContribution
-            id="EmptyContribution"
-            targetID="EmptyContribution">
-      </viewerContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.editors">
       <editor
             class="net.sf.anathema.editor.styledtext.StyledTextEditor"

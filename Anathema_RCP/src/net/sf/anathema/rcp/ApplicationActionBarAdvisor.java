@@ -20,6 +20,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
   @Override
   protected void makeActions(final IWorkbenchWindow window) {
     this.viewList = ContributionItemFactory.VIEWS_SHORTLIST.create(window);
+    register(ActionFactory.NEW.create(window));
     register(ActionFactory.CLOSE.create(window));
     register(ActionFactory.CLOSE_ALL.create(window));
     register(ActionFactory.SAVE.create(window));

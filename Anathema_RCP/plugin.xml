@@ -51,6 +51,13 @@
                label="%net.sf.anathema.rcp.menu.file.name"
                mnemonic="%net.sf.anathema.rcp.menu.file.mnemonic">
             <command
+                  commandId="org.eclipse.ui.newWizard">
+            </command>
+            <separator
+                  name="separator"
+                  visible="true">
+            </separator>
+            <command
                   commandId="org.eclipse.ui.file.close">
             </command>
             <command

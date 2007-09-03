@@ -15,24 +15,6 @@
       </itemtype>
    </extension>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <viewerContribution
-            id="EmptyContribution"
-            targetID="EmptyContribution">
-      </viewerContribution>
-      <objectContribution
-            adaptable="false"
-            id="net.sf.anathema.character.popup.new"
-            objectClass="net.sf.anathema.basics.repository.treecontent.itemtype.ItemTypeViewElement">
-         <action
-               class="net.sf.anathema.character.core.create.NewCharacterActionDelegate"
-               icon="icons/TabCharacter16.png"
-               id="net.sf.anathema.character.core.popup.new"
-               label="%itemtype.new.character">
-         </action>
-      </objectContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.newWizards">
       <category
             id="net.sf.anathema.category.character"

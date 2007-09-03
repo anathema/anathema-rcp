@@ -1,13 +1,13 @@
 package net.sf.anathema.charactertype.mortal;
 
 import net.sf.anathema.basics.repository.creation.EmptyNewWizard;
-import net.sf.anathema.character.core.create.NewCharacterActionDelegate;
+import net.sf.anathema.character.core.create.CharacterFactory;
 
 public class NewHeroicMortalWizard extends EmptyNewWizard {
 
   @Override
   public boolean performFinish() {
-    NewCharacterActionDelegate.createNewCharacter("net.sf.anathema.charactertype.heroicmortal");
+    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.heroicmortal"); //$NON-NLS-1$
     return true;
   }
 }

@@ -52,6 +52,27 @@
       <menuContribution
             locationURI="popup:net.sf.anathema.basics.repositoryview">
          <command
+               commandId="org.eclipse.ui.newWizard"
+               label="New">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="net.sf.anathema.basics.repository.treecontent.itemtype.ItemTypeViewElement">
+                     </instanceof>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+         <separator
+               name="separator"
+               visible="true">
+         </separator>
+         <command
                commandId="net.sf.anathema.commands.treeexpand"
                icon="icons/expandall.gif"
                label="%repository.view.actions.expand"

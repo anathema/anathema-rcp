@@ -18,26 +18,12 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IObjectActionDelegate;
-import org.eclipse.ui.IWorkbenchPart;
 
-public class NewCharacterActionDelegate implements IObjectActionDelegate {
+public class CharacterFactory {
 
   private static final Logger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
-  
-  @Override
-  public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-    // nothing to do
-  }
 
-  @Override
-  public void run(IAction action) {
-    createNewCharacter("net.sf.anathema.charactertype.heroicmortal");
-  }
-
-  public static void createNewCharacter(String templateName) {
+  public void createNewCharacter(String templateName) {
     try {
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
       IFolder characterFolder = createUnusedFolder(project, "Unnamed");
@@ -45,13 +31,11 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
       saveTemplate(characterFolder, templateName);
     }
     catch (Exception e) {
-      logger.error(
-          Messages.NewCharacterActionDelegate_CharacterCreationError,
-          e);
+      logger.error(Messages.NewCharacterActionDelegate_CharacterCreationError, e);
     }
   }
 
-  private static void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
+  private void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
     Element rootElement = DocumentHelper.createElement("template"); //$NON-NLS-1$
     Document document = DocumentHelper.createDocument(rootElement);
     rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, templateName);
@@ -61,17 +45,12 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
     new FileWriter().saveToFile(templateFile, outputStream, new NullProgressMonitor());
   }
 
-  private static IFolder createUnusedFolder(IProject project, String suggestedFolderName) {
+  private IFolder createUnusedFolder(IProject project, String suggestedFolderName) {
     int count = 0;
     IFolder folder = project.getFolder(suggestedFolderName);
     while (folder.exists()) {
       folder = project.getFolder(suggestedFolderName + ++count);
     }
     return folder;
-  }
-
-  @Override
-  public void selectionChanged(IAction action, ISelection selection) {
-    // nothing to do
   }
 }

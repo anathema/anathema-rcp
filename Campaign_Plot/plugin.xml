@@ -36,17 +36,6 @@
                label="%new.plotelement">
          </action>
       </objectContribution>
-      <objectContribution
-            adaptable="false"
-            id="net.sf.anathema.campaign.plot.itemtype.popup"
-            objectClass="net.sf.anathema.basics.repository.treecontent.itemtype.ItemTypeViewElement">
-         <action
-               class="net.sf.anathema.campaign.plot.creation.NewPlotActionDelegate"
-               icon="icons/TabSeries16.png"
-               id="net.sf.anathema.campaign.plot.popup"
-               label="%itemtype.new.plot">
-         </action>
-      </objectContribution>
       <viewerContribution
             id="EmptyContribution"
             targetID="EmptyContribution">
