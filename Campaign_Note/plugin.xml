@@ -42,5 +42,21 @@
             name="%net.sf.anathema.campaign.note.noteeditor.name">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.campaign"
+            class="net.sf.anathema.campaign.note.NewNoteWizard"
+            hasPages="false"
+            icon="icons/TabNotes16.png"
+            id="net.sf.anathema.campaign.note.newwizard"
+            name="Note">
+      </wizard>
+      <category
+            id="net.sf.anathema.category.campaign"
+            name="Campaign">
+      </category>
+   </extension>
 
 </plugin>

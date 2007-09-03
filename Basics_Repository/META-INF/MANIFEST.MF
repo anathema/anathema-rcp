@@ -4,6 +4,7 @@ Bundle-Name: %net.sf.anathema.basics.repository.BundleName
 Bundle-SymbolicName: net.sf.anathema.basics.repository;singleton:=true
 Bundle-Version: 1.0.0
 Export-Package: net.sf.anathema.basics.repository.access,
+ net.sf.anathema.basics.repository.creation,
  net.sf.anathema.basics.repository.input,
  net.sf.anathema.basics.repository.itemtype,
  net.sf.anathema.basics.repository.messages,

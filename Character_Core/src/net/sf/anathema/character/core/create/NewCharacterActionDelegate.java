@@ -34,9 +34,11 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
 
   @Override
   public void run(IAction action) {
-    // TODO Show a progress monitor?
+    createNewCharacter("net.sf.anathema.charactertype.heroicmortal");
+  }
+
+  public static void createNewCharacter(String templateName) {
     try {
-      String templateName = "net.sf.anathema.charactertype.heroicmortal"; //$NON-NLS-1$
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
       IFolder characterFolder = createUnusedFolder(project, "Unnamed");
       characterFolder.create(true, true, new NullProgressMonitor());
@@ -49,7 +51,7 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
     }
   }
 
-  private void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
+  private static void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
     Element rootElement = DocumentHelper.createElement("template"); //$NON-NLS-1$
     Document document = DocumentHelper.createDocument(rootElement);
     rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, templateName);
@@ -59,7 +61,7 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
     new FileWriter().saveToFile(templateFile, outputStream, new NullProgressMonitor());
   }
 
-  private IFolder createUnusedFolder(IProject project, String suggestedFolderName) {
+  private static IFolder createUnusedFolder(IProject project, String suggestedFolderName) {
     int count = 0;
     IFolder folder = project.getFolder(suggestedFolderName);
     while (folder.exists()) {

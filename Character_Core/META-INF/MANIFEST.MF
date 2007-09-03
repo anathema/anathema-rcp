@@ -10,7 +10,8 @@ Require-Bundle: net.sf.anathema.basics.repository,
  net.sf.anathema.basics.jface
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
-Export-Package: net.sf.anathema.character.core.editors,
+Export-Package: net.sf.anathema.character.core.create,
+ net.sf.anathema.character.core.editors,
  net.sf.anathema.character.core.fake,
  net.sf.anathema.character.core.listening,
  net.sf.anathema.character.core.model,

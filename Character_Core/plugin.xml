@@ -32,5 +32,12 @@
          </action>
       </objectContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="net.sf.anathema.category.character"
+            name="Character">
+      </category>
+   </extension>
 
 </plugin>

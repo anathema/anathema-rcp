@@ -31,5 +31,16 @@
          </model>
       </template>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.charactertype.mortal.NewHeroicMortalWizard"
+            hasPages="false"
+            id="net.sf.anathema.charactertype.heroicmortal.newwizard"
+            name="Heroic Mortal">
+      </wizard>
+   </extension>
 
 </plugin>
