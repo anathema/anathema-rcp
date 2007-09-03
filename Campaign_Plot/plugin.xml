@@ -25,23 +25,6 @@
       </editor>
    </extension>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="net.sf.anathema.campaign.plot.element.popup"
-            objectClass="net.sf.anathema.campaign.plot.repository.PlotElementViewElement">
-         <action
-               class="net.sf.anathema.campaign.plot.creation.NewPlotElementActionDelegate"
-               id="net.sf.anathema.plotelement.popup.new"
-               label="%new.plotelement">
-         </action>
-      </objectContribution>
-      <viewerContribution
-            id="EmptyContribution"
-            targetID="EmptyContribution">
-      </viewerContribution>
-   </extension>
-   <extension
          point="net.sf.anathema.repository.dnd">
       <dndFactory
             class="net.sf.anathema.campaign.plot.dnd.PlotRepositoryDND">
@@ -93,6 +76,47 @@
             id="net.sf.anathema.category.campaign"
             name="Campaign">
       </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:net.sf.anathema.basics.repositoryview">
+         <command
+               commandId="net.sf.anathema.commands.newplotelement"
+               label="%new.plotelement"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="net.sf.anathema.campaign.plot.repository.IPlotElementViewElement">
+                     </instanceof>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="net.sf.anathema.commands.newplotelement"
+            name="%new.plotelement">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="net.sf.anathema.campaign.plot.creation.NewPlotElementHandler"
+            commandId="net.sf.anathema.commands.newplotelement">
+      </handler>
    </extension>
 
 </plugin>
