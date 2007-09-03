@@ -23,15 +23,10 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   private List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
 
   public CharacterTemplateProvider() {
-    allTemplates.add(new ICharacterTemplate() {
-
-      public String getId() {
-        return STATIC_TEMPLATE_ID;
-      }
-
-      @Override
-      public boolean supportsModel(String modelId) {
-        return true;
+    allTemplates.add(new CharacterTemplate(STATIC_TEMPLATE_ID) {
+      {
+        addModelId("net.sf.anathema.character.attributes.model"); //$NON-NLS-1$
+        addModelId("net.sf.anathema.character.description.model"); //$NON-NLS-1$
       }
     });
   }

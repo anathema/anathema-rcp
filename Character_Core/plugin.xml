@@ -2,6 +2,7 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension-point id="net.sf.anathema.character.models" name="%extension-point.name.charactermodels" schema="schema/net.sf.anathema.character.models.exsd"/>
+   <extension-point id="net.sf.anathema.character.templates" name="Character Templates" schema="schema/net.sf.anathema.character.templates.exsd"/>
    <extension
          point="net.sf.anathema.repository.itemtypes">
       <itemtype

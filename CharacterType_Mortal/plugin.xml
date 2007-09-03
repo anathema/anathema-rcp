@@ -19,5 +19,17 @@
          </credit>
       </creditList>
    </extension>
+   <extension
+         point="net.sf.anathema.character.templates">
+      <template
+            templateId="net.sf.anathema.charactertype.heroicmortal">
+         <model
+               modelId="net.sf.anathema.character.description.model">
+         </model>
+         <model
+               modelId="net.sf.anathema.character.attributes.model">
+         </model>
+      </template>
+   </extension>
 
 </plugin>
