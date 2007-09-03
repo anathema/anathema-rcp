@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies.configuration;
+package net.sf.anathema.basics.eclipse.extension.fake;
 
 import java.util.ArrayList;
 import java.util.HashMap;

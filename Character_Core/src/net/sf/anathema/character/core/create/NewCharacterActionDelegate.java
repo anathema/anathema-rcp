@@ -36,7 +36,7 @@ public class NewCharacterActionDelegate implements IObjectActionDelegate {
   public void run(IAction action) {
     // TODO Show a progress monitor?
     try {
-      String templateName = CharacterTemplateProvider.STATIC_TEMPLATE_ID;
+      String templateName = "net.sf.anathema.charactertype.heroicmortal"; //$NON-NLS-1$
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
       IFolder characterFolder = createUnusedFolder(project, "Unnamed");
       characterFolder.create(true, true, new NullProgressMonitor());
