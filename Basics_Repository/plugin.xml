@@ -21,7 +21,7 @@
       </command>
       <command
             id="net.sf.anathema.commands.treeexpand"
-            name="Expand All">
+            name="%repository.command.name.expandall">
       </command>
       <command
             defaultHandler="net.sf.anathema.basics.repository.linkage.RepositoryEditorLinkHandler"
@@ -53,7 +53,7 @@
             locationURI="popup:net.sf.anathema.basics.repositoryview">
          <command
                commandId="org.eclipse.ui.newWizard"
-               label="New">
+               label="%new.wizard.command.label">
             <visibleWhen
                   checkEnabled="false">
                <with
