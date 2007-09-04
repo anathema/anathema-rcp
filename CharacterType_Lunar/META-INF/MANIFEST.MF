@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %net.sf.anathema.charactertype.lunar.Bundle-Name
-Bundle-SymbolicName: CharacterType_Lunar;singleton:=true
+Bundle-SymbolicName: net.sf.anathema.charactertype.lunar;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Localization: plugin
 Require-Bundle: net.sf.anathema.character.freebies,

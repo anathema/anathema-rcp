@@ -19,5 +19,25 @@
          </credit>
       </creditList>
    </extension>
+   <extension
+         point="net.sf.anathema.character.templates">
+      <template
+            templateId="net.sf.anathema.charactertype.pactlunar">
+         <modelList
+               modelListId="net.sf.anathema.character.basic.modelList">
+         </modelList>
+      </template>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.charactertype.lunar.NewPactLunarWizard"
+            hasPages="false"
+            id="net.sf.anathema.charactertype.pactlunar.newwizard"
+            name="%new.wizard.charactertype.pactlunar">
+      </wizard>
+   </extension>
 
 </plugin>
