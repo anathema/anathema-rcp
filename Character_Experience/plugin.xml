@@ -17,9 +17,9 @@
                id="Character_Experience.toolbar">
             <command
                   commandId="net.sf.anathema.character.experience.toggle"
-                  label="XP"
+                  label="%toggle.experience.command.toolbar.label"
                   style="toggle"
-                  tooltip="%net.sf.anathema.character.experience.toggle.tooltip">
+                  tooltip="%toogle.experience.command.tooltip">
                <visibleWhen>
                   <reference
                         definitionId="activeEditor.is.CharacterEditor">
@@ -31,9 +31,9 @@
             locationURI="popup:net.sf.anathema.basics.repositoryview">
          <command
                commandId="net.sf.anathema.character.experience.toggle"
-               label="%character.experience.toggle"
+               label="%toogle.experience.command.popup.label"
                style="toggle"
-               tooltip="%character.experience.toggle">
+               tooltip="%toogle.experience.command.tooltip">
             <visibleWhen>
                <with
                      variable="selection">
@@ -53,7 +53,7 @@
          point="org.eclipse.ui.commands">
       <command
             id="net.sf.anathema.character.experience.toggle"
-            name="Toggle Experience">
+            name="%toggle.experience.command.label">
       </command>
    </extension>
    <extension
