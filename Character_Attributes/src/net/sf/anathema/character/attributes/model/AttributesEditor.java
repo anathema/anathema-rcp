@@ -10,7 +10,6 @@ import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.lib.control.change.IChangeListener;
-import net.sf.anathema.lib.ui.IDisposable;
 import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.core.resources.IResourceChangeListener;
