@@ -17,6 +17,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
@@ -29,11 +30,14 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
     Image passiveImage = createImage(AttributesPlugin.UNSELECTED_BUTTON);
     Image activeImage = createImage(AttributesPlugin.SELECTED_BUTTON);
     AttributesEditorInput editorInput = (AttributesEditorInput) getEditorInput();
-    parent.setLayout(new GridLayout(2, false));
+    parent.setLayout(new GridLayout(3, false));
     for (IDisplayTraitGroup group : editorInput.createDisplayGroups()) {
-      createLabel(parent, GridDataFactory.createHorizontalSpanData(2)).setText(AttributeMessages.get(group.getId()));
+      createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(AttributeMessages.get(group.getId()));
       for (final IDisplayTrait trait : group.getTraits()) {
         String text = AttributeMessages.get(trait.getTraitType().getId());
+        Button favoredButton = new Button(parent, SWT.PUSH);
+        favoredButton.setImage(passiveImage);
+        favoredButton.setEnabled(trait.isFavorable());
         createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
         final IIntValueView view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, trait.getMaximalValue());
         new TraitPresenter().initPresentation(trait, view);
