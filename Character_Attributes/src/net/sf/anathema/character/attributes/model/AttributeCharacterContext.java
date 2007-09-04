@@ -1,22 +1,21 @@
 package net.sf.anathema.character.attributes.model;
 
+import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
-import org.eclipse.core.resources.IFolder;
-
 public class AttributeCharacterContext implements IAttributeCharacterContext {
 
-  private final IFolder characterFolder;
+  private final ICharacterId characterId;
   private final IModelProvider modelProvider;
   private final AttributeTemplate template = new AttributeTemplate();
 
-  public AttributeCharacterContext(IModelProvider modelProvider, IFolder characterFolder) {
+  public AttributeCharacterContext(IModelProvider modelProvider, ICharacterId characterId) {
     this.modelProvider = modelProvider;
-    this.characterFolder = characterFolder;
+    this.characterId = characterId;
   }
 
   @Override
@@ -30,7 +29,7 @@ public class AttributeCharacterContext implements IAttributeCharacterContext {
   }
 
   private Object getModel(String modelId) {
-    return modelProvider.getModel(new ModelIdentifier(characterFolder, modelId));
+    return modelProvider.getModel(new ModelIdentifier(characterId, modelId));
   }
 
   @Override

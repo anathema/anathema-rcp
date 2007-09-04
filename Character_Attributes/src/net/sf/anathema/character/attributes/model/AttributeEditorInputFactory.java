@@ -1,12 +1,12 @@
 package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -17,11 +17,11 @@ public class AttributeEditorInputFactory implements IEditorInputFactory {
   @Override
   public IEditorInput create(
       IFile modelFile,
-      IFolder characterFolder,
+      ICharacterId characterId,
       ImageDescriptor descriptor,
       IDisplayNameProvider nameProvider,
       IModelProvider modelProvider) throws PersistenceException, CoreException {
-    AttributeCharacterContext context = new AttributeCharacterContext(modelProvider, characterFolder);
+    AttributeCharacterContext context = new AttributeCharacterContext(modelProvider, characterId);
     return new AttributesEditorInput(modelFile, descriptor, nameProvider, context);
   }
 
