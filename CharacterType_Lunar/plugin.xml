@@ -17,6 +17,10 @@
                id="net.sf.anathema.character.attributes.freebies.tertiary"
                value="5">
          </credit>
+         <credit
+               id="net.sf.anathema.character.attributes.favored"
+               value="1">
+         </credit>
       </creditList>
    </extension>
    <extension
