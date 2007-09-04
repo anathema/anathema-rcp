@@ -30,7 +30,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
   @Override
   protected void fillMenuBar(IMenuManager menuBar) {
-    MenuManager viewMenu = new MenuManager(Messages.ApplicationActionBarAdvisor_viewMenuName, "viewList");
+    MenuManager viewMenu = new MenuManager(Messages.ApplicationActionBarAdvisor_viewMenuName, "viewList"); //$NON-NLS-1$
     menuBar.add(viewMenu);
     viewMenu.add(viewList);
   }

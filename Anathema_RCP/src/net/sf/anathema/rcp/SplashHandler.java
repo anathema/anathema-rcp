@@ -35,7 +35,7 @@ public class SplashHandler extends BasicSplashHandler {
           data.setHeight(data.getHeight() + 2);
         }
         context.setFont(new Font(e.display, fontdata));
-        context.drawText("Rich Client", 430, 53, true);
+        context.drawText("Rich Client", 430, 53, true); //$NON-NLS-1$
       }
     });
   }
