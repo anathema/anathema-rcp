@@ -20,11 +20,11 @@ public final class FreebiesValueEntry implements IValueEntry {
   public String getValue() {
     IFreebiesResult freebies = configuration.getFreebies(id);
     if (!freebies.isValid()) {
-      return "Missing"; 
+      return Messages.FreebiesValueEntry_MissingEntry; 
     }
     String points = freebies.getPoints();
     String credits = freebies.getCredit();
-    return MessageFormat.format("{0} / {1}", points, credits);
+    return MessageFormat.format(Messages.FreebiesValueEntry_EntryMessageFormat, points, credits);
   }
 
   @Override
