@@ -1,6 +1,8 @@
 package net.sf.anathema.character.core.fake;
 
 import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.modellist.IModelList;
+import net.sf.anathema.character.core.modellist.ModelList;
 import net.sf.anathema.character.core.template.ICharacterTemplate;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
@@ -23,5 +25,11 @@ public class TemplateProviderObjectMother {
         + templateId
         + "\" />")); //$NON-NLS-1$
     return characterId;
+  }
+
+  public static IModelList createModelList(String modelId) {
+    ModelList modelList = new ModelList();
+    modelList.addModelId(modelId);
+    return modelList;
   }
 }

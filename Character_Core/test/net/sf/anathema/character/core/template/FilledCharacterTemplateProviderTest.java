@@ -5,6 +5,8 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.FakeExtensionElement;
+import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
+import net.sf.anathema.character.core.modellist.ModelListProvider;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,17 +19,26 @@ public class FilledCharacterTemplateProviderTest {
   public void createTemplateProvider() throws Exception {
     FakeExtensionElement element = new FakeExtensionElement();
     element.addAttribute("templateId", "supportedTemplate"); //$NON-NLS-1$ //$NON-NLS-2$
-    element.addElement("model", createModelElement("supportedModel")); //$NON-NLS-1$ //$NON-NLS-2$
-    element.addElement("model", createModelElement("otherSupportedModel")); //$NON-NLS-1$ //$NON-NLS-2$
+    element.addElement("modelList", createModelListElement("supportedModelList")); //$NON-NLS-1$ //$NON-NLS-2$
+    element.addElement("modelList", createModelListElement("otherSupportedModelList")); //$NON-NLS-1$ //$NON-NLS-2$
     IPluginExtension pluginExtension = ExtensionObjectMother.createPluginExtension(element);
-    characterTemplateProvider = new CharacterTemplateProvider(new IPluginExtension[] { pluginExtension });
+    ModelListProvider modelListProvider = new ModelListProvider();
+    modelListProvider.addModelList(
+        "supportedModelList", //$NON-NLS-1$
+        TemplateProviderObjectMother.createModelList("supportedModel")); //$NON-NLS-1$
+    modelListProvider.addModelList(
+        "otherSupportedModelList", //$NON-NLS-1$
+        TemplateProviderObjectMother.createModelList("otherSupportedModel")); //$NON-NLS-1$
+    characterTemplateProvider = new CharacterTemplateProvider(
+        new IPluginExtension[] { pluginExtension },
+        modelListProvider);
   }
-  
+
   @Test
   public void hasOneTemplate() throws Exception {
     assertEquals(1, characterTemplateProvider.getAllTemplates().size());
   }
-  
+
   @Test
   public void templateHasTemplateId() throws Exception {
     assertEquals("supportedTemplate", getTemplate().getId()); //$NON-NLS-1$
@@ -43,9 +54,9 @@ public class FilledCharacterTemplateProviderTest {
     return characterTemplateProvider.getAllTemplates().get(0);
   }
 
-  private IExtensionElement createModelElement(String modelId) {
+  private IExtensionElement createModelListElement(String modelId) {
     FakeExtensionElement firstModelElement = new FakeExtensionElement();
-    firstModelElement.addAttribute("modelId", modelId); //$NON-NLS-1$
+    firstModelElement.addAttribute("modelListId", modelId); //$NON-NLS-1$
     return firstModelElement;
   }
 }

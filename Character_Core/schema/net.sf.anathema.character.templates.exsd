@@ -45,7 +45,7 @@
    <element name="template">
       <complexType>
          <sequence>
-            <element ref="model" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="modelList" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="templateId" type="string" use="required">
             <annotation>
@@ -57,9 +57,9 @@
       </complexType>
    </element>
 
-   <element name="model">
+   <element name="modelList">
       <complexType>
-         <attribute name="modelId" type="string" use="required">
+         <attribute name="modelListId" type="string" use="required">
             <annotation>
                <documentation>
                   

@@ -3,6 +3,7 @@ package net.sf.anathema.character.core.template;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.character.core.modellist.IModelList;
 
 public class CharacterTemplate implements ICharacterTemplate {
@@ -19,6 +20,7 @@ public class CharacterTemplate implements ICharacterTemplate {
   }
   
   public void addModelList(IModelList modelList) {
+    Ensure.ensureArgumentNotNull(modelList);
     allModelLists.add(modelList);
   }
 

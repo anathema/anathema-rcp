@@ -14,14 +14,15 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.modellist.ModelList;
+import net.sf.anathema.character.core.modellist.IModelListProvider;
+import net.sf.anathema.character.core.modellist.ModelListProvider;
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
 
   public static final String TEMPLATE_FILE_NAME = "template.xml"; //$NON-NLS-1$
   public static final String ATTRIB_REFERENCE = "reference"; //$NON-NLS-1$
-  private static final String ATTRIB_MODEL_ID = "modelId"; //$NON-NLS-1$
+  private static final String ATTRIB_MODEL_LIST_ID = "modelListId"; //$NON-NLS-1$
   private static final Pattern REFERENCE_PATTERN = Pattern.compile(ATTRIB_REFERENCE + "=\"(.*)\""); //$NON-NLS-1$
   private static final String ATTRIB_TEMPLATE_ID = "templateId"; //$NON-NLS-1$
   private static final String EXTENSION_ID = "net.sf.anathema.character.templates"; //$NON-NLS-1$
@@ -29,19 +30,17 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   private List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
   
   public CharacterTemplateProvider() {
-    this(new EclipseExtensionProvider().getExtensions(EXTENSION_ID));
+    this(new EclipseExtensionProvider().getExtensions(EXTENSION_ID), new ModelListProvider());
   }
 
-  public CharacterTemplateProvider(IPluginExtension[] extensions) {
+  public CharacterTemplateProvider(IPluginExtension[] extensions, IModelListProvider modelListProvider) {
     for (IPluginExtension extension : extensions) {
       for (IExtensionElement templateElement : extension.getElements()) {
         CharacterTemplate template = new CharacterTemplate(templateElement.getAttribute(ATTRIB_TEMPLATE_ID));
         allTemplates.add(template);
-        for (IExtensionElement modelElement : templateElement.getElements() ) {
-          String modelId = modelElement.getAttribute(ATTRIB_MODEL_ID);
-          ModelList modelList = new ModelList();
-          modelList.addModelId(modelId);
-          template.addModelList(modelList);
+        for (IExtensionElement modelListElement : templateElement.getElements() ) {
+          String modelListId = modelListElement.getAttribute(ATTRIB_MODEL_LIST_ID);
+          template.addModelList(modelListProvider.getModelList(modelListId));
         }
       }
     }

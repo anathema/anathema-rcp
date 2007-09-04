@@ -1,8 +1,10 @@
 package net.sf.anathema.character.core.template;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.character.core.modellist.IModelListProvider;
 
+import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +14,10 @@ public class EmptyTemplateProviderTest {
 
   @Before
   public void createEmptyProvider() throws Exception {
-    templateProvider = new CharacterTemplateProvider(new IPluginExtension[0]);
+    IModelListProvider modelListProvider = EasyMock.createMock(IModelListProvider.class);
+    EasyMock.replay(modelListProvider);
+    templateProvider = new CharacterTemplateProvider(new IPluginExtension[0], modelListProvider);
+    EasyMock.verify(modelListProvider);
   }
   
   @Test

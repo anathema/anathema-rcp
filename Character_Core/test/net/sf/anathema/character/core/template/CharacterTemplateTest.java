@@ -1,8 +1,7 @@
 package net.sf.anathema.character.core.template;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.core.modellist.IModelList;
-import net.sf.anathema.character.core.modellist.ModelList;
+import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,14 +13,8 @@ public class CharacterTemplateTest {
   @Before
   public void createTemplate() {
     template = new CharacterTemplate("testTemplateId"); //$NON-NLS-1$
-    template.addModelList(createModelList("supportedModelId")); //$NON-NLS-1$
-    template.addModelList(createModelList("otherSupportedModelId")); //$NON-NLS-1$
-  }
-
-  private IModelList createModelList(String modelId) {
-    ModelList modelList = new ModelList();
-    modelList.addModelId(modelId);
-    return modelList;
+    template.addModelList(TemplateProviderObjectMother.createModelList("supportedModelId")); //$NON-NLS-1$
+    template.addModelList(TemplateProviderObjectMother.createModelList("otherSupportedModelId")); //$NON-NLS-1$
   }
 
   @Test
