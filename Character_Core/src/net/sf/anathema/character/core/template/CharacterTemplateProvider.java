@@ -64,6 +64,9 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   }
 
   private String getTemplateReference(IContentHandle content) {
+    if (!content.exists()) {
+      return null;
+    }
     InputStreamReader reader = null;
     try {
       reader = new InputStreamReader(content.getContents());
