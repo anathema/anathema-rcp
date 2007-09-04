@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sf.anathema.character.freebies.credits">
+      <creditList
+            templateId="net.sf.anathema.charactertype.defaultsolar">
+         <credit
+               id="net.sf.anathema.character.attributes.freebies.primary"
+               value="8">
+         </credit>
+         <credit
+               id="net.sf.anathema.character.attributes.freebies.secondary"
+               value="6">
+         </credit>
+         <credit
+               id="net.sf.anathema.character.attributes.freebies.tertiary"
+               value="4">
+         </credit>
+      </creditList>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.templates">
+      <template
+            templateId="net.sf.anathema.charactertype.defaultsolar">
+         <model
+               modelId="net.sf.anathema.character.description.model">
+         </model>
+         <model
+               modelId="net.sf.anathema.character.attributes.model">
+         </model>
+      </template>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.charactertype.solar.NewDefaultSolarWizard"
+            hasPages="false"
+            id="net.sf.anathema.charactertype.defaultsolar.newwizard"
+            name="%new.wizard.charactertype.defaultsolar">
+      </wizard>
+   </extension>
+
+</plugin>
