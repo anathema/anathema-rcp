@@ -46,7 +46,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
   }
 
   @Test
-  public void removesListenersWhenDisposedOf() throws Exception {
+  public void removesValueListenersWhenDisposedOf() throws Exception {
     final boolean[] eventReceived = new boolean[] { false };
     getDisplayTrait().addValueChangeListener(new IChangeListener() {
       @Override
@@ -56,5 +56,32 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     });
     getDisplayTrait().dispose();
     assertEquals(0, basicTrait.getListenerCount());
+  }
+
+  @Test
+  public void removesFavorizationListenersWhenDisposedOf() throws Exception {
+    final boolean[] eventReceived = new boolean[] { false };
+    getDisplayTrait().addFavoredChangeListener(new IChangeListener() {
+      @Override
+      public void changeOccured() {
+        eventReceived[0] = true;
+      }
+    });
+    getDisplayTrait().dispose();
+    getDisplayTrait().toggleFavored();
+    assertFalse(eventReceived[0]);
+  }
+
+  @Test
+  public void notifiesListenersIfFavorizationChanges() throws Exception {
+    final boolean[] eventReceived = new boolean[] { false };
+    getDisplayTrait().addFavoredChangeListener(new IChangeListener() {
+      @Override
+      public void changeOccured() {
+        eventReceived[0] = true;
+      }
+    });
+    getDisplayTrait().toggleFavored();
+    assertTrue(eventReceived[0]);
   }
 }

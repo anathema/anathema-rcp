@@ -87,16 +87,11 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public void addFavoredChangeListener(IChangeListener listener) {
-    // TODO Listener anmelden 
+    // TODO Listener anmelden
   }
 
   @Override
   public boolean isFavored() {
     return basicTrait.getFavoredModel().getValue();
-  }
-
-  @Override
-  public void removeFavoredChangeListener(IChangeListener listener) {
-    // TODO Listener abmelden 
   }
 }

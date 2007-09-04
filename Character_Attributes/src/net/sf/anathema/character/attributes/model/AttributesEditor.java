@@ -57,14 +57,6 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
           }
         };
         favoredButton.addListener(SWT.MouseUp, mouseListener);
-        addDisposable(new IDisposable() {
-
-          @Override
-          public void dispose() {
-            trait.removeFavoredChangeListener(favoredChangeListener);
-            favoredButton.removeListener(SWT.MouseUp, mouseListener);
-          }
-        });
         createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
         final IIntValueView view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, trait.getMaximalValue());
         new TraitPresenter().initPresentation(trait, view);
