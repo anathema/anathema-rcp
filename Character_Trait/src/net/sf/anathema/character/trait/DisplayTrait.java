@@ -21,8 +21,14 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
       changeControl.fireChangedEvent();
     }
   };
+  private final IFavorizationHandler favorizationHandler;
 
-  public DisplayTrait(IBasicTrait basicTrait, IExperience experience, ITraitTemplate traitTemplate) {
+  public DisplayTrait(
+      IBasicTrait basicTrait,
+      IExperience experience,
+      IFavorizationHandler favorizationHandler,
+      ITraitTemplate traitTemplate) {
+    this.favorizationHandler = favorizationHandler;
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
     this.basicTrait = basicTrait;
     this.experience = experience;
@@ -71,6 +77,6 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public boolean isFavorable() {
-    return ruleTrait.isFavorable();
+    return favorizationHandler.isFavorable();
   }
 }

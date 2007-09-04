@@ -27,7 +27,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     this.traitTemplate = new DummyTraitTemplate();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
-    this.model = new DisplayTrait(basicTrait, basics, traitTemplate);
+    this.model = new DisplayTrait(basicTrait, basics, new DummyFavorizationHandler(), traitTemplate);
   }
 
   protected final DisplayTrait getDisplayTrait() {

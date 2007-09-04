@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.display;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
@@ -27,9 +27,13 @@ public class DisplayTraitToggleExperienceTest {
     basicTrait.getCreationModel().setValue(CREATION_VALUE);
     basicTrait.getExperiencedModel().setValue(EXPERIENCE_VALUE);
     experience = new DummyExperience();
-    this.displayTrait = new DisplayTrait(basicTrait, experience, new DummyTraitTemplate());
+    this.displayTrait = new DisplayTrait(
+        basicTrait,
+        experience,
+        new DummyFavorizationHandler(),
+        new DummyTraitTemplate());
   }
-  
+
   @Test
   public void experienceChangeTriggersValueChangeEvent() throws Exception {
     IChangeListener changeListener = EasyMock.createMock(IChangeListener.class);

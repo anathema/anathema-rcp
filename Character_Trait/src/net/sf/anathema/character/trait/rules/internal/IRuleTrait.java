@@ -6,7 +6,5 @@ public interface IRuleTrait {
 
   public int getValue();
 
-  public boolean isFavorable();
-
   public void setValue(int value);
 }
