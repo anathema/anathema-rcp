@@ -1,6 +1,8 @@
 package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.rules.TraitTemplate;
 
 public class AttributeTemplate {
 
@@ -11,5 +13,11 @@ public class AttributeTemplate {
 
   public TraitGroup[] getGroups() {
     return groups;
+  }
+
+  public ITraitTemplate getTraitTemplate() {
+    TraitTemplate traitTemplate = new TraitTemplate();
+    traitTemplate.setMiniumalValue(1);
+    return traitTemplate;
   }
 }

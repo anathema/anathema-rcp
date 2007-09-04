@@ -63,6 +63,7 @@ public class AttributesPersister implements IModelPersister<IAttributes> {
 
   @Override
   public IAttributes createNew() {
-    return Attributes.create(new AttributeTemplate().getGroups());
+    AttributeTemplate attributeTemplate = new AttributeTemplate();
+    return Attributes.create(attributeTemplate.getGroups(), attributeTemplate.getTraitTemplate());
   }
 }

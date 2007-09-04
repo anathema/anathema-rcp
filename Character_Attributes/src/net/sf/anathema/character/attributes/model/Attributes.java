@@ -7,6 +7,7 @@ import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.rules.ITraitTemplate;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.Identificate;
@@ -48,11 +49,13 @@ public class Attributes extends AbstractModel implements IAttributes {
     throw new IllegalArgumentException(NLS.bind(Messages.Attributes_NotFound_Message, id));
   }
 
-  public static IAttributes create(ITraitGroup[] groups) {
+  public static IAttributes create(ITraitGroup[] groups, ITraitTemplate template) {
     List<IBasicTrait> basicTraits = new ArrayList<IBasicTrait>();
     for (ITraitGroup group : groups) {
       for (String traitId : group.getTraitIds()) {
-        basicTraits.add(new BasicTrait(new Identificate(traitId)));
+        BasicTrait basicTrait = new BasicTrait(new Identificate(traitId));
+        basicTraits.add(basicTrait);
+        basicTrait.getCreationModel().setValue(template.getMinimalValue());
       }
     }
     return new Attributes(basicTraits.toArray(new BasicTrait[basicTraits.size()]));

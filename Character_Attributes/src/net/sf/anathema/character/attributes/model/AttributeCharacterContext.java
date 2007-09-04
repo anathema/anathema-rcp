@@ -5,13 +5,11 @@ import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.TraitTemplate;
 
 import org.eclipse.core.resources.IFolder;
 
 public class AttributeCharacterContext implements IAttributeCharacterContext {
 
-  private final TraitTemplate traitRules;
   private final IFolder characterFolder;
   private final IModelProvider modelProvider;
   private final AttributeTemplate template = new AttributeTemplate();
@@ -19,14 +17,11 @@ public class AttributeCharacterContext implements IAttributeCharacterContext {
   public AttributeCharacterContext(IModelProvider modelProvider, IFolder characterFolder) {
     this.modelProvider = modelProvider;
     this.characterFolder = characterFolder;
-    this.traitRules = new TraitTemplate();
-    traitRules.setMiniumalValue(1);
-
   }
 
   @Override
-  public ITraitTemplate getRules() {
-    return traitRules;
+  public ITraitTemplate getTraitTemplate() {
+    return template.getTraitTemplate();
   }
 
   @Override

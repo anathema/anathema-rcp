@@ -12,6 +12,6 @@ public interface IAttributeCharacterContext {
 
   public ITraitGroup[] getTraitGroups();
 
-  public ITraitTemplate getRules();
+  public ITraitTemplate getTraitTemplate();
 
 }

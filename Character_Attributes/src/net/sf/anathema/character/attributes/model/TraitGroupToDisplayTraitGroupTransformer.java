@@ -20,7 +20,7 @@ public final class TraitGroupToDisplayTraitGroupTransformer implements ITransfor
     DisplayTraitGroup displayGroup = new DisplayTraitGroup(group.getId());
     for (String traitId : group.getTraitIds()) {
       IBasicTrait trait = context.getAttributes().getTrait(traitId);
-      displayGroup.addTrait(new DisplayTrait(trait, context.getExperience(), context.getRules()));
+      displayGroup.addTrait(new DisplayTrait(trait, context.getExperience(), context.getTraitTemplate()));
     }
     return displayGroup;
   }
