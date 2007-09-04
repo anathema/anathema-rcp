@@ -79,4 +79,24 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   public boolean isFavorable() {
     return favorizationHandler.isFavorable();
   }
+
+  @Override
+  public void toggleFavored() {
+    favorizationHandler.toogleFavored(getTraitType());
+  }
+
+  @Override
+  public void addFavoredChangeListener(IChangeListener listener) {
+    // TODO Listener anmelden 
+  }
+
+  @Override
+  public boolean isFavored() {
+    return basicTrait.getFavoredModel().getValue();
+  }
+
+  @Override
+  public void removeFavoredChangeListener(IChangeListener listener) {
+    // TODO Listener abmelden 
+  }
 }
