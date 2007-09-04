@@ -22,7 +22,8 @@
    <extension
          point="net.sf.anathema.character.templates">
       <template
-            templateId="net.sf.anathema.charactertype.pactlunar">
+            templateId="net.sf.anathema.charactertype.pactlunar"
+            unnamedLabel="%charactertype.pactlunar.unnamedLabel">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>

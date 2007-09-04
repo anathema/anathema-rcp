@@ -7,7 +7,7 @@ public class NewPactLunarWizard extends EmptyNewWizard {
 
   @Override
   public boolean performFinish() {
-    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.pactlunar"); //$NON-NLS-1$
+    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.pactlunar", "Lunar"); //$NON-NLS-1$ //$NON-NLS-2$
     return true;
   }
 }
