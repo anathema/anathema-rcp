@@ -22,17 +22,17 @@ public class FakeExtensionElement implements IExtensionElement {
 
   @Override
   public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException {
-    throw new UnsupportedOperationException("Dummy");
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
   }
 
   @Override
   public boolean getBooleanAttribute(String name) {
-    throw new UnsupportedOperationException("Dummy");
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
   }
 
   @Override
   public IExtensionElement getElement(String name) {
-    throw new UnsupportedOperationException("Dummy");
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
   }
 
   @Override
@@ -51,7 +51,7 @@ public class FakeExtensionElement implements IExtensionElement {
 
   @Override
   public String getName() {
-    throw new UnsupportedOperationException("Dummy");
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
   }
 
   public void addAttribute(String name, Object value) {
