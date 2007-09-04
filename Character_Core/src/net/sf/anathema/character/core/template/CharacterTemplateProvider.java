@@ -14,12 +14,14 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.modellist.ModelList;
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
 
   public static final String TEMPLATE_FILE_NAME = "template.xml"; //$NON-NLS-1$
   public static final String ATTRIB_REFERENCE = "reference"; //$NON-NLS-1$
+  private static final String ATTRIB_MODEL_ID = "modelId"; //$NON-NLS-1$
   private static final Pattern REFERENCE_PATTERN = Pattern.compile(ATTRIB_REFERENCE + "=\"(.*)\""); //$NON-NLS-1$
   private static final String ATTRIB_TEMPLATE_ID = "templateId"; //$NON-NLS-1$
   private static final String EXTENSION_ID = "net.sf.anathema.character.templates"; //$NON-NLS-1$
@@ -36,7 +38,10 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
         CharacterTemplate template = new CharacterTemplate(templateElement.getAttribute(ATTRIB_TEMPLATE_ID));
         allTemplates.add(template);
         for (IExtensionElement modelElement : templateElement.getElements() ) {
-          template.addModelId(modelElement.getAttribute("modelId")); //$NON-NLS-1$
+          String modelId = modelElement.getAttribute(ATTRIB_MODEL_ID);
+          ModelList modelList = new ModelList();
+          modelList.addModelId(modelId);
+          template.addModelList(modelList);
         }
       }
     }

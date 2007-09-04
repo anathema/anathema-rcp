@@ -3,10 +3,12 @@ package net.sf.anathema.character.core.template;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.character.core.modellist.IModelList;
+
 public class CharacterTemplate implements ICharacterTemplate {
   
   private final String id;
-  private final List<String> modelIds = new ArrayList<String>();
+  private final List<IModelList> allModelLists = new ArrayList<IModelList>();
 
   public CharacterTemplate(String id) {
     this.id = id;
@@ -16,12 +18,18 @@ public class CharacterTemplate implements ICharacterTemplate {
     return id;
   }
   
-  public void addModelId(String modelId) {
-    modelIds.add(modelId);
+  public void addModelList(IModelList modelList) {
+    allModelLists.add(modelList);
   }
 
   @Override
   public boolean supportsModel(String modelId) {
-    return modelIds.contains(modelId);
+    for (IModelList modelList : allModelLists) {
+      boolean contains = modelList.contains(modelId);
+      if (contains) {
+        return true;
+      }
+    }
+    return false;
   }
 }
