@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait;
 
+import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class BasicTrait implements IBasicTrait {
@@ -7,6 +8,7 @@ public class BasicTrait implements IBasicTrait {
   private final IIdentificate traitType;
   private final IntValueModel creationModel = new IntValueModel();
   private final IntValueModel experiencedModel = new IntValueModel();
+  private final BooleanModel favoredModel = new BooleanModel();
 
   public BasicTrait(IIdentificate traitType) {
     this.traitType = traitType;
@@ -27,6 +29,10 @@ public class BasicTrait implements IBasicTrait {
   @Override
   public IIdentificate getTraitType() {
     return traitType;
+  }
+  
+  public BooleanModel getFavoredModel() {
+    return favoredModel;
   }
 
   public int getListenerCount() {
