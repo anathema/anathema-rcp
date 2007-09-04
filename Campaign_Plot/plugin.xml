@@ -72,10 +72,6 @@
             name="%new.wizard.plot.name"
             project="false">
       </wizard>
-      <category
-            id="net.sf.anathema.category.campaign"
-            name="Campaign">
-      </category>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
