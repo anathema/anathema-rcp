@@ -8,17 +8,17 @@ public class RuleTrait implements IRuleTrait {
 
   private final IBasicTrait basicTrait;
   private final IExperience experience;
-  private final ITraitTemplate traitRules;
+  private final ITraitTemplate traitTemplate;
 
-  public RuleTrait(IBasicTrait basicTrait, IExperience experience, ITraitTemplate traitRules) {
+  public RuleTrait(IBasicTrait basicTrait, IExperience experience, ITraitTemplate traitTemplate) {
     this.basicTrait = basicTrait;
     this.experience = experience;
-    this.traitRules = traitRules;
+    this.traitTemplate = traitTemplate;
   }
 
   @Override
   public int getMaximalValue() {
-    return traitRules.getMaximalValue();
+    return traitTemplate.getMaximalValue();
   }
 
   @Override
@@ -36,11 +36,11 @@ public class RuleTrait implements IRuleTrait {
     if (experience.isExperienced() && value < basicTrait.getCreationModel().getValue()) {
       return basicTrait.getCreationModel().getValue();
     }
-    if (value < traitRules.getMinimalValue()) {
-      return traitRules.getMinimalValue();
+    if (value < traitTemplate.getMinimalValue()) {
+      return traitTemplate.getMinimalValue();
     }
-    if (value > traitRules.getMaximalValue()) {
-      return traitRules.getMaximalValue();
+    if (value > traitTemplate.getMaximalValue()) {
+      return traitTemplate.getMaximalValue();
     }
     return value;
   }
