@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %net.sf.anathema.campaign.core.Bundle-Name
+Bundle-SymbolicName: net.sf.anthema.campaign.core;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.ui
+Bundle-Localization: plugin
