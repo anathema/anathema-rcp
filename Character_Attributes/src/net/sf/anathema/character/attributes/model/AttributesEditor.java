@@ -9,6 +9,8 @@ import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.lib.control.change.IChangeListener;
+import net.sf.anathema.lib.ui.IDisposable;
 import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -19,7 +21,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 
 public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttributes> {
 
@@ -35,9 +39,32 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(AttributeMessages.get(group.getId()));
       for (final IDisplayTrait trait : group.getTraits()) {
         String text = AttributeMessages.get(trait.getTraitType().getId());
-        Button favoredButton = new Button(parent, SWT.PUSH);
+        final Button favoredButton = new Button(parent, SWT.PUSH);
         favoredButton.setImage(passiveImage);
         favoredButton.setEnabled(trait.isFavorable());
+        // TODO aufräumen
+        final IChangeListener favoredChangeListener = new IChangeListener() {
+          @Override
+          public void changeOccured() {
+            favoredButton.setSelection(trait.isFavored());
+          }
+        };
+        trait.addFavoredChangeListener(favoredChangeListener);
+        final Listener mouseListener = new Listener() {
+          @Override
+          public void handleEvent(Event event) {
+            trait.toggleFavored();
+          }
+        };
+        favoredButton.addListener(SWT.MouseUp, mouseListener);
+        addDisposable(new IDisposable() {
+
+          @Override
+          public void dispose() {
+            trait.removeFavoredChangeListener(favoredChangeListener);
+            favoredButton.removeListener(SWT.MouseUp, mouseListener);
+          }
+        });
         createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
         final IIntValueView view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, trait.getMaximalValue());
         new TraitPresenter().initPresentation(trait, view);

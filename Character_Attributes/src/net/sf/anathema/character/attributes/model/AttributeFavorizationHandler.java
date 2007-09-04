@@ -3,6 +3,7 @@ package net.sf.anathema.character.attributes.model;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.lib.util.IIdentificate;
 
 public class AttributeFavorizationHandler implements IFavorizationHandler {
 
@@ -18,5 +19,10 @@ public class AttributeFavorizationHandler implements IFavorizationHandler {
   public boolean isFavorable() {
     int credit = creditManager.getCredit(characterId, "net.sf.anathema.character.attributes.favored"); //$NON-NLS-1$
     return credit > 0;
+  }
+
+  @Override
+  public void toogleFavored(IIdentificate traitType) {
+    // TODO Favorization implementieren
   }
 }
