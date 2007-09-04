@@ -35,10 +35,6 @@
             id="net.sf.anathema.campaign.note.newwizard"
             name="%new.wizard.note.name">
       </wizard>
-      <category
-            id="net.sf.anathema.category.campaign"
-            name="Campaign">
-      </category>
    </extension>
 
 </plugin>

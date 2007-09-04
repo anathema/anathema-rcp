@@ -8,5 +8,6 @@ Require-Bundle: net.sf.anathema.editor.styledtext,
  net.sf.anathema.basics.repository,
  org.eclipse.core.resources,
  net.sf.anathema.basics.item,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ net.sf.anthema.campaign.core
 Bundle-Localization: plugin
