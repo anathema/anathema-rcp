@@ -7,7 +7,7 @@ public class NewHeroicMortalWizard extends EmptyNewWizard {
 
   @Override
   public boolean performFinish() {
-    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.heroicmortal"); //$NON-NLS-1$
+    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.heroicmortal", "Mortal"); //$NON-NLS-1$ //$NON-NLS-2$
     return true;
   }
 }

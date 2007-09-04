@@ -22,7 +22,8 @@
    <extension
          point="net.sf.anathema.character.templates">
       <template
-            templateId="net.sf.anathema.charactertype.heroicmortal">
+            templateId="net.sf.anathema.charactertype.heroicmortal"
+            unnamedLabel="%charactertype.heroicMortal.unnamedLabel">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>
