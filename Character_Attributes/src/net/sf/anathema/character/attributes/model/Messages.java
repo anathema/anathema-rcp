@@ -4,6 +4,9 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
   private static final String BUNDLE_NAME = "net.sf.anathema.character.attributes.model.messages"; //$NON-NLS-1$
+  public static String AttributeGroup_MentalLabel;
+  public static String AttributeGroup_PhysicalLabel;
+  public static String AttributeGroup_SocialLabel;
   public static String AttributeMessages_I18nFailed;
   public static String Attributes_NotFound_Message;
   static {
@@ -13,5 +16,4 @@ public class Messages extends NLS {
   private Messages() {
     // nothing to do
   }
-
 }
