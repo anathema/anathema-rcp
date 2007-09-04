@@ -4,6 +4,7 @@ import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
@@ -12,10 +13,15 @@ public class AttributeCharacterContext implements IAttributeCharacterContext {
   private final ICharacterId characterId;
   private final IModelProvider modelProvider;
   private final AttributeTemplate template = new AttributeTemplate();
+  private final IFavorizationHandler favorizationHandler;
 
-  public AttributeCharacterContext(IModelProvider modelProvider, ICharacterId characterId) {
+  public AttributeCharacterContext(
+      IModelProvider modelProvider,
+      ICharacterId characterId,
+      IFavorizationHandler favorizationHandler) {
     this.modelProvider = modelProvider;
     this.characterId = characterId;
+    this.favorizationHandler = favorizationHandler;
   }
 
   @Override
@@ -37,6 +43,11 @@ public class AttributeCharacterContext implements IAttributeCharacterContext {
     return (IAttributes) getModel(IAttributes.MODEL_ID);
   }
 
+  @Override
+  public IFavorizationHandler getFavorizationHandler() {
+    return favorizationHandler;
+  }
+  
   @Override
   public TraitGroup[] getTraitGroups() {
     return template.getGroups();
