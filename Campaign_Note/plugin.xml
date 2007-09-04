@@ -33,7 +33,7 @@
             hasPages="false"
             icon="icons/TabNotes16.png"
             id="net.sf.anathema.campaign.note.newwizard"
-            name="Note">
+            name="%new.wizard.note.name">
       </wizard>
       <category
             id="net.sf.anathema.category.campaign"
