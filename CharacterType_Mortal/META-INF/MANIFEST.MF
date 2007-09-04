@@ -1,9 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: CharacterType_Mortal Plug-in
+Bundle-Name: %net.sf.anathema.charactertype.mortal.Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.charactertype.mortal;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.character.freebies,
  net.sf.anathema.character.core,
  net.sf.anathema.basics.repository,
  org.eclipse.ui
+Bundle-Localization: plugin
