@@ -1,5 +1,7 @@
 package net.sf.anathema.character.freebies.view;
 
+import java.text.MessageFormat;
+
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.freebies.configuration.internal.IFreebiesConfiguration;
 import net.sf.anathema.character.freebies.configuration.internal.IFreebiesResult;
@@ -22,7 +24,7 @@ public final class FreebiesValueEntry implements IValueEntry {
     }
     String points = freebies.getPoints();
     String credits = freebies.getCredit();
-    return points + " / " + credits;
+    return MessageFormat.format("{0} / {1}", points, credits);
   }
 
   @Override
