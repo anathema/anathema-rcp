@@ -25,6 +25,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   private static final String ATTRIB_MODEL_LIST_ID = "modelListId"; //$NON-NLS-1$
   private static final Pattern REFERENCE_PATTERN = Pattern.compile(ATTRIB_REFERENCE + "=\"(.*)\""); //$NON-NLS-1$
   private static final String ATTRIB_TEMPLATE_ID = "templateId"; //$NON-NLS-1$
+  private static final String ATTRIB_UNNAMED_LABEL = "unnamedLabel"; //$NON-NLS-1$
   private static final String EXTENSION_ID = "net.sf.anathema.character.templates"; //$NON-NLS-1$
   private static final Logger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
   private List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
@@ -36,7 +37,9 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   public CharacterTemplateProvider(IPluginExtension[] extensions, IModelListProvider modelListProvider) {
     for (IPluginExtension extension : extensions) {
       for (IExtensionElement templateElement : extension.getElements()) {
-        CharacterTemplate template = new CharacterTemplate(templateElement.getAttribute(ATTRIB_TEMPLATE_ID));
+        String templateId = templateElement.getAttribute(ATTRIB_TEMPLATE_ID);
+        String untitledLabel = templateElement.getAttribute(ATTRIB_UNNAMED_LABEL);
+        CharacterTemplate template = new CharacterTemplate(templateId, untitledLabel);
         allTemplates.add(template);
         for (IExtensionElement modelListElement : templateElement.getElements() ) {
           String modelListId = modelListElement.getAttribute(ATTRIB_MODEL_LIST_ID);

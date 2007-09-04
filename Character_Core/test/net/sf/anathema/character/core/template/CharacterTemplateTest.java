@@ -12,7 +12,7 @@ public class CharacterTemplateTest {
 
   @Before
   public void createTemplate() {
-    template = new CharacterTemplate("testTemplateId"); //$NON-NLS-1$
+    template = new CharacterTemplate("testTemplateId", "Unnamed Character"); //$NON-NLS-1$ //$NON-NLS-2$
     template.addModelList(TemplateProviderObjectMother.createModelList("supportedModelId")); //$NON-NLS-1$
     template.addModelList(TemplateProviderObjectMother.createModelList("otherSupportedModelId")); //$NON-NLS-1$
   }
@@ -20,6 +20,11 @@ public class CharacterTemplateTest {
   @Test
   public void hasId() throws Exception {
     assertEquals("testTemplateId", template.getId()); //$NON-NLS-1$
+  }
+
+  @Test
+  public void hasUnnamedLabel() throws Exception {
+    assertEquals("Unnamed Character", template.getUnnamedLabel()); //$NON-NLS-1$
   }
 
   @Test

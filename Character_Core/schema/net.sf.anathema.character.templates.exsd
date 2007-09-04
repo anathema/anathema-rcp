@@ -54,6 +54,16 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="unnamedLabel" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

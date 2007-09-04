@@ -23,10 +23,10 @@ public class CharacterFactory {
 
   private static final Logger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
 
-  public void createNewCharacter(String templateName) {
+  public void createNewCharacter(String templateName, String folderName) {
     try {
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
-      IFolder characterFolder = createUnusedFolder(project, "Unnamed");
+      IFolder characterFolder = createUnusedFolder(project, folderName);
       characterFolder.create(true, true, new NullProgressMonitor());
       saveTemplate(characterFolder, templateName);
     }

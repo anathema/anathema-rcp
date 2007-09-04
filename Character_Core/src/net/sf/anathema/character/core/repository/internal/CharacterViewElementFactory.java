@@ -8,6 +8,7 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.internal.CharacterId;
 import net.sf.anathema.character.core.repository.CharacterViewElement;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+import net.sf.anathema.character.core.template.ICharacterTemplate;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.eclipse.core.resources.IFolder;
@@ -19,8 +20,10 @@ public class CharacterViewElementFactory extends AbstractFolderBasedViewElementF
     ICharacterTemplateProvider templateProvider = new CharacterTemplateProvider();
     List<IViewElement> elements = new ArrayList<IViewElement>();
     for (IFolder folder : getMembers()) {
-      if (templateProvider.isTemplateAvailable(new CharacterId(folder))) {
-        elements.add(new CharacterViewElement(parent, folder, getItemType().getUntitledName(), templateProvider));
+      CharacterId characterId = new CharacterId(folder);
+      if (templateProvider.isTemplateAvailable(characterId)) {
+        ICharacterTemplate template = templateProvider.getTemplate(characterId);
+        elements.add(new CharacterViewElement(parent, folder, template.getUnnamedLabel(), templateProvider));
       }
     }
     return elements;
