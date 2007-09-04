@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %net.sf.anathema.charactertype.db.Bundle-Name
+Bundle-SymbolicName: CharacterType_Db;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Localization: plugin
+Require-Bundle: net.sf.anathema.character.freebies,
+ net.sf.anathema.character.core,
+ org.eclipse.ui,
+ net.sf.anathema.basics.repository
