@@ -7,6 +7,8 @@ import net.sf.anathema.lib.util.IIdentificate;
 public interface IDisplayTrait extends IIntValueModel, IChangeManagement, IDisposable {
 
   public int getMaximalValue();
-
+  
+  public boolean isFavorable();
+  
   public IIdentificate getTraitType();
 }

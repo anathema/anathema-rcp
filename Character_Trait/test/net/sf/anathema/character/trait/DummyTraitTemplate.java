@@ -23,4 +23,9 @@ public class DummyTraitTemplate implements ITraitTemplate {
   public int getMinimalValue() {
     return minimalValue;
   }
+
+  @Override
+  public boolean isFavorable() {
+    return false;
+  }
 }

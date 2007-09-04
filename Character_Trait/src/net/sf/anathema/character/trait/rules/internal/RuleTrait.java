@@ -55,4 +55,8 @@ public class RuleTrait implements IRuleTrait {
     }
     return creationValue;
   }
+  
+  public boolean isFavorable() {
+    return traitTemplate.isFavorable();
+  }
 }

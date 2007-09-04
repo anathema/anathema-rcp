@@ -22,8 +22,8 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     }
   };
 
-  public DisplayTrait(IBasicTrait basicTrait, IExperience experience, ITraitTemplate traitRules) {
-    this.ruleTrait = new RuleTrait(basicTrait, experience, traitRules);
+  public DisplayTrait(IBasicTrait basicTrait, IExperience experience, ITraitTemplate traitTemplate) {
+    this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
     this.basicTrait = basicTrait;
     this.experience = experience;
     basicTrait.getCreationModel().addValueChangeListener(changeListener);
@@ -67,5 +67,10 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     basicTrait.getExperiencedModel().removeValueChangeListener(changeListener);
     experience.removeChangeListener(changeListener);
     changeControl.clear();
+  }
+
+  @Override
+  public boolean isFavorable() {
+    return ruleTrait.isFavorable();
   }
 }

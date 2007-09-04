@@ -17,4 +17,9 @@ public final class TraitTemplate implements ITraitTemplate {
   public int getMaximalValue() {
     return 5;
   }
+
+  @Override
+  public boolean isFavorable() {
+    return false;
+  }
 }
