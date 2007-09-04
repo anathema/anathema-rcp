@@ -22,7 +22,8 @@
    <extension
          point="net.sf.anathema.character.templates">
       <template
-            templateId="net.sf.anathema.charactertype.defaultsolar">
+            templateId="net.sf.anathema.charactertype.defaultsolar"
+            unnamedLabel="%charactertype.defaultsolar.unnamedLabel">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>

@@ -7,7 +7,7 @@ public class NewDefaultSolarWizard extends EmptyNewWizard {
 
   @Override
   public boolean performFinish() {
-    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.defaultsolar"); //$NON-NLS-1$
+    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.defaultsolar", "Solar"); //$NON-NLS-1$ //$NON-NLS-2$
     return true;
   }
 }
