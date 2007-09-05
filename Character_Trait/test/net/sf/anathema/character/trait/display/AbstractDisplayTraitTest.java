@@ -1,12 +1,12 @@
 package net.sf.anathema.character.trait.display;
 
 import static org.junit.Assert.*;
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.AbstractIntValueModelTest;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Assert;
@@ -50,7 +50,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     final boolean[] eventReceived = new boolean[] { false };
     getDisplayTrait().addValueChangeListener(new IChangeListener() {
       @Override
-      public void changeOccured() {
+      public void stateChanged() {
         eventReceived[0] = true;
       }
     });
@@ -63,7 +63,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     final boolean[] eventReceived = new boolean[] { false };
     getDisplayTrait().addFavoredChangeListener(new IChangeListener() {
       @Override
-      public void changeOccured() {
+      public void stateChanged() {
         eventReceived[0] = true;
       }
     });
@@ -77,7 +77,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     final boolean[] eventReceived = new boolean[] { false };
     getDisplayTrait().addFavoredChangeListener(new IChangeListener() {
       @Override
-      public void changeOccured() {
+      public void stateChanged() {
         eventReceived[0] = true;
       }
     });

@@ -1,8 +1,8 @@
 package net.sf.anathema.character.experience;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.lib.control.change.ChangeControl;
-import net.sf.anathema.lib.control.change.IChangeListener;
 
 public class DummyExperience extends AbstractModel implements IExperience {
   private boolean experienced;

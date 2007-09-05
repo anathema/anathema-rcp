@@ -1,7 +1,7 @@
 package net.sf.anathema.character.trait;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.control.change.ChangeControl;
-import net.sf.anathema.lib.control.change.IChangeListener;
 
 public class IntValueModel implements IIntValueModel {
 

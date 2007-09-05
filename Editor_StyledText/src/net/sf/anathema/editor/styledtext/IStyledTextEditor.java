@@ -1,6 +1,6 @@
 package net.sf.anathema.editor.styledtext;
 
-import net.sf.anathema.lib.control.change.IChangeListener;
+import net.disy.commons.core.model.listener.IChangeListener;
 
 import org.eclipse.ui.IEditorPart;
 

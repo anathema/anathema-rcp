@@ -1,8 +1,8 @@
 package net.sf.anathema.character.core.fake;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.lib.control.change.ChangeControl;
-import net.sf.anathema.lib.control.change.IChangeListener;
 
 public class DummyModel extends AbstractModel {
   private ChangeControl control = new ChangeControl();

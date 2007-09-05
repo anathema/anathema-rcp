@@ -1,9 +1,9 @@
 package net.sf.anathema.basics.item.editor;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.resource.ImageDisposable;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.IDisposable;
 
@@ -32,7 +32,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
   }
 
   private final IChangeListener dirtyChangeListener = new IChangeListener() {
-    public void changeOccured() {
+    public void stateChanged() {
       getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(AbstractPersistableItemEditorPart.this));
     }
   };

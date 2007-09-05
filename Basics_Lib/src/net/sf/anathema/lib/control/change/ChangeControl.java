@@ -3,6 +3,8 @@ package net.sf.anathema.lib.control.change;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.model.listener.IChangeListener;
+
 public class ChangeControl implements IChangeable {
 
   private final List<IChangeListener> listeners = new ArrayList<IChangeListener>();
@@ -13,7 +15,7 @@ public class ChangeControl implements IChangeable {
 
   public void fireChangedEvent() {
     for (IChangeListener listener : cloneListeners()) {
-      listener.changeOccured();
+      listener.stateChanged();
     }
   }
 

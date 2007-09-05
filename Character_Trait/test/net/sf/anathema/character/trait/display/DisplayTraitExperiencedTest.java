@@ -1,9 +1,9 @@
 package net.sf.anathema.character.trait.display;
 
 import static org.junit.Assert.*;
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.lib.control.change.IChangeListener;
 
 import org.junit.Test;
 
@@ -39,7 +39,7 @@ public class DisplayTraitExperiencedTest extends AbstractDisplayTraitTest {
     final boolean[] eventReceived = new boolean[] { false };
     model.addValueChangeListener(new IChangeListener() {
       @Override
-      public void changeOccured() {
+      public void stateChanged() {
         eventReceived[0] = true;
       }
     });

@@ -3,13 +3,13 @@ package net.sf.anathema.character.attributes.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 import net.sf.anathema.lib.control.change.ChangeControl;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.eclipse.osgi.util.NLS;
@@ -19,7 +19,7 @@ public class Attributes extends AbstractModel implements IAttributes {
   private final IBasicTrait[] traits;
   private final IChangeListener changeListener = new IChangeListener() {
     @Override
-    public void changeOccured() {
+    public void stateChanged() {
       changeControl.fireChangedEvent();
       setDirty(true);
     }

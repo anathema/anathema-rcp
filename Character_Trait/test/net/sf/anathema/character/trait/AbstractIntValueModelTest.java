@@ -1,7 +1,7 @@
 package net.sf.anathema.character.trait;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.lib.control.change.IChangeListener;
+import net.disy.commons.core.model.listener.IChangeListener;
 
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ public abstract class AbstractIntValueModelTest {
     final boolean[] eventReceived = new boolean[] { false };
     model.addValueChangeListener(new IChangeListener() {
       @Override
-      public void changeOccured() {
+      public void stateChanged() {
         eventReceived[0] = true;
       }
     });
@@ -37,7 +37,7 @@ public abstract class AbstractIntValueModelTest {
     final boolean[] eventReceived = new boolean[] { false };
     model.addValueChangeListener(new IChangeListener() {
       @Override
-      public void changeOccured() {
+      public void stateChanged() {
         eventReceived[0] = true;
       }
     });
@@ -50,7 +50,7 @@ public abstract class AbstractIntValueModelTest {
     final boolean[] eventReceived = new boolean[] { false };
     IChangeListener changeListener = new IChangeListener() {
       @Override
-      public void changeOccured() {
+      public void stateChanged() {
         eventReceived[0] = true;
       }
     };

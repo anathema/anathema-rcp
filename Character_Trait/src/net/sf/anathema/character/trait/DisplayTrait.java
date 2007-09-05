@@ -1,12 +1,12 @@
 package net.sf.anathema.character.trait;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 import net.sf.anathema.character.trait.rules.internal.IRuleTrait;
 import net.sf.anathema.character.trait.rules.internal.RuleTrait;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
@@ -17,7 +17,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   private final ChangeControl changeControl = new ChangeControl();
   private final IChangeListener changeListener = new IChangeListener() {
     @Override
-    public void changeOccured() {
+    public void stateChanged() {
       changeControl.fireChangedEvent();
     }
   };

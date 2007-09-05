@@ -1,5 +1,6 @@
 package net.sf.anathema.character.attributes.model;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
@@ -9,7 +10,6 @@ import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -44,7 +44,7 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
         // TODO aufräumen
         final IChangeListener favoredChangeListener = new IChangeListener() {
           @Override
-          public void changeOccured() {
+          public void stateChanged() {
             favoredButton.setSelection(trait.isFavored());
           }
         };

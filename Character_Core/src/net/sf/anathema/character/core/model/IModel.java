@@ -1,7 +1,7 @@
 package net.sf.anathema.character.core.model;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.IItem;
-import net.sf.anathema.lib.control.change.IChangeListener;
 
 import org.eclipse.core.runtime.IExecutableExtension;
 

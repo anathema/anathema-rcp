@@ -1,7 +1,7 @@
 package net.sf.anathema.character.trait;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.control.IChangeManagement;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.ui.IDisposable;
 import net.sf.anathema.lib.util.IIdentificate;
 

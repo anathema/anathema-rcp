@@ -1,13 +1,13 @@
 package net.sf.anathema.character.trait.display;
 
 import static org.junit.Assert.*;
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.easymock.EasyMock;
@@ -37,7 +37,7 @@ public class DisplayTraitToggleExperienceTest {
   @Test
   public void experienceChangeTriggersValueChangeEvent() throws Exception {
     IChangeListener changeListener = EasyMock.createMock(IChangeListener.class);
-    changeListener.changeOccured();
+    changeListener.stateChanged();
     displayTrait.addValueChangeListener(changeListener);
     EasyMock.replay(changeListener);
     experience.setExperienced(true);

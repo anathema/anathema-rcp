@@ -1,6 +1,6 @@
 package net.sf.anathema.lib.control;
 
-import net.sf.anathema.lib.control.change.IChangeListener;
+import net.disy.commons.core.model.listener.IChangeListener;
 
 public interface IChangeManagement {
   

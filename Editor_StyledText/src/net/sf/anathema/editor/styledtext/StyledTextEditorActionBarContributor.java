@@ -1,6 +1,6 @@
 package net.sf.anathema.editor.styledtext;
 
-import net.sf.anathema.lib.control.change.IChangeListener;
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.textualdescription.TextAspect;
 
 import org.eclipse.jface.action.IContributionManager;
@@ -26,7 +26,7 @@ public class StyledTextEditorActionBarContributor extends EditorActionBarContrib
   };
   private final IChangeListener caretChangeListener = new IChangeListener() {
     @Override
-    public void changeOccured() {
+    public void stateChanged() {
       updateState();
     }
   };

@@ -1,5 +1,6 @@
 package net.sf.anathema.character.points.view;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
 import net.sf.anathema.character.core.model.ICharacterId;
@@ -7,7 +8,6 @@ import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.ui.IUpdatable;
 
 import org.eclipse.ui.IEditorInput;
@@ -19,7 +19,7 @@ public final class CharacterPointsUpdatable implements IUpdatable, IExperiencePr
   private final IUpdatable modelChangeUpdatable;
   private IChangeListener modelChangedListener = new IChangeListener() {
     @Override
-    public void changeOccured() {
+    public void stateChanged() {
       modelChangeUpdatable.update();
     }
   };

@@ -1,7 +1,7 @@
 package net.sf.anathema.character.description;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.control.AggregatedChangeManagement;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.SimpleTextualDescription;
 

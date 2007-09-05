@@ -3,10 +3,10 @@ package net.sf.anathema.character.attributes.points;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.lib.control.change.IChangeListener;
 
 public class DummyAttributes extends AbstractModel  implements IAttributes {
 

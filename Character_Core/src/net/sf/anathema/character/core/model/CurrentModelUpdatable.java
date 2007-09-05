@@ -1,7 +1,7 @@
 package net.sf.anathema.character.core.model;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
-import net.sf.anathema.lib.control.change.IChangeListener;
 import net.sf.anathema.lib.ui.IDisposable;
 import net.sf.anathema.lib.ui.IUpdatable;
 
@@ -10,7 +10,7 @@ import org.eclipse.ui.IEditorInput;
 public final class CurrentModelUpdatable implements IUpdatable, IDisposable {
   private IChangeListener modelChangeListener = new IChangeListener() {
     @Override
-    public void changeOccured() {
+    public void stateChanged() {
       updatable.update();
     }
   };

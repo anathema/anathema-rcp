@@ -1,7 +1,7 @@
 package net.sf.anathema.lib.control;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.util.Ensure;
-import net.sf.anathema.lib.control.change.IChangeListener;
 
 public class AggregatedChangeManagement implements IChangeManagement {
 
