@@ -9,7 +9,7 @@ public class IntValueModel implements IIntValueModel {
   private int value;
 
   @Override
-  public void addValueChangeListener(IChangeListener changeListener) {
+  public void addChangeListener(IChangeListener changeListener) {
     control.addChangeListener(changeListener);
 
   }
@@ -20,7 +20,7 @@ public class IntValueModel implements IIntValueModel {
   }
 
   @Override
-  public void removeValueChangeListener(IChangeListener changeListener) {
+  public void removeChangeListener(IChangeListener changeListener) {
     control.removeChangeListener(changeListener);
 
   }

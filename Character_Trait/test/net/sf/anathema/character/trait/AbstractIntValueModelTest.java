@@ -22,7 +22,7 @@ public abstract class AbstractIntValueModelTest {
   @Test
   public void notifiesListenersIfValueChanges() throws Exception {
     final boolean[] eventReceived = new boolean[] { false };
-    model.addValueChangeListener(new IChangeListener() {
+    model.addChangeListener(new IChangeListener() {
       @Override
       public void stateChanged() {
         eventReceived[0] = true;
@@ -35,7 +35,7 @@ public abstract class AbstractIntValueModelTest {
   @Test
   public void isSilentIfValueRemains() throws Exception {
     final boolean[] eventReceived = new boolean[] { false };
-    model.addValueChangeListener(new IChangeListener() {
+    model.addChangeListener(new IChangeListener() {
       @Override
       public void stateChanged() {
         eventReceived[0] = true;
@@ -54,8 +54,8 @@ public abstract class AbstractIntValueModelTest {
         eventReceived[0] = true;
       }
     };
-    model.addValueChangeListener(changeListener);
-    model.removeValueChangeListener(changeListener);
+    model.addChangeListener(changeListener);
+    model.removeChangeListener(changeListener);
     model.setValue(1);
     assertFalse(eventReceived[0]);
   }

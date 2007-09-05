@@ -37,7 +37,7 @@ public class DisplayTraitExperiencedTest extends AbstractDisplayTraitTest {
   @Test
   public void alertsListenersIfExperiencedValueIsFirstSetToCurrentValue() throws Exception {
     final boolean[] eventReceived = new boolean[] { false };
-    model.addValueChangeListener(new IChangeListener() {
+    model.addChangeListener(new IChangeListener() {
       @Override
       public void stateChanged() {
         eventReceived[0] = true;

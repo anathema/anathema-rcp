@@ -29,8 +29,8 @@ public class Attributes extends AbstractModel implements IAttributes {
   public Attributes(IBasicTrait... traits) {
     this.traits = traits;
     for (IBasicTrait basicTrait : traits) {
-      basicTrait.getCreationModel().addValueChangeListener(changeListener);
-      basicTrait.getExperiencedModel().addValueChangeListener(changeListener);
+      basicTrait.getCreationModel().addChangeListener(changeListener);
+      basicTrait.getExperiencedModel().addChangeListener(changeListener);
     }
   }
 

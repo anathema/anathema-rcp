@@ -7,7 +7,7 @@ import net.sf.anathema.lib.ui.IIntValueView;
 public class TraitPresenter {
 
   public void initPresentation(final IDisplayTrait model, final IIntValueView view) {
-    model.addValueChangeListener(new IChangeListener() {
+    model.addChangeListener(new IChangeListener() {
       @Override
       public void stateChanged() {
         view.setValue(model.getValue());

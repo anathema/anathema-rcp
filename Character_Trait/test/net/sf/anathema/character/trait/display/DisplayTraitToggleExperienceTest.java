@@ -38,7 +38,7 @@ public class DisplayTraitToggleExperienceTest {
   public void experienceChangeTriggersValueChangeEvent() throws Exception {
     IChangeListener changeListener = EasyMock.createMock(IChangeListener.class);
     changeListener.stateChanged();
-    displayTrait.addValueChangeListener(changeListener);
+    displayTrait.addChangeListener(changeListener);
     EasyMock.replay(changeListener);
     experience.setExperienced(true);
     EasyMock.verify(changeListener);

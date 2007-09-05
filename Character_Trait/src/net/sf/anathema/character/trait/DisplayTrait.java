@@ -7,6 +7,8 @@ import net.sf.anathema.character.trait.rules.internal.IRuleTrait;
 import net.sf.anathema.character.trait.rules.internal.RuleTrait;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
+import net.sf.anathema.lib.ui.AggregatedDisposable;
+import net.sf.anathema.lib.ui.ChangeableModelDisposable;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
@@ -22,19 +24,23 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     }
   };
   private final IFavorizationHandler favorizationHandler;
+  private AggregatedDisposable allDisposables = new AggregatedDisposable();
 
   public DisplayTrait(
-      IBasicTrait basicTrait,
-      IExperience experience,
+      final IBasicTrait basicTrait,
+      final IExperience experience,
       IFavorizationHandler favorizationHandler,
       ITraitTemplate traitTemplate) {
     this.favorizationHandler = favorizationHandler;
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
     this.basicTrait = basicTrait;
     this.experience = experience;
-    basicTrait.getCreationModel().addValueChangeListener(changeListener);
-    basicTrait.getExperiencedModel().addValueChangeListener(changeListener);
+    basicTrait.getCreationModel().addChangeListener(changeListener);
+    basicTrait.getExperiencedModel().addChangeListener(changeListener);
     experience.addChangeListener(changeListener);
+    allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getCreationModel(), changeListener));
+    allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getExperiencedModel(), changeListener));
+    allDisposables.addDisposable(changeControl);
   }
 
   @Override
@@ -53,12 +59,12 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   }
 
   @Override
-  public void addValueChangeListener(IChangeListener listener) {
+  public void addChangeListener(IChangeListener listener) {
     changeControl.addChangeListener(listener);
   }
 
   @Override
-  public void removeValueChangeListener(IChangeListener listener) {
+  public void removeChangeListener(IChangeListener listener) {
     changeControl.removeChangeListener(listener);
   }
 
@@ -69,10 +75,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public void dispose() {
-    basicTrait.getCreationModel().removeValueChangeListener(changeListener);
-    basicTrait.getExperiencedModel().removeValueChangeListener(changeListener);
-    experience.removeChangeListener(changeListener);
-    changeControl.clear();
+    allDisposables.dispose();
   }
 
   @Override
@@ -87,7 +90,8 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public void addFavoredChangeListener(IChangeListener listener) {
-    // TODO Listener anmelden
+    basicTrait.getFavoredModel().addChangeListener(listener);
+    allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getFavoredModel(), listener));
   }
 
   @Override

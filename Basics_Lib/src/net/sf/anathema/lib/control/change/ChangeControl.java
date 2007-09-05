@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.lib.ui.IDisposable;
 
-public class ChangeControl implements IChangeable {
+public class ChangeControl implements IChangeable, IDisposable {
 
   private final List<IChangeListener> listeners = new ArrayList<IChangeListener>();
 
@@ -33,5 +34,10 @@ public class ChangeControl implements IChangeable {
 
   public int getListenerCount() {
     return listeners.size();
+  }
+
+  @Override
+  public void dispose() {
+    clear();    
   }
 }
