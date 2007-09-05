@@ -29,6 +29,7 @@
       <plugin id="net.sf.anathema.basics.jface"/>
       <plugin id="net.sf.anathema.basics.lib"/>
       <plugin id="net.sf.anathema.basics.repository"/>
+      <plugin id="net.sf.anathema.campaign.core"/>
       <plugin id="net.sf.anathema.campaign.note"/>
       <plugin id="net.sf.anathema.campaign.plot"/>
       <plugin id="net.sf.anathema.character.attributes"/>
@@ -39,6 +40,9 @@
       <plugin id="net.sf.anathema.character.points"/>
       <plugin id="net.sf.anathema.character.points.i18n.en" fragment="true"/>
       <plugin id="net.sf.anathema.character.trait"/>
+      <plugin id="net.sf.anathema.charactertype.lunar"/>
+      <plugin id="net.sf.anathema.charactertype.mortal"/>
+      <plugin id="net.sf.anathema.charactertype.solar"/>
       <plugin id="net.sf.anathema.editor.styledtext"/>
       <plugin id="net.sf.anathema.rcp"/>
       <plugin id="net.sf.anathema.view.valuelist"/>

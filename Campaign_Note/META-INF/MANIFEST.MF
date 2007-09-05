@@ -9,5 +9,5 @@ Require-Bundle: net.sf.anathema.editor.styledtext,
  org.eclipse.core.resources,
  net.sf.anathema.basics.item,
  org.eclipse.core.runtime,
- net.sf.anthema.campaign.core
+ net.sf.anathema.campaign.core
 Bundle-Localization: plugin
