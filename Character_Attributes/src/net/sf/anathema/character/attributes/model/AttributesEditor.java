@@ -26,6 +26,34 @@ import org.eclipse.swt.widgets.Listener;
 
 public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttributes> {
 
+  private static final class FavorizationButtonChangeListener implements Listener {
+    private final IDisplayTrait trait;
+
+    private FavorizationButtonChangeListener(IDisplayTrait trait) {
+      this.trait = trait;
+    }
+
+    @Override
+    public void handleEvent(Event event) {
+      trait.toggleFavored();
+    }
+  }
+
+  private static final class FavorizationModelListener implements IChangeListener {
+    private final Button favoredButton;
+    private final IDisplayTrait trait;
+
+    private FavorizationModelListener(Button favoredButton, IDisplayTrait trait) {
+      this.favoredButton = favoredButton;
+      this.trait = trait;
+    }
+
+    @Override
+    public void stateChanged() {
+      favoredButton.setSelection(trait.isFavored());
+    }
+  }
+
   public static final String EDITOR_ID = "net.sf.anathema.character.attributes.editor"; //$NON-NLS-1$
 
   @Override
@@ -41,20 +69,8 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
         final Button favoredButton = new Button(parent, SWT.PUSH);
         favoredButton.setImage(passiveImage);
         favoredButton.setEnabled(trait.isFavorable());
-        // TODO aufräumen
-        final IChangeListener favoredChangeListener = new IChangeListener() {
-          @Override
-          public void stateChanged() {
-            favoredButton.setSelection(trait.isFavored());
-          }
-        };
-        trait.addFavoredChangeListener(favoredChangeListener);
-        final Listener mouseListener = new Listener() {
-          @Override
-          public void handleEvent(Event event) {
-            trait.toggleFavored();
-          }
-        };
+        trait.addFavoredChangeListener(new FavorizationModelListener(favoredButton, trait));
+        final Listener mouseListener = new FavorizationButtonChangeListener(trait);
         favoredButton.addListener(SWT.MouseUp, mouseListener);
         createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
         final IIntValueView view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, trait.getMaximalValue());
