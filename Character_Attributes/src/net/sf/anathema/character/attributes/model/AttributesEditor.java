@@ -28,13 +28,16 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
 
   private static final class FavorizationButtonChangeListener implements Listener {
     private final IDisplayTrait trait;
+    private final Button button;
 
-    private FavorizationButtonChangeListener(IDisplayTrait trait) {
+    private FavorizationButtonChangeListener(Button button, IDisplayTrait trait) {
+      this.button = button;
       this.trait = trait;
     }
 
     @Override
     public void handleEvent(Event event) {
+      button.setSelection(!button.getSelection());
       trait.toggleFavored();
     }
   }
@@ -74,7 +77,7 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
         String text = AttributeMessages.get(trait.getTraitType().getId());
         final Button favoredButton = new Button(parent, SWT.TOGGLE);
         trait.addFavoredChangeListener(new FavorizationModelListener(favoredButton, trait, passiveImage, activeImage));
-        final Listener mouseListener = new FavorizationButtonChangeListener(trait);
+        final Listener mouseListener = new FavorizationButtonChangeListener(favoredButton, trait);
         favoredButton.addListener(SWT.MouseUp, mouseListener);
         createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
         final IIntValueView view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, trait.getMaximalValue());
