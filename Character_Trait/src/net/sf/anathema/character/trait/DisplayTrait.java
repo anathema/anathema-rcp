@@ -14,7 +14,6 @@ import net.sf.anathema.lib.util.IIdentificate;
 public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   private final IBasicTrait basicTrait;
-  private final IExperience experience;
   private final IRuleTrait ruleTrait;
   private final ChangeControl changeControl = new ChangeControl();
   private final IChangeListener changeListener = new IChangeListener() {
@@ -34,7 +33,6 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     this.favorizationHandler = favorizationHandler;
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
     this.basicTrait = basicTrait;
-    this.experience = experience;
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);
     experience.addChangeListener(changeListener);

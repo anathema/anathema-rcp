@@ -42,15 +42,21 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
   private static final class FavorizationModelListener implements IChangeListener {
     private final Button favoredButton;
     private final IDisplayTrait trait;
+    private final Image passiveImage;
+    private final Image activeImage;
 
-    private FavorizationModelListener(Button favoredButton, IDisplayTrait trait) {
+    private FavorizationModelListener(Button favoredButton, IDisplayTrait trait, Image passiveImage, Image activeImage) {
       this.favoredButton = favoredButton;
       this.trait = trait;
+      this.passiveImage = passiveImage;
+      this.activeImage = activeImage;
+      stateChanged();
     }
 
     @Override
     public void stateChanged() {
       favoredButton.setSelection(trait.isFavored());
+      favoredButton.setImage(trait.isFavored() ? activeImage : passiveImage);
     }
   }
 
@@ -66,10 +72,8 @@ public class AttributesEditor extends AbstractPersistableItemEditorPart<IAttribu
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(AttributeMessages.get(group.getId()));
       for (final IDisplayTrait trait : group.getTraits()) {
         String text = AttributeMessages.get(trait.getTraitType().getId());
-        final Button favoredButton = new Button(parent, SWT.PUSH);
-        favoredButton.setImage(passiveImage);
-        favoredButton.setEnabled(trait.isFavorable());
-        trait.addFavoredChangeListener(new FavorizationModelListener(favoredButton, trait));
+        final Button favoredButton = new Button(parent, SWT.TOGGLE);
+        trait.addFavoredChangeListener(new FavorizationModelListener(favoredButton, trait, passiveImage, activeImage));
         final Listener mouseListener = new FavorizationButtonChangeListener(trait);
         favoredButton.addListener(SWT.MouseUp, mouseListener);
         createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
