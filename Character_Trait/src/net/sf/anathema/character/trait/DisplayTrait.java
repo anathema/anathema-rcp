@@ -1,5 +1,7 @@
 package net.sf.anathema.character.trait;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
@@ -24,12 +26,14 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   };
   private final IFavorizationHandler favorizationHandler;
   private AggregatedDisposable allDisposables = new AggregatedDisposable();
+  private final IExperience experience;
 
   public DisplayTrait(
       final IBasicTrait basicTrait,
       final IExperience experience,
       IFavorizationHandler favorizationHandler,
       ITraitTemplate traitTemplate) {
+    this.experience = experience;
     this.favorizationHandler = favorizationHandler;
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
     this.basicTrait = basicTrait;
@@ -78,7 +82,8 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
 
   @Override
   public boolean isFavorable() {
-    return favorizationHandler.isFavorable();
+    // TODO experiencedCheck in favorizationHandler ziehen und entsprechenden sinnvollen listener mechanismus
+    return !experience.isExperienced() && favorizationHandler.isFavorable();
   }
 
   @Override
