@@ -33,11 +33,16 @@ public class AttributePointCalculator {
   }
 
   public int pointsSpentFor(PriorityGroup priority) {
+    AttributeGroupPoints group = groupPointsFor(priority);
+    return group.getPointsSpent();
+  }
+
+  public AttributeGroupPoints groupPointsFor(PriorityGroup priority) {
     AttributeGroupPoints[] groupPoints = ArrayUtilities.transform(
         groups,
         AttributeGroupPoints.class,
         new AttributeGroupPointsTransformer(attributes));
     Arrays.sort(groupPoints, new AscendingPointAttributeGroupComparator());
-    return groupPoints[priority.getAscendingIndex()].getPointsSpent();
+    return groupPoints[priority.getAscendingIndex()];
   }
 }
