@@ -14,7 +14,6 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 import net.disy.commons.core.io.IOUtilities;
-import net.sf.anathema.lib.exception.AnathemaException;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.dom4j.Document;
@@ -87,7 +86,6 @@ public class DocumentUtilities {
       return writer.toString();
     }
     catch (IOException e) {
-      // throw new RuntimeException(e); // JDK1.4
       RuntimeException runtimeException = new RuntimeException(e.toString());
       runtimeException.fillInStackTrace();
       throw runtimeException;
@@ -97,22 +95,22 @@ public class DocumentUtilities {
     }
   }
 
-  public static Document read(String source) throws AnathemaException {
+  public static Document read(String source) throws PersistenceException {
     return read(new StringReader(source));
   }
 
-  public static Document read(Reader reader) throws AnathemaException {
+  public static Document read(Reader reader) throws PersistenceException {
     try {
       SAXReader saxReader = new SAXReader();
       Document document = saxReader.read(reader);
       return document;
     }
     catch (DocumentException exception) {
-      throw new AnathemaException(exception);
+      throw new PersistenceException(exception);
     }
   }
 
-  public static Document read(File file) throws FileNotFoundException, AnathemaException {
+  public static Document read(File file) throws FileNotFoundException, PersistenceException {
     InputStream inputStream = null;
     try {
       inputStream = new FileInputStream(file);
@@ -139,7 +137,7 @@ public class DocumentUtilities {
   }
 
   public static Document read(InputStream inputStream, String systemId, EntityResolver resolver)
-      throws AnathemaException {
+      throws PersistenceException {
     try {
       SAXReader saxReader = new SAXReader();
       saxReader.setEntityResolver(resolver);
@@ -147,7 +145,7 @@ public class DocumentUtilities {
       return document;
     }
     catch (DocumentException exception) {
-      throw new AnathemaException(exception);
+      throw new PersistenceException(exception);
     }
   }
 
