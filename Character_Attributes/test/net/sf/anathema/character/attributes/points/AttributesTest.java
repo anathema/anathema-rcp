@@ -1,9 +1,9 @@
 package net.sf.anathema.character.attributes.points;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IIntValueModel;
+import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -12,12 +12,12 @@ import org.junit.Test;
 public class AttributesTest {
 
   private BasicTrait trait;
-  private Attributes attributes;
+  private TraitCollection attributes;
 
   @Before
   public void createCleanAttributesWithTrait() throws Exception {
     this.trait = new BasicTrait(new Identificate("Trait")); //$NON-NLS-1$
-    this.attributes = new Attributes(trait);
+    this.attributes = new TraitCollection(trait);
     this.attributes.setClean();
   }
   

@@ -1,13 +1,13 @@
 package net.sf.anathema.character.attributes.points;
 
-import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class AttributeExperienceCalculator {
 
-  private final IAttributes attributes;
+  private final ITraitCollectionModel attributes;
 
-  public AttributeExperienceCalculator(IAttributes attributes) {
+  public AttributeExperienceCalculator(ITraitCollectionModel attributes) {
     this.attributes = attributes;
   }
 

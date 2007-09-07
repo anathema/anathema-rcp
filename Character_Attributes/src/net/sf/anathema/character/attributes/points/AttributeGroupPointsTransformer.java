@@ -1,14 +1,14 @@
 package net.sf.anathema.character.attributes.points;
 
 import net.disy.commons.core.util.ITransformer;
-import net.sf.anathema.character.attributes.model.IAttributes;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 
 public final class AttributeGroupPointsTransformer implements ITransformer<ITraitGroup, AttributeGroupPoints> {
 
-  private final IAttributes attributes;
+  private final ITraitCollectionModel attributes;
 
-  public AttributeGroupPointsTransformer(IAttributes attributes) {
+  public AttributeGroupPointsTransformer(ITraitCollectionModel attributes) {
     this.attributes = attributes;
   }
 

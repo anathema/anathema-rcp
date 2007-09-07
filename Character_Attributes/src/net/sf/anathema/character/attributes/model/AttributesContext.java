@@ -5,17 +5,19 @@ import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
-public class AttributeCharacterContext implements IAttributesContext {
+public class AttributesContext implements ITraitCollectionContext {
 
   private final ICharacterId characterId;
   private final IModelProvider modelProvider;
   private final AttributeTemplate template = new AttributeTemplate();
   private final IFavorizationHandler favorizationHandler;
 
-  public AttributeCharacterContext(
+  public AttributesContext(
       IModelProvider modelProvider,
       ICharacterId characterId,
       IFavorizationHandler favorizationHandler) {
@@ -39,8 +41,8 @@ public class AttributeCharacterContext implements IAttributesContext {
   }
 
   @Override
-  public IAttributes getAttributes() {
-    return (IAttributes) getModel(IAttributes.MODEL_ID);
+  public ITraitCollectionModel getCollection() {
+    return (ITraitCollectionModel) getModel(Attributes.MODEL_ID);
   }
 
   @Override

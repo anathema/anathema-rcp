@@ -9,6 +9,9 @@ import net.sf.anathema.character.attributes.AttributesPlugin;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -21,30 +24,30 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
-public class AttributesEditorInput extends AbstractCharacterModelEditorInput<IAttributes> implements
+public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
 
   private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
-  private final IAttributesContext context;
+  private final ITraitCollectionContext context;
 
   public AttributesEditorInput(
       IFile file,
       ImageDescriptor imageDescriptor,
       IDisplayNameProvider displayNameProvider,
-      IAttributesContext context) {
+      ITraitCollectionContext context) {
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
     this.context = context;
   }
 
   @Override
-  public IAttributes getItem() {
-    return context.getAttributes();
+  public ITraitCollectionModel getItem() {
+    return context.getCollection();
   }
 
   @Override
-  public IAttributes save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
+  public ITraitCollectionModel save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     new ItemFileWriter().saveToFile(getFile(), attributesPersister, getItem(), monitor);
     return getItem();
   }
@@ -68,7 +71,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<IAt
 
   @Override
   protected IModelIdentifier getModelIdentifier() {
-    return new ModelIdentifier(getCharacterFolder(), IAttributes.MODEL_ID);
+    return new ModelIdentifier(getCharacterFolder(), Attributes.MODEL_ID);
   }
 
   @Override

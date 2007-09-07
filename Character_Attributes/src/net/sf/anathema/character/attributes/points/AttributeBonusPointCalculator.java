@@ -1,14 +1,14 @@
 package net.sf.anathema.character.attributes.points;
 
 import static net.sf.anathema.character.attributes.points.IAttributeConstants.*;
-import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class AttributeBonusPointCalculator {
 
-  private final IAttributes attributes;
+  private final ITraitCollectionModel attributes;
 
-  public AttributeBonusPointCalculator(IAttributes attributes) {
+  public AttributeBonusPointCalculator(ITraitCollectionModel attributes) {
     this.attributes = attributes;
   }
 

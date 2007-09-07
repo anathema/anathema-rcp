@@ -1,9 +1,8 @@
 package net.sf.anathema.character.attributes.points;
 
-import static org.junit.Assert.assertEquals;
-import net.sf.anathema.character.attributes.model.Attributes;
-import net.sf.anathema.character.attributes.points.AttributeExperienceCalculator;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.trait.BasicTrait;
+import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -23,7 +22,7 @@ public class SingleAttributeExperienceCalculationTest {
   @Before
   public void createCalculator() {
     this.basicTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
-    this.calculator = new AttributeExperienceCalculator(new Attributes(basicTrait));
+    this.calculator = new AttributeExperienceCalculator(new TraitCollection(basicTrait));
   }
 
   @Test

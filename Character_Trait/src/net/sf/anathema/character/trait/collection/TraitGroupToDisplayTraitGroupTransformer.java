@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.model;
+package net.sf.anathema.character.trait.collection;
 
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.experience.IExperience;
@@ -13,9 +13,9 @@ import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
 public final class TraitGroupToDisplayTraitGroupTransformer implements ITransformer<ITraitGroup, IDisplayTraitGroup> {
 
-  private final IAttributesContext context;
+  private final ITraitCollectionContext context;
 
-  public TraitGroupToDisplayTraitGroupTransformer(IAttributesContext context) {
+  public TraitGroupToDisplayTraitGroupTransformer(ITraitCollectionContext context) {
     this.context = context;
   }
 
@@ -23,7 +23,7 @@ public final class TraitGroupToDisplayTraitGroupTransformer implements ITransfor
   public IDisplayTraitGroup transform(ITraitGroup group) {
     DisplayTraitGroup displayGroup = new DisplayTraitGroup(group.getId());
     for (String traitId : group.getTraitIds()) {
-      IBasicTrait trait = context.getAttributes().getTrait(traitId);
+      IBasicTrait trait = context.getCollection().getTrait(traitId);
       IExperience experience = context.getExperience();
       IFavorizationHandler favorizationHandler = context.getFavorizationHandler();
       ITraitTemplate traitTemplate = context.getTraitTemplate();

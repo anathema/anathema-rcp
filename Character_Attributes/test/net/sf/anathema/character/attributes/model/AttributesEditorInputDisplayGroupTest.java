@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Iterator;
 
 import net.sf.anathema.character.trait.IDisplayTrait;
+import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
 
@@ -22,7 +23,7 @@ public class AttributesEditorInputDisplayGroupTest {
   public void createEditorInput() {
     TraitGroup[] traitGroups = new TraitGroup[] { new TraitGroup("group1", "trait1", "trait2"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         new TraitGroup("group2", "trait3", "trait4"), }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    IAttributesContext context = AttributeContextObjectMother.createContext(traitGroups);
+    ITraitCollectionContext context = AttributeContextObjectMother.createContext(traitGroups);
     this.input = new AttributesEditorInput(EasyMock.createNiceMock(IFile.class), null, null, context);
     groups = input.createDisplayGroups();
   }

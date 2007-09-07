@@ -8,8 +8,8 @@ import java.util.Collection;
 import net.sf.anathema.character.attributes.AttributeObjectMother;
 import net.sf.anathema.character.attributes.model.AttributeTemplate;
 import net.sf.anathema.character.attributes.model.Attributes;
-import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.rules.TraitTemplate;
 
 import org.junit.Test;
@@ -41,7 +41,7 @@ public class PrioritylessAttributeFreebiesTest {
 
   @Test
   public void spentFreebiesFitIntoCredits() throws Exception {
-    IAttributes attributes = Attributes.create(new AttributeTemplate().getGroups(), new TraitTemplate());
+    ITraitCollectionModel attributes = Attributes.create(new AttributeTemplate().getGroups(), new TraitTemplate());
     attributes.getTraits()[0].getCreationModel().setValue(attributeValue);
     IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes);
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(modelProvider);

@@ -7,6 +7,7 @@ import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
@@ -14,8 +15,8 @@ import org.junit.Test;
 
 public class AttributeFavorizationHandlerWithoutCreditsTest {
 
-  private AttributeFavorizationHandler attributeFavorizationHandler;
-  private IAttributes attributes;
+  private AbstractTraitCollectionFavorizationHandler attributeFavorizationHandler;
+  private ITraitCollectionModel attributes;
 
   @Before
   public void createFavorizationHandler() throws Exception {
@@ -24,7 +25,7 @@ public class AttributeFavorizationHandlerWithoutCreditsTest {
     EasyMock.expect(creditManager.getCredit(characterId, "net.sf.anathema.character.attributes.favored")).andReturn(0); //$NON-NLS-1$
     AttributeTemplate attributeTemplate = new AttributeTemplate();
     attributes = Attributes.create(attributeTemplate.getGroups(), attributeTemplate.getTraitTemplate());
-    ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, IAttributes.MODEL_ID);
+    ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, Attributes.MODEL_ID);
     IModelProvider modelProvider = CharacterObjectMother.createModelProvider(modelIdentifier, attributes);
     EasyMock.replay(creditManager);
     attributeFavorizationHandler = new AttributeFavorizationHandler(characterId, modelProvider, creditManager);

@@ -25,8 +25,11 @@ public class AttributeEditorInputFactory implements IEditorInputFactory {
       IDisplayNameProvider nameProvider,
       IModelProvider modelProvider) throws PersistenceException, CoreException {
     ICreditManager creditManager = new CreditManager();
-    IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(characterId, modelProvider, creditManager);
-    AttributeCharacterContext context = new AttributeCharacterContext(modelProvider, characterId, favorizationHandler);
+    IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(
+        characterId,
+        modelProvider,
+        creditManager);
+    AttributesContext context = new AttributesContext(modelProvider, characterId, favorizationHandler);
     return new AttributesEditorInput(modelFile, descriptor, nameProvider, context);
   }
 

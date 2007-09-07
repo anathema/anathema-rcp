@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.AttributeObjectMother;
 import net.sf.anathema.character.attributes.model.AttributeTemplate;
 import net.sf.anathema.character.attributes.model.Attributes;
-import net.sf.anathema.character.attributes.model.IAttributes;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.rules.TraitTemplate;
 
 import org.easymock.EasyMock;
@@ -32,7 +32,7 @@ public class FreebiesBonusPointReducerTest {
   }
 
   private FreebiesBonusPointReducer reducer;
-  private IAttributes attributes;
+  private ITraitCollectionModel attributes;
   private ICharacterId characterId;
 
   @Before
