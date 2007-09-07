@@ -2,9 +2,7 @@ package net.sf.anathema.campaign.plot.repository;
 
 import java.net.URL;
 
-import net.sf.anathema.lib.util.IIdentificate;
-
-public interface IPlotUnit extends IIdentificate {
+public interface IPlotUnit {
 
   public IPlotUnit getSuccessor();
 

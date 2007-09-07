@@ -4,16 +4,14 @@ import java.net.URL;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.resource.ResourceUtils;
-import net.sf.anathema.lib.util.Identificate;
 
-public class ExtensionPlotUnit extends Identificate implements IPlotUnit {
+public class ExtensionPlotUnit implements IPlotUnit {
 
   private final IExtensionElement element;
   private IPlotUnit successor;
   private final String bundleId;
 
   public ExtensionPlotUnit(String bundleId, IExtensionElement element) {
-    super(element.getAttribute("id")); //$NON-NLS-1$
     this.bundleId = bundleId;
     this.element = element;
   }

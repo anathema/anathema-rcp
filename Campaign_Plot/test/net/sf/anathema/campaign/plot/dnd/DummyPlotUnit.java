@@ -15,11 +15,6 @@ public enum DummyPlotUnit implements IPlotUnit {
     return values()[ordinal() - 1];
   }
 
-  @Override
-  public String getId() {
-    return name();
-  }
-
   public String getName() {
     return name();
   }
