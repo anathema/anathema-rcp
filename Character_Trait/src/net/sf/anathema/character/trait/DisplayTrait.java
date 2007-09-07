@@ -1,7 +1,5 @@
 package net.sf.anathema.character.trait;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
@@ -24,18 +22,16 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
       changeControl.fireChangedEvent();
     }
   };
-  private final IFavorizationHandler favorizationHandler;
   private AggregatedDisposable allDisposables = new AggregatedDisposable();
-  private final IExperience experience;
+  private IDisplayFavorization favorization;
 
   public DisplayTrait(
       final IBasicTrait basicTrait,
       final IExperience experience,
-      IFavorizationHandler favorizationHandler,
+      IDisplayFavorization favorization,
       ITraitTemplate traitTemplate) {
-    this.experience = experience;
-    this.favorizationHandler = favorizationHandler;
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
+    this.favorization = favorization;
     this.basicTrait = basicTrait;
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);
@@ -43,6 +39,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getCreationModel(), changeListener));
     allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getExperiencedModel(), changeListener));
     allDisposables.addDisposable(changeControl);
+    allDisposables.addDisposable(favorization);
   }
 
   @Override
@@ -79,26 +76,9 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   public void dispose() {
     allDisposables.dispose();
   }
-
+  
   @Override
-  public boolean isFavorable() {
-    // TODO experiencedCheck in favorizationHandler ziehen und entsprechenden sinnvollen listener mechanismus
-    return !experience.isExperienced() && favorizationHandler.isFavorable();
-  }
-
-  @Override
-  public void toggleFavored() {
-    favorizationHandler.toogleFavored(getTraitType());
-  }
-
-  @Override
-  public void addFavoredChangeListener(IChangeListener listener) {
-    basicTrait.getFavoredModel().addChangeListener(listener);
-    allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getFavoredModel(), listener));
-  }
-
-  @Override
-  public boolean isFavored() {
-    return basicTrait.getFavoredModel().getValue();
+  public IDisplayFavorization getFavorization() {
+    return favorization;
   }
 }

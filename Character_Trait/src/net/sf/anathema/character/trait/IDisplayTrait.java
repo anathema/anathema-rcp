@@ -1,6 +1,5 @@
 package net.sf.anathema.character.trait;
 
-import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.control.IChangeManagement;
 import net.sf.anathema.lib.ui.IDisposable;
 import net.sf.anathema.lib.util.IIdentificate;
@@ -9,13 +8,7 @@ public interface IDisplayTrait extends IIntValueModel, IChangeManagement, IDispo
 
   public int getMaximalValue();
 
-  public boolean isFavorable();
-
   public IIdentificate getTraitType();
 
-  public void toggleFavored();
-
-  public void addFavoredChangeListener(IChangeListener favoredChangeListener);
-
-  public boolean isFavored();
+  public IDisplayFavorization getFavorization();
 }

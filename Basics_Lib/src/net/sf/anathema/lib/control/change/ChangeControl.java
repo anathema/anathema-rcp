@@ -3,10 +3,11 @@ package net.sf.anathema.lib.control.change;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.model.IChangeableModel;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.ui.IDisposable;
 
-public class ChangeControl implements IChangeable, IDisposable {
+public class ChangeControl implements IChangeableModel, IDisposable {
 
   private final List<IChangeListener> listeners = new ArrayList<IChangeListener>();
 

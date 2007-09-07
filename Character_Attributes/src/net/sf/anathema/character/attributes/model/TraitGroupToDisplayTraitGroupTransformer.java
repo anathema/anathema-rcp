@@ -1,11 +1,15 @@
 package net.sf.anathema.character.attributes.model;
 
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.DisplayFavorization;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.DisplayTraitGroup;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
 public final class TraitGroupToDisplayTraitGroupTransformer implements ITransformer<ITraitGroup, IDisplayTraitGroup> {
 
@@ -20,11 +24,11 @@ public final class TraitGroupToDisplayTraitGroupTransformer implements ITransfor
     DisplayTraitGroup displayGroup = new DisplayTraitGroup(group.getId());
     for (String traitId : group.getTraitIds()) {
       IBasicTrait trait = context.getAttributes().getTrait(traitId);
-      displayGroup.addTrait(new DisplayTrait(
-          trait,
-          context.getExperience(),
-          context.getFavorizationHandler(),
-          context.getTraitTemplate()));
+      IExperience experience = context.getExperience();
+      IFavorizationHandler favorizationHandler = context.getFavorizationHandler();
+      ITraitTemplate traitTemplate = context.getTraitTemplate();
+      DisplayFavorization favorization = new DisplayFavorization(trait, experience, favorizationHandler);
+      displayGroup.addTrait(new DisplayTrait(trait, experience, favorization, traitTemplate));
     }
     return displayGroup;
   }

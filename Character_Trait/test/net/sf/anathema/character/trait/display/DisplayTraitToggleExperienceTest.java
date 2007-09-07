@@ -26,12 +26,8 @@ public class DisplayTraitToggleExperienceTest {
     IBasicTrait basicTrait = new BasicTrait(new Identificate("Wies‰‰‰")); //$NON-NLS-1$
     basicTrait.getCreationModel().setValue(CREATION_VALUE);
     basicTrait.getExperiencedModel().setValue(EXPERIENCE_VALUE);
-    experience = new DummyExperience();
-    this.displayTrait = new DisplayTrait(
-        basicTrait,
-        experience,
-        new DummyFavorizationHandler(),
-        new DummyTraitTemplate());
+    this.experience = new DummyExperience();
+    this.displayTrait = new DisplayTrait(basicTrait, experience, null, new DummyTraitTemplate());
   }
 
   @Test

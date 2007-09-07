@@ -25,12 +25,12 @@ public class TraitViewFactory {
     private EnabledUpdateListener(Button favoredButton, IDisplayTrait trait) {
       this.favoredButton = favoredButton;
       this.trait = trait;
-      favoredButton.setEnabled(trait.isFavorable());
+      favoredButton.setEnabled(trait.getFavorization().isFavorable());
     }
 
     @Override
     public void stateChanged() {
-      favoredButton.setEnabled(trait.isFavorable());
+      favoredButton.setEnabled(trait.getFavorization().isFavorable());
     }
   }
 
@@ -46,7 +46,7 @@ public class TraitViewFactory {
     @Override
     public void handleEvent(Event event) {
       button.setSelection(!button.getSelection());
-      trait.toggleFavored();
+      trait.getFavorization().toggleFavored();
     }
   }
 
@@ -66,8 +66,8 @@ public class TraitViewFactory {
 
     @Override
     public void stateChanged() {
-      favoredButton.setSelection(trait.isFavored());
-      favoredButton.setImage(trait.isFavored() ? activeImage : passiveImage);
+      favoredButton.setSelection(trait.getFavorization().isFavored());
+      favoredButton.setImage(trait.getFavorization().isFavored() ? activeImage : passiveImage);
     }
   }
 
@@ -78,8 +78,8 @@ public class TraitViewFactory {
       String text,
       final IDisplayTrait trait) {
     final Button favoredButton = new Button(parent, SWT.TOGGLE);
-    trait.addChangeListener(new EnabledUpdateListener(favoredButton, trait));
-    trait.addFavoredChangeListener(new FavorizationModelListener(favoredButton, trait, passiveImage, activeImage));
+    trait.getFavorization().addFavorableChangeListener(new EnabledUpdateListener(favoredButton, trait));
+    trait.getFavorization().addFavoredChangeListener(new FavorizationModelListener(favoredButton, trait, passiveImage, activeImage));
     favoredButton.addListener(SWT.MouseUp, new FavorizationButtonChangeListener(favoredButton, trait));
     createLabel(parent, GridDataFactory.createIndentData(5)).setText(text);
     final IIntValueView view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, trait.getMaximalValue());

@@ -7,7 +7,7 @@ import net.sf.anathema.character.trait.AbstractIntValueModelTest;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
-import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.IDisplayFavorization;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.easymock.EasyMock;
@@ -20,7 +20,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
   private DummyTraitTemplate traitTemplate;
   private Identificate traitType;
   private BasicTrait basicTrait;
-  private IFavorizationHandler favorizationHandler;
+  private IDisplayFavorization favorization;
 
   protected abstract IExperience createExperience();
 
@@ -30,8 +30,8 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     this.traitTemplate = new DummyTraitTemplate();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
-    favorizationHandler = EasyMock.createNiceMock(IFavorizationHandler.class);
-    this.model = new DisplayTrait(basicTrait, basics, favorizationHandler, traitTemplate);
+    this.favorization = EasyMock.createMock(IDisplayFavorization.class);
+    this.model = new DisplayTrait(basicTrait, basics, favorization, traitTemplate);
   }
 
   protected final DisplayTrait getDisplayTrait() {
@@ -61,42 +61,12 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     getDisplayTrait().dispose();
     assertEquals(0, basicTrait.getListenerCount());
   }
-
-  @Test
-  public void removesFavorizationListenersWhenDisposedOf() throws Exception {
-    final boolean[] eventReceived = new boolean[] { false };
-    getDisplayTrait().addFavoredChangeListener(new IChangeListener() {
-      @Override
-      public void stateChanged() {
-        eventReceived[0] = true;
-      }
-    });
-    getDisplayTrait().dispose();
-    getDisplayTrait().toggleFavored();
-    assertFalse(eventReceived[0]);
-  }
-
-  @Test
-  public void favorizationHandlerIsCalledIfFavorizationChanges() throws Exception {
-    favorizationHandler.toogleFavored(traitType);
-    EasyMock.replay(favorizationHandler);
-    getDisplayTrait().toggleFavored();
-    EasyMock.verify(favorizationHandler);
-  }
   
   @Test
-  public void favorizationListenerIsAddedToBasicTraitFavorizationModel() throws Exception {
-    IChangeListener favorizationListener = EasyMock.createMock(IChangeListener.class);
-    assertEquals(0, basicTrait.getFavoredModel().getChangeListenerCount());
-    getDisplayTrait().addFavoredChangeListener(favorizationListener);
-    assertEquals(1, basicTrait.getFavoredModel().getChangeListenerCount());
-  }
-  
-  @Test
-  public void favorizationListenerIsRemovedOnDispose() throws Exception {
-    IChangeListener favorizationListener = EasyMock.createMock(IChangeListener.class);
-    getDisplayTrait().addFavoredChangeListener(favorizationListener);
+  public void favorizationIsDisposedOnDispose() throws Exception {
+    favorization.dispose();
+    EasyMock.replay(favorization);
     getDisplayTrait().dispose();
-    assertEquals(0, basicTrait.getFavoredModel().getChangeListenerCount());
+    EasyMock.verify(favorization);
   }
 }

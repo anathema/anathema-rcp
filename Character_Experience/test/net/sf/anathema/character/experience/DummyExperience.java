@@ -31,4 +31,8 @@ public class DummyExperience extends AbstractModel implements IExperience {
   public void removeChangeListener(IChangeListener listener) {
     control.removeChangeListener(listener);
   }
+
+  public int getListenerCount() {
+    return control.getListenerCount();
+  }
 }
