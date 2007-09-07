@@ -3,8 +3,8 @@ package net.sf.anathema.lib.textualdescription;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.disy.commons.core.util.IClosure;
 import net.disy.commons.core.util.ITransformer;
-import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;

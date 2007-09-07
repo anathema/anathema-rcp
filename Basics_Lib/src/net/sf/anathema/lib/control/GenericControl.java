@@ -3,7 +3,7 @@ package net.sf.anathema.lib.control;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.lib.collection.IClosure;
+import net.disy.commons.core.util.IClosure;
 
 public class GenericControl<L> {
 

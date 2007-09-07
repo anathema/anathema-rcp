@@ -1,7 +1,7 @@
 package net.sf.anathema.lib.textualdescription;
 
-import static org.junit.Assert.*;
-import net.sf.anathema.lib.collection.IClosure;
+import static org.junit.Assert.assertEquals;
+import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 
 import org.easymock.EasyMock;

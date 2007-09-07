@@ -1,6 +1,6 @@
 package net.sf.anathema.basics.jface.selection;
 
-import net.sf.anathema.lib.collection.IClosure;
+import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 
 import org.eclipse.jface.viewers.ISelection;

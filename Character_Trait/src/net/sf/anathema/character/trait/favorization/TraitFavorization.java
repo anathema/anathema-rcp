@@ -1,7 +1,7 @@
 package net.sf.anathema.character.trait.favorization;
 
+import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.character.trait.IDisplayTrait;
-import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.util.IIdentificate;
 

@@ -2,11 +2,11 @@ package net.sf.anathema.basics.jface.text;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.util.ArrayUtilities;
+import net.disy.commons.core.util.IClosure;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.basics.jface.selection.StyledTextSelectionProvider;
 import net.sf.anathema.basics.swt.event.KeyReleasedChangeAdapter;
 import net.sf.anathema.basics.swt.event.MouseUpChangeAdapter;
-import net.sf.anathema.lib.collection.IClosure;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.textualdescription.IStyledTextView;
