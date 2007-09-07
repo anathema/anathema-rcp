@@ -10,8 +10,6 @@ import net.disy.commons.core.util.StringUtilities;
 
 public class AnathemaStringUtilities extends StringUtilities {
 
-  public static final String EMPTY_STRING = new String(""); //$NON-NLS-1$
-
   public static String getFileNameRepresentation(String string) {
     String fileName = ""; //$NON-NLS-1$
     for (int index = 0; index < string.length(); index++) {
