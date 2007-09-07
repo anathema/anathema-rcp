@@ -8,7 +8,7 @@ import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
-public class AttributeCharacterContext implements IAttributeCharacterContext {
+public class AttributeCharacterContext implements IAttributesContext {
 
   private final ICharacterId characterId;
   private final IModelProvider modelProvider;

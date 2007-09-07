@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.model;
+package net.sf.anathema.character.trait.groupeditor;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;

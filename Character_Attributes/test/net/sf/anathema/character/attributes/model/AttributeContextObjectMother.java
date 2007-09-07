@@ -8,10 +8,10 @@ import org.easymock.EasyMock;
 
 public class AttributeContextObjectMother {
 
-  public static IAttributeCharacterContext createContext(TraitGroup[] traitGroups) {
+  public static IAttributesContext createContext(TraitGroup[] traitGroups) {
     IAttributes attributes = Attributes.create(traitGroups, new TraitTemplate());
     DummyExperience experience = new DummyExperience();
-    IAttributeCharacterContext context = EasyMock.createNiceMock(IAttributeCharacterContext.class);
+    IAttributesContext context = EasyMock.createNiceMock(IAttributesContext.class);
     EasyMock.expect(context.getTraitGroups()).andReturn(traitGroups).anyTimes();
     EasyMock.expect(context.getAttributes()).andReturn(attributes).anyTimes();
     EasyMock.expect(context.getExperience()).andReturn(experience).anyTimes();

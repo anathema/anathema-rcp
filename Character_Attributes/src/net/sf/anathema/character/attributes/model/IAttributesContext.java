@@ -5,7 +5,7 @@ import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
-public interface IAttributeCharacterContext {
+public interface IAttributesContext {
 
   public IExperience getExperience();
   

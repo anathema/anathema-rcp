@@ -1,12 +1,9 @@
 package net.sf.anathema.character.attributes.model;
 
-import net.sf.anathema.character.core.model.IModel;
-import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public interface IAttributes extends IModel {
+
+public interface IAttributes extends ITraitCollectionModel {
 
   public static final String MODEL_ID = "net.sf.anathema.character.attributes.model"; //$NON-NLS-1$
-  public IBasicTrait[] getTraits();
-
-  public IBasicTrait getTrait(String id);
 }

@@ -18,7 +18,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="net.sf.anathema.character.attributes.model.AttributesEditor"
+            class="net.sf.anathema.character.trait.groupeditor.TraitGroupEditor"
             icon="icons/TabCharacter16.png"
             id="net.sf.anathema.character.attributes.editor"
             name="%editor.name.attributes">

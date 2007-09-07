@@ -13,9 +13,9 @@ import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
 public final class TraitGroupToDisplayTraitGroupTransformer implements ITransformer<ITraitGroup, IDisplayTraitGroup> {
 
-  private final IAttributeCharacterContext context;
+  private final IAttributesContext context;
 
-  public TraitGroupToDisplayTraitGroupTransformer(IAttributeCharacterContext context) {
+  public TraitGroupToDisplayTraitGroupTransformer(IAttributesContext context) {
     this.context = context;
   }
 
