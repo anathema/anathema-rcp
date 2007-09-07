@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.disy.commons.core.predicate.IPredicate;
 import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.lib.lang.AnathemaStringUtilities;
 
@@ -58,7 +59,7 @@ public class ArrayUtilities {
     return true;
   }
 
-  public static <T> T find(Predicate<T> predicate, T[] inputArray) {
+  public static <T> T find(IPredicate<T> predicate, T[] inputArray) {
     for (T input : inputArray) {
       if (predicate.evaluate(input)) {
         return input;
