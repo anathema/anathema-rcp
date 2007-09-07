@@ -22,8 +22,10 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
   public TraitCollection(IBasicTrait... traits) {
     this.traits = traits;
     for (IBasicTrait basicTrait : traits) {
+      // TODO wieder abmelden
       basicTrait.getCreationModel().addChangeListener(changeListener);
       basicTrait.getExperiencedModel().addChangeListener(changeListener);
+      basicTrait.getFavoredModel().addChangeListener(changeListener);
     }
   }
 

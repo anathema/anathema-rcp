@@ -20,6 +20,6 @@ public class AttributeFavorizationHandler extends AbstractTraitCollectionFavoriz
 
   @Override
   protected String getCreditId() {
-    return "net.sf.anathema.character.attributes.favored"; //$NON-NLS-1$
+    return "net.sf.anathema.character.attributes.count.favored"; //$NON-NLS-1$
   }
 }

@@ -58,6 +58,14 @@
             handlerClass="net.sf.anathema.character.attributes.points.TertiaryAttributeFreebies"
             name="%TertiaryAttributes">
       </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.attributes.points.FavoredAttributeFreebiesHandler"
+            name="Free Favored Attributes">
+      </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.attributes.points.FavoredAttributeCountHandler"
+            name="Favored count">
+      </FreebiesConfiguration>
    </extension>
 
 </plugin>

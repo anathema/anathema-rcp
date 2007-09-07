@@ -22,7 +22,7 @@ public class AttributeFavorizationHandlerWithCreditsTest {
   public void createFavorizationHandlerWithFavoredCredit1() throws Exception {
     ICharacterId characterId = EasyMock.createMock(ICharacterId.class);
     ICreditManager creditManager = EasyMock.createMock(ICreditManager.class);
-    EasyMock.expect(creditManager.getCredit(characterId, "net.sf.anathema.character.attributes.favored")).andReturn(1).anyTimes(); //$NON-NLS-1$
+    EasyMock.expect(creditManager.getCredit(characterId, "net.sf.anathema.character.attributes.count.favored")).andReturn(1).anyTimes(); //$NON-NLS-1$
     AttributeTemplate attributeTemplate = new AttributeTemplate();
     attributes = Attributes.create(attributeTemplate.getGroups(), attributeTemplate.getTraitTemplate());
     ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, Attributes.MODEL_ID);

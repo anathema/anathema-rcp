@@ -18,7 +18,11 @@
                value="5">
          </credit>
          <credit
-               id="net.sf.anathema.character.attributes.favored"
+               id="net.sf.anthema.character.attributes.freebies.favored"
+               value="1">
+         </credit>
+         <credit
+               id="net.sf.anathema.character.attributes.count.favored"
                value="1">
          </credit>
       </creditList>
