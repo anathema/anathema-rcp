@@ -55,8 +55,7 @@ public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension
       Dots groupDots,
       IFreebiesHandler handler) {
     int groupCredit = creditManager.getCredit(id, handler.getCreditId());
-    int pointSpentWithoutCredit = Math.max(groupDots.spentTotally() - groupCredit, 0);
-    return Math.min(groupDots.spentOnFavored(), pointSpentWithoutCredit);
+    return groupDots.spentOnFavoredInExcessOfCredit(groupCredit);
   }
 
   @Override

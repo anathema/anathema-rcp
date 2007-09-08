@@ -29,6 +29,25 @@ public class DotsTest {
     Dots dots = new Dots(createTrait("Has", 2, false), createTrait("Maus", 3, true));  //$NON-NLS-1$//$NON-NLS-2$
     assertEquals(2, dots.spentOnFavored());
   }
+  
+  @Test
+  public void withNoCreditReturnsAllFavoredDotsForExcessOfCredit() throws Exception {
+    Dots dots = new Dots(createTrait("Has", 2, false), createTrait("Maus", 3, true));  //$NON-NLS-1$//$NON-NLS-2$
+    assertEquals(2, dots.spentOnFavoredInExcessOfCredit(0));
+  }
+  
+  @Test
+  public void reducesFavoredDotsByCreditForExcessOfCredit() throws Exception {
+    Dots dots = new Dots(createTrait("Has", 2, false), createTrait("Maus", 3, true));  //$NON-NLS-1$//$NON-NLS-2$
+    assertEquals(1, dots.spentOnFavoredInExcessOfCredit(2));
+  }
+
+  
+  @Test
+  public void noDotsSpentInExcessOfHighCredit() throws Exception {
+    Dots dots = new Dots(createTrait("Has", 2, false), createTrait("Maus", 3, true));  //$NON-NLS-1$//$NON-NLS-2$
+    assertEquals(0, dots.spentOnFavoredInExcessOfCredit(4));
+  }
 
   private static BasicTrait createTrait(String id, int value, boolean favored) {
     BasicTrait basicTrait = new BasicTrait(new Identificate(id));

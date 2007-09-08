@@ -47,4 +47,9 @@ public class Dots {
     }
     return points;
   }
+
+  public int spentOnFavoredInExcessOfCredit(int groupCredit) {
+    int pointSpentWithoutCredit = Math.max(spentTotally() - groupCredit, 0);
+    return Math.min(spentOnFavored(), pointSpentWithoutCredit);
+  }
 }
