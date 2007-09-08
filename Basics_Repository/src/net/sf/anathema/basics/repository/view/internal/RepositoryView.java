@@ -77,7 +77,7 @@ public class RepositoryView extends ViewPart implements IResourceSelector, ILink
         editorLinker.update();
       }
     });
-    final TreeViewRefresher treeViewRefresher = new TreeViewRefresher(viewer);
+    final TreeViewRefresher treeViewRefresher = new TreeViewRefresher(viewer, parent.getDisplay());
     treeViewRefresher.setRule(ResourcesPlugin.getWorkspace().getRoot());
     final IResourceChangeListener resourceListener = new IResourceChangeListener() {
       @Override
