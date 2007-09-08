@@ -21,13 +21,12 @@ public class AttributeFavorizationHandlerWithoutCreditsTest {
   @Before
   public void createFavorizationHandler() throws Exception {
     ICharacterId characterId = EasyMock.createMock(ICharacterId.class);
-    ICreditManager creditManager = EasyMock.createMock(ICreditManager.class);
-    EasyMock.expect(creditManager.getCredit(characterId, "net.sf.anathema.character.attributes.count.favored")).andReturn(0); //$NON-NLS-1$
+    String creditId = "net.sf.anathema.character.attributes.count.favored"; //$NON-NLS-1$
+    ICreditManager creditManager = CreditManagerObjectMother.createCreditManager(characterId, creditId, 0);
     AttributeTemplate attributeTemplate = new AttributeTemplate();
     attributes = Attributes.create(attributeTemplate.getGroups(), attributeTemplate.getTraitTemplate());
     ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, Attributes.MODEL_ID);
     IModelProvider modelProvider = CharacterObjectMother.createModelProvider(modelIdentifier, attributes);
-    EasyMock.replay(creditManager);
     attributeFavorizationHandler = new AttributeFavorizationHandler(characterId, modelProvider, creditManager);
   }
 
@@ -35,7 +34,7 @@ public class AttributeFavorizationHandlerWithoutCreditsTest {
   public void isNotFavorable() throws Exception {
     assertFalse(attributeFavorizationHandler.isFavorable());
   }
-  
+
   @Test
   public void attributeIsToggledToFavored() throws Exception {
     IBasicTrait trait = attributes.getTraits()[0];

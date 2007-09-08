@@ -43,6 +43,10 @@
             groupReference="attributepoints"
             handlerClass="net.sf.anathema.character.attributes.points.FreebiesBonusPointReducer">
       </bonusPointCalculator>
+      <bonusPointCalculator
+            groupReference="attributepoints"
+            handlerClass="net.sf.anathema.character.attributes.points.FavoredAttributeBonusPointReducer">
+      </bonusPointCalculator>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.configurations">
