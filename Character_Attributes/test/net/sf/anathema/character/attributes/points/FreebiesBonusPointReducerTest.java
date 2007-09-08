@@ -42,31 +42,40 @@ public class FreebiesBonusPointReducerTest {
     IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
     this.reducer = new FreebiesBonusPointReducer(modelProvider, new DummyCreditManager());
   }
-  
+
   @Test
   public void returns0ForNoCharacter() throws Exception {
     assertEquals(0, reducer.getPoints(null));
   }
-  
+
   @Test
   public void returns0ForAllAttributes1() throws Exception {
     setAllAttributesTo(1);
     assertEquals(0, reducer.getPoints(characterId));
   }
-  
+
   @Test
   public void returnsNegative4ForOneAttributeAt2() throws Exception {
     setAllAttributesTo(1);
     attributes.getTraits()[0].getCreationModel().setValue(2);
     assertEquals(-4, reducer.getPoints(characterId));
   }
-  
+
+  @Test
+  public void returnsNegative3ForOneFavoredAttributeAt2() throws Exception {
+    setAllAttributesTo(1);
+    IBasicTrait attribute = attributes.getTraits()[0];
+    attribute.getCreationModel().setValue(2);
+    attribute.getFavoredModel().setValue(true);
+    assertEquals(-3, reducer.getPoints(characterId));
+  }
+
   @Test
   public void returnsNegative36ForAllAttributeAt2() throws Exception {
     setAllAttributesTo(2);
     assertEquals(-36, reducer.getPoints(characterId));
   }
-  
+
   @Test
   public void noReductionCalculatedForPointsExceedingCredit() throws Exception {
     setAllAttributesTo(2);
@@ -75,7 +84,7 @@ public class FreebiesBonusPointReducerTest {
   }
 
   private void setAllAttributesTo(int value) {
-    for (IBasicTrait trait : attributes.getTraits() ) {
+    for (IBasicTrait trait : attributes.getTraits()) {
       trait.getCreationModel().setValue(value);
     }
   }
