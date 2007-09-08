@@ -84,6 +84,11 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     return createImage(AttributesPlugin.SELECTED_BUTTON);
   }
 
+  @Override
+  public Image createSurplusImage() {
+    return createImage(AttributesPlugin.SURPLUS_BUTTON);
+  }
+
   private Image createImage(String imageName) {
     return AttributesPlugin.getDefaultInstance().getImageRegistry().get(imageName);
   }

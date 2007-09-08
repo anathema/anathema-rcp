@@ -20,15 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class CanvasIntValueDisplay implements IIntValueView {
 
-  private static final int GROUP_SIZE = 5;
-  private static final int HORIZONTAL_INDENT = 2;
-  private final int maxValue;
-  private final Image passiveImage;
-  private final Image activeImage;
-  private final GenericControl<IIntValueChangedListener> control = new GenericControl<IIntValueChangedListener>();
-  private OuterPaintListener rectanglePainter;
-  private final MouseInputAdapter mouseListener = new MouseInputAdapter() {
-
+  private final class MouseDragListener extends MouseInputAdapter {
     private boolean isDrag;
 
     @Override
@@ -58,21 +50,36 @@ public class CanvasIntValueDisplay implements IIntValueView {
     private void updateMarkerRectangle(int width) {
       rectanglePainter.resizeMarkerRectangle(width);
     }
-  };
+  }
+
+  private static final int GROUP_SIZE = 5;
+  private static final int HORIZONTAL_INDENT = 2;
+  private final int maxValue;
+  private final Image passiveImage;
+  private final Image valueImage;
+  private final Image surplusImage;
+  private final GenericControl<IIntValueChangedListener> control = new GenericControl<IIntValueChangedListener>();
+  private OuterPaintListener rectanglePainter;
+  private final MouseInputAdapter mouseListener = new MouseDragListener();
   private final Composite composite;
   private final int slotWidth;
   private final int whitespaceSlotWidth;
   private int value;
+  private int surplusValue;
 
-  public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image activeImage, int maxValue) {
+  public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image valueImage, Image surplusImage, int maxValue) {
     ImageData passiveData = passiveImage.getImageData();
-    ImageData activeData = activeImage.getImageData();
-    Ensure.ensureArgumentEquals(passiveData.width, activeData.width);
-    Ensure.ensureArgumentEquals(passiveData.height, activeData.height);
+    ImageData valueData = valueImage.getImageData();
+    ImageData surplusData = surplusImage.getImageData();
+    Ensure.ensureArgumentEquals(passiveData.width, valueData.width);
+    Ensure.ensureArgumentEquals(passiveData.width, surplusData.width);
+    Ensure.ensureArgumentEquals(passiveData.height, valueData.height);
+    Ensure.ensureArgumentEquals(passiveData.height, surplusData.height);
     this.slotWidth = passiveData.width + 2;
     this.whitespaceSlotWidth = slotWidth / 2;
     this.passiveImage = passiveImage;
-    this.activeImage = activeImage;
+    this.valueImage = valueImage;
+    this.surplusImage = surplusImage;
     this.maxValue = maxValue;
     this.composite = createComposite(parent);
   }
@@ -93,8 +100,11 @@ public class CanvasIntValueDisplay implements IIntValueView {
     canvas.addPaintListener(new PaintListener() {
       @Override
       public void paintControl(PaintEvent e) {
-        for (int index = 0; index < value; index++) {
-          addImage(e, index, activeImage);
+        for (int index = 0; index < surplusValue; index++) {
+          addImage(e, index, valueImage);
+        }
+        for (int index = surplusValue; index < value; index++) {
+          addImage(e, index, surplusImage);
         }
         for (int index = value; index < maxValue; index++) {
           addImage(e, index, passiveImage);
@@ -130,6 +140,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
   @Override
   public void setValue(int newValue) {
     this.value = newValue;
+    this.surplusValue = newValue;
     composite.redraw();
   }
 
@@ -159,5 +170,10 @@ public class CanvasIntValueDisplay implements IIntValueView {
   @Override
   public void removeIntValueChangedListener(IIntValueChangedListener listener) {
     control.removeListener(listener);
+  }
+
+  public void showSurplus(int surplus) {
+    this.surplusValue = Math.min(surplus, value);
+    composite.redraw();
   }
 }

@@ -16,6 +16,8 @@ public interface ITraitGroupEditorInput {
 
   public Image createActiveImage();
 
+  public Image createSurplusImage();
+
   public String getGroupLabel(IDisplayTraitGroup group);
 
   public String getTraitLabel(IIdentificate traitType);

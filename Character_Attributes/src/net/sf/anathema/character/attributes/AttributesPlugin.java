@@ -12,6 +12,7 @@ public class AttributesPlugin extends AbstractAnathemaUIPlugin {
   private static AttributesPlugin instance;
   public static final String UNSELECTED_BUTTON = "UnselectedButton"; //$NON-NLS-1$
   public static final String SELECTED_BUTTON = "SelectedButton"; //$NON-NLS-1$
+  public static final String SURPLUS_BUTTON = "SurplusButton"; //$NON-NLS-1$
 
   public static AbstractAnathemaUIPlugin getDefaultInstance() {
     return instance;
@@ -33,10 +34,15 @@ public class AttributesPlugin extends AbstractAnathemaUIPlugin {
   }
 
   @Override
-  protected void initializeImageRegistry(ImageRegistry reg) {
-    reg.put(UNSELECTED_BUTTON, ImageDescriptor.createFromFile(
+  protected void initializeImageRegistry(ImageRegistry registry) {
+    registry.put(UNSELECTED_BUTTON, ImageDescriptor.createFromFile(
         CanvasIntValueDisplay.class,
         "BorderUnselectedButton16.png")); //$NON-NLS-1$
-    reg.put(SELECTED_BUTTON, ImageDescriptor.createFromFile(CanvasIntValueDisplay.class, "BorderSolarButton16.png")); //$NON-NLS-1$
+    registry.put(
+        SELECTED_BUTTON,
+        ImageDescriptor.createFromFile(CanvasIntValueDisplay.class, "BorderSolarButton16.png")); //$NON-NLS-1$
+    registry.put(SURPLUS_BUTTON, ImageDescriptor.createFromFile(
+        CanvasIntValueDisplay.class,
+        "BorderSurplusButton16.png")); //$NON-NLS-1$
   }
 }

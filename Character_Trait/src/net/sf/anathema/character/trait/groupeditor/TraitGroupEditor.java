@@ -26,12 +26,13 @@ public class TraitGroupEditor<I extends IItem> extends AbstractPersistableItemEd
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
     Image passiveImage = editorInput.createPassiveImage();
     Image activeImage = editorInput.createActiveImage();
+    Image surplusImage = editorInput.createSurplusImage();
     parent.setLayout(new GridLayout(3, false));
     for (IDisplayTraitGroup group : editorInput.createDisplayGroups()) {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
       for (final IDisplayTrait trait : group.getTraits()) {
         String label = editorInput.getTraitLabel(trait.getTraitType());
-        new TraitViewFactory().addTo(parent, passiveImage, activeImage, label, trait);
+        new TraitViewFactory().addTo(parent, passiveImage, activeImage, surplusImage, label, trait);
         addDisposable(trait);
       }
     }

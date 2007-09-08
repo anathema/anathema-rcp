@@ -2,11 +2,14 @@ package net.sf.anathema.character.trait;
 
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
-import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 
 public class CanvasTraitViewDemo implements IDemo {
   public static void main(String[] args) throws Exception {
@@ -15,16 +18,31 @@ public class CanvasTraitViewDemo implements IDemo {
 
   private Image passiveImage;
   private Image activeImage;
+  private Image surplusImage;
 
   @Override
   public void createComposite(Composite parent) throws Exception {
     this.passiveImage = createImage("BorderUnselectedButton16.png"); //$NON-NLS-1$
     this.activeImage = createImage("BorderSolarButton16.png"); //$NON-NLS-1$
-    final IIntValueView intValueDisplay = new CanvasIntValueDisplay(parent, passiveImage, activeImage, 10);
+    this.surplusImage = createImage("BorderBonusButton16.png"); //$NON-NLS-1$
+    final CanvasIntValueDisplay intValueDisplay = new CanvasIntValueDisplay(
+        parent,
+        passiveImage,
+        activeImage,
+        surplusImage,
+        10);
     intValueDisplay.addIntValueChangedListener(new IIntValueChangedListener() {
       @Override
       public void valueChanged(int newValue) {
         intValueDisplay.setValue(newValue);
+      }
+    });
+    Button button = new Button(parent, SWT.None);
+    button.setText("Show Surplus"); //$NON-NLS-1$
+    button.addListener(SWT.MouseDown, new Listener() {
+      @Override
+      public void handleEvent(Event event) {
+        intValueDisplay.showSurplus(3);
       }
     });
   }
@@ -37,5 +55,6 @@ public class CanvasTraitViewDemo implements IDemo {
   public void dispose() {
     passiveImage.dispose();
     activeImage.dispose();
+    surplusImage.dispose();
   }
 }
