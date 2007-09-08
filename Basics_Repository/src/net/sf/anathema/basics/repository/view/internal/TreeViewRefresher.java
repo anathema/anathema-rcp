@@ -14,9 +14,13 @@ public class TreeViewRefresher extends Job {
 
   /** Constructor has to be called from display thread to get the correct Display for execution. */
   public TreeViewRefresher(TreeViewer viewer) {
+    this(viewer, Display.getCurrent());
+  }
+
+  public TreeViewRefresher(TreeViewer viewer, Display display) {
     super("Refresh Repository View"); //$NON-NLS-1$
     this.viewer = viewer;
-    this.display = Display.getCurrent();
+    this.display = display;
   }
 
   @Override
@@ -34,6 +38,9 @@ public class TreeViewRefresher extends Job {
   }
 
   private void refresh() {
+    if (viewer.getTree().isDisposed()) {
+      return;
+    }
     Object[] expandedElements = viewer.getExpandedElements();
     viewer.refresh(true);
     viewer.setExpandedElements(expandedElements);
