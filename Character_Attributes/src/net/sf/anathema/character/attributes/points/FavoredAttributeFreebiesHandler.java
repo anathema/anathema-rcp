@@ -28,7 +28,6 @@ public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension
   }
 
   @Override
-  // TODO Aufräumen und testen & Reducer anmelden
   public int getPoints(ICharacterId id, int credit) {
     IModelIdentifier identifier = new ModelIdentifier(id, Attributes.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(identifier);

@@ -33,7 +33,8 @@ public class FreebiesBonusPointReducer extends AbstractExecutableExtension imple
     }
     int dotsSaved = 0;
     for (IFreebiesHandler handler : freebiesHandlers) {
-      dotsSaved -= handler.getPoints(characterId, creditManager.getCredit(characterId, handler.getCreditId()));
+      int credit = creditManager.getCredit(characterId, handler.getCreditId());
+      dotsSaved -= handler.getPoints(characterId, credit);
     }
     return dotsSaved * IAttributeConstants.BONUS_POINT_COST;
   }
