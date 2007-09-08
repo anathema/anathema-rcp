@@ -40,18 +40,19 @@ public class FreebiesBonusPointReducer extends AbstractExecutableExtension imple
     if (characterId == null) {
       return 0;
     }
-    int savedBonusPoints = 0;
+    int favoredSpent = 0;
+    int unfavoredSpent = 0;
     for (IAttributeGroupFreebiesHandler handler : freebiesHandlers) {
       ITraitCollectionModel model = (ITraitCollectionModel) modelProvider.getModel(new ModelIdentifier(
           characterId,
           Attributes.MODEL_ID));
       Dots dots = new AttributePointCalculator(model, new AttributeTemplate().getGroups()).dotsFor(handler.getPriority());
       int credit = creditManager.getCredit(characterId, handler.getCreditId());
-      int favoredSpent = dots.favoredSpentAsPartOfCredit(credit);
-      int unfavoredSpent = dots.unfavoredSpentAsPartOfCredit(credit);
-      savedBonusPoints -= favoredSpent * IAttributeConstants.FAVORED_BONUS_POINT_COST;
-      savedBonusPoints -= unfavoredSpent * IAttributeConstants.BONUS_POINT_COST;
+      favoredSpent += dots.favoredSpentAsPartOfCredit(credit);
+      unfavoredSpent += dots.unfavoredSpentAsPartOfCredit(credit);
     }
-    return savedBonusPoints;
+    int bonusSaved = favoredSpent * IAttributeConstants.FAVORED_BONUS_POINT_COST;
+    bonusSaved += unfavoredSpent * IAttributeConstants.BONUS_POINT_COST;
+    return -bonusSaved;
   }
 }
