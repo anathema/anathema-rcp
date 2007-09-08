@@ -7,15 +7,15 @@
             templateId="net.sf.anathema.charactertype.pactlunar">
          <credit
                id="net.sf.anathema.character.attributes.freebies.primary"
-               value="9">
+               value="8">
          </credit>
          <credit
                id="net.sf.anathema.character.attributes.freebies.secondary"
-               value="7">
+               value="6">
          </credit>
          <credit
                id="net.sf.anathema.character.attributes.freebies.tertiary"
-               value="5">
+               value="4">
          </credit>
          <credit
                id="net.sf.anthema.character.attributes.freebies.favored"
