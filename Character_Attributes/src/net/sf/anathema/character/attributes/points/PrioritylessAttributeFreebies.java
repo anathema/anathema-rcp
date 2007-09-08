@@ -24,9 +24,8 @@ public class PrioritylessAttributeFreebies {
 
   public int getPoints(ICharacterId id, PriorityGroup priority, int credit) {
     TraitGroup[] groups = new AttributeTemplate().getGroups();
-    ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(new ModelIdentifier(
-        id,
-        Attributes.MODEL_ID));
+    ModelIdentifier modelIdentifier = new ModelIdentifier(id, Attributes.MODEL_ID);
+    ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(modelIdentifier);
     AttributePointCalculator calculator = new AttributePointCalculator(attributes, groups);
     return Math.min(credit, calculator.pointsSpentFor(priority));
   }

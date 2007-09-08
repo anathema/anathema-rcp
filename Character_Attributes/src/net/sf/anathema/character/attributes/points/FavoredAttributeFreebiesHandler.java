@@ -32,28 +32,23 @@ public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension
   public int getPoints(ICharacterId id, int credit) {
     IModelIdentifier identifier = new ModelIdentifier(id, Attributes.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(identifier);
-    AttributePointCalculator pointCalculator = new AttributePointCalculator(
-        attributes,
-        new AttributeTemplate().getGroups());
+    AttributePointCalculator calculator = new AttributePointCalculator(attributes, new AttributeTemplate().getGroups());
     int freeFavored = getAdditionalPointsSpentOnFavored(
         id,
-        pointCalculator.groupPointsFor(AttributePointCalculator.PRIMARY),
+        calculator.dotsFor(AttributePointCalculator.PRIMARY),
         new PrimaryAttributeFreebies(modelProvider));
     freeFavored += getAdditionalPointsSpentOnFavored(
         id,
-        pointCalculator.groupPointsFor(AttributePointCalculator.SECONDARY),
+        calculator.dotsFor(AttributePointCalculator.SECONDARY),
         new SecondaryAttributeFreebies(modelProvider));
     freeFavored += getAdditionalPointsSpentOnFavored(
         id,
-        pointCalculator.groupPointsFor(AttributePointCalculator.TERTIARY),
+        calculator.dotsFor(AttributePointCalculator.TERTIARY),
         new TertiaryAttributeFreebies(modelProvider));
     return Math.min(credit, freeFavored);
   }
 
-  private int getAdditionalPointsSpentOnFavored(
-      ICharacterId id,
-      Dots groupDots,
-      IFreebiesHandler handler) {
+  private int getAdditionalPointsSpentOnFavored(ICharacterId id, Dots groupDots, IFreebiesHandler handler) {
     int groupCredit = creditManager.getCredit(id, handler.getCreditId());
     return groupDots.spentOnFavoredInExcessOfCredit(groupCredit);
   }
