@@ -13,16 +13,18 @@ import net.sf.anathema.character.trait.group.TraitGroup;
 public class PrioritylessAttributeFreebies {
 
   private final IModelProvider modelProvider;
+  private final PriorityGroup priority;
 
-  public PrioritylessAttributeFreebies() {
-    this(ModelCache.getInstance());
+  public PrioritylessAttributeFreebies(PriorityGroup priority) {
+    this(ModelCache.getInstance(), priority);
   }
 
-  public PrioritylessAttributeFreebies(IModelProvider modelProvider) {
+  public PrioritylessAttributeFreebies(IModelProvider modelProvider, PriorityGroup priority) {
     this.modelProvider = modelProvider;
+    this.priority = priority;
   }
 
-  public int getPoints(ICharacterId id, PriorityGroup priority, int credit) {
+  public int getPoints(ICharacterId id, int credit) {
     TraitGroup[] groups = new AttributeTemplate().getGroups();
     ModelIdentifier modelIdentifier = new ModelIdentifier(id, Attributes.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(modelIdentifier);

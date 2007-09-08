@@ -12,7 +12,7 @@ import net.sf.anathema.character.points.configuration.IPointHandler;
 public class FreebiesBonusPointReducer extends AbstractExecutableExtension implements IPointHandler {
 
   private final ICreditManager creditManager;
-  private final IFreebiesHandler[] freebiesHandlers;
+  private final IAttributeGroupFreebiesHandler[] freebiesHandlers;
 
   public FreebiesBonusPointReducer() {
     this(ModelCache.getInstance(), new CreditManager());
@@ -20,7 +20,7 @@ public class FreebiesBonusPointReducer extends AbstractExecutableExtension imple
 
   public FreebiesBonusPointReducer(IModelProvider modelProvider, ICreditManager creditManager) {
     this.creditManager = creditManager;
-    this.freebiesHandlers = new IFreebiesHandler[] {
+    this.freebiesHandlers = new IAttributeGroupFreebiesHandler[] {
         new PrimaryAttributeFreebies(modelProvider),
         new SecondaryAttributeFreebies(modelProvider),
         new TertiaryAttributeFreebies(modelProvider) };

@@ -1,6 +1,6 @@
 package net.sf.anathema.character.attributes.points;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,7 +44,9 @@ public class PrioritylessAttributeFreebiesTest {
     ITraitCollectionModel attributes = Attributes.create(new AttributeTemplate().getGroups(), new TraitTemplate());
     attributes.getTraits()[0].getCreationModel().setValue(attributeValue);
     IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes);
-    PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(modelProvider);
-    assertEquals(freebiesPoints, freebies.getPoints(null, AttributePointCalculator.PRIMARY, 3));
+    PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(
+        modelProvider,
+        AttributePointCalculator.PRIMARY);
+    assertEquals(freebiesPoints, freebies.getPoints(null, 3));
   }
 }
