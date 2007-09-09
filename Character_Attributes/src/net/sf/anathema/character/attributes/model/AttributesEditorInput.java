@@ -5,7 +5,6 @@ import java.io.IOException;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.attributes.AttributesPlugin;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
@@ -23,7 +22,6 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.graphics.Image;
 
 public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
@@ -83,6 +81,11 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   @Override
   public String getTraitLabel(IIdentificate traitType) {
     return AttributeMessages.get(traitType.getId());
+  }
+
+  @Override
+  public int getPointsCoveredByCredit(IIdentificate traitType) {
+    return 0;
   }
 
   @Override

@@ -19,6 +19,7 @@
          point="org.eclipse.ui.editors">
       <editor
             class="net.sf.anathema.character.trait.groupeditor.TraitGroupEditor"
+            contributorClass="net.sf.anathema.character.attributes.view.AttributesEditorToolbarContributor"
             icon="icons/TabCharacter16.png"
             id="net.sf.anathema.character.attributes.editor"
             name="%editor.name.attributes">

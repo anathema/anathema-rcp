@@ -43,6 +43,6 @@ public class AttributesPlugin extends AbstractAnathemaUIPlugin {
         ImageDescriptor.createFromFile(CanvasIntValueDisplay.class, "BorderSolarButton16.png")); //$NON-NLS-1$
     registry.put(SURPLUS_BUTTON, ImageDescriptor.createFromFile(
         CanvasIntValueDisplay.class,
-        "BorderSurplusButton16.png")); //$NON-NLS-1$
+        "BorderBonusButton16.png")); //$NON-NLS-1$
   }
 }
