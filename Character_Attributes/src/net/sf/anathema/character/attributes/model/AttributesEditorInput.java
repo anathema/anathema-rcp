@@ -85,6 +85,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
 
   @Override
   public int getPointsCoveredByCredit(IIdentificate traitType) {
+    //TODO Punkte berechnen
     return 0;
   }
 
