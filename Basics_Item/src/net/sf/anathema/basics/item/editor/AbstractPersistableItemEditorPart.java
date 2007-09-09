@@ -41,7 +41,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   @Override
   public void doSave(IProgressMonitor monitor) {
-    Job saveJob = new SaveEditorJob(this);
+    Job saveJob = new SaveEditorJob(this, getSite().getShell().getDisplay());
     saveJob.setRule(ResourcesPlugin.getWorkspace().getRoot());
     saveJob.schedule();
   }
@@ -101,7 +101,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
     super.dispose();
   }
 
-  protected final<T extends IDisposable> T addDisposable(T disposable) {
+  protected final <T extends IDisposable> T addDisposable(T disposable) {
     return disposables.addDisposable(disposable);
   }
 }
