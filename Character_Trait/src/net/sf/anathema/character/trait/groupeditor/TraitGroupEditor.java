@@ -12,27 +12,24 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
-public class TraitGroupEditor<I extends IItem> extends AbstractPersistableItemEditorPart<I> {
+public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
   @Override
   public void createPartControl(Composite parent) {
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
-    Image passiveImage = editorInput.createPassiveImage();
-    Image activeImage = editorInput.createActiveImage();
-    Image surplusImage = editorInput.createSurplusImage();
+    TraitViewFactory factory = new TraitViewFactory(parent, editorInput);
     parent.setLayout(new GridLayout(3, false));
     for (IDisplayTraitGroup group : editorInput.createDisplayGroups()) {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
       for (final IDisplayTrait trait : group.getTraits()) {
         String label = editorInput.getTraitLabel(trait.getTraitType());
-        new TraitViewFactory().addTo(parent, passiveImage, activeImage, surplusImage, label, trait);
+        factory.create(label, trait);
         addDisposable(trait);
       }
     }
@@ -49,8 +46,14 @@ public class TraitGroupEditor<I extends IItem> extends AbstractPersistableItemEd
     return label;
   }
 
+//  public void markBonusPoints() {
+//    ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
+//    // TODO: Punkte berechnen und auf jedem Trait markieren.
+//  }
+
   @Override
   public void setFocus() {
     // nothing to do
   }
+
 }
