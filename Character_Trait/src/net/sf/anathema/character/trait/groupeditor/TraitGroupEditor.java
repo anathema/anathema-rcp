@@ -23,7 +23,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
   @Override
   public void createPartControl(Composite parent) {
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
-    TraitViewFactory factory = new TraitViewFactory(parent, editorInput);
+    TraitViewFactory factory = new TraitViewFactory(parent, editorInput.getImageProvider());
     parent.setLayout(new GridLayout(3, false));
     for (IDisplayTraitGroup group : editorInput.createDisplayGroups()) {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
@@ -46,10 +46,10 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     return label;
   }
 
-//  public void markBonusPoints() {
-//    ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
-//    // TODO: Punkte berechnen und auf jedem Trait markieren.
-//  }
+  // public void markBonusPoints() {
+  // ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
+  // // TODO: Punkte berechnen und auf jedem Trait markieren.
+  //  }
 
   @Override
   public void setFocus() {

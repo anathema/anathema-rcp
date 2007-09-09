@@ -5,7 +5,7 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 import org.eclipse.core.resources.IFolder;
 
-public interface ITraitGroupEditorInput extends ISurplusIntViewImageProvider {
+public interface ITraitGroupEditorInput {
 
   public IDisplayTraitGroup[] createDisplayGroups();
 
@@ -14,4 +14,6 @@ public interface ITraitGroupEditorInput extends ISurplusIntViewImageProvider {
   public String getGroupLabel(IDisplayTraitGroup group);
 
   public String getTraitLabel(IIdentificate traitType);
+
+  public ISurplusIntViewImageProvider getImageProvider();
 }
