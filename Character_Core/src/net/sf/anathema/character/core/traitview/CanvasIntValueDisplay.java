@@ -173,7 +173,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
   }
 
   public void showSurplus(int surplus) {
-    this.surplusValue = Math.min(surplus, value);
+    this.surplusValue = value - surplus;
     composite.redraw();
   }
 }
