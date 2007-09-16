@@ -38,11 +38,12 @@ public class AttributePointCalculator {
   }
 
   public Dots dotsFor(PriorityGroup priority) {
-    Dots[] groupPoints = ArrayUtilities.transform(
-        groups,
-        Dots.class,
-        new AttributeGroupPointsTransformer(attributes));
+    Dots[] groupPoints = getDotsForGroups();
     Arrays.sort(groupPoints, new AscendingPointAttributeGroupComparator());
     return groupPoints[priority.getAscendingIndex()];
+  }
+
+  public Dots[] getDotsForGroups() {
+    return ArrayUtilities.transform(groups, Dots.class, new AttributeGroupPointsTransformer(attributes));
   }
 }
