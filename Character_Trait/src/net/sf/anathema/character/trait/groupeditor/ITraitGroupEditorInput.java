@@ -17,5 +17,5 @@ public interface ITraitGroupEditorInput {
 
   public ISurplusIntViewImageProvider getImageProvider();
 
-  public int getPointsCoveredByCredit(IIdentificate traitType);
+  public int getPointsNotCoveredByCredit(IIdentificate traitType);
 }
