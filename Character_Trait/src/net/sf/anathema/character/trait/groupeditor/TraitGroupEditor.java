@@ -59,7 +59,8 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
     for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
       int coveredPoints = editorInput.getPointsCoveredByCredit(entry.getKey());
-      ((CanvasIntValueDisplay) entry.getValue()).showSurplus(coveredPoints);
+      ((CanvasIntValueDisplay) entry.getValue()).setSurplusThreshold(coveredPoints);
+      ((CanvasIntValueDisplay) entry.getValue()).setSurplusVisible(true);
     }
   }
 

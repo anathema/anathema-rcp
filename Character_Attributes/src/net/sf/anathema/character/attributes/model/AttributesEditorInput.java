@@ -5,7 +5,6 @@ import java.io.IOException;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.attributes.points.PointCoverageCalculator;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
@@ -86,7 +85,8 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
 
   @Override
   public int getPointsCoveredByCredit(IIdentificate traitType) {
-    return new PointCoverageCalculator(context).calculate(traitType);
+    //TODO: Delegate
+    return 0;
   }
 
   @Override

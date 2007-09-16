@@ -66,6 +66,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
   private final int whitespaceSlotWidth;
   private int value;
   private int surplusValue;
+  private boolean showSurplus;
 
   public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image valueImage, Image surplusImage, int maxValue) {
     ImageData passiveData = passiveImage.getImageData();
@@ -100,10 +101,14 @@ public class CanvasIntValueDisplay implements IIntValueView {
     canvas.addPaintListener(new PaintListener() {
       @Override
       public void paintControl(PaintEvent e) {
-        for (int index = 0; index < surplusValue; index++) {
+        int dots = value;
+        if (showSurplus) {
+          dots = Math.min(dots, surplusValue);
+        }
+        for (int index = 0; index < dots; index++) {
           addImage(e, index, valueImage);
         }
-        for (int index = surplusValue; index < value; index++) {
+        for (int index = dots; index < value; index++) {
           addImage(e, index, surplusImage);
         }
         for (int index = value; index < maxValue; index++) {
@@ -140,7 +145,6 @@ public class CanvasIntValueDisplay implements IIntValueView {
   @Override
   public void setValue(int newValue) {
     this.value = newValue;
-    this.surplusValue = newValue;
     composite.redraw();
   }
 
@@ -172,8 +176,12 @@ public class CanvasIntValueDisplay implements IIntValueView {
     control.removeListener(listener);
   }
 
-  public void showSurplus(int surplus) {
-    this.surplusValue = value - surplus;
+  public void setSurplusThreshold(int surplus) {
+    this.surplusValue = surplus;
+  }
+
+  public void setSurplusVisible(boolean enabled) {
+    this.showSurplus = enabled;
     composite.redraw();
   }
 }

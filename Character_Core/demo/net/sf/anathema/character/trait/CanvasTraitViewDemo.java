@@ -37,12 +37,13 @@ public class CanvasTraitViewDemo implements IDemo {
         intValueDisplay.setValue(newValue);
       }
     });
-    Button button = new Button(parent, SWT.None);
+    intValueDisplay.setSurplusThreshold(3);
+    final Button button = new Button(parent, SWT.TOGGLE);
     button.setText("Show Surplus"); //$NON-NLS-1$
-    button.addListener(SWT.MouseDown, new Listener() {
+    button.addListener(SWT.MouseUp, new Listener() {
       @Override
       public void handleEvent(Event event) {
-        intValueDisplay.showSurplus(3);
+        intValueDisplay.setSurplusVisible(button.getSelection());
       }
     });
   }
