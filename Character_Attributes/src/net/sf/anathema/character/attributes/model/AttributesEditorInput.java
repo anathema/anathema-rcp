@@ -94,16 +94,20 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   }
 
   @Override
+  public ISurplusIntViewImageProvider getImageProvider() {
+    return new SurplusIntViewImageProvider();
+  }
+
+  @Override
   public int getPointsCoveredByCredit(IIdentificate traitType) {
-    AttributeGroupPriorityCalculator priorityCalculator = new AttributeGroupPriorityCalculator(context);
-    ITraitGroup traitGroup = null;
-    for (ITraitGroup group : context.getTraitGroups()) {
-      if (ArrayUtilities.contains(group.getTraitIds(), traitType.getId())) {
-        traitGroup = group;
-        break;
-      }
-    }
-    PriorityGroup priority = priorityCalculator.getPriority(traitGroup);
+    ITraitGroup traitGroup = findTraitGroup(traitType);
+    int credit = new CreditManager().getCredit(getModelIdentifier().getCharacterId(), determineCreditId(traitGroup));
+    PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
+    return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
+  }
+
+  private String determineCreditId(ITraitGroup traitGroup) {
+    PriorityGroup priority = new AttributeGroupPriorityCalculator(context).getPriority(traitGroup);
     IAttributeGroupFreebiesHandler freebies = null;
     if (priority == AttributePointCalculator.PRIMARY) {
       freebies = new PrimaryAttributeFreebies();
@@ -114,13 +118,15 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     if (priority == AttributePointCalculator.TERTIARY) {
       freebies = new TertiaryAttributeFreebies();
     }
-    int credit = new CreditManager().getCredit(getModelIdentifier().getCharacterId(), freebies.getCreditId());
-    PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
-    return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
+    return freebies.getCreditId();
   }
 
-  @Override
-  public ISurplusIntViewImageProvider getImageProvider() {
-    return new SurplusIntViewImageProvider();
+  private ITraitGroup findTraitGroup(IIdentificate traitType) {
+    for (ITraitGroup group : context.getTraitGroups()) {
+      if (ArrayUtilities.contains(group.getTraitIds(), traitType.getId())) {
+        return group;
+      }
+    }
+    throw new IllegalArgumentException("Trait is not member of any group.");
   }
 }
