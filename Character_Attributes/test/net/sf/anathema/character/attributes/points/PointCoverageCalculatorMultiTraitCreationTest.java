@@ -35,27 +35,26 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
 
   @Test
   public void returnsGroupExcessValueAsOverflow() throws Exception {
-    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 2);
     pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
-    int result = pointCoverageCalculator.pointCoverage(secondTraitId);
-    assertEquals(2, result);
+    assertEquals(1, pointCoverageCalculator.getUncoveredPoints(secondTraitId));
   }
 
   @Test
   public void returnsGroupExcessValueAsOverflowOnlyOnce() throws Exception {
-    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 2);
     pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
-    pointCoverageCalculator.pointCoverage(secondTraitId);
-    int result = pointCoverageCalculator.pointCoverage(firstTraitId);
+    pointCoverageCalculator.getUncoveredPoints(secondTraitId);
+    int result = pointCoverageCalculator.getUncoveredPoints(firstTraitId);
     assertEquals(0, result);
   }
 
   @Test
-  public void favorsFavoredTraitsToLackCoverage() throws Exception {
+  public void favorsFavoredTraits() throws Exception {
     collection.getTrait(secondTraitId.getId()).getFavoredModel().setValue(true);
-    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 1);
     pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
-    int result = pointCoverageCalculator.pointCoverage(firstTraitId);
+    int result = pointCoverageCalculator.getUncoveredPoints(firstTraitId);
     assertEquals(2, result);
   }
 }

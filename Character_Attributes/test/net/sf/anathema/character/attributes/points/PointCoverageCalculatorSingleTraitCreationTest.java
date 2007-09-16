@@ -34,23 +34,27 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
     experience.setExperienced(true);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
     pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
-    int result = pointCoverageCalculator.pointCoverage(identificate);
-    assertEquals(0, result);
+    assertEquals(0, pointCoverageCalculator.getUncoveredPoints(identificate));
   }
 
   @Test
-  public void returnsValueAsOverflow() throws Exception {
+  public void returnsSpentValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
     pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
-    int result = pointCoverageCalculator.pointCoverage(identificate);
-    assertEquals(3, result);
+    assertEquals(2, pointCoverageCalculator.getUncoveredPoints(identificate));
   }
 
   @Test
   public void returnsExcessValueAsOverflow() throws Exception {
-    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 2);
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 1);
     pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
-    int result = pointCoverageCalculator.pointCoverage(identificate);
-    assertEquals(1, result);
+    assertEquals(1, pointCoverageCalculator.getUncoveredPoints(identificate));
+  }
+  
+  @Test
+  public void doesNotReturnNegativeValues() throws Exception {
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
+    pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
+    assertEquals(0, pointCoverageCalculator.getUncoveredPoints(identificate));
   }
 }

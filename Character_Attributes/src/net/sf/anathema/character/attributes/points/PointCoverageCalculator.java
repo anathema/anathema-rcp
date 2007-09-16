@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.sf.anathema.character.trait.IIntValueModel;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
@@ -21,7 +22,7 @@ public class PointCoverageCalculator {
     this.credit = credit;
   }
 
-  public int pointCoverage(IIdentificate traitType) {
+  public int getUncoveredPoints(IIdentificate traitType) {
     return results.get(traitType.getId());
   }
 
@@ -48,8 +49,8 @@ public class PointCoverageCalculator {
     int creditLeft = credit;
     for (String id : ids) {
       int value = collection.getTrait(id).getCreationModel().getValue();
-      int result = value - creditLeft;
-      creditLeft = Math.max(creditLeft - value, 0);
+      int result = Math.max((value - IAttributeConstants.ATTRIBUTE_CALCULATION_BASE) - creditLeft, 0);
+      creditLeft = Math.max(creditLeft - (value - IAttributeConstants.ATTRIBUTE_CALCULATION_BASE), 0);
       results.put(id, result);
     }
   }
