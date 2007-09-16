@@ -1,8 +1,8 @@
 package net.sf.anathema.character.attributes.points;
 
 import static org.junit.Assert.assertEquals;
+import net.sf.anathema.character.attributes.TraitCollectionObjectMother;
 import net.sf.anathema.character.experience.DummyExperience;
-import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.lib.util.Identificate;
 
@@ -20,19 +20,12 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   public void createCalculator() throws Exception {
     context = EasyMock.createNiceMock(ITraitCollectionContext.class);
     experience = new DummyExperience();
-    DummyTraitCollection collection = createTraitCollection();
+    identificate = new Identificate("Strength"); //$NON-NLS-1$
+    DummyTraitCollection collection = TraitCollectionObjectMother.createTraitCollection(identificate);
+    collection.getTrait(identificate.getId()).getCreationModel().setValue(3);
     EasyMock.expect(context.getExperience()).andReturn(experience);
     EasyMock.expect(context.getCollection()).andReturn(collection);
     EasyMock.replay(context);
-  }
-
-  private DummyTraitCollection createTraitCollection() {
-    DummyTraitCollection collection = new DummyTraitCollection();
-    identificate = new Identificate("Strength"); //$NON-NLS-1$
-    BasicTrait basicTrait = new BasicTrait(identificate);
-    basicTrait.getCreationModel().setValue(3);
-    collection.addTrait(basicTrait);
-    return collection;
   }
 
   @Test
