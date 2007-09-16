@@ -46,9 +46,38 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   }
 
   @Test
-  public void doesNotReturnNegativeValues() throws Exception {
+  public void doesNotReturnNegativeValuesForUncoveredPoints() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
     ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
     assertEquals(0, calculation.getPointsNotCovered(identificate));
+  }
+
+  @Test
+  public void indicatesFullCoverageOnExperience() throws Exception {
+    context.getExperience().setExperienced(true);
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
+    assertEquals(5, calculation.getPointsCovered(identificate));
+  }
+
+  @Test
+  public void respectsLackOfCreditWhenCalculatingCoverage() throws Exception {
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
+    assertEquals(1, calculation.getPointsCovered(identificate));
+  }
+
+  @Test
+  public void usesCreditFully() throws Exception {
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 1);
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
+    assertEquals(2, calculation.getPointsCovered(identificate));
+  }
+
+  @Test
+  public void doesCoverMorePointsThanRequired() throws Exception {
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
+    assertEquals(3, calculation.getPointsCovered(identificate));
   }
 }

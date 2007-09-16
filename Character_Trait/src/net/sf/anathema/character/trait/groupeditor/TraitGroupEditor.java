@@ -58,8 +58,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
   public void markBonusPoints() {
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
     for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
-      //TODO Remove hardcoded value
-      int coveredPoints = 5 - editorInput.getPointsNotCoveredByCredit(entry.getKey());
+      int coveredPoints = editorInput.getPointsCoveredByCredit(entry.getKey());
       ((CanvasIntValueDisplay) entry.getValue()).setSurplusThreshold(coveredPoints);
       ((CanvasIntValueDisplay) entry.getValue()).setSurplusVisible(true);
     }

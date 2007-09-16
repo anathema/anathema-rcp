@@ -94,7 +94,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   }
 
   @Override
-  public int getPointsNotCoveredByCredit(IIdentificate traitType) {
+  public int getPointsCoveredByCredit(IIdentificate traitType) {
     AttributeGroupPriorityCalculator priorityCalculator = new AttributeGroupPriorityCalculator(context);
     ITraitGroup traitGroup = null;
     for (ITraitGroup group : context.getTraitGroups()) {
@@ -116,7 +116,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     }
     int credit = new CreditManager().getCredit(getModelIdentifier().getCharacterId(), freebies.getCreditId());
     PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
-    return calculator.calculateCoverageFor(traitGroup).getPointsNotCovered(traitType);
+    return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
   }
 
   @Override

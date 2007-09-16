@@ -18,10 +18,10 @@ public class PointCoverageCalculator {
   }
 
   public ICoverageCalculation calculateCoverageFor(ITraitGroup traitGroup) {
-    String[] ids = traitGroup.getTraitIds();
     if (context.getExperience().isExperienced()) {
-      return new NullCoverageCalculation();
+      return new NullCoverageCalculation(context.getTraitTemplate().getMaximalValue());
     }
+    String[] ids = traitGroup.getTraitIds();
     final ITraitCollectionModel collection = context.getCollection();
     Arrays.sort(ids, new Comparator<String>() {
       @Override
@@ -34,8 +34,7 @@ public class PointCoverageCalculator {
         return firstFavored ? -1 : 1;
       }
     });
-    // int maximalValue = context.getTraitTemplate().getMaximalValue();
-    CoverageCalculation calculation = new CoverageCalculation();
+    CoverageCalculation calculation = new CoverageCalculation(context);
     int creditLeft = credit;
     for (String id : ids) {
       int value = collection.getTrait(id).getCreationModel().getValue();
