@@ -34,11 +34,12 @@ public class PointCoverageCalculator {
         return firstFavored ? -1 : 1;
       }
     });
+    // int maximalValue = context.getTraitTemplate().getMaximalValue();
     CoverageCalculation calculation = new CoverageCalculation();
     int creditLeft = credit;
     for (String id : ids) {
       int value = collection.getTrait(id).getCreationModel().getValue();
-      int result = (value - IAttributeConstants.ATTRIBUTE_CALCULATION_BASE) - creditLeft;
+      int result = ((value - IAttributeConstants.ATTRIBUTE_CALCULATION_BASE) - creditLeft);
       creditLeft = Math.max(creditLeft - (value - IAttributeConstants.ATTRIBUTE_CALCULATION_BASE), 0);
       calculation.addResult(id, result);
     }

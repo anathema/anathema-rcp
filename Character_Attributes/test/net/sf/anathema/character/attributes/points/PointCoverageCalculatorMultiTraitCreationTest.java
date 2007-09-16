@@ -3,6 +3,7 @@ package net.sf.anathema.character.attributes.points;
 import static org.junit.Assert.assertEquals;
 import net.sf.anathema.character.attributes.TraitCollectionObjectMother;
 import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.util.Identificate;
@@ -28,6 +29,8 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
     collection = TraitCollectionObjectMother.createTraitCollection(firstTraitId, secondTraitId);
     collection.getTrait(firstTraitId.getId()).getCreationModel().setValue(3);
     collection.getTrait(secondTraitId.getId()).getCreationModel().setValue(2);
+    DummyTraitTemplate template = new DummyTraitTemplate();
+    EasyMock.expect(context.getTraitTemplate()).andReturn(template);
     EasyMock.expect(context.getExperience()).andReturn(experience).anyTimes();
     EasyMock.expect(context.getCollection()).andReturn(collection).anyTimes();
     EasyMock.replay(context);
