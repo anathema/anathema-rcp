@@ -36,25 +36,25 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
   @Test
   public void returnsGroupExcessValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 2);
-    pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
-    assertEquals(1, pointCoverageCalculator.getUncoveredPoints(secondTraitId));
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(new TraitGroup(
+        "group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
+    assertEquals(1, calculation.getPointsNotCovered(secondTraitId));
   }
 
   @Test
   public void returnsGroupExcessValueAsOverflowOnlyOnce() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 2);
-    pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
-    pointCoverageCalculator.getUncoveredPoints(secondTraitId);
-    int result = pointCoverageCalculator.getUncoveredPoints(firstTraitId);
-    assertEquals(0, result);
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(new TraitGroup(
+        "group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
+    assertEquals(0, calculation.getPointsNotCovered(firstTraitId));
   }
 
   @Test
   public void favorsFavoredTraits() throws Exception {
     collection.getTrait(secondTraitId.getId()).getFavoredModel().setValue(true);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 1);
-    pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
-    int result = pointCoverageCalculator.getUncoveredPoints(firstTraitId);
-    assertEquals(2, result);
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(new TraitGroup(
+        "group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
+    assertEquals(2, calculation.getPointsNotCovered(firstTraitId));
   }
 }

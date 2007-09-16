@@ -116,8 +116,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     }
     int credit = new CreditManager().getCredit(getModelIdentifier().getCharacterId(), freebies.getCreditId());
     PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
-    calculator.calculateFor(traitGroup);
-    return calculator.getUncoveredPoints(traitType);
+    return calculator.calculateCoverageFor(traitGroup).getPointsNotCovered(traitType);
   }
 
   @Override

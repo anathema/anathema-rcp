@@ -33,28 +33,32 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   public void indicatesNoOverflowPointsOnExperience() throws Exception {
     experience.setExperienced(true);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
-    pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
-    assertEquals(0, pointCoverageCalculator.getUncoveredPoints(identificate));
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(new TraitGroup(
+        "group", identificate.getId())); //$NON-NLS-1$
+    assertEquals(0, calculation.getPointsNotCovered(identificate));
   }
 
   @Test
   public void returnsSpentValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
-    pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
-    assertEquals(2, pointCoverageCalculator.getUncoveredPoints(identificate));
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(new TraitGroup(
+        "group", identificate.getId())); //$NON-NLS-1$
+    assertEquals(2, calculation.getPointsNotCovered(identificate));
   }
 
   @Test
   public void returnsExcessValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 1);
-    pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
-    assertEquals(1, pointCoverageCalculator.getUncoveredPoints(identificate));
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(new TraitGroup(
+        "group", identificate.getId())); //$NON-NLS-1$
+    assertEquals(1, calculation.getPointsNotCovered(identificate));
   }
-  
+
   @Test
   public void doesNotReturnNegativeValues() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
-    pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
-    assertEquals(0, pointCoverageCalculator.getUncoveredPoints(identificate));
+    ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(new TraitGroup(
+        "group", identificate.getId())); //$NON-NLS-1$
+    assertEquals(0, calculation.getPointsNotCovered(identificate));
   }
 }
