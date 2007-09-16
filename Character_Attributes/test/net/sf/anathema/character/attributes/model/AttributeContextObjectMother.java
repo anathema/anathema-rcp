@@ -10,7 +10,7 @@ import org.easymock.EasyMock;
 
 public class AttributeContextObjectMother {
 
-  public static ITraitCollectionContext createContext(TraitGroup[] traitGroups) {
+  public static ITraitCollectionContext createContext(TraitGroup... traitGroups) {
     ITraitCollectionModel attributes = Attributes.create(traitGroups, new TraitTemplate());
     DummyExperience experience = new DummyExperience();
     ITraitCollectionContext context = EasyMock.createNiceMock(ITraitCollectionContext.class);
