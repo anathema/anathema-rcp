@@ -1,8 +1,9 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.attributes.points.coverage;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
+import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;

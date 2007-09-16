@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.attributes.points.coverage;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,6 +2,8 @@ package net.sf.anathema.character.attributes.points;
 
 import static org.junit.Assert.assertEquals;
 import net.sf.anathema.character.attributes.model.AttributeContextObjectMother;
+import net.sf.anathema.character.attributes.points.coverage.ICoverageCalculation;
+import net.sf.anathema.character.attributes.points.coverage.PointCoverageCalculator;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;

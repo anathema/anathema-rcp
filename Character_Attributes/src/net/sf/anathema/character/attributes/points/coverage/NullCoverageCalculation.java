@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.attributes.points.coverage;
 
 import net.sf.anathema.lib.util.IIdentificate;
 
