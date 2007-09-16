@@ -32,21 +32,24 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   public void indicatesNoOverflowPointsOnExperience() throws Exception {
     experience.setExperienced(true);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
-    int result = pointCoverageCalculator.calculate(identificate);
+    pointCoverageCalculator.calculateFor(identificate);
+    int result = pointCoverageCalculator.pointCoverage(identificate);
     assertEquals(0, result);
   }
 
   @Test
   public void returnsValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
-    int result = pointCoverageCalculator.calculate(identificate);
+    pointCoverageCalculator.calculateFor(identificate);
+    int result = pointCoverageCalculator.pointCoverage(identificate);
     assertEquals(3, result);
   }
 
   @Test
   public void returnsExcessValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 2);
-    int result = pointCoverageCalculator.calculate(identificate);
+    pointCoverageCalculator.calculateFor(identificate);
+    int result = pointCoverageCalculator.pointCoverage(identificate);
     assertEquals(1, result);
   }
 }
