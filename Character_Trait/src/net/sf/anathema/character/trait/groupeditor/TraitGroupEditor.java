@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Label;
 
 public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
   private final Map<IIdentificate, IIntValueView> viewsByType = new HashMap<IIdentificate, IIntValueView>();
+  private boolean mark;
 
   @Override
   public void createPartControl(Composite parent) {
@@ -42,9 +43,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         trait.addChangeListener(new IChangeListener() {
           @Override
           public void stateChanged() {
-            for (IIntValueView display : viewsByType.values()) {
-              ((CanvasIntValueDisplay) display).setSurplusVisible(false);
-            }
+            calculateCoverage();
           }
         });
         viewsByType.put(trait.getTraitType(), view);
@@ -64,13 +63,21 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     return label;
   }
 
-  public void markBonusPoints() {
-    ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
-    for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
-      int coveredPoints = editorInput.getPointsCoveredByCredit(entry.getKey());
-      CanvasIntValueDisplay display = ((CanvasIntValueDisplay) entry.getValue());
-      display.setSurplusThreshold(coveredPoints);
-      display.setSurplusVisible(true);
+  public void markBonusPoints(boolean enabled) {
+    this.mark = enabled;
+    calculateCoverage();
+    for (IIntValueView display : viewsByType.values()) {
+      ((CanvasIntValueDisplay) display).setSurplusVisible(mark);
+    }
+  }
+
+  private void calculateCoverage() {
+    if (mark) {
+      ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
+      for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
+        int coveredPoints = editorInput.getPointsCoveredByCredit(entry.getKey());
+        ((CanvasIntValueDisplay) entry.getValue()).setSurplusThreshold(coveredPoints);
+      }
     }
   }
 

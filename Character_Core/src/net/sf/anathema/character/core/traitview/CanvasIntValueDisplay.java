@@ -148,6 +148,16 @@ public class CanvasIntValueDisplay implements IIntValueView {
     composite.redraw();
   }
 
+  public void setSurplusThreshold(int surplus) {
+    this.surplusValue = surplus;
+    composite.redraw();
+  }
+
+  public void setSurplusVisible(boolean enabled) {
+    this.showSurplus = enabled;
+    composite.redraw();
+  }
+
   private int getXPosition(int imageIndex) {
     return HORIZONTAL_INDENT + imageIndex * slotWidth + getWhitespaceWidth(imageIndex);
   }
@@ -174,14 +184,5 @@ public class CanvasIntValueDisplay implements IIntValueView {
   @Override
   public void removeIntValueChangedListener(IIntValueChangedListener listener) {
     control.removeListener(listener);
-  }
-
-  public void setSurplusThreshold(int surplus) {
-    this.surplusValue = surplus;
-  }
-
-  public void setSurplusVisible(boolean enabled) {
-    this.showSurplus = enabled;
-    composite.redraw();
   }
 }
