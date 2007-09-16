@@ -18,6 +18,7 @@ public class MarkBonusPointsAction extends Action {
 
   public void setEditor(TraitGroupEditor editor) {
     this.editor = editor;
+    run();
   }
 
   @Override
