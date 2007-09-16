@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
@@ -37,7 +38,15 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
       for (final IDisplayTrait trait : group.getTraits()) {
         String label = editorInput.getTraitLabel(trait.getTraitType());
-        IIntValueView view = factory.create(label, trait);
+        final IIntValueView view = factory.create(label, trait);
+        trait.addChangeListener(new IChangeListener() {
+          @Override
+          public void stateChanged() {
+            for (IIntValueView display : viewsByType.values()) {
+              ((CanvasIntValueDisplay) display).setSurplusVisible(false);
+            }
+          }
+        });
         viewsByType.put(trait.getTraitType(), view);
         addDisposable(trait);
       }
@@ -59,8 +68,9 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
     for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
       int coveredPoints = editorInput.getPointsCoveredByCredit(entry.getKey());
-      ((CanvasIntValueDisplay) entry.getValue()).setSurplusThreshold(coveredPoints);
-      ((CanvasIntValueDisplay) entry.getValue()).setSurplusVisible(true);
+      CanvasIntValueDisplay display = ((CanvasIntValueDisplay) entry.getValue());
+      display.setSurplusThreshold(coveredPoints);
+      display.setSurplusVisible(true);
     }
   }
 
