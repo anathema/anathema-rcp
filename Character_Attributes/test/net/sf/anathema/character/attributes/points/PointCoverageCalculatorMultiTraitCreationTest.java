@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import net.sf.anathema.character.attributes.TraitCollectionObjectMother;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
+import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.easymock.EasyMock;
@@ -35,7 +36,7 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
   @Test
   public void returnsGroupExcessValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
-    pointCoverageCalculator.calculateFor(firstTraitId, secondTraitId);
+    pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
     int result = pointCoverageCalculator.pointCoverage(secondTraitId);
     assertEquals(2, result);
   }
@@ -43,7 +44,7 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
   @Test
   public void returnsGroupExcessValueAsOverflowOnlyOnce() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
-    pointCoverageCalculator.calculateFor(firstTraitId, secondTraitId);
+    pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
     pointCoverageCalculator.pointCoverage(secondTraitId);
     int result = pointCoverageCalculator.pointCoverage(firstTraitId);
     assertEquals(0, result);
@@ -53,7 +54,7 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
   public void favorsFavoredTraitsToLackCoverage() throws Exception {
     collection.getTrait(secondTraitId.getId()).getFavoredModel().setValue(true);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
-    pointCoverageCalculator.calculateFor(firstTraitId, secondTraitId);
+    pointCoverageCalculator.calculateFor(new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId())); //$NON-NLS-1$
     int result = pointCoverageCalculator.pointCoverage(firstTraitId);
     assertEquals(2, result);
   }

@@ -5,13 +5,23 @@ import java.io.IOException;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.attributes.points.AttributeGroupPriorityCalculator;
+import net.sf.anathema.character.attributes.points.AttributePointCalculator;
+import net.sf.anathema.character.attributes.points.IAttributeGroupFreebiesHandler;
+import net.sf.anathema.character.attributes.points.PointCoverageCalculator;
+import net.sf.anathema.character.attributes.points.PrimaryAttributeFreebies;
+import net.sf.anathema.character.attributes.points.SecondaryAttributeFreebies;
+import net.sf.anathema.character.attributes.points.TertiaryAttributeFreebies;
+import net.sf.anathema.character.attributes.points.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.groupeditor.ISurplusIntViewImageProvider;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -85,8 +95,29 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
 
   @Override
   public int getPointsCoveredByCredit(IIdentificate traitType) {
-    //TODO: Delegate
-    return 0;
+    AttributeGroupPriorityCalculator priorityCalculator = new AttributeGroupPriorityCalculator(context);
+    ITraitGroup traitGroup = null;
+    for (ITraitGroup group : context.getTraitGroups()) {
+      if (ArrayUtilities.contains(group.getTraitIds(), traitType.getId())) {
+        traitGroup = group;
+        break;
+      }
+    }
+    PriorityGroup priority = priorityCalculator.getPriority(traitGroup);
+    IAttributeGroupFreebiesHandler freebies = null;
+    if (priority == AttributePointCalculator.PRIMARY) {
+      freebies = new PrimaryAttributeFreebies();
+    }
+    if (priority == AttributePointCalculator.SECONDARY) {
+      freebies = new SecondaryAttributeFreebies();
+    }
+    if (priority == AttributePointCalculator.TERTIARY) {
+      freebies = new TertiaryAttributeFreebies();
+    }
+    int credit = new CreditManager().getCredit(getModelIdentifier().getCharacterId(), freebies.getCreditId());
+    PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
+    calculator.calculateFor(traitGroup);
+    return calculator.pointCoverage(traitType);
   }
 
   @Override

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import net.sf.anathema.character.attributes.TraitCollectionObjectMother;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
+import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.easymock.EasyMock;
@@ -32,7 +33,7 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   public void indicatesNoOverflowPointsOnExperience() throws Exception {
     experience.setExperienced(true);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
-    pointCoverageCalculator.calculateFor(identificate);
+    pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
     int result = pointCoverageCalculator.pointCoverage(identificate);
     assertEquals(0, result);
   }
@@ -40,7 +41,7 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   @Test
   public void returnsValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
-    pointCoverageCalculator.calculateFor(identificate);
+    pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
     int result = pointCoverageCalculator.pointCoverage(identificate);
     assertEquals(3, result);
   }
@@ -48,7 +49,7 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   @Test
   public void returnsExcessValueAsOverflow() throws Exception {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 2);
-    pointCoverageCalculator.calculateFor(identificate);
+    pointCoverageCalculator.calculateFor(new TraitGroup("group", identificate.getId())); //$NON-NLS-1$
     int result = pointCoverageCalculator.pointCoverage(identificate);
     assertEquals(1, result);
   }

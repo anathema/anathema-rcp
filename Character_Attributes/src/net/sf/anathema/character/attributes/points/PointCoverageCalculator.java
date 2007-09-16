@@ -7,37 +7,38 @@ import java.util.Map;
 
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.lib.util.IIdentificate;
-import net.sf.anathema.lib.util.Identificate;
 
 public class PointCoverageCalculator {
 
   private final ITraitCollectionContext context;
   private final int credit;
-  private final Map<IIdentificate, Integer> results = new HashMap<IIdentificate, Integer>();
+  private final Map<String, Integer> results = new HashMap<String, Integer>();
 
   public PointCoverageCalculator(ITraitCollectionContext context, int credit) {
     this.context = context;
     this.credit = credit;
   }
 
-  public int pointCoverage(Identificate traitType) {
-    return results.get(traitType);
+  public int pointCoverage(IIdentificate traitType) {
+    return results.get(traitType.getId());
   }
 
-  public void calculateFor(IIdentificate... traitTypes) {
+  public void calculateFor(ITraitGroup traitGroup) {
+    String[] ids = traitGroup.getTraitIds();
     if (context.getExperience().isExperienced()) {
-      for (IIdentificate type : traitTypes) {
+      for (String type : ids) {
         results.put(type, 0);
       }
       return;
     }
     final ITraitCollectionModel collection = context.getCollection();
-    Arrays.sort(traitTypes, new Comparator<IIdentificate>() {
+    Arrays.sort(ids, new Comparator<String>() {
       @Override
-      public int compare(IIdentificate firstType, IIdentificate secondType) {
-        boolean firstFavored = collection.getTrait(firstType.getId()).getFavoredModel().getValue();
-        boolean secondFavored = collection.getTrait(secondType.getId()).getFavoredModel().getValue();
+      public int compare(String firstType, String secondType) {
+        boolean firstFavored = collection.getTrait(firstType).getFavoredModel().getValue();
+        boolean secondFavored = collection.getTrait(secondType).getFavoredModel().getValue();
         if (firstFavored && secondFavored || !(firstFavored || secondFavored)) {
           return 0;
         }
@@ -45,11 +46,11 @@ public class PointCoverageCalculator {
       }
     });
     int creditLeft = credit;
-    for (IIdentificate type : traitTypes) {
-      int value = collection.getTrait(type.getId()).getCreationModel().getValue();
+    for (String id : ids) {
+      int value = collection.getTrait(id).getCreationModel().getValue();
       int result = value - creditLeft;
       creditLeft = Math.max(creditLeft - value, 0);
-      results.put(type, result);
+      results.put(id, result);
     }
   }
 }
