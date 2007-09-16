@@ -16,6 +16,7 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
   private ITraitCollectionContext context;
   private Identificate firstTraitId;
   private Identificate secondTraitId;
+  private DummyTraitCollection collection;
 
   @Before
   public void createCalculator() throws Exception {
@@ -23,7 +24,7 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
     experience = new DummyExperience();
     firstTraitId = new Identificate("First"); //$NON-NLS-1$
     secondTraitId = new Identificate("Second"); //$NON-NLS-1$
-    DummyTraitCollection collection = TraitCollectionObjectMother.createTraitCollection(firstTraitId, secondTraitId);
+    collection = TraitCollectionObjectMother.createTraitCollection(firstTraitId, secondTraitId);
     collection.getTrait(firstTraitId.getId()).getCreationModel().setValue(3);
     collection.getTrait(secondTraitId.getId()).getCreationModel().setValue(2);
     EasyMock.expect(context.getExperience()).andReturn(experience).anyTimes();
@@ -46,5 +47,14 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
     pointCoverageCalculator.pointCoverage(secondTraitId);
     int result = pointCoverageCalculator.pointCoverage(firstTraitId);
     assertEquals(0, result);
+  }
+
+  @Test
+  public void favorsFavoredTraitsToLackCoverage() throws Exception {
+    collection.getTrait(secondTraitId.getId()).getFavoredModel().setValue(true);
+    PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
+    pointCoverageCalculator.calculateFor(firstTraitId, secondTraitId);
+    int result = pointCoverageCalculator.pointCoverage(firstTraitId);
+    assertEquals(2, result);
   }
 }
