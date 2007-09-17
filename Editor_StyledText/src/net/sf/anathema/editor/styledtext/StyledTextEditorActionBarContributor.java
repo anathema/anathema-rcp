@@ -12,7 +12,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
 
 public class StyledTextEditorActionBarContributor extends EditorActionBarContributor {
 
-  private IStyledTextAction[] actions = {
+  private final IStyledTextAction[] actions = {
       new TextModificationAction(Messages.StyledTextEditorActionBar_BoldButtonName, new AspectedTextModification(
           TextAspect.Bold)),
       new TextModificationAction(Messages.StyledTextEditorActionBar_ItalicsButtonName, new AspectedTextModification(
@@ -63,5 +63,6 @@ public class StyledTextEditorActionBarContributor extends EditorActionBarContrib
     for (IStyledTextAction action : actions) {
       action.setEditor(this.targetEditor);
     }
+    updateState();
   }
 }
