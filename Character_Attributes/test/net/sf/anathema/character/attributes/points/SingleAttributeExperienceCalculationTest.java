@@ -19,6 +19,11 @@ public class SingleAttributeExperienceCalculationTest {
     assertEquals(expectedPoints, calculator.calculate());
   }
 
+  private void assertFavoredCalculation(int creationValue, int experienceValue, int expectedPoints) {
+    basicTrait.getFavoredModel().setValue(true);
+    assertCalculation(creationValue, experienceValue, expectedPoints);
+  }
+
   @Before
   public void createCalculator() {
     this.basicTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
@@ -28,6 +33,16 @@ public class SingleAttributeExperienceCalculationTest {
   @Test
   public void noExperiencePointsSpentForNoExperienceValue() throws Exception {
     assertEquals(0, calculator.calculate());
+  }
+
+  @Test
+  public void calculates3PointsForExperienceValue2AndCreationValue1OnFavored() throws Exception {
+    assertFavoredCalculation(1, 2, 3);
+  }
+
+  @Test
+  public void calculates10PointsForExperienceValue3AndCreationValue1OnFavored() throws Exception {
+    assertFavoredCalculation(1, 3, 10);
   }
 
   @Test

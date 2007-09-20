@@ -23,9 +23,13 @@ public class AttributeExperienceCalculator {
     int experienceValue = attribute.getExperiencedModel().getValue();
     int creationValue = attribute.getCreationModel().getValue();
     int increasedCurrentValueSum = 0;
+    int favoredReduction = 0; 
     for (int experienceValueStep = creationValue; experienceValueStep < experienceValue; experienceValueStep++) {
       increasedCurrentValueSum += experienceValueStep;
+      if (attribute.getFavoredModel().getValue()) {
+        favoredReduction++;
+      }
     }
-    return increasedCurrentValueSum * 4;
+    return increasedCurrentValueSum * 4 - favoredReduction;
   }
 }
