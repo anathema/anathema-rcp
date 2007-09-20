@@ -10,6 +10,7 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.lib.collection.MultiEntryMap;
 
 import org.eclipse.core.runtime.IExecutableExtension;
+import org.eclipse.jface.resource.ImageDescriptor;
 
 public class FakeExtensionElement implements IExtensionElement {
   private final Map<String, Object> attributes = new HashMap<String, Object>();
@@ -17,11 +18,16 @@ public class FakeExtensionElement implements IExtensionElement {
 
   @Override
   public String getAttribute(String name) {
-    return attributes.get(name).toString();
+    return String.valueOf(attributes.get(name));
   }
 
   @Override
   public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  }
+
+  @Override
+  public ImageDescriptor createImageDescriptorFromAttribute(String name) {
     throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
   }
 

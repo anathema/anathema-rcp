@@ -18,4 +18,5 @@ Export-Package: net.sf.anathema.character.core.create,
  net.sf.anathema.character.core.plugin,
  net.sf.anathema.character.core.repository,
  net.sf.anathema.character.core.template,
- net.sf.anathema.character.core.traitview
+ net.sf.anathema.character.core.traitview,
+ net.sf.anathema.character.core.type

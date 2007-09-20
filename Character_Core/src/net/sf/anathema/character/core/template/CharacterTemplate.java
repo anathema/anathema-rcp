@@ -11,10 +11,17 @@ public class CharacterTemplate implements ICharacterTemplate {
   private final String id;
   private final List<IModelList> allModelLists = new ArrayList<IModelList>();
   private final String untiteledName;
+  private final String characterTypeId;
 
-  public CharacterTemplate(String id, String untiteledName) {
+  public CharacterTemplate(String id, String untiteledName, String characterTypeId) {
     this.id = id;
     this.untiteledName = untiteledName;
+    this.characterTypeId = characterTypeId;
+  }
+  
+  @Override
+  public String getCharacterTypeId() {
+    return characterTypeId;
   }
   
   @Override

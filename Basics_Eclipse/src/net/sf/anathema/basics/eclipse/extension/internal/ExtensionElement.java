@@ -1,13 +1,17 @@
 package net.sf.anathema.basics.eclipse.extension.internal;
 
+import java.net.URL;
+
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.resource.ResourceUtils;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
+import org.eclipse.jface.resource.ImageDescriptor;
 
 public class ExtensionElement implements IExtensionElement {
 
@@ -46,6 +50,13 @@ public class ExtensionElement implements IExtensionElement {
   @Override
   public boolean getBooleanAttribute(String name) {
     return Boolean.valueOf(eclipseElement.getAttribute(name));
+  }
+  
+  @Override
+  public ImageDescriptor createImageDescriptorFromAttribute(String name) {
+    String resourcePath = eclipseElement.getAttribute(name);
+    URL resourceUrl = ResourceUtils.getResourceUrl(eclipseElement.getContributor().getName(), resourcePath);
+    return ImageDescriptor.createFromURL(resourceUrl);
   }
   
   @Override

@@ -6,5 +6,7 @@ public interface ICharacterTemplate {
 
   public String getUnnamedLabel();
 
+  public String getCharacterTypeId();
+
   public boolean supportsModel(String modelId);
 }

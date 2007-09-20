@@ -19,6 +19,7 @@ public class FilledCharacterTemplateProviderTest {
   public void createTemplateProvider() throws Exception {
     FakeExtensionElement element = new FakeExtensionElement();
     element.addAttribute("templateId", "supportedTemplate"); //$NON-NLS-1$ //$NON-NLS-2$
+    element.addAttribute("characterTypeId", "myCharacterTypeId"); //$NON-NLS-1$ //$NON-NLS-2$
     element.addElement("modelList", createModelListElement("supportedModelList")); //$NON-NLS-1$ //$NON-NLS-2$
     element.addElement("modelList", createModelListElement("otherSupportedModelList")); //$NON-NLS-1$ //$NON-NLS-2$
     IPluginExtension pluginExtension = ExtensionObjectMother.createPluginExtension(element);
@@ -42,6 +43,11 @@ public class FilledCharacterTemplateProviderTest {
   @Test
   public void templateHasTemplateId() throws Exception {
     assertEquals("supportedTemplate", getTemplate().getId()); //$NON-NLS-1$
+  }
+  
+  @Test
+  public void templateHasMyCharacterType() throws Exception {
+    assertEquals("myCharacterTypeId", getTemplate().getCharacterTypeId()); //$NON-NLS-1$
   }
 
   @Test

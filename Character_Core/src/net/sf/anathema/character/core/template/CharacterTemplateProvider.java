@@ -20,6 +20,7 @@ import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {
 
+  private static final String ATTRIB_CHARACTER_TYPE_ID = "characterTypeId"; //$NON-NLS-1$
   public static final String TEMPLATE_FILE_NAME = "template.xml"; //$NON-NLS-1$
   public static final String ATTRIB_REFERENCE = "reference"; //$NON-NLS-1$
   private static final String ATTRIB_MODEL_LIST_ID = "modelListId"; //$NON-NLS-1$
@@ -39,7 +40,8 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
       for (IExtensionElement templateElement : extension.getElements()) {
         String templateId = templateElement.getAttribute(ATTRIB_TEMPLATE_ID);
         String untitledLabel = templateElement.getAttribute(ATTRIB_UNNAMED_LABEL);
-        CharacterTemplate template = new CharacterTemplate(templateId, untitledLabel);
+        String characterTypeId = templateElement.getAttribute(ATTRIB_CHARACTER_TYPE_ID);
+        CharacterTemplate template = new CharacterTemplate(templateId, untitledLabel, characterTypeId);
         allTemplates.add(template);
         for (IExtensionElement modelListElement : templateElement.getElements() ) {
           String modelListId = modelListElement.getAttribute(ATTRIB_MODEL_LIST_ID);
