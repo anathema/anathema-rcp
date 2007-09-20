@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.type;
+package net.sf.anathema.character.core.type.internal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,10 @@ import net.disy.commons.core.util.CollectionUtilities;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.core.type.internal.CharacterType;
+import net.sf.anathema.character.core.type.ICharacterType;
+import net.sf.anathema.character.core.type.ICharacterTypeProvider;
 
-public class CharacterTypeProvider {
+public class CharacterTypeProvider implements ICharacterTypeProvider {
 
   private final IPluginExtension[] extensions;
   private List<ICharacterType> characterTypes;
@@ -23,6 +24,9 @@ public class CharacterTypeProvider {
     this.extensions = extensions;
   }
 
+  /* (non-Javadoc)
+   * @see net.sf.anathema.character.core.type.ICharacterTypeProvider#getCharacterTypeById(java.lang.String)
+   */
   public ICharacterType getCharacterTypeById(final String id) {
     return CollectionUtilities.find(getCharacterTypes(), new IPredicate<ICharacterType>() {
       @Override

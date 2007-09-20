@@ -11,11 +11,21 @@ import org.easymock.EasyMock;
 public class TemplateProviderObjectMother {
 
   public static ICharacterTemplateProvider createTemplateProvider(ICharacterId characterId, String templateId) {
-    ICharacterTemplateProvider templateProvider = EasyMock.createMock(ICharacterTemplateProvider.class);
+    ICharacterTemplate template = createTemplate(templateId);
+    ICharacterTemplateProvider templateProvider = createTemplateProvider(characterId, template);
+    return templateProvider;
+  }
+
+  public static ICharacterTemplate createTemplate(String templateId) {
     ICharacterTemplate template = EasyMock.createMock(ICharacterTemplate.class);
-    EasyMock.expect(templateProvider.getTemplate(characterId)).andReturn(template).anyTimes();
     EasyMock.expect(template.getId()).andReturn(templateId).anyTimes();
-    EasyMock.replay(template, templateProvider);
+    return template;
+  }
+
+  public static ICharacterTemplateProvider createTemplateProvider(ICharacterId characterId, ICharacterTemplate template) {
+    ICharacterTemplateProvider templateProvider = EasyMock.createMock(ICharacterTemplateProvider.class);
+    EasyMock.expect(templateProvider.getTemplate(characterId)).andReturn(template).anyTimes();
+    EasyMock.replay(templateProvider);
     return templateProvider;
   }
 

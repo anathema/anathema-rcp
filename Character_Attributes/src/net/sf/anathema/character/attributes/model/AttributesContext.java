@@ -3,9 +3,7 @@ package net.sf.anathema.character.attributes.model;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
-import net.sf.anathema.character.core.template.CharacterTemplateProvider;
-import net.sf.anathema.character.core.template.ICharacterTemplate;
-import net.sf.anathema.character.core.type.CharacterTypeProvider;
+import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.core.type.ICharacterType;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IFavorizationHandler;
@@ -63,10 +61,7 @@ public class AttributesContext implements ITraitCollectionContext {
 
   @Override
   public ImageDescriptor getActiveImageDescriptor() {
-    // TODO Testbar machen
-    ICharacterTemplate characterTemplate = new CharacterTemplateProvider().getTemplate(characterId);
-    String characterTypeId = characterTemplate.getCharacterTypeId();
-    ICharacterType characterType = new CharacterTypeProvider().getCharacterTypeById(characterTypeId);
+    ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
     return characterType.getTraitImageDescriptor();
   }
 }
