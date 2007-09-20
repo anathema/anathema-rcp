@@ -1,5 +1,9 @@
 package net.sf.anathema.character.trait;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
 
@@ -48,8 +52,9 @@ public class CanvasTraitViewDemo implements IDemo {
     });
   }
 
-  private Image createImage(String imageName) {
-    return ImageDescriptor.createFromFile(CanvasIntValueDisplay.class, imageName).createImage();
+  private Image createImage(String imageName) throws MalformedURLException {
+    URL url = new File("./icons/" + imageName).toURI().toURL(); //$NON-NLS-1$
+    return ImageDescriptor.createFromURL(url).createImage();
   }
 
   @Override
