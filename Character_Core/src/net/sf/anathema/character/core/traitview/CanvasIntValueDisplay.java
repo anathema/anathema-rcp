@@ -144,11 +144,17 @@ public class CanvasIntValueDisplay implements IIntValueView {
 
   @Override
   public void setValue(int newValue) {
+    if (this.value == newValue) {
+      return;
+    }
     this.value = newValue;
     composite.redraw();
   }
 
   public void setSurplusThreshold(int surplus) {
+    if (this.surplusValue == surplus) {
+      return;
+    }
     this.surplusValue = surplus;
     composite.redraw();
   }
