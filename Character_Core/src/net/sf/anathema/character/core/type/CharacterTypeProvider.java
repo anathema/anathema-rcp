@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.type.internal;
+package net.sf.anathema.character.core.type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import net.disy.commons.core.util.CollectionUtilities;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.core.type.ICharacterType;
+import net.sf.anathema.character.core.type.internal.CharacterType;
 
 public class CharacterTypeProvider {
 

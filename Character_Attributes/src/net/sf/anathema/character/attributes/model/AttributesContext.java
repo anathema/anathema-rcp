@@ -3,12 +3,18 @@ package net.sf.anathema.character.attributes.model;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+import net.sf.anathema.character.core.template.ICharacterTemplate;
+import net.sf.anathema.character.core.type.CharacterTypeProvider;
+import net.sf.anathema.character.core.type.ICharacterType;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
+
+import org.eclipse.jface.resource.ImageDescriptor;
 
 public class AttributesContext implements ITraitCollectionContext {
 
@@ -53,5 +59,14 @@ public class AttributesContext implements ITraitCollectionContext {
   @Override
   public TraitGroup[] getTraitGroups() {
     return template.getGroups();
+  }
+
+  @Override
+  public ImageDescriptor getActiveImageDescriptor() {
+    // TODO Testbar machen
+    ICharacterTemplate characterTemplate = new CharacterTemplateProvider().getTemplate(characterId);
+    String characterTypeId = characterTemplate.getCharacterTypeId();
+    ICharacterType characterType = new CharacterTypeProvider().getCharacterTypeById(characterTypeId);
+    return characterType.getTraitImageDescriptor();
   }
 }

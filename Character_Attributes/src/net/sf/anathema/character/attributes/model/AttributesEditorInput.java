@@ -95,7 +95,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
 
   @Override
   public ISurplusIntViewImageProvider getImageProvider() {
-    return new SurplusIntViewImageProvider();
+    return new SurplusIntViewImageProvider(context.getActiveImageDescriptor());
   }
 
   @Override

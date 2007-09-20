@@ -5,6 +5,8 @@ import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+
 public interface ITraitCollectionContext {
 
   public IExperience getExperience();
@@ -16,4 +18,6 @@ public interface ITraitCollectionContext {
   public ITraitGroup[] getTraitGroups();
 
   public ITraitTemplate getTraitTemplate();
+  
+  public ImageDescriptor getActiveImageDescriptor();
 }

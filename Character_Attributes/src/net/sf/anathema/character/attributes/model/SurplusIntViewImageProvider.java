@@ -3,9 +3,18 @@ package net.sf.anathema.character.attributes.model;
 import net.sf.anathema.character.trait.groupeditor.ISurplusIntViewImageProvider;
 import net.sf.anathema.character.trait.resources.ITraitResources;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 public class SurplusIntViewImageProvider implements ISurplusIntViewImageProvider {
+  
+  private final ImageDescriptor activeImage;
+
+  public SurplusIntViewImageProvider(ImageDescriptor activeImage) {
+    // TODO Freigeben der Resource sinnvoll regeln
+    this.activeImage = activeImage;
+  }
+  
   @Override
   public Image createPassiveImage() {
     return createImage(ITraitResources.UNSELECTED_BUTTON);
@@ -13,7 +22,7 @@ public class SurplusIntViewImageProvider implements ISurplusIntViewImageProvider
 
   @Override
   public Image createActiveImage() {
-    return createImage(ITraitResources.SELECTED_BUTTON);
+    return activeImage.createImage(true);
   }
 
   @Override
