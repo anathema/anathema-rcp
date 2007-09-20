@@ -53,7 +53,9 @@
    <extension
          point="net.sf.anathema.character.types">
       <characterType
-            id="net.sf.anathema.character.type.lunar">
+            id="net.sf.anathema.character.type.lunar"
+            image="icons/LunarIcon_16.png"
+            traitImage="icons/Ball_Lunar_16.png">
       </characterType>
    </extension>
 

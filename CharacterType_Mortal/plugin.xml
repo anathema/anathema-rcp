@@ -45,7 +45,9 @@
    <extension
          point="net.sf.anathema.character.types">
       <characterType
-            id="net.sf.anathema.character.type.mortal">
+            id="net.sf.anathema.character.type.mortal"
+            image="icons/MortalIcon_16.png"
+            traitImage="icons/Ball_Mortal_16.png">
       </characterType>
    </extension>
 

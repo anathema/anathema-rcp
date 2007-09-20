@@ -45,7 +45,9 @@
    <extension
          point="net.sf.anathema.character.types">
       <characterType
-            id="net.sf.anathema.character.type.db">
+            id="net.sf.anathema.character.type.db"
+            image="icons/DbIcon_16.png"
+            traitImage="icons/Ball_Db_16.png">
       </characterType>
    </extension>
 

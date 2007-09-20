@@ -45,7 +45,9 @@
    <extension
          point="net.sf.anathema.character.types">
       <characterType
-            id="net.sf.anathema.character.type.solar">
+            id="net.sf.anathema.character.type.solar"
+            image="icons/SolarIcon_16.png"
+            traitImage="icons/Ball_Solar_16.png">
       </characterType>
    </extension>
 
