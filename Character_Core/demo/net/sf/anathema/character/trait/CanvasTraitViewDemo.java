@@ -53,7 +53,7 @@ public class CanvasTraitViewDemo implements IDemo {
   }
 
   private Image createImage(String imageName) throws MalformedURLException {
-    URL url = new File("./icons/" + imageName).toURI().toURL(); //$NON-NLS-1$
+    URL url = new File("../Character_Trait/icons/" + imageName).toURI().toURL(); //$NON-NLS-1$
     return ImageDescriptor.createFromURL(url).createImage();
   }
 

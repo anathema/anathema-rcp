@@ -18,5 +18,6 @@ Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.group,
  net.sf.anathema.character.trait.groupeditor,
  net.sf.anathema.character.trait.persistence,
+ net.sf.anathema.character.trait.resources,
  net.sf.anathema.character.trait.rules
 Bundle-Localization: plugin
