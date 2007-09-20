@@ -30,6 +30,7 @@
    <extension
          point="net.sf.anathema.character.templates">
       <template
+            characterTypeId="net.sf.anathema.character.type.lunar"
             templateId="net.sf.anathema.charactertype.pactlunar"
             unnamedLabel="%charactertype.pactlunar.unnamedLabel">
          <modelList
@@ -48,6 +49,12 @@
             id="net.sf.anathema.charactertype.pactlunar.newwizard"
             name="%new.wizard.charactertype.pactlunar">
       </wizard>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.types">
+      <characterType
+            id="net.sf.anathema.character.type.lunar">
+      </characterType>
    </extension>
 
 </plugin>

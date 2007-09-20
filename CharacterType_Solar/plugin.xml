@@ -22,6 +22,7 @@
    <extension
          point="net.sf.anathema.character.templates">
       <template
+            characterTypeId="net.sf.anathema.character.type.solar"
             templateId="net.sf.anathema.charactertype.defaultsolar"
             unnamedLabel="%charactertype.defaultsolar.unnamedLabel">
          <modelList
@@ -40,6 +41,12 @@
             id="net.sf.anathema.charactertype.defaultsolar.newwizard"
             name="%new.wizard.charactertype.defaultsolar">
       </wizard>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.types">
+      <characterType
+            id="net.sf.anathema.character.type.solar">
+      </characterType>
    </extension>
 
 </plugin>

@@ -22,6 +22,7 @@
    <extension
          point="net.sf.anathema.character.templates">
       <template
+            characterTypeId="net.sf.anathema.character.type.mortal"
             templateId="net.sf.anathema.charactertype.heroicmortal"
             unnamedLabel="%charactertype.heroicMortal.unnamedLabel">
          <modelList
@@ -40,6 +41,12 @@
             id="net.sf.anathema.charactertype.heroicmortal.newwizard"
             name="%new.wizard.charactertype.heroicmortal">
       </wizard>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.types">
+      <characterType
+            id="net.sf.anathema.character.type.mortal">
+      </characterType>
    </extension>
 
 </plugin>
