@@ -31,11 +31,11 @@ public class AttributeGroupPriorityCalculator {
     });
     int index = ArrayUtilities.indexOf(groups, traitGroup);
     if (index == 0) {
-      return AttributePointCalculator.PRIMARY;
+      return AttributePointCalculator.PriorityGroup.Primary;
     }
     else if (index == 1) {
-      return AttributePointCalculator.SECONDARY;
+      return AttributePointCalculator.PriorityGroup.Secondary;
     }
-    return AttributePointCalculator.TERTIARY;
+    return AttributePointCalculator.PriorityGroup.Tertiary;
   }
 }

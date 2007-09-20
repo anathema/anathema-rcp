@@ -47,8 +47,8 @@ public class AttributePointCalculatorTest {
 
   private void assertPointsSpent(int primary, int secondary, int tertiary, ITraitCollectionModel attributes) {
     AttributePointCalculator freebiesCalculator = new AttributePointCalculator(attributes, traitGroups);
-    assertEquals(primary, freebiesCalculator.pointsSpentFor(PRIMARY));
-    assertEquals(secondary, freebiesCalculator.pointsSpentFor(SECONDARY));
-    assertEquals(tertiary, freebiesCalculator.pointsSpentFor(TERTIARY));
+    assertEquals(primary, freebiesCalculator.pointsSpentFor(PriorityGroup.Primary));
+    assertEquals(secondary, freebiesCalculator.pointsSpentFor(PriorityGroup.Secondary));
+    assertEquals(tertiary, freebiesCalculator.pointsSpentFor(PriorityGroup.Tertiary));
   }
 }

@@ -46,7 +46,7 @@ public class PrioritylessAttributeFreebiesTest {
     IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes);
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(
         modelProvider,
-        AttributePointCalculator.PRIMARY);
+        AttributePointCalculator.PriorityGroup.Primary);
     assertEquals(freebiesPoints, freebies.getPoints(null, 3));
   }
 }

@@ -7,12 +7,14 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 
 public class AttributePointCalculator {
+  
+  public enum PriorityGroup {
 
-  public static class PriorityGroup {
-
+    Primary(0), Secondary(1), Tertiary(2);
+    
     private final int ascendingIndex;
 
-    public PriorityGroup(int ascendingIndex) {
+    private PriorityGroup(int ascendingIndex) {
       this.ascendingIndex = ascendingIndex;
     }
 
@@ -20,10 +22,6 @@ public class AttributePointCalculator {
       return ascendingIndex;
     }
   }
-
-  public static final PriorityGroup PRIMARY = new PriorityGroup(0);
-  public static final PriorityGroup SECONDARY = new PriorityGroup(1);
-  public static final PriorityGroup TERTIARY = new PriorityGroup(2);
   final ITraitCollectionModel attributes;
   private final ITraitGroup[] groups;
 

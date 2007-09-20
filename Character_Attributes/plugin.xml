@@ -53,23 +53,23 @@
          point="net.sf.anathema.character.freebies.configurations">
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.attributes.points.PrimaryAttributeFreebies"
-            name="%PrimaryAttributes">
+            name="%freebies.PrimaryAttributes">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.attributes.points.SecondaryAttributeFreebies"
-            name="%SecondaryAttributes">
+            name="%freebies.SecondaryAttributes">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.attributes.points.TertiaryAttributeFreebies"
-            name="%TertiaryAttributes">
+            name="%freebies.TertiaryAttributes">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.attributes.points.FavoredAttributeFreebiesHandler"
-            name="Free Favored Attributes">
+            name="%freebies.FreeFavoredAttributes">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.attributes.points.FavoredAttributeCountHandler"
-            name="Favored count">
+            name="%freebies.FavoredCount">
       </FreebiesConfiguration>
    </extension>
 

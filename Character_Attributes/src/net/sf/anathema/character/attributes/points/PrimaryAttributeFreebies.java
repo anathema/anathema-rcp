@@ -9,7 +9,7 @@ public class PrimaryAttributeFreebies extends AbstractExecutableExtension implem
 
   private static final String CREDIT_ID = "net.sf.anathema.character.attributes.freebies.primary"; //$NON-NLS-1$
   private final PrioritylessAttributeFreebies prioritylessAttributeFreebies;
-  private final PriorityGroup priority = AttributePointCalculator.PRIMARY;
+  private final PriorityGroup priority = AttributePointCalculator.PriorityGroup.Primary;
 
   public PrimaryAttributeFreebies() {
     this.prioritylessAttributeFreebies = new PrioritylessAttributeFreebies(priority);

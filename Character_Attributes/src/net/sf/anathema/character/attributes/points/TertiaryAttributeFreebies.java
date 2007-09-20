@@ -8,7 +8,7 @@ import net.sf.anathema.character.core.model.IModelProvider;
 public class TertiaryAttributeFreebies extends AbstractExecutableExtension implements IAttributeGroupFreebiesHandler {
   private static final String CREDIT_ID = "net.sf.anathema.character.attributes.freebies.tertiary"; //$NON-NLS-1$
   private final PrioritylessAttributeFreebies prioritylessAttributeFreebies;
-  private final PriorityGroup priority = AttributePointCalculator.TERTIARY;
+  private final PriorityGroup priority = AttributePointCalculator.PriorityGroup.Tertiary;
 
   public TertiaryAttributeFreebies() {
     this.prioritylessAttributeFreebies = new PrioritylessAttributeFreebies(priority);

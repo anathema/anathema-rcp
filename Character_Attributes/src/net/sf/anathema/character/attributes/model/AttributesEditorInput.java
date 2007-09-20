@@ -1,12 +1,12 @@
 package net.sf.anathema.character.attributes.model;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
+import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.attributes.points.AttributePointCalculator;
-import net.sf.anathema.character.attributes.points.IAttributeGroupFreebiesHandler;
 import net.sf.anathema.character.attributes.points.PrimaryAttributeFreebies;
 import net.sf.anathema.character.attributes.points.SecondaryAttributeFreebies;
 import net.sf.anathema.character.attributes.points.TertiaryAttributeFreebies;
@@ -108,17 +108,15 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
 
   private String determineCreditId(ITraitGroup traitGroup) {
     PriorityGroup priority = new AttributeGroupPriorityCalculator(context).getPriority(traitGroup);
-    IAttributeGroupFreebiesHandler freebies = null;
-    if (priority == AttributePointCalculator.PRIMARY) {
-      freebies = new PrimaryAttributeFreebies();
+    switch (priority) {
+      case Primary:
+        return new PrimaryAttributeFreebies().getCreditId();
+      case Secondary:
+        return new SecondaryAttributeFreebies().getCreditId();
+      case Tertiary:
+        return new TertiaryAttributeFreebies().getCreditId();
     }
-    if (priority == AttributePointCalculator.SECONDARY) {
-      freebies = new SecondaryAttributeFreebies();
-    }
-    if (priority == AttributePointCalculator.TERTIARY) {
-      freebies = new TertiaryAttributeFreebies();
-    }
-    return freebies.getCreditId();
+    throw new UnreachableCodeReachedException();
   }
 
   private ITraitGroup findTraitGroup(IIdentificate traitType) {
@@ -127,6 +125,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
         return group;
       }
     }
-    throw new IllegalArgumentException("Trait is not member of any group.");
+    Object[] arguments = new Object[] { traitType.getId()};
+    throw new IllegalArgumentException(MessageFormat.format(Messages.AttributesEditorInput_GroupLessTraitMessage, arguments));
   }
 }
