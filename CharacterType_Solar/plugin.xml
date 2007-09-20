@@ -47,8 +47,15 @@
       <characterType
             id="net.sf.anathema.character.type.solar"
             image="icons/SolarIcon_16.png"
-            traitImage="icons/Ball_Solar_16.png">
+            traitImageId="SolarBall">
       </characterType>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.resources">
+      <image
+            referenceId="SolarBall"
+            resourceUrl="icons/Ball_Solar_16.png">
+      </image>
    </extension>
 
 </plugin>

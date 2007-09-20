@@ -8,5 +8,5 @@ public interface ICharacterType extends IIdentificate {
 
   public ImageDescriptor getImageDescriptor();
 
-  public ImageDescriptor getTraitImageDescriptor();
+  public String getTraitImageId();
 }

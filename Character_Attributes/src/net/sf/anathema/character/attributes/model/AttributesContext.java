@@ -12,8 +12,6 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-
 public class AttributesContext implements ITraitCollectionContext {
 
   private final ICharacterId characterId;
@@ -60,8 +58,8 @@ public class AttributesContext implements ITraitCollectionContext {
   }
 
   @Override
-  public ImageDescriptor getActiveImageDescriptor() {
+  public String getActiveImageId() {
     ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
-    return characterType.getTraitImageDescriptor();
+    return characterType.getTraitImageId();
   }
 }

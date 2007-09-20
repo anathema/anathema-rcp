@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.eclipse.extension;
 
+import java.net.URL;
+
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.jface.resource.ImageDescriptor;
 
@@ -20,4 +22,6 @@ public interface IExtensionElement {
   public IExtensionElement[] getElements();
 
   public String getName();
+
+  public URL getResourceAttribute(String attributeName);
 }

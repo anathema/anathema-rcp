@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %net.sf.anathema.character.trait.BundleName
-Bundle-SymbolicName: net.sf.anathema.character.trait
+Bundle-SymbolicName: net.sf.anathema.character.trait;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.lib,

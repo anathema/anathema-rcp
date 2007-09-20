@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.eclipse.extension.fake;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +39,11 @@ public class FakeExtensionElement implements IExtensionElement {
 
   @Override
   public IExtensionElement getElement(String name) {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  }
+
+  @Override
+  public URL getResourceAttribute(String attributeName) {
     throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
   }
 

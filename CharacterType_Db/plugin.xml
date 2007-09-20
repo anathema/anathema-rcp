@@ -47,8 +47,15 @@
       <characterType
             id="net.sf.anathema.character.type.db"
             image="icons/DbIcon_16.png"
-            traitImage="icons/Ball_Db_16.png">
+            traitImageId="DbBall">
       </characterType>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.resources">
+      <image
+            referenceId="DbBall"
+            resourceUrl="icons/Ball_Db_16.png">
+      </image>
    </extension>
 
 </plugin>

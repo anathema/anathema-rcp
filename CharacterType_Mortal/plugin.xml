@@ -47,8 +47,15 @@
       <characterType
             id="net.sf.anathema.character.type.mortal"
             image="icons/MortalIcon_16.png"
-            traitImage="icons/Ball_Mortal_16.png">
+            traitImageId="MortalBall">
       </characterType>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.resources">
+      <image
+            referenceId="MortalBall"
+            resourceUrl="icons/Ball_Mortal_16.png">
+      </image>
    </extension>
 
 </plugin>

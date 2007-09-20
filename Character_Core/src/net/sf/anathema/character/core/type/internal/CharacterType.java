@@ -17,8 +17,8 @@ public class CharacterType implements ICharacterType {
     return element.createImageDescriptorFromAttribute("image"); //$NON-NLS-1$
   }
   
-  public ImageDescriptor getTraitImageDescriptor() {
-    return element.createImageDescriptorFromAttribute("traitImage"); //$NON-NLS-1$
+  public String getTraitImageId() {
+    return element.getAttribute("traitImageId"); //$NON-NLS-1$
   }
 
   @Override

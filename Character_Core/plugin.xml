@@ -4,6 +4,7 @@
    <extension-point id="net.sf.anathema.character.models" name="%extension-point.name.charactermodels" schema="schema/net.sf.anathema.character.models.exsd"/>
    <extension-point id="net.sf.anathema.character.templates" name="%extension-point.name.charactertemplates" schema="schema/net.sf.anathema.character.templates.exsd"/>
    <extension-point id="net.sf.anathema.character.types" name="%extension-point.name.charactertypes" schema="schema/net.sf.anathema.character.types.exsd"/>
+   <extension-point id="net.sf.anathema.character.resources" name="%extension-point.name.characterresources" schema="schema/net.sf.anathema.character.resources.exsd"/>
    <extension
          point="net.sf.anathema.repository.itemtypes">
       <itemtype

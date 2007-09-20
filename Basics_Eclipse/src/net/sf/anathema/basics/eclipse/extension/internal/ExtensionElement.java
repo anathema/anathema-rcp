@@ -80,4 +80,10 @@ public class ExtensionElement implements IExtensionElement {
   public String getName() {
     return eclipseElement.getName();
   }
+
+  @Override
+  public URL getResourceAttribute(String attributeName) {
+    String resourcePath = eclipseElement.getAttribute(attributeName);
+    return ResourceUtils.getResourceUrl(eclipseElement.getContributor().getName(), resourcePath);
+  }
 }

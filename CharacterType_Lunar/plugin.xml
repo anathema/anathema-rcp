@@ -55,8 +55,15 @@
       <characterType
             id="net.sf.anathema.character.type.lunar"
             image="icons/LunarIcon_16.png"
-            traitImage="icons/Ball_Lunar_16.png">
+            traitImageId="LunarBall">
       </characterType>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.resources">
+      <image
+            referenceId="LunarBall"
+            resourceUrl="icons/Ball_Lunar_16.png">
+      </image>
    </extension>
 
 </plugin>

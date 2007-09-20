@@ -20,3 +20,4 @@ Export-Package: net.sf.anathema.character.core.create,
  net.sf.anathema.character.core.template,
  net.sf.anathema.character.core.traitview,
  net.sf.anathema.character.core.type
+Bundle-Activator: net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin
