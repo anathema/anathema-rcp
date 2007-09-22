@@ -10,17 +10,16 @@ public final class SurplusPainter implements IIntValuePainter {
   private boolean showSurplus;
   private int surplusValue;
   private IRedrawable redrawable = new NullRedrawable();
-  
+
   public SurplusPainter(Image surplusImage) {
     this.surplusImage = surplusImage;
-    redrawable.redraw();
   }
-  
+
   public void setShowSurplus(boolean showSurplus) {
     this.showSurplus = showSurplus;
     redrawable.redraw();
   }
-  
+
   public void setSurplusThreshold(int surplusValue) {
     if (this.surplusValue == surplusValue) {
       return;
@@ -28,14 +27,14 @@ public final class SurplusPainter implements IIntValuePainter {
     this.surplusValue = surplusValue;
     redrawable.redraw();
   }
-  
+
   @Override
   public void drawImage(IIntValuePaintContext context, int index) {
     context.drawImage(index, surplusImage);
   }
 
   @Override
-  public boolean isResponsable(IIntValuePaintContext context, int index) {
+  public boolean isResponsible(IIntValuePaintContext context, int index) {
     return showSurplus && surplusValue <= index && index < context.getValue();
   }
 

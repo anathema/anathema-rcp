@@ -4,7 +4,7 @@ interface IIntValuePainter {
 
   public void init(IRedrawable redawable, int imageWidth, int imageHeight);
   
-  public boolean isResponsable(IIntValuePaintContext context, int index);
+  public boolean isResponsible(IIntValuePaintContext context, int index);
   
   public void drawImage(IIntValuePaintContext context, int index);
 }

@@ -42,9 +42,9 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
 
   private class IntValuePaintListener implements PaintListener {
 
-    private List<IIntValuePainter> allPainters = new ArrayList<IIntValuePainter>();
-    private int imageHeight;
-    private int imageWidth;
+    private final List<IIntValuePainter> allPainters = new ArrayList<IIntValuePainter>();
+    private final int imageHeight;
+    private final int imageWidth;
 
     public IntValuePaintListener(Image passiveImage, Image valueImage) {
       ImageData imageData = passiveImage.getImageData();
@@ -52,11 +52,11 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
       this.imageWidth = imageData.width;
       add(new BasicIntValuePainter(passiveImage, valueImage));
     }
-    
+
     public int getImageHeight() {
       return imageHeight;
     }
-    
+
     public int getImageWidth() {
       return imageWidth;
     }
@@ -71,7 +71,7 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
 
     private IIntValuePainter getResponsiblePainter(IntValuePaintContext context, int index) {
       for (IIntValuePainter painter : allPainters) {
-        if (painter.isResponsable(context, index)) {
+        if (painter.isResponsible(context, index)) {
           return painter;
         }
       }
@@ -154,7 +154,7 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
     canvas.addPaintListener(rectanglePainter);
     return canvas;
   }
-  
+
   public void addPainter(IIntValuePainter painter) {
     paintListener.add(painter);
   }
@@ -175,7 +175,7 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
       }
     }
   }
-  
+
   @Override
   public void setValue(int newValue) {
     if (this.value == newValue) {
@@ -184,8 +184,6 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
     this.value = newValue;
     redraw();
   }
-  
-  
 
   public void redraw() {
     composite.redraw();

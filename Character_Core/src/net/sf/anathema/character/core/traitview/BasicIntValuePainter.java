@@ -26,7 +26,7 @@ public class BasicIntValuePainter implements IIntValuePainter {
   }
 
   @Override
-  public boolean isResponsable(IIntValuePaintContext context, int index) {
+  public boolean isResponsible(IIntValuePaintContext context, int index) {
     return true;
   }
 
