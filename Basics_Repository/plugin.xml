@@ -191,4 +191,8 @@
          </adapter>
       </factory>
    </extension>
+   <extension
+         id="net.sf.anathema.markers.view.element"
+         point="org.eclipse.core.resources.markers">
+   </extension>
 </plugin>

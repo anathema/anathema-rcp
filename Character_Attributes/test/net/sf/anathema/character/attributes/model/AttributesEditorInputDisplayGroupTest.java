@@ -11,6 +11,7 @@ import net.sf.anathema.character.trait.group.TraitGroup;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ public class AttributesEditorInputDisplayGroupTest {
   private IDisplayTraitGroup[] groups;
 
   @Before
-  public void createEditorInput() {
+  public void createEditorInput() throws CoreException {
     TraitGroup[] traitGroups = new TraitGroup[] { new TraitGroup("group1", "trait1", "trait2"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         new TraitGroup("group2", "trait3", "trait4"), }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     ITraitCollectionContext context = AttributeContextObjectMother.createContext(traitGroups);

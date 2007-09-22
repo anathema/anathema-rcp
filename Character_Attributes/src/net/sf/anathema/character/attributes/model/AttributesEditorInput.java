@@ -38,6 +38,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
 
+  private static final String UNSPENT_FREEBIES_MARKER = "net.sf.anathema.markers.unspent.attribute.freebies"; //$NON-NLS-1$
   private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
   private final ITraitCollectionContext context;
@@ -47,7 +48,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
       IFile file,
       ImageDescriptor imageDescriptor,
       IDisplayNameProvider displayNameProvider,
-      ITraitCollectionContext context) {
+      ITraitCollectionContext context) throws CoreException {
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
     this.context = context;
@@ -56,6 +57,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
       int credit = new CreditManager().getCredit(getModelIdentifier().getCharacterId(), creditId);
       creditByPriority.put(group, credit);
     }
+    getFile().createMarker(UNSPENT_FREEBIES_MARKER);
   }
 
   private String determineCreditId(PriorityGroup priority) {

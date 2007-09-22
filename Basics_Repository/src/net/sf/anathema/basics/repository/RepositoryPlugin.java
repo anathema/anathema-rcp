@@ -3,10 +3,12 @@ package net.sf.anathema.basics.repository;
 import net.sf.anathema.basics.eclipse.plugin.AbstractAnathemaUIPlugin;
 import net.sf.anathema.basics.repository.initialization.ProjectInitializer;
 
+import org.eclipse.jface.resource.ImageRegistry;
 import org.osgi.framework.BundleContext;
 
 public class RepositoryPlugin extends AbstractAnathemaUIPlugin {
 
+  public static final String WARNING_DECORATION = "ARNING_DECORATION"; //$NON-NLS-1$
   public static final String ID = "net.sf.anathema.basics.repository"; //$NON-NLS-1$
   private static AbstractAnathemaUIPlugin instance;
 
@@ -34,5 +36,11 @@ public class RepositoryPlugin extends AbstractAnathemaUIPlugin {
   public void start(BundleContext context) throws Exception {
     super.start(context);
     new ProjectInitializer().initialize();
+  }
+  
+  @Override
+  protected void initializeImageRegistry(ImageRegistry reg) {
+    super.initializeImageRegistry(reg);
+    reg.put(WARNING_DECORATION, getImageDescriptor("icons/warning_co.gif")); //$NON-NLS-1$
   }
 }
