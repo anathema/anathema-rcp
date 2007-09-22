@@ -20,6 +20,46 @@ import org.eclipse.swt.widgets.Composite;
 
 public class CanvasIntValueDisplay implements IIntValueView {
 
+  public interface IIntValuePainter {
+    
+    public void drawImage(PaintEvent e, int index);
+  }
+  
+  private class CorePaintListener implements PaintListener {
+    @Override
+    public final void paintControl(PaintEvent e) {
+      for (int index = 0; index < maxValue; index++) {
+        drawImage(e, index);
+      }
+    }
+
+    public void drawImage(PaintEvent e, int index) {
+      if (index < value) {
+        drawImage(e, index, valueImage);
+      }
+      else {
+        drawImage(e, index, passiveImage);
+      }
+    }
+
+    protected final void drawImage(PaintEvent e, int index, Image image) {
+      e.gc.drawImage(image, getXPosition(index), 1);
+    }
+  }
+
+  private final class SurplusPaintListener extends CorePaintListener {
+
+    @Override
+    public void drawImage(PaintEvent e, int index) {
+      if (showSurplus && surplusValue <= index && index < value) {
+        drawImage(e, index, surplusImage);
+      }
+      else {
+        super.drawImage(e, index);
+      }
+    }
+  }
+
   private final class MouseDragListener extends MouseInputAdapter {
     private boolean isDrag;
 
@@ -98,28 +138,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
       }
     };
     mouseListener.addTo(canvas);
-    canvas.addPaintListener(new PaintListener() {
-      @Override
-      public void paintControl(PaintEvent e) {
-        int dots = value;
-        if (showSurplus) {
-          dots = Math.min(dots, surplusValue);
-        }
-        for (int index = 0; index < dots; index++) {
-          addImage(e, index, valueImage);
-        }
-        for (int index = dots; index < value; index++) {
-          addImage(e, index, surplusImage);
-        }
-        for (int index = value; index < maxValue; index++) {
-          addImage(e, index, passiveImage);
-        }
-      }
-
-      private void addImage(PaintEvent e, int index, Image image) {
-        e.gc.drawImage(image, getXPosition(index), 1);
-      }
-    });
+    canvas.addPaintListener(new SurplusPaintListener());
     this.rectanglePainter = new OuterPaintListener(canvas);
     canvas.addPaintListener(rectanglePainter);
     return canvas;
