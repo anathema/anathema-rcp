@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.disy.commons.core.exception.UnreachableCodeReachedException;
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.attributes.points.AttributePointCalculator;
+import net.sf.anathema.character.attributes.points.Dots;
 import net.sf.anathema.character.attributes.points.PrimaryAttributeFreebies;
 import net.sf.anathema.character.attributes.points.SecondaryAttributeFreebies;
 import net.sf.anathema.character.attributes.points.TertiaryAttributeFreebies;
@@ -17,6 +20,7 @@ import net.sf.anathema.character.attributes.points.coverage.AttributeGroupPriori
 import net.sf.anathema.character.attributes.points.coverage.PointCoverageCalculator;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
@@ -31,6 +35,8 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -45,10 +51,10 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   private final Map<PriorityGroup, Integer> creditByPriority = new HashMap<PriorityGroup, Integer>();
 
   public AttributesEditorInput(
-      IFile file,
+      final IFile file,
       ImageDescriptor imageDescriptor,
       IDisplayNameProvider displayNameProvider,
-      ITraitCollectionContext context) throws CoreException {
+      final ITraitCollectionContext context) throws CoreException {
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
     this.context = context;
@@ -57,7 +63,39 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
       int credit = new CreditManager().getCredit(getModelIdentifier().getCharacterId(), creditId);
       creditByPriority.put(group, credit);
     }
-    getFile().createMarker(UNSPENT_FREEBIES_MARKER);
+    ModelCache.getInstance().getModel(getModelIdentifier()).addChangeListener(new IChangeListener() {
+
+      @Override
+      public void stateChanged() {
+        markFile();
+      }
+    });
+    markFile();
+  }
+
+  private void markFile() {
+    IFile file = getFile();
+    if (!file.exists() ) {
+      return;
+    }
+    PriorityGroup priority = PriorityGroup.Primary;
+    Dots dots = new AttributePointCalculator(context.getCollection(), context.getTraitGroups()).dotsFor(priority);
+    boolean warning = creditByPriority.get(priority) > dots.spentTotally();
+    try {
+      if (warning) {
+        IMarker[] markers = file.findMarkers(UNSPENT_FREEBIES_MARKER, true, IResource.DEPTH_ZERO);
+        if (markers.length == 0) {
+          file.createMarker(UNSPENT_FREEBIES_MARKER);
+        }
+      }
+      else {
+        file.deleteMarkers(UNSPENT_FREEBIES_MARKER, true, IResource.DEPTH_ZERO);
+      }
+    }
+    catch (CoreException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
   private String determineCreditId(PriorityGroup priority) {
@@ -135,7 +173,9 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
         return group;
       }
     }
-    Object[] arguments = new Object[] { traitType.getId()};
-    throw new IllegalArgumentException(MessageFormat.format(Messages.AttributesEditorInput_GroupLessTraitMessage, arguments));
+    Object[] arguments = new Object[] { traitType.getId() };
+    throw new IllegalArgumentException(MessageFormat.format(
+        Messages.AttributesEditorInput_GroupLessTraitMessage,
+        arguments));
   }
 }

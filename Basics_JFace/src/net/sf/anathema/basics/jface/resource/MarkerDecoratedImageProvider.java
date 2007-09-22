@@ -34,7 +34,7 @@ public class MarkerDecoratedImageProvider implements IDisposable {
     }
     Image basicImage = getBasicImage(adaptable);
     IResource resource = (IResource) adaptable.getAdapter(IResource.class);
-    if (resource == null) {
+    if (resource == null || !resource.exists()) {
       return basicImage;
     }
     try {
