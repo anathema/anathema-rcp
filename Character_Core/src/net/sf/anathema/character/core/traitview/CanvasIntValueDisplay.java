@@ -1,12 +1,14 @@
 package net.sf.anathema.character.core.traitview;
 
-import net.disy.commons.core.util.Ensure;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.character.core.traitview.internal.MouseInputAdapter;
 import net.sf.anathema.character.core.traitview.internal.OuterPaintListener;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
-import net.sf.anathema.lib.ui.IIntValueView;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -18,8 +20,8 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
-public class CanvasIntValueDisplay implements IIntValueView {
-  
+public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawable {
+
   public class IntValuePaintContext implements IIntValuePaintContext {
     private final PaintEvent event;
 
@@ -37,46 +39,48 @@ public class CanvasIntValueDisplay implements IIntValueView {
       return value;
     }
   }
-  
-  public class CoreIntValuePainter implements IIntValuePainter {
 
-    @Override
-    public void drawImage(IIntValuePaintContext context, int index) {
-      if (index < context.getValue()) {
-        context.drawImage(index, valueImage);
-      }
-      else {
-        context.drawImage(index, passiveImage);
-      }
-    }
-  }
-  
   private class IntValuePaintListener implements PaintListener {
-    
-    private final IIntValuePainter painter;
 
-    public IntValuePaintListener(IIntValuePainter painter) {
-      this.painter = painter;
+    private List<IIntValuePainter> allPainters = new ArrayList<IIntValuePainter>();
+    private int imageHeight;
+    private int imageWidth;
+
+    public IntValuePaintListener(Image passiveImage, Image valueImage) {
+      ImageData imageData = passiveImage.getImageData();
+      this.imageHeight = imageData.height;
+      this.imageWidth = imageData.width;
+      add(new BasicIntValuePainter(passiveImage, valueImage));
     }
     
+    public int getImageHeight() {
+      return imageHeight;
+    }
+    
+    public int getImageWidth() {
+      return imageWidth;
+    }
+
     @Override
     public final void paintControl(PaintEvent e) {
       for (int index = 0; index < maxValue; index++) {
-        painter.drawImage(new IntValuePaintContext(e), index);
+        IntValuePaintContext context = new IntValuePaintContext(e);
+        getResponsiblePainter(context, index).drawImage(context, index);
       }
     }
-  }
 
-  private final class SurplusPainter extends CoreIntValuePainter {
+    private IIntValuePainter getResponsiblePainter(IntValuePaintContext context, int index) {
+      for (IIntValuePainter painter : allPainters) {
+        if (painter.isResponsable(context, index)) {
+          return painter;
+        }
+      }
+      throw new UnreachableCodeReachedException();
+    }
 
-    @Override
-    public void drawImage(IIntValuePaintContext context, int index) {
-      if (showSurplus && surplusValue <= index && index < context.getValue()) {
-        context.drawImage(index, surplusImage);
-      }
-      else {
-        super.drawImage(context, index);
-      }
+    public void add(IIntValuePainter painter) {
+      painter.init(CanvasIntValueDisplay.this, imageWidth, imageHeight);
+      allPainters.add(0, painter);
     }
   }
 
@@ -115,9 +119,6 @@ public class CanvasIntValueDisplay implements IIntValueView {
   private static final int GROUP_SIZE = 5;
   private static final int HORIZONTAL_INDENT = 2;
   private final int maxValue;
-  private final Image passiveImage;
-  private final Image valueImage;
-  private final Image surplusImage;
   private final GenericControl<IIntValueChangedListener> control = new GenericControl<IIntValueChangedListener>();
   private OuterPaintListener rectanglePainter;
   private final MouseInputAdapter mouseListener = new MouseDragListener();
@@ -125,26 +126,12 @@ public class CanvasIntValueDisplay implements IIntValueView {
   private final int slotWidth;
   private final int whitespaceSlotWidth;
   private int value;
-  private int surplusValue;
-  private boolean showSurplus;
-  public int imageWidth;
-  public int imageHeight;
+  private final IntValuePaintListener paintListener;
 
-  public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image valueImage, Image surplusImage, int maxValue) {
-    ImageData passiveData = passiveImage.getImageData();
-    imageWidth = passiveData.width;
-    imageHeight = passiveData.height;
-    ImageData valueData = valueImage.getImageData();
-    ImageData surplusData = surplusImage.getImageData();
-    Ensure.ensureArgumentEquals(imageWidth, valueData.width);
-    Ensure.ensureArgumentEquals(imageWidth, surplusData.width);
-    Ensure.ensureArgumentEquals(imageHeight, valueData.height);
-    Ensure.ensureArgumentEquals(imageHeight, surplusData.height);
-    this.slotWidth = passiveData.width + 2;
+  public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image valueImage, int maxValue) {
+    this.paintListener = new IntValuePaintListener(passiveImage, valueImage);
+    this.slotWidth = paintListener.getImageWidth() + 2;
     this.whitespaceSlotWidth = slotWidth / 2;
-    this.passiveImage = passiveImage;
-    this.valueImage = valueImage;
-    this.surplusImage = surplusImage;
     this.maxValue = maxValue;
     this.composite = createComposite(parent);
   }
@@ -153,7 +140,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
     Canvas canvas = new Canvas(parent, SWT.DOUBLE_BUFFERED) {
       @Override
       public Rectangle computeTrim(int x, int y, int width, int height) {
-        int preferredHeight = imageHeight + 2;
+        int preferredHeight = paintListener.getImageHeight() + 2;
         int preferredWidth = getXPosition(maxValue);
         if (maxValue % GROUP_SIZE == 0) {
           preferredWidth -= whitespaceSlotWidth;
@@ -162,10 +149,14 @@ public class CanvasIntValueDisplay implements IIntValueView {
       }
     };
     mouseListener.addTo(canvas);
-    canvas.addPaintListener(new IntValuePaintListener(new SurplusPainter()));
+    canvas.addPaintListener(paintListener);
     this.rectanglePainter = new OuterPaintListener(canvas);
     canvas.addPaintListener(rectanglePainter);
     return canvas;
+  }
+  
+  public void addPainter(IIntValuePainter painter) {
+    paintListener.add(painter);
   }
 
   private void fireValueChangedEventForCoordinate(int x) {
@@ -184,26 +175,19 @@ public class CanvasIntValueDisplay implements IIntValueView {
       }
     }
   }
-
+  
   @Override
   public void setValue(int newValue) {
     if (this.value == newValue) {
       return;
     }
     this.value = newValue;
-    composite.redraw();
+    redraw();
   }
+  
+  
 
-  public void setSurplusThreshold(int surplus) {
-    if (this.surplusValue == surplus) {
-      return;
-    }
-    this.surplusValue = surplus;
-    composite.redraw();
-  }
-
-  public void setSurplusVisible(boolean enabled) {
-    this.showSurplus = enabled;
+  public void redraw() {
     composite.redraw();
   }
 

@@ -10,9 +10,12 @@ import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.listening.CharacterPartNameListener;
-import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
+import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
+import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
+import net.sf.anathema.character.core.traitview.SurplusPainter;
 import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.resources.ITraitResources;
 import net.sf.anathema.lib.ui.IIntValueView;
 import net.sf.anathema.lib.util.IIdentificate;
 
@@ -20,6 +23,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -29,6 +33,7 @@ import org.eclipse.swt.widgets.Label;
 public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
   private final Map<IIdentificate, IIntValueView> viewsByType = new HashMap<IIdentificate, IIntValueView>();
   private boolean mark;
+  private Map<IIntValueView, SurplusPainter> surplusPainters = new HashMap<IIntValueView, SurplusPainter>();
 
   @Override
   public void createPartControl(Composite parent) {
@@ -39,7 +44,11 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
       for (final IDisplayTrait trait : group.getTraits()) {
         String label = editorInput.getTraitLabel(trait.getTraitType());
-        final IIntValueView view = factory.create(label, trait);
+        final IExtendableIntValueView view = factory.create(label, trait);
+        Image surplusImage = ICharacterCorePluginConstants.IMAGE_REGISTRY.get(ITraitResources.SURPLUS_BUTTON);
+        SurplusPainter surplusPainter = new SurplusPainter(surplusImage);
+        surplusPainters.put(view, surplusPainter);
+        view.addPainter(surplusPainter);
         trait.addChangeListener(new IChangeListener() {
           @Override
           public void stateChanged() {
@@ -67,7 +76,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     this.mark = enabled;
     calculateCoverage();
     for (IIntValueView display : viewsByType.values()) {
-      ((CanvasIntValueDisplay) display).setSurplusVisible(mark);
+      surplusPainters.get(display).setShowSurplus(mark);
     }
   }
 
@@ -76,7 +85,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
       ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
       for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
         int coveredPoints = editorInput.getPointsCoveredByCredit(entry.getKey());
-        ((CanvasIntValueDisplay) entry.getValue()).setSurplusThreshold(coveredPoints);
+        surplusPainters.get(entry.getValue()).setSurplusThreshold(coveredPoints);
       }
     }
   }

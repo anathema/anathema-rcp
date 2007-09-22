@@ -24,11 +24,6 @@ public class SurplusIntViewImageProvider implements ISurplusIntViewImageProvider
     return createImage(activeImageId);
   }
 
-  @Override
-  public Image createSurplusImage() {
-    return createImage(ITraitResources.SURPLUS_BUTTON);
-  }
-
   private Image createImage(String imageName) {
     return ICharacterCorePluginConstants.IMAGE_REGISTRY.get(imageName);
   }

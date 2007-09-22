@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
+import net.sf.anathema.character.core.traitview.SurplusPainter;
 import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
 
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -30,25 +31,22 @@ public class CanvasTraitViewDemo implements IDemo {
     URL url = new File("../CharacterType_Solar/icons/" + "Ball_Solar_16.png").toURI().toURL(); //$NON-NLS-1$ //$NON-NLS-2$
     this.activeImage = ImageDescriptor.createFromURL(url).createImage();
     this.surplusImage = createImage("BorderBonusButton16.png"); //$NON-NLS-1$
-    final CanvasIntValueDisplay intValueDisplay = new CanvasIntValueDisplay(
-        parent,
-        passiveImage,
-        activeImage,
-        surplusImage,
-        10);
+    final CanvasIntValueDisplay intValueDisplay = new CanvasIntValueDisplay(parent, passiveImage, activeImage, 10);
     intValueDisplay.addIntValueChangedListener(new IIntValueChangedListener() {
       @Override
       public void valueChanged(int newValue) {
         intValueDisplay.setValue(newValue);
       }
     });
-    intValueDisplay.setSurplusThreshold(3);
+    final SurplusPainter surplusPainter = new SurplusPainter(surplusImage);
+    intValueDisplay.addPainter(surplusPainter);
+    surplusPainter.setSurplusThreshold(3);
     final Button button = new Button(parent, SWT.TOGGLE);
     button.setText("Show Surplus"); //$NON-NLS-1$
     button.addListener(SWT.MouseUp, new Listener() {
       @Override
       public void handleEvent(Event event) {
-        intValueDisplay.setSurplusVisible(button.getSelection());
+        surplusPainter.setShowSurplus(button.getSelection());
       }
     });
   }
