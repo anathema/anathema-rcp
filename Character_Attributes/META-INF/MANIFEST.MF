@@ -13,8 +13,7 @@ Require-Bundle: net.sf.anathema.basics.item,
  net.sf.anathema.basics.jface,
  net.sf.anathema.character.trait;visibility:=reexport,
  net.sf.anathema.character.experience,
- net.sf.anathema.character.points,
- net.sf.anathema.character.freebies
+ net.sf.anathema.character.points
 Eclipse-LazyStart: true
 Export-Package: net.sf.anathema.character.attributes.model,
  net.sf.anathema.character.attributes.points

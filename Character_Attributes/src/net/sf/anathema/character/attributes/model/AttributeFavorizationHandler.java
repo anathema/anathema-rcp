@@ -2,24 +2,29 @@ package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.freebies.configuration.ICreditManager;
+import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class AttributeFavorizationHandler extends AbstractTraitCollectionFavorizationHandler {
 
-  public AttributeFavorizationHandler(
-      ICharacterId characterId,
-      IModelProvider modelProvider,
-      ICreditManager creditManager) {
-    super(characterId, modelProvider, creditManager);
+  private final ICharacterId characterId;
+  private final IModelProvider modelProvider;
+
+  public AttributeFavorizationHandler(ICharacterId characterId, IModelProvider modelProvider) {
+    this.characterId = characterId;
+    this.modelProvider = modelProvider;
   }
 
   @Override
-  protected String getModelId() {
-    return Attributes.MODEL_ID;
+  protected int getFavoredCount() {
+    // TODO Lunars wieder favorisierbar machen
+    return 0;
   }
 
   @Override
-  protected String getCreditId() {
-    return "net.sf.anathema.character.attributes.count.favored"; //$NON-NLS-1$
+  protected ITraitCollectionModel getTraitCollectionModel() {
+    ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, Attributes.MODEL_ID);
+    return (ITraitCollectionModel) modelProvider.getModel(modelIdentifier);
   }
+
 }

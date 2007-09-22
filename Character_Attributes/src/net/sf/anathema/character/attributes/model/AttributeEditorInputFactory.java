@@ -4,8 +4,6 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvid
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
-import net.sf.anathema.character.freebies.configuration.CreditManager;
-import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -24,11 +22,7 @@ public class AttributeEditorInputFactory implements IEditorInputFactory {
       ImageDescriptor descriptor,
       IDisplayNameProvider nameProvider,
       IModelProvider modelProvider) throws PersistenceException, CoreException {
-    ICreditManager creditManager = new CreditManager();
-    IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(
-        characterId,
-        modelProvider,
-        creditManager);
+    IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(characterId, modelProvider);
     AttributesContext context = new AttributesContext(modelProvider, characterId, favorizationHandler);
     return new AttributesEditorInput(modelFile, descriptor, nameProvider, context);
   }

@@ -1,7 +1,6 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.attributes.model.CreditManagerObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.freebies.attributes.FavoredAttributeBonusPointReducer;
