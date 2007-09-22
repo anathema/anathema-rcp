@@ -40,37 +40,6 @@
             groupReference="attributepoints"
             handlerClass="net.sf.anathema.character.attributes.points.AttributeExperienceHandler">
       </experiencePointCalculator>
-      <bonusPointCalculator
-            groupReference="attributepoints"
-            handlerClass="net.sf.anathema.character.attributes.points.FreebiesBonusPointReducer">
-      </bonusPointCalculator>
-      <bonusPointCalculator
-            groupReference="attributepoints"
-            handlerClass="net.sf.anathema.character.attributes.points.FavoredAttributeBonusPointReducer">
-      </bonusPointCalculator>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.freebies.configurations">
-      <FreebiesConfiguration
-            handlerClass="net.sf.anathema.character.attributes.points.PrimaryAttributeFreebies"
-            name="%freebies.PrimaryAttributes">
-      </FreebiesConfiguration>
-      <FreebiesConfiguration
-            handlerClass="net.sf.anathema.character.attributes.points.SecondaryAttributeFreebies"
-            name="%freebies.SecondaryAttributes">
-      </FreebiesConfiguration>
-      <FreebiesConfiguration
-            handlerClass="net.sf.anathema.character.attributes.points.TertiaryAttributeFreebies"
-            name="%freebies.TertiaryAttributes">
-      </FreebiesConfiguration>
-      <FreebiesConfiguration
-            handlerClass="net.sf.anathema.character.attributes.points.FavoredAttributeFreebiesHandler"
-            name="%freebies.FreeFavoredAttributes">
-      </FreebiesConfiguration>
-      <FreebiesConfiguration
-            handlerClass="net.sf.anathema.character.attributes.points.FavoredAttributeCountHandler"
-            name="%freebies.FavoredCount">
-      </FreebiesConfiguration>
    </extension>
    <extension
          id="net.sf.anathema.markers.unspent.attribute.freebies"

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %net.sf.anathema.character.freebies.attributes.Bundle-Name
+Bundle-SymbolicName: net.sf.anathema.character.freebies.attributes;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Localization: plugin
+Require-Bundle: net.sf.anathema.character.attributes,
+ net.sf.anathema.character.freebies,
+ net.sf.anathema.basics.eclipse,
+ net.sf.anathema.basics.item,
+ net.sf.anathema.basics.lib,
+ net.sf.anathema.character.points

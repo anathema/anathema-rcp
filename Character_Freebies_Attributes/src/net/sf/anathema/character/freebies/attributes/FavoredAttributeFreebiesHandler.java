@@ -1,8 +1,9 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeTemplate;
 import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.points.AttributePointCalculator;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.IModelProvider;

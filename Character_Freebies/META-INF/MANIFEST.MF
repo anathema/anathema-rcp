@@ -5,7 +5,7 @@ Bundle-SymbolicName: net.sf.anathema.character.freebies;singleton:=true
 Bundle-Version: 1.0.0
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
-Require-Bundle: net.sf.anathema.character.core,
+Require-Bundle: net.sf.anathema.character.core;visibility:=reexport,
  net.sf.anathema.basics.lib,
  net.sf.anathema.view.valuelist,
  net.sf.anathema.basics.item

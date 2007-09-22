@@ -1,11 +1,11 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.attributes.AttributeObjectMother;
 import net.sf.anathema.character.attributes.model.AttributeTemplate;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.freebies.attributes.FreebiesBonusPointReducer;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;

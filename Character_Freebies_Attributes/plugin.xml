@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sf.anathema.character.freebies.configurations">
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.attributes.PrimaryAttributeFreebies"
+            name="%freebies.PrimaryAttributes">
+      </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.attributes.SecondaryAttributeFreebies"
+            name="%freebies.SecondaryAttributes">
+      </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.attributes.TertiaryAttributeFreebies"
+            name="%freebies.TertiaryAttributes">
+      </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.attributes.FavoredAttributeFreebiesHandler"
+            name="%freebies.FreeFavoredAttributes">
+      </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.attributes.FavoredAttributeCountHandler"
+            name="%freebies.FavoredCount">
+      </FreebiesConfiguration>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.points.configuration">
+      <bonusPointCalculator
+            groupReference="attributepoints"
+            handlerClass="net.sf.anathema.character.freebies.attributes.FreebiesBonusPointReducer">
+      </bonusPointCalculator>
+      <bonusPointCalculator
+            groupReference="attributepoints"
+            handlerClass="net.sf.anathema.character.freebies.attributes.FavoredAttributeBonusPointReducer">
+      </bonusPointCalculator>
+   </extension>
+
+</plugin>

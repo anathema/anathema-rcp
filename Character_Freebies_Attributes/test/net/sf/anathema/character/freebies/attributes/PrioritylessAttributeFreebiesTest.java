@@ -1,13 +1,13 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import net.sf.anathema.character.attributes.AttributeObjectMother;
 import net.sf.anathema.character.attributes.model.AttributeTemplate;
 import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.points.AttributePointCalculator;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.rules.TraitTemplate;
