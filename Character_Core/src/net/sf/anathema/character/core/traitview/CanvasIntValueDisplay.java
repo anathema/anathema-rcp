@@ -25,37 +25,46 @@ public class CanvasIntValueDisplay implements IIntValueView {
     public void drawImage(PaintEvent e, int index);
   }
   
+  public class IntValuePaintContext implements IIntValuePaintContext {
+    private final PaintEvent event;
+
+    public IntValuePaintContext(PaintEvent event) {
+      this.event = event;
+    }
+
+    @Override
+    public void drawImage(int index, Image image) {
+      event.gc.drawImage(image, getXPosition(index), 1);
+    }
+  }
+  
   private class CorePaintListener implements PaintListener {
     @Override
     public final void paintControl(PaintEvent e) {
       for (int index = 0; index < maxValue; index++) {
-        drawImage(e, index);
+        drawImage(new IntValuePaintContext(e), index);
       }
     }
 
-    public void drawImage(PaintEvent e, int index) {
+    public void drawImage(IIntValuePaintContext context, int index) {
       if (index < value) {
-        drawImage(e, index, valueImage);
+        context.drawImage(index, valueImage);
       }
       else {
-        drawImage(e, index, passiveImage);
+        context.drawImage(index, passiveImage);
       }
-    }
-
-    protected final void drawImage(PaintEvent e, int index, Image image) {
-      e.gc.drawImage(image, getXPosition(index), 1);
     }
   }
 
   private final class SurplusPaintListener extends CorePaintListener {
 
     @Override
-    public void drawImage(PaintEvent e, int index) {
+    public void drawImage(IIntValuePaintContext context, int index) {
       if (showSurplus && surplusValue <= index && index < value) {
-        drawImage(e, index, surplusImage);
+        context.drawImage(index, surplusImage);
       }
       else {
-        super.drawImage(e, index);
+        super.drawImage(context, index);
       }
     }
   }
