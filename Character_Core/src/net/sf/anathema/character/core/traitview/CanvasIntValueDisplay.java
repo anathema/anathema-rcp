@@ -22,49 +22,25 @@ import org.eclipse.swt.widgets.Composite;
 
 public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawable {
 
-  public class IntValuePaintContext implements IIntValuePaintContext {
-    private final PaintEvent event;
-
-    public IntValuePaintContext(PaintEvent event) {
-      this.event = event;
-    }
-
-    @Override
-    public void drawImage(int index, Image image) {
-      event.gc.drawImage(image, getXPosition(index), 1);
-    }
-
-    @Override
-    public int getValue() {
-      return value;
-    }
-  }
-
-  private class IntValuePaintListener implements PaintListener {
+  private final class IntValuePaintListener implements PaintListener {
 
     private final List<IIntValuePainter> allPainters = new ArrayList<IIntValuePainter>();
-    private final int imageHeight;
-    private final int imageWidth;
+    private final IntDisplayArea area;
 
-    public IntValuePaintListener(Image passiveImage, Image valueImage) {
+    public IntValuePaintListener(Image passiveImage, Image valueImage, int maxValue) {
       ImageData imageData = passiveImage.getImageData();
-      this.imageHeight = imageData.height;
-      this.imageWidth = imageData.width;
+      this.area = new IntDisplayArea(imageData.height, imageData.width, maxValue);
       add(new BasicIntValuePainter(passiveImage, valueImage));
     }
 
-    public int getImageHeight() {
-      return imageHeight;
-    }
-
-    public int getImageWidth() {
-      return imageWidth;
+    public IntDisplayArea getArea() {
+      return area;
     }
 
     @Override
     public final void paintControl(PaintEvent e) {
-      for (int index = 0; index < maxValue; index++) {
-        IntValuePaintContext context = new IntValuePaintContext(e);
+      for (int index = 0; index < area.getMaxValue(); index++) {
+        IntValuePaintContext context = new IntValuePaintContext(e, value, area);
         getResponsiblePainter(context, index).drawImage(context, index);
       }
     }
@@ -79,7 +55,7 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
     }
 
     public void add(IIntValuePainter painter) {
-      painter.init(CanvasIntValueDisplay.this, imageWidth, imageHeight);
+      painter.init(CanvasIntValueDisplay.this, area.getImageHeight(), area.getImageHeight());
       allPainters.add(0, painter);
     }
   }
@@ -116,23 +92,15 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
     }
   }
 
-  private static final int GROUP_SIZE = 5;
-  private static final int HORIZONTAL_INDENT = 2;
-  private final int maxValue;
   private final GenericControl<IIntValueChangedListener> control = new GenericControl<IIntValueChangedListener>();
   private OuterPaintListener rectanglePainter;
   private final MouseInputAdapter mouseListener = new MouseDragListener();
   private final Composite composite;
-  private final int slotWidth;
-  private final int whitespaceSlotWidth;
   private int value;
   private final IntValuePaintListener paintListener;
 
   public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image valueImage, int maxValue) {
-    this.paintListener = new IntValuePaintListener(passiveImage, valueImage);
-    this.slotWidth = paintListener.getImageWidth() + 2;
-    this.whitespaceSlotWidth = slotWidth / 2;
-    this.maxValue = maxValue;
+    this.paintListener = new IntValuePaintListener(passiveImage, valueImage, maxValue);
     this.composite = createComposite(parent);
   }
 
@@ -140,11 +108,8 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
     Canvas canvas = new Canvas(parent, SWT.DOUBLE_BUFFERED) {
       @Override
       public Rectangle computeTrim(int x, int y, int width, int height) {
-        int preferredHeight = paintListener.getImageHeight() + 2;
-        int preferredWidth = getXPosition(maxValue);
-        if (maxValue % GROUP_SIZE == 0) {
-          preferredWidth -= whitespaceSlotWidth;
-        }
+        int preferredHeight = paintListener.getArea().getPreferredHeight();
+        int preferredWidth = paintListener.getArea().getPreferredWidth();
         return new Rectangle(x, y, preferredWidth, preferredHeight);
       }
     };
@@ -160,20 +125,7 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
   }
 
   private void fireValueChangedEventForCoordinate(int x) {
-    if (x < slotWidth / 3) {
-      fireValueChangedEvent(0);
-      return;
-    }
-    if (x > getXPosition(maxValue - 1)) {
-      fireValueChangedEvent(maxValue);
-      return;
-    }
-    for (int imageIndex = 0; imageIndex < maxValue; imageIndex++) {
-      if (x < getXPosition(imageIndex)) {
-        fireValueChangedEvent(imageIndex);
-        return;
-      }
-    }
+    fireValueChangedEvent(paintListener.getArea().getIndexForPosition(x));
   }
 
   @Override
@@ -187,15 +139,6 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
 
   public void redraw() {
     composite.redraw();
-  }
-
-  private int getXPosition(int imageIndex) {
-    return HORIZONTAL_INDENT + imageIndex * slotWidth + getWhitespaceWidth(imageIndex);
-  }
-
-  private int getWhitespaceWidth(int index) {
-    int whitespaceCount = index / GROUP_SIZE;
-    return whitespaceCount * whitespaceSlotWidth;
   }
 
   private void fireValueChangedEvent(final int intValue) {
