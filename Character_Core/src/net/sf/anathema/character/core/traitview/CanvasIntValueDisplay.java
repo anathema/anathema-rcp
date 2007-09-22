@@ -19,11 +19,6 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
 public class CanvasIntValueDisplay implements IIntValueView {
-
-  public interface IIntValuePainter {
-    
-    public void drawImage(PaintEvent e, int index);
-  }
   
   public class IntValuePaintContext implements IIntValuePaintContext {
     private final PaintEvent event;
@@ -36,18 +31,18 @@ public class CanvasIntValueDisplay implements IIntValueView {
     public void drawImage(int index, Image image) {
       event.gc.drawImage(image, getXPosition(index), 1);
     }
+
+    @Override
+    public int getValue() {
+      return value;
+    }
   }
   
-  private class CorePaintListener implements PaintListener {
-    @Override
-    public final void paintControl(PaintEvent e) {
-      for (int index = 0; index < maxValue; index++) {
-        drawImage(new IntValuePaintContext(e), index);
-      }
-    }
+  public class CoreIntValuePainter implements IIntValuePainter {
 
+    @Override
     public void drawImage(IIntValuePaintContext context, int index) {
-      if (index < value) {
+      if (index < context.getValue()) {
         context.drawImage(index, valueImage);
       }
       else {
@@ -55,12 +50,28 @@ public class CanvasIntValueDisplay implements IIntValueView {
       }
     }
   }
+  
+  private class IntValuePaintListener implements PaintListener {
+    
+    private final IIntValuePainter painter;
 
-  private final class SurplusPaintListener extends CorePaintListener {
+    public IntValuePaintListener(IIntValuePainter painter) {
+      this.painter = painter;
+    }
+    
+    @Override
+    public final void paintControl(PaintEvent e) {
+      for (int index = 0; index < maxValue; index++) {
+        painter.drawImage(new IntValuePaintContext(e), index);
+      }
+    }
+  }
+
+  private final class SurplusPainter extends CoreIntValuePainter {
 
     @Override
     public void drawImage(IIntValuePaintContext context, int index) {
-      if (showSurplus && surplusValue <= index && index < value) {
+      if (showSurplus && surplusValue <= index && index < context.getValue()) {
         context.drawImage(index, surplusImage);
       }
       else {
@@ -116,15 +127,19 @@ public class CanvasIntValueDisplay implements IIntValueView {
   private int value;
   private int surplusValue;
   private boolean showSurplus;
+  public int imageWidth;
+  public int imageHeight;
 
   public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image valueImage, Image surplusImage, int maxValue) {
     ImageData passiveData = passiveImage.getImageData();
+    imageWidth = passiveData.width;
+    imageHeight = passiveData.height;
     ImageData valueData = valueImage.getImageData();
     ImageData surplusData = surplusImage.getImageData();
-    Ensure.ensureArgumentEquals(passiveData.width, valueData.width);
-    Ensure.ensureArgumentEquals(passiveData.width, surplusData.width);
-    Ensure.ensureArgumentEquals(passiveData.height, valueData.height);
-    Ensure.ensureArgumentEquals(passiveData.height, surplusData.height);
+    Ensure.ensureArgumentEquals(imageWidth, valueData.width);
+    Ensure.ensureArgumentEquals(imageWidth, surplusData.width);
+    Ensure.ensureArgumentEquals(imageHeight, valueData.height);
+    Ensure.ensureArgumentEquals(imageHeight, surplusData.height);
     this.slotWidth = passiveData.width + 2;
     this.whitespaceSlotWidth = slotWidth / 2;
     this.passiveImage = passiveImage;
@@ -138,7 +153,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
     Canvas canvas = new Canvas(parent, SWT.DOUBLE_BUFFERED) {
       @Override
       public Rectangle computeTrim(int x, int y, int width, int height) {
-        int preferredHeight = passiveImage.getImageData().height + 2;
+        int preferredHeight = imageHeight + 2;
         int preferredWidth = getXPosition(maxValue);
         if (maxValue % GROUP_SIZE == 0) {
           preferredWidth -= whitespaceSlotWidth;
@@ -147,7 +162,7 @@ public class CanvasIntValueDisplay implements IIntValueView {
       }
     };
     mouseListener.addTo(canvas);
-    canvas.addPaintListener(new SurplusPaintListener());
+    canvas.addPaintListener(new IntValuePaintListener(new SurplusPainter()));
     this.rectanglePainter = new OuterPaintListener(canvas);
     canvas.addPaintListener(rectanglePainter);
     return canvas;
