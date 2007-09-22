@@ -27,7 +27,7 @@ public class CanvasTraitViewDemo implements IDemo {
   @Override
   public void createComposite(Composite parent) throws Exception {
     this.passiveImage = createImage("BorderUnselectedButton16.png"); //$NON-NLS-1$
-    URL url = new File("../CharacterType_Solar/icons/" + "Ball_Solar_16.png").toURI().toURL(); //$NON-NLS-1$ //$NON-NLS-1$ //$NON-NLS-2$
+    URL url = new File("../CharacterType_Solar/icons/" + "Ball_Solar_16.png").toURI().toURL(); //$NON-NLS-1$ //$NON-NLS-2$
     this.activeImage = ImageDescriptor.createFromURL(url).createImage();
     this.surplusImage = createImage("BorderBonusButton16.png"); //$NON-NLS-1$
     final CanvasIntValueDisplay intValueDisplay = new CanvasIntValueDisplay(
