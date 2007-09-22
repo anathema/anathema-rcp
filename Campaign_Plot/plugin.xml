@@ -83,19 +83,9 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <with
-                     variable="selection">
-                  <count
-                        value="1">
-                  </count>
-                  <iterate
-                        ifEmpty="false"
-                        operator="and">
-                     <instanceof
-                           value="net.sf.anathema.campaign.plot.repository.IPlotElementViewElement">
-                     </instanceof>
-                  </iterate>
-               </with>
+               <reference
+                     definitionId="net.sf.anathema.campaign.plot.element.selection">
+               </reference>
             </visibleWhen>
          </command>
       </menuContribution>
@@ -112,7 +102,30 @@
       <handler
             class="net.sf.anathema.campaign.plot.creation.NewPlotElementHandler"
             commandId="net.sf.anathema.commands.newplotelement">
+         <activeWhen>
+            <reference
+                  definitionId="net.sf.anathema.campaign.plot.element.selection">
+            </reference></activeWhen>
       </handler>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="net.sf.anathema.campaign.plot.element.selection">
+         <with
+               variable="selection">
+            <count
+                  value="1">
+            </count>
+            <iterate
+                  ifEmpty="false"
+                  operator="and">
+               <instanceof
+                     value="net.sf.anathema.campaign.plot.repository.IPlotElementViewElement">
+               </instanceof>
+            </iterate>
+         </with>
+      </definition>
    </extension>
 
 </plugin>

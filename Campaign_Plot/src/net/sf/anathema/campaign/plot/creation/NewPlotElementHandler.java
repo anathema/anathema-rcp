@@ -76,42 +76,6 @@ public class NewPlotElementHandler extends AbstractHandler implements IElementUp
     return plotElementViewElement;
   }
 
-// TODO Rausfinden wann sie auftritt und beseitigen
-//  java.lang.ClassCastException: net.sf.anathema.character.core.repository.CharacterViewElement cannot be cast to net.sf.anathema.campaign.plot.repository.PlotElementViewElement
-//  at net.sf.anathema.campaign.plot.creation.NewPlotElementHandler.getPlotElementViewElement(NewPlotElementHandler.java:75)
-//  at net.sf.anathema.campaign.plot.creation.NewPlotElementHandler.updateElement(NewPlotElementHandler.java:66)
-//  at org.eclipse.ui.internal.handlers.HandlerProxy.updateElement(HandlerProxy.java:364)
-//  at org.eclipse.ui.internal.commands.CommandService.registerElement(CommandService.java:309)
-//  at org.eclipse.ui.internal.commands.SlaveCommandService.registerElement(SlaveCommandService.java:300)
-//  at org.eclipse.ui.internal.commands.SlaveCommandService.registerElementForCommand(SlaveCommandService.java:288)
-//  at org.eclipse.ui.menus.CommandContributionItem.<init>(CommandContributionItem.java:217)
-//  at org.eclipse.ui.internal.menus.MenuAdditionCacheEntry.createCommandAdditionContribution(MenuAdditionCacheEntry.java:316)
-//  at org.eclipse.ui.internal.menus.MenuAdditionCacheEntry.createContributionItems(MenuAdditionCacheEntry.java:169)
-//  at org.eclipse.ui.internal.menus.WorkbenchMenuService$3.run(WorkbenchMenuService.java:412)
-//  at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
-//  at org.eclipse.ui.internal.menus.WorkbenchMenuService.processAdditions(WorkbenchMenuService.java:432)
-//  at org.eclipse.ui.internal.menus.WorkbenchMenuService.populateContributionManager(WorkbenchMenuService.java:528)
-//  at org.eclipse.ui.internal.menus.WindowMenuService.populateContributionManager(WindowMenuService.java:90)
-//  at org.eclipse.ui.internal.PopupMenuExtender.addMenuContributions(PopupMenuExtender.java:360)
-//  at org.eclipse.ui.internal.PopupMenuExtender.menuAboutToShow(PopupMenuExtender.java:333)
-//  at org.eclipse.jface.action.MenuManager.fireAboutToShow(MenuManager.java:289)
-//  at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:394)
-//  at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:390)
-//  at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:416)
-//  at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:234)
-//  at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
-//  at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
-//  at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:962)
-//  at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:943)
-//  at org.eclipse.swt.widgets.Control.WM_INITMENUPOPUP(Control.java:3973)
-//  at org.eclipse.swt.widgets.Control.windowProc(Control.java:3690)
-//  at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:291)
-//  at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1584)
-//  at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:1753)
-//  at org.eclipse.swt.widgets.Display.windowProc(Display.java:4351)
-//  at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
-//  at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:228)
-
   private String getPlotUnitName(IPlotPart part) {
     return part.getPlotUnit().getSuccessor().getName();
   }
