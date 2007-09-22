@@ -11,6 +11,7 @@ Require-Bundle: org.eclipse.core.resources;visibility:=reexport,
  net.sf.anathema.basics.eclipse
 Export-Package: net.sf.anathema.basics.jface,
  net.sf.anathema.basics.jface.context,
+ net.sf.anathema.basics.jface.resource,
  net.sf.anathema.basics.jface.selection,
  net.sf.anathema.basics.jface.text,
  net.sf.anathema.basics.swt.layout
