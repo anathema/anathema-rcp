@@ -63,7 +63,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=net.sf.anathema.rcp.toolbar.save">
          <toolbar
                id="Character_Freebies.toolbar">
             <command
