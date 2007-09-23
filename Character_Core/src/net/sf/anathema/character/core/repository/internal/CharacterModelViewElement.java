@@ -13,9 +13,11 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -102,7 +104,9 @@ public class CharacterModelViewElement implements IViewElement {
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     try {
       IEditorInput input = getEditorInput();
-      page.openEditor(input, configuration.getEditorId());
+      String editorId = configuration.getEditorId();
+      IEditorPart openEditor = page.openEditor(input, editorId);
+      ensureResourceExists(input, openEditor);
     }
     catch (Exception e) {
       throw new PartInitException(new Status(
@@ -110,6 +114,13 @@ public class CharacterModelViewElement implements IViewElement {
           ICharacterCorePluginConstants.PLUGIN_ID,
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
+    }
+  }
+
+  private void ensureResourceExists(IEditorInput input, IEditorPart openEditor) {
+    IResource resource = (IResource) input.getAdapter(IResource.class);
+    if (!resource.exists()) {
+      openEditor.doSave(new NullProgressMonitor());
     }
   }
 
