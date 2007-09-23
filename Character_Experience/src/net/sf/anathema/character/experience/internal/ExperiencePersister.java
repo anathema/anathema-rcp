@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import net.sf.anathema.character.core.model.IModelPersister;
+import net.sf.anathema.character.core.model.template.NullModelTemplate;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
@@ -13,14 +14,14 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class ExperiencePersister implements IModelPersister<IExperience> {
+public class ExperiencePersister implements IModelPersister<NullModelTemplate, IExperience> {
 
   private static final String TAG_MODEL = "model"; //$NON-NLS-1$
   private static final String ATTRIB_EXPERIENCED = "experienced"; //$NON-NLS-1$
 
   @Override
   public IExperience load(Document document) throws PersistenceException {
-    IExperience experience = createNew();
+    IExperience experience = createNew(null);
     experience.setExperienced(ElementUtilities.getRequiredBooleanAttrib(document.getRootElement(), ATTRIB_EXPERIENCED));
     return experience;
   }
@@ -34,7 +35,7 @@ public class ExperiencePersister implements IModelPersister<IExperience> {
   }
 
   @Override
-  public IExperience createNew() {
+  public IExperience createNew(NullModelTemplate template) {
     return new Experience();
   }
 }

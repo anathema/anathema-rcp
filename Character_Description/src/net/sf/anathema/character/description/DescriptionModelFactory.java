@@ -3,13 +3,19 @@ package net.sf.anathema.character.description;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelFactory;
 import net.sf.anathema.character.core.model.IModelPersister;
+import net.sf.anathema.character.core.model.template.NullModelTemplate;
 
-public class DescriptionModelFactory extends AbstractModelFactory implements IModelFactory {
+public class DescriptionModelFactory extends AbstractModelFactory<NullModelTemplate> implements IModelFactory {
 
-  private final IModelPersister<?> persister = new CharacterDescriptionPersister();
+  private final IModelPersister< NullModelTemplate , ? > persister = new CharacterDescriptionPersister();
 
   @Override
-  protected IModelPersister< ? > getPersister() {
+  protected NullModelTemplate createModelTemplate() {
+    return null;
+  }
+  
+  @Override
+  protected IModelPersister< NullModelTemplate , ? > getPersister() {
     return persister;
   }
 }

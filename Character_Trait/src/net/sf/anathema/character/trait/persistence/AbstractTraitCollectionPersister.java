@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.character.core.model.IModelPersister;
+import net.sf.anathema.character.core.model.template.IModelTemplate;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -19,7 +20,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public abstract class AbstractTraitCollectionPersister<T extends ITraitCollectionModel> implements IModelPersister<T> {
+public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate, M extends ITraitCollectionModel> implements
+    IModelPersister<T, M> {
 
   private static final String TAG_MODEL = "model"; //$NON-NLS-1$
   private static final String ATTRIB_EXPERIENCED_VALUE = "experiencedValue"; //$NON-NLS-1$
@@ -28,7 +30,7 @@ public abstract class AbstractTraitCollectionPersister<T extends ITraitCollectio
   private static final String TAG_TRAIT = "trait"; //$NON-NLS-1$
 
   @Override
-  public T load(Document document) throws PersistenceException {
+  public M load(Document document) throws PersistenceException {
     final List<IBasicTrait> attributeTraits = new ArrayList<IBasicTrait>();
     for (Element traitElement : ElementUtilities.elements(document.getRootElement(), TAG_TRAIT)) {
       IIdentificate traitType = new Identificate(ElementUtilities.getRequiredAttrib(traitElement, ATTRIB_ID));
@@ -40,15 +42,15 @@ public abstract class AbstractTraitCollectionPersister<T extends ITraitCollectio
         trait.getExperiencedModel().setValue(experiencedValue);
       }
     }
-    T model = createModelFor(attributeTraits.toArray(new IBasicTrait[attributeTraits.size()]));
+    M model = createModelFor(attributeTraits.toArray(new IBasicTrait[attributeTraits.size()]));
     model.setClean();
     return model;
   }
 
-  protected abstract T createModelFor(IBasicTrait[] array);
+  protected abstract M createModelFor(IBasicTrait[] array);
 
   @Override
-  public void save(OutputStream stream, T item) throws IOException, PersistenceException {
+  public void save(OutputStream stream, M item) throws IOException, PersistenceException {
     Element attributesElement = DocumentHelper.createElement(TAG_MODEL);
     Document document = DocumentHelper.createDocument(attributesElement);
     for (IBasicTrait trait : item.getTraits()) {

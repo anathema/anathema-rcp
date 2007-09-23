@@ -6,11 +6,10 @@ import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.character.trait.persistence.AbstractTraitCollectionPersister;
 
 
-public class AttributesPersister extends AbstractTraitCollectionPersister<ITraitCollectionModel> {
+public class AttributesPersister extends AbstractTraitCollectionPersister<AttributeTemplate, ITraitCollectionModel> {
 
   @Override
-  public ITraitCollectionModel createNew() {
-    AttributeTemplate attributeTemplate = new AttributeTemplate();
+  public ITraitCollectionModel createNew(AttributeTemplate attributeTemplate) {
     return Attributes.create(attributeTemplate.getGroups(), attributeTemplate.getTraitTemplate());
   }
 

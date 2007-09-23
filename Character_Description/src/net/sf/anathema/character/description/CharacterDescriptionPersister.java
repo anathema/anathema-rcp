@@ -5,6 +5,7 @@ import java.io.OutputStream;
 
 import net.sf.anathema.basics.item.text.TextPersister;
 import net.sf.anathema.character.core.model.IModelPersister;
+import net.sf.anathema.character.core.model.template.NullModelTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -12,7 +13,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class CharacterDescriptionPersister implements IModelPersister<ICharacterDescription> {
+public class CharacterDescriptionPersister implements IModelPersister<NullModelTemplate, ICharacterDescription> {
 
   private static final String TAG_CHARACTERIZATION = "Characterization"; //$NON-NLS-1$
   private static final String TAG_CHARACTER_NAME = "Name"; //$NON-NLS-1$
@@ -26,7 +27,7 @@ public class CharacterDescriptionPersister implements IModelPersister<ICharacter
   private final TextPersister textPersister = new TextPersister();
 
   public ICharacterDescription load(Document document) {
-    ICharacterDescription description = createNew();
+    ICharacterDescription description = createNew(null);
     if (document == null) {
       return description;
     }
@@ -65,7 +66,7 @@ public class CharacterDescriptionPersister implements IModelPersister<ICharacter
   }
 
   @Override
-  public ICharacterDescription createNew() {
+  public ICharacterDescription createNew(NullModelTemplate template) {
     return new CharacterDescription();
   }
 }
