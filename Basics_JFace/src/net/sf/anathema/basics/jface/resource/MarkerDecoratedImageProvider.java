@@ -34,22 +34,29 @@ public class MarkerDecoratedImageProvider implements IDisposable {
     }
     Image basicImage = getBasicImage(adaptable);
     IResource resource = (IResource) adaptable.getAdapter(IResource.class);
-    if (resource == null || !resource.exists()) {
+    if (resource == null) {
       return basicImage;
+    }
+    if (!resource.exists()) {
+      return createDecoratedImage(adaptable, basicImage);
     }
     try {
       IMarker[] foundMarkers = resource.findMarkers(markerId, true, IResource.DEPTH_ONE);
       if (foundMarkers.length == 0) {
         return basicImage;
       }
-      Image decoratedImage = new DecorationOverlayIcon(basicImage, decoration, decorationPosition).createImage();
-      decoratedImages.put(adaptable, decoratedImage);
-      return decoratedImage;
+      return createDecoratedImage(adaptable, basicImage);
     }
     catch (CoreException e) {
       new Logger("net.sf.anathema.basics.jface").error(Messages.MarkerDecoratedImageProvider_ErrorMessageMarkerSearch, e); //$NON-NLS-1$
       return basicImage;
     }
+  }
+
+  private Image createDecoratedImage(IImagedAdaptable adaptable, Image basicImage) {
+    Image decoratedImage = new DecorationOverlayIcon(basicImage, decoration, decorationPosition).createImage();
+    decoratedImages.put(adaptable, decoratedImage);
+    return decoratedImage;
   }
 
   private Image getBasicImage(IImagedAdaptable adaptable) {
