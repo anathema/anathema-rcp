@@ -1,7 +1,8 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;

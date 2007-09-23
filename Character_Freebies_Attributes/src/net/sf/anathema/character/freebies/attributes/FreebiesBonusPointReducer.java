@@ -3,8 +3,6 @@ package net.sf.anathema.character.freebies.attributes;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeTemplate;
 import net.sf.anathema.character.attributes.model.Attributes;
-import net.sf.anathema.character.attributes.points.AttributePointCalculator;
-import net.sf.anathema.character.attributes.points.Dots;
 import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;

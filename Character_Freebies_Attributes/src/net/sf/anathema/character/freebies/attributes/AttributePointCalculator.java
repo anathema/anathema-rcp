@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes;
 
 import java.util.Arrays;
 

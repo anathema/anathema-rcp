@@ -9,4 +9,5 @@ Require-Bundle: net.sf.anathema.character.attributes,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.item,
  net.sf.anathema.basics.lib,
- net.sf.anathema.character.points
+ net.sf.anathema.character.points,
+ net.sf.anathema.character.experience

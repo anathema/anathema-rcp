@@ -1,8 +1,10 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes;
 
-import static net.sf.anathema.character.attributes.points.AttributePointCalculator.*;
+import static net.sf.anathema.character.freebies.attributes.AttributePointCalculator.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.points.DummyTraitGroup;
+import net.sf.anathema.character.freebies.attributes.AttributePointCalculator;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.rules.TraitTemplate;
 

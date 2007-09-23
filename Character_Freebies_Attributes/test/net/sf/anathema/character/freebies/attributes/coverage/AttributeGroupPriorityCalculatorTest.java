@@ -1,8 +1,8 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes.coverage;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.attributes.TraitCollectionObjectMother;
-import net.sf.anathema.character.attributes.points.coverage.AttributeGroupPriorityCalculator;
+import net.sf.anathema.character.attributes.points.DummyTraitCollection;
+import net.sf.anathema.character.freebies.attributes.AttributePointCalculator;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;

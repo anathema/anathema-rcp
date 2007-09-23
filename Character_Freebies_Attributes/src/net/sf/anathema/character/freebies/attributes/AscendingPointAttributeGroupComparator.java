@@ -1,6 +1,7 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes;
 
 import java.util.Comparator;
+
 
 public final class AscendingPointAttributeGroupComparator implements Comparator<Dots> {
   @Override

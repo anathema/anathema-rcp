@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes;
+package net.sf.anathema.character.freebies.attributes.coverage;
 
 import net.sf.anathema.character.attributes.points.DummyTraitCollection;
 import net.sf.anathema.character.trait.BasicTrait;

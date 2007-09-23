@@ -1,7 +1,6 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.attributes.points.AttributePointCalculator;
 
 import org.junit.Test;
 
