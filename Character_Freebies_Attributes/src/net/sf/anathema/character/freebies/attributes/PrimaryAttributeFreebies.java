@@ -3,9 +3,10 @@ package net.sf.anathema.character.freebies.attributes;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.freebies.attributes.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 
-public class PrimaryAttributeFreebies extends AbstractExecutableExtension implements IAttributeGroupFreebiesHandler {
+public class PrimaryAttributeFreebies extends AbstractExecutableExtension implements IAttributeGroupFreebies {
 
   private static final String CREDIT_ID = "net.sf.anathema.character.attributes.freebies.primary"; //$NON-NLS-1$
   private final PrioritylessAttributeFreebies prioritylessAttributeFreebies;

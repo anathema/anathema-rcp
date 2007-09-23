@@ -1,7 +1,7 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.assertEquals;
-import net.sf.anathema.character.freebies.attributes.Dots;
+import net.sf.anathema.character.freebies.attributes.calculation.Dots;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.lib.util.Identificate;
 

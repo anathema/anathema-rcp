@@ -15,7 +15,7 @@ import net.sf.anathema.character.core.traitview.SurplusPainter;
 import net.sf.anathema.character.freebies.attributes.PrimaryAttributeFreebies;
 import net.sf.anathema.character.freebies.attributes.SecondaryAttributeFreebies;
 import net.sf.anathema.character.freebies.attributes.TertiaryAttributeFreebies;
-import net.sf.anathema.character.freebies.attributes.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IDisplayTrait;

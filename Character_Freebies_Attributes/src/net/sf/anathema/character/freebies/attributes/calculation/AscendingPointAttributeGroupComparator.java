@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies.attributes;
+package net.sf.anathema.character.freebies.attributes.calculation;
 
 import java.util.Comparator;
 

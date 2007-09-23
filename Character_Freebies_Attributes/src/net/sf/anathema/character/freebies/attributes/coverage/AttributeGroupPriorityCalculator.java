@@ -3,9 +3,9 @@ package net.sf.anathema.character.freebies.attributes.coverage;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import net.sf.anathema.character.freebies.attributes.AttributePointCalculator;
-import net.sf.anathema.character.freebies.attributes.Dots;
-import net.sf.anathema.character.freebies.attributes.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
+import net.sf.anathema.character.freebies.attributes.calculation.Dots;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;

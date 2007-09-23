@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies.attributes;
+package net.sf.anathema.character.freebies.attributes.calculation;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;

@@ -8,6 +8,8 @@ import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
+import net.sf.anathema.character.freebies.attributes.calculation.Dots;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.points.configuration.IPointHandler;
@@ -16,7 +18,7 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 public class FreebiesBonusPointReducer extends AbstractExecutableExtension implements IPointHandler {
 
   private final ICreditManager creditManager;
-  private final IAttributeGroupFreebiesHandler[] freebiesHandlers;
+  private final IAttributeGroupFreebies[] freebiesHandlers;
   private final IModelProvider modelProvider;
 
   public FreebiesBonusPointReducer() {
@@ -26,7 +28,7 @@ public class FreebiesBonusPointReducer extends AbstractExecutableExtension imple
   public FreebiesBonusPointReducer(IModelProvider modelProvider, ICreditManager creditManager) {
     this.modelProvider = modelProvider;
     this.creditManager = creditManager;
-    this.freebiesHandlers = new IAttributeGroupFreebiesHandler[] {
+    this.freebiesHandlers = new IAttributeGroupFreebies[] {
         new PrimaryAttributeFreebies(modelProvider),
         new SecondaryAttributeFreebies(modelProvider),
         new TertiaryAttributeFreebies(modelProvider) };
@@ -39,7 +41,7 @@ public class FreebiesBonusPointReducer extends AbstractExecutableExtension imple
     }
     int favoredSpent = 0;
     int unfavoredSpent = 0;
-    for (IAttributeGroupFreebiesHandler handler : freebiesHandlers) {
+    for (IAttributeGroupFreebies handler : freebiesHandlers) {
       ITraitCollectionModel model = (ITraitCollectionModel) modelProvider.getModel(new ModelIdentifier(
           characterId,
           Attributes.MODEL_ID));
