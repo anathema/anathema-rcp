@@ -6,7 +6,6 @@ import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.core.type.ICharacterType;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
@@ -15,22 +14,16 @@ import net.sf.anathema.character.trait.rules.ITraitTemplate;
 public class AttributesContext implements ITraitCollectionContext {
 
   public static AttributesContext create(ICharacterId characterId, IModelProvider modelProvider) {
-    IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(characterId, modelProvider);
-    return new AttributesContext(modelProvider, characterId, favorizationHandler);
+    return new AttributesContext(modelProvider, characterId);
   }
 
   private final ICharacterId characterId;
   private final IModelProvider modelProvider;
   private final AttributeTemplate template = new AttributeTemplate();
-  private final IFavorizationHandler favorizationHandler;
 
-  public AttributesContext(
-      IModelProvider modelProvider,
-      ICharacterId characterId,
-      IFavorizationHandler favorizationHandler) {
+  public AttributesContext(IModelProvider modelProvider, ICharacterId characterId) {
     this.modelProvider = modelProvider;
     this.characterId = characterId;
-    this.favorizationHandler = favorizationHandler;
   }
 
   @Override
@@ -52,11 +45,6 @@ public class AttributesContext implements ITraitCollectionContext {
     return (ITraitCollectionModel) getModel(Attributes.MODEL_ID);
   }
 
-  @Override
-  public IFavorizationHandler getFavorizationHandler() {
-    return favorizationHandler;
-  }
-  
   @Override
   public TraitGroup[] getTraitGroups() {
     return template.getGroups();

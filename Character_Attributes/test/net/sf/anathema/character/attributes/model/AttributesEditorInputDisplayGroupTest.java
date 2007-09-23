@@ -24,7 +24,7 @@ public class AttributesEditorInputDisplayGroupTest {
     TraitGroup[] traitGroups = new TraitGroup[] { new TraitGroup("group1", "trait1", "trait2"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         new TraitGroup("group2", "trait3", "trait4"), }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     ITraitCollectionContext context = AttributeContextObjectMother.createContext(traitGroups);
-    this.input = new AttributesEditorInput(EasyMock.createNiceMock(IFile.class), null, null, context);
+    this.input = new AttributesEditorInput(EasyMock.createNiceMock(IFile.class), null, null, context, null);
     groups = input.createDisplayGroups();
   }
 

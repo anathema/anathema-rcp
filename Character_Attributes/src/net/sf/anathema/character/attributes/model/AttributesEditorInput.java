@@ -10,6 +10,7 @@ import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
@@ -32,15 +33,18 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
   private final ITraitCollectionContext context;
+  private final IFavorizationHandler favorizationHandler;
 
   public AttributesEditorInput(
       final IFile file,
       ImageDescriptor imageDescriptor,
       IDisplayNameProvider displayNameProvider,
-      final ITraitCollectionContext context) {
+      final ITraitCollectionContext context,
+      final IFavorizationHandler favorizationHandler) {
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
     this.context = context;
+    this.favorizationHandler = favorizationHandler;
   }
 
   @Override
@@ -64,7 +68,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     return ArrayUtilities.transform(
         context.getTraitGroups(),
         IDisplayTraitGroup.class,
-        new TraitGroupToDisplayTraitGroupTransformer(context));
+        new TraitGroupToDisplayTraitGroupTransformer(context, favorizationHandler));
   }
 
   public IFolder getCharacterFolder() {
