@@ -68,7 +68,7 @@
                id="Character_Freebies.toolbar">
             <command
                   commandId="net.sf.anathema.character.freebies.toggle.surplusmarking"
-                  label="%toggle.surplusmarking.command.toolbar.label"
+                  icon="icons/highlight.gif"
                   style="toggle"
                   tooltip="%toggle.surplusmarking.command.tooltip">
                <visibleWhen>
