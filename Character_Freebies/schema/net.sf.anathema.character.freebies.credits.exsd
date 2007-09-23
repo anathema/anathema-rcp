@@ -13,7 +13,8 @@
    <element name="extension">
       <complexType>
          <sequence>
-            <element ref="creditList" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="creditList" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="creditProvider" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -67,6 +68,28 @@
             </annotation>
          </attribute>
          <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="creditProvider">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.freebies.configuration.ICreditProvider"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
                   

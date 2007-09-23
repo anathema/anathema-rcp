@@ -19,6 +19,7 @@ public class TemplateProviderObjectMother {
   public static ICharacterTemplate createTemplate(String templateId) {
     ICharacterTemplate template = EasyMock.createMock(ICharacterTemplate.class);
     EasyMock.expect(template.getId()).andReturn(templateId).anyTimes();
+    EasyMock.replay(template);
     return template;
   }
 
