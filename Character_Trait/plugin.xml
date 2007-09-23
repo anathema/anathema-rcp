@@ -23,5 +23,19 @@
             type="org.eclipse.ui.IEditorPart">
       </propertyTester>
    </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="activeEditor.is.TraitGroupEditor">
+         <with
+               variable="activeEditor">
+            <test
+                  forcePluginActivation="true"
+                  property="net.sf.anathema.character.isTraitGroupEditor"
+                  value="true">
+            </test>
+         </with>
+      </definition>
+   </extension>
 
 </plugin>
