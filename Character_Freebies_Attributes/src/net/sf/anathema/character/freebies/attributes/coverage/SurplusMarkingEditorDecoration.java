@@ -57,8 +57,6 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
       }
     });
     viewsByType.put(trait.getTraitType(), view);
-    // TODO Wieder rausnehmen, wenn die Action wiederbelebt wurde
-    markBonusPoints(true);
   }
 
   private String determineCreditId(PriorityGroup priority) {
