@@ -1,8 +1,8 @@
-package net.sf.anathema.character.sheet.util;
+package net.sf.anathema.character.sheet.content;
 
 import com.lowagie.text.pdf.PdfContentByte;
 
-import static net.sf.anathema.character.sheet.util.IPdfBoxEncoder.*;
+import static net.sf.anathema.character.sheet.content.IPdfBoxEncoder.*;
 
 public class BoxEncodingUtils {
 

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.util;
+package net.sf.anathema.character.sheet.content;
 
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.character.sheet.elements.Position;

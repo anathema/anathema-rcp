@@ -4,6 +4,10 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 import net.disy.commons.core.io.IOUtilities;
+import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.sheet.content.ICharacter;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -18,11 +22,14 @@ public class CharacterSheetHandler extends AbstractHandler {
     IEditorPart editorPart = HandlerUtil.getActiveEditor(event);
     OutputStream outputStream = null;
     try {
+      IModelIdentifier identifier = (IModelIdentifier) editorPart.getEditorInput().getAdapter(IModelIdentifier.class);
+      ICharacterId characterId = identifier.getCharacterId();
+      ICharacter character = new Character(characterId, ModelCache.getInstance());
       outputStream = new FileOutputStream("C:/test.pdf");
-      new Printer().printReport(outputStream);
+      new CharacterSheetPrinter().printReport(character, outputStream);
     }
     catch (Exception e) {
-      
+
     }
     finally {
       IOUtilities.close(outputStream);

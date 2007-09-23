@@ -1,9 +1,9 @@
-package net.sf.anathema.character.sheet.util;
+package net.sf.anathema.character.sheet.content;
 
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.pageformat.IVoidStateFormatConstants;
 
-import static net.sf.anathema.character.sheet.util.IPdfBoxEncoder.*;
+import static net.sf.anathema.character.sheet.content.IPdfBoxEncoder.*;
 
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;

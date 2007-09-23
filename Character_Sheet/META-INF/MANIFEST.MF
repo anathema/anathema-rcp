@@ -1,11 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Sheet Plug-in
-Bundle-SymbolicName: Character_Sheet;singleton:=true
+Bundle-Name: %net.sf.anathema.character.sheet.Bundle-Name
+Bundle-SymbolicName: net.sf.anathema.character.sheet;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.basics.lib,
  org.eclipse.core.runtime,
  org.eclipse.ui,
- net.sf.anathema.character.core
+ net.sf.anathema.character.core,
+ org.eclipse.core.resources,
+ net.sf.anathema.character.description
 Bundle-ClassPath: lib/itext-1.4.jar,
  .
+Bundle-Localization: plugin

@@ -4,20 +4,40 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="menu:org.eclipse.ui.main.menu?before=viewList">
-         <command
-               commandId="net.sf.anathema.character.sheet"
-               label="sheet">
-         </command>
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=net.sf.anathema.rcp.toolbar.save">
+         <toolbar
+               id="Character_Sheet.toolbar">
+            <command
+                  commandId="net.sf.anathema.character.sheet"
+                  icon="icons/pdf_icon.png"
+                  tooltip="%toolbar.character.sheet.command.tooltip">
+               <visibleWhen>
+                  <reference
+                        definitionId="activeEditor.is.CharacterEditor">
+                  </reference>
+               </visibleWhen>
+            </command>
+         </toolbar>
       </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="net.sf.anathema.character.sheet.print.CharacterSheetHandler"
             id="net.sf.anathema.character.sheet"
-            name="Character Sheet">
+            name="%command.character.sheet.name">
       </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="net.sf.anathema.character.sheet.print.CharacterSheetHandler"
+            commandId="net.sf.anathema.character.sheet">
+         <activeWhen>
+            <reference
+                  definitionId="activeEditor.is.CharacterEditor">
+            </reference>
+         </activeWhen>
+      </handler>
    </extension>
 
 </plugin>

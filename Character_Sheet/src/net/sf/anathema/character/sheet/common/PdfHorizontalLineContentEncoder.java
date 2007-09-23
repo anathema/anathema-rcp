@@ -1,9 +1,9 @@
 package net.sf.anathema.character.sheet.common;
 
-import net.sf.anathema.character.sheet.ICharacter;
+import net.sf.anathema.character.sheet.content.HorizontalLineListEncoder;
+import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.pageformat.IVoidStateFormatConstants;
-import net.sf.anathema.character.sheet.util.HorizontalLineListEncoder;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
