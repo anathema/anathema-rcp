@@ -13,5 +13,15 @@
             resourceUrl="icons/BorderBonusButton16.png">
       </image>
    </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="net.sf.anathema.character.trait.groupeditor.internal.IsTraitGroupEditorTester"
+            id="activeEditor.is.TraitGroupEditor"
+            namespace="net.sf.anathema.character"
+            properties="isTraitGroupEditor"
+            type="org.eclipse.ui.IEditorPart">
+      </propertyTester>
+   </extension>
 
 </plugin>

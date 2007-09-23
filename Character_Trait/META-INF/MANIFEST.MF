@@ -12,7 +12,8 @@ Require-Bundle: net.sf.anathema.character.core,
  org.eclipse.core.resources,
  org.eclipse.swt,
  net.sf.anathema.basics.jface,
- net.sf.anathema.basics.eclipse
+ net.sf.anathema.basics.eclipse,
+ org.eclipse.core.expressions
 Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.collection,
  net.sf.anathema.character.trait.group,

@@ -73,7 +73,7 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
     throw new UnreachableCodeReachedException();
   }
 
-  public void markBonusPoints(boolean enabled) {
+  private void markBonusPoints(boolean enabled) {
     this.mark = enabled;
     calculateCoverage();
     for (IIntValueView display : viewsByType.values()) {
@@ -96,5 +96,9 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
     int credit = creditByPriority.get(priority);
     PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
     return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
+  }
+
+  public void toggleMarkBonusPoints() {
+    markBonusPoints(!mark);
   }
 }
