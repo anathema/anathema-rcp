@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?before=viewList">
+         <command
+               commandId="net.sf.anathema.character.sheet"
+               label="sheet">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="net.sf.anathema.character.sheet.print.CharacterSheetHandler"
+            id="net.sf.anathema.character.sheet"
+            name="Character Sheet">
+      </command>
+   </extension>
+
+</plugin>
