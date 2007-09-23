@@ -1,6 +1,7 @@
 package net.sf.anathema.character.attributes.view;
 
 import net.sf.anathema.character.attributes.AttributesPlugin;
+import net.sf.anathema.character.trait.groupeditor.SurplusMarkingEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.TraitGroupEditor;
 
 import org.eclipse.jface.action.Action;
@@ -23,6 +24,6 @@ public class MarkBonusPointsAction extends Action {
 
   @Override
   public void run() {
-    editor.markBonusPoints(isChecked());
+    editor.getDecoration(SurplusMarkingEditorDecoration.class).markBonusPoints(isChecked());
   }
 }
