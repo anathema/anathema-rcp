@@ -10,7 +10,7 @@ public class AttributePersisterTest {
 
   @Test
   public void startValuesForNewAttributes() throws Exception {
-    ITraitCollectionModel attributes = new AttributesPersister().createNew(new AttributeTemplate());
+    ITraitCollectionModel attributes = new AttributesPersister().createNew(new AttributeTemplate(0));
     for (IBasicTrait trait : attributes.getTraits()) {
       assertEquals(1, trait.getCreationModel().getValue());
     }

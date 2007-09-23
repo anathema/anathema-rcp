@@ -9,16 +9,17 @@ public class AttributeFavorizationHandler extends AbstractTraitCollectionFavoriz
 
   private final ICharacterId characterId;
   private final IModelProvider modelProvider;
+  private final AttributeTemplate template;
 
-  public AttributeFavorizationHandler(ICharacterId characterId, IModelProvider modelProvider) {
+  public AttributeFavorizationHandler(ICharacterId characterId, AttributeTemplate template, IModelProvider modelProvider) {
     this.characterId = characterId;
+    this.template = template;
     this.modelProvider = modelProvider;
   }
 
   @Override
   protected int getFavoredCount() {
-    // TODO Lunars wieder favorisierbar machen
-    return 0;
+    return template.getFavorizationCount();
   }
 
   @Override

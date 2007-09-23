@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import net.sf.anathema.character.attributes.model.AttributeTemplate;
+import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
@@ -26,7 +26,7 @@ public class PrioritylessAttributeFreebies {
   }
 
   public int getPoints(ICharacterId id, int credit) {
-    TraitGroup[] groups = new AttributeTemplate().getGroups();
+    TraitGroup[] groups = new AttributeGroupConfiguration().getGroups();
     ModelIdentifier modelIdentifier = new ModelIdentifier(id, Attributes.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(modelIdentifier);
     AttributePointCalculator calculator = new AttributePointCalculator(attributes, groups);

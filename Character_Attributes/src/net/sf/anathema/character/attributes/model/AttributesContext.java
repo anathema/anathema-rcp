@@ -19,7 +19,7 @@ public class AttributesContext implements ITraitCollectionContext {
 
   private final ICharacterId characterId;
   private final IModelProvider modelProvider;
-  private final AttributeTemplate template = new AttributeTemplate();
+  private final AttributeGroupConfiguration groups = new AttributeGroupConfiguration();
 
   public AttributesContext(IModelProvider modelProvider, ICharacterId characterId) {
     this.modelProvider = modelProvider;
@@ -28,7 +28,7 @@ public class AttributesContext implements ITraitCollectionContext {
 
   @Override
   public ITraitTemplate getTraitTemplate() {
-    return template.getTraitTemplate();
+    return groups.getTraitTemplate();
   }
 
   @Override
@@ -47,7 +47,7 @@ public class AttributesContext implements ITraitCollectionContext {
 
   @Override
   public TraitGroup[] getTraitGroups() {
-    return template.getGroups();
+    return groups.getGroups();
   }
 
   @Override

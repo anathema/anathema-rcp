@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import net.sf.anathema.character.attributes.model.AttributeTemplate;
+import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
@@ -41,7 +41,9 @@ public class PrioritylessAttributeFreebiesTest {
 
   @Test
   public void spentFreebiesFitIntoCredits() throws Exception {
-    ITraitCollectionModel attributes = Attributes.create(new AttributeTemplate().getGroups(), new TraitTemplate());
+    ITraitCollectionModel attributes = Attributes.create(
+        new AttributeGroupConfiguration().getGroups(),
+        new TraitTemplate());
     attributes.getTraits()[0].getCreationModel().setValue(attributeValue);
     IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes);
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(

@@ -1,7 +1,7 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.attributes.model.AttributeTemplate;
+import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.core.model.ICharacterId;
@@ -45,7 +45,7 @@ public class FreebiesBonusPointReducer extends AbstractExecutableExtension imple
       ITraitCollectionModel model = (ITraitCollectionModel) modelProvider.getModel(new ModelIdentifier(
           characterId,
           Attributes.MODEL_ID));
-      Dots dots = new AttributePointCalculator(model, new AttributeTemplate().getGroups()).dotsFor(handler.getPriority());
+      Dots dots = new AttributePointCalculator(model, new AttributeGroupConfiguration().getGroups()).dotsFor(handler.getPriority());
       int credit = creditManager.getCredit(characterId, handler.getCreditId());
       favoredSpent += dots.favoredSpentAsPartOfCredit(credit);
       unfavoredSpent += dots.unfavoredSpentAsPartOfCredit(credit);

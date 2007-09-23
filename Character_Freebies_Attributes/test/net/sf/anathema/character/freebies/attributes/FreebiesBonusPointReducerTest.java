@@ -1,11 +1,10 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.attributes.model.AttributeTemplate;
+import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.freebies.attributes.FreebiesBonusPointReducer;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -37,7 +36,7 @@ public class FreebiesBonusPointReducerTest {
 
   @Before
   public void createReducer() throws Exception {
-    this.attributes = Attributes.create(new AttributeTemplate().getGroups(), new TraitTemplate());
+    this.attributes = Attributes.create(new AttributeGroupConfiguration().getGroups(), new TraitTemplate());
     this.characterId = EasyMock.createMock(ICharacterId.class);
     IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
     this.reducer = new FreebiesBonusPointReducer(modelProvider, new DummyCreditManager());
