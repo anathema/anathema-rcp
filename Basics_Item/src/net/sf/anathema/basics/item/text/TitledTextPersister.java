@@ -64,7 +64,6 @@ public class TitledTextPersister implements ISingleFileItemPersister<ITitledText
     return data;
   }
 
-  @Override
   public ITitledText createNew() {
     return new TitledText();
   }

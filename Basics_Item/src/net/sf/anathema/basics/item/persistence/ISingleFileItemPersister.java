@@ -13,6 +13,4 @@ public interface ISingleFileItemPersister<D extends IItem> {
   public abstract void save(OutputStream stream, D item) throws IOException, PersistenceException;
 
   public abstract D load(Document document) throws PersistenceException;
-
-  public abstract D createNew();
 }
