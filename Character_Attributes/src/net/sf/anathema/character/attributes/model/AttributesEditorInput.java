@@ -14,7 +14,7 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
-import net.sf.anathema.character.trait.groupeditor.ISurplusIntViewImageProvider;
+import net.sf.anathema.character.trait.groupeditor.IIntViewImageProvider;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
@@ -138,8 +138,8 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   }
 
   @Override
-  public ISurplusIntViewImageProvider getImageProvider() {
-    return new SurplusIntViewImageProvider(context.getActiveImageId());
+  public IIntViewImageProvider getImageProvider() {
+    return new IntViewImageProvider(context.getActiveImageId());
   }
 
   @Override

@@ -15,7 +15,7 @@ public interface ITraitGroupEditorInput {
 
   public String getTraitLabel(IIdentificate traitType);
 
-  public ISurplusIntViewImageProvider getImageProvider();
+  public IIntViewImageProvider getImageProvider();
 
   public int getPointsCoveredByCredit(IIdentificate traitType);
 }

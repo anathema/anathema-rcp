@@ -19,7 +19,7 @@ public class TraitViewFactory {
   private final Image passiveImage;
   private final Image activeImage;
 
-  public TraitViewFactory(Composite parent, ISurplusIntViewImageProvider provider) {
+  public TraitViewFactory(Composite parent, IIntViewImageProvider provider) {
     this.parent = parent;
     this.passiveImage = provider.createPassiveImage();
     this.activeImage = provider.createActiveImage();
