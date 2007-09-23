@@ -47,7 +47,7 @@ public class MarkerDecoratedImageProvider implements IDisposable {
       return decoratedImage;
     }
     catch (CoreException e) {
-      new Logger("net.sf.anathema.basics.jface").error("Error searching markers", e); //$NON-NLS-1$
+      new Logger("net.sf.anathema.basics.jface").error(Messages.MarkerDecoratedImageProvider_ErrorMessageMarkerSearch, e); //$NON-NLS-1$
       return basicImage;
     }
   }

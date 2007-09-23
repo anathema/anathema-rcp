@@ -29,8 +29,7 @@ public class TraitGroupEditorDecorationFactory {
           decorations.add(element.getAttributeAsObject("class", ITraitGroupEditorDecoration.class)); //$NON-NLS-1$
         }
         catch (ExtensionException e) {
-          String message = "Error occured loading trait group editor decoration.s";
-          new Logger("net.sf.anathema.character.trait").error(message, e); //$NON-NLS-1$
+          new Logger("net.sf.anathema.character.trait").error(Messages.TraitGroupEditorDecorationFactory_ErrorMessageLoadingDecoration, e); //$NON-NLS-1$
         }
       }
     }
