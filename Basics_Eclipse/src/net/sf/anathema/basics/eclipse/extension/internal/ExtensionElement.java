@@ -63,6 +63,10 @@ public class ExtensionElement implements IExtensionElement {
   public int getIntegerAttribute(String name) {
     return Integer.valueOf(eclipseElement.getAttribute(name));
   }
+  
+  public boolean hasAttribute(String attributeName) {
+    return eclipseElement.getAttribute(attributeName) != null;
+  }
 
   public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException {
     try {

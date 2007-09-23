@@ -6,11 +6,6 @@ public class AttributeTemplate extends AttributeGroupConfiguration implements IM
   
   private final int favorizationCount;
   
-  // TODO NOW Muss wech und ran an den echten
-  public AttributeTemplate() {
-    this(2);
-  }
-
   public AttributeTemplate(int favorizationCount) {
     this.favorizationCount = favorizationCount;
   }

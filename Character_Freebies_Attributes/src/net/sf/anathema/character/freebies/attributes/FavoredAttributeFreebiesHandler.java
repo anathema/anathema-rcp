@@ -1,7 +1,7 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.attributes.model.AttributeTemplate;
+import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
@@ -37,7 +37,9 @@ public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension
   public int getPoints(ICharacterId id, int credit) {
     IModelIdentifier identifier = new ModelIdentifier(id, Attributes.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(identifier);
-    AttributePointCalculator calculator = new AttributePointCalculator(attributes, new AttributeTemplate().getGroups());
+    AttributePointCalculator calculator = new AttributePointCalculator(
+        attributes,
+        new AttributeGroupConfiguration().getGroups());
     int freeFavored = 0;
     for (IAttributeGroupFreebies handler : groupHandler) {
       int groupCredit = creditManager.getCredit(id, handler.getCreditId());

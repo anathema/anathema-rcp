@@ -73,4 +73,9 @@ public class FakeExtensionElement implements IExtensionElement {
   public void addElement(String tag, IExtensionElement element) {
     children.add(tag, element);
   }
+
+  @Override
+  public boolean hasAttribute(String attributeName) {
+    return true;
+  }
 }

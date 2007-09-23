@@ -12,6 +12,7 @@ import net.sf.anathema.character.core.model.internal.CharacterId;
 import net.sf.anathema.character.core.model.internal.Messages;
 import net.sf.anathema.character.core.repository.internal.CharacterModelViewElement;
 import net.sf.anathema.character.core.repository.internal.ModelDisplayConfiguration;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.core.template.ICharacterTemplate;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
@@ -32,7 +33,8 @@ public class ModelExtensionPoint {
     }
     try {
       IModelFactory factory = extensionElement.getAttributeAsObject(ATTRIB_MODEL_FACTORY, IModelFactory.class);
-      IModel model = factory.create(getFile(identifier, extensionElement));
+      ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(identifier.getCharacterId());
+      IModel model = factory.create(getFile(identifier, extensionElement), template);
       model.setClean();
       return model;
     }

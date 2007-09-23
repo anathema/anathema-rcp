@@ -65,5 +65,12 @@
             resourceUrl="icons/Ball_Lunar_16.png">
       </image>
    </extension>
+   <extension
+         point="net.sf.anathema.character.attributes.templates">
+      <attributeTemplate
+            favorizationCount="1"
+            characterTemplateId="net.sf.anathema.charactertype.pactlunar">
+      </attributeTemplate>
+   </extension>
 
 </plugin>

@@ -7,4 +7,5 @@ Bundle-Localization: plugin
 Require-Bundle: net.sf.anathema.character.freebies,
  net.sf.anathema.character.core,
  net.sf.anathema.basics.repository,
- org.eclipse.ui
+ org.eclipse.ui,
+ net.sf.anathema.character.attributes
