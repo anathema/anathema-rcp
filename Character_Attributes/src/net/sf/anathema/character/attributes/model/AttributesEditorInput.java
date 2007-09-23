@@ -7,6 +7,7 @@ import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
@@ -32,7 +33,6 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
   private final ITraitCollectionContext context;
-  //private final Map<PriorityGroup, Integer> creditByPriority = new HashMap<PriorityGroup, Integer>();
 
   public AttributesEditorInput(
       final IFile file,
@@ -42,11 +42,6 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
     this.context = context;
-//    for (PriorityGroup group : PriorityGroup.values()) {
-//      String creditId = determineCreditId(group);
-//      int credit = new CreditManager().getCredit(getModelIdentifier().getCharacterId(), creditId);
-//      creditByPriority.put(group, credit);
-//    }
 //    ModelCache.getInstance().getModel(getModelIdentifier()).addChangeListener(new IChangeListener() {
 //
 //      @Override
@@ -80,18 +75,6 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
 //      // TODO Auto-generated catch block
 //      e.printStackTrace();
 //    }
-//  }
-//
-//  private String determineCreditId(PriorityGroup priority) {
-//    switch (priority) {
-//      case Primary:
-//        return new PrimaryAttributeFreebies().getCreditId();
-//      case Secondary:
-//        return new SecondaryAttributeFreebies().getCreditId();
-//      case Tertiary:
-//        return new TertiaryAttributeFreebies().getCreditId();
-//    }
-//    throw new UnreachableCodeReachedException();
 //  }
 
   @Override
@@ -142,18 +125,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     return new IntViewImageProvider(context.getActiveImageId());
   }
 
-  @Override
-  public int getPointsCoveredByCredit(IIdentificate traitType) {
-    return 0;
-    //TODO Hängt von Freebies ab und das wollen wir doch gar nicht hier haben
-//    ITraitGroup traitGroup = findTraitGroup(traitType);
-//    PriorityGroup priority = new AttributeGroupPriorityCalculator(context).getPriority(traitGroup);
-//    int credit = creditByPriority.get(priority);
-//    PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
-//    return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
-  }
-
-  private ITraitGroup findTraitGroup(IIdentificate traitType) {
+  public ITraitGroup findTraitGroup(IIdentificate traitType) {
     for (ITraitGroup group : context.getTraitGroups()) {
       if (ArrayUtilities.contains(group.getTraitIds(), traitType.getId())) {
         return group;
@@ -163,5 +135,10 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     throw new IllegalArgumentException(MessageFormat.format(
         Messages.AttributesEditorInput_GroupLessTraitMessage,
         arguments));
+  }
+
+  @Override
+  public ICharacterId getCharacterId() {
+    return getModelIdentifier().getCharacterId();
   }
 }

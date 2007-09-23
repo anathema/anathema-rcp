@@ -35,7 +35,7 @@ public class PointCoverageCalculator {
         return firstFavored ? -1 : 1;
       }
     });
-    CoverageCalculation calculation = new CoverageCalculation(context);
+    CoverageCalculation calculation = new CoverageCalculation(context.getCollection());
     int creditLeft = credit;
     for (String id : ids) {
       int value = collection.getTrait(id).getCreationModel().getValue();

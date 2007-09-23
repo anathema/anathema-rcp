@@ -1,6 +1,8 @@
 package net.sf.anathema.character.trait.groupeditor;
 
+import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.lib.util.IIdentificate;
 
 import org.eclipse.core.resources.IFolder;
@@ -11,11 +13,13 @@ public interface ITraitGroupEditorInput {
 
   public IFolder getCharacterFolder();
 
+  public ICharacterId getCharacterId();
+
   public String getGroupLabel(IDisplayTraitGroup group);
 
   public String getTraitLabel(IIdentificate traitType);
 
   public IIntViewImageProvider getImageProvider();
 
-  public int getPointsCoveredByCredit(IIdentificate traitType);
+  public ITraitGroup findTraitGroup(IIdentificate traitType);
 }

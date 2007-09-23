@@ -14,6 +14,11 @@ import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
 public class AttributesContext implements ITraitCollectionContext {
 
+  public static AttributesContext create(ICharacterId characterId, IModelProvider modelProvider) {
+    IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(characterId, modelProvider);
+    return new AttributesContext(modelProvider, characterId, favorizationHandler);
+  }
+
   private final ICharacterId characterId;
   private final IModelProvider modelProvider;
   private final AttributeTemplate template = new AttributeTemplate();

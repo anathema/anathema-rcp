@@ -3,16 +3,16 @@ package net.sf.anathema.character.attributes.points.coverage;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class CoverageCalculation implements ICoverageCalculation {
 
   private final Map<String, Integer> results = new HashMap<String, Integer>();
-  private final ITraitCollectionContext context;
+  private final ITraitCollectionModel collection;
 
-  public CoverageCalculation(ITraitCollectionContext context) {
-    this.context = context;
+  public CoverageCalculation(ITraitCollectionModel collection) {
+    this.collection = collection;
   }
 
   @Override
@@ -26,7 +26,6 @@ public class CoverageCalculation implements ICoverageCalculation {
 
   @Override
   public int getPointsCovered(IIdentificate identificate) {
-    return context.getCollection().getTrait(identificate.getId()).getCreationModel().getValue()
-        - getPointsNotCovered(identificate);
+    return collection.getTrait(identificate.getId()).getCreationModel().getValue() - getPointsNotCovered(identificate);
   }
 }

@@ -1,6 +1,6 @@
 package net.sf.anathema.character.attributes.points;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.AttributeContextObjectMother;
 import net.sf.anathema.character.attributes.points.coverage.ICoverageCalculation;
 import net.sf.anathema.character.attributes.points.coverage.PointCoverageCalculator;

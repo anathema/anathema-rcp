@@ -35,5 +35,11 @@
             handlerClass="net.sf.anathema.character.freebies.attributes.FavoredAttributeBonusPointReducer">
       </bonusPointCalculator>
    </extension>
+   <extension
+         point="net.sf.anathema.editor.decoration.trait">
+      <decoration
+            class="net.sf.anathema.character.freebies.attributes.coverage.SurplusMarkingEditorDecoration">
+      </decoration>
+   </extension>
 
 </plugin>

@@ -1,6 +1,6 @@
 package net.sf.anathema.character.attributes.points;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.TraitCollectionObjectMother;
 import net.sf.anathema.character.attributes.points.coverage.AttributeGroupPriorityCalculator;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;

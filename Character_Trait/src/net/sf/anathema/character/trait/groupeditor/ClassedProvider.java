@@ -1,6 +1,7 @@
 package net.sf.anathema.character.trait.groupeditor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -21,5 +22,11 @@ public class ClassedProvider <B> implements Iterable<B>{
   @Override
   public Iterator<B> iterator() {
     return new ArrayList<B>(instancesByClass.values()).iterator();
+  }
+
+  public void addAll(Collection<B> objects) {
+    for (B object : objects) {
+      add(object);
+    }
   }
 }

@@ -25,7 +25,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
   @Override
   public void createPartControl(Composite parent) {
-    decorations.add(new SurplusMarkingEditorDecoration());
+    decorations.addAll(new TraitGroupEditorDecorationFactory().create());
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
     TraitViewFactory factory = new TraitViewFactory(parent, editorInput.getImageProvider());
     parent.setLayout(new GridLayout(3, false));
