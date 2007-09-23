@@ -4,5 +4,5 @@ import org.eclipse.core.runtime.IExecutableExtension;
 
 public interface ICreditProvider extends IExecutableExtension {
 
-  public int getCredit(String templateId);
+  public Integer getCredit(String templateId);
 }

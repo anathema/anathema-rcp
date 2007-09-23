@@ -4,7 +4,7 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 
-public class AttributeTemplateProvider {
+public class AttributeTemplateProvider implements IAttributeTemplateProvider {
 
   private static final String EXTENSION_ID = "net.sf.anathema.character.attributes.templates"; //$NON-NLS-1$
   private static final String ATTRIB_CHARACTER_TEMPLATE_ID = "characterTemplateId"; //$NON-NLS-1$
