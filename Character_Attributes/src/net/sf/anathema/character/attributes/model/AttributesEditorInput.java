@@ -29,7 +29,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
 
-  private static final String UNSPENT_FREEBIES_MARKER = "net.sf.anathema.markers.unspent.attribute.freebies"; //$NON-NLS-1$
   private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
   private final ITraitCollectionContext context;
@@ -38,44 +37,11 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
       final IFile file,
       ImageDescriptor imageDescriptor,
       IDisplayNameProvider displayNameProvider,
-      final ITraitCollectionContext context) throws CoreException {
+      final ITraitCollectionContext context) {
     super(file, imageDescriptor);
     this.displayNameProvider = displayNameProvider;
     this.context = context;
-//    ModelCache.getInstance().getModel(getModelIdentifier()).addChangeListener(new IChangeListener() {
-//
-//      @Override
-//      public void stateChanged() {
-//        markFile();
-//      }
-//    });
-//    markFile();
   }
-
-//  private void markFile() {
-//    IFile file = getFile();
-//    if (!file.exists() ) {
-//      return;
-//    }
-//    PriorityGroup priority = PriorityGroup.Primary;
-//    Dots dots = new AttributePointCalculator(context.getCollection(), context.getTraitGroups()).dotsFor(priority);
-//    boolean warning = creditByPriority.get(priority) > dots.spentTotally();
-//    try {
-//      if (warning) {
-//        IMarker[] markers = file.findMarkers(UNSPENT_FREEBIES_MARKER, true, IResource.DEPTH_ZERO);
-//        if (markers.length == 0) {
-//          file.createMarker(UNSPENT_FREEBIES_MARKER);
-//        }
-//      }
-//      else {
-//        file.deleteMarkers(UNSPENT_FREEBIES_MARKER, true, IResource.DEPTH_ZERO);
-//      }
-//    }
-//    catch (CoreException e) {
-//      // TODO Auto-generated catch block
-//      e.printStackTrace();
-//    }
-//  }
 
   @Override
   public ITraitCollectionModel getItem() {
