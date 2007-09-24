@@ -11,6 +11,7 @@ import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.model.ICharacterId;
@@ -28,7 +29,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   private static final String ATTRIB_TEMPLATE_ID = "templateId"; //$NON-NLS-1$
   private static final String ATTRIB_UNNAMED_LABEL = "unnamedLabel"; //$NON-NLS-1$
   private static final String EXTENSION_ID = "net.sf.anathema.character.templates"; //$NON-NLS-1$
-  private static final Logger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
+  private static final ILogger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
   private List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
   
   public CharacterTemplateProvider() {

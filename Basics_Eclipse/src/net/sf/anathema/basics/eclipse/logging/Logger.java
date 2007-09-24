@@ -6,7 +6,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.osgi.framework.Bundle;
 
-public class Logger {
+public class Logger implements ILogger {
 
   private final String bundleName;
   

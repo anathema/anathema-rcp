@@ -1,5 +1,13 @@
 package net.sf.anathema.character.sheet.pdf;
 
+import java.text.MessageFormat;
+
+import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
+import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.basics.eclipse.logging.ILogger;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.content.ICharacter;
@@ -7,13 +15,50 @@ import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 
 public class RegisteredContentEncoderProvider implements IContentEncoderProvider {
 
+  private static final String ATTRIB_CLASS = "class"; //$NON-NLS-1$
+  private static final String ATTRIB_FIELD_ID = "fieldId"; //$NON-NLS-1$
+  private static final String EXTENSION_ID = "net.sf.anathema.character.sheet.encoder"; //$NON-NLS-1$
+  private final IPluginExtension[] extensions;
+  private final ILogger logger;
+
+  public RegisteredContentEncoderProvider() {
+    this(new Logger("net.sf.anathema.character.sheet"), new EclipseExtensionProvider().getExtensions(EXTENSION_ID)); //$NON-NLS-1$
+  }
+
+  public RegisteredContentEncoderProvider(ILogger logger, IPluginExtension... extensions) {
+    this.logger = logger;
+    this.extensions = extensions;
+  }
+
   @Override
   public IPdfContentBoxEncoder getContentEncoder(String encoderName, ICharacter character) {
+    for (IPluginExtension extension : extensions) {
+      for (IExtensionElement element : extension.getElements()) {
+        String fieldId = element.getAttribute(ATTRIB_FIELD_ID);
+        if (fieldId.equals(encoderName)) {
+          try {
+            return element.getAttributeAsObject(ATTRIB_CLASS, IPdfContentBoxEncoder.class);
+          }
+          catch (ExtensionException e) {
+            logger.error(MessageFormat.format(
+                Messages.RegisteredContentEncoderProvider_RETRIEVING_ENCODER_ERROR_MESSAGE,
+                new Object[] { encoderName }), e);
+          }
+        }
+      }
+    }
     return null;
   }
 
   @Override
   public IDynamicPdfContentBoxEncoder getDynamicContentEncoder(String encoderName, ICharacter character) {
-    return null;
+    IPdfContentBoxEncoder contentEncoder = getContentEncoder(encoderName, character);
+    if (contentEncoder == null) {
+      return null;
+    }
+    if (contentEncoder instanceof IDynamicPdfContentBoxEncoder) {
+      return (IDynamicPdfContentBoxEncoder) contentEncoder;
+    }
+    return new DefaultHeightDynamicEncoder(contentEncoder);
   }
 }

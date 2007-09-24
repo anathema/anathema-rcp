@@ -9,6 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.template.ICharacterTemplate;
@@ -28,7 +29,7 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
   private static final String TAG_EXPERIENCE_POINT_CALCULATOR = "experiencePointCalculator"; //$NON-NLS-1$
   private static final String TAG_POINT_GROUP = "pointGroup"; //$NON-NLS-1$
   private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.points.configuration"; //$NON-NLS-1$
-  private static final Logger logger = new Logger(PointPluginConstants.PLUGIN_ID);
+  private static final ILogger logger = new Logger(PointPluginConstants.PLUGIN_ID);
 
   public IPointConfiguration[] getExperiencePointConfigurations(
       ICharacterTemplateProvider provider,

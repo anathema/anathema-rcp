@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.item.editor;
 
+import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.plugin.IBasicItemPluginConstants;
@@ -17,7 +18,7 @@ public final class SaveEditorJob extends Job {
   private final Display display;
   private final IPersistableEditorInput< ? > editorInput;
   private final Runnable postSave;
-  private static final Logger logger = new Logger(IBasicItemPluginConstants.PLUGIN_ID);
+  private static final ILogger logger = new Logger(IBasicItemPluginConstants.PLUGIN_ID);
 
   public SaveEditorJob(IPersistableItemEditor editorPart, Display display) {
     this(editorPart.getEditorInput(), new FireDirtyRunnable(editorPart), display);
