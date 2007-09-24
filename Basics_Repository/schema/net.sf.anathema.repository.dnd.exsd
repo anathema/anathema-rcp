@@ -6,7 +6,7 @@
          <meta.schema plugin="net.sf.anathema.basics.repository" id="net.sf.anathema.repository.dnd" name="Repository DND"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         Used to customize drag-and-drop support for view elements.
       </documentation>
    </annotation>
 
@@ -47,7 +47,7 @@
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  Specifies the implementation of net.sf.anathema.basics.repository.IRepositoryDND to use. This class is responsible for setting up all required sources, targets and listeners to properly support drag and drop operations.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="net.sf.anathema.basics.repository.IRepositoryDND"/>
@@ -62,7 +62,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         2.0.0
       </documentation>
    </annotation>
 
@@ -71,7 +71,15 @@
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         [Enter extension point usage example here.]
+         &lt;p&gt;Registers DnD-support for plots.&lt;/p&gt;
+&lt;pre&gt;
+&lt;extension
+         point=&quot;net.sf.anathema.repository.dnd&quot;&gt;
+      &lt;dndFactory
+            class=&quot;net.sf.anathema.campaign.plot.dnd.PlotRepositoryDND&quot;&gt;
+      &lt;/dndFactory&gt;
+   &lt;/extension&gt;
+&lt;/pre&gt;
       </documentation>
    </annotation>
 
@@ -80,7 +88,7 @@
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         [Enter API information here.]
+         
       </documentation>
    </annotation>
 
@@ -89,7 +97,7 @@
          <meta.section type="implementation"/>
       </appInfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         
       </documentation>
    </annotation>
 
