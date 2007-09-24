@@ -40,12 +40,5 @@
          </activeWhen>
       </handler>
    </extension>
-   <extension
-         point="net.sf.anathema.character.sheet.encoder">
-      <encoder
-            class="net.sf.anathema.character.sheet.attributes.AttributesBoxEncoder"
-            fieldId="encoder.attributes">
-      </encoder>
-   </extension>
 
 </plugin>

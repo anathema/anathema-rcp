@@ -23,12 +23,13 @@
 
    <plugins>
       <plugin id="com.ibm.icu"/>
-      <plugin id="com.ibm.icu36.data.update" fragment="true"/>
       <plugin id="net.sf.anathema.basics.eclipse"/>
       <plugin id="net.sf.anathema.basics.item"/>
       <plugin id="net.sf.anathema.basics.jface"/>
       <plugin id="net.sf.anathema.basics.lib"/>
+      <plugin id="net.sf.anathema.basics.pdf"/>
       <plugin id="net.sf.anathema.basics.repository"/>
+      <plugin id="net.sf.anathema.basics.swt"/>
       <plugin id="net.sf.anathema.campaign.core"/>
       <plugin id="net.sf.anathema.campaign.note"/>
       <plugin id="net.sf.anathema.campaign.plot"/>
@@ -37,9 +38,13 @@
       <plugin id="net.sf.anathema.character.description"/>
       <plugin id="net.sf.anathema.character.experience"/>
       <plugin id="net.sf.anathema.character.freebies"/>
+      <plugin id="net.sf.anathema.character.freebies.attributes"/>
       <plugin id="net.sf.anathema.character.points"/>
       <plugin id="net.sf.anathema.character.points.i18n.en" fragment="true"/>
+      <plugin id="net.sf.anathema.character.sheet"/>
+      <plugin id="net.sf.anathema.character.sheet.attributes"/>
       <plugin id="net.sf.anathema.character.trait"/>
+      <plugin id="net.sf.anathema.charactertype.db"/>
       <plugin id="net.sf.anathema.charactertype.lunar"/>
       <plugin id="net.sf.anathema.charactertype.mortal"/>
       <plugin id="net.sf.anathema.charactertype.solar"/>

@@ -5,4 +5,5 @@ Bundle-SymbolicName: net.sf.anathema.character.sheet.attributes
 Bundle-Version: 1.0.0
 Bundle-Localization: plugin
 Require-Bundle: net.sf.anathema.character.sheet,
- net.sf.anathema.character.attributes
+ net.sf.anathema.character.attributes,
+ net.sf.anathema.basics.eclipse

@@ -15,3 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  net.sf.anathema.character.attributes
 Bundle-ClassPath: .
 Bundle-Localization: plugin
+Export-Package: net.sf.anathema.character.sheet.common,
+ net.sf.anathema.character.sheet.content,
+ net.sf.anathema.character.sheet.elements,
+ net.sf.anathema.character.sheet.page
