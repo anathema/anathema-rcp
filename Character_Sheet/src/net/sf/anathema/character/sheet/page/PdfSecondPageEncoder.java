@@ -1,8 +1,8 @@
 package net.sf.anathema.character.sheet.page;
 
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
-import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 import net.sf.anathema.character.sheet.content.PdfBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;

@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.common;
 
-import net.sf.anathema.character.sheet.content.ICharacter;
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
 
 import org.eclipse.core.runtime.IExecutableExtension;

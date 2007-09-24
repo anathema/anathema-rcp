@@ -1,8 +1,10 @@
-package net.sf.anathema.character.sheet.content;
+package net.sf.anathema.character.core.character;
 
 import net.sf.anathema.character.core.model.IModel;
 
-public interface ICharacter {
+
+public interface IModelContainer {
 
   public IModel getModel(String modelId);
+
 }

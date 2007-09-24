@@ -8,9 +8,9 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
-import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 
 public class RegisteredContentEncoderProvider implements IContentEncoderProvider {
@@ -31,7 +31,7 @@ public class RegisteredContentEncoderProvider implements IContentEncoderProvider
   }
 
   @Override
-  public IPdfContentBoxEncoder getContentEncoder(String encoderName, ICharacter character) {
+  public IPdfContentBoxEncoder getContentEncoder(String encoderName, IModelContainer character) {
     for (IPluginExtension extension : extensions) {
       for (IExtensionElement element : extension.getElements()) {
         String fieldId = element.getAttribute(ATTRIB_FIELD_ID);
@@ -51,7 +51,7 @@ public class RegisteredContentEncoderProvider implements IContentEncoderProvider
   }
 
   @Override
-  public IDynamicPdfContentBoxEncoder getDynamicContentEncoder(String encoderName, ICharacter character) {
+  public IDynamicPdfContentBoxEncoder getDynamicContentEncoder(String encoderName, IModelContainer character) {
     IPdfContentBoxEncoder contentEncoder = getContentEncoder(encoderName, character);
     if (contentEncoder == null) {
       return null;

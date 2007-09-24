@@ -22,7 +22,7 @@ public class CharacterTypeFinderTest {
         template);
     ICharacterType characterType = createCharacterType("typeId"); //$NON-NLS-1$
     ICharacterTypeProvider typeProvider = createProviderWithType(characterType);
-    CharacterTypeFinder typeFinder = new CharacterTypeFinder(templateProvider, typeProvider);
+    ICharacterTypeFinder typeFinder = new CharacterTypeFinder(templateProvider, typeProvider);
     assertSame(characterType, typeFinder.getCharacterType(characterId));
   }
 }

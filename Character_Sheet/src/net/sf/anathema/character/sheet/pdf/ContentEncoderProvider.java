@@ -1,9 +1,9 @@
 package net.sf.anathema.character.sheet.pdf;
 
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.PdfHorizontalLineContentEncoder;
-import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 
 public class ContentEncoderProvider implements IContentEncoderProvider {
@@ -15,7 +15,7 @@ public class ContentEncoderProvider implements IContentEncoderProvider {
   }
 
   @Override
-  public IPdfContentBoxEncoder getContentEncoder(String encoderName, ICharacter character) {
+  public IPdfContentBoxEncoder getContentEncoder(String encoderName, IModelContainer character) {
     IPdfContentBoxEncoder registeredEncoder = registeredEncoders.getContentEncoder(encoderName, character);
     if (registeredEncoder != null) {
       return registeredEncoder;
@@ -24,7 +24,7 @@ public class ContentEncoderProvider implements IContentEncoderProvider {
   }
 
   @Override
-  public IDynamicPdfContentBoxEncoder getDynamicContentEncoder(final String encoderName, ICharacter character) {
+  public IDynamicPdfContentBoxEncoder getDynamicContentEncoder(final String encoderName, IModelContainer character) {
     IDynamicPdfContentBoxEncoder registeredEncoder = registeredEncoders.getDynamicContentEncoder(encoderName, character);
     if (registeredEncoder != null) {
       return registeredEncoder;

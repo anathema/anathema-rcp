@@ -1,8 +1,11 @@
 package net.sf.anathema.character.attributes.model;
 
+import net.sf.anathema.character.core.character.CharacterTypeProvider;
+import net.sf.anathema.character.core.character.ICharacterTypeProvider;
+import net.sf.anathema.character.core.character.IModelContainer;
+import net.sf.anathema.character.core.character.ModelContainer;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.core.type.ICharacterType;
 import net.sf.anathema.character.experience.IExperience;
@@ -14,16 +17,18 @@ import net.sf.anathema.character.trait.rules.ITraitTemplate;
 public class AttributesContext implements ITraitCollectionContext {
 
   public static AttributesContext create(ICharacterId characterId, IModelProvider modelProvider) {
-    return new AttributesContext(modelProvider, characterId);
+    IModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
+    ICharacterTypeProvider provider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
+    return new AttributesContext(modelContainer, provider);
   }
 
-  private final ICharacterId characterId;
-  private final IModelProvider modelProvider;
   private final AttributeGroupConfiguration groups = new AttributeGroupConfiguration();
+  private final IModelContainer modelContainer;
+  private final ICharacterTypeProvider characterTypeProvider;
 
-  public AttributesContext(IModelProvider modelProvider, ICharacterId characterId) {
-    this.modelProvider = modelProvider;
-    this.characterId = characterId;
+  public AttributesContext(IModelContainer modelContainer, ICharacterTypeProvider characterTypeProvider) {
+    this.modelContainer = modelContainer;
+    this.characterTypeProvider = characterTypeProvider;
   }
 
   @Override
@@ -37,7 +42,7 @@ public class AttributesContext implements ITraitCollectionContext {
   }
 
   private Object getModel(String modelId) {
-    return modelProvider.getModel(new ModelIdentifier(characterId, modelId));
+    return modelContainer.getModel(modelId);
   }
 
   @Override
@@ -52,7 +57,7 @@ public class AttributesContext implements ITraitCollectionContext {
 
   @Override
   public String getActiveImageId() {
-    ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
+    ICharacterType characterType = characterTypeProvider.getCharacterType();
     return characterType.getTraitImageId();
   }
 }

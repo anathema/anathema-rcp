@@ -1,10 +1,11 @@
 package net.sf.anathema.character.sheet.pdf;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.character.core.character.ICharacter;
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.PdfHorizontalLineContentEncoder;
-import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 
 import org.easymock.EasyMock;
@@ -25,7 +26,7 @@ public class ContentEncoderProviderTest {
 
   private static final String ENCODER = "registeredEncoder"; //$NON-NLS-1$
   private IContentEncoderProvider contentProvider;
-  private ICharacter character;
+  private IModelContainer character;
   private IPdfContentBoxEncoder encoder;
   private IDynamicPdfContentBoxEncoder dynamicEncoder;
 

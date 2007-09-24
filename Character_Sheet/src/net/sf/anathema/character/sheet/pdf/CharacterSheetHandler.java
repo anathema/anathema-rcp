@@ -5,9 +5,10 @@ import java.io.OutputStream;
 import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
+import net.sf.anathema.character.core.character.Character;
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.sheet.content.ICharacter;
 
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;

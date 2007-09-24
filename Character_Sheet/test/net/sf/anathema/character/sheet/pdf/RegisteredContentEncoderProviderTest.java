@@ -6,9 +6,10 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.logging.ILogger;
+import net.sf.anathema.character.core.character.ICharacter;
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
-import net.sf.anathema.character.sheet.content.ICharacter;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
@@ -16,7 +17,7 @@ import org.junit.Test;
 
 public class RegisteredContentEncoderProviderTest {
 
-  private ICharacter character;
+  private IModelContainer character;
   private ILogger logger;
 
   @Before

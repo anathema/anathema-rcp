@@ -5,8 +5,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.description.ICharacterDescription;
-import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 import net.sf.anathema.character.sheet.page.IPdfPageEncoder;
 import net.sf.anathema.character.sheet.page.PdfFirstPageEncoder;
@@ -21,8 +21,8 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
+  public final BaseFont baseFont = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
   private final PageSize pageSize = PageSize.A4;
-  private final BaseFont baseFont = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
   private final IContentEncoderProvider encoderProvider = new ContentEncoderProvider(
       new RegisteredContentEncoderProvider());
 

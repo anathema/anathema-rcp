@@ -1,9 +1,9 @@
 package net.sf.anathema.character.sheet.pdf;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
-import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
 
 import com.lowagie.text.DocumentException;

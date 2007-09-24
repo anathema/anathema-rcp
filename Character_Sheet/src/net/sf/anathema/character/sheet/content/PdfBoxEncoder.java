@@ -1,5 +1,6 @@
 package net.sf.anathema.character.sheet.content;
 
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 

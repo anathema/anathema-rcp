@@ -6,7 +6,7 @@ import net.sf.anathema.character.core.template.ICharacterTemplate;
 import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.type.internal.CharacterTypeProvider;
 
-public class CharacterTypeFinder {
+public class CharacterTypeFinder implements ICharacterTypeFinder {
 
   private final ICharacterTemplateProvider templateProvider;
   private final ICharacterTypeProvider typeProvider;

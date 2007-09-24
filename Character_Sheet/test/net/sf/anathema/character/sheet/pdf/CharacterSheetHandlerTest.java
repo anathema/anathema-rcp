@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.OutputStream;
 
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.sheet.content.ICharacter;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorPart;
