@@ -14,20 +14,19 @@ import org.junit.Test;
 
 public class AttributeGroupPriorityCalculatorTest {
 
-  private AttributeGroupPriorityCalculator calculator;
   private ITraitCollectionContext context;
 
   @Before
   public void createCalculator() {
     this.context = EasyMock.createNiceMock(ITraitCollectionContext.class);
-    this.calculator = new AttributeGroupPriorityCalculator(context);
   }
 
   @Test
   public void singleGroupHasPrimaryPriority() throws Exception {
     TraitGroup traitGroup = new TraitGroup("Single"); //$NON-NLS-1$
-    EasyMock.expect(context.getTraitGroups()).andReturn(new ITraitGroup[] { traitGroup });
+    EasyMock.expect(context.getTraitGroups()).andReturn(new ITraitGroup[] { traitGroup }).anyTimes();
     EasyMock.replay(context);
+    AttributeGroupPriorityCalculator calculator = new AttributeGroupPriorityCalculator(context);
     assertEquals(AttributePointCalculator.PriorityGroup.Primary, calculator.getPriority(traitGroup));
   }
 
@@ -44,6 +43,7 @@ public class AttributeGroupPriorityCalculatorTest {
         .andReturn(new ITraitGroup[] { firstGroup, secondGroup, thirdGroup })
         .anyTimes();
     EasyMock.replay(context);
+    AttributeGroupPriorityCalculator calculator = new AttributeGroupPriorityCalculator(context);
     assertEquals(AttributePointCalculator.PriorityGroup.Primary, calculator.getPriority(firstGroup));
     assertEquals(AttributePointCalculator.PriorityGroup.Secondary, calculator.getPriority(secondGroup));
     assertEquals(AttributePointCalculator.PriorityGroup.Tertiary, calculator.getPriority(thirdGroup));
@@ -60,6 +60,7 @@ public class AttributeGroupPriorityCalculatorTest {
     EasyMock.expect(context.getCollection()).andReturn(collection).anyTimes();
     EasyMock.expect(context.getTraitGroups()).andReturn(new ITraitGroup[] { firstGroup, secondGroup }).anyTimes();
     EasyMock.replay(context);
+    AttributeGroupPriorityCalculator calculator = new AttributeGroupPriorityCalculator(context);
     assertEquals(AttributePointCalculator.PriorityGroup.Primary, calculator.getPriority(secondGroup));
   }
 }

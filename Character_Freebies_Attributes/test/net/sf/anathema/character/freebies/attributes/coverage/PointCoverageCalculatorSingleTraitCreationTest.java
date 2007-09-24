@@ -11,6 +11,7 @@ import org.junit.Test;
 
 public class PointCoverageCalculatorSingleTraitCreationTest {
 
+  private static final int CREATION_VALUE = 3;
   private ITraitCollectionContext context;
   private Identificate identificate;
   private TraitGroup traitGroup;
@@ -20,15 +21,16 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
     identificate = new Identificate("Strength"); //$NON-NLS-1$
     traitGroup = new TraitGroup("group", identificate.getId()); //$NON-NLS-1$
     context = AttributeContextObjectMother.createContext(traitGroup);
-    context.getCollection().getTrait(identificate.getId()).getCreationModel().setValue(3);
+    context.getCollection().getTrait(identificate.getId()).getCreationModel().setValue(CREATION_VALUE);
   }
 
   @Test
   public void indicatesNoOverflowPointsOnExperience() throws Exception {
     context.getExperience().setExperienced(true);
+    context.getCollection().getTrait(identificate.getId()).getExperiencedModel().setValue(CREATION_VALUE + 2);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
     ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
-    assertEquals(0, calculation.getPointsNotCovered(identificate));
+    assertEquals(2, calculation.getPointsNotCovered(identificate));
   }
 
   @Test
@@ -53,11 +55,11 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   }
 
   @Test
-  public void indicatesFullCoverageOnExperience() throws Exception {
+  public void indicatesCreationValueCoverageOnExperience() throws Exception {
     context.getExperience().setExperienced(true);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
     ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
-    assertEquals(5, calculation.getPointsCovered(identificate));
+    assertEquals(CREATION_VALUE, calculation.getPointsCovered(identificate));
   }
 
   @Test

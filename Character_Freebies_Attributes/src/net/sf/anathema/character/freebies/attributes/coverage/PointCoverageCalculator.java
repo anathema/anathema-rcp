@@ -20,7 +20,7 @@ public class PointCoverageCalculator {
 
   public ICoverageCalculation calculateCoverageFor(ITraitGroup traitGroup) {
     if (context.getExperience().isExperienced()) {
-      return new NullCoverageCalculation(context.getTraitTemplate().getMaximalValue());
+      return new ExperienceCoverageCalculation(context.getCollection());
     }
     String[] ids = traitGroup.getTraitIds();
     final ITraitCollectionModel collection = context.getCollection();
