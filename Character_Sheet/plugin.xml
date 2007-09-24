@@ -43,7 +43,7 @@
    <extension
          point="net.sf.anathema.character.sheet.encoder">
       <encoder
-            classs="net.sf.anathema.character.sheet.attributes.AttributesBoxEncoder"
+            class="net.sf.anathema.character.sheet.attributes.AttributesBoxEncoder"
             fieldId="encoder.attributes">
       </encoder>
    </extension>
