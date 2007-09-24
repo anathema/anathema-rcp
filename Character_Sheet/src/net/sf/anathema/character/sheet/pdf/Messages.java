@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.print;
+package net.sf.anathema.character.sheet.pdf;
 
 import org.eclipse.osgi.util.NLS;
 

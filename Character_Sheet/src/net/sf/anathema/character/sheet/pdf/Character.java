@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.print;
+package net.sf.anathema.character.sheet.pdf;
 
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModel;

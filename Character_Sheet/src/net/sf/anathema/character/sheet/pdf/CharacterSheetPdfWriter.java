@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.print;
+package net.sf.anathema.character.sheet.pdf;
 
 import java.awt.Color;
 import java.io.OutputStream;
@@ -20,11 +20,11 @@ import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 
-public class CharacterSheetPrinter {
+public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
   private final PageSize pageSize = PageSize.A4;
   private final BaseFont baseFont = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
 
-  public void printReport(ICharacter character, OutputStream outputStream) throws DocumentException {
+  public void write(ICharacter character, OutputStream outputStream) throws DocumentException {
     Document document = new Document();
     PdfWriter writer = PdfWriter.getInstance(document, outputStream);
     writer.setPdfVersion(PdfWriter.VERSION_1_5);

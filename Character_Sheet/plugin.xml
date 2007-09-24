@@ -31,7 +31,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="net.sf.anathema.character.sheet.print.CharacterSheetHandler"
+            class="net.sf.anathema.character.sheet.pdf.CharacterSheetPdfHandler"
             commandId="net.sf.anathema.character.sheet">
          <activeWhen>
             <reference

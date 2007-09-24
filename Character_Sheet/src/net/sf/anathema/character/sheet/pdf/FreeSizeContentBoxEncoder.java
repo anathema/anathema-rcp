@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.print;
+package net.sf.anathema.character.sheet.pdf;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
