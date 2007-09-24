@@ -9,7 +9,7 @@ import com.lowagie.text.Rectangle;
 public class PdfPageConfiguration {
 
   public static PdfPageConfiguration create(Rectangle pageSize) {
-    return new PdfPageConfiguration(new Dimension((int) pageSize.width(), (int) pageSize.height()), 15, 40);
+    return new PdfPageConfiguration(new Dimension((int) pageSize.getWidth(), (int) pageSize.getHeight()), 15, 40);
   }
 
   private final int columnSpacing = 10;
