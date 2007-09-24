@@ -1,6 +1,7 @@
 package net.sf.anathema.character.sheet.content;
 
 import net.sf.anathema.character.core.character.ICharacter;
+import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 
@@ -43,22 +44,20 @@ public class PdfBoxEncoder extends AbstractPdfEncoder {
     return encodeBox(directContent, bounds, title, standardBoxEncoder);
   }
 
-  public void encodeBox(
-      PdfContentByte directContent,
-      IPdfContentBoxEncoder encoder,
-      ICharacter character,
-      Bounds bounds) throws DocumentException {
-    encodeBox(directContent, encoder, standardBoxEncoder, character, bounds);
+  public void encodeBox(PdfContentByte directContent, IEncodeContext context, IPdfContentBoxEncoder encoder, ICharacter character, Bounds bounds)
+      throws DocumentException {
+    encodeBox(directContent, context, encoder, standardBoxEncoder, character, bounds);
   }
 
   public void encodeBox(
       PdfContentByte directContent,
+      IEncodeContext context,
       IPdfContentBoxEncoder encoder,
       IPdfBoxEncoder boxEncoder,
       ICharacter character,
       Bounds bounds) throws DocumentException {
     Bounds contentBounds = encodeBox(directContent, bounds, encoder.getHeader(), boxEncoder);
-    encoder.encode(directContent, character, contentBounds);
+    encoder.encode(directContent, context, character, contentBounds);
   }
 
   private Bounds calculateInsettedBounds(Bounds contentBounds) {

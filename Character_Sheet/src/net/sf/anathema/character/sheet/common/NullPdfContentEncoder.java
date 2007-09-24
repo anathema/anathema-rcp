@@ -19,7 +19,7 @@ public class NullPdfContentEncoder extends AbstractExecutableExtension implement
     this.header = header;
   }
 
-  public void encode(PdfContentByte directContent, ICharacter character, Bounds bounds) throws DocumentException {
+  public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds) throws DocumentException {
     // Nothing to do
   }
 

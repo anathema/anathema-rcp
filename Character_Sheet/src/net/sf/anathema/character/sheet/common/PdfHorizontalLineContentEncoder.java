@@ -24,7 +24,7 @@ public class PdfHorizontalLineContentEncoder extends AbstractExecutableExtension
     this.header = header;
   }
 
-  public void encode(PdfContentByte directContent, ICharacter character, Bounds bounds) throws DocumentException {
+  public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds) throws DocumentException {
     float columnWidth = (bounds.width - (columnCount - 1) * IVoidStateFormatConstants.TEXT_PADDING) / columnCount;
     for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
       float columnX = bounds.x + columnIndex * columnWidth + columnIndex * IVoidStateFormatConstants.TEXT_PADDING;

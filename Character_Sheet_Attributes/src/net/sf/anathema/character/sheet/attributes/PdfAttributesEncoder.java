@@ -5,9 +5,11 @@ import java.awt.Color;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeFavorizationHandler;
+import net.sf.anathema.character.attributes.model.AttributeMessages;
 import net.sf.anathema.character.attributes.model.AttributeTemplateProvider;
 import net.sf.anathema.character.attributes.model.AttributesContext;
 import net.sf.anathema.character.core.character.ICharacter;
+import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
@@ -35,7 +37,7 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   }
 
   @Override
-  public void encode(PdfContentByte directContent, ICharacter character, Bounds bounds) throws DocumentException {
+  public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds) throws DocumentException {
     IDisplayTraitGroup[] displayGroups = getDisplayAttributeGroups(character);
     encodeAttributes(directContent, bounds, displayGroups);
   }
@@ -66,16 +68,23 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   }
 
   private float encodeTrait(IDisplayTrait trait, PdfContentByte directContent, Bounds contentBounds, float y) {
+    float newY = y;
     IDisplayFavorization favorization = trait.getFavorization();
-    String traitLabel = "Unknown Trait";
+    String traitLabel = AttributeMessages.get(trait.getTraitType().getId());
     int value = trait.getValue();
-    Position position = new Position(contentBounds.x, y);
+    Position position = new Position(contentBounds.x, newY);
     if (!favorization.isFavorable()) {
-      y -= smallTraitEncoder.encodeWithText(directContent, traitLabel, position, contentBounds.width, value, essenceMax);
+      newY -= smallTraitEncoder.encodeWithText(
+          directContent,
+          traitLabel,
+          position,
+          contentBounds.width,
+          value,
+          essenceMax);
     }
     else {
       boolean favored = favorization.isFavored();
-      y -= smallTraitEncoder.encodeWithTextAndRectangle(
+      newY -= smallTraitEncoder.encodeWithTextAndRectangle(
           directContent,
           traitLabel,
           position,
@@ -84,6 +93,6 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
           favored,
           essenceMax);
     }
-    return y;
+    return newY;
   }
 }

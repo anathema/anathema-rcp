@@ -10,7 +10,7 @@ import com.lowagie.text.pdf.PdfContentByte;
 
 public interface IPdfContentBoxEncoder extends IExecutableExtension {
 
-  public void encode(PdfContentByte directContent, ICharacter character, Bounds bounds) throws DocumentException;
+  public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds) throws DocumentException;
 
   public String getHeader();
 }

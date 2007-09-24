@@ -3,6 +3,7 @@ package net.sf.anathema.character.sheet.pdf;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
+import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 
@@ -23,8 +24,8 @@ public class DefaultHeightDynamicEncoder extends AbstractExecutableExtension imp
   }
 
   @Override
-  public void encode(PdfContentByte directContent, ICharacter character, Bounds bounds) throws DocumentException {
-    encoder.encode(directContent, character, bounds);
+  public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds) throws DocumentException {
+    encoder.encode(directContent, context, character, bounds);
   }
 
   @Override

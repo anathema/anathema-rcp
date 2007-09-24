@@ -1,6 +1,5 @@
 package net.sf.anathema.character.sheet.pdf;
 
-import java.awt.Color;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +14,10 @@ import net.sf.anathema.character.sheet.page.PdfSecondPageEncoder;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Font;
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
-  public final BaseFont baseFont = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
   private final PageSize pageSize = PageSize.A4;
   private final IContentEncoderProvider encoderProvider = new ContentEncoderProvider(
       new RegisteredContentEncoderProvider());
@@ -50,8 +46,9 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
     PdfContentByte directContent = writer.getDirectContent();
     PdfPageConfiguration configuration = PdfPageConfiguration.create(pageSize.getRectangle());
     List<IPdfPageEncoder> encoderList = new ArrayList<IPdfPageEncoder>();
-    encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, baseFont));
-    encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, baseFont));
+    EncodeContext context = new EncodeContext();
+    encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, context));
+    encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, context));
     boolean isFirstPrinted = false;
     for (IPdfPageEncoder encoder : encoderList) {
       if (isFirstPrinted) {
