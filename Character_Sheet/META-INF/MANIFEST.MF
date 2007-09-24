@@ -12,6 +12,6 @@ Require-Bundle: org.eclipse.core.runtime,
  net.sf.anathema.character.core,
  net.sf.anathema.character.description,
  net.sf.anathema.character.attributes
-Bundle-ClassPath: lib/itext-1.4.jar,
- .
+Bundle-ClassPath: .,
+ lib/itext-2.0.5.jar
 Bundle-Localization: plugin
