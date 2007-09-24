@@ -12,10 +12,10 @@ import com.lowagie.text.pdf.PdfContentByte;
 
 public class NullContentEncoderProvider implements IContentEncoderProvider {
 
-  private final class NullDynamicContentBoxEncoder implements IDynamicPdfContentBoxEncoder {
+  private final class HorizontalLineDynamicContentBoxEncoder implements IDynamicPdfContentBoxEncoder {
     final IPdfContentBoxEncoder encoder;
 
-    private NullDynamicContentBoxEncoder(String encoderName) {
+    private HorizontalLineDynamicContentBoxEncoder(String encoderName) {
       this.encoder = new PdfHorizontalLineContentEncoder(1, encoderName);
     }
 
@@ -42,6 +42,6 @@ public class NullContentEncoderProvider implements IContentEncoderProvider {
 
   @Override
   public IDynamicPdfContentBoxEncoder getDynamicContentEncoder(final String encoderName, ICharacter character) {
-    return new NullDynamicContentBoxEncoder(encoderName);
+    return new HorizontalLineDynamicContentBoxEncoder(encoderName);
   }
 }

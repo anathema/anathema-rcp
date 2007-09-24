@@ -50,6 +50,7 @@ public class PdfSecondPageEncoder implements IPdfPageEncoder {
     if (comboHeight > 0) {
       distanceFromTop += comboHeight + IVoidStateFormatConstants.PADDING;
     }
+    // TODO schauen, ob die Charms noch passen
     float genericCharmsHeight = encodeGenericCharms(directContent, character, distanceFromTop);
     distanceFromTop += genericCharmsHeight + IVoidStateFormatConstants.PADDING;
 
@@ -59,14 +60,11 @@ public class PdfSecondPageEncoder implements IPdfPageEncoder {
 
   private float encodeCombos(PdfContentByte directContent, ICharacter character, float distanceFromTop)
       throws DocumentException {
-    Bounds restOfPage = new Bounds(
-        configuration.getLeftX(),
-        configuration.getLowerContentY(),
-        configuration.getContentWidth(),
-        configuration.getContentHeight() - distanceFromTop);
-    IPdfContentBoxEncoder encoder = contentEncoderProvider.getContentEncoder(ENCODER_LANGUAGES, character);
-    boxEncoder.encodeBox(directContent, encoder, character, restOfPage);
-    return restOfPage.height;
+    IDynamicPdfContentBoxEncoder encoder = contentEncoderProvider.getDynamicContentEncoder(ENCODER_LANGUAGES, character);
+    float height = encoder.getHeight();
+    Bounds bounds = configuration.getFirstColumnRectangle(distanceFromTop, height, 3);
+    boxEncoder.encodeBox(directContent, encoder, character, bounds);
+    return encoder.getHeight();
   }
 
   private float encodeExperience(PdfContentByte directContent, ICharacter character, float distanceFromTop, float height)
