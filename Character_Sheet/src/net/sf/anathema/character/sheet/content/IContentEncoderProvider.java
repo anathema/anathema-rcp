@@ -5,7 +5,7 @@ import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 
 public interface IContentEncoderProvider {
 
-  public IPdfContentBoxEncoder getContentEncoder(String encoderName, ICharacter modelProvider);
+  public IPdfContentBoxEncoder getContentEncoder(String encoderName, ICharacter character);
 
   public IDynamicPdfContentBoxEncoder getDynamicContentEncoder(String encoderName, ICharacter character);
 }

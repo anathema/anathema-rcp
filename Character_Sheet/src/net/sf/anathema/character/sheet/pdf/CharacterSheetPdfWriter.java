@@ -23,6 +23,8 @@ import com.lowagie.text.pdf.PdfWriter;
 public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
   private final PageSize pageSize = PageSize.A4;
   private final BaseFont baseFont = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
+  private final IContentEncoderProvider encoderProvider = new ContentEncoderProvider(
+      new RegisteredContentEncoderProvider());
 
   public void write(ICharacter character, OutputStream outputStream) throws DocumentException {
     Document document = new Document();
@@ -47,7 +49,6 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
     document.open();
     PdfContentByte directContent = writer.getDirectContent();
     PdfPageConfiguration configuration = PdfPageConfiguration.create(pageSize.getRectangle());
-    IContentEncoderProvider encoderProvider = new ContentEncoderProvider();
     List<IPdfPageEncoder> encoderList = new ArrayList<IPdfPageEncoder>();
     encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, baseFont));
     encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, baseFont));
