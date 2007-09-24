@@ -1,9 +1,11 @@
 package net.sf.anathema.character.sheet.print;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 import net.disy.commons.core.io.IOUtilities;
+import net.sf.anathema.basics.swt.file.FileChoosing;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -25,7 +27,11 @@ public class CharacterSheetHandler extends AbstractHandler {
       IModelIdentifier identifier = (IModelIdentifier) editorPart.getEditorInput().getAdapter(IModelIdentifier.class);
       ICharacterId characterId = identifier.getCharacterId();
       ICharacter character = new Character(characterId, ModelCache.getInstance());
-      outputStream = new FileOutputStream("C:/test.pdf");
+      File file = FileChoosing.getPdfFile(null, HandlerUtil.getActiveShell(event));
+      if (file == null) {
+        return null;
+      }
+      outputStream = new FileOutputStream(file);
       new CharacterSheetPrinter().printReport(character, outputStream);
     }
     catch (Exception e) {
