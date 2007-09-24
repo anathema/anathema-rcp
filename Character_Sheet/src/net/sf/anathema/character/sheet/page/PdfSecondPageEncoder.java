@@ -6,8 +6,6 @@ import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 import net.sf.anathema.character.sheet.content.PdfBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.character.sheet.pageformat.IVoidStateFormatConstants;
-import net.sf.anathema.character.sheet.pageformat.PdfPageConfiguration;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;

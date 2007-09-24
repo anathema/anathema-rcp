@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="net.sf.anathema.character.sheet.encoder" name="Character Sheet Encoder" schema="schema/net.sf.anathema.character.sheet.encoder.exsd"/>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -38,6 +39,13 @@
             </reference>
          </activeWhen>
       </handler>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.sheet.encoder">
+      <encoder
+            classs="net.sf.anathema.character.sheet.attributes.AttributesBoxEncoder"
+            fieldId="encoder.attributes">
+      </encoder>
    </extension>
 
 </plugin>

@@ -8,7 +8,9 @@ Require-Bundle: net.sf.anathema.basics.lib,
  org.eclipse.ui,
  net.sf.anathema.character.core,
  org.eclipse.core.resources,
- net.sf.anathema.character.description
+ net.sf.anathema.character.description,
+ net.sf.anathema.character.attributes,
+ net.sf.anathema.basics.eclipse
 Bundle-ClassPath: lib/itext-1.4.jar,
  .
 Bundle-Localization: plugin

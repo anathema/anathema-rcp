@@ -1,12 +1,13 @@
 package net.sf.anathema.character.sheet.common;
 
+import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class NullPdfContentEncoder implements IPdfContentBoxEncoder {
+public class NullPdfContentEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
 
   private final String header;
 

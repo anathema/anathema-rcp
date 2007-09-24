@@ -2,7 +2,7 @@ package net.sf.anathema.character.sheet.content;
 
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.character.sheet.elements.Position;
-import net.sf.anathema.character.sheet.pageformat.IVoidStateFormatConstants;
+import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;

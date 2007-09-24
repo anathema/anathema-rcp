@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pageformat;
+package net.sf.anathema.character.sheet.page;
 
 import net.disy.commons.core.text.font.FontStyle;
 import net.sf.anathema.lib.textualdescription.TextFormat;

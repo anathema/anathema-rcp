@@ -1,7 +1,7 @@
 package net.sf.anathema.character.sheet.content;
 
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.character.sheet.pageformat.IVoidStateFormatConstants;
+import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
 import static net.sf.anathema.character.sheet.content.IPdfBoxEncoder.*;
 

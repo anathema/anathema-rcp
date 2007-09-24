@@ -10,8 +10,8 @@ import net.sf.anathema.character.sheet.content.ICharacter;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 import net.sf.anathema.character.sheet.page.IPdfPageEncoder;
 import net.sf.anathema.character.sheet.page.PdfFirstPageEncoder;
+import net.sf.anathema.character.sheet.page.PdfPageConfiguration;
 import net.sf.anathema.character.sheet.page.PdfSecondPageEncoder;
-import net.sf.anathema.character.sheet.pageformat.PdfPageConfiguration;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -47,7 +47,7 @@ public class CharacterSheetPrinter {
     document.open();
     PdfContentByte directContent = writer.getDirectContent();
     PdfPageConfiguration configuration = PdfPageConfiguration.create(pageSize.getRectangle());
-    IContentEncoderProvider encoderProvider = new NullContentEncoderProvider();
+    IContentEncoderProvider encoderProvider = new ContentEncoderProvider();
     List<IPdfPageEncoder> encoderList = new ArrayList<IPdfPageEncoder>();
     encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, baseFont));
     encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, baseFont));

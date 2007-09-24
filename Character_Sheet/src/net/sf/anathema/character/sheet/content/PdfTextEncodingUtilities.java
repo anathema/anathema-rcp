@@ -3,7 +3,7 @@ package net.sf.anathema.character.sheet.content;
 import java.awt.Color;
 
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.character.sheet.pageformat.IVoidStateFormatConstants;
+import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;

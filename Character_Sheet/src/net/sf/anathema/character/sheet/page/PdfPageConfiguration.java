@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pageformat;
+package net.sf.anathema.character.sheet.page;
 
 import java.awt.Dimension;
 
