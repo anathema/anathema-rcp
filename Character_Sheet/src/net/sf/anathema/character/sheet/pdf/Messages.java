@@ -7,7 +7,6 @@ public class Messages extends NLS {
   public static String CharacterSheetHandler_CharacterPdfErrorMessage;
   public static String RegisteredContentEncoderProvider_RETRIEVING_ENCODER_ERROR_MESSAGE;
   static {
-    // initialize resource bundle
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
 
