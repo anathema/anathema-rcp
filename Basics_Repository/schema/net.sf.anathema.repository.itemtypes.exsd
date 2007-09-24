@@ -6,7 +6,7 @@
          <meta.schema plugin="net.sf.anathema.basics.repository" id="net.sf.anathema.repository.itemtypes" name="RepositoryItemTypes"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         Used to register item type (like notes, plots and characters) with the platform.
       </documentation>
    </annotation>
 
@@ -47,7 +47,7 @@
          <attribute name="type" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The name of the item type. Displayed to the user in dialogs and views.
                </documentation>
                <appInfo>
                   <meta.attribute translatable="true"/>
@@ -57,28 +57,28 @@
          <attribute name="project" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The name of the workspace-project that will contain all items of this type.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  A system-wide unique identifier.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="file-extension" type="string">
             <annotation>
                <documentation>
-                  
+                  The file extension given to items of this type.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="icon" type="string">
             <annotation>
                <documentation>
-                  
+                  The icon displayed for items of this type.
                </documentation>
                <appInfo>
                   <meta.attribute kind="resource"/>
@@ -88,7 +88,7 @@
          <attribute name="untitledName" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The name given to items of this type for the time until the user gets to give them a proper name.
                </documentation>
                <appInfo>
                   <meta.attribute translatable="true"/>
@@ -98,7 +98,7 @@
          <attribute name="viewElementFactoryClass" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The Element Factory used to produce IViewElements for the items created. Used to display items in the repository view. The class named must implement net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="net.sf.anathema.basics.repository.treecontent.itemtype.IItemTypeViewElementFactory"/>
@@ -113,7 +113,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         2.0.0
       </documentation>
    </annotation>
 
@@ -122,7 +122,21 @@
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         [Enter extension point usage example here.]
+         &lt;p&gt;
+Notes are registered like this:
+&lt;/p&gt;
+&lt;pre&gt;
+&lt;extension point=&quot;net.sf.anathema.repository.itemtypes&quot;&gt;
+&lt;itemtype file-extension=&quot;not&quot;
+    icon=&quot;icons/TabNotes16.png&quot;
+    id=&quot;net.sf.anathema.itemtype.Note&quot;
+    project=&quot;Note&quot;
+    type=&quot;%itemtype.type.notes&quot;
+    untitledName=&quot;%itemtype.untitled.note&quot;
+    viewElementFactoryClass=&quot;net.sf.anathema.basics.repository.treecontent.itemtype.FileItemTypeViewElementFactory&quot;&gt;
+&lt;/itemtype&gt;
+&lt;/extension&gt;
+&lt;/pre&gt;
       </documentation>
    </annotation>
 
@@ -131,7 +145,7 @@
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         [Enter API information here.]
+         
       </documentation>
    </annotation>
 
@@ -140,7 +154,8 @@
          <meta.section type="implementation"/>
       </appInfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         Use net.sf.anathema.basics.repository.itemtype.ItemTypeProvider to retrieve either all registered item types or to get a specific one via its unique id.
+Objects returned by this method are of type IItemType and allow to request the extension point attributes via getter methods.
       </documentation>
    </annotation>
 
