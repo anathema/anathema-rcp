@@ -8,10 +8,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.lib,
+ net.sf.anathema.basics.pdf;visibility:=reexport,
  net.sf.anathema.basics.swt,
  net.sf.anathema.character.core,
  net.sf.anathema.character.description,
  net.sf.anathema.character.attributes
-Bundle-ClassPath: .,
- lib/itext-2.0.5.jar
+Bundle-ClassPath: .
 Bundle-Localization: plugin
