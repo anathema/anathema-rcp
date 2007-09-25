@@ -10,11 +10,12 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 
 public class PlotUnitProvider {
 
+  private static final String PLOT_UNIT_EXTENSION_POINT = "net.sf.anathema.campaign.plot.units"; //$NON-NLS-1$
   private IPlotUnit root;
 
   public PlotUnitProvider() {
     Map<String, ExtensionPlotUnit> units = new HashMap<String, ExtensionPlotUnit>();
-    for (IPluginExtension extension : new EclipseExtensionProvider().getExtensions("net.sf.anathema.plot.unit")) { //$NON-NLS-1$
+    for (IPluginExtension extension : new EclipseExtensionProvider().getExtensions(PLOT_UNIT_EXTENSION_POINT)) {
       for (IExtensionElement element : extension.getElements()) {
         ExtensionPlotUnit unit = new ExtensionPlotUnit(extension.getContributorId(), element);
         String parentId = element.getAttribute("parentId"); //$NON-NLS-1$
