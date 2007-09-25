@@ -17,7 +17,7 @@ public class RegisteredContentEncoderProvider implements IContentEncoderProvider
 
   private static final String ATTRIB_CLASS = "class"; //$NON-NLS-1$
   private static final String ATTRIB_FIELD_ID = "fieldId"; //$NON-NLS-1$
-  private static final String EXTENSION_ID = "net.sf.anathema.character.sheet.encoder"; //$NON-NLS-1$
+  private static final String EXTENSION_ID = "net.sf.anathema.character.sheet.encoders"; //$NON-NLS-1$
   private final IPluginExtension[] extensions;
   private final ILogger logger;
 
