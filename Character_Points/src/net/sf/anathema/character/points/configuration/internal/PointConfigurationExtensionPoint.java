@@ -28,7 +28,7 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
   private static final String TAG_BONUS_POINT_CALCULATOR = "bonusPointCalculator"; //$NON-NLS-1$
   private static final String TAG_EXPERIENCE_POINT_CALCULATOR = "experiencePointCalculator"; //$NON-NLS-1$
   private static final String TAG_POINT_GROUP = "pointGroup"; //$NON-NLS-1$
-  private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.points.configuration"; //$NON-NLS-1$
+  private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.points.configurations"; //$NON-NLS-1$
   private static final ILogger logger = new Logger(PointPluginConstants.PLUGIN_ID);
 
   public IPointConfiguration[] getExperiencePointConfigurations(
