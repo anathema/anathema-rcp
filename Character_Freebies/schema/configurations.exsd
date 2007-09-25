@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.character.freebies">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.character.freebies" id="net.sf.anathema.character.freebies.credit" name="Credit Manager"/>
+         <meta.schema plugin="net.sf.anathema.character.freebies" id="handlers" name="Freebies Handlers"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -13,8 +13,7 @@
    <element name="extension">
       <complexType>
          <sequence>
-            <element ref="creditList" minOccurs="0" maxOccurs="unbounded"/>
-            <element ref="creditProvider" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="FreebiesConfiguration" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -43,57 +42,31 @@
       </complexType>
    </element>
 
-   <element name="creditList">
+   <element name="FreebiesConfiguration">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="name"/>
+         </appInfo>
+      </annotation>
       <complexType>
-         <sequence>
-            <element ref="credit" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
-         <attribute name="templateId" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="credit">
-      <complexType>
-         <attribute name="id" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="value" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="creditProvider">
-      <complexType>
-         <attribute name="class" type="string" use="required">
+         <attribute name="handlerClass" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.freebies.configuration.ICreditProvider"/>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.freebies.configuration.IFreebiesHandler"/>
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="id" type="string" use="required">
+         <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>
