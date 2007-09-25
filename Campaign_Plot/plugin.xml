@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="net.sf.anathema.plot.unit" name="%plot.extension-point.plotunit.name" schema="schema/net.sf.anathema.plot.unit.exsd"/>
+   <extension-point id="units" name="%plot.extension-point.plotunit.name" schema="schema/units.exsd"/>
    <extension
          point="net.sf.anathema.basics.repository.itemtypes">
       <itemtype
@@ -31,34 +31,34 @@
       </dndFactory>
    </extension>
    <extension
-         point="net.sf.anathema.plot.unit">
-      <Unit
+         point="net.sf.anathema.campaign.plot.units">
+      <unit
             icon="icons/FolderPlot16.png"
             id="net.sf.anathema.plot.unit.plot"
             name="%plotunit.unit.plot"
             recursive="false">
-      </Unit>
-      <Unit
+      </unit>
+      <unit
             icon="icons/FolderStory16.png"
             id="net.sf.anathema.plot.unit.story"
             name="%plotunit.unit.story"
             parentId="net.sf.anathema.plot.unit.plot"
             recursive="false">
-      </Unit>
-      <Unit
+      </unit>
+      <unit
             icon="icons/FolderEpisode16.png"
             id="net.sf.anathema.plot.unit.episode"
             name="%plotunit.unit.episode"
             parentId="net.sf.anathema.plot.unit.story"
             recursive="false">
-      </Unit>
-      <Unit
+      </unit>
+      <unit
             icon="icons/FolderScene16.png"
             id="net.sf.anathema.plot.unit.scene"
             name="%plotunit.unit.scene"
             parentId="net.sf.anathema.plot.unit.episode"
             recursive="true">
-      </Unit>
+      </unit>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
