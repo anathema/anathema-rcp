@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.character.points">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.character.points" id="net.sf.anathema.character.points.configuration" name="Point Configurations"/>
+         <meta.schema plugin="net.sf.anathema.character.points" id="configurations" name="Point Configurations"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]

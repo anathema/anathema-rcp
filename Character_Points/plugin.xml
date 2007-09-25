@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="net.sf.anathema.character.points.configuration" name="%extension-point.name.point.configuration" schema="schema/net.sf.anathema.character.points.configuration.exsd"/>
+   <extension-point id="configurations" name="%extension-point.name.point.configuration" schema="schema/configurations.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view

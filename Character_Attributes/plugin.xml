@@ -26,7 +26,7 @@
       </editor>
    </extension>
    <extension
-         point="net.sf.anathema.character.points.configuration">
+         point="net.sf.anathema.character.points.configurations">
       <pointGroup
             groupId="attributepoints"
             modelId="net.sf.anathema.character.attributes.model"

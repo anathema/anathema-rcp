@@ -25,7 +25,7 @@
       </FreebiesConfiguration>
    </extension>
    <extension
-         point="net.sf.anathema.character.points.configuration">
+         point="net.sf.anathema.character.points.configurations">
       <bonusPointCalculator
             groupReference="attributepoints"
             handlerClass="net.sf.anathema.character.freebies.attributes.FreebiesBonusPointReducer">
