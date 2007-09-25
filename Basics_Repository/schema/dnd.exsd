@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.basics.repository">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.basics.repository" id="net.sf.anathema.repository.dnd" name="Repository DND"/>
+         <meta.schema plugin="net.sf.anathema.basics.repository" id="dnd" name="Repository DND"/>
       </appInfo>
       <documentation>
          Used to customize drag-and-drop support for view elements.

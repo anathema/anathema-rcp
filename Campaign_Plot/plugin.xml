@@ -3,7 +3,7 @@
 <plugin>
    <extension-point id="net.sf.anathema.plot.unit" name="%plot.extension-point.plotunit.name" schema="schema/net.sf.anathema.plot.unit.exsd"/>
    <extension
-         point="net.sf.anathema.repository.itemtypes">
+         point="net.sf.anathema.basics.repository.itemtypes">
       <itemtype
             icon="icons/TabSeries16.png"
             id="net.sf.anathema.itemtype.Plot"
@@ -25,7 +25,7 @@
       </editor>
    </extension>
    <extension
-         point="net.sf.anathema.repository.dnd">
+         point="net.sf.anathema.basics.repository.dnd">
       <dndFactory
             class="net.sf.anathema.campaign.plot.dnd.PlotRepositoryDND">
       </dndFactory>

@@ -11,7 +11,7 @@ import net.sf.anathema.basics.repository.itemtype.internal.ItemType;
 
 public class ItemTypeProvider {
 
-  private static final String REPOSITORY_ITEMTYPES = "net.sf.anathema.repository.itemtypes"; //$NON-NLS-1$
+  private static final String REPOSITORY_ITEMTYPES = "net.sf.anathema.basics.repository.itemtypes"; //$NON-NLS-1$
   private final IExtensionProvider configurationProvider;
 
   public ItemTypeProvider() {

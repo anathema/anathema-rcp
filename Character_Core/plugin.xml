@@ -6,7 +6,7 @@
    <extension-point id="net.sf.anathema.character.types" name="%extension-point.name.charactertypes" schema="schema/net.sf.anathema.character.types.exsd"/>
    <extension-point id="net.sf.anathema.character.resources" name="%extension-point.name.characterresources" schema="schema/net.sf.anathema.character.resources.exsd"/>
    <extension
-         point="net.sf.anathema.repository.itemtypes">
+         point="net.sf.anathema.basics.repository.itemtypes">
       <itemtype
             icon="icons/TabCharacter16.png"
             id="net.sf.anathema.itemtype.Character"

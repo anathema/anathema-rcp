@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.character.attributes">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.character.attributes" id="net.sf.anathema.character.attributes.templates" name="Attribute Templates"/>
+         <meta.schema plugin="net.sf.anathema.character.attributes" id="templates" name="Attribute Templates"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]

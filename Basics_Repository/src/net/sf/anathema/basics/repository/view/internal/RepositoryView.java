@@ -37,6 +37,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
 public class RepositoryView extends ViewPart implements IResourceSelector, ILinker, ICollapsableTree, IExpandableTree {
+  private static final String DRAG_AND_DROP_EXTENSION_POINT = "net.sf.anathema.basics.repository.dnd";
+
   public static final String ID = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
 
   private final List<IDisposable> disposables = new ArrayList<IDisposable>();
@@ -97,7 +99,7 @@ public class RepositoryView extends ViewPart implements IResourceSelector, ILink
   }
 
   private void initDragAndDrop() {
-    IPluginExtension[] extensions = new EclipseExtensionProvider().getExtensions("net.sf.anathema.repository.dnd"); //$NON-NLS-1$
+    IPluginExtension[] extensions = new EclipseExtensionProvider().getExtensions(DRAG_AND_DROP_EXTENSION_POINT); //$NON-NLS-1$
     for (IPluginExtension extension : extensions) {
       IExtensionElement[] elements = extension.getElements();
       for (IExtensionElement extensionElement : elements) {

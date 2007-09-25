@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.basics.repository">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.basics.repository" id="net.sf.anathema.repository.itemtypes" name="RepositoryItemTypes"/>
+         <meta.schema plugin="net.sf.anathema.basics.repository" id="itemtypes" name="RepositoryItemTypes"/>
       </appInfo>
       <documentation>
          Used to register item type (like notes, plots and characters) with the platform.
