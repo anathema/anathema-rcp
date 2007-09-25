@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.character.trait">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.character.trait" id="net.sf.anathema.editor.decoration.trait" name="Trait Group Editor Decoration"/>
+         <meta.schema plugin="net.sf.anathema.character.trait" id="editordecorations" name="Trait Group Editor Decoration"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]

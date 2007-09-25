@@ -14,13 +14,13 @@ public class TraitGroupEditorDecorationFactory {
   private final IPluginExtension[] extensions;
 
   public TraitGroupEditorDecorationFactory() {
-    this(new EclipseExtensionProvider().getExtensions("net.sf.anathema.editor.decoration.trait")); //$NON-NLS-1$
+    this(new EclipseExtensionProvider().getExtensions("net.sf.anathema.character.trait.editordecorations")); //$NON-NLS-1$
   }
 
   public TraitGroupEditorDecorationFactory(IPluginExtension... extensions) {
     this.extensions = extensions;
   }
-  
+
   public Collection<ITraitGroupEditorDecoration> create() {
     Collection<ITraitGroupEditorDecoration> decorations = new ArrayList<ITraitGroupEditorDecoration>();
     for (IPluginExtension extension : extensions) {
