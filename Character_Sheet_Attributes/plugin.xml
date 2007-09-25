@@ -2,7 +2,7 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="net.sf.anathema.character.sheet.encoder">
+         point="net.sf.anathema.character.sheet.encoders">
       <encoder
             class="net.sf.anathema.character.sheet.attributes.PdfAttributesEncoder"
             fieldId="encoder.attributes">

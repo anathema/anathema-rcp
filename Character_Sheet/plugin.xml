@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="net.sf.anathema.character.sheet.encoder" name="%sheet.encoder.extension.name" schema="schema/net.sf.anathema.character.sheet.encoder.exsd"/>
+   <extension-point id="encoders" name="%sheet.encoder.extension.name" schema="schema/encoders.exsd"/>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution

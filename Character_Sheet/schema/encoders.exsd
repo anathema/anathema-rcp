@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.character.sheet">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.character.sheet" id="net.sf.anathema.character.sheet.encoder" name="Character Sheet Encoder"/>
+         <meta.schema plugin="net.sf.anathema.character.sheet" id="encoders" name="Character Sheet Encoders"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
