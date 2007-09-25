@@ -3,7 +3,7 @@
 <plugin>
    <extension-point id="templates" name="%attribute.templates.extension-name" schema="schema/templates.exsd"/>
    <extension
-         point="net.sf.anathema.character.models">
+         point="net.sf.anathema.character.core.models">
       <model
             filename="attributes.model"
             id="net.sf.anathema.character.attributes.model"

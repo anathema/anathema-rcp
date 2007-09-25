@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.character.core">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.character.core" id="net.sf.anathema.character.resources" name="%extension-point.name.characterresources"/>
+         <meta.schema plugin="net.sf.anathema.character.core" id="templates" name="Character Templates"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -13,7 +13,7 @@
    <element name="extension">
       <complexType>
          <sequence>
-            <element ref="image" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="template" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -42,23 +42,45 @@
       </complexType>
    </element>
 
-   <element name="image">
+   <element name="template">
       <complexType>
-         <attribute name="referenceId" type="string" use="required">
+         <sequence>
+            <element ref="modelList" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="templateId" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="resourceUrl" type="string" use="required">
+         <attribute name="unnamedLabel" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="resource"/>
+                  <meta.attribute translatable="true"/>
                </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="characterTypeId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="modelList">
+      <complexType>
+         <attribute name="modelListId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

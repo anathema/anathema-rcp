@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="net.sf.anathema.character.models" name="%extension-point.name.charactermodels" schema="schema/net.sf.anathema.character.models.exsd"/>
-   <extension-point id="net.sf.anathema.character.templates" name="%extension-point.name.charactertemplates" schema="schema/net.sf.anathema.character.templates.exsd"/>
-   <extension-point id="net.sf.anathema.character.types" name="%extension-point.name.charactertypes" schema="schema/net.sf.anathema.character.types.exsd"/>
-   <extension-point id="net.sf.anathema.character.resources" name="%extension-point.name.characterresources" schema="schema/net.sf.anathema.character.resources.exsd"/>
+   <extension-point id="models" name="%extension-point.name.charactermodels" schema="schema/models.exsd"/>
+   <extension-point id="templates" name="%extension-point.name.charactertemplates" schema="schema/templates.exsd"/>
+   <extension-point id="types" name="%extension-point.name.charactertypes" schema="schema/types.exsd"/>
+   <extension-point id="resources" name="%extension-point.name.characterresources" schema="schema/resources.exsd"/>
    <extension
          point="net.sf.anathema.basics.repository.itemtypes">
       <itemtype

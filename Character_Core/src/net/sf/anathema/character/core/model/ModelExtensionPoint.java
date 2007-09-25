@@ -21,7 +21,7 @@ import org.eclipse.osgi.util.NLS;
 
 public class ModelExtensionPoint {
 
-  private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.models"; //$NON-NLS-1$
+  private static final String EXTENSION_POINT_ID = "net.sf.anathema.character.core.models"; //$NON-NLS-1$
   private static final String ATTRIB_FILENAME = "filename"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String ATTRIB_MODEL_FACTORY = "modelFactory"; //$NON-NLS-1$

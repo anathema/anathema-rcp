@@ -28,7 +28,7 @@
       </creditList>
    </extension>
    <extension
-         point="net.sf.anathema.character.templates">
+         point="net.sf.anathema.character.core.templates">
       <template
             characterTypeId="net.sf.anathema.character.type.lunar"
             templateId="net.sf.anathema.charactertype.pactlunar"
@@ -51,7 +51,7 @@
       </wizard>
    </extension>
    <extension
-         point="net.sf.anathema.character.types">
+         point="net.sf.anathema.character.core.types">
       <characterType
             id="net.sf.anathema.character.type.lunar"
             image="icons/LunarIcon_16.png"
@@ -59,7 +59,7 @@
       </characterType>
    </extension>
    <extension
-         point="net.sf.anathema.character.resources">
+         point="net.sf.anathema.character.core.resources">
       <image
             referenceId="LunarBall"
             resourceUrl="icons/Ball_Lunar_16.png">

@@ -11,7 +11,7 @@
       </editor>
    </extension>
    <extension
-         point="net.sf.anathema.character.models">
+         point="net.sf.anathema.character.core.models">
       <model
             filename="basic.description"
             id="net.sf.anathema.character.description.model"

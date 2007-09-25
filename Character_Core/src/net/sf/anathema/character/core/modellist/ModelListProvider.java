@@ -5,8 +5,12 @@ import java.util.Map;
 
 public class ModelListProvider implements IModelListProvider {
 
-  private Map<String, IModelList> modelListsById = new HashMap<String, IModelList>();
-  
+  private final Map<String, IModelList> modelListsById = new HashMap<String, IModelList>();
+
+  /**
+   * By this method, each template is given a description as well as attributes and all further models registered as
+   * part of the model list.
+   */
   public ModelListProvider() {
     ModelList modelList = new ModelList();
     modelList.addModelId("net.sf.anathema.character.description.model"); //$NON-NLS-1$
@@ -17,7 +21,7 @@ public class ModelListProvider implements IModelListProvider {
   public void addModelList(String modelListId, IModelList modelList) {
     modelListsById.put(modelListId, modelList);
   }
-  
+
   @Override
   public IModelList getModelList(String modelListId) {
     IModelList modelList = modelListsById.get(modelListId);

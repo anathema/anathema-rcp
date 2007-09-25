@@ -20,7 +20,7 @@
       </creditList>
    </extension>
    <extension
-         point="net.sf.anathema.character.templates">
+         point="net.sf.anathema.character.core.templates">
       <template
             characterTypeId="net.sf.anathema.character.type.mortal"
             templateId="net.sf.anathema.charactertype.heroicmortal"
@@ -43,7 +43,7 @@
       </wizard>
    </extension>
    <extension
-         point="net.sf.anathema.character.types">
+         point="net.sf.anathema.character.core.types">
       <characterType
             id="net.sf.anathema.character.type.mortal"
             image="icons/MortalIcon_16.png"
@@ -51,7 +51,7 @@
       </characterType>
    </extension>
    <extension
-         point="net.sf.anathema.character.resources">
+         point="net.sf.anathema.character.core.resources">
       <image
             referenceId="MortalBall"
             resourceUrl="icons/Ball_Mortal_16.png">

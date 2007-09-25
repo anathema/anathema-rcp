@@ -3,7 +3,7 @@
 <schema targetNamespace="net.sf.anathema.character.core">
 <annotation>
       <appInfo>
-         <meta.schema plugin="net.sf.anathema.character.core" id="net.sf.anathema.character.types" name="%extension-point.name.charactertypes"/>
+         <meta.schema plugin="net.sf.anathema.character.core" id="models" name="Character Models"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -12,8 +12,8 @@
 
    <element name="extension">
       <complexType>
-         <sequence>
-            <element ref="characterType" minOccurs="1" maxOccurs="unbounded"/>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="model"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -42,8 +42,11 @@
       </complexType>
    </element>
 
-   <element name="characterType">
+   <element name="model">
       <complexType>
+         <sequence minOccurs="0" maxOccurs="1">
+            <element ref="displayConfiguration"/>
+         </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
@@ -51,7 +54,61 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="image" type="string" use="required">
+         <attribute name="modelFactory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sf.anathema.character.core.model.IModelFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="filename" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="displayConfiguration">
+      <annotation>
+         <appInfo>
+            <meta.element icon="icon"/>
+         </appInfo>
+      </annotation>
+      <complexType>
+         <attribute name="editorId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="editorInputFactory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sf.anathema.character.core.repository.IEditorInputFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="displayName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -59,13 +116,6 @@
                <appInfo>
                   <meta.attribute kind="resource"/>
                </appInfo>
-            </annotation>
-         </attribute>
-         <attribute name="traitImageId" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
             </annotation>
          </attribute>
       </complexType>
