@@ -14,78 +14,77 @@ import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public class FakeExtensionElement implements IExtensionElement {
-	private final Map<String, Object> attributes = new HashMap<String, Object>();
-	private final MultiEntryMap<String, IExtensionElement> children = new MultiEntryMap<String, IExtensionElement>();
-	private final String name;
+  private final Map<String, Object> attributes = new HashMap<String, Object>();
+  private final MultiEntryMap<String, IExtensionElement> children = new MultiEntryMap<String, IExtensionElement>();
+  private final String elementName;
 
-	public FakeExtensionElement() {
-		this("Dummy"); //$NON-NLS-1$
-	}
+  public FakeExtensionElement() {
+    this("Dummy"); //$NON-NLS-1$
+  }
 
-	public FakeExtensionElement(String name) {
-		this.name = name;
-	}
+  public FakeExtensionElement(String name) {
+    this.elementName = name;
+  }
 
-	@Override
-	public String getAttribute(String name) {
-		return String.valueOf(attributes.get(name));
-	}
+  @Override
+  public String getAttribute(String name) {
+    return String.valueOf(attributes.get(name));
+  }
 
-	@Override
-	public <K extends IExecutableExtension> K getAttributeAsObject(String name,
-			Class<K> clazz) throws ExtensionException {
-		throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
-	}
+  @Override
+  public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  }
 
-	@Override
-	public ImageDescriptor createImageDescriptorFromAttribute(String name) {
-		throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
-	}
+  @Override
+  public ImageDescriptor createImageDescriptorFromAttribute(String name) {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  }
 
-	@Override
-	public boolean getBooleanAttribute(String name) {
-		throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
-	}
+  @Override
+  public boolean getBooleanAttribute(String name) {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  }
 
-	@Override
-	public IExtensionElement getElement(String name) {
-		throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
-	}
+  @Override
+  public IExtensionElement getElement(String name) {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  }
 
-	@Override
-	public URL getResourceAttribute(String attributeName) {
-		throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
-	}
+  @Override
+  public URL getResourceAttribute(String attributeName) {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  }
 
-	@Override
-	public IExtensionElement[] getElements() {
-		List<IExtensionElement> elements = new ArrayList<IExtensionElement>();
-		for (String key : children.keySet()) {
-			elements.addAll(children.get(key));
-		}
-		return elements.toArray(new IExtensionElement[elements.size()]);
-	}
+  @Override
+  public IExtensionElement[] getElements() {
+    List<IExtensionElement> elements = new ArrayList<IExtensionElement>();
+    for (String key : children.keySet()) {
+      elements.addAll(children.get(key));
+    }
+    return elements.toArray(new IExtensionElement[elements.size()]);
+  }
 
-	@Override
-	public int getIntegerAttribute(String name) {
-		return Integer.valueOf(attributes.get(name).toString());
-	}
+  @Override
+  public int getIntegerAttribute(String name) {
+    return Integer.valueOf(attributes.get(name).toString());
+  }
 
-	@Override
-	public String getName() {
-		return name;
-	}
+  @Override
+  public String getName() {
+    return elementName;
+  }
 
-	public void addAttribute(String name, Object value) {
-		attributes.put(name, value);
-	}
+  public void addAttribute(String name, Object value) {
+    attributes.put(name, value);
+  }
 
-	public void addElement(String tag, IExtensionElement element) {
-		children.add(tag, element);
-	}
+  public void addElement(String tag, IExtensionElement element) {
+    children.add(tag, element);
+  }
 
-	@Override
-	public boolean hasAttribute(String attributeName) {
-		return true;
-	}
+  @Override
+  public boolean hasAttribute(String attributeName) {
+    return true;
+  }
 }
