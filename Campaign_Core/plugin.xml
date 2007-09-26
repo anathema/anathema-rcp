@@ -8,5 +8,12 @@
             name="%new.wizard.category.name.campaign">
       </category>
    </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="net.sf.anathema.category.campaign"
+            name="%import.wizard.category.name.campaign">
+      </category>
+   </extension>
 
 </plugin>
