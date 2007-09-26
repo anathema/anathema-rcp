@@ -13,20 +13,23 @@ import org.eclipse.osgi.util.NLS;
 
 public class EclipseExtensionProvider implements IExtensionProvider {
 
-  @Override
-  public IPluginExtension[] getExtensions(String pointId) {
-    IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(pointId);
-    if (extensionPoint == null) {
-      String message = Messages.EclipseExtensionProvider_ExtensionPointNotFoundMessage;
-      EclipsePlugin.log(IStatus.WARNING, NLS.bind(message, pointId), null);
-      return new IPluginExtension[0];
-    }
-    IExtension[] extensions = extensionPoint.getExtensions();
-    return ArrayUtilities.transform(extensions, IPluginExtension.class, new ITransformer<IExtension, IPluginExtension>() {
-      @Override
-      public IPluginExtension transform(IExtension input) {
-        return new ExtensionFacade(input);
-      }
-    });
-  }
+	@Override
+	public IPluginExtension[] getExtensions(String pluginId, String pointId) {
+		IExtensionPoint extensionPoint = Platform.getExtensionRegistry()
+				.getExtensionPoint(pluginId, pointId);
+		if (extensionPoint == null) {
+			String message = Messages.EclipseExtensionProvider_ExtensionPointNotFoundMessage;
+			EclipsePlugin
+					.log(IStatus.WARNING, NLS.bind(message, pointId), null);
+			return new IPluginExtension[0];
+		}
+		IExtension[] extensions = extensionPoint.getExtensions();
+		return ArrayUtilities.transform(extensions, IPluginExtension.class,
+				new ITransformer<IExtension, IPluginExtension>() {
+					@Override
+					public IPluginExtension transform(IExtension input) {
+						return new ExtensionFacade(input);
+					}
+				});
+	}
 }
