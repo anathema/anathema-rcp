@@ -36,7 +36,7 @@
       </bonusPointCalculator>
    </extension>
    <extension
-         point="net.sf.anathema.editor.decoration.trait">
+         point="net.sf.anathema.character.trait.editordecorations">
       <decoration
             class="net.sf.anathema.character.freebies.attributes.coverage.SurplusMarkingEditorDecoration">
       </decoration>
