@@ -29,6 +29,10 @@
                name="appName"
                value="%net.sf.anathema.rcp.ProductName">
          </property>
+         <property
+               name="windowImages"
+               value="icons/SunGear_16.gif,icons/SunGear_32.gif,icons/SunGear_48.gif">
+         </property>
       </product>
    </extension>
    <extension

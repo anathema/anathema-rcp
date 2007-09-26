@@ -3,12 +3,13 @@
 
 <product name="%net.sf.anathema.rcp.ProductName" id="net.sf.anathema.rcp.product" application="net.sf.anathema.rcp.application" useFeatures="false">
 
+
    <configIni use="default"/>
 
    <launcherArgs>
    </launcherArgs>
 
-   <windowImages/>
+   <windowImages i16="/Anathema_RCP/icons/SunGear_16.gif" i32="/Anathema_RCP/icons/SunGear_32.gif" i48="/Anathema_RCP/icons/SunGear_48.gif"/>
 
    <launcher name="anathema">
       <solaris/>
@@ -17,6 +18,7 @@
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
