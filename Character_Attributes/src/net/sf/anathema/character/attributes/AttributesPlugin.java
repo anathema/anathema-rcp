@@ -4,7 +4,7 @@ import net.sf.anathema.basics.eclipse.plugin.AbstractAnathemaUIPlugin;
 
 public class AttributesPlugin extends AbstractAnathemaUIPlugin {
 
-  public static final String PLUGIN_ID = "net.sf.anathema.character.attributes"; //$NON-NLS-1$
+  public static final String ID = "net.sf.anathema.character.attributes"; //$NON-NLS-1$
   private static AttributesPlugin instance;
 
   public static AbstractAnathemaUIPlugin getDefaultInstance() {
