@@ -1,30 +1,14 @@
-package net.sf.anathema.basics.repository.creation;
-
-import net.sf.anathema.basics.jface.wizards.EmptyWizard;
+package net.sf.anathema.basics.jface.wizards;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.INewWizard;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
 
-public abstract class EmptyNewWizard extends EmptyWizard implements INewWizard {
-
-  private IWorkbenchPage workbenchPage;
-
-  protected final IWorkbenchPage getWorkbenchPage() {
-    return workbenchPage;
-  }
-
-  @Override
-  public void init(IWorkbench workbench, IStructuredSelection selection) {
-    workbenchPage = workbench.getActiveWorkbenchWindow().getActivePage();
-  }
+public abstract class EmptyWizard implements IWizard {
 
   @Override
   public void addPages() {
@@ -125,5 +109,4 @@ public abstract class EmptyNewWizard extends EmptyWizard implements INewWizard {
   public void setContainer(IWizardContainer wizardContainer) {
     // nothing to do
   }
-
 }

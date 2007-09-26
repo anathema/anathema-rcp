@@ -6,5 +6,5 @@ Bundle-Version: 1.0.0
 Bundle-Localization: plugin
 Require-Bundle: net.sf.anathema.character.freebies,
  net.sf.anathema.character.core,
- org.eclipse.ui,
- net.sf.anathema.basics.repository
+ net.sf.anathema.basics.repository,
+ net.sf.anathema.basics.jface
