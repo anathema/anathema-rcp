@@ -82,6 +82,13 @@
                   visible="true">
             </separator>
             <command
+                  commandId="org.eclipse.ui.file.import">
+            </command>
+            <separator
+                  name="separator"
+                  visible="true">
+            </separator>
+            <command
                   commandId="org.eclipse.ui.file.exit">
             </command>
          </menu>
