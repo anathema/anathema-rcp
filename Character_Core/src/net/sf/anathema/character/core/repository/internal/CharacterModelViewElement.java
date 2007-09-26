@@ -6,7 +6,7 @@ import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
+import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFolder;
@@ -111,7 +111,7 @@ public class CharacterModelViewElement implements IViewElement {
     catch (Exception e) {
       throw new PartInitException(new Status(
           IStatus.ERROR,
-          ICharacterCorePluginConstants.PLUGIN_ID,
+          CharacterCorePlugin.ID,
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }

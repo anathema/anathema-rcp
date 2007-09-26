@@ -7,7 +7,7 @@ import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
-import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
+import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 
 public class CharacterFactory {
 
-  private static final ILogger logger = new Logger(ICharacterCorePluginConstants.PLUGIN_ID);
+  private static final ILogger logger = new Logger(CharacterCorePlugin.ID);
 
   public void createNewCharacter(String templateName, String folderName) {
     try {
