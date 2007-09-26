@@ -9,14 +9,30 @@ import org.eclipse.swt.widgets.Shell;
 public class FileChoosing {
 
   private static final String PDF_EXTENSION_NAME = "Portable Document Format (*.pdf)";
+  private static final String NOTE_EXTENSION_NAME = "Anathema Note (*.not)";
   private static final String PDF_EXTENSION = "*.pdf"; //$NON-NLS-1$
+  private static final String NOTE_EXTENSION = "*.not"; //$NON-NLS-1$
 
-  public static File getPdfFile(File startingDirectory, Shell shell) {
-    return getFile(startingDirectory, shell, new String[] { PDF_EXTENSION }, new String[] { PDF_EXTENSION_NAME });
+  public static File savePdfFile(File startingDirectory, Shell shell) {
+    return getFile(
+        startingDirectory,
+        shell,
+        new String[] { PDF_EXTENSION },
+        new String[] { PDF_EXTENSION_NAME },
+        SWT.SAVE);
   }
 
-  private static File getFile(File startingDirectory, Shell shell, String[] extensions, String[] filterNames) {
-    FileDialog dialog = new FileDialog(shell, SWT.SAVE);
+  public static File openNoteFile(File startingDirectory, Shell shell) {
+    return getFile(
+        startingDirectory,
+        shell,
+        new String[] { NOTE_EXTENSION },
+        new String[] { NOTE_EXTENSION_NAME },
+        SWT.OPEN);
+  }
+
+  private static File getFile(File startingDirectory, Shell shell, String[] extensions, String[] filterNames, int style) {
+    FileDialog dialog = new FileDialog(shell, style);
     if (startingDirectory != null) {
       dialog.setFileName(startingDirectory.getPath());
     }
