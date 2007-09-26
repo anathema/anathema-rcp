@@ -16,7 +16,7 @@ public class FileChoosing {
   }
 
   private static File getFile(File startingDirectory, Shell shell, String[] extensions, String[] filterNames) {
-    FileDialog dialog = new FileDialog(shell, SWT.OPEN);
+    FileDialog dialog = new FileDialog(shell, SWT.SAVE);
     if (startingDirectory != null) {
       dialog.setFileName(startingDirectory.getPath());
     }
