@@ -9,7 +9,7 @@
    <launcherArgs>
    </launcherArgs>
 
-   <windowImages i16="/Anathema_RCP/icons/SunGear_16.gif" i32="/Anathema_RCP/icons/SunGear_32.gif" i48="/Anathema_RCP/icons/SunGear_48.gif"/>
+   <windowImages i16="/Anathema_RCP/icons/SunGear_16.gif" i32="/Anathema_RCP/icons/SunGear_32.gif" i48="/Anathema_RCP/icons/SunGear_48.gif" i64="/Anathema_RCP/icons/SunGear_64.gif" i128="/Anathema_RCP/icons/SunGear_128.gif"/>
 
    <launcher name="anathema">
       <solaris/>
