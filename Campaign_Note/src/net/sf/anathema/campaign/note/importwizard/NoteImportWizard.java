@@ -12,6 +12,7 @@ import net.sf.anathema.campaign.note.NotesRepositoryUtilities;
 import net.sf.anathema.campaign.note.plugin.INotePluginConstants;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -36,8 +37,9 @@ public class NoteImportWizard extends Wizard implements IImportWizard {
     IItemType itemType = NotesRepositoryUtilities.getNotesItemType();
     try {
       // TODO ProgressMonitor
+      IProgressMonitor monitor = new NullProgressMonitor();
       IFile file = new UnusedFileFactory(itemType).createUnusedFile(externalFile.getName());
-      file.create(new FileInputStream(externalFile), true, new NullProgressMonitor());
+      file.create(new FileInputStream(externalFile), true, monitor);
       if (openModel.getValue()) {
         ImageDescriptor icon = ImageDescriptor.createFromURL(itemType.getIconUrl());
         IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
