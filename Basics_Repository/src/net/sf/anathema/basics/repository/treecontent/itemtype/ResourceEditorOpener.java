@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
+import net.sf.anathema.basics.eclipse.ui.IEditorOpener;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.input.internal.FileItemEditorInput;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;

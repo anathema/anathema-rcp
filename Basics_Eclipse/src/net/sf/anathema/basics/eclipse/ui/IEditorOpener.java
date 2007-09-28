@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.repository.treecontent.itemtype;
+package net.sf.anathema.basics.eclipse.ui;
 
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
