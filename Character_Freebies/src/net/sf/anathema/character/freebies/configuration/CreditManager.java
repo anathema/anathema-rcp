@@ -1,10 +1,13 @@
 package net.sf.anathema.character.freebies.configuration;
 
+import org.eclipse.osgi.util.NLS;
+
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.core.template.ICharacterTemplate;
@@ -47,7 +50,9 @@ public final class CreditManager implements ICreditManager {
               return provider.getCredit(templateId);
             }
             catch (ExtensionException e) {
-              // TODO Logging
+              new Logger(ICharacterFreebiesPluginConstants.PLUGIN_ID).error(NLS.bind(
+                  Messages.CreditManager_ErrorInstantiatingHandler,
+                  creditId), e);
               return null;
             }
           }

@@ -9,6 +9,7 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
@@ -30,7 +31,7 @@ public class DummyResourceViewElement implements IResourceViewElement, IPageDeli
   }
 
   @Override
-  public void delete(IWorkbenchPage page) throws CoreException, IOException {
+  public void delete(IWorkbenchPage page, IProgressMonitor monitor) throws CoreException, IOException {
     this.deleted = true;
   }
 

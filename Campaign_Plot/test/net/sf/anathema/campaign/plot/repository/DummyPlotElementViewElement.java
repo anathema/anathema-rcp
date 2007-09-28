@@ -11,6 +11,7 @@ import net.sf.anathema.campaign.plot.dnd.DummyPlotUnit;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -33,7 +34,7 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement, IPa
   }
 
   @Override
-  public void delete(IWorkbenchPage page) throws CoreException, IOException {
+  public void delete(IWorkbenchPage page, IProgressMonitor monitor) throws CoreException, IOException {
     deleted = true;
   }
 

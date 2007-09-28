@@ -3,6 +3,7 @@ package net.sf.anathema.basics.repository.treecontent.deletion;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -16,14 +17,14 @@ public abstract class AbstractPageDelible implements IPageDelible {
   }
 
   @Override
-  public void delete(IWorkbenchPage page) throws CoreException, IOException {
+  public void delete(IWorkbenchPage page, IProgressMonitor monitor) throws CoreException, IOException {
     closeRelatedEditors(page);
-    delete();
+    delete(monitor);
   }
 
-  protected abstract void delete() throws CoreException, IOException;
+  protected abstract void delete(IProgressMonitor monitor) throws CoreException, IOException;
 
-  private void closeRelatedEditors(IWorkbenchPage page) throws PartInitException{
+  private void closeRelatedEditors(IWorkbenchPage page) throws PartInitException {
     for (IEditorReference reference : page.getEditorReferences()) {
       handler.closeIfRequired(reference);
     }

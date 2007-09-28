@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.IProgressMonitor;
 
 public class ResourcePageDelible extends AbstractPageDelible {
 
@@ -16,8 +16,7 @@ public class ResourcePageDelible extends AbstractPageDelible {
   }
 
   @Override
-  protected void delete() throws CoreException, IOException {
-    // TODO Monitor
-    resource.delete(true, new NullProgressMonitor());
+  protected void delete(IProgressMonitor monitor) throws CoreException, IOException {
+    resource.delete(true, monitor);
   }
 }

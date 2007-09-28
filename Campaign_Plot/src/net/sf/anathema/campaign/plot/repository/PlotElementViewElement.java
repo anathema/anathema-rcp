@@ -16,7 +16,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
 
@@ -83,9 +82,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
   protected IPageDelible createDelible() {
     return new AbstractPageDelible(new PlotElementCloseHandler(this)) {
       @Override
-      protected void delete() throws CoreException, IOException {
-        // TODO Monitor
-        NullProgressMonitor monitor = new NullProgressMonitor();
+      protected void delete(IProgressMonitor monitor) throws CoreException, IOException {
         if (plotElement.getParent() == null) {
           getEditFile().getParent().delete(true, monitor);
         }

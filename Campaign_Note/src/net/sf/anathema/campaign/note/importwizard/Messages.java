@@ -13,7 +13,8 @@ public class Messages extends NLS {
   public static String NoteImportMessageProvider_FolderMessage;
   public static String NoteImportMessageProvider_MissingFileMessage;
   public static String NoteImportMessageProvider_SelectNoteMessage;
-  public static String NoteImportWizard_ErrorMessage;
+  public static String NoteImportWizard_CreateFileError;
+  public static String NoteImportWizard_ImportNoteError;
   public static String NoteImportWizard_WindowTitle;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
