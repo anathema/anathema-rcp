@@ -25,7 +25,6 @@ public final class PlotDropListener extends ViewerDropAdapter {
 
   @Override
   public boolean performDrop(Object data) {
-    // TODO Zeige Progress Monitor an. Eventuell ist die Operation zu schnell, um den Monitor zu zeigen.
     IProgressMonitor monitor = site.getActionBars().getStatusLineManager().getProgressMonitor();
     monitor.beginTask("Moving", IProgressMonitor.UNKNOWN); //$NON-NLS-1$
     try {
