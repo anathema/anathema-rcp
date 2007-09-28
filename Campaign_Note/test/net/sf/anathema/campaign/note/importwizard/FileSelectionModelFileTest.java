@@ -11,7 +11,7 @@ import org.junit.Test;
 public class FileSelectionModelFileTest {
 
   private FileSelectionModel model;
-  private final String path = "/Campaign_Note/test/net/sf/anathema/campaign/note/importwizard/FileSelectionModelUninitializedTest.java";
+  private final String path = "/Campaign_Note/test/net/sf/anathema/campaign/note/importwizard/FileSelectionModelUninitializedTest.java"; //$NON-NLS-1$
 
   @Before
   public void create() {

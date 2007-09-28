@@ -43,9 +43,9 @@
             class="net.sf.anathema.campaign.note.importwizard.NoteImportWizard"
             icon="icons/TabNotes16.png"
             id="net.sf.anathema.importwizard.note"
-            name="Note from Classic Anathema">
+            name="%wizard.name.AnathemaClassicNote">
          <description>
-            Import a Note created with older versions of Anathema.
+            %wizard.description.AnathemaClassicNote
          </description>
       </wizard>
    </extension>

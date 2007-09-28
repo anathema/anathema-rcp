@@ -9,7 +9,6 @@ import org.eclipse.jface.dialogs.IMessageProvider;
 
 public class FileSelectionModel implements IFileSelectionModel {
 
-  private static final String LAUNCH_PATH = new File("").getAbsolutePath(); //$NON-NLS-1$
   private final ChangeControl control = new ChangeControl();
   private File file;
 
@@ -36,35 +35,7 @@ public class FileSelectionModel implements IFileSelectionModel {
   }
 
   public IMessageProvider getMessage() {
-    return new IMessageProvider() {
-      @Override
-      public String getMessage() {
-        if (file == null) {
-          return "Please select a Note to import.";
-        }
-        if (!file.exists()) {
-          return "The specified file does not exist.";
-        }
-        if (file.isDirectory()) {
-          return "You have specified a folder.";
-        }
-        return "Click 'Finish' to import the Note.";
-      }
-
-      @Override
-      public int getMessageType() {
-        if (file == null) {
-          return NONE;
-        }
-        if (!file.exists()) {
-          return ERROR;
-        }
-        if (file.isDirectory()) {
-          return ERROR;
-        }
-        return NONE;
-      }
-    };
+    return new NoteImportMessageProvider(file);
   }
 
   public File getFile() {

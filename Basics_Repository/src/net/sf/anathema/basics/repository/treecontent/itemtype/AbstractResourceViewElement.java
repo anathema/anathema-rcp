@@ -3,23 +3,16 @@ package net.sf.anathema.basics.repository.treecontent.itemtype;
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
-import net.sf.anathema.basics.repository.RepositoryPlugin;
-import net.sf.anathema.basics.repository.input.internal.FileItemEditorInput;
-import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 
 public abstract class AbstractResourceViewElement implements IViewElement {
 
@@ -44,30 +37,15 @@ public abstract class AbstractResourceViewElement implements IViewElement {
 
   @Override
   public final void openEditor(IWorkbenchPage page) throws PartInitException {
-    try {
-      IEditorInput input = getEditorInput();
-      String fileName = getEditFile().getName();
-      IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(fileName);
-      page.openEditor(input, defaultEditor.getId());
-    }
-    catch (PersistenceException e) {
-      throw new PartInitException(new Status(
-          IStatus.ERROR,
-          RepositoryPlugin.ID,
-          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
-          e));
-    }
-    catch (CoreException e) {
-      throw new PartInitException(new Status(
-          IStatus.ERROR,
-          RepositoryPlugin.ID,
-          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
-          e));
-    }
+    createEditorOpener().openEditor(page);
   }
 
-  public IEditorInput getEditorInput() throws PersistenceException, CoreException {
-    return new FileItemEditorInput(getEditFile(), untitledName, getImageDescriptor());
+  private IEditorInput createEditorInput() throws PersistenceException, CoreException {
+    return createEditorOpener().createEditorInput();
+  }
+
+  private ResourceEditorOpener createEditorOpener() {
+    return new ResourceEditorOpener(getEditFile(), untitledName, getImageDescriptor());
   }
 
   @Override
@@ -110,7 +88,7 @@ public abstract class AbstractResourceViewElement implements IViewElement {
       return new IEditorInputProvider() {
         @Override
         public IEditorInput getEditorInput() throws PersistenceException, CoreException {
-          return AbstractResourceViewElement.this.getEditorInput();
+          return AbstractResourceViewElement.this.createEditorInput();
         }
       };
     }
