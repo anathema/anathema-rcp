@@ -6,7 +6,8 @@
          <meta.schema plugin="net.sf.anathema.campaign.plot" id="units" name="Plot Unit"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         Used to register plot units.
+Plot units are a generic abstraction of the time units introduced in the Exalted Second Edition Core rules. They form a hierarchy of names upon which a stories flow can be based.
       </documentation>
    </annotation>
 
@@ -52,14 +53,14 @@
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  An unique ID, used to create parent-child relations.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  A human-readable name, displayed to the user.
                </documentation>
                <appInfo>
                   <meta.attribute translatable="true"/>
@@ -69,7 +70,7 @@
          <attribute name="icon" type="string">
             <annotation>
                <documentation>
-                  
+                  The unit&apos;s icon, used in editors and resource views.
                </documentation>
                <appInfo>
                   <meta.attribute kind="resource"/>
@@ -79,14 +80,14 @@
          <attribute name="parentId" type="string">
             <annotation>
                <documentation>
-                  
+                  This unit&apos;s parent&apos;s id, if any. If no parent ID is specified, a new root unit is created.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="recursive" type="boolean" use="default" value="false">
             <annotation>
                <documentation>
-                  
+                  Whether or not the unit is recursive. If it is, it will accept plot elements of it&apos;s own unit type as children.
                </documentation>
             </annotation>
          </attribute>
@@ -98,7 +99,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         2.0.0
       </documentation>
    </annotation>
 
@@ -107,7 +108,18 @@
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         [Enter extension point usage example here.]
+         Registers the &quot;Story&quot; unit with the platform.
+After icon, id and name are defined, the unit is connected to its parent unit (&quot;Plot&quot;) and at the same time marked as non-recursive, meaning that it will have children that differ from itself.
+&lt;extension
+         point=&quot;net.sf.anathema.campaign.plot.units&quot;&gt;
+        &lt;unit
+            icon=&quot;icons/FolderStory16.png&quot;
+            id=&quot;net.sf.anathema.plot.unit.story&quot;
+            name=&quot;%plotunit.unit.story&quot;
+            parentId=&quot;net.sf.anathema.plot.unit.plot&quot;
+            recursive=&quot;false&quot;&gt;
+      &lt;/unit&gt;
+&lt;/extension&gt;
       </documentation>
    </annotation>
 
@@ -116,7 +128,7 @@
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         [Enter API information here.]
+         
       </documentation>
    </annotation>
 
@@ -125,7 +137,7 @@
          <meta.section type="implementation"/>
       </appInfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         Class net.sf.anathema.campaign.plot.repository.PlotUnitProvider provides access to the hierarchy of units via its public getRootUnit() method.
       </documentation>
    </annotation>
 
