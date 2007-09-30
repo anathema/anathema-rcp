@@ -51,10 +51,8 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
     PdfPageConfiguration configuration = PdfPageConfiguration.create(pageSize.getRectangle());
     List<IPdfPageEncoder> encoderList = new ArrayList<IPdfPageEncoder>();
     EncodeContext context = new EncodeContext();
-    monitor.subTask("Printing first page");
+    monitor.subTask("Creating character sheet");
     encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, context));
-    monitor.worked(1);
-    monitor.subTask("Printing second page");
     monitor.worked(1);
     encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, context));
     boolean isFirstPrinted = false;
@@ -71,6 +69,6 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
 
   @Override
   public int getTaskCount() {
-    return 2;
+    return 1;
   }
 }
