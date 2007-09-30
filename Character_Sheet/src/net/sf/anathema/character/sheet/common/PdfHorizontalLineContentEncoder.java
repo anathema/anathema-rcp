@@ -15,7 +15,7 @@ public class PdfHorizontalLineContentEncoder extends AbstractExecutableExtension
   private final int columnCount;
   private final String header;
 
-  public String getHeader() {
+  public String getHeader(ICharacter character) {
     return header;
   }
 

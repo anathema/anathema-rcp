@@ -12,5 +12,5 @@ public interface IPdfContentBoxEncoder extends IExecutableExtension {
 
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds) throws DocumentException;
 
-  public String getHeader();
+  public String getHeader(ICharacter character);
 }

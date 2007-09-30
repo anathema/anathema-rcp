@@ -58,7 +58,7 @@ public class ContentEncoderProviderTest {
   @Test
   public void unregisteredEncoderHasIdAsHeader() throws Exception {
     IPdfContentBoxEncoder contentEncoder = contentProvider.getContentEncoder("unregisteredEncoder", character); //$NON-NLS-1$
-    assertEquals("unregisteredEncoder", contentEncoder.getHeader()); //$NON-NLS-1$
+    assertEquals("unregisteredEncoder", contentEncoder.getHeader(null)); //$NON-NLS-1$
 
   }
 
@@ -67,14 +67,14 @@ public class ContentEncoderProviderTest {
     IPdfContentBoxEncoder contentEncoder = contentProvider.getDynamicContentEncoder("unregisteredEncoder", character); //$NON-NLS-1$
     assertNotSame(encoder, contentEncoder);
     assertSame(DynamicPdfHorizontalLineContentEncoder.class, contentEncoder.getClass());
-    assertEquals("unregisteredEncoder", contentEncoder.getHeader()); //$NON-NLS-1$
+    assertEquals("unregisteredEncoder", contentEncoder.getHeader(null)); //$NON-NLS-1$
   }
 
   @Test
   public void unregisteredDynamicEncoderHasIdAsHeader() throws Exception {
     IDynamicPdfContentBoxEncoder contentEncoder = contentProvider.getDynamicContentEncoder(
         "unregisteredEncoder", character); //$NON-NLS-1$
-    assertEquals("unregisteredEncoder", contentEncoder.getHeader()); //$NON-NLS-1$
+    assertEquals("unregisteredEncoder", contentEncoder.getHeader(null)); //$NON-NLS-1$
 
   }
 

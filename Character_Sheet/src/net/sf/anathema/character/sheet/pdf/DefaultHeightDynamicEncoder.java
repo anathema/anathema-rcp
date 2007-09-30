@@ -29,7 +29,7 @@ public class DefaultHeightDynamicEncoder extends AbstractExecutableExtension imp
   }
 
   @Override
-  public String getHeader() {
-    return encoder.getHeader();
+  public String getHeader(ICharacter character) {
+    return encoder.getHeader(character);
   }
 }

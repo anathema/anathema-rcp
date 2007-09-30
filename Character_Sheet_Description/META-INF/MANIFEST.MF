@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Character_Sheet_Description Plug-in
+Bundle-SymbolicName: Character_Sheet_Description;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.character.sheet,
+ net.sf.anathema.character.description,
+ net.sf.anathema.basics.eclipse

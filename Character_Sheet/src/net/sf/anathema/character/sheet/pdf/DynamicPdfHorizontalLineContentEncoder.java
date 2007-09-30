@@ -31,7 +31,7 @@ public final class DynamicPdfHorizontalLineContentEncoder extends AbstractExecut
   }
 
   @Override
-  public String getHeader() {
-    return encoder.getHeader();
+  public String getHeader(ICharacter character) {
+    return encoder.getHeader(character);
   }
 }

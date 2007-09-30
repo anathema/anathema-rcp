@@ -56,7 +56,7 @@ public class PdfBoxEncoder extends AbstractPdfEncoder {
       IPdfBoxEncoder boxEncoder,
       ICharacter character,
       Bounds bounds) throws DocumentException {
-    Bounds contentBounds = encodeBox(directContent, bounds, encoder.getHeader(), boxEncoder);
+    Bounds contentBounds = encodeBox(directContent, bounds, encoder.getHeader(character), boxEncoder);
     encoder.encode(directContent, context, character, contentBounds);
   }
 

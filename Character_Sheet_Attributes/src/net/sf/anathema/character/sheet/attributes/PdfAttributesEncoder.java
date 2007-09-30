@@ -32,7 +32,7 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   private final int essenceMax = 7;
 
   @Override
-  public String getHeader() {
+  public String getHeader(ICharacter character) {
     return "Attributes"; //$NON-NLS-1$
   }
 

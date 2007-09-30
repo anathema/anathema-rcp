@@ -23,7 +23,7 @@ public class NullPdfContentEncoder extends AbstractExecutableExtension implement
     // Nothing to do
   }
 
-  public String getHeader() {
+  public String getHeader(ICharacter character) {
     return header;
   }
 }
