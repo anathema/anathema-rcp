@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Shell;
 
 public class PdfFileOutputStreamFactory implements IOutputStreamFactory {
 
+  // TODO PDF-Extension nicht verdoppeln
   private static final String PDF_EXTENSION = ".pdf"; //$NON-NLS-1$
 
   public OutputStream create(Shell shell) throws FileNotFoundException {

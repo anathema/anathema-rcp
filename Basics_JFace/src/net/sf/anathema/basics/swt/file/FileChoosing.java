@@ -7,7 +7,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
 public class FileChoosing {
-
+  // TODO Extensions nicht verdoppeln
   private static final String PDF_EXTENSION_NAME = "Portable Document Format (*.pdf)";
   private static final String NOTE_EXTENSION_NAME = "Anathema Note (*.not)";
   private static final String PDF_EXTENSION = "*.pdf"; //$NON-NLS-1$
