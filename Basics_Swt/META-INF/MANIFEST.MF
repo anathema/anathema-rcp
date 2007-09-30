@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %net.sf.anathema.basic.swt.Bundle-Name
-Bundle-SymbolicName: net.sf.anathema.basics.swt
-Bundle-Version: 1.0.0
-Require-Bundle: org.eclipse.swt,
- org.eclipse.core.commands
-Export-Package: net.sf.anathema.basics.swt.file
-Bundle-Localization: plugin

@@ -1,5 +1,6 @@
 package net.sf.anathema.character.sheet.pdf;
 
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 
@@ -7,6 +8,7 @@ import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
@@ -32,15 +34,31 @@ public class CharacterSheetRunner {
       runnableContext.run(true, false, new CharacterSheetRunnable(editorPart, outputStream, writer));
     }
     catch (InvocationTargetException e) {
-      logger.error(Messages.CharacterSheetHandler_CharacterPdfErrorMessage, e.getCause());
+      indicateError(shell, e.getCause());
 
     }
     catch (Exception e) {
-      logger.error(Messages.CharacterSheetHandler_CharacterPdfErrorMessage, e.getCause());
+      indicateError(shell, e);
 
     }
     finally {
       IOUtilities.close(outputStream);
+    }
+  }
+
+  private void indicateError(Shell shell, Throwable cause) {
+    if (cause instanceof FileNotFoundException) {
+      MessageDialog.openError(
+          shell,
+          Messages.CharacterSheetRunner_Title,
+          Messages.CharacterSheetRunner_FileInUseMessage);
+    }
+    else {
+      logger.error(Messages.CharacterSheetHandler_CharacterPdfErrorMessage, cause);
+      MessageDialog.openError(
+          shell,
+          Messages.CharacterSheetRunner_Title,
+          Messages.CharacterSheetHandler_CharacterPdfErrorMessage);
     }
   }
 }
