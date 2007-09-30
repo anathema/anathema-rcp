@@ -23,7 +23,6 @@ public class RegExPrintNameProvider implements IPrintNameProvider {
     this.fallbackName = fallbackName;
   }
 
-  // TODO Problem mit unbenannten Serienfiles!?
   public String getPrintName(IFile file) {
     InputStreamReader reader = null;
     try {
