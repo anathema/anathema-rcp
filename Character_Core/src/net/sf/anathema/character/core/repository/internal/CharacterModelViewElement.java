@@ -125,10 +125,7 @@ public class CharacterModelViewElement implements IViewElement {
   }
 
   private IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
-    IEditorInput input = configuration.createEditorInput(
-        characterFolder,
-        getImageDescriptor(),
-        new DisplayNameProvider(getDisplayName(), getParent()));
-    return input;
+    DisplayNameProvider displayNameProvider = new DisplayNameProvider(getDisplayName(), getParent());
+    return configuration.createEditorInput(characterFolder, getImageDescriptor(), displayNameProvider);
   }
 }

@@ -21,7 +21,7 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
   private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
 
   public CharacterDescriptionEditorInput(IFile file, ImageDescriptor imageDescriptor, ICharacterDescription description) {
-    super(file, imageDescriptor);
+    super(file, imageDescriptor, null);
     this.item = description;
   }
 

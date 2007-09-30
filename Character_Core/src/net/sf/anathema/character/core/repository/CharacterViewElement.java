@@ -57,11 +57,7 @@ public class CharacterViewElement implements IViewElement {
   @Override
   public String getDisplayName() {
     IFile descriptionFile = characterFolder.getFile(new Path("basic.description")); //$NON-NLS-1$
-    if (descriptionFile.exists()) {
-      // TODO Soll der Fallbackmechanismus aus dem RegExPrintNameProvider hier verwendet werden?
-      return new RegExPrintNameProvider().getPrintName(descriptionFile);
-    }
-    return unnamedTitle;
+    return new RegExPrintNameProvider(unnamedTitle).getPrintName(descriptionFile);
   }
 
   @Override

@@ -30,7 +30,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
 
-  private final IDisplayNameProvider displayNameProvider;
   private final AttributesPersister attributesPersister = new AttributesPersister();
   private final ITraitCollectionContext context;
   private final IFavorizationHandler favorizationHandler;
@@ -41,8 +40,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
       IDisplayNameProvider displayNameProvider,
       final ITraitCollectionContext context,
       final IFavorizationHandler favorizationHandler) {
-    super(file, imageDescriptor);
-    this.displayNameProvider = displayNameProvider;
+    super(file, imageDescriptor, displayNameProvider);
     this.context = context;
     this.favorizationHandler = favorizationHandler;
   }
@@ -56,11 +54,6 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   public ITraitCollectionModel save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     new ItemFileWriter().saveToFile(getFile(), attributesPersister, getItem(), monitor);
     return getItem();
-  }
-
-  @Override
-  public String getName() {
-    return displayNameProvider.getDisplayName();
   }
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
