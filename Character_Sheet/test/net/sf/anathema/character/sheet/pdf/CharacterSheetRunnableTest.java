@@ -23,17 +23,21 @@ public class CharacterSheetRunnableTest {
   }
 
   private IProgressMonitor createNiceProgressMonitor() {
-    return EasyMock.createNiceMock(IProgressMonitor.class);
+    IProgressMonitor monitor = EasyMock.createNiceMock(IProgressMonitor.class);
+    EasyMock.replay(monitor);
+    return monitor;
   }
 
   @Test
   public void writerIsCalledWithCorrectOutputStream() throws Exception {
     OutputStream outputStream = new ByteArrayOutputStream();
-    writer.write(EasyMock.isA(ICharacter.class), EasyMock.same(outputStream));
+    IProgressMonitor progressMonitor = createNiceProgressMonitor();
+    EasyMock.expect(writer.getTaskCount()).andReturn(1);
+    writer.write(EasyMock.same(progressMonitor), EasyMock.isA(ICharacter.class), EasyMock.same(outputStream));
     EasyMock.replay(writer);
     IEditorPart editorPart = EditorPartObjectMother.createEditorPart(CharacterObjectMother.createCharacterEditorInput(new DummyCharacterId()));
     CharacterSheetRunnable runner = new CharacterSheetRunnable(editorPart, outputStream, writer);
-    runner.run(createNiceProgressMonitor());
+    runner.run(progressMonitor);
     EasyMock.verify(writer);
   }
 }
