@@ -118,6 +118,7 @@ public class CharacterModelViewElement implements IViewElement {
   }
 
   private void ensureResourceExists(IEditorInput input, IEditorPart openEditor) {
+    // TODO Eine andere Lösung muss her, sobald Abhängigkeiten zwischen Model exisiteren.
     IResource resource = (IResource) input.getAdapter(IResource.class);
     if (!resource.exists()) {
       openEditor.doSave(new NullProgressMonitor());
