@@ -14,12 +14,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public class NewPlotEditorInput extends AbstractNewItemEditorInput {
+  private final static IItemType ITEMTYPE = PlotRepositoryUtilities.getPlotItemType();
 
-  public NewPlotEditorInput(IItemType itemType) {
-    super(
-        new UnusedPlotFileFactory(itemType),
-        ImageDescriptor.createFromURL(itemType.getIconUrl()),
-        itemType.getUntitledName());
+  public NewPlotEditorInput() {
+    super(new UnusedPlotFileFactory(), ImageDescriptor.createFromURL(ITEMTYPE.getIconUrl()), ITEMTYPE.getUntitledName());
   }
 
   @Override

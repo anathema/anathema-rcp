@@ -3,5 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %net.sf.anathema.campaign.core.Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.campaign.core;singleton:=true
 Bundle-Version: 1.0.0
-Require-Bundle: org.eclipse.ui
+Require-Bundle: net.sf.anathema.basics.item,
+ net.sf.anathema.basics.eclipse,
+ net.sf.anathema.basics.jface,
+ net.sf.anathema.basics.repository,
+ net.sf.anathema.basics.lib
 Bundle-Localization: plugin
+Export-Package: net.sf.anathema.campaign.core.importwizard

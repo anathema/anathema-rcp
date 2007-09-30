@@ -20,7 +20,7 @@ public class NewPlotWizard extends EmptyNewWizard {
 
   public static void openEditorForNewPlot(IWorkbenchPage page) {
     IItemType itemType = PlotRepositoryUtilities.getPlotItemType();
-    IEditorInput input = new ProxyItemEditorInput(itemType.getUntitledName(), new NewPlotEditorInput(itemType));
+    IEditorInput input = new ProxyItemEditorInput(itemType.getUntitledName(), new NewPlotEditorInput());
     try {
       page.openEditor(input, PlotPlugin.PLOT_EDITOR_ID);
     }

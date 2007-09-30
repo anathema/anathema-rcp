@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.note.importwizard;
+package net.sf.anathema.campaign.core.importwizard;
 
 import java.io.File;
 

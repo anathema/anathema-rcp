@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.note.importwizard;
+package net.sf.anathema.campaign.core.importwizard;
 
 import java.io.File;
 
@@ -20,19 +20,21 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-public final class NoteFileSelectionWizardPage extends WizardPage {
+public final class FileSelectionWizardPage extends WizardPage {
   private final IFileSelectionModel model;
   private final BooleanModel openModel;
+  private final IImportPageMessages messages;
 
-  public NoteFileSelectionWizardPage(final IFileSelectionModel model, BooleanModel openModel) {
-    super(Messages.NoteFileSelectionWizardPage_PageName, Messages.NoteImportWizard_WindowTitle, null);
+  public FileSelectionWizardPage(final IFileSelectionModel model, BooleanModel openModel, IImportPageMessages messages) {
+    super(messages.getPageName(), messages.getPageTitle(), null);
     this.openModel = openModel;
     this.model = model;
-    setDescription(Messages.NoteFileSelectionWizardPage_Description);
-    final IMessageProvider message = model.getMessage();
+    this.messages = messages;
+    setDescription(messages.getDescription());
     model.addChangeListener(new IChangeListener() {
       @Override
       public void stateChanged() {
+        final IMessageProvider message = model.getMessage();
         setMessage(message.getMessage(), message.getMessageType());
         getContainer().updateButtons();
       }
@@ -60,7 +62,7 @@ public final class NoteFileSelectionWizardPage extends WizardPage {
     GridData gridData = new GridData();
     gridData.horizontalSpan = 3;
     checkBox.setLayoutData(gridData);
-    checkBox.setText(Messages.NoteFileSelectionWizardPage_OpenNoteLabel);
+    checkBox.setText(messages.getOpenLabel());
     checkBox.addSelectionListener(new SelectionListener() {
       @Override
       public void widgetDefaultSelected(SelectionEvent e) {
@@ -80,7 +82,7 @@ public final class NoteFileSelectionWizardPage extends WizardPage {
 
   private void createLabel(final Composite composite) {
     Label label = new Label(composite, SWT.None);
-    label.setText(Messages.NoteFileSelectionWizardPage_FileNameLabel);
+    label.setText(Messages.FileSelectionWizardPage_FileNameLabel);
   }
 
   private void createTextField(final Composite composite) {
@@ -106,7 +108,7 @@ public final class NoteFileSelectionWizardPage extends WizardPage {
 
   private void createBrowseButton(final Composite composite) {
     Button button = new Button(composite, SWT.PUSH);
-    button.setText(Messages.NoteFileSelectionWizardPage_BrowseButtonLabel);
+    button.setText(Messages.FileSelectionWizardPage_BrowseButtonLabel);
     button.addSelectionListener(new SelectionListener() {
       @Override
       public void widgetDefaultSelected(SelectionEvent e) {

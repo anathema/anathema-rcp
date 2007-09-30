@@ -2,7 +2,6 @@ package net.sf.anathema.campaign.plot.creation;
 
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
-import net.sf.anathema.basics.repository.itemtype.IItemType;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -16,8 +15,8 @@ public class UnusedPlotFileFactory implements IUnusedFileFactory {
 
   private final IContainer container;
 
-  public UnusedPlotFileFactory(IItemType itemType) {
-    this(RepositoryUtilities.getProject(itemType));
+  public UnusedPlotFileFactory() {
+    this(RepositoryUtilities.getProject(PlotRepositoryUtilities.getPlotItemType()));
   }
 
   public UnusedPlotFileFactory(IContainer container) {

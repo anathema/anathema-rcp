@@ -1,18 +1,15 @@
-/**
- * 
- */
 package net.sf.anathema.campaign.note.importwizard;
 
 import java.io.File;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 
-public final class NoteImportMessageProvider implements IMessageProvider {
+public final class FileImportMessageProvider implements IMessageProvider {
 
   private final String message;
   private final int messageType;
 
-  public NoteImportMessageProvider(File file) {
+  public FileImportMessageProvider(File file) {
     if (file == null) {
       this.message = Messages.NoteImportMessageProvider_SelectNoteMessage;
       this.messageType = NONE;
