@@ -55,6 +55,7 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
     encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, context));
     monitor.worked(1);
     encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, context));
+    monitor.worked(1);
     boolean isFirstPrinted = false;
     for (IPdfPageEncoder encoder : encoderList) {
       if (isFirstPrinted) {
@@ -69,6 +70,6 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
 
   @Override
   public int getTaskCount() {
-    return 1;
+    return 2;
   }
 }
