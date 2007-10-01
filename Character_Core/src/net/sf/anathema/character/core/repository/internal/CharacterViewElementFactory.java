@@ -23,7 +23,7 @@ public class CharacterViewElementFactory extends AbstractFolderBasedViewElementF
       CharacterId characterId = new CharacterId(folder);
       if (templateProvider.isTemplateAvailable(characterId)) {
         ICharacterTemplate template = templateProvider.getTemplate(characterId);
-        elements.add(new CharacterViewElement(parent, folder, template.getUnnamedLabel(), templateProvider));
+        elements.add(new CharacterViewElement(parent, folder, template.getName(), templateProvider));
       }
     }
     return elements;

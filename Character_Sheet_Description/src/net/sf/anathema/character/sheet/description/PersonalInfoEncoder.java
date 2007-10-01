@@ -1,8 +1,9 @@
 package net.sf.anathema.character.sheet.description;
 
-import static net.sf.anathema.character.sheet.page.IVoidStateFormatConstants.*;
+import static net.sf.anathema.character.sheet.page.IVoidStateFormatConstants.TEXT_PADDING;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.character.core.character.ICharacter;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.description.ICharacterDescription;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
@@ -42,7 +43,8 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
     float secondColumnX = bounds.x + entryWidth + TEXT_PADDING;
 
     float firstRowY = (int) (bounds.getMaxY() - lineHeight);
-    drawLabelledContent(directContent, "Rules", "Second Edition", new Position(firstColumnX, firstRowY), entryWidth); //$NON-NLS-1$
+    drawLabelledContent(directContent, "Template", new CharacterTemplateProvider().getTemplate(
+        character.getTemplateId()).getName(), new Position(firstColumnX, firstRowY), entryWidth);
     String playerName = description.getPlayer().getText();
     drawLabelledContent(directContent, "Player", playerName, new Position(secondColumnX, firstRowY), entryWidth); //$NON-NLS-1$
     float secondRowY = firstRowY - lineHeight;
@@ -59,12 +61,12 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
     Position motivationPosition = new Position(firstColumnX, thirdRowY);
     drawLabelledContent(directContent, "Motivation", motivationContent, motivationPosition, bounds.width);
   }
-  
+
   @Override
   protected BaseFont getBaseFont() {
     return baseFont;
   }
-  
+
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {

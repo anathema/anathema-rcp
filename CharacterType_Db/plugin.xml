@@ -24,7 +24,7 @@
       <template
             characterTypeId="net.sf.anathema.character.type.db"
             templateId="net.sf.anathema.charactertype.dynastdb"
-            unnamedLabel="%charactertype.dynastdb.unnamedLabel">
+            name="%template.dynastdb.name">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>

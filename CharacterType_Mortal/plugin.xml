@@ -24,7 +24,7 @@
       <template
             characterTypeId="net.sf.anathema.character.type.mortal"
             templateId="net.sf.anathema.charactertype.heroicmortal"
-            unnamedLabel="%charactertype.heroicMortal.unnamedLabel">
+            name="%template.heroicMortal.name">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>

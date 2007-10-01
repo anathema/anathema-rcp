@@ -24,7 +24,7 @@
       <template
             characterTypeId="net.sf.anathema.character.type.solar"
             templateId="net.sf.anathema.charactertype.defaultsolar"
-            unnamedLabel="%charactertype.defaultsolar.unnamedLabel">
+            name="%template.defaultsolar.name">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>

@@ -7,7 +7,7 @@ import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.character.core.modellist.IModelList;
 
 public class CharacterTemplate implements ICharacterTemplate {
-  
+
   private final String id;
   private final List<IModelList> allModelLists = new ArrayList<IModelList>();
   private final String untiteledName;
@@ -18,22 +18,22 @@ public class CharacterTemplate implements ICharacterTemplate {
     this.untiteledName = untiteledName;
     this.characterTypeId = characterTypeId;
   }
-  
+
   @Override
   public String getCharacterTypeId() {
     return characterTypeId;
   }
-  
+
   @Override
   public String getId() {
     return id;
   }
-  
+
   @Override
-  public String getUnnamedLabel() {
+  public String getName() {
     return untiteledName;
   }
-  
+
   public void addModelList(IModelList modelList) {
     Ensure.ensureArgumentNotNull(modelList);
     allModelLists.add(modelList);

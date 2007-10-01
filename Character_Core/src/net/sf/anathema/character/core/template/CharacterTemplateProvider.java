@@ -27,7 +27,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
   private static final String ATTRIB_MODEL_LIST_ID = "modelListId"; //$NON-NLS-1$
   private static final Pattern REFERENCE_PATTERN = Pattern.compile(ATTRIB_REFERENCE + "=\"(.*)\""); //$NON-NLS-1$
   private static final String ATTRIB_TEMPLATE_ID = "templateId"; //$NON-NLS-1$
-  private static final String ATTRIB_UNNAMED_LABEL = "unnamedLabel"; //$NON-NLS-1$
+  private static final String ATTRIB_NAME = "name"; //$NON-NLS-1$
   private static final String TEMPLATES_EXTENSION_POINT = "templates"; //$NON-NLS-1$
   private static final ILogger logger = new Logger(CharacterCorePlugin.ID);
   private final List<ICharacterTemplate> allTemplates = new ArrayList<ICharacterTemplate>();
@@ -42,7 +42,7 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
     for (IPluginExtension extension : extensions) {
       for (IExtensionElement templateElement : extension.getElements()) {
         String templateId = templateElement.getAttribute(ATTRIB_TEMPLATE_ID);
-        String untitledLabel = templateElement.getAttribute(ATTRIB_UNNAMED_LABEL);
+        String untitledLabel = templateElement.getAttribute(ATTRIB_NAME);
         String characterTypeId = templateElement.getAttribute(ATTRIB_CHARACTER_TYPE_ID);
         CharacterTemplate template = new CharacterTemplate(templateId, untitledLabel, characterTypeId);
         allTemplates.add(template);
@@ -65,6 +65,16 @@ public class CharacterTemplateProvider implements ICharacterTemplateProvider {
     String templateReference = getTemplateReference(content);
     for (ICharacterTemplate template : allTemplates) {
       if (template.getId().equals(templateReference)) {
+        return template;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public ICharacterTemplate getTemplate(String templateId) {
+    for (ICharacterTemplate template : allTemplates) {
+      if (template.getId().equals(templateId)) {
         return template;
       }
     }

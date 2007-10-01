@@ -4,7 +4,7 @@ public interface ICharacterTemplate {
 
   public String getId();
 
-  public String getUnnamedLabel();
+  public String getName();
 
   public String getCharacterTypeId();
 

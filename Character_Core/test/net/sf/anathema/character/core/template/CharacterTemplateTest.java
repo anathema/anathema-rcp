@@ -23,8 +23,8 @@ public class CharacterTemplateTest {
   }
 
   @Test
-  public void hasUnnamedLabel() throws Exception {
-    assertEquals("Unnamed Character", template.getUnnamedLabel()); //$NON-NLS-1$
+  public void hasName() throws Exception {
+    assertEquals("Unnamed Character", template.getName()); //$NON-NLS-1$
   }
 
   @Test

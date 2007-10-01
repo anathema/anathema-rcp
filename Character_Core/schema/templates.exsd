@@ -54,7 +54,7 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="unnamedLabel" type="string" use="required">
+         <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
                   
