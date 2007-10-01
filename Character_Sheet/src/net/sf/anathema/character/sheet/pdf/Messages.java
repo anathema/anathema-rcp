@@ -5,6 +5,9 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
   private static final String BUNDLE_NAME = "net.sf.anathema.character.sheet.pdf.messages"; //$NON-NLS-1$
   public static String CharacterSheetHandler_CharacterPdfErrorMessage;
+  public static String CharacterSheetPdfWriter_SubTaskSheet;
+  public static String CharacterSheetRunnable_MainTaskSheet;
+  public static String CharacterSheetRunnable_SubTaskCreateCharacter;
   public static String CharacterSheetRunner_FileInUseMessage;
   public static String CharacterSheetRunner_Title;
   public static String RegisteredContentEncoderProvider_RETRIEVING_ENCODER_ERROR_MESSAGE;

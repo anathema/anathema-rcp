@@ -29,8 +29,8 @@ public final class CharacterSheetRunnable implements IRunnableWithProgress {
   @Override
   public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
     try {
-      monitor.beginTask("Creating Character Sheet.", 1 + writer.getTaskCount());
-      monitor.subTask("Preparing Character");
+      monitor.beginTask(Messages.CharacterSheetRunnable_MainTaskSheet, 1 + writer.getTaskCount());
+      monitor.subTask(Messages.CharacterSheetRunnable_SubTaskCreateCharacter);
       ICharacter character = createCharacter();
       monitor.worked(1);
       writer.write(monitor, character, outputStream);

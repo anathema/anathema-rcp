@@ -51,7 +51,7 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
     PdfPageConfiguration configuration = PdfPageConfiguration.create(pageSize.getRectangle());
     List<IPdfPageEncoder> encoderList = new ArrayList<IPdfPageEncoder>();
     EncodeContext context = new EncodeContext();
-    monitor.subTask("Creating character sheet");
+    monitor.subTask(Messages.CharacterSheetPdfWriter_SubTaskSheet);
     encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, context));
     monitor.worked(1);
     encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, context));
