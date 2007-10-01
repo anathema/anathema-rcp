@@ -43,23 +43,23 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
     float secondColumnX = bounds.x + entryWidth + TEXT_PADDING;
 
     float firstRowY = (int) (bounds.getMaxY() - lineHeight);
-    drawLabelledContent(directContent, "Template", new CharacterTemplateProvider().getTemplate(
+    drawLabelledContent(directContent, "Template:", new CharacterTemplateProvider().getTemplate(
         character.getTemplateId()).getName(), new Position(firstColumnX, firstRowY), entryWidth);
     String playerName = description.getPlayer().getText();
-    drawLabelledContent(directContent, "Player", playerName, new Position(secondColumnX, firstRowY), entryWidth); //$NON-NLS-1$
+    drawLabelledContent(directContent, "Player:", playerName, new Position(secondColumnX, firstRowY), entryWidth);
     float secondRowY = firstRowY - lineHeight;
     String conceptContent = description.getConcept().getText();
-    drawLabelledContent(directContent, "Concept", conceptContent, new Position(firstColumnX, secondRowY), entryWidth);
+    drawLabelledContent(directContent, "Concept:", conceptContent, new Position(firstColumnX, secondRowY), entryWidth);
     boolean isExaltType = true;
     if (isExaltType) {
       String casteContent = null;
-      drawLabelledContent(directContent, "Caste:", casteContent, new Position(secondColumnX, secondRowY), entryWidth); //$NON-NLS-1$
+      drawLabelledContent(directContent, "Caste:", casteContent, new Position(secondColumnX, secondRowY), entryWidth);
     }
 
     float thirdRowY = secondRowY - lineHeight;
     String motivationContent = null;
     Position motivationPosition = new Position(firstColumnX, thirdRowY);
-    drawLabelledContent(directContent, "Motivation", motivationContent, motivationPosition, bounds.width);
+    drawLabelledContent(directContent, "Motivation:", motivationContent, motivationPosition, bounds.width);
   }
 
   @Override
