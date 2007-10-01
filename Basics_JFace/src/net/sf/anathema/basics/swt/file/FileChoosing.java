@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.swt.file;
 
+import static net.sf.anathema.basics.swt.file.FileTypes.*;
+
 import java.io.File;
 
 import org.eclipse.swt.SWT;
@@ -8,10 +10,8 @@ import org.eclipse.swt.widgets.Shell;
 
 public class FileChoosing {
   // TODO Extensions nicht verdoppeln
-  private static final String PDF_EXTENSION_NAME = "Portable Document Format (*.pdf)";
-  private static final String NOTE_EXTENSION_NAME = "Anathema Note (*.not)";
-  private static final String PDF_EXTENSION = "*.pdf"; //$NON-NLS-1$
-  private static final String NOTE_EXTENSION = "*.not"; //$NON-NLS-1$
+  private static final String PDF_EXTENSION_NAME = "Portable Document Format (" + PDF_EXTENSION + ")";
+  private static final String NOTE_EXTENSION_NAME = "Anathema Note (" + NOTE_EXTENSION + ")";
 
   public static File savePdfFile(File startingDirectory, Shell shell) {
     return getFile(

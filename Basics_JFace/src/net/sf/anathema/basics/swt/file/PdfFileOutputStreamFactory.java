@@ -10,19 +10,19 @@ import org.eclipse.swt.widgets.Shell;
 
 public class PdfFileOutputStreamFactory implements IOutputStreamFactory {
 
-  // TODO PDF-Extension nicht verdoppeln
-  private static final String PDF_EXTENSION = ".pdf"; //$NON-NLS-1$
-
   public OutputStream create(Shell shell) throws FileNotFoundException {
     File file = FileChoosing.savePdfFile(null, shell);
     if (file == null) {
       return null;
     }
-    if (!file.getName().endsWith(PDF_EXTENSION)) {
-      file = new File(file.getParent(), file.getName() + PDF_EXTENSION);
+    if (!file.getName().endsWith(FileTypes.PDF_EXTENSION)) {
+      file = new File(file.getParent(), file.getName() + FileTypes.PDF_EXTENSION);
     }
     if (file.exists()) {
-      boolean confirmed = MessageDialog.openQuestion(shell, "Save", "The file already exists. Want to overwrite it?");
+      boolean confirmed = MessageDialog.openQuestion(
+          shell,
+          "Save",
+          "The file already exists. Do you want to overwrite it?");
       if (!confirmed) {
         return null;
       }
