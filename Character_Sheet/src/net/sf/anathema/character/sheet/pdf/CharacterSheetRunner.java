@@ -15,7 +15,7 @@ import org.eclipse.ui.IEditorPart;
 
 public class CharacterSheetRunner {
 
-  private Logger logger = new Logger("net.sf.anathema.character.sheet"); //$NON-NLS-1$
+  private final Logger logger = new Logger("net.sf.anathema.character.sheet"); //$NON-NLS-1$
   private final IOutputStreamFactory streamFactory;
   private final ICharacterSheetWriter writer;
 
