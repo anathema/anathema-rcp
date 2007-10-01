@@ -9,16 +9,17 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
 public class FileChoosing {
-  // TODO Extensions nicht verdoppeln
-  private static final String PDF_EXTENSION_NAME = "Portable Document Format (" + PDF_EXTENSION + ")";
-  private static final String NOTE_EXTENSION_NAME = "Anathema Note (" + NOTE_EXTENSION + ")";
+  private static final String ANY_PDF_FILTER = '*' + PDF_EXTENSION;
+  private static final String ANY_NOTE_FILTER = '*' + NOTE_EXTENSION;
+  private static final String ANY_PDF_FILTER_NAME = "Portable Document Format (" + ANY_PDF_FILTER + ")";
+  private static final String ANY_NOTE_FILTER_NAME = "Anathema Note (" + ANY_NOTE_FILTER + ")";
 
   public static File savePdfFile(File startingDirectory, Shell shell) {
     return getFile(
         startingDirectory,
         shell,
-        new String[] { PDF_EXTENSION },
-        new String[] { PDF_EXTENSION_NAME },
+        new String[] { ANY_PDF_FILTER },
+        new String[] { ANY_PDF_FILTER_NAME },
         SWT.SAVE);
   }
 
@@ -26,8 +27,8 @@ public class FileChoosing {
     return getFile(
         startingDirectory,
         shell,
-        new String[] { NOTE_EXTENSION },
-        new String[] { NOTE_EXTENSION_NAME },
+        new String[] { ANY_NOTE_FILTER },
+        new String[] { ANY_NOTE_FILTER_NAME },
         SWT.OPEN);
   }
 
