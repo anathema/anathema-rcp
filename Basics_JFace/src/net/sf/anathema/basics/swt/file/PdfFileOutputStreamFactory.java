@@ -21,8 +21,8 @@ public class PdfFileOutputStreamFactory implements IOutputStreamFactory {
     if (file.exists()) {
       boolean confirmed = MessageDialog.openQuestion(
           shell,
-          "Save",
-          "The file already exists. Do you want to overwrite it?");
+          Messages.PdfFileOutputStreamFactory_SaveDialogTitle,
+          Messages.PdfFileOutputStreamFactory_SaveDialogMessage);
       if (!confirmed) {
         return null;
       }
