@@ -35,11 +35,9 @@ public class CharacterSheetRunner {
     }
     catch (InvocationTargetException e) {
       indicateError(shell, e.getCause());
-
     }
     catch (Exception e) {
       indicateError(shell, e);
-
     }
     finally {
       IOUtilities.close(outputStream);

@@ -23,6 +23,14 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
   private final PageSize pageSize = PageSize.A4;
   private final IContentEncoderProvider encoderProvider = new ContentEncoderProvider(
       new RegisteredContentEncoderProvider());
+  private final List<IPdfPageEncoder> encoderList = new ArrayList<IPdfPageEncoder>();
+
+  public CharacterSheetPdfWriter() {
+    PdfPageConfiguration configuration = PdfPageConfiguration.create(pageSize.getRectangle());
+    EncodeContext context = new EncodeContext();
+    encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, context));
+    encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, context));
+  }
 
   @Override
   public void write(IProgressMonitor monitor, ICharacter character, OutputStream outputStream) throws DocumentException {
@@ -48,14 +56,7 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
     document.setPageSize(pageSize.getRectangle());
     document.open();
     PdfContentByte directContent = writer.getDirectContent();
-    PdfPageConfiguration configuration = PdfPageConfiguration.create(pageSize.getRectangle());
-    List<IPdfPageEncoder> encoderList = new ArrayList<IPdfPageEncoder>();
-    EncodeContext context = new EncodeContext();
     monitor.subTask(Messages.CharacterSheetPdfWriter_SubTaskSheet);
-    encoderList.add(new PdfFirstPageEncoder(encoderProvider, configuration, context));
-    monitor.worked(1);
-    encoderList.add(new PdfSecondPageEncoder(encoderProvider, configuration, context));
-    monitor.worked(1);
     boolean isFirstPrinted = false;
     for (IPdfPageEncoder encoder : encoderList) {
       if (isFirstPrinted) {
@@ -65,11 +66,12 @@ public class CharacterSheetPdfWriter implements ICharacterSheetWriter {
         isFirstPrinted = true;
       }
       encoder.encode(document, directContent, character);
+      monitor.worked(1);
     }
   }
 
   @Override
   public int getTaskCount() {
-    return 2;
+    return encoderList.size();
   }
 }
