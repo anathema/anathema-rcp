@@ -41,7 +41,6 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
     float entryWidth = (bounds.width - TEXT_PADDING) / 2;
     float firstColumnX = bounds.x;
     float secondColumnX = bounds.x + entryWidth + TEXT_PADDING;
-
     float firstRowY = (int) (bounds.getMaxY() - lineHeight);
     drawLabelledContent(directContent, "Template:", new CharacterTemplateProvider().getTemplate(
         character.getTemplateId()).getName(), new Position(firstColumnX, firstRowY), entryWidth);
@@ -55,7 +54,6 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
       String casteContent = null;
       drawLabelledContent(directContent, "Caste:", casteContent, new Position(secondColumnX, secondRowY), entryWidth);
     }
-
     float thirdRowY = secondRowY - lineHeight;
     String motivationContent = null;
     Position motivationPosition = new Position(firstColumnX, thirdRowY);
