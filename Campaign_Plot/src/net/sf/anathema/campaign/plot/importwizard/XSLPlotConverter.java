@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.plot.repository.conversion;
+package net.sf.anathema.campaign.plot.importwizard;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,12 +12,12 @@ import org.dom4j.Document;
 import org.dom4j.io.DocumentResult;
 import org.dom4j.io.DocumentSource;
 
-public class LegacyPlotConverter {
+public class XSLPlotConverter {
 
   public static Document createContent(Document sourceDocument) throws FileNotFoundException, TransformerException {
     return run(sourceDocument, "xsl/ContentCreation.xsl"); //$NON-NLS-1$
   }
-  
+
   public static Document createHierarchy(Document sourceDocument) throws FileNotFoundException, TransformerException {
     return run(sourceDocument, "xsl/HierarchyCreation.xsl"); //$NON-NLS-1$
   }

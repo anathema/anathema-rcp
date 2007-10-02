@@ -41,7 +41,11 @@ public class PlotImportWizard extends AbstractImportWizard {
   protected void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException {
-    // TODO Hierarchie erschaffen
-    // TODO Alle Dateien aus dem externen Verzeichnis in den Workspace kopieren.
+    monitor.beginTask("Importing Plot", 4);
+    monitor.subTask("Copying files");
+    // TODO Import des rests
+    monitor.worked(1);
+    new LegacyMainFileConverter().convert(externalFile, internalFile, monitor);
   }
+
 }
