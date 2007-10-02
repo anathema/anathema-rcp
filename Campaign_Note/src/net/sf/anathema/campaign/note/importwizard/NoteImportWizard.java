@@ -20,7 +20,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 public class NoteImportWizard extends AbstractImportWizard {
 
   public NoteImportWizard() {
-    super(new FileSelectionModel());
+    super(new FileSelectionStatusFactory());
   }
 
   @Override

@@ -1,6 +1,7 @@
 package net.sf.anathema.campaign.note.importwizard;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.campaign.core.importwizard.FileSelectionModel;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.junit.Before;
@@ -12,7 +13,7 @@ public class FileSelectionModelUninitializedTest {
 
   @Before
   public void create() {
-    this.model = new FileSelectionModel();
+    this.model = new FileSelectionModel(new FileSelectionStatusFactory());
   }
 
   @Test

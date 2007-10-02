@@ -7,16 +7,14 @@ import net.sf.anathema.lib.control.change.ChangeControl;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 
-public abstract class AbstractFileSelectionModel implements IFileSelectionModel {
+public class FileSelectionModel implements IFileSelectionModel {
   private final ChangeControl control = new ChangeControl();
+  private final IFileSelectionStatusFactory factory;
   private File file;
+  private IFileSelectionDialogStatus status;
 
-  public abstract IMessageProvider getMessage();
-
-  protected abstract boolean checkDirectory(File currentFile);
-
-  public boolean isComplete() {
-    return file != null && file.exists() && checkDirectory(file);
+  public FileSelectionModel(IFileSelectionStatusFactory factory) {
+    this.factory = factory;
   }
 
   @Override
@@ -30,7 +28,18 @@ public abstract class AbstractFileSelectionModel implements IFileSelectionModel 
       return;
     }
     this.file = newFile;
+    this.status = factory.create(file);
     control.fireChangedEvent();
+  }
+
+  @Override
+  public IMessageProvider getMessage() {
+    return status;
+  }
+
+  @Override
+  public boolean isComplete() {
+    return status.isComplete();
   }
 
   public void addChangeListener(IChangeListener changeListener) {

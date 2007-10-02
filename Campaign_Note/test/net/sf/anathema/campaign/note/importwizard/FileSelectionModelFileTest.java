@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 
+import net.sf.anathema.campaign.core.importwizard.FileSelectionModel;
+
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +17,7 @@ public class FileSelectionModelFileTest {
 
   @Before
   public void create() {
-    this.model = new FileSelectionModel();
+    this.model = new FileSelectionModel(new FileSelectionStatusFactory());
     model.setFile(path);
   }
 

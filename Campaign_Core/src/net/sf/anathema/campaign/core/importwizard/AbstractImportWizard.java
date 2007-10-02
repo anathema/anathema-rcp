@@ -31,8 +31,8 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
   private final IFileSelectionModel fileModel;
   private IWorkbench workbench;
 
-  public AbstractImportWizard(IFileSelectionModel model) {
-    this.fileModel = model;
+  public AbstractImportWizard(IFileSelectionStatusFactory factory) {
+    this.fileModel = new FileSelectionModel(factory);
   }
 
   @Override

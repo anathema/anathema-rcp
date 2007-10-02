@@ -2,29 +2,34 @@ package net.sf.anathema.campaign.plot.importwizard;
 
 import java.io.File;
 
-import org.eclipse.jface.dialogs.IMessageProvider;
+import net.sf.anathema.campaign.core.importwizard.IFileSelectionDialogStatus;
 
-public class FolderImportMessageProvider implements IMessageProvider {
+public class FolderSelectionDialogStatus implements IFileSelectionDialogStatus {
 
   private final String message;
   private final int messageType;
+  private final boolean complete;
 
-  public FolderImportMessageProvider(File file) {
+  public FolderSelectionDialogStatus(File file) {
     if (file == null) {
       this.message = Messages.FolderImportMessageProvider_Select;
       this.messageType = NONE;
+      this.complete = false;
     }
     else if (!file.exists()) {
       this.message = Messages.FolderImportMessageProvider_FolderDoesNotExist;
       this.messageType = ERROR;
+      this.complete = false;
     }
     else if (!file.isDirectory()) {
       this.message = Messages.FolderImportMessageProvider_FileSelected;
       this.messageType = ERROR;
+      this.complete = false;
     }
     else {
       this.message = Messages.FolderImportMessageProvider_ModelCompleted;
       this.messageType = NONE;
+      this.complete = true;
     }
   }
 
@@ -36,5 +41,9 @@ public class FolderImportMessageProvider implements IMessageProvider {
   @Override
   public int getMessageType() {
     return messageType;
+  }
+
+  public boolean isComplete() {
+    return complete;
   }
 }

@@ -19,7 +19,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 public class PlotImportWizard extends AbstractImportWizard {
 
   public PlotImportWizard() {
-    super(new FolderSelectionModel());
+    super(new FolderSelectionStatusFactory());
   }
 
   @Override
