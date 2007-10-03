@@ -17,8 +17,8 @@ import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
-import net.sf.anathema.character.core.modellist.IModelListProvider;
-import net.sf.anathema.character.core.modellist.ModelListProvider;
+import net.sf.anathema.character.core.model.list.IModelListProvider;
+import net.sf.anathema.character.core.model.list.ModelListProvider;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 
 public class CharacterTemplateProvider implements ICharacterTemplateProvider {

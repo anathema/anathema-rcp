@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.modellist;
+package net.sf.anathema.character.core.model.list;
 
 import java.util.HashMap;
 import java.util.Map;

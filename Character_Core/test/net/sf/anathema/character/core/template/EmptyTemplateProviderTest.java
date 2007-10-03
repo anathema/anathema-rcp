@@ -2,7 +2,7 @@ package net.sf.anathema.character.core.template;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.core.modellist.IModelListProvider;
+import net.sf.anathema.character.core.model.list.IModelListProvider;
 
 import org.easymock.EasyMock;
 import org.junit.Before;

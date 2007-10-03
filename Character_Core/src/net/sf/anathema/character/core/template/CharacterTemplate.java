@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
-import net.sf.anathema.character.core.modellist.IModelList;
+import net.sf.anathema.character.core.model.list.IModelList;
 
 public class CharacterTemplate implements ICharacterTemplate {
 

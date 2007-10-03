@@ -7,7 +7,7 @@ import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.FakeExtensionElement;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
-import net.sf.anathema.character.core.modellist.ModelListProvider;
+import net.sf.anathema.character.core.model.list.ModelListProvider;
 
 import org.junit.Before;
 import org.junit.Test;

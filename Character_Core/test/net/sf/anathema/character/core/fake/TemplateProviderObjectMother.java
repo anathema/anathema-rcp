@@ -3,8 +3,8 @@ package net.sf.anathema.character.core.fake;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
-import net.sf.anathema.character.core.modellist.IModelList;
-import net.sf.anathema.character.core.modellist.ModelList;
+import net.sf.anathema.character.core.model.list.IModelList;
+import net.sf.anathema.character.core.model.list.ModelList;
 
 import org.easymock.EasyMock;
 
