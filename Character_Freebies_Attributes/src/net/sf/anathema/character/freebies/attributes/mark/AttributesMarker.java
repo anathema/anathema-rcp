@@ -11,6 +11,7 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.mark.IModelMarker;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 
@@ -23,6 +24,8 @@ public class AttributesMarker extends AbstractExecutableExtension implements IMo
     IAttributeCreditCollection creditCollection = new AttributeCreditCollection(new CreditManager(), characterId);
     ITraitCollectionContext context = AttributesContext.create(characterId, modelCache);
     IChangeableModel changeableModel = modelCache.getModel(modelIdentifier);
-    new AttributeResourceMarker(creditCollection, context, changeableModel, markerHandler).mark();
+    new AttributeResourceMarker(creditCollection, context, changeableModel, markerHandler, PriorityGroup.Primary).mark();
+    new AttributeResourceMarker(creditCollection, context, changeableModel, markerHandler, PriorityGroup.Secondary).mark();
+    new AttributeResourceMarker(creditCollection, context, changeableModel, markerHandler, PriorityGroup.Tertiary).mark();
   }
 }

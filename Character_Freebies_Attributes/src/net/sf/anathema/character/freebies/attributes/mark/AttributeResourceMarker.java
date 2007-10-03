@@ -26,16 +26,19 @@ public class AttributeResourceMarker implements IDisposable {
   };
   private final IAttributeCreditCollection creditCollection;
   private final IChangeableModel changeableModel;
+  private final PriorityGroup priority;
 
   public AttributeResourceMarker(
       IAttributeCreditCollection creditCollection,
       ITraitCollectionContext context,
       IChangeableModel changeableModel,
-      IMarkerHandle modelResource) {
+      IMarkerHandle modelResource,
+      PriorityGroup priority) {
     this.creditCollection = creditCollection;
     this.changeableModel = changeableModel;
     this.markerHandle = modelResource;
     this.context = context;
+    this.priority = priority;
   }
 
   public void mark() {
@@ -47,7 +50,6 @@ public class AttributeResourceMarker implements IDisposable {
     if (!markerHandle.exists()) {
       return;
     }
-    PriorityGroup priority = PriorityGroup.Primary;
     Dots dots = new AttributePointCalculator(context.getCollection(), context.getTraitGroups()).dotsFor(priority);
     boolean warning = creditCollection.getCredit(priority) > dots.spentTotally();
     try {
