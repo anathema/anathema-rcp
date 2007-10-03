@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.util.Ensure;
+import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.modellist.IModelList;
 
 public class CharacterTemplate implements ICharacterTemplate {

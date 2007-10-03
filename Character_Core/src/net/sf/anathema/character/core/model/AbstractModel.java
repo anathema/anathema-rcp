@@ -1,5 +1,6 @@
 package net.sf.anathema.character.core.model;
 
+import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.lib.control.ChangeManagement;
 
 import org.eclipse.core.runtime.CoreException;

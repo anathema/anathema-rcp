@@ -8,10 +8,10 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.Logger;
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
-import net.sf.anathema.character.core.template.ICharacterTemplate;
-import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 import net.sf.anathema.character.freebies.plugin.ICharacterFreebiesPluginConstants;
 
 public final class CreditManager implements ICreditManager {

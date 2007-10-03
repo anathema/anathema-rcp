@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 
 

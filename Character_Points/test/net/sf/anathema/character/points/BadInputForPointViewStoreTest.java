@@ -1,7 +1,7 @@
 package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
 import net.sf.anathema.character.points.view.ICharacterValueEntryFactory;
 import net.sf.anathema.character.points.view.PointViewInputStore;

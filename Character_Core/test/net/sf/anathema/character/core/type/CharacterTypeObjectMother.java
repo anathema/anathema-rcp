@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.type;
 
+import net.sf.anathema.character.core.character.ICharacterType;
+
 import org.easymock.EasyMock;
 
 public class CharacterTypeObjectMother {

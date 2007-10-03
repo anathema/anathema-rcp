@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.groupeditor;
 
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.lib.util.IIdentificate;

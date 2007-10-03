@@ -2,11 +2,11 @@ package net.sf.anathema.character.points.view;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.lib.ui.IUpdatable;
 
@@ -15,7 +15,7 @@ import org.eclipse.ui.IEditorInput;
 public final class CharacterPointsUpdatable implements IUpdatable, IExperienceProvider {
   private final IPartContainer partContainer;
   private IExperience experience = null;
-  private final IModelProvider modelProvider;
+  private final IModelCollection modelProvider;
   private final IUpdatable modelChangeUpdatable;
   private IChangeListener modelChangedListener = new IChangeListener() {
     @Override
@@ -24,7 +24,7 @@ public final class CharacterPointsUpdatable implements IUpdatable, IExperiencePr
     }
   };
 
-  public CharacterPointsUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable, IModelProvider modelProvider) {
+  public CharacterPointsUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable, IModelCollection modelProvider) {
     this.partContainer = partContainer;
     this.modelChangeUpdatable = modelChangeUpdatable;
     this.modelProvider = modelProvider;

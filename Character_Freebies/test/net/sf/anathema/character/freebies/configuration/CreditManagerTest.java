@@ -9,8 +9,8 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.FakeExtensionElement;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
-import net.sf.anathema.character.core.model.ICharacterId;
 
 import org.easymock.EasyMock;
 import org.junit.Before;

@@ -2,6 +2,9 @@ package net.sf.anathema.character.core.model;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.character.core.character.IModel;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.lib.ui.IDisposable;
 import net.sf.anathema.lib.ui.IUpdatable;
 
@@ -17,9 +20,9 @@ public final class CurrentModelUpdatable implements IUpdatable, IDisposable {
   private IModel currentModel;
   private final IUpdatable updatable;
   private final IPartContainer partContainer;
-  private final IModelProvider modelProvider;
+  private final IModelCollection modelProvider;
 
-  public CurrentModelUpdatable(IUpdatable updatable, IPartContainer partContainer, IModelProvider modelProvider) {
+  public CurrentModelUpdatable(IUpdatable updatable, IPartContainer partContainer, IModelCollection modelProvider) {
     this.updatable = updatable;
     this.partContainer = partContainer;
     this.modelProvider = modelProvider;

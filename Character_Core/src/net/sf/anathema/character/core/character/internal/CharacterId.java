@@ -1,9 +1,9 @@
-package net.sf.anathema.character.core.model.internal;
+package net.sf.anathema.character.core.character.internal;
 
 import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.eclipse.resource.FileContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 
 import org.eclipse.core.resources.IFolder;
 

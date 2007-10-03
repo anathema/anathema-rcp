@@ -7,7 +7,7 @@ import java.util.Collection;
 
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
-import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.rules.TraitTemplate;
@@ -45,7 +45,7 @@ public class PrioritylessAttributeFreebiesTest {
         new AttributeGroupConfiguration().getGroups(),
         new TraitTemplate());
     attributes.getTraits()[0].getCreationModel().setValue(attributeValue);
-    IModelProvider modelProvider = AttributeObjectMother.createModelProvider(attributes);
+    IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes);
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(
         modelProvider,
         AttributePointCalculator.PriorityGroup.Primary);

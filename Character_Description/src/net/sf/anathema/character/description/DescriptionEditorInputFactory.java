@@ -1,9 +1,9 @@
 package net.sf.anathema.character.description;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.core.model.ModelIdentifier;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -21,7 +21,7 @@ public class DescriptionEditorInputFactory implements IEditorInputFactory {
       ICharacterId characterId,
       ImageDescriptor descriptor,
       IDisplayNameProvider nameProvider,
-      IModelProvider modelProvider) throws PersistenceException, CoreException {
+      IModelCollection modelProvider) throws PersistenceException, CoreException {
     ModelIdentifier identifier = new ModelIdentifier(characterId, ICharacterDescription.MODEL_ID);
     ICharacterDescription description = (ICharacterDescription) modelProvider.getModel(identifier);
     return new CharacterDescriptionEditorInput(modelFile, descriptor, description);

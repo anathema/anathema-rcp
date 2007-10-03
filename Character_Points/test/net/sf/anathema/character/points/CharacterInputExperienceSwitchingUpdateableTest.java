@@ -1,13 +1,13 @@
 package net.sf.anathema.character.points;
 
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModel;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModel;
-import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.view.CharacterPointsUpdatable;
@@ -30,7 +30,7 @@ public class CharacterInputExperienceSwitchingUpdateableTest {
     ICharacterId characterId = new DummyCharacterId();
     IEditorInput editedInput = CharacterObjectMother.createCharacterEditorInput(new ModelIdentifier(characterId, "Egal")); //$NON-NLS-1$
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
-    IModelProvider provider = new IModelProvider() {
+    IModelCollection provider = new IModelCollection() {
       @Override
       public IModel getModel(IModelIdentifier identifier) {
         return experience;

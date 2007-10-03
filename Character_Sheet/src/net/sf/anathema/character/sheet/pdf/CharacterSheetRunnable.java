@@ -3,10 +3,11 @@ package net.sf.anathema.character.sheet.pdf;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 
-import net.sf.anathema.character.core.character.Character;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+import net.sf.anathema.character.core.type.CharacterTypeFinder;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -46,6 +47,10 @@ public final class CharacterSheetRunnable implements IRunnableWithProgress {
   private ICharacter createCharacter() {
     IEditorInput editorInput = editorPart.getEditorInput();
     IModelIdentifier identifier = (IModelIdentifier) editorInput.getAdapter(IModelIdentifier.class);
-    return new Character(identifier.getCharacterId(), ModelCache.getInstance());
+    return new Character(
+        identifier.getCharacterId(),
+        ModelCache.getInstance(),
+        new CharacterTemplateProvider(),
+        new CharacterTypeFinder());
   }
 }

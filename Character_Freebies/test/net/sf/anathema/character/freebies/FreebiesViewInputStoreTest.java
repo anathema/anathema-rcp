@@ -1,9 +1,9 @@
 package net.sf.anathema.character.freebies;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.freebies.view.FreebiePointInputProvider;
 import net.sf.anathema.character.freebies.view.IFreebiePointEntryFactory;
 import net.sf.anathema.view.valuelist.IValueEntry;

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.template;
+package net.sf.anathema.character.core.character;
 
 public interface ICharacterTemplate {
 

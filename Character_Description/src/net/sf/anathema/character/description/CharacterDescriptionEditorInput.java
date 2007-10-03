@@ -3,9 +3,9 @@ package net.sf.anathema.character.description;
 import java.io.IOException;
 
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
+import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
-import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;

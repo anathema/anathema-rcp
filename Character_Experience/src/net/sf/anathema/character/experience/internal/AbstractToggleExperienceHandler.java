@@ -4,9 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.experience.plugin.ExperiencePlugin;
 

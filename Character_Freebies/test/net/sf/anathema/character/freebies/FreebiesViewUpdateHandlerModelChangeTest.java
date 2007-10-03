@@ -1,11 +1,11 @@
 package net.sf.anathema.character.freebies;
 
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.core.fake.DummyModel;
-import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.freebies.view.FreebiesViewUpdateHandler;
 import net.sf.anathema.lib.ui.IUpdatable;
 
@@ -23,7 +23,7 @@ public class FreebiesViewUpdateHandlerModelChangeTest {
   public void createUpdateHandler() throws Exception {
     dummyModel = new DummyModel();
     modelIdentifier = new ModelIdentifier(new DummyCharacterId(), "hasä"); //$NON-NLS-1$
-    IModelProvider modelProvider = CharacterObjectMother.createModelProvider(modelIdentifier, dummyModel);
+    IModelCollection modelProvider = CharacterObjectMother.createModelProvider(modelIdentifier, dummyModel);
     updateHandler = new FreebiesViewUpdateHandler(modelProvider);
   }
 

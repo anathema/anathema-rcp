@@ -5,10 +5,10 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.template.ICharacterTemplate;
-import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.easymock.EasyMock;
 import org.junit.Test;

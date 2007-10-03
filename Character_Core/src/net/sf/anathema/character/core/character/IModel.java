@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.model;
+package net.sf.anathema.character.core.character;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.IItem;

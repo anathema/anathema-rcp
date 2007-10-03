@@ -1,7 +1,7 @@
 package net.sf.anathema.character.core.editors;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;

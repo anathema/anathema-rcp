@@ -3,9 +3,9 @@ package net.sf.anathema.character.experience.internal;
 import java.util.Map;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.IExperience;
 
 import org.eclipse.core.commands.ExecutionEvent;

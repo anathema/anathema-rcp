@@ -1,8 +1,8 @@
 package net.sf.anathema.character.points.view;
 
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.CurrentModelUpdatable;
-import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.IUpdatable;
@@ -14,13 +14,13 @@ public class PointViewUpdateHandler implements IViewUpdateHandler {
   private AggregatedDisposable disposables = new AggregatedDisposable();
   private CharacterPointsUpdatable experienceUpdateable;
   private final EditorDependentUpdateHandler updateHandler = new EditorDependentUpdateHandler();
-  private final IModelProvider modelProvider;
+  private final IModelCollection modelProvider;
   
   public PointViewUpdateHandler() {
     this(ModelCache.getInstance());
   }
 
-  public PointViewUpdateHandler(IModelProvider modelProvider) {
+  public PointViewUpdateHandler(IModelCollection modelProvider) {
     this.modelProvider = modelProvider;
   }
 

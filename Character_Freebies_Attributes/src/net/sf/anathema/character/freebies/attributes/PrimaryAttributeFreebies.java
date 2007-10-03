@@ -1,8 +1,8 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 
@@ -16,7 +16,7 @@ public class PrimaryAttributeFreebies extends AbstractExecutableExtension implem
     this.prioritylessAttributeFreebies = new PrioritylessAttributeFreebies(priority);
   }
 
-  public PrimaryAttributeFreebies(IModelProvider modelProvider) {
+  public PrimaryAttributeFreebies(IModelCollection modelProvider) {
     this.prioritylessAttributeFreebies = new PrioritylessAttributeFreebies(modelProvider, priority);
   }
 

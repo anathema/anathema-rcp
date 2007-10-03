@@ -6,10 +6,10 @@ import java.util.Map;
 import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.attributes.model.AttributesContext;
+import net.sf.anathema.character.core.character.IModel;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.mark.IMarking;
-import net.sf.anathema.character.core.model.IModel;
-import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.IModelProvider;
 import net.sf.anathema.character.freebies.attributes.PrimaryAttributeFreebies;
 import net.sf.anathema.character.freebies.attributes.SecondaryAttributeFreebies;
 import net.sf.anathema.character.freebies.attributes.TertiaryAttributeFreebies;
@@ -30,7 +30,7 @@ public class AttributeMarking implements IDisposable, IMarking {
   private final Map<PriorityGroup, Integer> creditByPriority = new HashMap<PriorityGroup, Integer>();
   private final IModelIdentifier modelIdentifier;
   private final ITraitCollectionContext context;
-  private final IModelProvider modelProvider;
+  private final IModelCollection modelProvider;
   private final IFile modelResource;
   private final IChangeListener markListener = new IChangeListener() {
     @Override
@@ -41,7 +41,7 @@ public class AttributeMarking implements IDisposable, IMarking {
 
   public AttributeMarking(
       ICreditManager creditManager,
-      IModelProvider modelProvider,
+      IModelCollection modelProvider,
       IModelIdentifier modelIdentifier,
       IFile modelResource) {
     this.modelProvider = modelProvider;

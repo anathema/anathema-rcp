@@ -1,6 +1,6 @@
 package net.sf.anathema.character.core.editors;
 
-import net.sf.anathema.character.core.model.IModelIdentifier;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 
 import org.eclipse.ui.IEditorInput;
 

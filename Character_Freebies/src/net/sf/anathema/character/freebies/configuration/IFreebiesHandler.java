@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.configuration;
 
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 
 import org.eclipse.core.runtime.IExecutableExtension;
 

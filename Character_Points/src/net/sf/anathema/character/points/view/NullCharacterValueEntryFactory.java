@@ -1,6 +1,6 @@
 package net.sf.anathema.character.points.view;
 
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.view.valuelist.IValueEntry;
 
 public class NullCharacterValueEntryFactory implements ICharacterValueEntryFactory {

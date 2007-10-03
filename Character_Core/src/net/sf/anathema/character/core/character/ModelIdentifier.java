@@ -1,9 +1,8 @@
-package net.sf.anathema.character.core.model;
+package net.sf.anathema.character.core.character;
 
-import net.sf.anathema.character.core.model.internal.CharacterId;
+import net.sf.anathema.character.core.character.internal.CharacterId;
 
 import org.eclipse.core.resources.IFolder;
-
 
 public class ModelIdentifier implements IModelIdentifier {
 

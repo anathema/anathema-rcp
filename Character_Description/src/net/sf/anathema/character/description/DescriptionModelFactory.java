@@ -1,10 +1,10 @@
 package net.sf.anathema.character.description;
 
+import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelFactory;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
-import net.sf.anathema.character.core.template.ICharacterTemplate;
 
 public class DescriptionModelFactory extends AbstractModelFactory<NullModelTemplate> implements IModelFactory {
 

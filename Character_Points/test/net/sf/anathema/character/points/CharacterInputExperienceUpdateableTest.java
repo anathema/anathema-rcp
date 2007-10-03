@@ -2,11 +2,11 @@ package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.view.CharacterPointsUpdatable;
@@ -29,7 +29,7 @@ public class CharacterInputExperienceUpdateableTest {
     ICharacterId characterId = new DummyCharacterId();
     IEditorInput editedInput = CharacterObjectMother.createCharacterEditorInput(new ModelIdentifier(characterId, "Egal")); //$NON-NLS-1$
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
-    IModelProvider provider = EasyMock.createMock(IModelProvider.class);
+    IModelCollection provider = EasyMock.createMock(IModelCollection.class);
     ModelIdentifier experienceIdentifier = new ModelIdentifier(characterId, IExperience.MODEL_ID);
     EasyMock.expect(provider.getModel(experienceIdentifier)).andReturn(experience).anyTimes();
     EasyMock.replay(provider);

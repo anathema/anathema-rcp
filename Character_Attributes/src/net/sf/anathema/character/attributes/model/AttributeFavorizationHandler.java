@@ -1,9 +1,9 @@
 package net.sf.anathema.character.attributes.model;
 
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelContainer;
-import net.sf.anathema.character.core.character.ModelContainer;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class AttributeFavorizationHandler extends AbstractTraitCollectionFavorizationHandler {
@@ -11,7 +11,7 @@ public class AttributeFavorizationHandler extends AbstractTraitCollectionFavoriz
   private final AttributeTemplate template;
   private final IModelContainer modelContainer;
 
-  public AttributeFavorizationHandler(ICharacterId characterId, AttributeTemplate template, IModelProvider modelProvider) {
+  public AttributeFavorizationHandler(ICharacterId characterId, AttributeTemplate template, IModelCollection modelProvider) {
     this(new ModelContainer(modelProvider, characterId), template);
   }
 

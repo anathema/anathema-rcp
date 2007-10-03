@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.model.internal;
+package net.sf.anathema.character.core.model;
 
 import org.eclipse.osgi.util.NLS;
 

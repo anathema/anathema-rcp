@@ -2,6 +2,8 @@ package net.sf.anathema.character.core.model.internal;
 
 import static org.junit.Assert.*;
 
+import net.sf.anathema.character.core.character.internal.CharacterId;
+
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFolder;
 import org.junit.Before;

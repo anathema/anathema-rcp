@@ -8,8 +8,8 @@ import net.disy.commons.core.util.CollectionUtilities;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
-import net.sf.anathema.character.core.type.ICharacterType;
 import net.sf.anathema.character.core.type.ICharacterTypeCollection;
 
 public class CharacterTypeExtensionPoint implements ICharacterTypeCollection {

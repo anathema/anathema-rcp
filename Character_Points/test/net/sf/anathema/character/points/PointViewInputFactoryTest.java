@@ -2,7 +2,7 @@ package net.sf.anathema.character.points;
 
 import static org.junit.Assert.assertEquals;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;

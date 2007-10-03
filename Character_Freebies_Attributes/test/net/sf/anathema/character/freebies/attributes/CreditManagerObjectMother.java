@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 
 import org.easymock.EasyMock;

@@ -2,11 +2,13 @@ package net.sf.anathema.character.core.type;
 
 import static net.sf.anathema.character.core.type.CharacterTypeObjectMother.*;
 import static org.junit.Assert.*;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
+import net.sf.anathema.character.core.character.ICharacterType;
+import net.sf.anathema.character.core.character.ICharacterTypeFinder;
 import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
-import net.sf.anathema.character.core.model.ICharacterId;
 import net.sf.anathema.character.core.template.CharacterTemplate;
-import net.sf.anathema.character.core.template.ICharacterTemplate;
-import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.easymock.EasyMock;
 import org.junit.Test;

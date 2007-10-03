@@ -1,7 +1,7 @@
 package net.sf.anathema.character.points.view;
 
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
 

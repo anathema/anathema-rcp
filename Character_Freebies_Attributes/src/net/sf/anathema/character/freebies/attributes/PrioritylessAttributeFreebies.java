@@ -2,10 +2,10 @@ package net.sf.anathema.character.freebies.attributes;
 
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -13,14 +13,14 @@ import net.sf.anathema.character.trait.group.TraitGroup;
 
 public class PrioritylessAttributeFreebies {
 
-  private final IModelProvider modelProvider;
+  private final IModelCollection modelProvider;
   private final PriorityGroup priority;
 
   public PrioritylessAttributeFreebies(PriorityGroup priority) {
     this(ModelCache.getInstance(), priority);
   }
 
-  public PrioritylessAttributeFreebies(IModelProvider modelProvider, PriorityGroup priority) {
+  public PrioritylessAttributeFreebies(IModelCollection modelProvider, PriorityGroup priority) {
     this.modelProvider = modelProvider;
     this.priority = priority;
   }

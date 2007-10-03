@@ -1,10 +1,10 @@
 package net.sf.anathema.character.points.view;
 
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;

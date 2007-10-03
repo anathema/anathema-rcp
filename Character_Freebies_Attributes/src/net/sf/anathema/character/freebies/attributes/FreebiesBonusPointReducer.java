@@ -4,10 +4,10 @@ import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.attributes.points.IAttributeConstants;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.Dots;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
@@ -19,13 +19,13 @@ public class FreebiesBonusPointReducer extends AbstractExecutableExtension imple
 
   private final ICreditManager creditManager;
   private final IAttributeGroupFreebies[] freebiesHandlers;
-  private final IModelProvider modelProvider;
+  private final IModelCollection modelProvider;
 
   public FreebiesBonusPointReducer() {
     this(ModelCache.getInstance(), new CreditManager());
   }
 
-  public FreebiesBonusPointReducer(IModelProvider modelProvider, ICreditManager creditManager) {
+  public FreebiesBonusPointReducer(IModelCollection modelProvider, ICreditManager creditManager) {
     this.modelProvider = modelProvider;
     this.creditManager = creditManager;
     this.freebiesHandlers = new IAttributeGroupFreebies[] {

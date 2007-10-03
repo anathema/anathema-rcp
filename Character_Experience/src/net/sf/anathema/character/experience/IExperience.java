@@ -1,7 +1,7 @@
 package net.sf.anathema.character.experience;
 
 import net.disy.commons.core.model.IChangeableModel;
-import net.sf.anathema.character.core.model.IModel;
+import net.sf.anathema.character.core.character.IModel;
 
 public interface IExperience extends IChangeableModel, IModel {
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.character.core.model.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 
 public class DummyCharacterId implements ICharacterId {
 

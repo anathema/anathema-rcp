@@ -5,11 +5,11 @@ import java.util.List;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractFolderBasedViewElementFactory;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.core.model.internal.CharacterId;
+import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
+import net.sf.anathema.character.core.character.internal.CharacterId;
 import net.sf.anathema.character.core.repository.CharacterViewElement;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
-import net.sf.anathema.character.core.template.ICharacterTemplate;
-import net.sf.anathema.character.core.template.ICharacterTemplateProvider;
 
 import org.eclipse.core.resources.IFolder;
 

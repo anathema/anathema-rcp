@@ -1,8 +1,9 @@
-package net.sf.anathema.character.core.character;
+package net.sf.anathema.character.core.type;
 
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.type.ICharacterType;
-import net.sf.anathema.character.core.type.ICharacterTypeFinder;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterType;
+import net.sf.anathema.character.core.character.ICharacterTypeFinder;
+import net.sf.anathema.character.core.character.ICharacterTypeProvider;
 
 public class CharacterTypeProvider implements ICharacterTypeProvider {
 

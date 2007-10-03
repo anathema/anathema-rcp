@@ -1,6 +1,5 @@
-package net.sf.anathema.character.core.type;
+package net.sf.anathema.character.core.character;
 
-import net.sf.anathema.character.core.model.ICharacterId;
 
 public interface ICharacterTypeFinder {
 

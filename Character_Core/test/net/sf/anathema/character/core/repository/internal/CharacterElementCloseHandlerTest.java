@@ -3,10 +3,10 @@ package net.sf.anathema.character.core.repository.internal;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.item.editor.DummyCloser;
 import net.sf.anathema.basics.jface.IFileEditorInput;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.ModelIdentifier;
-import net.sf.anathema.character.core.model.internal.CharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.character.core.character.internal.CharacterId;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFolder;

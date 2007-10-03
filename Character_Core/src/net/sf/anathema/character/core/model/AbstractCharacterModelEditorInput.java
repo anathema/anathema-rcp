@@ -5,6 +5,8 @@ import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.core.character.IModel;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.resource.ImageDescriptor;

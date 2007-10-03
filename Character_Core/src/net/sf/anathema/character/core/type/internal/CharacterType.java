@@ -1,7 +1,7 @@
 package net.sf.anathema.character.core.type.internal;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.character.core.type.ICharacterType;
+import net.sf.anathema.character.core.character.ICharacterType;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 

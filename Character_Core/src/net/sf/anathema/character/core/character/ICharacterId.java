@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.model;
+package net.sf.anathema.character.core.character;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 

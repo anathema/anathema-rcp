@@ -1,13 +1,13 @@
 package net.sf.anathema.character.attributes.model;
 
-import net.sf.anathema.character.core.character.CharacterTypeProvider;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.ICharacterTypeProvider;
+import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelContainer;
-import net.sf.anathema.character.core.character.ModelContainer;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
-import net.sf.anathema.character.core.type.ICharacterType;
+import net.sf.anathema.character.core.type.CharacterTypeProvider;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -16,7 +16,7 @@ import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
 public class AttributesContext implements ITraitCollectionContext {
 
-  public static AttributesContext create(ICharacterId characterId, IModelProvider modelProvider) {
+  public static AttributesContext create(ICharacterId characterId, IModelCollection modelProvider) {
     IModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
     ICharacterTypeProvider provider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
     return new AttributesContext(modelContainer, provider);

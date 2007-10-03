@@ -2,11 +2,11 @@ package net.sf.anathema.character.freebies;
 
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.core.fake.DummyModel;
-import net.sf.anathema.character.core.model.IModelProvider;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.freebies.view.FreebiesViewUpdateHandler;
 import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.test.matcher.InstanceOf;
@@ -30,7 +30,7 @@ public class FreebiesViewUpdateHandlerModelSwitchTest {
     secondModel = new DummyModel();
     firstIdentifier = new ModelIdentifier(new DummyCharacterId(), "hasä"); //$NON-NLS-1$
     secondIdentifier = new ModelIdentifier(new DummyCharacterId(), "ntum"); //$NON-NLS-1$
-    IModelProvider modelProvider = EasyMock.createNiceMock(IModelProvider.class);
+    IModelCollection modelProvider = EasyMock.createNiceMock(IModelCollection.class);
     EasyMock.expect(modelProvider.getModel(firstIdentifier)).andReturn(firstModel).anyTimes();
     EasyMock.expect(modelProvider.getModel(secondIdentifier)).andReturn(secondModel).anyTimes();
     EasyMock.replay(modelProvider);

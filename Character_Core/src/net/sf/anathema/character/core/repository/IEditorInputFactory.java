@@ -1,8 +1,8 @@
 package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -18,5 +18,5 @@ public interface IEditorInputFactory extends IExecutableExtension {
       ICharacterId characterId,
       ImageDescriptor descriptor,
       IDisplayNameProvider nameProvider,
-      IModelProvider modelProvider) throws PersistenceException, CoreException;
+      IModelCollection modelProvider) throws PersistenceException, CoreException;
 }

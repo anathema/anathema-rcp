@@ -2,24 +2,24 @@ package net.sf.anathema.character.freebies.attributes;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.Attributes;
-import net.sf.anathema.character.core.model.ICharacterId;
-import net.sf.anathema.character.core.model.IModelIdentifier;
-import net.sf.anathema.character.core.model.IModelProvider;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.model.ModelIdentifier;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class FavoredAttributeCountHandler extends AbstractExecutableExtension implements IFreebiesHandler {
 
-  private final IModelProvider modelProvider;
+  private final IModelCollection modelProvider;
 
   public FavoredAttributeCountHandler() {
     this(ModelCache.getInstance());
   }
   
-  public FavoredAttributeCountHandler(IModelProvider modelProvider) {
+  public FavoredAttributeCountHandler(IModelCollection modelProvider) {
     this.modelProvider = modelProvider;
   }
 
