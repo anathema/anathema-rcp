@@ -2,7 +2,9 @@ package net.sf.anathema.character.freebies.attributes.mark;
 
 import net.disy.commons.core.model.IChangeableModel;
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
+import net.sf.anathema.character.freebies.attributes.plugin.IAttributeFreebiesConstants;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IMarker;
@@ -48,6 +50,7 @@ public class ResourceModelMarker implements IDisposable {
       }
     }
     catch (CoreException e) {
+      new Logger(IAttributeFreebiesConstants.PLUGIN_ID).error("Error occured while marking.", e);
     }
   }
 
