@@ -54,4 +54,9 @@ public class DummyContentHandler implements IContentHandle {
   public String getContent() {
     return content;
   }
+
+  @Override
+  public Object getAdapter(Class adapter) {
+    return null;
+  }
 }
