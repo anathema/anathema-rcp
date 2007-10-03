@@ -87,5 +87,12 @@
             id="net.sf.anathema.character.attributes.count.favored">
       </creditProvider>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modelmarkers">
+      <marker
+            class="net.sf.anathema.character.freebies.attributes.mark.AttributesMarker"
+            modelId="net.sf.anathema.character.attributes.model">
+      </marker>
+   </extension>
 
 </plugin>

@@ -1,13 +1,10 @@
 package net.sf.anathema.character.core.character;
 
-import net.disy.commons.core.model.listener.IChangeListener;
+import net.disy.commons.core.model.IChangeableModel;
 import net.sf.anathema.basics.item.IItem;
 
 import org.eclipse.core.runtime.IExecutableExtension;
 
-public interface IModel extends IItem, IExecutableExtension {
-
-  public void removeChangeListener(IChangeListener modelChangeListener);
-
-  public void addChangeListener(IChangeListener modelChangeListener);
+public interface IModel extends IItem, IExecutableExtension, IChangeableModel {
+  // nothing to do
 }

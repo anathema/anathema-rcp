@@ -6,12 +6,13 @@ import java.util.Map;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.model.initialize.IModelInitializer;
 
 
 public class ModelCache implements IModelCollection {
 
   private static final IModelCollection instance = new ModelCache();
-  private Map<IModelIdentifier, Object> modelsByIdentifier = new HashMap<IModelIdentifier, Object>();
+  private Map<IModelIdentifier, IModel> modelsByIdentifier = new HashMap<IModelIdentifier, IModel>();
   
   private ModelCache() {
     // nothing to do
@@ -22,13 +23,15 @@ public class ModelCache implements IModelCollection {
   }
 
   public IModel getModel(IModelIdentifier identifier) {
-    Object model = modelsByIdentifier.get(identifier);
+    IModel model = modelsByIdentifier.get(identifier);
     if (model == null) {
-      model = new ModelExtensionPoint().createModel(identifier);
+      IModelInitializer initializer = new ModelExtensionPoint().createModel(identifier); 
+      model = initializer.getModel();
       if (model != null) {
         modelsByIdentifier.put(identifier, model);
+        initializer.createMarkers();
       }
     }
-    return (IModel) model;
+    return model;
   }
 }

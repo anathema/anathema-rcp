@@ -7,14 +7,14 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.internal.CharacterId;
-import net.sf.anathema.character.core.model.mark.IModelMarker;
+import net.sf.anathema.character.core.model.initialize.IModelInitializer;
+import net.sf.anathema.character.core.model.initialize.ModelInitializer;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 import net.sf.anathema.character.core.repository.internal.CharacterModelViewElement;
 import net.sf.anathema.character.core.repository.internal.ModelDisplayConfiguration;
@@ -30,7 +30,7 @@ public class ModelExtensionPoint {
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String ATTRIB_MODEL_FACTORY = "modelFactory"; //$NON-NLS-1$
 
-  public Object createModel(IModelIdentifier identifier) {
+  public IModelInitializer createModel(IModelIdentifier identifier) {
     IExtensionElement extensionElement = getModelElement(identifier);
     if (extensionElement == null) {
       throw new IllegalArgumentException(NLS.bind(Messages.ModelCache_ModelNotFound_Message, identifier.getModelId()));
@@ -41,22 +41,10 @@ public class ModelExtensionPoint {
       IContentHandle file = getFile(identifier, extensionElement);
       IModel model = factory.create(file, template);
       model.setClean();
-      activateMarkers(file, identifier);
-      return model;
+      return new ModelInitializer(model, file, identifier);
     }
     catch (Exception e) {
       throw new IllegalArgumentException(Messages.ModelCache_ModelLoadError, e);
-    }
-  }
-
-  private void activateMarkers(IContentHandle contentHandler, IModelIdentifier modelIdentifier) {
-    IMarkerHandle markerHandler = (IMarkerHandle) contentHandler.getAdapter(IMarkerHandle.class);
-    if (markerHandler == null) {
-      return;
-    }
-    // TODO Echte Marker finden
-    for (IModelMarker marking : new IModelMarker[0]) {
-      marking.mark(markerHandler, modelIdentifier);
     }
   }
 
