@@ -15,9 +15,7 @@ public class TraitGroupEditorDecorationFactory {
   private final IPluginExtension[] extensions;
 
   public TraitGroupEditorDecorationFactory() {
-    this(new EclipseExtensionPoint(
-        CharacterTraitPluginConstants.PLUGIN_ID,
-        "net.sf.anathema.character.trait.editordecorations").getExtensions()); //$NON-NLS-1$
+    this(new EclipseExtensionPoint(CharacterTraitPluginConstants.PLUGIN_ID, "editordecorations").getExtensions()); //$NON-NLS-1$
   }
 
   public TraitGroupEditorDecorationFactory(IPluginExtension... extensions) {
