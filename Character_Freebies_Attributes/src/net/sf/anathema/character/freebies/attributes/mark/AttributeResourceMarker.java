@@ -25,7 +25,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
-public class AttributeMarking implements IDisposable, IMarking {
+public class AttributeResourceMarker implements IDisposable {
   private static final String UNSPENT_FREEBIES_MARKER = "net.sf.anathema.markers.unspent.attribute.freebies"; //$NON-NLS-1$
   private final Map<PriorityGroup, Integer> creditByPriority = new HashMap<PriorityGroup, Integer>();
   private final IModelIdentifier modelIdentifier;
@@ -39,7 +39,7 @@ public class AttributeMarking implements IDisposable, IMarking {
     }
   };
 
-  public AttributeMarking(
+  public AttributeResourceMarker(
       ICreditManager creditManager,
       IModelCollection modelProvider,
       IModelIdentifier modelIdentifier,
