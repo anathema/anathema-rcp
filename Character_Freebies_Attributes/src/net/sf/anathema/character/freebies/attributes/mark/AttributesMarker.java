@@ -13,19 +13,37 @@ import net.sf.anathema.character.freebies.attributes.calculation.AttributeCredit
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
-import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 
 public class AttributesMarker extends AbstractExecutableExtension implements IModelMarker {
+
+  private static final String TERTIARY_MARKER = "net.sf.anathema.markers.unspent.tertiary.attribute"; //$NON-NLS-1$
+  private static final String SECONDARY_MARKER = "net.sf.anathema.markers.unspent.secondary.attribute"; //$NON-NLS-1$
+  private static final String PRIMARY_MARKER = "net.sf.anathema.markers.unspent.primary.attribute"; //$NON-NLS-1$
 
   @Override
   public void mark(IMarkerHandle markerHandler, IModelIdentifier modelIdentifier) {
     ICharacterId characterId = modelIdentifier.getCharacterId();
     IModelCollection modelCache = ModelCache.getInstance();
     IAttributeCreditCollection creditCollection = new AttributeCreditCollection(new CreditManager(), characterId);
-    ITraitCollectionContext context = AttributesContext.create(characterId, modelCache);
     IChangeableModel changeableModel = modelCache.getModel(modelIdentifier);
-    new AttributeResourceMarker(creditCollection, context, changeableModel, markerHandler, PriorityGroup.Primary).mark();
-    new AttributeResourceMarker(creditCollection, context, changeableModel, markerHandler, PriorityGroup.Secondary).mark();
-    new AttributeResourceMarker(creditCollection, context, changeableModel, markerHandler, PriorityGroup.Tertiary).mark();
+    TotalDotsSpent dotsSpent = new TotalDotsSpent(AttributesContext.create(characterId, modelCache));
+    new AttributeResourceMarker(
+        creditCollection,
+        dotsSpent,
+        changeableModel,
+        markerHandler,
+        new AttributeGroupMarkerId(PriorityGroup.Primary, PRIMARY_MARKER)).mark();
+    new AttributeResourceMarker(
+        creditCollection,
+        dotsSpent,
+        changeableModel,
+        markerHandler,
+        new AttributeGroupMarkerId(PriorityGroup.Secondary, SECONDARY_MARKER)).mark();
+    new AttributeResourceMarker(
+        creditCollection,
+        dotsSpent,
+        changeableModel,
+        markerHandler,
+        new AttributeGroupMarkerId(PriorityGroup.Tertiary, TERTIARY_MARKER)).mark();
   }
 }
