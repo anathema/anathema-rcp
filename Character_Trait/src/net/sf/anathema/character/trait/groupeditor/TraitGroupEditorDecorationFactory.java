@@ -30,7 +30,9 @@ public class TraitGroupEditorDecorationFactory {
           decorations.add(element.getAttributeAsObject("class", ITraitGroupEditorDecoration.class)); //$NON-NLS-1$
         }
         catch (ExtensionException e) {
-          new Logger("net.sf.anathema.character.trait").error(Messages.TraitGroupEditorDecorationFactory_ErrorMessageLoadingDecoration, e); //$NON-NLS-1$
+          new Logger(CharacterTraitPluginConstants.PLUGIN_ID).error(
+              Messages.TraitGroupEditorDecorationFactory_ErrorMessageLoadingDecoration,
+              e);
         }
       }
     }
