@@ -55,6 +55,7 @@ public class DummyContentHandler implements IContentHandle {
     return content;
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public Object getAdapter(Class adapter) {
     return null;
