@@ -21,16 +21,12 @@ public class ModelCache implements IModelCollection {
     return instance;
   }
 
-  public void addModel(IModelIdentifier identifier, Object model) {
-    modelsByIdentifier.put(identifier, model);
-  }
-
   public IModel getModel(IModelIdentifier identifier) {
     Object model = modelsByIdentifier.get(identifier);
     if (model == null) {
       model = new ModelExtensionPoint().createModel(identifier);
       if (model != null) {
-        addModel(identifier, model);
+        modelsByIdentifier.put(identifier, model);
       }
     }
     return (IModel) model;
