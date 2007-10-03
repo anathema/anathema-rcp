@@ -14,12 +14,13 @@ public class FileChoosing {
   private static final String ANY_PDF_FILTER_NAME = "Portable Document Format (" + ANY_PDF_FILTER + ")";
   private static final String ANY_NOTE_FILTER_NAME = "Anathema Note (" + ANY_NOTE_FILTER + ")";
 
-  public static File savePdfFile(File startingDirectory, Shell shell) {
+  public static File savePdfFile(File startingDirectory, Shell shell, String suggestedFileName) {
     return getFile(
         startingDirectory,
         shell,
         new String[] { ANY_PDF_FILTER },
         new String[] { ANY_PDF_FILTER_NAME },
+        suggestedFileName,
         SWT.SAVE);
   }
 
@@ -29,13 +30,23 @@ public class FileChoosing {
         shell,
         new String[] { ANY_NOTE_FILTER },
         new String[] { ANY_NOTE_FILTER_NAME },
+        null,
         SWT.OPEN);
   }
 
-  private static File getFile(File startingDirectory, Shell shell, String[] extensions, String[] filterNames, int style) {
+  private static File getFile(
+      File startingDirectory,
+      Shell shell,
+      String[] extensions,
+      String[] filterNames,
+      String suggestedFileName,
+      int style) {
     FileDialog dialog = new FileDialog(shell, style);
     if (startingDirectory != null) {
-      dialog.setFileName(startingDirectory.getPath());
+      dialog.setFilterPath(startingDirectory.getPath());
+    }
+    if (suggestedFileName != null) {
+      dialog.setFileName(suggestedFileName);
     }
     if (extensions != null) {
       dialog.setFilterExtensions(extensions);

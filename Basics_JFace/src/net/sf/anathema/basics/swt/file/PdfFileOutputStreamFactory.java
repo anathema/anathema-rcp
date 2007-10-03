@@ -10,8 +10,14 @@ import org.eclipse.swt.widgets.Shell;
 
 public class PdfFileOutputStreamFactory implements IOutputStreamFactory {
 
+  private final String suggestedFileName;
+
+  public PdfFileOutputStreamFactory(String suggestedFileName) {
+    this.suggestedFileName = suggestedFileName;
+  }
+
   public OutputStream create(Shell shell) throws FileNotFoundException {
-    File file = FileChoosing.savePdfFile(null, shell);
+    File file = FileChoosing.savePdfFile(null, shell, suggestedFileName);
     if (file == null) {
       return null;
     }
