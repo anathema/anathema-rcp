@@ -21,4 +21,14 @@ public class ResourceMarkerHandle implements IMarkerHandle {
   public IMarker[] findMarkers(String type, boolean includeSubtypes, int depth) throws CoreException {
     return resource.findMarkers(type, includeSubtypes, depth);
   }
+
+  @Override
+  public void deleteMarkers(String type, boolean includeSubtypes, int depth) throws CoreException {
+    resource.deleteMarkers(type, includeSubtypes, depth);
+  }
+
+  @Override
+  public boolean exists() {
+    return resource.exists();
+  }
 }

@@ -6,9 +6,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 
-public interface IContentHandle extends IAdaptable {
-
-  public boolean exists();
+public interface IContentHandle extends IAdaptable, IResourceHandle {
 
   public InputStream getContents() throws CoreException;
 
