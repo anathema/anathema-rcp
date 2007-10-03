@@ -10,15 +10,15 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 import net.sf.anathema.character.core.type.ICharacterType;
-import net.sf.anathema.character.core.type.ICharacterTypeProvider;
+import net.sf.anathema.character.core.type.ICharacterTypeCollection;
 
-public class CharacterTypeProvider implements ICharacterTypeProvider {
+public class CharacterTypeExtensionPoint implements ICharacterTypeCollection {
 
   private static final String TYPES_EXTENSION_POINT = "types"; //$NON-NLS-1$
   private final IPluginExtension[] extensions;
   private List<ICharacterType> characterTypes;
 
-  public CharacterTypeProvider() {
+  public CharacterTypeExtensionPoint() {
     this.extensions = new EclipseExtensionPoint(CharacterCorePlugin.ID, TYPES_EXTENSION_POINT).getExtensions();
   }
 

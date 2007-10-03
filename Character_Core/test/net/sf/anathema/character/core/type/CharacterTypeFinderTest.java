@@ -21,7 +21,7 @@ public class CharacterTypeFinderTest {
         characterId,
         template);
     ICharacterType characterType = createCharacterType("typeId"); //$NON-NLS-1$
-    ICharacterTypeProvider typeProvider = createProviderWithType(characterType);
+    ICharacterTypeCollection typeProvider = createProviderWithType(characterType);
     ICharacterTypeFinder typeFinder = new CharacterTypeFinder(templateProvider, typeProvider);
     assertSame(characterType, typeFinder.getCharacterType(characterId));
   }

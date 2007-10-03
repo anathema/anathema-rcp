@@ -11,8 +11,8 @@ public class CharacterTypeObjectMother {
     return characterType;
   }
 
-  public static ICharacterTypeProvider createProviderWithType(ICharacterType type) {
-    ICharacterTypeProvider typeProvider = EasyMock.createMock(ICharacterTypeProvider.class);
+  public static ICharacterTypeCollection createProviderWithType(ICharacterType type) {
+    ICharacterTypeCollection typeProvider = EasyMock.createMock(ICharacterTypeCollection.class);
     EasyMock.expect(typeProvider.getCharacterTypeById(type.getId())).andReturn(type);
     EasyMock.replay(typeProvider);
     return typeProvider;
