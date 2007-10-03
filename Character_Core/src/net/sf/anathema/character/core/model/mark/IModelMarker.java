@@ -7,5 +7,5 @@ import org.eclipse.core.runtime.IExecutableExtension;
 
 public interface IModelMarker extends IExecutableExtension {
 
-  public void mark(IMarkerHandle markerHandler, IModelIdentifier modelIdentifier);
+  public void mark(IMarkerHandle markerHandle, IModelIdentifier modelIdentifier);
 }

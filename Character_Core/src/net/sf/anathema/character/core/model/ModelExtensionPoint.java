@@ -7,6 +7,7 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
+import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
@@ -41,7 +42,8 @@ public class ModelExtensionPoint {
       IContentHandle file = getFile(identifier, extensionElement);
       IModel model = factory.create(file, template);
       model.setClean();
-      return new ModelInitializer(model, file, identifier);
+      IMarkerHandle markerHandler = (IMarkerHandle) file.getAdapter(IMarkerHandle.class);
+      return new ModelInitializer(model, markerHandler, identifier);
     }
     catch (Exception e) {
       throw new IllegalArgumentException(Messages.ModelCache_ModelLoadError, e);
