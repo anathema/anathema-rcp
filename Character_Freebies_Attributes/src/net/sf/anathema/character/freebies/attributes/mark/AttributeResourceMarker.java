@@ -9,7 +9,7 @@ import net.sf.anathema.character.attributes.model.AttributesContext;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.mark.IMarking;
+import net.sf.anathema.character.core.model.mark.IModelMarker;
 import net.sf.anathema.character.freebies.attributes.PrimaryAttributeFreebies;
 import net.sf.anathema.character.freebies.attributes.SecondaryAttributeFreebies;
 import net.sf.anathema.character.freebies.attributes.TertiaryAttributeFreebies;
