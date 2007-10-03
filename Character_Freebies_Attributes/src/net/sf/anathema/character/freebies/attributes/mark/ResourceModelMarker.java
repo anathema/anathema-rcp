@@ -3,37 +3,27 @@ package net.sf.anathema.character.freebies.attributes.mark;
 import net.disy.commons.core.model.IChangeableModel;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
-import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
-public class AttributeResourceMarker implements IDisposable {
+public class ResourceModelMarker implements IDisposable {
   private final IChangeListener markListener = new IChangeListener() {
     @Override
     public void stateChanged() {
       markFile();
     }
   };
-  private final ITotalDotsSpent dotsSpent;
   private final IMarkerHandle markerHandle;
-  private final IAttributeCreditCollection creditCollection;
   private final IChangeableModel changeableModel;
-  private final AttributeGroupMarkerId markerId;
+  private final IModelMarker modelMarker;
 
-  public AttributeResourceMarker(
-      IAttributeCreditCollection creditCollection,
-      ITotalDotsSpent dotsSpent,
-      IChangeableModel changeableModel,
-      IMarkerHandle markerHandle,
-      AttributeGroupMarkerId markerId) {
-    this.creditCollection = creditCollection;
+  public ResourceModelMarker(IChangeableModel changeableModel, IMarkerHandle markerHandle, IModelMarker modelMarker) {
     this.changeableModel = changeableModel;
     this.markerHandle = markerHandle;
-    this.dotsSpent = dotsSpent;
-    this.markerId = markerId;
+    this.modelMarker = modelMarker;
   }
 
   public void mark() {
@@ -45,16 +35,16 @@ public class AttributeResourceMarker implements IDisposable {
     if (!markerHandle.exists()) {
       return;
     }
-    boolean warning = creditCollection.getCredit(markerId.getPriority()) > dotsSpent.get(markerId.getPriority());
+    boolean warning = modelMarker.isActive();
     try {
       if (warning) {
-        IMarker[] markers = markerHandle.findMarkers(markerId.getId(), true, IResource.DEPTH_ZERO);
+        IMarker[] markers = markerHandle.findMarkers(modelMarker.getMarkerId(), true, IResource.DEPTH_ZERO);
         if (markers.length == 0) {
-          markerHandle.createMarker(markerId.getId());
+          markerHandle.createMarker(modelMarker.getMarkerId());
         }
       }
       else {
-        markerHandle.deleteMarkers(markerId.getId(), true, IResource.DEPTH_ZERO);
+        markerHandle.deleteMarkers(modelMarker.getMarkerId(), true, IResource.DEPTH_ZERO);
       }
     }
     catch (CoreException e) {

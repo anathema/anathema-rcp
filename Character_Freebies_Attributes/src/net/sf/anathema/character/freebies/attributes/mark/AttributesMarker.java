@@ -27,23 +27,23 @@ public class AttributesMarker extends AbstractExecutableExtension implements IMo
     IAttributeCreditCollection creditCollection = new AttributeCreditCollection(new CreditManager(), characterId);
     IChangeableModel changeableModel = modelCache.getModel(modelIdentifier);
     TotalDotsSpent dotsSpent = new TotalDotsSpent(AttributesContext.create(characterId, modelCache));
-    new AttributeResourceMarker(
+    AttributeGroupModelMarker primaryMarker = new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
-        changeableModel,
-        markerHandler,
-        new AttributeGroupMarkerId(PriorityGroup.Primary, PRIMARY_MARKER)).mark();
-    new AttributeResourceMarker(
+        PriorityGroup.Primary,
+        PRIMARY_MARKER);
+    AttributeGroupModelMarker secondaryMarker = new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
-        changeableModel,
-        markerHandler,
-        new AttributeGroupMarkerId(PriorityGroup.Secondary, SECONDARY_MARKER)).mark();
-    new AttributeResourceMarker(
+        PriorityGroup.Secondary,
+        SECONDARY_MARKER);
+    AttributeGroupModelMarker tertiaryMarker = new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
-        changeableModel,
-        markerHandler,
-        new AttributeGroupMarkerId(PriorityGroup.Tertiary, TERTIARY_MARKER)).mark();
+        PriorityGroup.Tertiary,
+        TERTIARY_MARKER);
+    new ResourceModelMarker(changeableModel, markerHandler, primaryMarker).mark();
+    new ResourceModelMarker(changeableModel, markerHandler, secondaryMarker).mark();
+    new ResourceModelMarker(changeableModel, markerHandler, tertiaryMarker).mark();
   }
 }

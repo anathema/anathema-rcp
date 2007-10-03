@@ -16,7 +16,7 @@ public class AttributeResourceMarkerWithCreditTest {
   private static final PriorityGroup PRIORITY = PriorityGroup.Primary;
   private DummyChangeableModel model;
   private ITotalDotsSpent dotsSpent;
-  private AttributeResourceMarker attributeResourceMarker;
+  private ResourceModelMarker attributeResourceMarker;
   private IMarkerHandle markerHandler;
 
   @Before
@@ -25,12 +25,11 @@ public class AttributeResourceMarkerWithCreditTest {
     dotsSpent = EasyMock.createMock(ITotalDotsSpent.class);
     model = new DummyChangeableModel();
     markerHandler = EasyMock.createMock(IMarkerHandle.class);
-    attributeResourceMarker = new AttributeResourceMarker(
+    attributeResourceMarker = new ResourceModelMarker(model, markerHandler, new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
-        model,
-        markerHandler,
-        new AttributeGroupMarkerId(PRIORITY, MARKER_ID));
+        PRIORITY,
+        MARKER_ID));
   }
 
   private IAttributeCreditCollection createCreditCollection(PriorityGroup priority, int credit) {

@@ -13,7 +13,7 @@ public class AttributeResourceMarkerWithoutCreditTest {
   private static final String MARKER_ID = "Scheiﬂ.id"; //$NON-NLS-1$
   private DummyChangeableModel model;
   private ITotalDotsSpent dotsSpent;
-  private AttributeResourceMarker attributeResourceMarker;
+  private ResourceModelMarker attributeResourceMarker;
   private IMarkerHandle markerHandler;
 
   @Before
@@ -23,12 +23,11 @@ public class AttributeResourceMarkerWithoutCreditTest {
     dotsSpent = EasyMock.createMock(ITotalDotsSpent.class);
     model = new DummyChangeableModel();
     markerHandler = EasyMock.createMock(IMarkerHandle.class);
-    attributeResourceMarker = new AttributeResourceMarker(
+    attributeResourceMarker = new ResourceModelMarker(model, markerHandler, new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
-        model,
-        markerHandler,
-        new AttributeGroupMarkerId(priority, MARKER_ID));
+        priority,
+        MARKER_ID));
   }
 
   private IAttributeCreditCollection createEmptyCreditCollection(PriorityGroup priority) {
