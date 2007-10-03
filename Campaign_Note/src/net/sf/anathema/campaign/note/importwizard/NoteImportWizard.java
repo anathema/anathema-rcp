@@ -44,4 +44,9 @@ public class NoteImportWizard extends AbstractImportWizard {
       FileNotFoundException {
     internalFile.create(new FileInputStream(externalFile), true, monitor);
   }
+
+  @Override
+  protected void undoImport(IFile internalFile, IProgressMonitor monitor) throws CoreException {
+    internalFile.delete(true, monitor);
+  }
 }

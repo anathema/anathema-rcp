@@ -59,12 +59,18 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
   private void importFile(final IFile internalFile) throws InvocationTargetException, InterruptedException {
     workbench.getActiveWorkbenchWindow().run(true, false, new IRunnableWithProgress() {
       @Override
-      public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+      public void run(IProgressMonitor monitor) throws InvocationTargetException {
         try {
           runImport(fileModel.getFile(), internalFile, monitor);
         }
         catch (Exception e) {
-          logger.error(Messages.AbstractImportWizard_CreateFileError, e);
+          logger.error("The import failed.", e);
+          try {
+            undoImport(internalFile, monitor);
+          }
+          catch (CoreException c) {
+            logger.error("An exception occured while undoing the failed import.", c);
+          }
           throw new InvocationTargetException(e);
         }
       }
@@ -74,6 +80,9 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
   protected abstract void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException;
+
+  protected abstract void undoImport(IFile internalFile, IProgressMonitor monitor)
+      throws CoreException;
 
   private void showInEditor(final IFile file) throws PartInitException {
     if (openModel.getValue()) {

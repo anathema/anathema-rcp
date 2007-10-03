@@ -48,4 +48,8 @@ public class PlotImportWizard extends AbstractImportWizard {
     new LegacyMainFileConverter().convert(externalFile, internalFile, monitor);
   }
 
+  @Override
+  protected void undoImport(IFile internalFile, IProgressMonitor monitor) throws CoreException {
+    internalFile.getParent().delete(true, monitor);
+  }
 }
