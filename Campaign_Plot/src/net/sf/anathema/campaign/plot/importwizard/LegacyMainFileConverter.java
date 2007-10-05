@@ -2,10 +2,7 @@ package net.sf.anathema.campaign.plot.importwizard;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import javax.xml.transform.TransformerException;
 
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
 import net.sf.anathema.campaign.plot.PlotPlugin;
@@ -32,11 +29,10 @@ public class LegacyMainFileConverter {
       extractHierarchy(internalFile, monitor, externalMainDocument);
       monitor.worked(1);
     }
-    catch (TransformerException e) {
-      throw new CoreException(PlotPlugin.getDefaultInstance().createErrorStatus("Could not perform transformation.", e));
-    }
     catch (PersistenceException e) {
-      throw new CoreException(PlotPlugin.getDefaultInstance().createErrorStatus("Error reading external main file.", e));
+      throw new CoreException(PlotPlugin.getDefaultInstance().createErrorStatus(
+          "An error occured while converting the Plot.",
+          e));
     }
     catch (IOException e) {
       throw new CoreException(PlotPlugin.getDefaultInstance().createErrorStatus(
@@ -46,19 +42,17 @@ public class LegacyMainFileConverter {
   }
 
   private void extractHierarchy(IFile internalFile, IProgressMonitor monitor, Document externalMainDocument)
-      throws FileNotFoundException,
-      TransformerException,
-      IOException,
-      CoreException {
+      throws CoreException,
+      PersistenceException,
+      IOException {
     Document internalHierarchy = XSLPlotConverter.createHierarchy(externalMainDocument);
     writeDocument(monitor, internalFile.getParent().getFile(new Path(HIERARCHY_FILE_NAME)), internalHierarchy);
   }
 
   private void extractContent(IFile internalFile, IProgressMonitor monitor, Document externalMainDocument)
-      throws FileNotFoundException,
-      TransformerException,
-      IOException,
-      CoreException {
+      throws IOException,
+      CoreException,
+      PersistenceException {
     Document internalContent = XSLPlotConverter.createContent(externalMainDocument);
     writeDocument(monitor, internalFile, internalContent);
   }
