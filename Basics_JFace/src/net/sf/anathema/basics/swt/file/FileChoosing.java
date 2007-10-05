@@ -5,6 +5,7 @@ import static net.sf.anathema.basics.swt.file.FileTypes.*;
 import java.io.File;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
@@ -34,6 +35,15 @@ public class FileChoosing {
         SWT.OPEN);
   }
 
+  public static File openFolder(Shell shell) {
+    return getFolder(shell);
+  }
+
+  private static File getFolder(Shell shell) {
+    DirectoryDialog dialog = new DirectoryDialog(shell);
+    return getFile(dialog.open());
+  }
+
   private static File getFile(
       File startingDirectory,
       Shell shell,
@@ -52,11 +62,14 @@ public class FileChoosing {
       dialog.setFilterExtensions(extensions);
       dialog.setFilterNames(filterNames);
     }
-    String file = dialog.open();
-    if (file != null) {
-      file = file.trim();
-      if (file.length() > 0) {
-        return new File(file);
+    return getFile(dialog.open());
+  }
+
+  private static File getFile(String path) {
+    if (path != null) {
+      path = path.trim();
+      if (path.length() > 0) {
+        return new File(path);
       }
     }
     return null;
