@@ -35,7 +35,7 @@ public class NoteImportWizard extends AbstractImportWizard {
 
   @Override
   protected IWizardPage createImportPage(IFileSelectionModel fileModel, BooleanModel openModel) {
-    return new FileSelectionWizardPage(fileModel, openModel, new NoteImportMessages());
+    return new FileSelectionWizardPage(fileModel, openModel, new NoteImportMessages(), new OpenNoteDialog());
   }
 
   @Override

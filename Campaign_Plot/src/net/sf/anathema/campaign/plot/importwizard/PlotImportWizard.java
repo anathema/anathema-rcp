@@ -1,6 +1,8 @@
 package net.sf.anathema.campaign.plot.importwizard;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import net.disy.commons.core.model.BooleanModel;
@@ -11,9 +13,11 @@ import net.sf.anathema.campaign.core.importwizard.IFileSelectionModel;
 import net.sf.anathema.campaign.plot.creation.PlotRepositoryUtilities;
 import net.sf.anathema.campaign.plot.creation.UnusedPlotFileFactory;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.wizard.IWizardPage;
 
 public class PlotImportWizard extends AbstractImportWizard {
@@ -24,7 +28,7 @@ public class PlotImportWizard extends AbstractImportWizard {
 
   @Override
   protected IWizardPage createImportPage(IFileSelectionModel fileModel, BooleanModel openModel) {
-    return new FileSelectionWizardPage(fileModel, openModel, new PlotImportMessages());
+    return new FileSelectionWizardPage(fileModel, openModel, new PlotImportMessages(), new OpenFolderDialog());
   }
 
   @Override
@@ -43,7 +47,17 @@ public class PlotImportWizard extends AbstractImportWizard {
       FileNotFoundException {
     monitor.beginTask("Importing Plot", 4);
     monitor.subTask("Copying files");
-    // TODO Import des rests
+    File[] seriesFiles = externalFile.listFiles(new FileFilter() {
+      @Override
+      public boolean accept(File file) {
+        return file.getName().endsWith(".srs");
+      }
+    });
+    IContainer parentFolder = internalFile.getParent();
+    for (File file : seriesFiles) {
+      IFile importFile = parentFolder.getFile(new Path(file.getName()));
+      importFile.create(new FileInputStream(file), true, monitor);
+    }
     monitor.worked(1);
     new LegacyMainFileConverter().convert(externalFile, internalFile, monitor);
   }

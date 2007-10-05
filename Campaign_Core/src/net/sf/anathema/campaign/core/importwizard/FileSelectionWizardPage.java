@@ -4,7 +4,6 @@ import java.io.File;
 
 import net.disy.commons.core.model.BooleanModel;
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.basics.swt.file.FileChoosing;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.WizardPage;
@@ -24,12 +23,18 @@ public final class FileSelectionWizardPage extends WizardPage {
   private final IFileSelectionModel model;
   private final BooleanModel openModel;
   private final IImportPageMessages messages;
+  private final IFileDialog dialog;
 
-  public FileSelectionWizardPage(final IFileSelectionModel model, BooleanModel openModel, IImportPageMessages messages) {
+  public FileSelectionWizardPage(
+      final IFileSelectionModel model,
+      BooleanModel openModel,
+      IImportPageMessages messages,
+      IFileDialog dialog) {
     super(messages.getPageName(), messages.getPageTitle(), null);
     this.openModel = openModel;
     this.model = model;
     this.messages = messages;
+    this.dialog = dialog;
     setDescription(messages.getDescription());
     model.addChangeListener(new IChangeListener() {
       @Override
@@ -121,7 +126,7 @@ public final class FileSelectionWizardPage extends WizardPage {
       }
 
       private void getFile() {
-        File selectedFile = FileChoosing.openNoteFile(null, composite.getShell());
+        File selectedFile = dialog.open(composite.getShell());
         model.setFile(selectedFile);
       }
     });

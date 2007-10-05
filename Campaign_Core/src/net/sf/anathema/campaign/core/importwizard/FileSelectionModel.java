@@ -15,6 +15,7 @@ public class FileSelectionModel implements IFileSelectionModel {
 
   public FileSelectionModel(IFileSelectionStatusFactory factory) {
     this.factory = factory;
+    status = factory.create(file);
   }
 
   @Override
