@@ -35,12 +35,11 @@ public class FileChoosing {
         SWT.OPEN);
   }
 
-  public static File openFolder(Shell shell) {
-    return getFolder(shell);
-  }
-
-  private static File getFolder(Shell shell) {
+  public static File openFolder(Shell shell, String message) {
     DirectoryDialog dialog = new DirectoryDialog(shell);
+    if (message != null) {
+      dialog.setMessage(message);
+    }
     return getFile(dialog.open());
   }
 

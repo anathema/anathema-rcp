@@ -11,6 +11,6 @@ public class OpenFolderDialog implements IFileDialog {
 
   @Override
   public File open(Shell shell) {
-    return FileChoosing.openFolder(shell);
+    return FileChoosing.openFolder(shell, Messages.OpenFolderDialog_PlotSelectionMessage);
   }
 }
