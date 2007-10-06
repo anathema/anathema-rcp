@@ -3,6 +3,7 @@ package net.sf.anathema.campaign.core.importwizard;
 import java.io.File;
 
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.lib.control.change.ChangeControl;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -20,6 +21,9 @@ public class FileSelectionModel implements IFileSelectionModel {
 
   @Override
   public void setFile(String filename) {
+    if (StringUtilities.isNullOrTrimEmpty(filename)) {
+      changeCurrentFileTo(null);
+    }
     setFile(new File(filename));
   }
 
@@ -28,6 +32,10 @@ public class FileSelectionModel implements IFileSelectionModel {
     if (newFile == null || newFile.equals(file)) {
       return;
     }
+    changeCurrentFileTo(newFile);
+  }
+
+  private void changeCurrentFileTo(File newFile) {
     this.file = newFile;
     this.status = factory.create(file);
     control.fireChangedEvent();

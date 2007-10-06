@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -86,28 +87,33 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
     final ImportJob job = new ImportJob("Import");
     job.setRule((ResourcesPlugin.getWorkspace().getRoot()));
     job.schedule();
+    final Display display = Display.getCurrent();
     job.addJobChangeListener(new JobChangeAdapter() {
       @Override
       public void done(IJobChangeEvent event) {
         if (event.getResult().getSeverity() == IStatus.OK) {
-          showInEditor(job.internalFile);
+          showInEditor(display, job.internalFile);
         }
       }
     });
     return true;
   }
 
-  private void showInEditor(final IFile file) {
+  private void showInEditor(final Display display, final IFile file) {
     if (openModel.getValue()) {
-      IItemType itemType = getItemType();
-      ImageDescriptor icon = ImageDescriptor.createFromURL(itemType.getIconUrl());
-      IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-      try {
-        new ResourceEditorOpener(file, itemType.getUntitledName(), icon).openEditor(page);
-      }
-      catch (PartInitException e) {
-        logger.error(NLS.bind(Messages.AbstractImportWizard_CouldNotOpen, file.getName()), e);
-      }
+      display.asyncExec(new Runnable() {
+        public void run() {
+          IItemType itemType = getItemType();
+          ImageDescriptor icon = ImageDescriptor.createFromURL(itemType.getIconUrl());
+          IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+          try {
+            new ResourceEditorOpener(file, itemType.getUntitledName(), icon).openEditor(page);
+          }
+          catch (PartInitException e) {
+            logger.error(NLS.bind(Messages.AbstractImportWizard_CouldNotOpen, file.getName()), e);
+          }
+        }
+      });
     }
   }
 
