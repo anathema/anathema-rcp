@@ -9,6 +9,8 @@ public class FolderSelectionStatusFactory implements IFileSelectionStatusFactory
 
   @Override
   public IFileSelectionDialogStatus create(File file) {
+    // TODO Handle Missing Main File
+    // TODO Handle Existing Hierarchy
     return new FolderSelectionDialogStatus(file);
   }
 }
