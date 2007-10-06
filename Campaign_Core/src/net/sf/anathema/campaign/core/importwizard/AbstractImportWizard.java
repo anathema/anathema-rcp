@@ -2,7 +2,6 @@ package net.sf.anathema.campaign.core.importwizard;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
 
 import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.eclipse.logging.Logger;
@@ -11,9 +10,14 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.ResourceEditorOpen
 import net.sf.anathema.campaign.core.plugin.CampaignCorePluginConstants;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -25,6 +29,43 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
 public abstract class AbstractImportWizard extends Wizard implements IImportWizard {
+
+  public final class ImportJob extends Job {
+    private IFile internalFile;
+
+    public ImportJob(String name) {
+      super(name);
+    }
+
+    @Override
+    protected IStatus run(IProgressMonitor monitor) {
+      try {
+        internalFile = createInternalFile(fileModel.getFile().getName());
+        importFile(monitor);
+        return new Status(IStatus.OK, CampaignCorePluginConstants.PLUGIN_ID, "Finished importing.");
+      }
+      catch (CoreException e) {
+        String message = NLS.bind(Messages.AbstractImportWizard_ImportError, getItemType().getName());
+        logger.error(message, e);
+        return logger.createErrorStatus(message, e);
+      }
+    }
+
+    private void importFile(IProgressMonitor monitor) throws CoreException {
+      try {
+        runImport(fileModel.getFile(), internalFile, monitor);
+      }
+      catch (Exception e) {
+        try {
+          undoImport(internalFile, monitor);
+        }
+        catch (CoreException c) {
+          logger.error("An exception occured while undoing the failed import.", c);
+        }
+        throw new CoreException(logger.createErrorStatus("The import failed.", e));
+      }
+    }
+  }
 
   private final Logger logger = new Logger(CampaignCorePluginConstants.PLUGIN_ID);
   private final BooleanModel openModel = new BooleanModel();
@@ -42,56 +83,41 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 
   @Override
   public boolean performFinish() {
-    try {
-      final IFile internalFile = createInternalFile(fileModel.getFile().getName());
-      importFile(internalFile);
-      showInEditor(internalFile);
-      return true;
-    }
-    catch (Exception e) {
-      logger.error(NLS.bind(Messages.AbstractImportWizard_ImportError, getItemType().getName()), e);
-      return false;
+    final ImportJob job = new ImportJob("Import");
+    job.setRule((ResourcesPlugin.getWorkspace().getRoot()));
+    job.schedule();
+    job.addJobChangeListener(new JobChangeAdapter() {
+      @Override
+      public void done(IJobChangeEvent event) {
+        if (event.getResult().getSeverity() == IStatus.OK) {
+          showInEditor(job.internalFile);
+        }
+      }
+    });
+    return true;
+  }
+
+  private void showInEditor(final IFile file) {
+    if (openModel.getValue()) {
+      IItemType itemType = getItemType();
+      ImageDescriptor icon = ImageDescriptor.createFromURL(itemType.getIconUrl());
+      IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+      try {
+        new ResourceEditorOpener(file, itemType.getUntitledName(), icon).openEditor(page);
+      }
+      catch (PartInitException e) {
+        logger.error(NLS.bind(Messages.AbstractImportWizard_CouldNotOpen, file.getName()), e);
+      }
     }
   }
 
   protected abstract IFile createInternalFile(String filename) throws CoreException;
 
-  private void importFile(final IFile internalFile) throws InvocationTargetException, InterruptedException {
-    workbench.getActiveWorkbenchWindow().run(true, false, new IRunnableWithProgress() {
-      @Override
-      public void run(IProgressMonitor monitor) throws InvocationTargetException {
-        try {
-          runImport(fileModel.getFile(), internalFile, monitor);
-        }
-        catch (Exception e) {
-          logger.error("The import failed.", e);
-          try {
-            undoImport(internalFile, monitor);
-          }
-          catch (CoreException c) {
-            logger.error("An exception occured while undoing the failed import.", c);
-          }
-          throw new InvocationTargetException(e);
-        }
-      }
-    });
-  }
-
   protected abstract void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException;
 
-  protected abstract void undoImport(IFile internalFile, IProgressMonitor monitor)
-      throws CoreException;
-
-  private void showInEditor(final IFile file) throws PartInitException {
-    if (openModel.getValue()) {
-      IItemType itemType = getItemType();
-      ImageDescriptor icon = ImageDescriptor.createFromURL(itemType.getIconUrl());
-      IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-      new ResourceEditorOpener(file, itemType.getUntitledName(), icon).openEditor(page);
-    }
-  }
+  protected abstract void undoImport(IFile internalFile, IProgressMonitor monitor) throws CoreException;
 
   protected abstract IItemType getItemType();
 

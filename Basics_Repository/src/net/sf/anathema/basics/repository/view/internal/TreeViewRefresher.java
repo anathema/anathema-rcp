@@ -13,7 +13,7 @@ public class TreeViewRefresher extends Job {
   private final Display display;
 
   public TreeViewRefresher(TreeViewer viewer, Display display) {
-    super("Refresh Repository View"); //$NON-NLS-1$
+    super("Refresh Repository View");
     this.viewer = viewer;
     this.display = display;
   }
