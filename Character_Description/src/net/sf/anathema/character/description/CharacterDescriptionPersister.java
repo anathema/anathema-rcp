@@ -22,7 +22,7 @@ public class CharacterDescriptionPersister implements IModelPersister<NullModelT
   private static final String TAG_PHYSICAL_DESCRIPTION = "PhysicalDescription"; //$NON-NLS-1$
   private static final String TAG_PLAYER = "Player"; //$NON-NLS-1$
   private static final String TAG_CONCEPT = "Concept"; //$NON-NLS-1$
-  private static final String TAG_DESCRIPTION = "Description"; //$NON-NLS-1$
+  private static final String TAG_MODEL = "model"; //$NON-NLS-1$
 
   private final TextPersister textPersister = new TextPersister();
 
@@ -60,7 +60,7 @@ public class CharacterDescriptionPersister implements IModelPersister<NullModelT
 
   @Override
   public void save(OutputStream stream, ICharacterDescription item) throws IOException, PersistenceException {
-    Document document = DocumentHelper.createDocument(DocumentHelper.createElement(TAG_DESCRIPTION));
+    Document document = DocumentHelper.createDocument(DocumentHelper.createElement(TAG_MODEL));
     save(document.getRootElement(), item);
     DocumentUtilities.save(document, stream);
   }

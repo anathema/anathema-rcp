@@ -51,10 +51,10 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
 
   @Override
   public void save(OutputStream stream, M item) throws IOException, PersistenceException {
-    Element attributesElement = DocumentHelper.createElement(TAG_MODEL);
-    Document document = DocumentHelper.createDocument(attributesElement);
+    Element root = DocumentHelper.createElement(TAG_MODEL);
+    Document document = DocumentHelper.createDocument(root);
     for (IBasicTrait trait : item.getTraits()) {
-      Element traitElement = attributesElement.addElement(TAG_TRAIT);
+      Element traitElement = root.addElement(TAG_TRAIT);
       traitElement.addAttribute(ATTRIB_ID, trait.getTraitType().getId());
       int creationValue = trait.getCreationModel().getValue();
       ElementUtilities.addAttribute(traitElement, ATTRIB_CREATION_VALUE, creationValue);

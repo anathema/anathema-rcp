@@ -23,7 +23,7 @@ public class NewNoteWizard extends EmptyNewWizard {
     return true;
   }
 
-  public static void openEditorForNewNote(IWorkbenchPage page) {
+  private void openEditorForNewNote(IWorkbenchPage page) {
     IItemType itemType = NotesRepositoryUtilities.getNotesItemType();
     IEditorInput input = new ProxyItemEditorInput(itemType.getUntitledName(), new NewItemEditorInput(itemType));
     try {
