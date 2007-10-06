@@ -4,6 +4,7 @@ import static net.sf.anathema.basics.swt.file.FileTypes.*;
 
 import java.io.File;
 
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.FileDialog;
@@ -12,27 +13,17 @@ import org.eclipse.swt.widgets.Shell;
 public class FileChoosing {
   private static final String ANY_PDF_FILTER = '*' + PDF_EXTENSION;
   private static final String ANY_NOTE_FILTER = '*' + NOTE_EXTENSION;
-  private static final String ANY_PDF_FILTER_NAME = "Portable Document Format (" + ANY_PDF_FILTER + ")";
-  private static final String ANY_NOTE_FILTER_NAME = "Anathema Note (" + ANY_NOTE_FILTER + ")";
 
   public static File savePdfFile(File startingDirectory, Shell shell, String suggestedFileName) {
-    return getFile(
-        startingDirectory,
-        shell,
-        new String[] { ANY_PDF_FILTER },
-        new String[] { ANY_PDF_FILTER_NAME },
-        suggestedFileName,
-        SWT.SAVE);
+    return getFile(startingDirectory, shell, new String[] { ANY_PDF_FILTER }, new String[] { NLS.bind(
+        Messages.FileChoosing_PDF_Filter_Description,
+        ANY_PDF_FILTER) }, suggestedFileName, SWT.SAVE);
   }
 
   public static File openNoteFile(File startingDirectory, Shell shell) {
-    return getFile(
-        startingDirectory,
-        shell,
-        new String[] { ANY_NOTE_FILTER },
-        new String[] { ANY_NOTE_FILTER_NAME },
-        null,
-        SWT.OPEN);
+    return getFile(startingDirectory, shell, new String[] { ANY_NOTE_FILTER }, new String[] { NLS.bind(
+        Messages.FileChoosing_Note_Filter_Description,
+        ANY_NOTE_FILTER) }, null, SWT.OPEN);
   }
 
   public static File openFolder(Shell shell, String message) {

@@ -45,12 +45,11 @@ public class PlotImportWizard extends AbstractImportWizard {
   protected void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException {
-    monitor.beginTask("Importing Plot", 4);
-    monitor.subTask("Copying files");
+    monitor.subTask(Messages.PlotImportWizard_CopySubTask);
     File[] seriesFiles = externalFile.listFiles(new FileFilter() {
       @Override
       public boolean accept(File file) {
-        return file.getName().endsWith(".srs");
+        return file.getName().endsWith(PlotRepositoryUtilities.PLOT_FILE_EXTENSION);
       }
     });
     IContainer parentFolder = internalFile.getParent();

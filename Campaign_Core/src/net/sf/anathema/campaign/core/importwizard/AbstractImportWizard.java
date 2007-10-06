@@ -34,8 +34,8 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
   public final class ImportJob extends Job {
     private IFile internalFile;
 
-    public ImportJob(String name) {
-      super(name);
+    public ImportJob() {
+      super(Messages.AbstractImportWizard_ImportJobName);
     }
 
     @Override
@@ -43,7 +43,10 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
       try {
         internalFile = createInternalFile(fileModel.getFile().getName());
         importFile(monitor);
-        return new Status(IStatus.OK, CampaignCorePluginConstants.PLUGIN_ID, "Finished importing.");
+        return new Status(
+            IStatus.OK,
+            CampaignCorePluginConstants.PLUGIN_ID,
+            Messages.AbstractImportWizard_ImportSuccessful);
       }
       catch (CoreException e) {
         String message = NLS.bind(Messages.AbstractImportWizard_ImportError, getItemType().getName());
@@ -61,9 +64,9 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
           undoImport(internalFile, monitor);
         }
         catch (CoreException c) {
-          logger.error("An exception occured while undoing the failed import.", c);
+          logger.error(Messages.AbstractImportWizard_ErrorUndoing, c);
         }
-        throw new CoreException(logger.createErrorStatus("The import failed.", e));
+        throw new CoreException(logger.createErrorStatus(Messages.AbstractImportWizard_ImportFailed, e));
       }
     }
   }
@@ -84,7 +87,7 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 
   @Override
   public boolean performFinish() {
-    final ImportJob job = new ImportJob("Import");
+    final ImportJob job = new ImportJob();
     job.setRule((ResourcesPlugin.getWorkspace().getRoot()));
     job.schedule();
     final Display display = Display.getCurrent();

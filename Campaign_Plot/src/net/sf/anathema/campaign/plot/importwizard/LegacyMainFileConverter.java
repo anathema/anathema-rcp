@@ -21,7 +21,7 @@ public class LegacyMainFileConverter {
 
   public void convert(File externalFile, IFile internalFile, IProgressMonitor monitor) throws CoreException {
     try {
-      monitor.subTask("Extracting Hierarchy");
+      monitor.subTask(Messages.LegacyMainFileConverter_SubtaskExtraction);
       Document externalMainDocument = DocumentUtilities.read(new File(externalFile, MAIN_FILE_NAME));
       monitor.worked(1);
       extractContent(internalFile, monitor, externalMainDocument);
@@ -31,12 +31,12 @@ public class LegacyMainFileConverter {
     }
     catch (PersistenceException e) {
       throw new CoreException(PlotPlugin.getDefaultInstance().createErrorStatus(
-          "An error occured while converting the Plot.",
+          Messages.LegacyMainFileConverter_ErrorConverting,
           e));
     }
     catch (IOException e) {
       throw new CoreException(PlotPlugin.getDefaultInstance().createErrorStatus(
-          "An error occured while converting the Plot.",
+          Messages.LegacyMainFileConverter_ErrorConverting,
           e));
     }
   }

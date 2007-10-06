@@ -50,7 +50,7 @@ public class ResourceModelMarker implements IDisposable {
       }
     }
     catch (CoreException e) {
-      new Logger(IAttributeFreebiesConstants.PLUGIN_ID).error("Error occured while marking.", e);
+      new Logger(IAttributeFreebiesConstants.PLUGIN_ID).error(Messages.ResourceModelMarker_ErrorWhileMarking, e);
     }
   }
 

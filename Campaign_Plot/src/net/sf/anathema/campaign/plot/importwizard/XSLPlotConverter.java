@@ -19,10 +19,14 @@ import org.eclipse.core.runtime.IStatus;
 
 public class XSLPlotConverter {
 
+  private static final String HIERARCHY_STYLESHEET = "xsl/HierarchyCreation.xsl"; //$NON-NLS-1$
+  private static final String CONTENT_STYLESHEET = "xsl/ContentCreation.xsl"; //$NON-NLS-1$
+  private static final String TAG_NAME = "Name"; //$NON-NLS-1$
+
   public static Document createContent(Document sourceDocument) throws PersistenceException {
     try {
-      Document document = run(sourceDocument, "xsl/ContentCreation.xsl"); //$NON-NLS-1$
-      Element name = document.getRootElement().element("Name");
+      Document document = run(sourceDocument, CONTENT_STYLESHEET);
+      Element name = document.getRootElement().element(TAG_NAME);
       String text = name.getText();
       name.clearContent();
       name.addCDATA(text);
@@ -30,25 +34,25 @@ public class XSLPlotConverter {
 
     }
     catch (IOException e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, "Failed to convert content.", e);
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertConvert, e);
       throw new PersistenceException(e);
     }
     catch (TransformerException e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, "Failed to convert content.", e);
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertConvert, e);
       throw new PersistenceException(e);
     }
   }
 
   public static Document createHierarchy(Document sourceDocument) throws PersistenceException {
     try {
-      return run(sourceDocument, "xsl/HierarchyCreation.xsl");
+      return run(sourceDocument, HIERARCHY_STYLESHEET);
     }
     catch (IOException e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, "Failed to convert content.", e);
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertHierarchy, e);
       throw new PersistenceException(e);
     }
     catch (TransformerException e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, "Failed to convert content.", e);
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertHierarchy, e);
       throw new PersistenceException(e);
     }
   }

@@ -9,6 +9,7 @@ import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.AbstractResourceViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
+import net.sf.anathema.campaign.plot.creation.PlotRepositoryUtilities;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 
 import org.eclipse.core.resources.IContainer;
@@ -52,7 +53,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
 
   @Override
   public IFile getEditFile() {
-    return folder.getFile(plotElement.getRepositoryId() + ".srs"); //$NON-NLS-1$
+    return folder.getFile(plotElement.getRepositoryId() + PlotRepositoryUtilities.PLOT_FILE_EXTENSION);
   }
 
   public IPlotPart getPlotElement() {

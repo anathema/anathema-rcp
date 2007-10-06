@@ -13,7 +13,7 @@ public class TreeViewRefresher extends Job {
   private final Display display;
 
   public TreeViewRefresher(TreeViewer viewer, Display display) {
-    super("Refresh Repository View");
+    super(Messages.TreeViewRefresher_JobName);
     this.viewer = viewer;
     this.display = display;
   }
