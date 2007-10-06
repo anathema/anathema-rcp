@@ -15,20 +15,20 @@ public class TitledTextPersister implements ISingleFileItemPersister<ITitledText
 
   private static final String TAG_SUMMARY = "Summary"; //$NON-NLS-1$
   private static final String TAG_NAME = "Name"; //$NON-NLS-1$
-
+  private static final String TAG_MODEL = "model"; //$NON-NLS-1$
   private final TextPersister textPersister = new TextPersister();
 
   @Override
   public void save(OutputStream stream, ITitledText itemData) throws IOException, PersistenceException {
-    Element rootElement = DocumentHelper.createElement("Item"); //$NON-NLS-1$
+    Element rootElement = DocumentHelper.createElement(TAG_MODEL);
     save(itemData, rootElement);
     Document document = DocumentHelper.createDocument(rootElement);
     DocumentUtilities.save(document, stream);
   }
 
   @Override
-  public ITitledText load(Document itemXml) throws PersistenceException {
-    Element rootElement = itemXml.getRootElement();
+  public ITitledText load(Document document) throws PersistenceException {
+    Element rootElement = document.getRootElement();
     TitledText data = new TitledText();
     load(rootElement, data);
     return data;
