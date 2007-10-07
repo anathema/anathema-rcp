@@ -5,6 +5,10 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
   private static final String BUNDLE_NAME = "net.sf.anathema.rcp.messages"; //$NON-NLS-1$
   
+  public static String Application_LockDialogMessage;
+
+  public static String Application_LockDialogTitle;
+
   public static String ApplicationActionBarAdvisor_ActionCreationError;
 
   public static String ApplicationActionBarAdvisor_viewMenuName;
