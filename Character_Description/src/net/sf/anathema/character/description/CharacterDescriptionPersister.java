@@ -3,14 +3,15 @@ package net.sf.anathema.character.description;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.item.text.TextPersister;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
+import net.sf.anathema.character.description.plugin.CharacterDescriptionPluginConstants;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 public class CharacterDescriptionPersister implements IModelPersister<NullModelTemplate, ICharacterDescription> {
@@ -60,7 +61,9 @@ public class CharacterDescriptionPersister implements IModelPersister<NullModelT
 
   @Override
   public void save(OutputStream stream, ICharacterDescription item) throws IOException, PersistenceException {
-    Document document = DocumentHelper.createDocument(DocumentHelper.createElement(TAG_MODEL));
+    Document document = BundlePersistenceUtilities.createVersionedDocument(
+        TAG_MODEL,
+        CharacterDescriptionPluginConstants.PLUGIN_ID);
     save(document.getRootElement(), item);
     DocumentUtilities.save(document, stream);
   }

@@ -3,12 +3,13 @@ package net.sf.anathema.basics.item.text;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
+import net.sf.anathema.basics.item.plugin.IBasicItemPluginConstants;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 public class TitledTextPersister implements ISingleFileItemPersister<ITitledText> {
@@ -20,9 +21,10 @@ public class TitledTextPersister implements ISingleFileItemPersister<ITitledText
 
   @Override
   public void save(OutputStream stream, ITitledText itemData) throws IOException, PersistenceException {
-    Element rootElement = DocumentHelper.createElement(TAG_MODEL);
-    save(itemData, rootElement);
-    Document document = DocumentHelper.createDocument(rootElement);
+    Document document = BundlePersistenceUtilities.createVersionedDocument(
+        TAG_MODEL,
+        IBasicItemPluginConstants.PLUGIN_ID);
+    save(itemData, document.getRootElement());
     DocumentUtilities.save(document, stream);
   }
 

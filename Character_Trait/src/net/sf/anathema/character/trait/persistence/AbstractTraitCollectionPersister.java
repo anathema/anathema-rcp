@@ -5,11 +5,13 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.IModelTemplate;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.plugin.CharacterTraitPluginConstants;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
@@ -17,7 +19,6 @@ import net.sf.anathema.lib.xml.DocumentUtilities;
 import net.sf.anathema.lib.xml.ElementUtilities;
 
 import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate, M extends ITraitCollectionModel> implements
@@ -51,8 +52,10 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
 
   @Override
   public void save(OutputStream stream, M item) throws IOException, PersistenceException {
-    Element root = DocumentHelper.createElement(TAG_MODEL);
-    Document document = DocumentHelper.createDocument(root);
+    Document document = BundlePersistenceUtilities.createVersionedDocument(
+        TAG_MODEL,
+        CharacterTraitPluginConstants.PLUGIN_ID);
+    Element root = document.getRootElement();
     for (IBasicTrait trait : item.getTraits()) {
       Element traitElement = root.addElement(TAG_TRAIT);
       traitElement.addAttribute(ATTRIB_ID, trait.getTraitType().getId());

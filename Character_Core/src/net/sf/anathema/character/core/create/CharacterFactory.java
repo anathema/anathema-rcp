@@ -6,13 +6,13 @@ import java.io.IOException;
 import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 
 public class CharacterFactory {
 
+  private static final String TAG_TEMPLATE = "template"; //$NON-NLS-1$
   private static final ILogger logger = new Logger(CharacterCorePlugin.ID);
 
   public void createNewCharacter(String templateName, String folderName) {
@@ -37,8 +38,8 @@ public class CharacterFactory {
   }
 
   private void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
-    Element rootElement = DocumentHelper.createElement("template"); //$NON-NLS-1$
-    Document document = DocumentHelper.createDocument(rootElement);
+    Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_TEMPLATE, CharacterCorePlugin.ID);
+    Element rootElement = document.getRootElement();
     rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, templateName);
     IFile templateFile = characterFolder.getFile(CharacterTemplateProvider.TEMPLATE_FILE_NAME);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

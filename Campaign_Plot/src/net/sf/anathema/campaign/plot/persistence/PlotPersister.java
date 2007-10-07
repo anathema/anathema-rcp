@@ -6,6 +6,8 @@ import java.io.InputStream;
 
 import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
+import net.sf.anathema.campaign.plot.PlotPlugin;
 import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.campaign.plot.repository.PlotPart;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -14,7 +16,6 @@ import net.sf.anathema.lib.xml.ElementUtilities;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.eclipse.core.resources.IFile;
@@ -25,6 +26,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 public class PlotPersister {
 
   public static final String HIERARCHY_FILE_NAME = "hierarchy.xml"; //$NON-NLS-1$
+  private static final String TAG_HIERARCHY = "hierarchy"; //$NON-NLS-1$
   private static final String TAG_PLOT = "Plot"; //$NON-NLS-1$
   private static final String ATTRIB_REPOSITORY_ID = "repositoryId"; //$NON-NLS-1$
   private static final String TAG_PLOT_ELEMENT = "plotElement"; //$NON-NLS-1$
@@ -79,7 +81,7 @@ public class PlotPersister {
     IFile file = folder.getFile(HIERARCHY_FILE_NAME);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     try {
-      Document document = DocumentHelper.createDocument(DocumentHelper.createElement("hierarchy")); //$NON-NLS-1$
+      Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_HIERARCHY, PlotPlugin.ID);
       Element plotElement = document.getRootElement().addElement(TAG_PLOT);
       for (IPlotPart plotPart : root.getChildren()) {
         save(plotElement, plotPart);

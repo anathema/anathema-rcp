@@ -3,16 +3,16 @@ package net.sf.anathema.character.experience.internal;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.experience.plugin.ExperiencePlugin;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 import net.sf.anathema.lib.xml.ElementUtilities;
 
 import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
 
 public class ExperiencePersister implements IModelPersister<NullModelTemplate, IExperience> {
 
@@ -28,9 +28,8 @@ public class ExperiencePersister implements IModelPersister<NullModelTemplate, I
 
   @Override
   public void save(OutputStream stream, IExperience item) throws IOException, PersistenceException {
-    Element root = DocumentHelper.createElement(TAG_MODEL);
-    Document document = DocumentHelper.createDocument(root);
-    ElementUtilities.addAttribute(root, ATTRIB_EXPERIENCED, item.isExperienced());
+    Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_MODEL, ExperiencePlugin.PLUGIN_ID);
+    ElementUtilities.addAttribute(document.getRootElement(), ATTRIB_EXPERIENCED, item.isExperienced());
     DocumentUtilities.save(document, stream);
   }
 
