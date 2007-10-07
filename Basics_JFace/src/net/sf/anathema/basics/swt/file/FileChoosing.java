@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Shell;
 
 public class FileChoosing {
   private static final String ANY_PDF_FILTER = '*' + PDF_EXTENSION;
-  private static final String ANY_NOTE_FILTER = '*' + NOTE_EXTENSION;
+  private static final String ANY_NOTE_FILTER = '*' + LEGACY_NOTE_EXTENSION;
 
   public static File savePdfFile(File startingDirectory, Shell shell, String suggestedFileName) {
     return getFile(startingDirectory, shell, new String[] { ANY_PDF_FILTER }, new String[] { NLS.bind(
@@ -22,7 +22,7 @@ public class FileChoosing {
 
   public static File openNoteFile(File startingDirectory, Shell shell) {
     return getFile(startingDirectory, shell, new String[] { ANY_NOTE_FILTER }, new String[] { NLS.bind(
-        Messages.FileChoosing_Note_Filter_Description,
+        Messages.FileChoosing_Legacy_Note_Filter_Description,
         ANY_NOTE_FILTER) }, null, SWT.OPEN);
   }
 
