@@ -53,7 +53,8 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
 
   @Override
   public IFile getEditFile() {
-    return folder.getFile(plotElement.getRepositoryId() + PlotRepositoryUtilities.PLOT_FILE_EXTENSION);
+    return folder.getFile(plotElement.getRepositoryId()
+        + "." + PlotRepositoryUtilities.getPlotItemType().getFileExtension()); //$NON-NLS-1$
   }
 
   public IPlotPart getPlotElement() {

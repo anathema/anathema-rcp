@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.Path;
 
 public class UnusedPlotFileFactory implements IUnusedFileFactory {
 
+  private static final String MAIN_FILE_NAME = "main.srs"; //$NON-NLS-1$
   private final IContainer container;
 
   public UnusedPlotFileFactory() {
@@ -27,7 +28,7 @@ public class UnusedPlotFileFactory implements IUnusedFileFactory {
     String directoryName = createUnusedDirectoryName(fileNameSuggestion);
     IFolder directory = container.getFolder(new Path(directoryName));
     directory.create(true, true, new NullProgressMonitor());
-    return directory.getFile(new Path("main.srs")); //$NON-NLS-1$
+    return directory.getFile(new Path(MAIN_FILE_NAME));
   }
 
   private String createUnusedDirectoryName(String fileNameSuggestion) throws CoreException {

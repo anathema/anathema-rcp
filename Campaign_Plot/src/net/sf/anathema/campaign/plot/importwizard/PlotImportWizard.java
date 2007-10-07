@@ -49,7 +49,7 @@ public class PlotImportWizard extends AbstractImportWizard {
     File[] seriesFiles = externalFile.listFiles(new FileFilter() {
       @Override
       public boolean accept(File file) {
-        return file.getName().endsWith(PlotRepositoryUtilities.PLOT_FILE_EXTENSION);
+        return file.getName().endsWith("." + getItemType().getFileExtension()); //$NON-NLS-1$
       }
     });
     IContainer parentFolder = internalFile.getParent();
