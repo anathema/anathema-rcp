@@ -1,5 +1,6 @@
 package net.sf.anathema.rcp;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.swt.widgets.Display;
@@ -9,6 +10,10 @@ public class Application implements IApplication {
 
   @Override
   public Object start(IApplicationContext context) throws Exception {
+    boolean lockSucceeded = Platform.getInstanceLocation().lock();
+    if (!lockSucceeded) {
+      return EXIT_OK;
+    }
     Display display = PlatformUI.createDisplay();
     try {
       int returnCode = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
@@ -19,6 +24,7 @@ public class Application implements IApplication {
     }
     finally {
       display.dispose();
+      Platform.getInstanceLocation().release();
     }
   }
 
