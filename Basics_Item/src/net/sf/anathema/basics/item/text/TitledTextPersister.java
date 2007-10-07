@@ -16,13 +16,13 @@ public class TitledTextPersister implements ISingleFileItemPersister<ITitledText
 
   private static final String TAG_SUMMARY = "Summary"; //$NON-NLS-1$
   private static final String TAG_NAME = "Name"; //$NON-NLS-1$
-  private static final String TAG_MODEL = "model"; //$NON-NLS-1$
+  private static final String TAG_TEXT = "text"; //$NON-NLS-1$
   private final TextPersister textPersister = new TextPersister();
 
   @Override
   public void save(OutputStream stream, ITitledText itemData) throws IOException, PersistenceException {
     Document document = BundlePersistenceUtilities.createVersionedDocument(
-        TAG_MODEL,
+        TAG_TEXT,
         IBasicItemPluginConstants.PLUGIN_ID);
     save(itemData, document.getRootElement());
     DocumentUtilities.save(document, stream);
