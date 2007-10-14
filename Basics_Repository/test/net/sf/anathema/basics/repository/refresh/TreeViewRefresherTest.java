@@ -1,7 +1,5 @@
 package net.sf.anathema.basics.repository.refresh;
 
-import net.sf.anathema.basics.repository.refresh.TreeViewRefresher;
-
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Shell;

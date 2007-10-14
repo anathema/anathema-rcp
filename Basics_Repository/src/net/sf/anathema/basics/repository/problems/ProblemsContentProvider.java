@@ -6,65 +6,47 @@ import java.util.List;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-public class ProblemsContentProvider implements ITreeContentProvider {
+public class ProblemsContentProvider extends AbstractFlatTreeContentProvider {
 
   @Override
   public void dispose() {
-    // TODO Auto-generated method stub
+    // nothing to do
   }
 
   @Override
   public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-    // TODO Auto-generated method stub
+    // nothing to do
   }
 
   @Override
-  public Object[] getChildren(Object parentElement) {
-    return new Object[0];
-  }
-
-  @Override
-  public Object getParent(Object element) {
-    return null;
-  }
-
-  @Override
-  public boolean hasChildren(Object element) {
-    return false;
-  }
-
-  @Override
-  public Object[] getElements(Object inputElement) {
-    List<IMarker> markers = new ArrayList<IMarker>();
+  public IProblem[] getElements(Object inputElement) {
+    List<IProblem> problems = new ArrayList<IProblem>();
     try {
-      addProblemsForContainer(ResourcesPlugin.getWorkspace().getRoot(), markers);
-
+      addProblemsForContainer((IContainer) inputElement, problems);
     }
     catch (Exception e) {
       // TODO Exception Handling
     }
-    return markers.toArray(new IMarker[markers.size()]);
+    return problems.toArray(new IProblem[problems.size()]);
   }
 
-  private void addProblemsForContainer(IContainer container, List<IMarker> markers) throws CoreException {
+  private void addProblemsForContainer(IContainer container, List<IProblem> problems) throws CoreException {
     for (IResource resource : container.members()) {
       if (resource instanceof IContainer) {
-        addProblemsForContainer((IContainer) resource, markers);
+        addProblemsForContainer((IContainer) resource, problems);
       }
       else {
-        addProblems(resource, markers);
+        addProblems(resource, problems);
       }
     }
   }
 
-  private void addProblems(IResource resource, List<IMarker> markers) throws CoreException {
-    for (IMarker marker : resource.findMarkers("net.sf.anathema.markers.view.element", true, 1)) { //$NON-NLS-1$
-      markers.add(marker);
+  private void addProblems(IResource resource, List<IProblem> problems) throws CoreException {
+    for (IMarker marker : resource.findMarkers("net.sf.anathema.markers.view.element", true, IResource.DEPTH_ONE)) { //$NON-NLS-1$
+      problems.add(new MarkerProblem(marker));
     }
   }
 }

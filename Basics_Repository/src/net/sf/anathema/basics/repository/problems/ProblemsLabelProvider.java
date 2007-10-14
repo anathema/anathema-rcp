@@ -1,6 +1,5 @@
 package net.sf.anathema.basics.repository.problems;
 
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -14,13 +13,13 @@ public class ProblemsLabelProvider extends LabelProvider implements ITableLabelP
 
   @Override
   public String getColumnText(Object element, int columnIndex) {
-    IMarker marker = (IMarker) element;
+    IProblem problem = (IProblem) element;
     if (columnIndex == 0) {
-      return String.valueOf(marker.getAttribute("description", "No description given."));
+      return problem.getDescription();
     }
     if (columnIndex == 1) {
-      return String.valueOf(marker.getAttribute("path", "No path defined."));
+      return problem.getPath();
     }
-    throw new IllegalArgumentException("Unsupported column index: " + columnIndex);
+    throw new IndexOutOfBoundsException("Unsupported column index: " + columnIndex); //$NON-NLS-1$
   }
 }
