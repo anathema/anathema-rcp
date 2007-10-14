@@ -1,13 +1,13 @@
-package net.sf.anathema.character.core.repository.internal;
+package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 
-public class DisplayNameProvider implements IDisplayNameProvider {
+public class ModelDisplayNameProvider implements IDisplayNameProvider {
 
   private final IDisplayNameProvider personalizer;
   private final String baseName;
 
-  public DisplayNameProvider(String baseName, IDisplayNameProvider personalizer) {
+  public ModelDisplayNameProvider(String baseName, IDisplayNameProvider personalizer) {
     this.baseName = baseName;
     this.personalizer = personalizer;
   }

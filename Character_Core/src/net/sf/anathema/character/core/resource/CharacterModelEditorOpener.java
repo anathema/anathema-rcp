@@ -4,11 +4,10 @@ import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.ui.IResourceEditorOpener;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
-import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
-import net.sf.anathema.character.core.repository.internal.DisplayNameProvider;
-import net.sf.anathema.character.core.repository.internal.IModelDisplayConfiguration;
+import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
+import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IContainer;
@@ -51,14 +50,9 @@ public class CharacterModelEditorOpener extends AbstractExecutableExtension impl
       throws PersistenceException,
       CoreException,
       ExtensionException {
-    DisplayNameProvider displayNameProvider = new DisplayNameProvider(
+    ModelDisplayNameProvider displayNameProvider = new ModelDisplayNameProvider(
         configuration.getDisplayName(),
-        new IDisplayNameProvider() {
-          @Override
-          public String getDisplayName() {
-            return new CharacterPrintNameProvider().getPrintName(characterFolder, characterFolder.getName());
-          }
-        });
+        new CharacterDisplayNameProvider(characterFolder));
     return configuration.createEditorInput(characterFolder, configuration.getImageDescriptor(), displayNameProvider);
   }
 

@@ -5,8 +5,9 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.basics.repository.problems.MarkerProblem;
-import net.sf.anathema.character.core.resource.CharacterPrintNameProvider;
-import net.sf.anathema.character.core.resource.ModelResourceNameProvider;
+import net.sf.anathema.character.core.model.ModelExtensionPoint;
+import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
+import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
 import net.sf.anathema.character.freebies.attributes.plugin.IAttributeFreebiesConstants;
 import net.sf.anathema.lib.ui.IDisposable;
 
@@ -65,9 +66,13 @@ public class ResourceModelMarker implements IDisposable {
   private Object[] getMarkerAttributes() {
     IResource resource = (IResource) markerHandle.getAdapter(IResource.class);
     IContainer container = resource.getParent();
-    String characterName = new CharacterPrintNameProvider().getPrintName(container, container.getName());
-    String modelName = new ModelResourceNameProvider().getResourceName(resource, characterName);
-    return new Object[] { modelMarker.getDescription(characterName), modelName, "net.sf.anathema.character.modelopener" }; //$NON-NLS-1$
+    String displayName = new ModelExtensionPoint().getDisplayConfiguration(resource).getDisplayName();
+    CharacterDisplayNameProvider characterNameProvider = new CharacterDisplayNameProvider(container);
+    String modelName = new ModelDisplayNameProvider(displayName, characterNameProvider).getDisplayName();
+    return new Object[] {
+        modelMarker.getDescription(characterNameProvider.getDisplayName()),
+        modelName,
+        "net.sf.anathema.character.modelopener" }; //$NON-NLS-1$
   }
 
   @Override

@@ -1,7 +1,8 @@
-package net.sf.anathema.character.core.repository.internal;
+package net.sf.anathema.character.core.repository;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.core.repository.internal.IModelConfiguration;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IContainer;

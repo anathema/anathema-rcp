@@ -7,6 +7,7 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvid
 import net.sf.anathema.character.core.character.internal.CharacterId;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
+import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IContainer;
