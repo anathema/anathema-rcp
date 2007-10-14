@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.repository.problems;
 
+
 import net.sf.anathema.basics.repository.refresh.ResourceChangeTreeRefresher;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 
@@ -29,6 +30,7 @@ public class ProblemsView extends ViewPart {
     viewer.setContentProvider(new ProblemsContentProvider());
     viewer.setLabelProvider(new ProblemsLabelProvider());
     viewer.setInput(ResourcesPlugin.getWorkspace().getRoot());
+    viewer.addOpenListener(new ProblemOpenListener());
   }
 
   @Override

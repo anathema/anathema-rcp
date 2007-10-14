@@ -1,7 +1,9 @@
 package net.sf.anathema.character.core.resource;
 
+import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
+import net.sf.anathema.basics.repository.problems.IResourceEditorOpener;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
@@ -20,7 +22,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class CharacterModelEditorOpener implements IResourceEditorOpener {
+public class CharacterModelEditorOpener extends AbstractExecutableExtension implements IResourceEditorOpener {
 
   public void openEditor(IWorkbenchPage page, IResource modelResource) throws PartInitException {
     IModelDisplayConfiguration configuration = new ModelExtensionPoint().getDisplayConfiguration(modelResource);

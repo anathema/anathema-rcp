@@ -47,9 +47,10 @@ public class ResourceModelMarker implements IDisposable {
         IMarker[] markers = markerHandle.findMarkers(modelMarker.getMarkerId(), true, IResource.DEPTH_ZERO);
         if (markers.length == 0) {
           IMarker marker = markerHandle.createMarker(modelMarker.getMarkerId());
-          marker.setAttributes(
-              new String[] { MarkerProblem.ATTRIB_DESCRIPTION, MarkerProblem.ATTRIB_PATH },
-              getMarkerAttributes());
+          marker.setAttributes(new String[] {
+              MarkerProblem.ATTRIB_DESCRIPTION,
+              MarkerProblem.ATTRIB_PATH,
+              MarkerProblem.ATTRIB_SOURCE_OPENER }, getMarkerAttributes());
         }
       }
       else {
@@ -61,12 +62,12 @@ public class ResourceModelMarker implements IDisposable {
     }
   }
 
-  private String[] getMarkerAttributes() {
+  private Object[] getMarkerAttributes() {
     IResource resource = (IResource) markerHandle.getAdapter(IResource.class);
     IContainer container = resource.getParent();
     String characterName = new CharacterPrintNameProvider().getPrintName(container, container.getName());
     String modelName = new ModelResourceNameProvider().getResourceName(resource, characterName);
-    return new String[] { modelMarker.getDescription(characterName), modelName };
+    return new Object[] { modelMarker.getDescription(characterName), modelName, "net.sf.anathema.character.modelopener" }; //$NON-NLS-1$
   }
 
   @Override

@@ -1,10 +1,11 @@
-package net.sf.anathema.character.core.resource;
+package net.sf.anathema.basics.repository.problems;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public interface IResourceEditorOpener {
+public interface IResourceEditorOpener extends IExecutableExtension {
 
   public void openEditor(IWorkbenchPage page, IResource modelResource) throws PartInitException;
 }

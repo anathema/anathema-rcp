@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="itemtypes" name="%repository.extension-point.itemtypes.name" schema="schema/itemtypes.exsd"/>
    <extension-point id="dnd" name="%repository.extension-point.dnd.name" schema="schema/dnd.exsd"/>
+   <extension-point id="sourceopener" name="Source Opener" schema="schema/sourceopener.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
