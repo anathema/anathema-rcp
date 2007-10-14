@@ -30,4 +30,14 @@ public class AttributeGroupModelMarker implements IModelMarker {
   public boolean isActive() {
     return creditCollection.getCredit(priorityGroup) > dotsSpent.get(priorityGroup);
   }
+
+  @Override
+  public String getDescription() {
+    return "There are unspent " + priorityGroup.name() + " attribute points.";
+  }
+
+  @Override
+  public String getPath() {
+    return "Path defined";
+  }
 }

@@ -4,6 +4,7 @@ import net.disy.commons.core.model.IChangeableModel;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
+import net.sf.anathema.basics.repository.problems.MarkerProblem;
 import net.sf.anathema.character.freebies.attributes.plugin.IAttributeFreebiesConstants;
 import net.sf.anathema.lib.ui.IDisposable;
 
@@ -42,7 +43,10 @@ public class ResourceModelMarker implements IDisposable {
       if (warning) {
         IMarker[] markers = markerHandle.findMarkers(modelMarker.getMarkerId(), true, IResource.DEPTH_ZERO);
         if (markers.length == 0) {
-          markerHandle.createMarker(modelMarker.getMarkerId());
+          IMarker marker = markerHandle.createMarker(modelMarker.getMarkerId());
+          marker.setAttributes(
+              new String[] { MarkerProblem.ATTRIB_DESCRIPTION, MarkerProblem.ATTRIB_PATH },
+              new String[] { modelMarker.getDescription(), modelMarker.getPath() });
         }
       }
       else {

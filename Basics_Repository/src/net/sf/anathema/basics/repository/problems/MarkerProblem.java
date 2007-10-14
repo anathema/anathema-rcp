@@ -4,8 +4,8 @@ import org.eclipse.core.resources.IMarker;
 
 public class MarkerProblem implements IProblem {
 
-  private static final String ATTRIB_PATH = "path"; //$NON-NLS-1$
-  private static final String ATTRIB_DESCRIPTION = "description"; //$NON-NLS-1$
+  public static final String ATTRIB_PATH = "path"; //$NON-NLS-1$
+  public static final String ATTRIB_DESCRIPTION = "description"; //$NON-NLS-1$
   private final IMarker marker;
 
   public MarkerProblem(IMarker marker) {
@@ -19,6 +19,6 @@ public class MarkerProblem implements IProblem {
 
   @Override
   public String getPath() {
-    return String.valueOf(marker.getAttribute(ATTRIB_PATH, Messages.MarkerProblem_NoPath));
+    return marker.getAttribute(ATTRIB_PATH, Messages.MarkerProblem_NoPath);
   }
 }
