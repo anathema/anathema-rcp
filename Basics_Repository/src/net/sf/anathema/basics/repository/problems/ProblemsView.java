@@ -1,6 +1,5 @@
 package net.sf.anathema.basics.repository.problems;
 
-
 import net.sf.anathema.basics.repository.refresh.ResourceChangeTreeRefresher;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 
