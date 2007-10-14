@@ -9,9 +9,10 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.lib.exception.PersistenceException;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 
@@ -43,13 +44,13 @@ public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
   }
 
   @Override
-  public IFile getModelFile(IFolder characterFolder) {
-    return characterFolder.getFile(filename);
+  public IFile getModelFile(IContainer characterFolder) {
+    return characterFolder.getFile(new Path(filename));
   }
 
   @Override
   public IEditorInput createEditorInput(
-      IFolder characterFolder,
+      IContainer characterFolder,
       ImageDescriptor descriptor,
       IDisplayNameProvider provider) throws PersistenceException, CoreException, ExtensionException {
     IEditorInputFactory factory = displayElement.getAttributeAsObject("editorInputFactory", //$NON-NLS-1$

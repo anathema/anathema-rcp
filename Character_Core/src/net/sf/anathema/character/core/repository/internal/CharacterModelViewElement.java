@@ -4,20 +4,15 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
-import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
+import net.sf.anathema.character.core.resource.CharacterModelEditorOpener;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -28,6 +23,7 @@ public class CharacterModelViewElement implements IViewElement {
   private final IFolder characterFolder;
   private final IModelDisplayConfiguration configuration;
   private final DefaultAdaptable adaptable = new DefaultAdaptable();
+  private final CharacterModelEditorOpener editorOpener = new CharacterModelEditorOpener();
 
   public CharacterModelViewElement(
       IViewElement parent,
@@ -53,7 +49,7 @@ public class CharacterModelViewElement implements IViewElement {
         return new IEditorInputProvider() {
           @Override
           public IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
-            return CharacterModelViewElement.this.getEditorInput();
+            return editorOpener.createEditorInput(characterFolder, configuration);
           }
         };
       }
@@ -102,31 +98,6 @@ public class CharacterModelViewElement implements IViewElement {
 
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
-    try {
-      IEditorInput input = getEditorInput();
-      String editorId = configuration.getEditorId();
-      IEditorPart openEditor = page.openEditor(input, editorId);
-      ensureResourceExists(input, openEditor);
-    }
-    catch (Exception e) {
-      throw new PartInitException(new Status(
-          IStatus.ERROR,
-          CharacterCorePlugin.ID,
-          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
-          e));
-    }
-  }
-
-  private void ensureResourceExists(IEditorInput input, IEditorPart openEditor) {
-    // TODO Eine andere Lösung muss her, sobald Abhängigkeiten zwischen Model exisiteren.
-    IResource resource = (IResource) input.getAdapter(IResource.class);
-    if (!resource.exists()) {
-      openEditor.doSave(new NullProgressMonitor());
-    }
-  }
-
-  private IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
-    DisplayNameProvider displayNameProvider = new DisplayNameProvider(getDisplayName(), getParent());
-    return configuration.createEditorInput(characterFolder, getImageDescriptor(), displayNameProvider);
+    editorOpener.openEditor(page, characterFolder, configuration);
   }
 }

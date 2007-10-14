@@ -5,19 +5,20 @@ import net.sf.anathema.basics.eclipse.resource.FileContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.character.ICharacterId;
 
-import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.runtime.Path;
 
 public class CharacterId implements ICharacterId {
 
-  private final IFolder folder;
+  private final IContainer folder;
 
-  public CharacterId(IFolder folder) {
+  public CharacterId(IContainer folder) {
     this.folder = folder;
   }
 
   @Override
   public IContentHandle getContents(String fileName) {
-    return new FileContentHandle(folder.getFile(fileName));
+    return new FileContentHandle(folder.getFile(new Path(fileName)));
   }
   
   @Override
