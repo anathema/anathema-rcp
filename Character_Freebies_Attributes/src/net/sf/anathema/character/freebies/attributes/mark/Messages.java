@@ -7,6 +7,7 @@ public class Messages extends NLS {
   public static String AttributeGroupModelMarker_UnspentPrimaryDescription;
   public static String AttributeGroupModelMarker_UnspentSecondaryDescription;
   public static String AttributeGroupModelMarker_UnspentTertiaryDescription;
+  public static String FavoredAttributePicksMarker_UnspentPicks;
   public static String ResourceModelMarker_ErrorWhileMarking;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);

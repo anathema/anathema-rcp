@@ -127,4 +127,14 @@
             type="net.sf.anathema.markers.view.element">
       </super>
    </extension>
+   <extension
+         id="net.sf.anathema.markers.unspent.attribute.freebies"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="false">
+      </persistent>
+      <super
+            type="net.sf.anathema.markers.view.element">
+      </super>
+   </extension>
 </plugin>

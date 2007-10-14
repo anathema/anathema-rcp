@@ -1,11 +1,12 @@
 package net.sf.anathema.character.freebies.attributes.mark;
 
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+
+import org.eclipse.osgi.util.NLS;
 
 public class AttributeGroupModelMarker implements IModelMarker {
 
@@ -44,6 +45,6 @@ public class AttributeGroupModelMarker implements IModelMarker {
 
   @Override
   public String getDescription(String characterName) {
-    return MessageFormat.format(messageFormatByGroup.get(priorityGroup), characterName);
+    return NLS.bind(messageFormatByGroup.get(priorityGroup), characterName);
   }
 }
