@@ -98,15 +98,4 @@ public class AnathemaStringUtilities extends StringUtilities {
     String firstCharacter = string.substring(0, 1);
     return string.replaceFirst(firstCharacter, firstCharacter.toUpperCase());
   }
-
-  public static String concat(String[] values, String seperator) {
-    StringBuffer buffer = new StringBuffer();
-    for (int index = 0; index < values.length; index++) {
-      buffer.append(values[index]);
-      if (index < values.length - 1) {
-        buffer.append(seperator);
-      }
-    }
-    return buffer.toString();
-  }
 }
