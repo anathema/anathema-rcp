@@ -99,7 +99,7 @@
          id="net.sf.anathema.markers.unspent.primary.attribute"
          point="org.eclipse.core.resources.markers">
       <persistent
-            value="false">
+            value="true">
       </persistent>
       <super
             type="net.sf.anathema.markers.view.element">
@@ -110,7 +110,7 @@
          id="net.sf.anathema.markers.unspent.secondary.attribute"
          point="org.eclipse.core.resources.markers">
       <persistent
-            value="false">
+            value="true">
       </persistent>
       <super
             type="net.sf.anathema.markers.view.element">
@@ -121,7 +121,7 @@
          id="net.sf.anathema.markers.unspent.tertiary.attribute"
          point="org.eclipse.core.resources.markers">
       <persistent
-            value="false">
+            value="true">
       </persistent>
       <super
             type="net.sf.anathema.markers.view.element">
@@ -131,7 +131,7 @@
          id="net.sf.anathema.markers.unspent.attribute.freebies"
          point="org.eclipse.core.resources.markers">
       <persistent
-            value="false">
+            value="true">
       </persistent>
       <super
             type="net.sf.anathema.markers.view.element">
@@ -141,7 +141,7 @@
          id="net.sf.anathema.markers.unspent.attribute.picks"
          point="org.eclipse.core.resources.markers">
       <persistent
-            value="false">
+            value="true">
       </persistent>
       <super
             type="net.sf.anathema.markers.view.element">
