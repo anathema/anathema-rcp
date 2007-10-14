@@ -22,6 +22,7 @@ import net.sf.anathema.character.core.repository.internal.ModelDisplayConfigurat
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.osgi.util.NLS;
 
 public class ModelExtensionPoint {
@@ -87,15 +88,29 @@ public class ModelExtensionPoint {
               contributorId,
               filename,
               configurationElement);
-          CharacterModelViewElement viewelElement = new CharacterModelViewElement(
-              parent,
-              characterFolder,
-              configuration);
-          viewElements.add(viewelElement);
+          CharacterModelViewElement viewElement = new CharacterModelViewElement(parent, characterFolder, configuration);
+          viewElements.add(viewElement);
         }
       }
     }
     return viewElements.toArray(new IViewElement[viewElements.size()]);
+  }
+
+  public ModelDisplayConfiguration getDisplayConfiguration(IResource resource) {
+    String fileName = resource.getName();
+    for (IPluginExtension extension : getPluginExtensions()) {
+      for (IExtensionElement modelElement : extension.getElements()) {
+        IExtensionElement configurationElement = modelElement.getElement("displayConfiguration"); //$NON-NLS-1$
+        if (configurationElement != null) {
+          String filenameAttribute = modelElement.getAttribute(ATTRIB_FILENAME);
+          if (fileName.equals(filenameAttribute)) {
+            String contributorId = extension.getContributorId();
+            return new ModelDisplayConfiguration(contributorId, filenameAttribute, configurationElement);
+          }
+        }
+      }
+    }
+    return null;
   }
 
   private IPluginExtension[] getPluginExtensions() {

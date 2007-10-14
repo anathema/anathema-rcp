@@ -5,9 +5,12 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.basics.repository.problems.MarkerProblem;
+import net.sf.anathema.character.core.resource.CharacterPrintNameProvider;
+import net.sf.anathema.character.core.resource.ModelResourceNameProvider;
 import net.sf.anathema.character.freebies.attributes.plugin.IAttributeFreebiesConstants;
 import net.sf.anathema.lib.ui.IDisposable;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -46,7 +49,7 @@ public class ResourceModelMarker implements IDisposable {
           IMarker marker = markerHandle.createMarker(modelMarker.getMarkerId());
           marker.setAttributes(
               new String[] { MarkerProblem.ATTRIB_DESCRIPTION, MarkerProblem.ATTRIB_PATH },
-              new String[] { modelMarker.getDescription(), modelMarker.getPath() });
+              getMarkerAttributes());
         }
       }
       else {
@@ -56,6 +59,14 @@ public class ResourceModelMarker implements IDisposable {
     catch (CoreException e) {
       new Logger(IAttributeFreebiesConstants.PLUGIN_ID).error(Messages.ResourceModelMarker_ErrorWhileMarking, e);
     }
+  }
+
+  private String[] getMarkerAttributes() {
+    IResource resource = (IResource) markerHandle.getAdapter(IResource.class);
+    IContainer container = resource.getParent();
+    String characterName = new CharacterPrintNameProvider().getPrintName(container, container.getName());
+    String modelName = new ModelResourceNameProvider().getResourceName(resource, characterName);
+    return new String[] { modelMarker.getDescription(characterName), modelName };
   }
 
   @Override

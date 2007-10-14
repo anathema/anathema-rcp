@@ -1,5 +1,9 @@
 package net.sf.anathema.character.freebies.attributes.mark;
 
+import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.Map;
+
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 
@@ -9,6 +13,13 @@ public class AttributeGroupModelMarker implements IModelMarker {
   private final ITotalDotsSpent dotsSpent;
   private final PriorityGroup priorityGroup;
   private final String markerId;
+  private final Map<PriorityGroup, String> messageFormatByGroup = new HashMap<PriorityGroup, String>() {
+    {
+      put(PriorityGroup.Primary, Messages.AttributeGroupModelMarker_UnspentPrimaryDescription);
+      put(PriorityGroup.Secondary, Messages.AttributeGroupModelMarker_UnspentSecondaryDescription);
+      put(PriorityGroup.Tertiary, Messages.AttributeGroupModelMarker_UnspentTertiaryDescription);
+    }
+  };
 
   public AttributeGroupModelMarker(
       IAttributeCreditCollection creditCollection,
@@ -32,12 +43,7 @@ public class AttributeGroupModelMarker implements IModelMarker {
   }
 
   @Override
-  public String getDescription() {
-    return "There are unspent " + priorityGroup.name() + " attribute points.";
-  }
-
-  @Override
-  public String getPath() {
-    return "Path defined";
+  public String getDescription(String characterName) {
+    return MessageFormat.format(messageFormatByGroup.get(priorityGroup), characterName);
   }
 }

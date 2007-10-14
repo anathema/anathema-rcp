@@ -6,7 +6,5 @@ public interface IModelMarker {
 
   public boolean isActive();
 
-  public String getDescription();
-
-  public String getPath();
+  public String getDescription(String characterName);
 }

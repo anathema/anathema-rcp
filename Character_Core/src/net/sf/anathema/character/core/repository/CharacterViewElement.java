@@ -4,16 +4,14 @@ import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.deletion.ResourcePageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.basics.repository.treecontent.itemtype.RegExPrintNameProvider;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.character.internal.CharacterId;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.repository.internal.CharacterElementCloseHandler;
+import net.sf.anathema.character.core.resource.CharacterPrintNameProvider;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -56,8 +54,7 @@ public class CharacterViewElement implements IViewElement {
 
   @Override
   public String getDisplayName() {
-    IFile descriptionFile = characterFolder.getFile(new Path("basic.description")); //$NON-NLS-1$
-    return new RegExPrintNameProvider(unnamedTitle).getPrintName(descriptionFile);
+    return new CharacterPrintNameProvider().getPrintName(characterFolder, unnamedTitle);
   }
 
   @Override
