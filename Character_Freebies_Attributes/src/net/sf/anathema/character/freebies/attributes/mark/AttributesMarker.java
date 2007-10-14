@@ -42,10 +42,12 @@ public class AttributesMarker extends AbstractExecutableExtension implements IMo
         dotsSpent,
         PriorityGroup.Tertiary,
         TERTIARY_MARKER);
-    FavoredAttributePicksMarker freebiesMarker = new FavoredAttributePicksMarker(characterId);
+    FavoredAttributePicksMarker picksMarker = new FavoredAttributePicksMarker(characterId);
+    FavoredAttributeFreebiesMarker freebiesMarker = new FavoredAttributeFreebiesMarker(characterId);
     new ResourceModelMarker(changeableModel, markerHandler, primaryMarker).mark();
     new ResourceModelMarker(changeableModel, markerHandler, secondaryMarker).mark();
     new ResourceModelMarker(changeableModel, markerHandler, tertiaryMarker).mark();
+    new ResourceModelMarker(changeableModel, markerHandler, picksMarker).mark();
     new ResourceModelMarker(changeableModel, markerHandler, freebiesMarker).mark();
   }
 }

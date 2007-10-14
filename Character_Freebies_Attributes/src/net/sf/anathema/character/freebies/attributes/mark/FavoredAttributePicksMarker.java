@@ -10,7 +10,7 @@ import org.eclipse.osgi.util.NLS;
 
 public class FavoredAttributePicksMarker implements IModelMarker {
 
-  private static final String UNSPENT_FREEBIES_MARKER_ID = "net.sf.anathema.markers.unspent.attribute.freebies"; //$NON-NLS-1$
+  private static final String UNSPENT_PICKS_MARKER_ID = "net.sf.anathema.markers.unspent.attribute.picks"; //$NON-NLS-1$
   private final IAttributeTemplateProvider provider = new AttributeTemplateProvider();
   private final FavoredAttributeCountHandler handler = new FavoredAttributeCountHandler();
   private final ICharacterId characterId;
@@ -23,7 +23,7 @@ public class FavoredAttributePicksMarker implements IModelMarker {
 
   @Override
   public String getMarkerId() {
-    return UNSPENT_FREEBIES_MARKER_ID;
+    return UNSPENT_PICKS_MARKER_ID;
   }
 
   @Override
