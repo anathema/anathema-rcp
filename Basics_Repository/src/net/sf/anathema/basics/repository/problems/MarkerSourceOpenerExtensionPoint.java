@@ -4,6 +4,7 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.basics.eclipse.ui.IResourceEditorOpener;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 
 import org.eclipse.core.resources.IResource;
