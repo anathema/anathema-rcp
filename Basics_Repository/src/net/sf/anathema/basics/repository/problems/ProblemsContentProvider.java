@@ -3,10 +3,13 @@ package net.sf.anathema.basics.repository.problems;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.repository.RepositoryPlugin;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.Viewer;
 
 public class ProblemsContentProvider extends AbstractFlatTreeContentProvider {
@@ -28,7 +31,7 @@ public class ProblemsContentProvider extends AbstractFlatTreeContentProvider {
       addProblemsForContainer((IContainer) inputElement, problems);
     }
     catch (Exception e) {
-      // TODO Exception Handling
+      RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, "Unable to display problems for " + inputElement, e);
     }
     return problems.toArray(new IProblem[problems.size()]);
   }
