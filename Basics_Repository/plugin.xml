@@ -12,6 +12,11 @@
             id="net.sf.anathema.basics.repositoryview"
             name="%repository.view.repositorytree.name">
       </view>
+      <view
+            class="net.sf.anathema.basics.repository.problems.ProblemsView"
+            id="net.sf.anathema.basics.problemsview"
+            name="%problems.view.title">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
