@@ -1,6 +1,8 @@
 package net.sf.anathema.basics.eclipse.resource;
 
-public interface IResourceHandle {
+import org.eclipse.core.runtime.IAdaptable;
+
+public interface IResourceHandle extends IAdaptable {
 
   public boolean exists();
 }

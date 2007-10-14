@@ -1,15 +1,18 @@
 package net.sf.anathema.basics.eclipse.resource;
 
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
+
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
-public class ResourceMarkerHandle implements IMarkerHandle {
+public class ResourceMarkerHandle extends DefaultAdaptable implements IMarkerHandle {
   
   private final IResource resource;
 
   public ResourceMarkerHandle(IResource resource) {
     this.resource = resource;
+    add(IResource.class, resource);
   }
 
   @Override
