@@ -10,9 +10,10 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.linkage.EditorViewLinker;
-import net.sf.anathema.basics.repository.linkage.IResourceSelector;
 import net.sf.anathema.basics.repository.linkage.ILinker;
+import net.sf.anathema.basics.repository.linkage.IResourceSelector;
 import net.sf.anathema.basics.repository.linkage.ViewEditorLinker;
+import net.sf.anathema.basics.repository.refresh.ResourceChangeTreeRefresher;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
@@ -20,9 +21,6 @@ import net.sf.anathema.basics.repository.view.IRepositoryDND;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.IOpenListener;
@@ -79,21 +77,7 @@ public class RepositoryView extends ViewPart implements IResourceSelector, ILink
         editorLinker.update();
       }
     });
-    final TreeViewRefresher treeViewRefresher = new TreeViewRefresher(viewer, parent.getDisplay());
-    treeViewRefresher.setRule(ResourcesPlugin.getWorkspace().getRoot());
-    final IResourceChangeListener resourceListener = new IResourceChangeListener() {
-      @Override
-      public void resourceChanged(IResourceChangeEvent event) {
-        treeViewRefresher.schedule();
-      }
-    };
-    ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
-    disposables.add(new IDisposable() {
-      @Override
-      public void dispose() {
-        ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
-      }
-    });
+    disposables.add(new ResourceChangeTreeRefresher(viewer, parent.getDisplay()));
     getSite().setSelectionProvider(viewer);
     viewer.refresh(true);
   }
