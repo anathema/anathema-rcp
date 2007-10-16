@@ -19,7 +19,7 @@ public class ProblemsView extends ViewPart {
   @Override
   public void createPartControl(Composite parent) {
     setPartName(Messages.ProblemsView_Title);
-    Tree tree = new Tree(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+    Tree tree = new Tree(parent, SWT.MULTI | SWT.FULL_SELECTION | SWT.H_SCROLL | SWT.V_SCROLL);
     tree.setLinesVisible(true);
     tree.setHeaderVisible(true);
     createColumn(tree, Messages.ProblemsView_DescriptionHeader);
