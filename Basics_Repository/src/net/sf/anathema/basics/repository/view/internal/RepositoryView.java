@@ -13,7 +13,8 @@ import net.sf.anathema.basics.repository.linkage.EditorViewLinker;
 import net.sf.anathema.basics.repository.linkage.ILinker;
 import net.sf.anathema.basics.repository.linkage.IResourceSelector;
 import net.sf.anathema.basics.repository.linkage.ViewEditorLinker;
-import net.sf.anathema.basics.repository.refresh.ResourceChangeTreeRefresher;
+import net.sf.anathema.basics.repository.refresh.ResourceChangeJobScheduler;
+import net.sf.anathema.basics.repository.refresh.TreeViewRefresher;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
 import net.sf.anathema.basics.repository.treecontent.TypedTreeContentProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
@@ -77,7 +78,7 @@ public class RepositoryView extends ViewPart implements IResourceSelector, ILink
         editorLinker.update();
       }
     });
-    disposables.add(new ResourceChangeTreeRefresher(viewer, parent.getDisplay()));
+    disposables.add(new ResourceChangeJobScheduler(new TreeViewRefresher(viewer, parent.getDisplay())));
     getSite().setSelectionProvider(viewer);
     viewer.refresh(true);
   }

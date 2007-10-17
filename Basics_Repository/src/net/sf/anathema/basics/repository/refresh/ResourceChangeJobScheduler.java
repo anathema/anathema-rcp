@@ -5,22 +5,21 @@ import net.sf.anathema.lib.ui.IDisposable;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.core.runtime.jobs.Job;
 
-public class ResourceChangeTreeRefresher implements IDisposable {
+public class ResourceChangeJobScheduler implements IDisposable {
 
   private final IResourceChangeListener resourceListener = new IResourceChangeListener() {
     @Override
     public void resourceChanged(IResourceChangeEvent event) {
-      treeViewRefresher.schedule();
+      refresher.schedule();
     }
   };
-  private final TreeViewRefresher treeViewRefresher;
+  private final Job refresher;
 
-  public ResourceChangeTreeRefresher(TreeViewer viewer, Display display) {
-    treeViewRefresher = new TreeViewRefresher(viewer, display);
-    treeViewRefresher.setRule(ResourcesPlugin.getWorkspace().getRoot());
+  public ResourceChangeJobScheduler(Job refresher) {
+    this.refresher = refresher;
+    refresher.setRule(ResourcesPlugin.getWorkspace().getRoot());
     ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
   }
 
