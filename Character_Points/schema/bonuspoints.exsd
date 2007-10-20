@@ -43,11 +43,6 @@
    </element>
 
    <element name="bonuspoints">
-      <annotation>
-         <appInfo>
-            <meta.element labelAttribute="templateId"/>
-         </appInfo>
-      </annotation>
       <complexType>
          <attribute name="templateId" type="string" use="required">
             <annotation>

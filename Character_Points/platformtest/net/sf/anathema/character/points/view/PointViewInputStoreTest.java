@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points;
+package net.sf.anathema.character.points.view;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.character.IModelIdentifier;

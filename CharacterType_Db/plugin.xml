@@ -2,7 +2,7 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="net.sf.anathema.character.core.bonuspoints">
+         point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="15"
             templateId="net.sf.anathema.charactertype.dynastdb">

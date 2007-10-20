@@ -9,6 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.character.IModel;
@@ -22,7 +23,6 @@ import net.sf.anathema.character.core.repository.internal.CharacterModelViewElem
 import net.sf.anathema.character.core.repository.internal.ModelDisplayConfiguration;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.osgi.util.NLS;
@@ -79,7 +79,7 @@ public class ModelExtensionPoint {
       IFolder characterFolder,
       ICharacterTemplateProvider templateProvider) {
     List<IViewElement> viewElements = new ArrayList<IViewElement>();
-    for (IExtensionElement modelElement : getDisplayModelElements(characterFolder, templateProvider)) {
+    for (IExtensionElement modelElement : getDisplayModelElements(new CharacterId(characterFolder), templateProvider)) {
       IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
       String filename = modelElement.getAttribute(ATTRIB_FILENAME);
       String contributorId = modelElement.getContributorId();
@@ -93,18 +93,18 @@ public class ModelExtensionPoint {
     return viewElements.toArray(new IViewElement[viewElements.size()]);
   }
 
-  public Iterable<String> getModelFileNames(IContainer characterFolder, ICharacterTemplateProvider templateProvider) {
+  public Iterable<String> getModelFileNames(ICharacterId characterId, ICharacterTemplateProvider templateProvider) {
     List<String> modelFileNames = new ArrayList<String>();
-    for (IExtensionElement modelElement : getDisplayModelElements(characterFolder, templateProvider)) {
+    for (IExtensionElement modelElement : getDisplayModelElements(characterId, templateProvider)) {
       modelFileNames.add(modelElement.getAttribute(ATTRIB_FILENAME));
     }
     return modelFileNames;
   }
 
   private Iterable<IExtensionElement> getDisplayModelElements(
-      IContainer characterFolder,
+      ICharacterId characterId,
       ICharacterTemplateProvider templateProvider) {
-    ICharacterTemplate template = templateProvider.getTemplate(new CharacterId(characterFolder));
+    ICharacterTemplate template = templateProvider.getTemplate(characterId);
     List<IExtensionElement> supportedElements = new ArrayList<IExtensionElement>();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {

@@ -58,7 +58,7 @@
       </wizard>
    </extension>
    <extension
-         point="net.sf.anathema.character.core.bonuspoints">
+         point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="18"
             templateId="net.sf.anathema.charactertype.defaultsidereal">

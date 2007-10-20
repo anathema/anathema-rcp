@@ -14,4 +14,12 @@ public class ExtensionObjectMother {
     return pluginExtension;
   }
 
+  public static IExtensionElement createExtensionElementWithAttributes(IMockAttribute... attributes) {
+    IExtensionElement element = EasyMock.createNiceMock(IExtensionElement.class);
+    for (IMockAttribute attribute : attributes) {
+      attribute.configure(element);
+    }
+    EasyMock.replay(element);
+    return element;
+  }
 }
