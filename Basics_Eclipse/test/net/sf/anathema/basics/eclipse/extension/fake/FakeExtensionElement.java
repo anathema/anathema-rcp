@@ -87,4 +87,9 @@ public class FakeExtensionElement implements IExtensionElement {
   public boolean hasAttribute(String attributeName) {
     return true;
   }
+
+  @Override
+  public String getContributorId() {
+    throw new UnsupportedOperationException();
+  }
 }

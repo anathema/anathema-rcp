@@ -11,7 +11,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class MarkerSourceOpenerExtensionPoint {
+public class ResourceEditorOpenerExtensionPoint {
 
   private static final String ATTRIB_CLASS = "class"; //$NON-NLS-1$
   private static final String ATTRIB_OPENER_ID = "openerId"; //$NON-NLS-1$

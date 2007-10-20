@@ -22,12 +22,14 @@ import net.sf.anathema.character.core.repository.internal.CharacterModelViewElem
 import net.sf.anathema.character.core.repository.internal.ModelDisplayConfiguration;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.osgi.util.NLS;
 
 public class ModelExtensionPoint {
 
+  private static final String TAG_DISPLAY_CONFIGURATION = "displayConfiguration"; //$NON-NLS-1$
   private static final String MODELS_EXTENSION_POINT = "models"; //$NON-NLS-1$
   private static final String ATTRIB_FILENAME = "filename"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
@@ -76,32 +78,51 @@ public class ModelExtensionPoint {
       IViewElement parent,
       IFolder characterFolder,
       ICharacterTemplateProvider templateProvider) {
-    ICharacterTemplate template = templateProvider.getTemplate(new CharacterId(characterFolder));
     List<IViewElement> viewElements = new ArrayList<IViewElement>();
+    for (IExtensionElement modelElement : getDisplayModelElements(characterFolder, templateProvider)) {
+      IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
+      String filename = modelElement.getAttribute(ATTRIB_FILENAME);
+      String contributorId = modelElement.getContributorId();
+      ModelDisplayConfiguration configuration = new ModelDisplayConfiguration(
+          contributorId,
+          filename,
+          configurationElement);
+      CharacterModelViewElement viewElement = new CharacterModelViewElement(parent, characterFolder, configuration);
+      viewElements.add(viewElement);
+    }
+    return viewElements.toArray(new IViewElement[viewElements.size()]);
+  }
+
+  public Iterable<String> getModelFileNames(IContainer characterFolder, ICharacterTemplateProvider templateProvider) {
+    List<String> modelFileNames = new ArrayList<String>();
+    for (IExtensionElement modelElement : getDisplayModelElements(characterFolder, templateProvider)) {
+      modelFileNames.add(modelElement.getAttribute(ATTRIB_FILENAME));
+    }
+    return modelFileNames;
+  }
+
+  private Iterable<IExtensionElement> getDisplayModelElements(
+      IContainer characterFolder,
+      ICharacterTemplateProvider templateProvider) {
+    ICharacterTemplate template = templateProvider.getTemplate(new CharacterId(characterFolder));
+    List<IExtensionElement> supportedElements = new ArrayList<IExtensionElement>();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
         String modelId = modelElement.getAttribute(ATTRIB_ID);
-        IExtensionElement configurationElement = modelElement.getElement("displayConfiguration"); //$NON-NLS-1$
+        IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
         if (configurationElement != null && template.supportsModel(modelId)) {
-          String filename = modelElement.getAttribute(ATTRIB_FILENAME);
-          String contributorId = extension.getContributorId();
-          ModelDisplayConfiguration configuration = new ModelDisplayConfiguration(
-              contributorId,
-              filename,
-              configurationElement);
-          CharacterModelViewElement viewElement = new CharacterModelViewElement(parent, characterFolder, configuration);
-          viewElements.add(viewElement);
+          supportedElements.add(modelElement);
         }
       }
     }
-    return viewElements.toArray(new IViewElement[viewElements.size()]);
+    return supportedElements;
   }
 
   public IModelDisplayConfiguration getDisplayConfiguration(IResource resource) {
     String fileName = resource.getName();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
-        IExtensionElement configurationElement = modelElement.getElement("displayConfiguration"); //$NON-NLS-1$
+        IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION); //$NON-NLS-1$
         if (configurationElement != null) {
           String filenameAttribute = modelElement.getAttribute(ATTRIB_FILENAME);
           if (fileName.equals(filenameAttribute)) {

@@ -4,6 +4,7 @@
    <extension-point id="itemtypes" name="%repository.extension-point.itemtypes.name" schema="schema/itemtypes.exsd"/>
    <extension-point id="dnd" name="%repository.extension-point.dnd.name" schema="schema/dnd.exsd"/>
    <extension-point id="sourceopener" name="Source Opener" schema="schema/sourceopener.exsd"/>
+   <extension-point id="problemproviders" name="Problem Providers" schema="schema/problemproviders.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -200,5 +201,11 @@
    <extension
          id="net.sf.anathema.markers.view.element"
          point="org.eclipse.core.resources.markers">
+   </extension>
+   <extension
+         point="net.sf.anathema.basics.repository.problemproviders">
+      <provider
+            class="net.sf.anathema.basics.repository.problems.ResourceProblemProvider">
+      </provider>
    </extension>
 </plugin>

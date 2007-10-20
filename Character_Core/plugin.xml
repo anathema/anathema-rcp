@@ -31,5 +31,11 @@
             openerId="net.sf.anathema.character.modelopener">
       </opener>
    </extension>
+   <extension
+         point="net.sf.anathema.basics.repository.problemproviders">
+      <provider
+            class="net.sf.anathema.character.core.problem.UneditedModelProblemsProvider">
+      </provider>
+   </extension>
 
 </plugin>

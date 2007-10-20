@@ -28,6 +28,6 @@ public class MarkerProblem implements IProblem {
   @Override
   public void showSource(IWorkbenchPage page) throws CoreException {
     String openerId = marker.getAttribute(ATTRIB_SOURCE_OPENER, null);
-    new MarkerSourceOpenerExtensionPoint().open(page, openerId, marker.getResource());
+    new ResourceEditorOpenerExtensionPoint().open(page, openerId, marker.getResource());
   }
 }

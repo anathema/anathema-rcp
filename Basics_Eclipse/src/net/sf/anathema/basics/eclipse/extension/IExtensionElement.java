@@ -26,4 +26,6 @@ public interface IExtensionElement {
   public URL getResourceAttribute(String attributeName);
 
   public boolean hasAttribute(String attributeName);
+
+  public String getContributorId();
 }

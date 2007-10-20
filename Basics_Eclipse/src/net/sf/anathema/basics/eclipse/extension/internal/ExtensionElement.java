@@ -55,13 +55,17 @@ public class ExtensionElement implements IExtensionElement {
   @Override
   public ImageDescriptor createImageDescriptorFromAttribute(String name) {
     String resourcePath = eclipseElement.getAttribute(name);
-    URL resourceUrl = ResourceUtils.getResourceUrl(eclipseElement.getContributor().getName(), resourcePath);
+    URL resourceUrl = ResourceUtils.getResourceUrl(getContributorId(), resourcePath);
     return ImageDescriptor.createFromURL(resourceUrl);
   }
   
   @Override
   public int getIntegerAttribute(String name) {
     return Integer.valueOf(eclipseElement.getAttribute(name));
+  }
+  
+  public String getContributorId() {
+    return eclipseElement.getContributor().getName();
   }
   
   public boolean hasAttribute(String attributeName) {
