@@ -11,9 +11,7 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
-import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
-import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.plugin.PointPluginConstants;
 import net.sf.anathema.lib.collection.MultiEntryMap;
@@ -31,21 +29,15 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
   private static final String CONFIGURATIONS_EXTENSION_POINT = "configurations"; //$NON-NLS-1$
   private static final ILogger logger = new Logger(PointPluginConstants.PLUGIN_ID);
 
-  public IPointConfiguration[] getExperiencePointConfigurations(
-      ICharacterTemplateProvider provider,
-      ICharacterId characterId) {
-    return getPointConfigurations(provider, characterId, TAG_EXPERIENCE_POINT_CALCULATOR);
+  public IPointConfiguration[] getExperiencePointConfigurations(ICharacterTemplate template) {
+    return getPointConfigurations(template, TAG_EXPERIENCE_POINT_CALCULATOR);
   }
 
-  public IPointConfiguration[] getBonusPointConfigurations(ICharacterTemplateProvider provider, ICharacterId characterId) {
-    return getPointConfigurations(provider, characterId, TAG_BONUS_POINT_CALCULATOR);
+  public IPointConfiguration[] getBonusPointConfigurations(ICharacterTemplate template) {
+    return getPointConfigurations(template, TAG_BONUS_POINT_CALCULATOR);
   }
 
-  private IPointConfiguration[] getPointConfigurations(
-      ICharacterTemplateProvider provider,
-      ICharacterId characterId,
-      String pointCalculatorElementName) {
-    ICharacterTemplate template = provider.getTemplate(characterId);
+  private IPointConfiguration[] getPointConfigurations(ICharacterTemplate template, String pointCalculatorElementName) {
     MultiEntryMap<String, IPointHandler> handlersByGroupId = new MultiEntryMap<String, IPointHandler>();
     Map<String, PointConfiguration> configurationsByGroupId = new HashMap<String, PointConfiguration>();
     for (IPluginExtension extension : getPluginExtensions()) {

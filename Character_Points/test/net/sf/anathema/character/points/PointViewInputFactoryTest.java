@@ -1,8 +1,9 @@
 package net.sf.anathema.character.points;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
@@ -48,14 +49,15 @@ public class PointViewInputFactoryTest {
   @Before
   public void createFactory() throws Exception {
     this.pointConfigurationProvider = EasyMock.createMock(IPointConfigurationProvider.class);
-    this.factory = new PointValueEntryFactoryFactory(pointConfigurationProvider, null);
+    ICharacterTemplateProvider templateProvider = EasyMock.createNiceMock(ICharacterTemplateProvider.class);
+    this.factory = new PointValueEntryFactoryFactory(pointConfigurationProvider, templateProvider);
   }
 
   @Test
   public void experiencedConfigurationsUsedForExperienced() throws Exception {
     String expectedDisplayName = "Hasäntümlich Liebäs"; //$NON-NLS-1$
     int expectedValue = 5;
-    EasyMock.expect(pointConfigurationProvider.getExperiencePointConfigurations(null, null)).andReturn(
+    EasyMock.expect(pointConfigurationProvider.getExperiencePointConfigurations(null)).andReturn(
         createPointConfigurations(expectedDisplayName, expectedValue));
     EasyMock.replay(pointConfigurationProvider);
     assertPointEntryCreated(expectedDisplayName, expectedValue, factory.create(null, true).createEntries());
@@ -65,7 +67,7 @@ public class PointViewInputFactoryTest {
   public void bonusPointConfigurationsUsedForUnexperienced() throws Exception {
     String expectedDisplayName = "Hasäntümlich Liebäs"; //$NON-NLS-1$
     int expectedValue = 5;
-    EasyMock.expect(pointConfigurationProvider.getBonusPointConfigurations(null, null)).andReturn(
+    EasyMock.expect(pointConfigurationProvider.getBonusPointConfigurations(null)).andReturn(
         createPointConfigurations(expectedDisplayName, expectedValue));
     EasyMock.replay(pointConfigurationProvider);
     assertPointEntryCreated(expectedDisplayName, expectedValue, factory.create(null, false).createEntries());
