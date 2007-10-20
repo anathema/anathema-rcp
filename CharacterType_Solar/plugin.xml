@@ -2,6 +2,13 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
+         point="net.sf.anathema.character.core.bonuspoints">
+      <bonuspoints
+            amount="15"
+            templateId="net.sf.anathema.charactertype.defaultsolar">
+      </bonuspoints>
+   </extension>
+   <extension
          point="net.sf.anathema.character.freebies.credits">
       <creditList
             templateId="net.sf.anathema.charactertype.defaultsolar">
@@ -18,17 +25,6 @@
                value="4">
          </credit>
       </creditList>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.templates">
-      <template
-            characterTypeId="net.sf.anathema.character.type.solar"
-            templateId="net.sf.anathema.charactertype.defaultsolar"
-            name="%template.defaultsolar.name">
-         <modelList
-               modelListId="net.sf.anathema.character.basic.modelList">
-         </modelList>
-      </template>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
@@ -56,6 +52,17 @@
             referenceId="SolarBall"
             resourceUrl="icons/Ball_Solar_16.png">
       </image>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.templates">
+      <template
+            characterTypeId="net.sf.anathema.character.type.solar"
+            templateId="net.sf.anathema.charactertype.defaultsolar"
+            name="%template.defaultsolar.name">
+         <modelList
+               modelListId="net.sf.anathema.character.basic.modelList">
+         </modelList>
+      </template>
    </extension>
 
 </plugin>

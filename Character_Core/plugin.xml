@@ -6,6 +6,7 @@
    <extension-point id="types" name="%extension-point.name.charactertypes" schema="schema/types.exsd"/>
    <extension-point id="resources" name="%extension-point.name.characterresources" schema="schema/resources.exsd"/>
    <extension-point id="modelmarkers" name="%extension-point.name.modelmarker" schema="schema/modelmarkers.exsd"/>
+   <extension-point id="bonuspoints" name="%extension-point.name.bonuspoints" schema="schema/bonuspoints.exsd"/>
    <extension
          point="net.sf.anathema.basics.repository.itemtypes">
       <itemtype

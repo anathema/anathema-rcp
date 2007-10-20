@@ -57,5 +57,12 @@
             name="%new.wizard.charactertype.defaultsidereal">
       </wizard>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.bonuspoints">
+      <bonuspoints
+            amount="18"
+            templateId="net.sf.anathema.charactertype.defaultsidereal">
+      </bonuspoints>
+   </extension>
 
 </plugin>
