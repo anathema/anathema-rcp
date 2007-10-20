@@ -23,12 +23,12 @@ public class PointConfiguration implements IPointConfiguration {
   }
 
   @Override
-  public String getPoints(ICharacterId characterId) {
+  public int getPoints(ICharacterId characterId) {
     int value = 0;
     for (IPointHandler handler : allHandlers) {
       value += handler.getPoints(characterId);
     }
-    return String.valueOf(value);
+    return value;
   }
 
   public void addHandlers(Collection<IPointHandler> handlers) {

@@ -13,7 +13,7 @@ public class BonusPointsExtensionPointTest {
 
   private static final int BONUS_POINT_COUNT = 2;
   private static final String TEMPLATE_ID = "foundTemplate"; //$NON-NLS-1$
-  private BonusPointExtensionPoint extensionPoint;
+  private IBonusPointContainer extensionPoint;
 
   @Before
   public void createExtensionPoint() throws Exception {

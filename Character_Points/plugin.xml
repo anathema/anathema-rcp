@@ -12,5 +12,10 @@
             name="%points.view.name">
       </view>
    </extension>
-
+   <extension
+         point="net.sf.anathema.basics.repository.problemproviders">
+      <provider
+            class="net.sf.anathema.character.points.problems.BonusPointsProblemProvider">
+      </provider>
+   </extension>
 </plugin>

@@ -7,5 +7,5 @@ public interface IPointConfiguration {
 
   public String getName();
 
-  public String getPoints(ICharacterId characterId);
+  public int getPoints(ICharacterId characterId);
 }

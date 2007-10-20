@@ -5,7 +5,7 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.points.plugin.PointPluginConstants;
 
-public class BonusPointExtensionPoint {
+public class BonusPointExtensionPoint implements IBonusPointContainer {
 
   private static final String ATTRIB_AMOUNT = "amount"; //$NON-NLS-1$
   private static final String ATTRIB_TEMPLATE_ID = "templateId"; //$NON-NLS-1$

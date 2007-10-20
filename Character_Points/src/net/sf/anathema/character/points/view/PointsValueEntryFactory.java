@@ -22,7 +22,7 @@ public class PointsValueEntryFactory implements ICharacterValueEntryFactory {
 
     @Override
     public String getValue() {
-      return pointConfiguration.getPoints(characterId);
+      return String.valueOf(pointConfiguration.getPoints(characterId));
     }
   }
 
