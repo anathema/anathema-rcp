@@ -4,9 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.character.core.character.ICharacterId;
 
-public class DummyCharacterId implements ICharacterId {
+public class DummyCharacterId extends DefaultAdaptable implements ICharacterId {
 
   private final Map<String, IContentHandle> contentHandlesByName = new HashMap<String, IContentHandle>();
 

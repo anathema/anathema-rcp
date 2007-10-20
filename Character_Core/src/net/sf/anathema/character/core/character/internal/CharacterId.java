@@ -3,17 +3,19 @@ package net.sf.anathema.character.core.character.internal;
 import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.eclipse.resource.FileContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.character.core.character.ICharacterId;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.runtime.Path;
 
-public class CharacterId implements ICharacterId {
+public class CharacterId extends DefaultAdaptable implements ICharacterId {
 
   private final IContainer folder;
 
   public CharacterId(IContainer folder) {
     this.folder = folder;
+    add(IContainer.class, folder);
   }
 
   @Override

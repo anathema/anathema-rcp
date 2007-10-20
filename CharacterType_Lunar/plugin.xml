@@ -2,10 +2,21 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
+         point="net.sf.anathema.character.core.templates">
+      <template
+            characterTypeId="net.sf.anathema.character.type.lunar"
+            templateId="net.sf.anathema.charactertype.pactlunar"
+            name="%template.pactlunar.name">
+         <modelList
+               modelListId="net.sf.anathema.character.basic.modelList">
+         </modelList>
+      </template>
+   </extension>
+   <extension
          point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="15"
-            templateId="net.sf.anathema.character.basic.modelList">
+            templateId="net.sf.anathema.charactertype.pactlunar">
       </bonuspoints>
    </extension>
    <extension
@@ -67,17 +78,6 @@
             favorizationCount="1"
             characterTemplateId="net.sf.anathema.charactertype.pactlunar">
       </attributeTemplate>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.templates">
-      <template
-            characterTypeId="net.sf.anathema.character.type.lunar"
-            templateId="net.sf.anathema.charactertype.pactlunar"
-            name="%template.pactlunar.name">
-         <modelList
-               modelListId="net.sf.anathema.character.basic.modelList">
-         </modelList>
-      </template>
    </extension>
 
 </plugin>

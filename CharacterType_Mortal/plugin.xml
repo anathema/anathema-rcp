@@ -2,10 +2,21 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
+         point="net.sf.anathema.character.core.templates">
+      <template
+            characterTypeId="net.sf.anathema.character.type.mortal"
+            templateId="net.sf.anathema.charactertype.heroicmortal"
+            name="%template.heroicMortal.name">
+         <modelList
+               modelListId="net.sf.anathema.character.basic.modelList">
+         </modelList>
+      </template>
+   </extension>
+   <extension
          point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="21"
-            templateId="net.sf.anathema.character.basic.modelList">
+            templateId="net.sf.anathema.charactertype.heroicmortal">
       </bonuspoints>
    </extension>
    <extension
@@ -52,17 +63,6 @@
             referenceId="MortalBall"
             resourceUrl="icons/Ball_Mortal_16.png">
       </image>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.templates">
-      <template
-            characterTypeId="net.sf.anathema.character.type.mortal"
-            templateId="net.sf.anathema.charactertype.heroicmortal"
-            name="%template.heroicMortal.name">
-         <modelList
-               modelListId="net.sf.anathema.character.basic.modelList">
-         </modelList>
-      </template>
    </extension>
 
 </plugin>
