@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.sf.anathema.basics.repository.problems.IProblem;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.problem.AbstractCharacterProblemProvider;
 
 public class BonusPointsProblemProvider extends AbstractCharacterProblemProvider {
@@ -11,7 +12,7 @@ public class BonusPointsProblemProvider extends AbstractCharacterProblemProvider
   private final IBonusPointProvider bonusPointProvider;
 
   public BonusPointsProblemProvider() {
-    this(new BonusPointsProvider());
+    this(new BonusPointsProvider(ModelCache.getInstance()));
   }
 
   public BonusPointsProblemProvider(IBonusPointProvider bonusPointProvider) {
