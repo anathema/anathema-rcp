@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.IModelTemplate;
@@ -26,6 +27,7 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
 
   private static final String TAG_MODEL = "model"; //$NON-NLS-1$
   private static final String ATTRIB_EXPERIENCED_VALUE = "experiencedValue"; //$NON-NLS-1$
+  private static final String ATTRIB_FAVORED = "favored"; //$NON-NLS-1$
   private static final String ATTRIB_CREATION_VALUE = "creationValue"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String TAG_TRAIT = "trait"; //$NON-NLS-1$
@@ -42,6 +44,9 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
         int experiencedValue = ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE);
         trait.getExperiencedModel().setValue(experiencedValue);
       }
+      BooleanModel favoredModel = trait.getFavoredModel();
+      boolean favored = ElementUtilities.getBooleanAttribute(traitElement, ATTRIB_FAVORED, favoredModel.getValue());
+      favoredModel.setValue(favored);
     }
     M model = createModelFor(attributeTraits.toArray(new IBasicTrait[attributeTraits.size()]));
     model.setClean();
@@ -65,6 +70,7 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
       if (experiencedValue > -1) {
         ElementUtilities.addAttribute(traitElement, ATTRIB_EXPERIENCED_VALUE, experiencedValue);
       }
+      ElementUtilities.addAttribute(traitElement, ATTRIB_FAVORED, trait.getFavoredModel().getValue());
     }
     DocumentUtilities.save(document, stream);
   }
