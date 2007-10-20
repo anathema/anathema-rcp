@@ -27,7 +27,7 @@ public class ProblemsContentProvider extends AbstractFlatTreeContentProvider {
           problemProviders.add(element.getAttributeAsObject(ATTRIB_CLASS, IProblemProvider.class));
         }
         catch (ExtensionException e) {
-          String message = NLS.bind("Error loading problem provider {0}.", element.getAttribute(ATTRIB_CLASS));
+          String message = NLS.bind(Messages.ProblemsContentProvider_ProvoiderLoadErrorMessage, element.getAttribute(ATTRIB_CLASS));
           new Logger(RepositoryPlugin.ID).error(message, e);
         }
       }

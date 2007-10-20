@@ -8,6 +8,7 @@ import net.sf.anathema.basics.repository.problems.MarkerProblem;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
 import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
+import net.sf.anathema.character.core.resource.CharacterModelEditorOpener;
 import net.sf.anathema.character.freebies.attributes.plugin.IAttributeFreebiesConstants;
 import net.sf.anathema.lib.ui.IDisposable;
 
@@ -72,7 +73,7 @@ public class ResourceModelMarker implements IDisposable {
     return new Object[] {
         modelMarker.getDescription(characterNameProvider.getDisplayName()),
         modelName,
-        "net.sf.anathema.character.modelopener" }; //$NON-NLS-1$
+        CharacterModelEditorOpener.ID };
   }
 
   @Override

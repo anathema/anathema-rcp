@@ -4,6 +4,8 @@ import static net.sf.anathema.basics.swt.file.FileTypes.*;
 
 import java.io.File;
 
+import net.disy.commons.core.util.StringUtilities;
+
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.DirectoryDialog;
@@ -56,12 +58,9 @@ public class FileChoosing {
   }
 
   private static File getFile(String path) {
-    if (path != null) {
-      path = path.trim();
-      if (path.length() > 0) {
-        return new File(path);
-      }
+    if (StringUtilities.isNullOrTrimEmpty(path)) {
+      return null;
     }
-    return null;
+    return new File(path.trim());
   }
 }

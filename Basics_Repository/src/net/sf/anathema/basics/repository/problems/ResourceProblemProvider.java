@@ -23,7 +23,7 @@ public class ResourceProblemProvider extends AbstractExecutableExtension impleme
       addProblemsForContainer(workspaceRoot, problems);
     }
     catch (Exception e) {
-      RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, "Unable to display problems for " + workspaceRoot, e);
+      RepositoryPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.ResourceProblemProvider_ErrorMessage, e);
     }
     return problems;
   }

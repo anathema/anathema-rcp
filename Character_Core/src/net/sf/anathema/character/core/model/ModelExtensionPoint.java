@@ -122,7 +122,7 @@ public class ModelExtensionPoint {
     String fileName = resource.getName();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
-        IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION); //$NON-NLS-1$
+        IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
         if (configurationElement != null) {
           String filenameAttribute = modelElement.getAttribute(ATTRIB_FILENAME);
           if (fileName.equals(filenameAttribute)) {

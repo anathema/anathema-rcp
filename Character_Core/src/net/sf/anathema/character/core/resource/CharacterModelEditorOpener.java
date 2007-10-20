@@ -23,6 +23,8 @@ import org.eclipse.ui.PartInitException;
 
 public class CharacterModelEditorOpener extends AbstractExecutableExtension implements IResourceEditorOpener {
 
+  public static final String ID = "net.sf.anathema.character.modelopener"; //$NON-NLS-1$
+  
   public void openEditor(IWorkbenchPage page, IResource modelResource) throws PartInitException {
     IModelDisplayConfiguration configuration = new ModelExtensionPoint().getDisplayConfiguration(modelResource);
     final IContainer characterFolder = modelResource.getParent();
