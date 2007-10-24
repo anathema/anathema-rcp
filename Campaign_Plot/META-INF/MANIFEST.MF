@@ -10,7 +10,8 @@ Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.repository,
  net.sf.anathema.editor.styledtext,
  net.sf.anathema.campaign.core,
- org.eclipse.core.expressions
+ org.eclipse.core.expressions,
+ net.sf.anathema.basics.importwizard
 Eclipse-LazyStart: true
 Bundle-Activator: net.sf.anathema.campaign.plot.PlotPlugin
 Bundle-Localization: plugin

@@ -1,6 +1,6 @@
 package net.sf.anathema.campaign.plot.repository;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.easymock.EasyMock;
 

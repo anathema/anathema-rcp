@@ -1,6 +1,6 @@
 package net.sf.anathema.campaign.plot.importwizard;
 
-import net.sf.anathema.campaign.core.importwizard.IImportPageMessages;
+import net.sf.anathema.basics.importwizard.IImportPageMessages;
 
 public class PlotImportMessages implements IImportPageMessages {
 
