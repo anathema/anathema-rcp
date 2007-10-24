@@ -1,7 +1,7 @@
 package net.sf.anathema.campaign.note.importwizard;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.campaign.core.importwizard.FileSelectionModel;
+import net.sf.anathema.basics.importwizard.FileSelectionModel;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.junit.Before;

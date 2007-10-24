@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 
-import net.sf.anathema.campaign.core.importwizard.FileSelectionModel;
+import net.sf.anathema.basics.importwizard.FileSelectionModel;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.junit.Before;

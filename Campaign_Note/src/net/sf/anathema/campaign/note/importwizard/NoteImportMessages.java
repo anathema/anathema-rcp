@@ -1,6 +1,6 @@
 package net.sf.anathema.campaign.note.importwizard;
 
-import net.sf.anathema.campaign.core.importwizard.IImportPageMessages;
+import net.sf.anathema.basics.importwizard.IImportPageMessages;
 
 public class NoteImportMessages implements IImportPageMessages {
 

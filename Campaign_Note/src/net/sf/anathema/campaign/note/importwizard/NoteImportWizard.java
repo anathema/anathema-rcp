@@ -5,11 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import net.disy.commons.core.model.BooleanModel;
+import net.sf.anathema.basics.importwizard.AbstractImportWizard;
+import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
+import net.sf.anathema.basics.importwizard.IFileSelectionModel;
 import net.sf.anathema.basics.repository.input.UnusedFileFactory;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
-import net.sf.anathema.campaign.core.importwizard.AbstractImportWizard;
-import net.sf.anathema.campaign.core.importwizard.FileSelectionWizardPage;
-import net.sf.anathema.campaign.core.importwizard.IFileSelectionModel;
 import net.sf.anathema.campaign.note.NotesRepositoryUtilities;
 
 import org.eclipse.core.resources.IFile;

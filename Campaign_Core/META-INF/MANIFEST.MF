@@ -9,4 +9,3 @@ Require-Bundle: net.sf.anathema.basics.item,
  net.sf.anathema.basics.repository,
  net.sf.anathema.basics.lib
 Bundle-Localization: plugin
-Export-Package: net.sf.anathema.campaign.core.importwizard
