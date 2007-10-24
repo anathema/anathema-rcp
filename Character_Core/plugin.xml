@@ -37,5 +37,19 @@
             class="net.sf.anathema.character.core.problem.UneditedModelProblemsProvider">
       </provider>
    </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="net.sf.anathema.category.character"
+            name="%import.wizard.category.name.character">
+      </category>
+      <wizard
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.character.core.importwizard.CharacterImportWizard"
+            icon="icons/TabCharacter16.png"
+            id="net.sf.anathema.importwizard.character"
+            name="%import.wizard.AnathemaClassicCharacter.name">
+      </wizard>
+   </extension>
 
 </plugin>
