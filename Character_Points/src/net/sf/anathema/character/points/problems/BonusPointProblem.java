@@ -23,9 +23,9 @@ public class BonusPointProblem implements IProblem {
   @Override
   public String getDescription() {
     if (availableBonusPoints > 0) {
-      return NLS.bind("{0} has unspent bonus points.", getCharacterName());
+      return NLS.bind(Messages.BonusPointProblem_Underspent, getCharacterName());
     }
-    return NLS.bind("{0} has spent too many bonus points.", getCharacterName());
+    return NLS.bind(Messages.BonusPointProblem_Overspent, getCharacterName());
   }
 
   private String getCharacterName() {
@@ -38,7 +38,7 @@ public class BonusPointProblem implements IProblem {
 
   @Override
   public String getPath() {
-    return new ModelDisplayNameProvider("Bonus Points", new CharacterDisplayNameProvider(getContainer())).getDisplayName();
+    return new ModelDisplayNameProvider(Messages.BonusPointProblem_ModelName, new CharacterDisplayNameProvider(getContainer())).getDisplayName();
   }
 
   @Override
