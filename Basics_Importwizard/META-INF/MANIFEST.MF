@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Basics_ImportWizard Plug-in
+Bundle-Name: %Bundle-Name.importwizard.bundle
 Bundle-SymbolicName: net.sf.anathema.basics.importwizard
 Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.basics.repository,
+ net.sf.anathema.basics.eclipse,
+ net.sf.anathema.basics.lib
+Export-Package: net.sf.anathema.basics.importwizard
+Bundle-Localization: plugin
