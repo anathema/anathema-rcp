@@ -1,9 +1,7 @@
-package net.sf.anathema.campaign.note.importwizard;
+package net.sf.anathema.basics.importwizard;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.basics.importwizard.FileSelectionModel;
 
-import org.eclipse.jface.dialogs.IMessageProvider;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,17 +11,12 @@ public class FileSelectionModelUninitializedTest {
 
   @Before
   public void create() {
-    this.model = new FileSelectionModel(new FileSelectionStatusFactory());
+    this.model = new FileSelectionModel(new DummyStatusFactory());
   }
 
   @Test
   public void isNotComplete() throws Exception {
     assertFalse(model.isComplete());
-  }
-
-  @Test
-  public void returnsNeutralMessage() {
-    assertEquals(IMessageProvider.NONE, model.getMessage().getMessageType());
   }
 
   @Test

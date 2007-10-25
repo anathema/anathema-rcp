@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Campaign_Note_Importwizard Fragment
+Bundle-SymbolicName: net.sf.anathema.campaign.note.importwizard
+Bundle-Version: 1.0.0
+Fragment-Host: net.sf.anathema.campaign.note;bundle-version="1.0.0"
+Require-Bundle: net.sf.anathema.basics.importwizard
