@@ -36,18 +36,5 @@
             viewElementFactoryClass="net.sf.anathema.basics.repository.treecontent.itemtype.FileItemTypeViewElementFactory">
       </itemtype>
    </extension>
-   <extension
-         point="org.eclipse.ui.importWizards">
-      <wizard
-            category="net.sf.anathema.category.campaign"
-            class="net.sf.anathema.campaign.note.importwizard.NoteImportWizard"
-            icon="icons/TabNotes16.png"
-            id="net.sf.anathema.importwizard.note"
-            name="%import.wizard.AnathemaClassicNote.name">
-         <description>
-            %wizard.description.AnathemaClassicNote
-         </description>
-      </wizard>
-   </extension>
 
 </plugin>

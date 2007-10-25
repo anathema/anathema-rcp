@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Campaign_Plot_Importwizard Fragment
-Bundle-SymbolicName: net.sf.anathema.campaign.plot.importwizard
+Bundle-Name: %Bundle-Name.campaign.plot.importwizard
+Bundle-SymbolicName: net.sf.anathema.campaign.plot.importwizard;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.campaign.plot;bundle-version="1.0.0"
 Require-Bundle: net.sf.anathema.basics.importwizard
+Bundle-Localization: plugin

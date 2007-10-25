@@ -128,18 +128,5 @@
          </with>
       </definition>
    </extension>
-   <extension
-         point="org.eclipse.ui.importWizards">
-      <wizard
-            category="net.sf.anathema.category.campaign"
-            class="net.sf.anathema.campaign.plot.importwizard.PlotImportWizard"
-            icon="icons/TabSeries16.png"
-            id="net.sf.anathema.importwizard.plot"
-            name="%import.wizard.AnathemaClassicPlot.name">
-         <description>
-            %wizard.description.AnathemaClassicPlot
-         </description>
-      </wizard>
-   </extension>
 
 </plugin>
