@@ -1,0 +1,46 @@
+package net.sf.anathema.character.core.traitview;
+
+import static org.junit.Assert.*;
+
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Shell;
+import org.junit.Before;
+import org.junit.Test;
+
+public class CanvasIntValueDisplayTest {
+
+  private static final int MAX_VALUE = 5;
+  private CanvasIntValueDisplay valueDisplay;
+  private Image image;
+  private Shell parent;
+
+  @Before
+  public void createValueDisplayWithMaxValue5() throws Exception {
+    parent = new Shell();
+    image = new Image(parent.getDisplay(), 7, 7);
+  }
+
+  @Test
+  public void noRedrawOnSettingSameMaxValue() throws Exception {
+    valueDisplay = new CanvasIntValueDisplay(parent, image, image, MAX_VALUE) {
+      @Override
+      public void redraw() {
+        fail();
+      }
+    };
+    valueDisplay.setMaxValue(MAX_VALUE);
+  }
+
+  @Test
+  public void redrawOnSettingDifferntMaxValue() throws Exception {
+    final boolean[] redraw = new boolean[] { false };
+    valueDisplay = new CanvasIntValueDisplay(parent, image, image, MAX_VALUE) {
+      @Override
+      public void redraw() {
+        redraw[0] = true;
+      }
+    };
+    valueDisplay.setMaxValue(MAX_VALUE + 2);
+    assertTrue(redraw[0]);
+  }
+}

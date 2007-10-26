@@ -9,4 +9,6 @@ public interface IIntValueView {
   public void addIntValueChangedListener(IIntValueChangedListener listener);
 
   public void removeIntValueChangedListener(IIntValueChangedListener listener);
+
+  public void setMaxValue(int maxValue);
 }
