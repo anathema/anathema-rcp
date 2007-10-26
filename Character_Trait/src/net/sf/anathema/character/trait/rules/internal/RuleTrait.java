@@ -18,7 +18,7 @@ public class RuleTrait implements IRuleTrait {
 
   @Override
   public int getMaximalValue() {
-    return traitTemplate.getMaximalValue();
+    return experience.isExperienced() ? 7 : traitTemplate.getMaximalValue();
   }
 
   @Override

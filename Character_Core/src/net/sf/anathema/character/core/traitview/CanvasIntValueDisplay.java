@@ -142,7 +142,11 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
       return;
     }
     paintListener.area.setMaxValue(maxValue);
-    redraw();
+    refreshLayout();
+  }
+
+  protected void refreshLayout() {
+    composite.getParent().layout();
   }
   
   public void redraw() {

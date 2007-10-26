@@ -21,10 +21,10 @@ public class CanvasIntValueDisplayTest {
   }
 
   @Test
-  public void noRedrawOnSettingSameMaxValue() throws Exception {
+  public void noLayoutOnSettingSameMaxValue() throws Exception {
     valueDisplay = new CanvasIntValueDisplay(parent, image, image, MAX_VALUE) {
       @Override
-      public void redraw() {
+      protected void refreshLayout() {
         fail();
       }
     };
@@ -32,15 +32,15 @@ public class CanvasIntValueDisplayTest {
   }
 
   @Test
-  public void redrawOnSettingDifferntMaxValue() throws Exception {
-    final boolean[] redraw = new boolean[] { false };
+  public void layoutOnSettingDifferntMaxValue() throws Exception {
+    final boolean[] refresh = new boolean[] { false };
     valueDisplay = new CanvasIntValueDisplay(parent, image, image, MAX_VALUE) {
       @Override
-      public void redraw() {
-        redraw[0] = true;
+      protected void refreshLayout() {
+        refresh[0] = true;
       }
     };
     valueDisplay.setMaxValue(MAX_VALUE + 2);
-    assertTrue(redraw[0]);
+    assertTrue(refresh[0]);
   }
 }

@@ -11,6 +11,7 @@ public class TraitPresenter {
       @Override
       public void stateChanged() {
         view.setValue(model.getValue());
+        view.setMaxValue(model.getMaximalValue());
       }
     });
     view.addIntValueChangedListener(new IIntValueChangedListener() {
