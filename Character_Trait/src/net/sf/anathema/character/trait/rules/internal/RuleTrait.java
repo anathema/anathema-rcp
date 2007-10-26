@@ -18,7 +18,8 @@ public class RuleTrait implements IRuleTrait {
 
   @Override
   public int getMaximalValue() {
-    return experience.isExperienced() ? 7 : traitTemplate.getMaximalValue();
+    int currentEssenceValue = experience.isExperienced() ? 7 : 5;
+    return traitTemplate.getMaximalValue(currentEssenceValue);
   }
 
   @Override
@@ -39,8 +40,8 @@ public class RuleTrait implements IRuleTrait {
     if (value < traitTemplate.getMinimalValue()) {
       return traitTemplate.getMinimalValue();
     }
-    if (value > traitTemplate.getMaximalValue()) {
-      return traitTemplate.getMaximalValue();
+    if (value > getMaximalValue()) {
+      return getMaximalValue();
     }
     return value;
   }

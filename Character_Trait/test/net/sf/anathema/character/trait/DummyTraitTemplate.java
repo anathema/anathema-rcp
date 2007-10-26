@@ -15,7 +15,8 @@ public class DummyTraitTemplate implements ITraitTemplate {
     this.minimalValue = minimalValue;
   }
   
-  public int getMaximalValue() {
+  @Override
+  public int getMaximalValue(int essenceValue) {
     return maximalValue;
   }
 

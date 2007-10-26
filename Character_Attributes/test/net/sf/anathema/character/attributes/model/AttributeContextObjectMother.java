@@ -6,14 +6,14 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.TraitTemplate;
+import net.sf.anathema.character.trait.rules.EssenceSensitiveTraitTemplate;
 
 import org.easymock.EasyMock;
 
 public class AttributeContextObjectMother {
 
   public static ITraitCollectionContext createContext(TraitGroup... traitGroups) {
-    ITraitCollectionModel attributes = Attributes.create(traitGroups, new TraitTemplate());
+    ITraitCollectionModel attributes = Attributes.create(traitGroups, new EssenceSensitiveTraitTemplate());
     DummyExperience experience = new DummyExperience();
     ITraitTemplate template = new DummyTraitTemplate();
     ITraitCollectionContext context = EasyMock.createNiceMock(ITraitCollectionContext.class);

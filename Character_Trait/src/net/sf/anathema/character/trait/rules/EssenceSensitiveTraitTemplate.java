@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.rules;
 
-public final class TraitTemplate implements ITraitTemplate {
+public final class EssenceSensitiveTraitTemplate implements ITraitTemplate {
 
   private int minimalValue;
 
@@ -14,7 +14,7 @@ public final class TraitTemplate implements ITraitTemplate {
   }
 
   @Override
-  public int getMaximalValue() {
-    return 5;
+  public int getMaximalValue(int essenceValue) {
+    return Math.max(5, essenceValue);
   }
 }

@@ -2,7 +2,7 @@ package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.TraitTemplate;
+import net.sf.anathema.character.trait.rules.EssenceSensitiveTraitTemplate;
 
 public class AttributeGroupConfiguration {
 
@@ -16,7 +16,7 @@ public class AttributeGroupConfiguration {
   }
 
   public ITraitTemplate getTraitTemplate() {
-    TraitTemplate traitTemplate = new TraitTemplate();
+    EssenceSensitiveTraitTemplate traitTemplate = new EssenceSensitiveTraitTemplate();
     traitTemplate.setMiniumalValue(1);
     return traitTemplate;
   }
