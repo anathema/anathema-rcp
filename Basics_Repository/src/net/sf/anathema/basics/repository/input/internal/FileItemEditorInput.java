@@ -14,7 +14,6 @@ import net.sf.anathema.lib.xml.DocumentUtilities;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
 public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput<ITitledText> {
@@ -23,13 +22,11 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   private final ItemNameProvider provider;
   private final TitledTextPersister persister = new TitledTextPersister();
   private FileItemEditorInputPersistableElement persistable;
-  private final URL imageUrl;
 
   public FileItemEditorInput(IFile file, String untitledName, URL imageUrl)
       throws PersistenceException,
       CoreException {
-    super(file, ImageDescriptor.createFromURL(imageUrl));
-    this.imageUrl = imageUrl;
+    super(file, imageUrl);
     this.persistable = new FileItemEditorInputPersistableElement(untitledName, file.getFullPath(), imageUrl); 
     this.provider = new ItemNameProvider(untitledName);
     this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
@@ -53,11 +50,6 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
 
   public void setItem(ITitledText item) {
     this.item = item;
-  }
-  
-  @Override
-  public URL getImageUrl() {
-    return imageUrl;
   }
 
   @Override

@@ -18,15 +18,15 @@ public class FileItemEditorInputFactory implements IElementFactory {
 
   @Override
   public IAdaptable createElement(IMemento memento) {
+    IPath path = new Path(memento.getString(PROP_FULL_PATH));
+    IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+    String untitledName = memento.getString(PROP_UNTITLED_NAME);
     try {
-      IPath path = new Path(memento.getString(PROP_FULL_PATH));
-      IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-      String untitledName = memento.getString(PROP_UNTITLED_NAME);
       URL imageUrl = new URL(memento.getString(PROP_IMAGE_DESCRIPTOR_URL));
       return new FileItemEditorInput(file, untitledName, imageUrl);
     }
     catch (Exception e) {
-      // TODO Fehlerhandling
+      // TODO Errorhandling (UrlException separat?)
       return null;
     }
   }

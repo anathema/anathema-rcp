@@ -54,8 +54,6 @@ public class ItemTypeViewElement implements IViewElement {
   @Override
   public URL getImageUrl() {
     return type.getIconUrl();
-    // TODO beim richtigen Clienten benutzen
-    //return PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_OBJ_ELEMENT);
   }
 
   @Override

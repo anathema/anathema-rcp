@@ -8,6 +8,7 @@ import net.sf.anathema.basics.eclipse.ui.IResourceEditorOpener;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -25,8 +26,10 @@ public class ResourceEditorOpenerExtensionPoint {
       opener = getOpener(openerId);
     }
     catch (ExtensionException e) {
-      // TODO ExceptionHandling
-      e.printStackTrace();
+      RepositoryPlugin.getDefaultInstance().log(
+          IStatus.ERROR,
+          "Error opening resource " + resource + " with openerId " + openerId,
+          e);
     }
     if (opener == null) {
       return;

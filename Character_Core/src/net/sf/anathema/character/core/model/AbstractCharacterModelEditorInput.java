@@ -11,23 +11,15 @@ import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.jface.resource.ImageDescriptor;
 
 public abstract class AbstractCharacterModelEditorInput<M extends IModel> extends FileEditorInput implements
     IFileItemEditorInput<M> {
 
   private final IDisplayNameProvider displayNameProvider;
-  private final URL imageUrl;
 
   public AbstractCharacterModelEditorInput(IFile file, URL imageUrl, IDisplayNameProvider displayNameProvider) {
-    super(file, ImageDescriptor.createFromURL(imageUrl));
-    this.imageUrl = imageUrl;
+    super(file, imageUrl);
     this.displayNameProvider = displayNameProvider;
-  }
-  
-  @Override
-  public URL getImageUrl() {
-    return imageUrl;
   }
   
   @Override
