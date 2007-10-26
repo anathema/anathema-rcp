@@ -26,7 +26,7 @@ public abstract class AbstractCharacterModelEditorInput<M extends IModel> extend
   }
   
   @Override
-  public URL getImageDescriptorUrl() {
+  public URL getImageUrl() {
     return imageUrl;
   }
   

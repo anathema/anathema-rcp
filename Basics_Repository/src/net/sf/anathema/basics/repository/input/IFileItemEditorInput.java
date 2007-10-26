@@ -11,5 +11,5 @@ public interface IFileItemEditorInput<D extends IItem> extends IPersistableEdito
 
   public IFile getFile();
   
-  public URL getImageDescriptorUrl();
+  public URL getImageUrl();
 }

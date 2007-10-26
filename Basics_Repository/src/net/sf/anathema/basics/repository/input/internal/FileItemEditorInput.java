@@ -56,7 +56,7 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   }
   
   @Override
-  public URL getImageDescriptorUrl() {
+  public URL getImageUrl() {
     return imageUrl;
   }
 

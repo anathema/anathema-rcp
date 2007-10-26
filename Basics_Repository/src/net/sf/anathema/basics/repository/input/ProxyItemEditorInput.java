@@ -33,7 +33,7 @@ public class ProxyItemEditorInput implements IPersistableEditorInput<ITitledText
     FileItemEditorInput input = new FileItemEditorInput(
         delegateInput.getFile(),
         untitledName,
-        delegateInput.getImageDescriptorUrl());
+        delegateInput.getImageUrl());
     input.setItem(itemData);
     delegateInput = input;
     return itemData;

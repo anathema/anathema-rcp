@@ -43,7 +43,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   }
   
   @Override
-  public URL getImageDescriptorUrl() {
+  public URL getImageUrl() {
     return imageUrl;
   }
 
