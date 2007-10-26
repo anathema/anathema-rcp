@@ -22,7 +22,7 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
   private ITitledText item;
   private final ItemNameProvider provider;
   private final TitledTextPersister persister = new TitledTextPersister();
-  private PersistableElement persistable;
+  private FileItemEditorInputPersistableElement persistable;
   private final URL imageUrl;
 
   public FileItemEditorInput(IFile file, String untitledName, URL imageUrl)
@@ -30,7 +30,7 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
       CoreException {
     super(file, ImageDescriptor.createFromURL(imageUrl));
     this.imageUrl = imageUrl;
-    this.persistable = new PersistableElement(untitledName, file.getFullPath(), imageUrl); 
+    this.persistable = new FileItemEditorInputPersistableElement(untitledName, file.getFullPath(), imageUrl); 
     this.provider = new ItemNameProvider(untitledName);
     this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
   }

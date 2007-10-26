@@ -10,7 +10,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IMemento;
 
-public class PersistableElementFactory implements IElementFactory {
+public class FileItemEditorInputFactory implements IElementFactory {
 
   public static final String PROP_IMAGE_DESCRIPTOR_URL = "imageDescriptorUrl"; //$NON-NLS-1$
   public static final String PROP_UNTITLED_NAME = "untitledName"; //$NON-NLS-1$

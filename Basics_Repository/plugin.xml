@@ -211,8 +211,8 @@
    <extension
          point="org.eclipse.ui.elementFactories">
       <factory
-            class="net.sf.anathema.basics.repository.input.internal.PersistableElementFactory"
-            id="test.the.west">
+            class="net.sf.anathema.basics.repository.input.internal.FileItemEditorInputFactory"
+            id="FileItemEditorInputFactory">
       </factory>
    </extension>
 </plugin>
