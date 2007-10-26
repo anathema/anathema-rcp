@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.repository.internal;
 
+import java.net.URL;
+
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.eclipse.runtime.IProvider;
@@ -12,7 +14,6 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -63,8 +64,8 @@ public class CharacterModelViewElement implements IViewElement {
   }
 
   @Override
-  public ImageDescriptor getImageDescriptor() {
-    return configuration.getImageDescriptor();
+  public URL getImageUrl() {
+    return configuration.getImageUrl();
   }
 
   @Override

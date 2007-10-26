@@ -208,4 +208,11 @@
             class="net.sf.anathema.basics.repository.problems.ResourceProblemProvider">
       </provider>
    </extension>
+   <extension
+         point="org.eclipse.ui.elementFactories">
+      <factory
+            class="net.sf.anathema.basics.repository.input.internal.PersistableElementFactory"
+            id="test.the.west">
+      </factory>
+   </extension>
 </plugin>

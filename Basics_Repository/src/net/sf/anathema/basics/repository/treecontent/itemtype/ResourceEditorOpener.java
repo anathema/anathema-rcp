@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
+import java.net.URL;
+
 import net.sf.anathema.basics.eclipse.ui.IEditorOpener;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.input.internal.FileItemEditorInput;
@@ -10,7 +12,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
@@ -20,13 +21,13 @@ import org.eclipse.ui.PlatformUI;
 public class ResourceEditorOpener implements IEditorOpener {
 
   private final IFile file;
-  private final ImageDescriptor descriptor;
   private final String untitledName;
+  private final URL imageUrl;
 
-  public ResourceEditorOpener(IFile file, String untitledName, ImageDescriptor descriptor) {
+  public ResourceEditorOpener(IFile file, String untitledName, URL imageUrl) {
     this.file = file;
     this.untitledName = untitledName;
-    this.descriptor = descriptor;
+    this.imageUrl = imageUrl;
   }
 
   @Override
@@ -54,6 +55,6 @@ public class ResourceEditorOpener implements IEditorOpener {
   }
 
   public IEditorInput createEditorInput() throws PersistenceException, CoreException {
-    return new FileItemEditorInput(file, untitledName, descriptor);
+    return new FileItemEditorInput(file, untitledName, imageUrl);
   }
 }

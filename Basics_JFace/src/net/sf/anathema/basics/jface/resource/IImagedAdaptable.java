@@ -1,9 +1,10 @@
 package net.sf.anathema.basics.jface.resource;
 
+import java.net.URL;
+
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.jface.resource.ImageDescriptor;
 
 public interface IImagedAdaptable extends IAdaptable {
 
-  public ImageDescriptor getImageDescriptor();
+  public URL getImageUrl();
 }

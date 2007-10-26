@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
@@ -107,10 +106,9 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
       display.asyncExec(new Runnable() {
         public void run() {
           IItemType itemType = getItemType();
-          ImageDescriptor icon = ImageDescriptor.createFromURL(itemType.getIconUrl());
           IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
           try {
-            new ResourceEditorOpener(file, itemType.getUntitledName(), icon).openEditor(page);
+            new ResourceEditorOpener(file, itemType.getUntitledName(), itemType.getIconUrl()).openEditor(page);
           }
           catch (PartInitException e) {
             logger.error(NLS.bind(Messages.AbstractImportWizard_CouldNotOpen, file.getName()), e);

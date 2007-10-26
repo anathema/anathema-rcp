@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.repository.input;
 
 import java.io.IOException;
+import java.net.URL;
 
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.text.ITitledText;
@@ -23,13 +24,15 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   private final ItemNameProvider provider;
   private final ImageDescriptor imageDescriptor;
   private final TitledTextPersister persister = new TitledTextPersister();
+  private final URL imageUrl;
 
   public AbstractNewItemEditorInput(
       IUnusedFileFactory unusedFileFactory,
-      ImageDescriptor imageDescriptor,
+      URL imageUrl,
       String untitledName) {
     this.unusedFileFactory = unusedFileFactory;
-    this.imageDescriptor = imageDescriptor;
+    this.imageUrl = imageUrl;
+    this.imageDescriptor = ImageDescriptor.createFromURL(imageUrl);
     this.provider = new ItemNameProvider(untitledName);
     this.item = persister.createNew();
   }
@@ -37,6 +40,11 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
   @Override
   public final ITitledText getItem() {
     return item;
+  }
+  
+  @Override
+  public URL getImageDescriptorUrl() {
+    return imageUrl;
   }
 
   @Override

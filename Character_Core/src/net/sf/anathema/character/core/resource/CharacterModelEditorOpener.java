@@ -55,7 +55,7 @@ public class CharacterModelEditorOpener extends AbstractExecutableExtension impl
     ModelDisplayNameProvider displayNameProvider = new ModelDisplayNameProvider(
         configuration.getDisplayName(),
         new CharacterDisplayNameProvider(characterFolder));
-    return configuration.createEditorInput(characterFolder, configuration.getImageDescriptor(), displayNameProvider);
+    return configuration.createEditorInput(characterFolder, displayNameProvider);
   }
 
   private void ensureResourceExists(IEditorInput input, IEditorPart openEditor) {

@@ -33,7 +33,7 @@ public class ProxyItemEditorInput implements IPersistableEditorInput<ITitledText
     FileItemEditorInput input = new FileItemEditorInput(
         delegateInput.getFile(),
         untitledName,
-        delegateInput.getImageDescriptor());
+        delegateInput.getImageDescriptorUrl());
     input.setItem(itemData);
     delegateInput = input;
     return itemData;
@@ -69,7 +69,7 @@ public class ProxyItemEditorInput implements IPersistableEditorInput<ITitledText
   public Object getAdapter(Class adapter) {
     return delegateInput.getAdapter(adapter);
   }
-
+  
   @Override
   public boolean equals(Object arg0) {
     return delegateInput.equals(arg0);

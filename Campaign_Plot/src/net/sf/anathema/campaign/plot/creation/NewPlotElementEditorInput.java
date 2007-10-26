@@ -1,6 +1,7 @@
 package net.sf.anathema.campaign.plot.creation;
 
 import java.io.IOException;
+import java.net.URL;
 
 import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.repository.input.AbstractNewItemEditorInput;
@@ -15,7 +16,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.resource.ImageDescriptor;
 
 public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
 
@@ -24,11 +24,11 @@ public class NewPlotElementEditorInput extends AbstractNewItemEditorInput {
 
   public NewPlotElementEditorInput(
       IUnusedFileFactory unusedFileFactory,
-      ImageDescriptor imageDescriptor,
+      URL imageUrl,
       String untitledName,
       PlotPart parentPart,
       IFolder seriesFolder) {
-    super(unusedFileFactory, imageDescriptor, untitledName);
+    super(unusedFileFactory, imageUrl, untitledName);
     this.parentPart = parentPart;
     this.seriesFolder = seriesFolder;
   }

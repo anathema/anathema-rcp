@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.repository;
 
+import java.net.URL;
+
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.deletion.ResourcePageDelible;
@@ -12,7 +14,6 @@ import net.sf.anathema.character.core.resource.CharacterPrintNameProvider;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -82,8 +83,8 @@ public class CharacterViewElement implements IViewElement {
   }
 
   @Override
-  public ImageDescriptor getImageDescriptor() {
-    return parent.getImageDescriptor();
+  public URL getImageUrl() {
+    return parent.getImageUrl();
   }
 
   @Override

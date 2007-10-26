@@ -64,7 +64,7 @@ public class MarkerDecoratedImageProvider implements IDisposable {
     if (basicImage != null) {
       return basicImage;
     }
-    basicImage = adaptable.getImageDescriptor().createImage();
+    basicImage = ImageDescriptor.createFromURL(adaptable.getImageUrl()).createImage();
     basicImages.put(adaptable, basicImage);
     return basicImage;
   }

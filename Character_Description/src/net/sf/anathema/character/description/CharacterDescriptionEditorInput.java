@@ -1,6 +1,7 @@
 package net.sf.anathema.character.description;
 
 import java.io.IOException;
+import java.net.URL;
 
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -12,7 +13,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
 
 public class CharacterDescriptionEditorInput extends AbstractCharacterModelEditorInput<ICharacterDescription> {
@@ -20,8 +20,8 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
   private ICharacterDescription item;
   private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
 
-  public CharacterDescriptionEditorInput(IFile file, ImageDescriptor imageDescriptor, ICharacterDescription description) {
-    super(file, imageDescriptor, null);
+  public CharacterDescriptionEditorInput(IFile file, URL imageUrl, ICharacterDescription description) {
+    super(file, imageUrl, null);
     this.item = description;
   }
 

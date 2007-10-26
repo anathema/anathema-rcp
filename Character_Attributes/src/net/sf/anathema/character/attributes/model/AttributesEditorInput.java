@@ -1,6 +1,7 @@
 package net.sf.anathema.character.attributes.model;
 
 import java.io.IOException;
+import java.net.URL;
 import java.text.MessageFormat;
 
 import net.disy.commons.core.util.ArrayUtilities;
@@ -25,7 +26,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.resource.ImageDescriptor;
 
 public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
@@ -36,11 +36,11 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
 
   public AttributesEditorInput(
       final IFile file,
-      ImageDescriptor imageDescriptor,
+      URL  imageUrl,
       IDisplayNameProvider displayNameProvider,
       final ITraitCollectionContext context,
       final IFavorizationHandler favorizationHandler) {
-    super(file, imageDescriptor, displayNameProvider);
+    super(file, imageUrl, displayNameProvider);
     this.context = context;
     this.favorizationHandler = favorizationHandler;
   }

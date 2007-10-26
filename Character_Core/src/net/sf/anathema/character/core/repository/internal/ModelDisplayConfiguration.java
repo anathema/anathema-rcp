@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.repository.internal;
 
+import java.net.URL;
+
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.resource.ResourceUtils;
@@ -14,7 +16,6 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 
 public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
@@ -35,8 +36,8 @@ public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
   }
 
   @Override
-  public ImageDescriptor getImageDescriptor() {
-    return ImageDescriptor.createFromURL(ResourceUtils.getResourceUrl(pluginId, displayElement.getAttribute("icon"))); //$NON-NLS-1$
+  public URL getImageUrl() {
+    return ResourceUtils.getResourceUrl(pluginId, displayElement.getAttribute("icon")); //$NON-NLS-1$
   }
 
   @Override
@@ -50,15 +51,15 @@ public class ModelDisplayConfiguration implements IModelDisplayConfiguration {
   }
 
   @Override
-  public IEditorInput createEditorInput(
-      IContainer characterFolder,
-      ImageDescriptor descriptor,
-      IDisplayNameProvider provider) throws PersistenceException, CoreException, ExtensionException {
+  public IEditorInput createEditorInput(IContainer characterFolder, IDisplayNameProvider provider)
+      throws PersistenceException,
+      CoreException,
+      ExtensionException {
     IEditorInputFactory factory = displayElement.getAttributeAsObject("editorInputFactory", //$NON-NLS-1$
         IEditorInputFactory.class);
     IFile modelFile = getModelFile(characterFolder);
     CharacterId characterId = new CharacterId(characterFolder);
-    return factory.create(modelFile, characterId, descriptor, provider, ModelCache.getInstance());
+    return factory.create(modelFile, characterId, getImageUrl(), provider, ModelCache.getInstance());
   }
 
   @Override

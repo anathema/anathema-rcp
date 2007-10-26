@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.model;
 
+import java.net.URL;
+
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.jface.FileEditorInput;
@@ -15,10 +17,17 @@ public abstract class AbstractCharacterModelEditorInput<M extends IModel> extend
     IFileItemEditorInput<M> {
 
   private final IDisplayNameProvider displayNameProvider;
+  private final URL imageUrl;
 
-  public AbstractCharacterModelEditorInput(IFile file, ImageDescriptor imageDescriptor, IDisplayNameProvider displayNameProvider) {
-    super(file, imageDescriptor);
+  public AbstractCharacterModelEditorInput(IFile file, URL imageUrl, IDisplayNameProvider displayNameProvider) {
+    super(file, ImageDescriptor.createFromURL(imageUrl));
+    this.imageUrl = imageUrl;
     this.displayNameProvider = displayNameProvider;
+  }
+  
+  @Override
+  public URL getImageDescriptorUrl() {
+    return imageUrl;
   }
   
   @Override

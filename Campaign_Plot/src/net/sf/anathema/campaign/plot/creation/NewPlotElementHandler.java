@@ -1,5 +1,6 @@
 package net.sf.anathema.campaign.plot.creation;
 
+import java.net.URL;
 import java.util.Map;
 
 import net.sf.anathema.basics.repository.input.IUnusedFileFactory;
@@ -55,8 +56,8 @@ public class NewPlotElementHandler extends AbstractHandler implements IElementUp
     IFolder folder = (IFolder) plotElementViewElement.getEditFile().getParent();
     String extension = PlotRepositoryUtilities.getPlotItemType().getFileExtension();
     IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, extension);
-    ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(plotElement.getPlotUnit().getSuccessor().getImage());
-    return new NewPlotElementEditorInput(unusedFileFactory, imageDescriptor, unnamedName, plotElement, folder);
+    URL imageUrl = plotElement.getPlotUnit().getSuccessor().getImage();
+    return new NewPlotElementEditorInput(unusedFileFactory, imageUrl, unnamedName, plotElement, folder);
   }
 
   @SuppressWarnings("unchecked")

@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.repository.input.internal;
 
 import java.io.IOException;
+import java.net.URL;
 
 import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.item.text.TitledTextPersister;
@@ -14,17 +15,22 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IPersistableElement;
 
 public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput<ITitledText> {
 
   private ITitledText item;
   private final ItemNameProvider provider;
   private final TitledTextPersister persister = new TitledTextPersister();
+  private PersistableElement persistable;
+  private final URL imageUrl;
 
-  public FileItemEditorInput(IFile file, String untitledName, ImageDescriptor imageDescriptor)
+  public FileItemEditorInput(IFile file, String untitledName, URL imageUrl)
       throws PersistenceException,
       CoreException {
-    super(file, imageDescriptor);
+    super(file, ImageDescriptor.createFromURL(imageUrl));
+    this.imageUrl = imageUrl;
+    this.persistable = new PersistableElement(untitledName, file.getFullPath(), imageUrl); 
     this.provider = new ItemNameProvider(untitledName);
     this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
   }
@@ -40,8 +46,18 @@ public class FileItemEditorInput extends FileEditorInput implements IFileItemEdi
     return item;
   }
 
+  @Override
+  public IPersistableElement getPersistable() {
+    return persistable;
+  }
+
   public void setItem(ITitledText item) {
     this.item = item;
+  }
+  
+  @Override
+  public URL getImageDescriptorUrl() {
+    return imageUrl;
   }
 
   @Override

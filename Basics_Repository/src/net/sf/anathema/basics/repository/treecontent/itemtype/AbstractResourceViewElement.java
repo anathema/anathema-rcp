@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
+import java.net.URL;
+
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
@@ -9,7 +11,6 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -45,7 +46,7 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   }
 
   private ResourceEditorOpener createEditorOpener() {
-    return new ResourceEditorOpener(getEditFile(), untitledName, getImageDescriptor());
+    return new ResourceEditorOpener(getEditFile(), untitledName, getImageUrl());
   }
 
   @Override
@@ -54,8 +55,8 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   }
 
   @Override
-  public ImageDescriptor getImageDescriptor() {
-    return parent.getImageDescriptor();
+  public URL getImageUrl() {
+    return parent.getImageUrl();
   }
 
   protected abstract IFile getEditFile();

@@ -1,6 +1,7 @@
 package net.sf.anathema.campaign.plot.repository;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,6 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -57,7 +57,7 @@ public class DummyPlotElementViewElement implements IPlotElementViewElement, IPa
   }
 
   @Override
-  public ImageDescriptor getImageDescriptor() {
+  public URL getImageUrl() {
     throw new UnsupportedOperationException("Not yet implemented"); //$NON-NLS-1$
   }
 

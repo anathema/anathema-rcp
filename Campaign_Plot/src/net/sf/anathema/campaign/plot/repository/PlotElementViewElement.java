@@ -1,6 +1,7 @@
 package net.sf.anathema.campaign.plot.repository;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
 
 public class PlotElementViewElement extends AbstractResourceViewElement implements IPlotElementViewElement {
@@ -47,8 +47,8 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
   }
 
   @Override
-  public ImageDescriptor getImageDescriptor() {
-    return ImageDescriptor.createFromURL(plotElement.getPlotUnit().getImage());
+  public URL getImageUrl() {
+    return plotElement.getPlotUnit().getImage();
   }
 
   @Override
