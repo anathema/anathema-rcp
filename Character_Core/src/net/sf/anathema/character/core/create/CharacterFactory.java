@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
+import net.sf.anathema.basics.eclipse.resource.FileUtils;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
@@ -28,7 +29,7 @@ public class CharacterFactory {
   public void createNewCharacter(String templateName, String folderName) {
     try {
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
-      IFolder characterFolder = createUnusedFolder(project, folderName);
+      IFolder characterFolder = FileUtils.createUnusedFolder(project, folderName);
       characterFolder.create(true, true, new NullProgressMonitor());
       saveTemplate(characterFolder, templateName);
     }
@@ -45,14 +46,5 @@ public class CharacterFactory {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     DocumentUtilities.save(document, outputStream);
     new FileWriter().saveToFile(templateFile, outputStream, new NullProgressMonitor());
-  }
-
-  private IFolder createUnusedFolder(IProject project, String suggestedFolderName) {
-    int count = 0;
-    IFolder folder = project.getFolder(suggestedFolderName);
-    while (folder.exists()) {
-      folder = project.getFolder(suggestedFolderName + ++count);
-    }
-    return folder;
   }
 }
