@@ -92,6 +92,14 @@
                   commandId="org.eclipse.ui.file.exit">
             </command>
          </menu>
+         <menu
+               id="net.sf.anathema.rcp.menu.tools"
+               label="%net.sf.anathema.rcp.menu.tools.name"
+               mnemonic="%net.sf.anathema.rcp.menu.tools.mnemonic">
+            <command
+                  commandId="org.eclipse.ui.window.preferences">
+            </command>
+         </menu>
       </menuContribution>
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">

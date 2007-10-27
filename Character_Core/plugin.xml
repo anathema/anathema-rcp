@@ -51,5 +51,13 @@
             name="%import.wizard.AnathemaClassicCharacter.name">
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="net.sf.anathema.character.core.preferences.CharacterPreferencePage"
+            id="character.preferences"
+            name="Character">
+      </page>
+   </extension>
 
 </plugin>
