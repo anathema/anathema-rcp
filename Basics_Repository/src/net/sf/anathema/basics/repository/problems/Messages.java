@@ -11,6 +11,7 @@ public class Messages extends NLS {
   public static String ProblemsView_DescriptionHeader;
   public static String ProblemsView_PathHeader;
   public static String ProblemsView_Title;
+  public static String ResourceEditorOpenerExtensionPoint_ErrorMessage;
   public static String ResourceProblemProvider_ErrorMessage;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
