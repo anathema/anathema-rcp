@@ -5,4 +5,4 @@ Bundle-SymbolicName: net.sf.anathema.campaign.plot.importwizard;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.campaign.plot;bundle-version="1.0.0"
 Require-Bundle: net.sf.anathema.basics.importwizard
-Bundle-Localization: plugin
+Bundle-Localization: fragment
