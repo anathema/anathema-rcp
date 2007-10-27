@@ -1,8 +1,6 @@
-package net.sf.anathema.campaign.note.importwizard;
+package net.sf.anathema.basics.importwizard;
 
 import java.io.File;
-
-import net.sf.anathema.basics.importwizard.IFileSelectionDialogStatus;
 
 public final class FileSelectionDialogStatus implements IFileSelectionDialogStatus {
 
@@ -12,22 +10,22 @@ public final class FileSelectionDialogStatus implements IFileSelectionDialogStat
 
   public FileSelectionDialogStatus(File file) {
     if (file == null) {
-      this.message = Messages.NoteImportMessageProvider_SelectNoteMessage;
+      this.message = Messages.FileSelectionDialogStatus_SelectFileMessage;
       this.messageType = NONE;
       this.complete = false;
     }
     else if (!file.exists()) {
-      this.message = Messages.NoteImportMessageProvider_MissingFileMessage;
+      this.message = Messages.FileSelectionDialogStatus_MissingFileMessage;
       this.messageType = ERROR;
       this.complete = false;
     }
     else if (file.isDirectory()) {
-      this.message = Messages.NoteImportMessageProvider_FolderMessage;
+      this.message = Messages.FileSelectionDialogStatus_FolderMessage;
       this.messageType = ERROR;
       this.complete = false;
     }
     else {
-      this.message = Messages.NoteImportMessageProvider_FinishWizardMessage;
+      this.message = Messages.FileSelectionDialogStatus_FinishWizardMessage;
       this.messageType = NONE;
       this.complete = true;
     }

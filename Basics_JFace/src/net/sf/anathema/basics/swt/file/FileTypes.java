@@ -4,4 +4,5 @@ public interface FileTypes {
 
   public static final String PDF_EXTENSION = ".pdf"; //$NON-NLS-1$
   public static final String LEGACY_NOTE_EXTENSION = ".not"; //$NON-NLS-1$
+  public static final String LEGACY_CHARACTER_EXTENSION = ".ecg"; //$NON-NLS-1$
 }

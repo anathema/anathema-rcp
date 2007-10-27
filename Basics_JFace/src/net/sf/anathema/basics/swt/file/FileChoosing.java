@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Shell;
 public class FileChoosing {
   private static final String ANY_PDF_FILTER = '*' + PDF_EXTENSION;
   private static final String ANY_NOTE_FILTER = '*' + LEGACY_NOTE_EXTENSION;
+  private static final String ANY_CHARACTER_FILTER = '*' + LEGACY_CHARACTER_EXTENSION;
 
   public static File savePdfFile(File startingDirectory, Shell shell, String suggestedFileName) {
     return getFile(startingDirectory, shell, new String[] { ANY_PDF_FILTER }, new String[] { NLS.bind(
@@ -26,6 +27,12 @@ public class FileChoosing {
     return getFile(startingDirectory, shell, new String[] { ANY_NOTE_FILTER }, new String[] { NLS.bind(
         Messages.FileChoosing_Legacy_Note_Filter_Description,
         ANY_NOTE_FILTER) }, null, SWT.OPEN);
+  }
+
+  public static File openCharacterFile(File startingDirectory, Shell shell) {
+    return getFile(startingDirectory, shell, new String[] { ANY_CHARACTER_FILTER }, new String[] { NLS.bind(
+        Messages.FileChoosing_Character,
+        ANY_CHARACTER_FILTER) }, null, SWT.OPEN);
   }
 
   public static File openFolder(Shell shell, String message) {

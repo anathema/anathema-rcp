@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 
 import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.importwizard.AbstractImportWizard;
+import net.sf.anathema.basics.importwizard.FileSelectionStatusFactory;
 import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
 import net.sf.anathema.basics.importwizard.IFileSelectionModel;
 import net.sf.anathema.basics.repository.input.UnusedFileFactory;

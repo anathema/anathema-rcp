@@ -1,26 +1,53 @@
 package net.sf.anathema.character.core.importwizard;
 
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.ui.IImportWizard;
-import org.eclipse.ui.IWorkbench;
+import java.io.File;
+import java.io.FileNotFoundException;
 
-public class CharacterImportWizard extends Wizard implements IImportWizard {
+import net.disy.commons.core.model.BooleanModel;
+import net.sf.anathema.basics.importwizard.AbstractImportWizard;
+import net.sf.anathema.basics.importwizard.FileSelectionStatusFactory;
+import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
+import net.sf.anathema.basics.importwizard.IFileSelectionModel;
+import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.wizard.IWizardPage;
+
+public class CharacterImportWizard extends AbstractImportWizard {
 
   public CharacterImportWizard() {
-    // TODO Auto-generated constructor stub
+    super(new FileSelectionStatusFactory());
   }
 
   @Override
-  public boolean performFinish() {
-    // TODO Auto-generated method stub
-    return false;
+  protected IWizardPage createImportPage(IFileSelectionModel filemodel, BooleanModel openmodel) {
+    return new FileSelectionWizardPage(filemodel, openmodel, new CharacterImportMessages(), new OpenCharacterDialog());
   }
 
   @Override
-  public void init(IWorkbench workbench, IStructuredSelection selection) {
+  protected IFile createInternalFile(String filename) throws CoreException {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  protected IItemType getItemType() {
+    return CharacterRepositoryUtilities.getCharacterItemType();
+  }
+
+  @Override
+  protected void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
+      throws CoreException,
+      FileNotFoundException {
     // TODO Auto-generated method stub
 
   }
 
+  @Override
+  protected void undoImport(IFile internalFile, IProgressMonitor monitor) throws CoreException {
+    internalFile.getParent().delete(true, monitor);
+  }
 }

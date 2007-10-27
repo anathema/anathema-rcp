@@ -1,9 +1,7 @@
-package net.sf.anathema.campaign.note.importwizard;
+package net.sf.anathema.basics.importwizard;
 
 import java.io.File;
 
-import net.sf.anathema.basics.importwizard.IFileSelectionDialogStatus;
-import net.sf.anathema.basics.importwizard.IFileSelectionStatusFactory;
 
 public class FileSelectionStatusFactory implements IFileSelectionStatusFactory {
 

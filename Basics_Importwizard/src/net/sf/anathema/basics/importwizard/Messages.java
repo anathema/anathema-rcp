@@ -14,6 +14,10 @@ public class Messages extends NLS {
   public static String AbstractImportWizard_WindowTitle;
   public static String FileSelectionWizardPage_FileNameLabel;
   public static String FileSelectionWizardPage_BrowseButtonLabel;
+  public static String FileSelectionDialogStatus_FinishWizardMessage;
+  public static String FileSelectionDialogStatus_FolderMessage;
+  public static String FileSelectionDialogStatus_MissingFileMessage;
+  public static String FileSelectionDialogStatus_SelectFileMessage;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }

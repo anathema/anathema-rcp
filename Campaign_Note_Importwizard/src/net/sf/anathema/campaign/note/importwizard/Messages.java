@@ -7,10 +7,7 @@ public class Messages extends NLS {
   public static String NoteFileSelectionWizardPage_Description;
   public static String NoteFileSelectionWizardPage_OpenNoteLabel;
   public static String NoteFileSelectionWizardPage_PageName;
-  public static String NoteImportMessageProvider_FinishWizardMessage;
-  public static String NoteImportMessageProvider_FolderMessage;
-  public static String NoteImportMessageProvider_MissingFileMessage;
-  public static String NoteImportMessageProvider_SelectNoteMessage;
+
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
