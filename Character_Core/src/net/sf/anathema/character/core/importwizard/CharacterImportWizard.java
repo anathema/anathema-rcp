@@ -50,8 +50,10 @@ public class CharacterImportWizard extends AbstractImportWizard {
   protected void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException {
-    // TODO Auto-generated method stub
-
+    // TODO Find correct template ID
+    // TODO Write Template
+    // TODO Convert attribute XML
+    // TODO Convert description XML
   }
 
   @Override

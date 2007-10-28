@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<model bundleVersion="1.0.0"><trait id="Strength" creationValue="3" /><trait id="Dexterity" creationValue="3" /><trait id="Stamina" creationValue="3" /><trait id="Charisma" creationValue="4" /><trait id="Manipulation" creationValue="2" /><trait id="Appearance" creationValue="5" /><trait id="Perception" creationValue="2" favored="true"/><trait id="Intelligence" creationValue="4" /><trait id="Wits" creationValue="1" experiencedValue="2"/></model>

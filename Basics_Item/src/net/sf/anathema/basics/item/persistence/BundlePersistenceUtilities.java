@@ -13,9 +13,13 @@ public class BundlePersistenceUtilities {
 
   public static Document createVersionedDocument(String rootElementName, String bundleId) {
     Element root = DocumentHelper.createElement(rootElementName);
-    Bundle bundle = Platform.getBundle(bundleId);
-    root.addAttribute(ATTRIB_BUNDLE_VERSION, (String) bundle.getHeaders().get(HEADER_BUNDLE_VERSION));
+    addBundleVersionAttribute(root, bundleId);
     Document document = DocumentHelper.createDocument(root);
     return document;
+  }
+
+  public static void addBundleVersionAttribute(Element element, String bundleId) {
+    Bundle bundle = Platform.getBundle(bundleId);
+    element.addAttribute(ATTRIB_BUNDLE_VERSION, (String) bundle.getHeaders().get(HEADER_BUNDLE_VERSION));
   }
 }
