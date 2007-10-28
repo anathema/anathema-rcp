@@ -1,6 +1,7 @@
 package net.sf.anathema.campaign.plot.importwizard;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.xml.transform.TransformerException;
 
@@ -20,7 +21,7 @@ public class XSLPlotConverter {
 
   public static Document createContent(Document sourceDocument) throws PersistenceException {
     try {
-      Document document = new XSLDocumentConverter(PlotPlugin.ID).run(sourceDocument, CONTENT_STYLESHEET);
+      Document document = new XSLDocumentConverter(PlotPlugin.ID, CONTENT_STYLESHEET, new HashMap<String, String>()).run(sourceDocument);
       Element name = document.getRootElement().element(TAG_NAME);
       String text = name.getText();
       name.clearContent();
@@ -40,7 +41,7 @@ public class XSLPlotConverter {
 
   public static Document createHierarchy(Document sourceDocument) throws PersistenceException {
     try {
-      return new XSLDocumentConverter(PlotPlugin.ID).run(sourceDocument, HIERARCHY_STYLESHEET);
+      return new XSLDocumentConverter(PlotPlugin.ID, HIERARCHY_STYLESHEET, new HashMap<String, String>()).run(sourceDocument);
     }
     catch (IOException e) {
       PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertHierarchy, e);

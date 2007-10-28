@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="xml" encoding="ISO-8859-1" indent="yes"/>
-	<xsl:preserve-space elements="*"/>
+	
+	<xsl:param name="bundleVersion" />
+	
 	<xsl:template match="ExaltedCharacter/Statistics/Attributes">
-	  <model>
+	  <model bundleVersion="{$bundleVersion}">	  	
 		<xsl:for-each select="*">
 		  <xsl:call-template name="convert"/>
 		</xsl:for-each>
