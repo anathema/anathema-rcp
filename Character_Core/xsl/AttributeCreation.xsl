@@ -4,24 +4,18 @@
 	
 	<xsl:param name="bundleVersion" />
 	
-	<xsl:template match="ExaltedCharacter/Statistics/Attributes">
-	  <model bundleVersion="{$bundleVersion}">	  	
-		<xsl:for-each select="*">
-		  <xsl:call-template name="convert"/>
-		</xsl:for-each>
-	  </model>
+	<xsl:template match="/">
+		<model bundleVersion="{$bundleVersion}">
+			<xsl:apply-templates select="ExaltedCharacter/Statistics/Attributes/*/*"/>
+		</model>
 	</xsl:template>
 	
-	<xsl:template name="convert">
-		<xsl:for-each select="*">
-		   <trait>
+	<xsl:template match="ExaltedCharacter/Statistics/Attributes/*/*">	  	  	
+		<trait>
 			<xsl:attribute name="id">
-			  <xsl:value-of select="name(.)"/>
+				<xsl:value-of select="name(.)"/>
 			</xsl:attribute>
-			<xsl:for-each select="@*">
-		      <xsl:copy/>
-			</xsl:for-each>
-		  </trait>
-	  </xsl:for-each>
-	</xsl:template>
+			<xsl:copy-of select="@*"/>
+		</trait>
+	</xsl:template>	
 </xsl:stylesheet>
