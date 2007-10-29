@@ -1,11 +1,12 @@
 package net.sf.anathema.campaign.plot.importwizard;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.transform.TransformerException;
 
 import net.sf.anathema.basics.importwizard.XSLDocumentConverter;
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.campaign.plot.PlotPlugin;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -21,7 +22,7 @@ public class XSLPlotConverter {
 
   public static Document createContent(Document sourceDocument) throws PersistenceException {
     try {
-      Document document = new XSLDocumentConverter(PlotPlugin.ID, CONTENT_STYLESHEET, new HashMap<String, String>()).run(sourceDocument);
+      Document document = convertDocument(sourceDocument, CONTENT_STYLESHEET);
       Element name = document.getRootElement().element(TAG_NAME);
       String text = name.getText();
       name.clearContent();
@@ -41,7 +42,7 @@ public class XSLPlotConverter {
 
   public static Document createHierarchy(Document sourceDocument) throws PersistenceException {
     try {
-      return new XSLDocumentConverter(PlotPlugin.ID, HIERARCHY_STYLESHEET, new HashMap<String, String>()).run(sourceDocument);
+      return convertDocument(sourceDocument, HIERARCHY_STYLESHEET);
     }
     catch (IOException e) {
       PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertHierarchy, e);
@@ -51,5 +52,12 @@ public class XSLPlotConverter {
       PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertHierarchy, e);
       throw new PersistenceException(e);
     }
+  }
+
+  private static Document convertDocument(Document sourceDocument, String contentStylesheet)
+      throws TransformerException,
+      IOException {
+    Map<String, String> parameters = BundlePersistenceUtilities.getBundleVersionMap(PlotPlugin.ID);
+    return new XSLDocumentConverter(PlotPlugin.ID, contentStylesheet, parameters).run(sourceDocument);
   }
 }
