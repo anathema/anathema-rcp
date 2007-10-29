@@ -23,6 +23,7 @@ public class XSLPlotConverter {
   public static Document createContent(Document sourceDocument) throws PersistenceException {
     try {
       Document document = convertDocument(sourceDocument, CONTENT_STYLESHEET);
+      System.out.println(document.asXML());
       Element name = document.getRootElement().element(TAG_NAME);
       String text = name.getText();
       name.clearContent();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<hierarchy><Plot>
+<hierarchy bundleVersion="1.0.0"><Plot>
     <Story repositoryId="Story0">
       <Episode repositoryId="Episode1"/>
       <Episode repositoryId="Episode14"/>
