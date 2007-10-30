@@ -1,24 +1,33 @@
 package net.sf.anathema.campaign.note.importwizard;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import net.disy.commons.core.model.BooleanModel;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.importwizard.AbstractImportWizard;
 import net.sf.anathema.basics.importwizard.FileSelectionStatusFactory;
 import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
 import net.sf.anathema.basics.importwizard.IFileSelectionModel;
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.repository.input.UnusedFileFactory;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.campaign.note.NotesRepositoryUtilities;
+import net.sf.anathema.campaign.note.plugin.NotePluginConstants;
+import net.sf.anathema.lib.exception.PersistenceException;
+import net.sf.anathema.lib.xml.DocumentUtilities;
 
+import org.dom4j.Document;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.IWizardPage;
 
 public class NoteImportWizard extends AbstractImportWizard {
+  private static final Logger logger = new Logger(NotePluginConstants.PLUGIN_ID);
 
   public NoteImportWizard() {
     super(new FileSelectionStatusFactory());
@@ -43,7 +52,19 @@ public class NoteImportWizard extends AbstractImportWizard {
   protected void runImport(final File externalFile, final IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException {
-    internalFile.create(new FileInputStream(externalFile), true, monitor);
+    try {
+      Document document = DocumentUtilities.read(externalFile);
+      BundlePersistenceUtilities.addBundleVersionAttribute(document.getRootElement(), NotePluginConstants.PLUGIN_ID);
+      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+      DocumentUtilities.save(document, outputStream);
+      internalFile.create(new ByteArrayInputStream(outputStream.toByteArray()), true, monitor);
+    }
+    catch (PersistenceException e) {
+      throw new CoreException(logger.createErrorStatus(Messages.NoteImportWizard_ConversionError, e));
+    }
+    catch (IOException e) {
+      throw new CoreException(logger.createErrorStatus(Messages.NoteImportWizard_ConversionError, e));
+    }
   }
 
   @Override

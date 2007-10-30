@@ -24,7 +24,7 @@ public class BundlePersistenceUtilities {
     return Collections.singletonMap(ATTRIB_BUNDLE_VERSION, getBundleVersion(bundleId));
   }
 
-  private static void addBundleVersionAttribute(Element element, String bundleId) {
+  public static void addBundleVersionAttribute(Element element, String bundleId) {
     String version = getBundleVersion(bundleId);
     element.addAttribute(ATTRIB_BUNDLE_VERSION, version);
   }
