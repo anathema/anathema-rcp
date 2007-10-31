@@ -4,6 +4,7 @@ import java.net.URL;
 
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.editors.AbstractModelPersistableFactory;
+import net.sf.anathema.character.core.editors.CharacterModelPersistable;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.description.CharacterDescriptionEditorInput;
 import net.sf.anathema.character.description.ICharacterDescription;
@@ -24,7 +25,7 @@ public class CharacterDescriptionPersistableFactory extends AbstractModelPersist
   @Override
   public IAdaptable createElement(IMemento memento) {
     try {
-      URL imageUrl = new URL(memento.getString(CharacterDescriptionPersistable.PROP_IMAGE_DESCRIPTOR_URL));
+      URL imageUrl = new URL(memento.getString(CharacterModelPersistable.PROP_IMAGE_DESCRIPTOR_URL));
       ICharacterDescription description = (ICharacterDescription) getModel(memento, ICharacterDescription.MODEL_ID);
       return new CharacterDescriptionEditorInput(getModelFile(memento), imageUrl, description);
     }

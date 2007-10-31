@@ -1,27 +1,28 @@
-package net.sf.anathema.character.description.editor;
+package net.sf.anathema.character.core.editors;
 
 import java.net.URL;
 
-import net.sf.anathema.character.core.editors.AbstractModelPersistableFactory;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IPersistableElement;
 
-public class CharacterDescriptionPersistable implements IPersistableElement {
+public class CharacterModelPersistable implements IPersistableElement {
 
   public static final String PROP_IMAGE_DESCRIPTOR_URL = "imageDescriptorUrl"; //$NON-NLS-1$
   private final IPath filePath;
   private final URL imageUrl;
+  private final String factoryId;
 
-  public CharacterDescriptionPersistable(IPath filePath, URL imageUrl) {
+  public CharacterModelPersistable(IPath filePath, URL imageUrl, String factoryId) {
     this.filePath = filePath;
     this.imageUrl = imageUrl;
+    this.factoryId = factoryId;
   }
-  
+
   @Override
   public String getFactoryId() {
-    return "CharacterDescriptionEditorInputFactory"; //$NON-NLS-1$
+    return factoryId;
   }
 
   @Override
