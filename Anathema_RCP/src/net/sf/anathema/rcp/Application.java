@@ -1,6 +1,5 @@
 package net.sf.anathema.rcp;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -11,9 +10,9 @@ public class Application implements IApplication {
 
   @Override
   public Object start(IApplicationContext context) throws Exception {
-    boolean lockSucceeded = Platform.getInstanceLocation().lock();
+    WorkspaceLock lock = new WorkspaceLock();
     Display display = PlatformUI.createDisplay();
-    if (!lockSucceeded) {
+    if (!lock.lock()) {
       MessageDialog.openInformation(
           display.getActiveShell(),
           Messages.Application_LockDialogTitle,
@@ -29,7 +28,7 @@ public class Application implements IApplication {
     }
     finally {
       display.dispose();
-      Platform.getInstanceLocation().release();
+      lock.release();
     }
   }
 
