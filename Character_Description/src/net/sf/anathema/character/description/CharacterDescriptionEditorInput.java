@@ -7,6 +7,7 @@ import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.character.description.editor.CharacterDescriptionPersistable;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -14,14 +15,17 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.ui.IPersistableElement;
 
 public class CharacterDescriptionEditorInput extends AbstractCharacterModelEditorInput<ICharacterDescription> {
 
   private ICharacterDescription item;
   private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
+  private CharacterDescriptionPersistable persistable;
 
   public CharacterDescriptionEditorInput(IFile file, URL imageUrl, ICharacterDescription description) {
     super(file, imageUrl, null);
+    this.persistable = new CharacterDescriptionPersistable(file.getFullPath(), imageUrl);
     this.item = description;
   }
 
@@ -53,5 +57,10 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
   @Override
   protected IModelIdentifier getModelIdentifier() {
     return new ModelIdentifier((IFolder) getFile().getParent(), ICharacterDescription.MODEL_ID);
+  }
+  
+  @Override
+  public IPersistableElement getPersistable() {
+    return persistable;
   }
 }

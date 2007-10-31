@@ -24,5 +24,12 @@
          </displayConfiguration>
       </model>
    </extension>
+   <extension
+         point="org.eclipse.ui.elementFactories">
+      <factory
+            class="net.sf.anathema.character.description.editor.CharacterDescriptionPersistableFactory"
+            id="CharacterDescriptionEditorInputFactory">
+      </factory>
+   </extension>
 
 </plugin>
