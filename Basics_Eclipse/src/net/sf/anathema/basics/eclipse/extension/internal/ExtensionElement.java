@@ -17,8 +17,8 @@ public class ExtensionElement implements IExtensionElement {
 
   private final IConfigurationElement eclipseElement;
 
-  public ExtensionElement(IConfigurationElement elipseElement) {
-    this.eclipseElement = elipseElement;
+  public ExtensionElement(IConfigurationElement eclipseElement) {
+    this.eclipseElement = eclipseElement;
   }
 
   @Override
@@ -51,23 +51,23 @@ public class ExtensionElement implements IExtensionElement {
   public boolean getBooleanAttribute(String name) {
     return Boolean.valueOf(eclipseElement.getAttribute(name));
   }
-  
+
   @Override
   public ImageDescriptor createImageDescriptorFromAttribute(String name) {
     String resourcePath = eclipseElement.getAttribute(name);
     URL resourceUrl = ResourceUtils.getResourceUrl(getContributorId(), resourcePath);
     return ImageDescriptor.createFromURL(resourceUrl);
   }
-  
+
   @Override
   public int getIntegerAttribute(String name) {
     return Integer.valueOf(eclipseElement.getAttribute(name));
   }
-  
+
   public String getContributorId() {
     return eclipseElement.getContributor().getName();
   }
-  
+
   public boolean hasAttribute(String attributeName) {
     return eclipseElement.getAttribute(attributeName) != null;
   }
