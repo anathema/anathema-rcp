@@ -59,5 +59,12 @@
             name="Character">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.ui.elementFactories">
+      <factory
+            class="net.sf.anathema.character.core.editors.ModelPersistableFactory"
+            id="CharacterModelPersistableFactory">
+      </factory>
+   </extension>
 
 </plugin>

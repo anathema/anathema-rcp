@@ -9,17 +9,26 @@ import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.editors.ModelPersistable;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.ui.IPersistableElement;
 
 public abstract class AbstractCharacterModelEditorInput<M extends IModel> extends FileEditorInput implements
     IFileItemEditorInput<M> {
 
   private final IDisplayNameProvider displayNameProvider;
+  private final ModelPersistable persistable;
 
   public AbstractCharacterModelEditorInput(IFile file, URL imageUrl, IDisplayNameProvider displayNameProvider) {
     super(file, imageUrl);
     this.displayNameProvider = displayNameProvider;
+    this.persistable = new ModelPersistable(file.getFullPath());
+  }
+  
+  @Override
+  public final IPersistableElement getPersistable() {
+    return persistable;
   }
   
   @Override

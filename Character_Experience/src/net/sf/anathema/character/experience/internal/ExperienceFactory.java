@@ -6,17 +6,17 @@ import net.sf.anathema.character.core.model.IModelFactory;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
 
-public class ExperienceFactory extends AbstractModelFactory<NullModelTemplate>  implements IModelFactory {
+public class ExperienceFactory extends AbstractModelFactory<NullModelTemplate> implements IModelFactory {
 
-  private final IModelPersister<NullModelTemplate, ?> persister = new ExperiencePersister();
+  private final IModelPersister<NullModelTemplate, ? > persister = new ExperiencePersister();
 
   @Override
   protected NullModelTemplate createModelTemplate(ICharacterTemplate template) {
     return null;
   }
-  
+
   @Override
-  protected IModelPersister< NullModelTemplate , ? > getPersister() {
+  protected IModelPersister<NullModelTemplate, ? > getPersister() {
     return persister;
   }
 }
