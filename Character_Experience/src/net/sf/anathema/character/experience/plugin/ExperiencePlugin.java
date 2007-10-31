@@ -2,9 +2,9 @@ package net.sf.anathema.character.experience.plugin;
 
 import net.sf.anathema.basics.eclipse.plugin.AbstractAnathemaUIPlugin;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
+import net.sf.anathema.character.experience.internal.PartListenerManager;
 
 import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.osgi.framework.BundleContext;
@@ -24,19 +24,18 @@ public class ExperiencePlugin extends AbstractAnathemaUIPlugin {
     }
   };
   private final IPartListener listener = new TopPartListener(runnable);
+  private final PartListenerManager windowListener = new PartListenerManager(listener);
 
   @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
-    getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(listener);
+    getWorkbench().addWindowListener(windowListener);
   }
 
   @Override
   public void stop(BundleContext context) throws Exception {
-    IWorkbenchWindow window = getWorkbench().getActiveWorkbenchWindow();
-    if (window != null) {
-      window.getActivePage().removePartListener(listener);
-    }
+    getWorkbench().removeWindowListener(windowListener);
+    windowListener.deactivate(getWorkbench());
     super.stop(context);
   }
 
@@ -58,5 +57,4 @@ public class ExperiencePlugin extends AbstractAnathemaUIPlugin {
   public static ExperiencePlugin getDefaultInstance() {
     return instance;
   }
-
 }
