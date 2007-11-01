@@ -41,7 +41,7 @@ public class TraitPreferencePage extends PreferencePage implements IWorkbenchPre
     }
   }
 
-  private ITraitPreferences traitPreferences;
+  private ITraitPreferenceStore traitPreferences;
   private List<Button> allButtons = new ArrayList<Button>();
 
   @Override
@@ -62,7 +62,7 @@ public class TraitPreferencePage extends PreferencePage implements IWorkbenchPre
     return composite;
   }
 
-  protected ITraitPreferences createPreferences() {
+  protected ITraitPreferenceStore createPreferences() {
     return new TraitPreferences(getPreferenceStore());
   }
 

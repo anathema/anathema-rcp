@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait.preference;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 
-public class TraitPreferences implements ITraitPreferences {
+public class TraitPreferences implements ITraitPreferenceStore {
 
   public static final String PREF_TRAIT_EXPERIENCE_TREATMENT = "trait.experienceTreatment"; //$NON-NLS-1$
   private final IPreferenceStore store;
