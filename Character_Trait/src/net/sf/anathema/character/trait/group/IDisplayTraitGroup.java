@@ -1,10 +1,10 @@
 package net.sf.anathema.character.trait.group;
 
-import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.character.trait.display.IDisplayTrait;
 
 import org.eclipse.core.commands.common.IIdentifiable;
 
-public interface IDisplayTraitGroup extends IIdentifiable {
+public interface IDisplayTraitGroup<T extends IDisplayTrait> extends IIdentifiable {
 
-  public Iterable<IInteractiveTrait> getTraits();
+  public Iterable<T> getTraits();
 }

@@ -7,6 +7,7 @@ import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.DisplayTraitGroup;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.interactive.InteractiveFavorization;
 import net.sf.anathema.character.trait.interactive.InteractiveTrait;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
@@ -28,8 +29,8 @@ public final class TraitGroupToDisplayTraitGroupTransformer implements ITransfor
   }
 
   @Override
-  public IDisplayTraitGroup transform(ITraitGroup group) {
-    DisplayTraitGroup displayGroup = new DisplayTraitGroup(group.getId());
+  public IDisplayTraitGroup<IInteractiveTrait> transform(ITraitGroup group) {
+    DisplayTraitGroup<IInteractiveTrait> displayGroup = new DisplayTraitGroup<IInteractiveTrait>(group.getId());
     for (String traitId : group.getTraitIds()) {
       IBasicTrait trait = context.getCollection().getTrait(traitId);
       IExperience experience = context.getExperience();

@@ -29,7 +29,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
     TraitViewFactory factory = new TraitViewFactory(parent, editorInput.getImageProvider());
     parent.setLayout(new GridLayout(3, false));
-    for (IDisplayTraitGroup group : editorInput.createDisplayGroups()) {
+    for (IDisplayTraitGroup<IInteractiveTrait> group : editorInput.createDisplayGroups()) {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
       for (final IInteractiveTrait trait : group.getTraits()) {
         String label = editorInput.getTraitLabel(trait.getTraitType());
@@ -46,7 +46,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
     addDisposable(new ResourceChangeListenerDisposable(resourceListener));
   }
-  
+
   public <T extends ITraitGroupEditorDecoration> T getDecoration(Class<T> clazz) {
     return decorations.get(clazz);
   }

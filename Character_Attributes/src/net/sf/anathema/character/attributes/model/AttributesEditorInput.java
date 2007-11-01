@@ -19,6 +19,7 @@ import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.groupeditor.IIntViewImageProvider;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
@@ -58,7 +59,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   }
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
-  public IDisplayTraitGroup[] createDisplayGroups() {
+  public IDisplayTraitGroup<IInteractiveTrait>[] createDisplayGroups() {
     return ArrayUtilities.transform(
         context.getTraitGroups(),
         IDisplayTraitGroup.class,
@@ -75,7 +76,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   }
 
   @Override
-  public String getGroupLabel(IDisplayTraitGroup group) {
+  public String getGroupLabel(IDisplayTraitGroup<?> group) {
     return AttributeMessages.get(group.getId());
   }
 

@@ -3,23 +3,23 @@ package net.sf.anathema.character.trait.group;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.character.trait.display.IDisplayTrait;
 
-public class DisplayTraitGroup implements IDisplayTraitGroup {
+public class DisplayTraitGroup<T extends IDisplayTrait> implements IDisplayTraitGroup<T> {
 
-  private final List<IInteractiveTrait> traits = new ArrayList<IInteractiveTrait>();
+  private final List<T> traits = new ArrayList<T>();
   private final String id;
-  
+
   public DisplayTraitGroup(String id) {
     this.id = id;
   }
 
-  public void addTrait(IInteractiveTrait trait) {
+  public void addTrait(T trait) {
     traits.add(trait);
   }
 
   @Override
-  public Iterable<IInteractiveTrait> getTraits() {
+  public Iterable<T> getTraits() {
     return traits;
   }
 

@@ -16,9 +16,9 @@ import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.trait.PdfTraitEncoder;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
+import net.sf.anathema.character.trait.display.IDisplayFavorization;
+import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.interactive.IInteractiveFavorization;
-import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
 
 import com.lowagie.text.DocumentException;
@@ -40,11 +40,11 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    IDisplayTraitGroup[] displayGroups = getDisplayAttributeGroups(character);
+    IDisplayTraitGroup<IDisplayTrait>[] displayGroups = getDisplayAttributeGroups(character);
     encodeAttributes(directContent, bounds, displayGroups);
   }
 
-  private IDisplayTraitGroup[] getDisplayAttributeGroups(ICharacter character) {
+  private IDisplayTraitGroup<IDisplayTrait>[] getDisplayAttributeGroups(ICharacter character) {
     AttributesContext context = new AttributesContext(character, character);
     IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(
         character,
@@ -58,20 +58,20 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   public final void encodeAttributes(
       PdfContentByte directContent,
       Bounds contentBounds,
-      IDisplayTraitGroup[] attributeGroups) {
+      IDisplayTraitGroup<IDisplayTrait>[] attributeGroups) {
     float groupSpacing = smallTraitEncoder.getTraitHeight() / 2;
     float y = contentBounds.getMaxY() - groupSpacing;
-    for (IDisplayTraitGroup group : attributeGroups) {
+    for (IDisplayTraitGroup<IDisplayTrait> group : attributeGroups) {
       y -= groupSpacing;
-      for (IInteractiveTrait trait : group.getTraits()) {
+      for (IDisplayTrait trait : group.getTraits()) {
         y = encodeTrait(trait, directContent, contentBounds, y);
       }
     }
   }
 
-  private float encodeTrait(IInteractiveTrait trait, PdfContentByte directContent, Bounds contentBounds, float y) {
+  private float encodeTrait(IDisplayTrait trait, PdfContentByte directContent, Bounds contentBounds, float y) {
     float newY = y;
-    IInteractiveFavorization favorization = trait.getFavorization();
+    IDisplayFavorization favorization = trait.getFavorization();
     String traitLabel = AttributeMessages.get(trait.getTraitType().getId());
     int value = trait.getValue();
     Position position = new Position(contentBounds.x, newY);

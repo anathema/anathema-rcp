@@ -17,7 +17,7 @@ import org.junit.Test;
 public class AttributesEditorInputDisplayGroupTest {
 
   private AttributesEditorInput input;
-  private IDisplayTraitGroup[] groups;
+  private IDisplayTraitGroup<IInteractiveTrait>[] groups;
 
   @Before
   public void createEditorInput() {
