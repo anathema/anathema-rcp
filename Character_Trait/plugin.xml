@@ -37,5 +37,14 @@
          </with>
       </definition>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="character.preferences"
+            class="net.sf.anathema.character.trait.preference.TraitPreferencePage"
+            id="character.traits"
+            name="Traits">
+      </page>
+   </extension>
 
 </plugin>
