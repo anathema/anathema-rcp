@@ -4,7 +4,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.jface.preference.PreferencePage;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -14,18 +13,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 public class CharacterPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, IExecutableExtension {
-
-  public CharacterPreferencePage() {
-    // nothing to do
-  }
-
-  public CharacterPreferencePage(String title) {
-    super(title);
-  }
-
-  public CharacterPreferencePage(String title, ImageDescriptor image) {
-    super(title, image);
-  }
 
   @Override
   protected Control createContents(Composite parent) {
@@ -37,12 +24,12 @@ public class CharacterPreferencePage extends PreferencePage implements IWorkbenc
 
   @Override
   public void init(IWorkbench workbench) {
-    // TODO Auto-generated method stub
+    // nothing to do
   }
 
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
-    // TODO Auto-generated method stub
+    // nothing to do
   }
 }
