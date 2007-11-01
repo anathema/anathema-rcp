@@ -40,4 +40,9 @@ public class BasicTrait implements IBasicTrait {
   public int getListenerCount() {
     return creationModel.getListenerCount() + experiencedModel.getListenerCount();
   }
+
+  @Override
+  public boolean isExperiencedValueSet() {
+    return getExperiencedModel().getValue() > 0;
+  }
 }

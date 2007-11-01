@@ -1,6 +1,5 @@
 package net.sf.anathema.character.trait.preference;
 
-import net.sf.anathema.character.trait.BasicTraitUtilities;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
 
@@ -15,7 +14,7 @@ public enum ExperienceTraitTreatment {
   IncreaseWithCreation {
     @Override
     public void adjust(IBasicTrait basicTrait) {
-      if (!BasicTraitUtilities.isExperiencedValueSet(basicTrait)) {
+      if (!basicTrait.isExperiencedValueSet()) {
         return;
       }
       int creationValue = basicTrait.getCreationModel().getValue();

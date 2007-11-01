@@ -13,4 +13,6 @@ public interface IBasicTrait {
   public BooleanModel getFavoredModel();
 
   public IIdentificate getTraitType();
+  
+  public boolean isExperiencedValueSet();
 }
