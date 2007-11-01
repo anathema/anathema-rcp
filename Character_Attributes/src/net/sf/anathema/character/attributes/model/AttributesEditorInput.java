@@ -15,12 +15,12 @@ import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.groupeditor.IIntViewImageProvider;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.character.trait.interactive.InteractiveTraitGroupTransformer;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
 import net.sf.anathema.lib.collection.CollectionUtilities;
@@ -64,7 +64,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
   public List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups() {
     ITraitPreferences preferences = TraitPreferenceFactory.create();
-    return CollectionUtilities.transform(context.getTraitGroups(), new TraitGroupToDisplayTraitGroupTransformer(
+    return CollectionUtilities.transform(context.getTraitGroups(), new InteractiveTraitGroupTransformer(
         context,
         favorizationHandler,
         preferences));

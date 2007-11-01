@@ -4,44 +4,46 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.display.DisplayFavorization;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.ChangeableModelDisposable;
 
-public class InteractiveFavorization extends AggregatedDisposable implements IInteractiveFavorization {
+public class InteractiveFavorization extends DisplayFavorization implements IInteractiveFavorization {
 
-  private final IFavorizationHandler favorizationHandler;
-  private final IBasicTrait basicTrait;
+  private final AggregatedDisposable allDisposables = new AggregatedDisposable();
   private final IExperience experience;
 
-  public InteractiveFavorization(IBasicTrait basicTrait, IExperience experience, IFavorizationHandler favorizationHandler) {
-    this.basicTrait = basicTrait;
+  public InteractiveFavorization(
+      IBasicTrait basicTrait,
+      IExperience experience,
+      IFavorizationHandler favorizationHandler) {
+    super(favorizationHandler, basicTrait);
     this.experience = experience;
-    this.favorizationHandler = favorizationHandler;
   }
 
   @Override
   public boolean isFavorable() {
-    return !experience.isExperienced() && favorizationHandler.isFavorable();
+    return !experience.isExperienced() && super.isFavorable();
   }
 
   public void addFavorableChangeListener(IChangeListener listener) {
     experience.addChangeListener(listener);
-    addDisposable(new ChangeableModelDisposable(experience, listener));
+    allDisposables.addDisposable(new ChangeableModelDisposable(experience, listener));
   }
 
   @Override
   public void toggleFavored() {
-    favorizationHandler.toogleFavored(basicTrait.getTraitType());
-  }
-
-  @Override
-  public boolean isFavored() {
-    return basicTrait.getFavoredModel().getValue();
+    getFavorizationHandler().toogleFavored(getBasicTrait().getTraitType());
   }
 
   @Override
   public void addFavoredChangeListener(IChangeListener listener) {
-    basicTrait.getFavoredModel().addChangeListener(listener);
-    addDisposable(new ChangeableModelDisposable(basicTrait.getFavoredModel(), listener));
+    getBasicTrait().getFavoredModel().addChangeListener(listener);
+    allDisposables.addDisposable(new ChangeableModelDisposable(getBasicTrait().getFavoredModel(), listener));
+  }
+
+  @Override
+  public void dispose() {
+    allDisposables.dispose();
   }
 }
