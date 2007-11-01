@@ -16,10 +16,11 @@ public class ProjectInitializer {
 
   private void initProject(IItemType itemType) throws Exception {
     IProject project = RepositoryUtilities.getProject(itemType);
-    if (project.exists()) {
-      return;
+    if (!project.exists()) {
+      project.create(null);
     }
-    project.create(null);
-    project.open(null);
+    if (!project.isOpen()) {
+      project.open(null);
+    }
   }
 }
