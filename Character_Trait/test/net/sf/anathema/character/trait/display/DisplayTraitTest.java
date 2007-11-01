@@ -1,0 +1,49 @@
+package net.sf.anathema.character.trait.display;
+
+import static org.junit.Assert.*;
+import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.BasicTrait;
+import net.sf.anathema.character.trait.DummyTraitTemplate;
+import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.interactive.DummyFavorizationHandler;
+import net.sf.anathema.lib.util.Identificate;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class DisplayTraitTest {
+
+  private IBasicTrait basicTrait;
+  private DisplayTrait displayTrait;
+  private IExperience experience;
+
+  @Before
+  public void createTraitWithoutSetExperienceValue() throws Exception {
+    basicTrait = new BasicTrait(new Identificate("TestTrait")); //$NON-NLS-1$
+    experience = new DummyExperience();
+    displayTrait = new DisplayTrait(new DummyFavorizationHandler(), basicTrait, experience, new DummyTraitTemplate());
+  }
+
+  @Test
+  public void valueWhileOnCreationIsCreationValue() throws Exception {
+    experience.setExperienced(false);
+    basicTrait.getCreationModel().setValue(3);
+    assertEquals(3, displayTrait.getValue());
+  }
+
+  @Test
+  public void valueWhileOnExperienceIsHigherOfExperienceAndCreationValue() throws Exception {
+    experience.setExperienced(true);
+    basicTrait.getCreationModel().setValue(2);
+    basicTrait.getExperiencedModel().setValue(3);
+    assertEquals(3, displayTrait.getValue());
+    basicTrait.getCreationModel().setValue(4);
+    assertEquals(4, displayTrait.getValue());
+  }
+  
+  @Test
+  public void traitTypeIsSameAsOfBasicTrait() throws Exception {
+    assertSame(basicTrait.getTraitType(), displayTrait.getTraitType());
+  }
+}
