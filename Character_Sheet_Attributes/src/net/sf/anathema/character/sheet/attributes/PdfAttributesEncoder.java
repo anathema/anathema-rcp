@@ -20,6 +20,8 @@ import net.sf.anathema.character.trait.display.IDisplayFavorization;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.rules.StaticTraitTemplate;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 
 import com.lowagie.text.DocumentException;
@@ -31,7 +33,6 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
 
   private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
   private PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
-  private final int essenceMax = 10;
 
   @Override
   public String getHeader(ICharacter character) {
@@ -46,7 +47,12 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   }
 
   private List<IDisplayTraitGroup<IDisplayTrait>> getDisplayAttributeGroups(ICharacter character) {
-    AttributesContext context = new AttributesContext(character, character);
+    AttributesContext context = new AttributesContext(character, character) {
+      @Override
+      public ITraitTemplate getTraitTemplate() {
+        return new StaticTraitTemplate(10);
+      }
+    };
     IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(
         character,
         new AttributeTemplateProvider().getAttributeTemplate(character.getTemplateId()));
@@ -81,7 +87,7 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
           position,
           contentBounds.width,
           value,
-          essenceMax);
+          trait.getMaximalValue());
     }
     else {
       boolean favored = favorization.isFavored();
@@ -92,7 +98,7 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
           contentBounds.width,
           value,
           favored,
-          essenceMax);
+          trait.getMaximalValue());
     }
     return newY;
   }
