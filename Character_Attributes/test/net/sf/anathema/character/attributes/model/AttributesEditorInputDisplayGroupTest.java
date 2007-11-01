@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Iterator;
 
-import net.sf.anathema.character.trait.IDisplayTrait;
+import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
@@ -35,7 +35,7 @@ public class AttributesEditorInputDisplayGroupTest {
 
   @Test
   public void firstGroupIsCreatedCorrectly() throws Exception {
-    Iterator<IDisplayTrait> iterator1 = groups[0].getTraits().iterator();
+    Iterator<IInteractiveTrait> iterator1 = groups[0].getTraits().iterator();
     assertEquals("trait1", iterator1.next().getTraitType().getId()); //$NON-NLS-1$
     assertEquals("trait2", iterator1.next().getTraitType().getId()); //$NON-NLS-1$
     assertFalse(iterator1.hasNext());
@@ -43,7 +43,7 @@ public class AttributesEditorInputDisplayGroupTest {
 
   @Test
   public void secondGroupIsCreatedCorrectly() throws Exception {
-    Iterator<IDisplayTrait> iterator2 = groups[1].getTraits().iterator();
+    Iterator<IInteractiveTrait> iterator2 = groups[1].getTraits().iterator();
     assertEquals("trait3", iterator2.next().getTraitType().getId()); //$NON-NLS-1$
     assertEquals("trait4", iterator2.next().getTraitType().getId()); //$NON-NLS-1$
     assertFalse(iterator2.hasNext());

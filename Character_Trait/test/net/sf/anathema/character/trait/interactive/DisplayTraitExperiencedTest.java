@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.display;
+package net.sf.anathema.character.trait.interactive;
 
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;

@@ -12,7 +12,7 @@ import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.ChangeableModelDisposable;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
+public class InteractiveTrait extends ChangeManagement implements IInteractiveTrait {
 
   private final IBasicTrait basicTrait;
   private final IRuleTrait ruleTrait;
@@ -30,13 +30,13 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     }
   };
   private AggregatedDisposable allDisposables = new AggregatedDisposable();
-  private IDisplayFavorization favorization;
+  private IInteractiveFavorization favorization;
   private final ITraitPreferences traitPreferences;
 
-  public DisplayTrait(
+  public InteractiveTrait(
       final IBasicTrait basicTrait,
       final IExperience experience,
-      IDisplayFavorization favorization,
+      IInteractiveFavorization favorization,
       ITraitTemplate traitTemplate,
       ITraitPreferences traitPreferences) {
     this.traitPreferences = traitPreferences;
@@ -92,7 +92,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   }
 
   @Override
-  public IDisplayFavorization getFavorization() {
+  public IInteractiveFavorization getFavorization() {
     return favorization;
   }
 }

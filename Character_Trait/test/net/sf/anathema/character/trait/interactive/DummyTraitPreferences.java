@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.display;
+package net.sf.anathema.character.trait.interactive;
 
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;

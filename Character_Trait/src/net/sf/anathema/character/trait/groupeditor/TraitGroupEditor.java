@@ -6,7 +6,7 @@ import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
-import net.sf.anathema.character.trait.IDisplayTrait;
+import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 
 import org.eclipse.core.resources.IFolder;
@@ -31,7 +31,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     parent.setLayout(new GridLayout(3, false));
     for (IDisplayTraitGroup group : editorInput.createDisplayGroups()) {
       createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
-      for (final IDisplayTrait trait : group.getTraits()) {
+      for (final IInteractiveTrait trait : group.getTraits()) {
         String label = editorInput.getTraitLabel(trait.getTraitType());
         final IExtendableIntValueView view = factory.create(label, trait);
         for (ITraitGroupEditorDecoration decoration : decorations) {

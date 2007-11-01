@@ -3,7 +3,7 @@ package net.sf.anathema.character.trait;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.ui.IDisposable;
 
-public interface IDisplayFavorization extends IDisposable{
+public interface IInteractiveFavorization extends IDisposable{
 
   public void addFavoredChangeListener(IChangeListener listener);
 

@@ -1,13 +1,13 @@
-package net.sf.anathema.character.trait.display;
+package net.sf.anathema.character.trait.interactive;
 
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.AbstractIntValueModelTest;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.DisplayTrait;
+import net.sf.anathema.character.trait.InteractiveTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
-import net.sf.anathema.character.trait.IDisplayFavorization;
+import net.sf.anathema.character.trait.IInteractiveFavorization;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.lib.util.Identificate;
@@ -22,7 +22,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
   private DummyTraitTemplate traitTemplate;
   private Identificate traitType;
   private BasicTrait basicTrait;
-  private IDisplayFavorization favorization;
+  private IInteractiveFavorization favorization;
 
   protected abstract IExperience createExperience();
 
@@ -32,17 +32,17 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     this.traitTemplate = new DummyTraitTemplate();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
-    this.favorization = EasyMock.createMock(IDisplayFavorization.class);
+    this.favorization = EasyMock.createMock(IInteractiveFavorization.class);
     ITraitPreferences traitPreferences = createTraitPreferences();
-    this.model = new DisplayTrait(basicTrait, basics, favorization, traitTemplate, traitPreferences);
+    this.model = new InteractiveTrait(basicTrait, basics, favorization, traitTemplate, traitPreferences);
   }
 
   protected ITraitPreferences createTraitPreferences() {
     return new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
   }
 
-  protected final DisplayTrait getDisplayTrait() {
-    return (DisplayTrait) model;
+  protected final InteractiveTrait getDisplayTrait() {
+    return (InteractiveTrait) model;
   }
 
   @Test

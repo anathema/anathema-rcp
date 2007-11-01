@@ -3,7 +3,7 @@ package net.sf.anathema.character.trait.groupeditor;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
-import net.sf.anathema.character.trait.IDisplayTrait;
+import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.TraitPresenter;
 
 import org.eclipse.swt.SWT;
@@ -25,7 +25,7 @@ public class TraitViewFactory {
     this.activeImage = provider.createActiveImage();
   }
 
-  public IExtendableIntValueView create(String text, final IDisplayTrait trait) {
+  public IExtendableIntValueView create(String text, final IInteractiveTrait trait) {
     final Button favoredButton = new Button(parent, SWT.TOGGLE);
     initListening(trait, favoredButton);
     createLabel(GridDataFactory.createIndentData(5)).setText(text);
@@ -34,7 +34,7 @@ public class TraitViewFactory {
     return view;
   }
 
-  private void initListening(final IDisplayTrait trait, final Button favoredButton) {
+  private void initListening(final IInteractiveTrait trait, final Button favoredButton) {
     trait.getFavorization().addFavorableChangeListener(new EnabledUpdateListener(favoredButton, trait));
     trait.getFavorization().addFavoredChangeListener(
         new FavorizationModelListener(favoredButton, trait, passiveImage, activeImage));

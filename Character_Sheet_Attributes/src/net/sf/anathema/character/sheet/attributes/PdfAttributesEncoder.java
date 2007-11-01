@@ -14,8 +14,8 @@ import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.trait.PdfTraitEncoder;
-import net.sf.anathema.character.trait.IDisplayFavorization;
-import net.sf.anathema.character.trait.IDisplayTrait;
+import net.sf.anathema.character.trait.IInteractiveFavorization;
+import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
@@ -30,7 +30,7 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
 
   private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
   private PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
-  private final int essenceMax = 7;
+  private final int essenceMax = 10;
 
   @Override
   public String getHeader(ICharacter character) {
@@ -63,15 +63,15 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
     float y = contentBounds.getMaxY() - groupSpacing;
     for (IDisplayTraitGroup group : attributeGroups) {
       y -= groupSpacing;
-      for (IDisplayTrait trait : group.getTraits()) {
+      for (IInteractiveTrait trait : group.getTraits()) {
         y = encodeTrait(trait, directContent, contentBounds, y);
       }
     }
   }
 
-  private float encodeTrait(IDisplayTrait trait, PdfContentByte directContent, Bounds contentBounds, float y) {
+  private float encodeTrait(IInteractiveTrait trait, PdfContentByte directContent, Bounds contentBounds, float y) {
     float newY = y;
-    IDisplayFavorization favorization = trait.getFavorization();
+    IInteractiveFavorization favorization = trait.getFavorization();
     String traitLabel = AttributeMessages.get(trait.getTraitType().getId());
     int value = trait.getValue();
     Position position = new Position(contentBounds.x, newY);

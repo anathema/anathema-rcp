@@ -1,11 +1,11 @@
-package net.sf.anathema.character.trait.display;
+package net.sf.anathema.character.trait.interactive;
 
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.DisplayTrait;
+import net.sf.anathema.character.trait.InteractiveTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
@@ -21,7 +21,7 @@ public class DisplayTraitToggleExperienceTest {
   private static final int EXPERIENCE_VALUE = 4;
   private static final int CREATION_VALUE = 2;
   private IExperience experience;
-  private DisplayTrait displayTrait;
+  private InteractiveTrait displayTrait;
 
   @Before
   public void createTrait() throws Exception {
@@ -30,7 +30,7 @@ public class DisplayTraitToggleExperienceTest {
     basicTrait.getExperiencedModel().setValue(EXPERIENCE_VALUE);
     this.experience = new DummyExperience();
     ITraitPreferences traitPreferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
-    this.displayTrait = new DisplayTrait(basicTrait, experience, null, new DummyTraitTemplate(), traitPreferences);
+    this.displayTrait = new InteractiveTrait(basicTrait, experience, null, new DummyTraitTemplate(), traitPreferences);
   }
 
   @Test

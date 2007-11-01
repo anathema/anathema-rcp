@@ -2,8 +2,8 @@ package net.sf.anathema.character.trait.collection;
 
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.DisplayFavorization;
-import net.sf.anathema.character.trait.DisplayTrait;
+import net.sf.anathema.character.trait.InteractiveFavorization;
+import net.sf.anathema.character.trait.InteractiveTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.DisplayTraitGroup;
@@ -34,8 +34,8 @@ public final class TraitGroupToDisplayTraitGroupTransformer implements ITransfor
       IBasicTrait trait = context.getCollection().getTrait(traitId);
       IExperience experience = context.getExperience();
       ITraitTemplate traitTemplate = context.getTraitTemplate();
-      DisplayFavorization favorization = new DisplayFavorization(trait, experience, favorizationHandler);
-      displayGroup.addTrait(new DisplayTrait(trait, experience, favorization, traitTemplate, traitPreferences));
+      InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
+      displayGroup.addTrait(new InteractiveTrait(trait, experience, favorization, traitTemplate, traitPreferences));
     }
     return displayGroup;
   }

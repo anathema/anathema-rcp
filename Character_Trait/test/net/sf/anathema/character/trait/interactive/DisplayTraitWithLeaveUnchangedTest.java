@@ -1,11 +1,11 @@
-package net.sf.anathema.character.trait.display;
+package net.sf.anathema.character.trait.interactive;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.DisplayTrait;
+import net.sf.anathema.character.trait.InteractiveTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
-import net.sf.anathema.character.trait.IDisplayFavorization;
+import net.sf.anathema.character.trait.IInteractiveFavorization;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 import net.sf.anathema.lib.util.Identificate;
 
@@ -17,7 +17,7 @@ public class DisplayTraitWithLeaveUnchangedTest {
 
   private DummyExperience experience;
   private BasicTrait basicTrait;
-  private DisplayTrait displayTrait;
+  private InteractiveTrait displayTrait;
 
   @Before
   public final void createTraitWithExperienceValue3AndCreationValue2() {
@@ -25,10 +25,10 @@ public class DisplayTraitWithLeaveUnchangedTest {
     basicTrait = new BasicTrait(new Identificate("test")); //$NON-NLS-1$
     basicTrait.getCreationModel().setValue(2);
     basicTrait.getExperiencedModel().setValue(3);
-    this.displayTrait = new DisplayTrait(
+    this.displayTrait = new InteractiveTrait(
         basicTrait,
         experience,
-        EasyMock.createMock(IDisplayFavorization.class),
+        EasyMock.createMock(IInteractiveFavorization.class),
         new DummyTraitTemplate(),
         new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged));
   }

@@ -1,18 +1,18 @@
 package net.sf.anathema.character.trait.groupeditor;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.trait.IDisplayTrait;
+import net.sf.anathema.character.trait.IInteractiveTrait;
 
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 
 public final class FavorizationModelListener implements IChangeListener {
   private final Button favoredButton;
-  private final IDisplayTrait trait;
+  private final IInteractiveTrait trait;
   private final Image passiveImage;
   private final Image activeImage;
 
-  public FavorizationModelListener(Button favoredButton, IDisplayTrait trait, Image passiveImage, Image activeImage) {
+  public FavorizationModelListener(Button favoredButton, IInteractiveTrait trait, Image passiveImage, Image activeImage) {
     this.favoredButton = favoredButton;
     this.trait = trait;
     this.passiveImage = passiveImage;

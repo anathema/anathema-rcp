@@ -16,7 +16,7 @@ import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCredi
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
-import net.sf.anathema.character.trait.IDisplayTrait;
+import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
@@ -35,7 +35,7 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
   private IAttributeCreditCollection creditCollection;
   private AttributesContext context;
 
-  public void decorate(final IDisplayTrait trait, final IExtendableIntValueView view, ITraitGroupEditorInput editorInput) {
+  public void decorate(final IInteractiveTrait trait, final IExtendableIntValueView view, ITraitGroupEditorInput editorInput) {
     ICreditManager creditManager = new CreditManager();
     this.input = editorInput;
     this.context = AttributesContext.create(editorInput.getCharacterId(), ModelCache.getInstance());

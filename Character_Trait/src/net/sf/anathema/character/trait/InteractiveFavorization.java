@@ -5,13 +5,13 @@ import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.ChangeableModelDisposable;
 
-public class DisplayFavorization extends AggregatedDisposable implements IDisplayFavorization {
+public class InteractiveFavorization extends AggregatedDisposable implements IInteractiveFavorization {
 
   private final IFavorizationHandler favorizationHandler;
   private final IBasicTrait basicTrait;
   private final IExperience experience;
 
-  public DisplayFavorization(IBasicTrait basicTrait, IExperience experience, IFavorizationHandler favorizationHandler) {
+  public InteractiveFavorization(IBasicTrait basicTrait, IExperience experience, IFavorizationHandler favorizationHandler) {
     this.basicTrait = basicTrait;
     this.experience = experience;
     this.favorizationHandler = favorizationHandler;

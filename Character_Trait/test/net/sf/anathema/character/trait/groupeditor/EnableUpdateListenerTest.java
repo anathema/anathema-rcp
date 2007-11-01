@@ -1,8 +1,8 @@
 package net.sf.anathema.character.trait.groupeditor;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.trait.IDisplayFavorization;
-import net.sf.anathema.character.trait.IDisplayTrait;
+import net.sf.anathema.character.trait.IInteractiveFavorization;
+import net.sf.anathema.character.trait.IInteractiveTrait;
 
 import org.easymock.EasyMock;
 import org.eclipse.swt.SWT;
@@ -14,8 +14,8 @@ public class EnableUpdateListenerTest {
 
   @Test
   public void initializesButton() throws Exception {
-    IDisplayTrait trait = EasyMock.createMock(IDisplayTrait.class);
-    IDisplayFavorization favorization = EasyMock.createMock(IDisplayFavorization.class);
+    IInteractiveTrait trait = EasyMock.createMock(IInteractiveTrait.class);
+    IInteractiveFavorization favorization = EasyMock.createMock(IInteractiveFavorization.class);
     EasyMock.expect(trait.getFavorization()).andReturn(favorization);
     EasyMock.expect(favorization.isFavorable()).andReturn(false);
     EasyMock.replay(trait, favorization);
@@ -28,8 +28,8 @@ public class EnableUpdateListenerTest {
   
   @Test
   public void changesState() throws Exception {
-    IDisplayTrait trait = EasyMock.createMock(IDisplayTrait.class);
-    IDisplayFavorization favorization = EasyMock.createMock(IDisplayFavorization.class);
+    IInteractiveTrait trait = EasyMock.createMock(IInteractiveTrait.class);
+    IInteractiveFavorization favorization = EasyMock.createMock(IInteractiveFavorization.class);
     EasyMock.expect(trait.getFavorization()).andReturn(favorization).times(2);
     EasyMock.expect(favorization.isFavorable()).andReturn(false);
     EasyMock.expect(favorization.isFavorable()).andReturn(true);
