@@ -64,4 +64,9 @@ public class SingleAttributeExperienceCalculationTest {
   public void calculates8PointsForExperienceValue3AndCreationValue2() throws Exception {
     assertCalculation(2, 3, 8);
   }
+  
+  @Test
+  public void calculates0PointsForExperienceValueLowerThanCreationValue() throws Exception {
+    assertCalculation(5, 4, 0);
+  }
 }
