@@ -22,7 +22,8 @@ public class DisplayTraitTest {
   public void createTraitWithoutSetExperienceValue() throws Exception {
     basicTrait = new BasicTrait(new Identificate("TestTrait")); //$NON-NLS-1$
     experience = new DummyExperience();
-    displayTrait = new DisplayTrait(new DummyFavorizationHandler(), basicTrait, experience, new DummyTraitTemplate());
+    IDisplayFavorization favorization = new DisplayFavorization(new DummyFavorizationHandler(), basicTrait);
+    displayTrait = new DisplayTrait(favorization, basicTrait, experience, new DummyTraitTemplate());
   }
 
   @Test
@@ -41,7 +42,7 @@ public class DisplayTraitTest {
     basicTrait.getCreationModel().setValue(4);
     assertEquals(4, displayTrait.getValue());
   }
-  
+
   @Test
   public void traitTypeIsSameAsOfBasicTrait() throws Exception {
     assertSame(basicTrait.getTraitType(), displayTrait.getTraitType());

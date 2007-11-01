@@ -3,10 +3,10 @@ package net.sf.anathema.character.trait.interactive;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.display.DisplayTrait;
+import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.internal.IRuleTrait;
-import net.sf.anathema.character.trait.rules.internal.RuleTrait;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
@@ -15,8 +15,6 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 public class InteractiveTrait extends ChangeManagement implements IInteractiveTrait {
 
-  private final IBasicTrait basicTrait;
-  private final IRuleTrait ruleTrait;
   private final ChangeControl changeControl = new ChangeControl();
   private final IChangeListener changeListener = new IChangeListener() {
     @Override
@@ -30,9 +28,13 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
       traitPreferences.getExperienceTreatment().adjust(basicTrait);
     }
   };
-  private AggregatedDisposable allDisposables = new AggregatedDisposable();
-  private IInteractiveFavorization favorization;
+  private final AggregatedDisposable allDisposables = new AggregatedDisposable();
+  private final IBasicTrait basicTrait;
+  private final IDisplayTrait displayTrait;
+  private final IInteractiveFavorization favorization;
   private final ITraitPreferences traitPreferences;
+  private final ITraitTemplate traitTemplate;
+  private final IExperience experience;
 
   public InteractiveTrait(
       final IBasicTrait basicTrait,
@@ -40,8 +42,10 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
       IInteractiveFavorization favorization,
       ITraitTemplate traitTemplate,
       ITraitPreferences traitPreferences) {
+    this.experience = experience;
+    this.traitTemplate = traitTemplate;
     this.traitPreferences = traitPreferences;
-    this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
+    this.displayTrait = new DisplayTrait(favorization, basicTrait, experience, traitTemplate);
     this.favorization = favorization;
     this.basicTrait = basicTrait;
     basicTrait.getCreationModel().addChangeListener(changeListener);
@@ -59,12 +63,12 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
 
   @Override
   public int getValue() {
-    return ruleTrait.getValue();
+    return displayTrait.getValue();
   }
 
   @Override
   public int getMaximalValue() {
-    return ruleTrait.getMaximalValue();
+    return displayTrait.getMaximalValue();
   }
 
   @Override
@@ -84,7 +88,26 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
 
   @Override
   public void setValue(int value) {
-    ruleTrait.setValue(value);
+    int correctedValue = getCorrectedValue(value);
+    if (experience.isExperienced()) {
+      basicTrait.getExperiencedModel().setValue(correctedValue);
+    }
+    else {
+      basicTrait.getCreationModel().setValue(correctedValue);
+    }
+  }
+
+  private int getCorrectedValue(int value) {
+    if (experience.isExperienced() && value < basicTrait.getCreationModel().getValue()) {
+      return basicTrait.getCreationModel().getValue();
+    }
+    if (value < traitTemplate.getMinimalValue()) {
+      return traitTemplate.getMinimalValue();
+    }
+    if (value > getMaximalValue()) {
+      return getMaximalValue();
+    }
+    return value;
   }
 
   @Override

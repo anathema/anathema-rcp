@@ -1,26 +1,25 @@
-package net.sf.anathema.character.trait.rules;
+package net.sf.anathema.character.trait.interactive;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.rules.internal.RuleTrait;
+import net.sf.anathema.character.trait.interactive.InteractiveTrait;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class RuleTraitOnExperienceTest {
+public class InteractiveTraitOnExperienceTest {
 
   private static final int MAX_VALUE = 4;
   private static final int MIN_VALUE = 0;
   private static final int CREATION_VALUE = 2;
-  private DummyTraitTemplate traitRules;
   private IExperience experience;
   private IBasicTrait basicTrait;
-  private RuleTrait ruleTrait;
+  private InteractiveTrait ruleTrait;
 
   @Test
   public void allowsValueGreaterThanCreationValue() throws Exception {
@@ -36,14 +35,14 @@ public class RuleTraitOnExperienceTest {
   
   @Before
   public void createRules() throws Exception {
-    this.traitRules = new DummyTraitTemplate();
-    this.traitRules.setMinimalValue(MIN_VALUE);
-    this.traitRules.setMaximalValue(MAX_VALUE);
+    DummyTraitTemplate traitTemplate = new DummyTraitTemplate();
+    traitTemplate.setMinimalValue(MIN_VALUE);
+    traitTemplate.setMaximalValue(MAX_VALUE);
     this.experience = new DummyExperience();
     this.experience.setExperienced(true);
     this.basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
     this.basicTrait.getCreationModel().setValue(CREATION_VALUE);
-    this.ruleTrait = new RuleTrait(basicTrait, experience, traitRules);
+    this.ruleTrait = new InteractiveTrait(basicTrait, experience, null, traitTemplate, null);
   }
   
   @Test

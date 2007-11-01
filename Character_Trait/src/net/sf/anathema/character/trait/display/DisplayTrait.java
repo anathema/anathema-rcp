@@ -2,25 +2,25 @@ package net.sf.anathema.character.trait.display;
 
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.internal.RuleTrait;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class DisplayTrait implements IDisplayTrait {
 
-  private final DisplayFavorization favorization;
-  private final RuleTrait ruleTrait;
+  private final IDisplayFavorization favorization;
   private final IBasicTrait basicTrait;
+  private final IExperience experience;
+  private final ITraitTemplate traitTemplate;
 
   public DisplayTrait(
-      IFavorizationHandler favorizationHandler,
+      IDisplayFavorization favorization,
       IBasicTrait basicTrait,
       IExperience experience,
       ITraitTemplate traitTemplate) {
     this.basicTrait = basicTrait;
-    this.favorization = new DisplayFavorization(favorizationHandler, basicTrait);
-    this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
+    this.experience = experience;
+    this.traitTemplate = traitTemplate;
+    this.favorization = favorization;
   }
 
   @Override
@@ -30,12 +30,19 @@ public class DisplayTrait implements IDisplayTrait {
 
   @Override
   public int getValue() {
-    return ruleTrait.getValue();
+    int experiencedValue = basicTrait.getExperiencedModel().getValue();
+    int creationValue = basicTrait.getCreationModel().getValue();
+    boolean isExperienced = experience.isExperienced();
+    if (isExperienced && experiencedValue >= creationValue) {
+      return experiencedValue;
+    }
+    return creationValue;
   }
 
   @Override
   public int getMaximalValue() {
-    return ruleTrait.getMaximalValue();
+    int currentEssenceValue = experience.isExperienced() ? 7 : 5;
+    return traitTemplate.getMaximalValue(currentEssenceValue);
   }
 
   @Override
