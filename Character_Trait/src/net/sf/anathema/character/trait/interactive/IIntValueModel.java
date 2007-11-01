@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait;
+package net.sf.anathema.character.trait.interactive;
 
 import net.disy.commons.core.model.IChangeableModel;
 

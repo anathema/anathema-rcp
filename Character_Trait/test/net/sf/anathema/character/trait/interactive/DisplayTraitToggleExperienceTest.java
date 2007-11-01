@@ -5,7 +5,6 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.InteractiveTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;

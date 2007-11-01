@@ -14,11 +14,11 @@ import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.trait.PdfTraitEncoder;
-import net.sf.anathema.character.trait.IInteractiveFavorization;
-import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.interactive.IInteractiveFavorization;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
 
 import com.lowagie.text.DocumentException;

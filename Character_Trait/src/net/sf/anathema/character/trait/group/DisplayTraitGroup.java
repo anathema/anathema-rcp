@@ -3,7 +3,7 @@ package net.sf.anathema.character.trait.group;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.character.trait.IInteractiveTrait;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 public class DisplayTraitGroup implements IDisplayTraitGroup {
 

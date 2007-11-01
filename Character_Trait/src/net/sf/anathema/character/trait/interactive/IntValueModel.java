@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait;
+package net.sf.anathema.character.trait.interactive;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.control.change.ChangeControl;

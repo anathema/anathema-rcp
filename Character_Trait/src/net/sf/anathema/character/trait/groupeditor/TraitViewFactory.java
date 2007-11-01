@@ -3,8 +3,8 @@ package net.sf.anathema.character.trait.groupeditor;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
-import net.sf.anathema.character.trait.IInteractiveTrait;
-import net.sf.anathema.character.trait.TraitPresenter;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.character.trait.interactive.TraitPresenter;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;

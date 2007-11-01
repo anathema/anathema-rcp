@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.Iterator;
 
-import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;

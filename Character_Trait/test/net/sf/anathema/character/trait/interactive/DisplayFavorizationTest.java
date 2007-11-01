@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.InteractiveFavorization;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.lib.util.Identificate;
 

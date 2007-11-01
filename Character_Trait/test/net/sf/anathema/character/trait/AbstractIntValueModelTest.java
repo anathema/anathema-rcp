@@ -2,6 +2,7 @@ package net.sf.anathema.character.trait;
 
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.character.trait.interactive.IIntValueModel;
 
 import org.junit.Test;
 

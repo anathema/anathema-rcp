@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.group;
 
-import net.sf.anathema.character.trait.IInteractiveTrait;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.eclipse.core.commands.common.IIdentifiable;
 

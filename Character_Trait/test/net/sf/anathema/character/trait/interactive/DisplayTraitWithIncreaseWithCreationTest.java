@@ -3,9 +3,7 @@ package net.sf.anathema.character.trait.interactive;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.InteractiveTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
-import net.sf.anathema.character.trait.IInteractiveFavorization;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 import net.sf.anathema.lib.util.Identificate;
 

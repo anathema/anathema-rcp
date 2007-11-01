@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.groupeditor;
 
-import net.sf.anathema.character.trait.IInteractiveTrait;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Event;

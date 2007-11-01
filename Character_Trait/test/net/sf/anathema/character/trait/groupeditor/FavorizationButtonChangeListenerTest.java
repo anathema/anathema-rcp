@@ -1,8 +1,8 @@
 package net.sf.anathema.character.trait.groupeditor;
 
 import static org.junit.Assert.assertTrue;
-import net.sf.anathema.character.trait.IInteractiveFavorization;
-import net.sf.anathema.character.trait.IInteractiveTrait;
+import net.sf.anathema.character.trait.interactive.IInteractiveFavorization;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.easymock.EasyMock;
 import org.eclipse.swt.SWT;

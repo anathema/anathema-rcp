@@ -2,8 +2,8 @@ package net.sf.anathema.character.attributes.points;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.IIntValueModel;
 import net.sf.anathema.character.trait.collection.TraitCollection;
+import net.sf.anathema.character.trait.interactive.IIntValueModel;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;

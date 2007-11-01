@@ -2,13 +2,13 @@ package net.sf.anathema.character.trait.collection;
 
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.InteractiveFavorization;
-import net.sf.anathema.character.trait.InteractiveTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.DisplayTraitGroup;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.interactive.InteractiveFavorization;
+import net.sf.anathema.character.trait.interactive.InteractiveTrait;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 

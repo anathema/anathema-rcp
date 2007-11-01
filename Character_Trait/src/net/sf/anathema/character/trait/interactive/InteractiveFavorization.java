@@ -1,7 +1,9 @@
-package net.sf.anathema.character.trait;
+package net.sf.anathema.character.trait.interactive;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.ChangeableModelDisposable;
 

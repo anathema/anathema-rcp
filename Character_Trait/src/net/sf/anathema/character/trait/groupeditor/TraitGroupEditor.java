@@ -6,8 +6,8 @@ import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
-import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResourceChangeListener;

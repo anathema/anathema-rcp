@@ -1,7 +1,7 @@
 package net.sf.anathema.character.trait.groupeditor;
 
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
-import net.sf.anathema.character.trait.IInteractiveTrait;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.eclipse.core.runtime.IExecutableExtension;
 

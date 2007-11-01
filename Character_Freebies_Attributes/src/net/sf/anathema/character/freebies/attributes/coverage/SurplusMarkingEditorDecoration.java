@@ -16,10 +16,10 @@ import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCredi
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
-import net.sf.anathema.character.trait.IInteractiveTrait;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.resources.ITraitResources;
 import net.sf.anathema.lib.ui.IIntValueView;
 import net.sf.anathema.lib.util.IIdentificate;
