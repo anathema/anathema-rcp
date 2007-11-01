@@ -41,7 +41,7 @@
          point="org.eclipse.ui.preferencePages">
       <page
             category="character.preferences"
-            class="net.sf.anathema.character.trait.preference.TraitPreferencePage"
+            class="net.sf.anathema.character.trait.preference.internal.TraitPreferencePage"
             id="character.traits"
             name="Traits">
       </page>
@@ -49,7 +49,7 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="net.sf.anathema.character.trait.preference.TraitPreferenceInitializer">
+            class="net.sf.anathema.character.trait.preference.internal.TraitPreferenceInitializer">
       </initializer>
    </extension>
 

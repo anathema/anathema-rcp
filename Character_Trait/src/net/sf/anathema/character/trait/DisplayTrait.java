@@ -2,6 +2,7 @@ package net.sf.anathema.character.trait;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 import net.sf.anathema.character.trait.rules.internal.IRuleTrait;
 import net.sf.anathema.character.trait.rules.internal.RuleTrait;
@@ -24,12 +25,15 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   };
   private AggregatedDisposable allDisposables = new AggregatedDisposable();
   private IDisplayFavorization favorization;
+  private final ITraitPreferences traitPreferences;
 
   public DisplayTrait(
       final IBasicTrait basicTrait,
       final IExperience experience,
       IDisplayFavorization favorization,
-      ITraitTemplate traitTemplate) {
+      ITraitTemplate traitTemplate,
+      ITraitPreferences traitPreferences) {
+    this.traitPreferences = traitPreferences;
     this.ruleTrait = new RuleTrait(basicTrait, experience, traitTemplate);
     this.favorization = favorization;
     this.basicTrait = basicTrait;
@@ -76,7 +80,7 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
   public void dispose() {
     allDisposables.dispose();
   }
-  
+
   @Override
   public IDisplayFavorization getFavorization() {
     return favorization;

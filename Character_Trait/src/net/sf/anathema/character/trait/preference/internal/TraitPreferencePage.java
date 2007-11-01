@@ -1,9 +1,10 @@
-package net.sf.anathema.character.trait.preference;
+package net.sf.anathema.character.trait.preference.internal;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
+import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;

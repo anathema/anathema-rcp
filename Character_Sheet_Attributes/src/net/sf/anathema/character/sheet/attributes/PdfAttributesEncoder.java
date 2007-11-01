@@ -19,6 +19,7 @@ import net.sf.anathema.character.trait.IDisplayTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
@@ -37,7 +38,8 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   }
 
   @Override
-  public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds) throws DocumentException {
+  public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
+      throws DocumentException {
     IDisplayTraitGroup[] displayGroups = getDisplayAttributeGroups(character);
     encodeAttributes(directContent, bounds, displayGroups);
   }
@@ -50,7 +52,7 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
     return ArrayUtilities.transform(
         context.getTraitGroups(),
         IDisplayTraitGroup.class,
-        new TraitGroupToDisplayTraitGroupTransformer(context, favorizationHandler));
+        new TraitGroupToDisplayTraitGroupTransformer(context, favorizationHandler, TraitPreferenceFactory.create()));
   }
 
   public final void encodeAttributes(

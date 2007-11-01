@@ -19,6 +19,7 @@ import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.groupeditor.IIntViewImageProvider;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
+import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
 
@@ -36,7 +37,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
 
   public AttributesEditorInput(
       final IFile file,
-      URL  imageUrl,
+      URL imageUrl,
       IDisplayNameProvider displayNameProvider,
       final ITraitCollectionContext context,
       final IFavorizationHandler favorizationHandler) {
@@ -61,7 +62,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
     return ArrayUtilities.transform(
         context.getTraitGroups(),
         IDisplayTraitGroup.class,
-        new TraitGroupToDisplayTraitGroupTransformer(context, favorizationHandler));
+        new TraitGroupToDisplayTraitGroupTransformer(context, favorizationHandler, TraitPreferenceFactory.create()));
   }
 
   public IFolder getCharacterFolder() {

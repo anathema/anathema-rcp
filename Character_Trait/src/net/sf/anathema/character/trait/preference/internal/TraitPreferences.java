@@ -1,4 +1,6 @@
-package net.sf.anathema.character.trait.preference;
+package net.sf.anathema.character.trait.preference.internal;
+
+import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 

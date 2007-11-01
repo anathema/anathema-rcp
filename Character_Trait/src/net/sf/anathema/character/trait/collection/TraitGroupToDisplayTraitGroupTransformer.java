@@ -9,16 +9,22 @@ import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.group.DisplayTraitGroup;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
 public final class TraitGroupToDisplayTraitGroupTransformer implements ITransformer<ITraitGroup, IDisplayTraitGroup> {
 
   private final ITraitCollectionContext context;
   private final IFavorizationHandler favorizationHandler;
+  private final ITraitPreferences traitPreferences;
 
-  public TraitGroupToDisplayTraitGroupTransformer(ITraitCollectionContext context, IFavorizationHandler favorizationHandler) {
+  public TraitGroupToDisplayTraitGroupTransformer(
+      ITraitCollectionContext context,
+      IFavorizationHandler favorizationHandler,
+      ITraitPreferences traitPreferences) {
     this.context = context;
     this.favorizationHandler = favorizationHandler;
+    this.traitPreferences = traitPreferences;
   }
 
   @Override
@@ -29,7 +35,7 @@ public final class TraitGroupToDisplayTraitGroupTransformer implements ITransfor
       IExperience experience = context.getExperience();
       ITraitTemplate traitTemplate = context.getTraitTemplate();
       DisplayFavorization favorization = new DisplayFavorization(trait, experience, favorizationHandler);
-      displayGroup.addTrait(new DisplayTrait(trait, experience, favorization, traitTemplate));
+      displayGroup.addTrait(new DisplayTrait(trait, experience, favorization, traitTemplate, traitPreferences));
     }
     return displayGroup;
   }

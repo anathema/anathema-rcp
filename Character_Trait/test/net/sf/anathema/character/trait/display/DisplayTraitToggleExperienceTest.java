@@ -8,6 +8,8 @@ import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
+import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.easymock.EasyMock;
@@ -27,7 +29,8 @@ public class DisplayTraitToggleExperienceTest {
     basicTrait.getCreationModel().setValue(CREATION_VALUE);
     basicTrait.getExperiencedModel().setValue(EXPERIENCE_VALUE);
     this.experience = new DummyExperience();
-    this.displayTrait = new DisplayTrait(basicTrait, experience, null, new DummyTraitTemplate());
+    ITraitPreferences traitPreferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
+    this.displayTrait = new DisplayTrait(basicTrait, experience, null, new DummyTraitTemplate(), traitPreferences);
   }
 
   @Test

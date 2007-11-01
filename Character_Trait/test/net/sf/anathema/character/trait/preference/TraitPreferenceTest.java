@@ -2,6 +2,8 @@ package net.sf.anathema.character.trait.preference;
 
 import static org.junit.Assert.*;
 
+import net.sf.anathema.character.trait.preference.internal.TraitPreferences;
+
 import org.easymock.EasyMock;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceStore;

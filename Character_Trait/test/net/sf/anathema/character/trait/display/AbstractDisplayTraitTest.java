@@ -8,6 +8,8 @@ import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DisplayTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IDisplayFavorization;
+import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
+import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.easymock.EasyMock;
@@ -31,7 +33,8 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
     this.favorization = EasyMock.createMock(IDisplayFavorization.class);
-    this.model = new DisplayTrait(basicTrait, basics, favorization, traitTemplate);
+    ITraitPreferences traitPreferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
+    this.model = new DisplayTrait(basicTrait, basics, favorization, traitTemplate, traitPreferences);
   }
 
   protected final DisplayTrait getDisplayTrait() {
@@ -61,7 +64,7 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     getDisplayTrait().dispose();
     assertEquals(0, basicTrait.getListenerCount());
   }
-  
+
   @Test
   public void favorizationIsDisposedOnDispose() throws Exception {
     favorization.dispose();
