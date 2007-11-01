@@ -6,7 +6,6 @@ import java.net.URL;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
-import net.sf.anathema.character.core.editors.ModelPersistable;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -20,7 +19,6 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
 
   private ICharacterDescription item;
   private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
-  private ModelPersistable persistable;
 
   public CharacterDescriptionEditorInput(IFile file, URL imageUrl, ICharacterDescription description) {
     super(file, imageUrl, null);
