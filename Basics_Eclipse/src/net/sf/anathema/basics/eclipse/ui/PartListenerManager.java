@@ -1,4 +1,4 @@
-package net.sf.anathema.character.experience.internal;
+package net.sf.anathema.basics.eclipse.ui;
 
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWindowListener;
@@ -38,9 +38,24 @@ public final class PartListenerManager implements IWindowListener {
   }
 
   public void deactivate(IWorkbench workbench) {
+    workbench.removeWindowListener(this);
     IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
     if (window != null) {
-      window.getActivePage().removePartListener(listener);
+      IWorkbenchPage activePage = window.getActivePage();
+      if (activePage != null) {
+        activePage.removePartListener(listener);
+      }
+    }
+  }
+
+  public void activate(IWorkbench workbench) {
+    workbench.addWindowListener(this);
+    IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
+    if (window != null) {
+      IWorkbenchPage activePage = window.getActivePage();
+      if (activePage != null) {
+        activePage.addPartListener(listener);
+      }
     }
   }
 }
