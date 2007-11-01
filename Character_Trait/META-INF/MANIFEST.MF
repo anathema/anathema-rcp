@@ -16,6 +16,7 @@ Require-Bundle: net.sf.anathema.character.core,
  org.eclipse.core.expressions
 Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.collection,
+ net.sf.anathema.character.trait.display,
  net.sf.anathema.character.trait.group,
  net.sf.anathema.character.trait.groupeditor,
  net.sf.anathema.character.trait.interactive,
