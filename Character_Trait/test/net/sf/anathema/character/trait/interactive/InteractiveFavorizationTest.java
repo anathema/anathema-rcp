@@ -11,7 +11,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DisplayFavorizationTest {
+public class InteractiveFavorizationTest {
 
   private Identificate traitType;
   private BasicTrait basicTrait;

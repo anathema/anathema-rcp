@@ -6,7 +6,7 @@ import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.interactive.DummyFavorizationHandler;
+import net.sf.anathema.character.trait.fake.DummyFavorizationHandler;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;

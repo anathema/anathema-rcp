@@ -6,6 +6,7 @@ import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.fake.DummyTraitPreferences;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 import net.sf.anathema.lib.util.Identificate;
 
