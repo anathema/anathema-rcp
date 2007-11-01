@@ -1,7 +1,6 @@
 package net.sf.anathema.character.trait.preference;
 
 import static org.junit.Assert.*;
-
 import net.sf.anathema.character.trait.preference.internal.TraitPreferences;
 
 import org.easymock.EasyMock;
@@ -15,7 +14,7 @@ import org.junit.Test;
 public class TraitPreferenceTest {
 
   private static final String PROP_NAME = "trait.experienceTreatment"; //$NON-NLS-1$
-  private static final String ADJUST_TO_CREATION = "AdjustToCreation"; //$NON-NLS-1$
+  private static final String INCREASE_WITH_CREATION = "IncreaseWithCreation"; //$NON-NLS-1$
   private IPreferenceStore preferenceStore;
   private TraitPreferences preferences;
 
@@ -27,14 +26,14 @@ public class TraitPreferenceTest {
 
   @Test
   public void storeSetExperienceTreatmentOnCommit() throws Exception {
-    preferences.setExperienceTreatment(ExperienceTraitTreatment.AdjustToCreation);
+    preferences.setExperienceTreatment(ExperienceTraitTreatment.IncreaseWithCreation);
     preferences.commitChanges();
-    assertEquals(ADJUST_TO_CREATION, preferenceStore.getString(PROP_NAME));
+    assertEquals(INCREASE_WITH_CREATION, preferenceStore.getString(PROP_NAME));
   }
 
   @Test
   public void noStorageOFSetExperienceTreamentWithoutCommit() throws Exception {
-    preferences.setExperienceTreatment(ExperienceTraitTreatment.AdjustToCreation);
+    preferences.setExperienceTreatment(ExperienceTraitTreatment.IncreaseWithCreation);
     assertEquals("", preferenceStore.getString(PROP_NAME)); //$NON-NLS-1$
   }
 
@@ -51,30 +50,30 @@ public class TraitPreferenceTest {
     propertyChangeListener.propertyChange(EasyMock.isA(PropertyChangeEvent.class));
     EasyMock.replay(propertyChangeListener);
     preferenceStore.addPropertyChangeListener(propertyChangeListener);
-    preferences.setExperienceTreatment(ExperienceTraitTreatment.AdjustToCreation);
+    preferences.setExperienceTreatment(ExperienceTraitTreatment.IncreaseWithCreation);
     preferences.commitChanges();
     preferences.commitChanges();
-    assertEquals(ADJUST_TO_CREATION, preferenceStore.getString(PROP_NAME));
+    assertEquals(INCREASE_WITH_CREATION, preferenceStore.getString(PROP_NAME));
     EasyMock.verify(propertyChangeListener);
   }
 
   @Test
   public void contentOfStoreIsReturnedWithoutSettingAValue() throws Exception {
-    preferenceStore.setValue(PROP_NAME, ADJUST_TO_CREATION);
-    assertEquals(ExperienceTraitTreatment.AdjustToCreation, preferences.getExperienceTreatment());
+    preferenceStore.setValue(PROP_NAME, INCREASE_WITH_CREATION);
+    assertEquals(ExperienceTraitTreatment.IncreaseWithCreation, preferences.getExperienceTreatment());
   }
 
   @Test
   public void contentIsReturnedAfterItIsExplicitlySpecified() throws Exception {
-    preferenceStore.setValue(PROP_NAME, ADJUST_TO_CREATION);
+    preferenceStore.setValue(PROP_NAME, INCREASE_WITH_CREATION);
     preferences.setExperienceTreatment(ExperienceTraitTreatment.LeaveUnchanged);
     assertEquals(ExperienceTraitTreatment.LeaveUnchanged, preferences.getExperienceTreatment());
   }
 
   @Test
   public void contentOfStoreDefaultValueIsReturnedIfNoValueIsFound() throws Exception {
-    preferenceStore.setDefault(PROP_NAME, ADJUST_TO_CREATION);
-    assertEquals(ExperienceTraitTreatment.AdjustToCreation, preferences.getExperienceTreatment());
+    preferenceStore.setDefault(PROP_NAME, INCREASE_WITH_CREATION);
+    assertEquals(ExperienceTraitTreatment.IncreaseWithCreation, preferences.getExperienceTreatment());
   }
 
   @Test
@@ -87,7 +86,7 @@ public class TraitPreferenceTest {
   @Test
   public void restoresLeaveUnchangedOnRestoreDefaults() throws Exception {
     preferences.initializeDefaults();
-    preferences.setExperienceTreatment(ExperienceTraitTreatment.AdjustToCreation);
+    preferences.setExperienceTreatment(ExperienceTraitTreatment.IncreaseWithCreation);
     preferences.commitChanges();
     preferences.restoreDefaults();
     assertEquals(ExperienceTraitTreatment.LeaveUnchanged, preferences.getExperienceTreatment());

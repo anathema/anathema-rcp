@@ -33,8 +33,12 @@ public abstract class AbstractDisplayTraitTest extends AbstractIntValueModelTest
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
     this.favorization = EasyMock.createMock(IDisplayFavorization.class);
-    ITraitPreferences traitPreferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
+    ITraitPreferences traitPreferences = createTraitPreferences();
     this.model = new DisplayTrait(basicTrait, basics, favorization, traitTemplate, traitPreferences);
+  }
+
+  protected ITraitPreferences createTraitPreferences() {
+    return new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
   }
 
   protected final DisplayTrait getDisplayTrait() {

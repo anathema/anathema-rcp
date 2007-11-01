@@ -57,7 +57,7 @@ public class TraitPreferencePage extends PreferencePage implements IWorkbenchPre
         Messages.TraitPreferencePage_ExperienceTreatmentUnchanged);
     createButton(
         composite,
-        ExperienceTraitTreatment.AdjustToCreation,
+        ExperienceTraitTreatment.IncreaseWithCreation,
         Messages.TraitPreferencePage_ExperienceTreatmentIncrease);
     new Label(composite, SWT.NONE).setText(Messages.TraitPreferencePage_ExperienceTreatmentExplanation);
     return composite;

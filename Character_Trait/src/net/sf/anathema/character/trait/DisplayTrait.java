@@ -23,6 +23,12 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
       changeControl.fireChangedEvent();
     }
   };
+  private final IChangeListener experienceTreatmentListener = new IChangeListener() {
+    @Override
+    public void stateChanged() {
+      traitPreferences.getExperienceTreatment().adjust(basicTrait);
+    }
+  };
   private AggregatedDisposable allDisposables = new AggregatedDisposable();
   private IDisplayFavorization favorization;
   private final ITraitPreferences traitPreferences;
@@ -38,10 +44,14 @@ public class DisplayTrait extends ChangeManagement implements IDisplayTrait {
     this.favorization = favorization;
     this.basicTrait = basicTrait;
     basicTrait.getCreationModel().addChangeListener(changeListener);
+    basicTrait.getCreationModel().addChangeListener(experienceTreatmentListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);
     experience.addChangeListener(changeListener);
     allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getCreationModel(), changeListener));
     allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getExperiencedModel(), changeListener));
+    allDisposables.addDisposable(new ChangeableModelDisposable(
+        basicTrait.getCreationModel(),
+        experienceTreatmentListener));
     allDisposables.addDisposable(changeControl);
     allDisposables.addDisposable(favorization);
   }
