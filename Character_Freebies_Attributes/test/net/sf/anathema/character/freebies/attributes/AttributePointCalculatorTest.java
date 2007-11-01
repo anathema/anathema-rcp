@@ -6,7 +6,7 @@ import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.attributes.points.DummyTraitGroup;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.rules.EssenceSensitiveTraitTemplate;
+import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.junit.Before;
 import org.junit.Test;

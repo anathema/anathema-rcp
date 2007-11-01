@@ -7,7 +7,7 @@ import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.DisplayTraitGroup;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public abstract class AbstractTraitGroupTransformer<T extends IDisplayTrait> implements
     ITransformer<ITraitGroup, IDisplayTraitGroup<T>> {

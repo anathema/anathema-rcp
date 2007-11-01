@@ -5,7 +5,7 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.AbstractTraitGroupTransformer;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public class DisplayTraitGroupTransformer extends AbstractTraitGroupTransformer<IDisplayTrait> {
 

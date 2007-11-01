@@ -1,8 +1,8 @@
 package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.EssenceSensitiveTraitTemplate;
+import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public class AttributeGroupConfiguration {
 

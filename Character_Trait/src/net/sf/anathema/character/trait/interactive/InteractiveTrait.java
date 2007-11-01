@@ -6,7 +6,7 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.display.DisplayTrait;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.ui.AggregatedDisposable;

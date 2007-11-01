@@ -8,7 +8,7 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.character.trait.group.ITraitGroup;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 import net.sf.anathema.lib.util.Identificate;
 
 public class Attributes {

@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait.collection;
 
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.group.ITraitGroup;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public interface ITraitCollectionContext {
 

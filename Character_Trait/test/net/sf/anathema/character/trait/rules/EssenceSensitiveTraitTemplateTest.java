@@ -2,6 +2,8 @@ package net.sf.anathema.character.trait.rules;
 
 import static org.junit.Assert.*;
 
+import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
+
 import org.junit.Before;
 import org.junit.Test;
 

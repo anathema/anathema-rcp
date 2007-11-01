@@ -5,8 +5,8 @@ import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.EssenceSensitiveTraitTemplate;
+import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 import org.easymock.EasyMock;
 

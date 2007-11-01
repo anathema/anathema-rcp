@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait.display;
 
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class DisplayTrait implements IDisplayTrait {

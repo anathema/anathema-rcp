@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait;
 
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public class DummyTraitTemplate implements ITraitTemplate {
 

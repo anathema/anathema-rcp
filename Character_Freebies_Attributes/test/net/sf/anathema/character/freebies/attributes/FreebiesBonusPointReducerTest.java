@@ -8,7 +8,7 @@ import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.rules.EssenceSensitiveTraitTemplate;
+import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.easymock.EasyMock;
 import org.junit.Before;

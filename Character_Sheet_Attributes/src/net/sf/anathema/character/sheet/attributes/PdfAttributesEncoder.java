@@ -20,8 +20,8 @@ import net.sf.anathema.character.trait.display.IDisplayFavorization;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.rules.ITraitTemplate;
-import net.sf.anathema.character.trait.rules.StaticTraitTemplate;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
+import net.sf.anathema.character.trait.template.StaticTraitTemplate;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 
 import com.lowagie.text.DocumentException;

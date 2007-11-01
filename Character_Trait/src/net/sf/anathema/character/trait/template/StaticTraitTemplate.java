@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.rules;
+package net.sf.anathema.character.trait.template;
 
 
 public final class StaticTraitTemplate implements ITraitTemplate {
