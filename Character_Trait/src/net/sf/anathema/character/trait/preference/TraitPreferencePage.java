@@ -17,11 +17,11 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 public class TraitPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, IExecutableExtension {
 
-  private TraitPreferences traitPreferences;
+  private ITraitPreferences traitPreferences;
 
   @Override
   protected Control createContents(Composite parent) {
-    traitPreferences = new TraitPreferences(getPreferenceStore());
+    traitPreferences = createPreferences();
     Composite composite = new Composite(parent, SWT.NONE);
     composite.setLayout(new GridLayout());
     new Label(composite, SWT.NONE).setText(Messages.TraitPreferencePage_ExperienceTreatmentIntro);
@@ -29,6 +29,10 @@ public class TraitPreferencePage extends PreferencePage implements IWorkbenchPre
     createButton(composite, ExperienceTraitTreatment.AdjustToCreation, Messages.TraitPreferencePage_ExperienceTreatmentIncrease);
     new Label(composite, SWT.NONE).setText(Messages.TraitPreferencePage_ExperienceTreatmentExplanation);
     return composite;
+  }
+
+  protected ITraitPreferences createPreferences() {
+    return new TraitPreferences(getPreferenceStore());
   }
 
   private Button createButton(Composite composite, final ExperienceTraitTreatment data, String text) {
