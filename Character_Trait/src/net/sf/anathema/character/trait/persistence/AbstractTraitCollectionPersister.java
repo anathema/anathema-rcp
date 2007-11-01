@@ -12,7 +12,7 @@ import net.sf.anathema.character.core.model.template.IModelTemplate;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.plugin.CharacterTraitPluginConstants;
+import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
@@ -57,9 +57,7 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
 
   @Override
   public void save(OutputStream stream, M item) throws IOException, PersistenceException {
-    Document document = BundlePersistenceUtilities.createVersionedDocument(
-        TAG_MODEL,
-        CharacterTraitPluginConstants.PLUGIN_ID);
+    Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_MODEL, CharacterTraitPlugin.PLUGIN_ID);
     Element root = document.getRootElement();
     for (IBasicTrait trait : item.getTraits()) {
       Element traitElement = root.addElement(TAG_TRAIT);

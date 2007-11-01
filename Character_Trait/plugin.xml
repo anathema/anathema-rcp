@@ -46,5 +46,11 @@
             name="Traits">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="net.sf.anathema.character.trait.preference.TraitPreferenceInitializer">
+      </initializer>
+   </extension>
 
 </plugin>

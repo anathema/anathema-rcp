@@ -8,14 +8,14 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.Logger;
-import net.sf.anathema.character.trait.plugin.CharacterTraitPluginConstants;
+import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
 public class TraitGroupEditorDecorationFactory {
 
   private final IPluginExtension[] extensions;
 
   public TraitGroupEditorDecorationFactory() {
-    this(new EclipseExtensionPoint(CharacterTraitPluginConstants.PLUGIN_ID, "editordecorations").getExtensions()); //$NON-NLS-1$
+    this(new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, "editordecorations").getExtensions()); //$NON-NLS-1$
   }
 
   public TraitGroupEditorDecorationFactory(IPluginExtension... extensions) {
@@ -30,7 +30,7 @@ public class TraitGroupEditorDecorationFactory {
           decorations.add(element.getAttributeAsObject("class", ITraitGroupEditorDecoration.class)); //$NON-NLS-1$
         }
         catch (ExtensionException e) {
-          new Logger(CharacterTraitPluginConstants.PLUGIN_ID).error(
+          new Logger(CharacterTraitPlugin.PLUGIN_ID).error(
               Messages.TraitGroupEditorDecorationFactory_ErrorMessageLoadingDecoration,
               e);
         }

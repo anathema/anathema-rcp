@@ -17,7 +17,8 @@ public class TraitPreferences implements ITraitPreferences {
     if (treatment != null) {
       return treatment;
     }
-    return ExperienceTraitTreatment.valueOf(store.getString(PREF_TRAIT_EXPERIENCE_TREATMENT));
+    String value = store.getString(PREF_TRAIT_EXPERIENCE_TREATMENT);
+    return ExperienceTraitTreatment.valueOf(value);
   }
 
   public void setExperienceTreatment(ExperienceTraitTreatment treatment) {
@@ -28,5 +29,15 @@ public class TraitPreferences implements ITraitPreferences {
     if (treatment != null) {
       store.setValue(PREF_TRAIT_EXPERIENCE_TREATMENT, treatment.name());
     }
+  }
+
+  public void initializeDefaults() {
+    store.setDefault(PREF_TRAIT_EXPERIENCE_TREATMENT, ExperienceTraitTreatment.LeaveUnchanged.name());
+  }
+
+  @Override
+  public void restoreDefaults() {
+    treatment = null;
+    store.setValue(PREF_TRAIT_EXPERIENCE_TREATMENT, store.getDefaultString(PREF_TRAIT_EXPERIENCE_TREATMENT));
   }
 }

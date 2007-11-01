@@ -22,3 +22,5 @@ Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.resources,
  net.sf.anathema.character.trait.rules
 Bundle-Localization: plugin
+Eclipse-LazyStart: true
+Bundle-Activator: net.sf.anathema.character.trait.plugin.CharacterTraitPlugin

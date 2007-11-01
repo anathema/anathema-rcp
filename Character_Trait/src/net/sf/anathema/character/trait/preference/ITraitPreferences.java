@@ -7,4 +7,6 @@ public interface ITraitPreferences {
   public ExperienceTraitTreatment getExperienceTreatment();
 
   public void setExperienceTreatment(ExperienceTraitTreatment data);
+
+  public void restoreDefaults();
 }

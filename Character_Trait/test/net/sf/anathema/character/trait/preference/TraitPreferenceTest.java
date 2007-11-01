@@ -61,17 +61,34 @@ public class TraitPreferenceTest {
     preferenceStore.setValue(PROP_NAME, ADJUST_TO_CREATION);
     assertEquals(ExperienceTraitTreatment.AdjustToCreation, preferences.getExperienceTreatment());
   }
-  
+
   @Test
   public void contentIsReturnedAfterItIsExplicitlySpecified() throws Exception {
     preferenceStore.setValue(PROP_NAME, ADJUST_TO_CREATION);
     preferences.setExperienceTreatment(ExperienceTraitTreatment.LeaveUnchanged);
     assertEquals(ExperienceTraitTreatment.LeaveUnchanged, preferences.getExperienceTreatment());
   }
-  
+
   @Test
   public void contentOfStoreDefaultValueIsReturnedIfNoValueIsFound() throws Exception {
     preferenceStore.setDefault(PROP_NAME, ADJUST_TO_CREATION);
     assertEquals(ExperienceTraitTreatment.AdjustToCreation, preferences.getExperienceTreatment());
+  }
+
+  @Test
+  public void initializedLeaveUnchangedAsDefaultValueForExperiencedTraitTreatment() throws Exception {
+    preferences.initializeDefaults();
+    assertEquals(ExperienceTraitTreatment.LeaveUnchanged, preferences.getExperienceTreatment());
+    assertEquals("LeaveUnchanged", preferenceStore.getDefaultString(PROP_NAME)); //$NON-NLS-1$
+  }
+
+  @Test
+  public void restoresLeaveUnchangedOnRestoreDefaults() throws Exception {
+    preferences.initializeDefaults();
+    preferences.setExperienceTreatment(ExperienceTraitTreatment.AdjustToCreation);
+    preferences.commitChanges();
+    preferences.restoreDefaults();
+    assertEquals(ExperienceTraitTreatment.LeaveUnchanged, preferences.getExperienceTreatment());
+    assertEquals("LeaveUnchanged", preferenceStore.getString(PROP_NAME)); //$NON-NLS-1$
   }
 }
