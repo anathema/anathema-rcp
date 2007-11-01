@@ -3,6 +3,7 @@ package net.sf.anathema.character.attributes.model;
 import java.io.IOException;
 import java.net.URL;
 import java.text.MessageFormat;
+import java.util.List;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
@@ -20,7 +21,9 @@ import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.groupeditor.IIntViewImageProvider;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
+import net.sf.anathema.lib.collection.CollectionUtilities;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
 
@@ -59,11 +62,12 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   }
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
-  public IDisplayTraitGroup<IInteractiveTrait>[] createDisplayGroups() {
-    return ArrayUtilities.transform(
-        context.getTraitGroups(),
-        IDisplayTraitGroup.class,
-        new TraitGroupToDisplayTraitGroupTransformer(context, favorizationHandler, TraitPreferenceFactory.create()));
+  public List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups() {
+    ITraitPreferences preferences = TraitPreferenceFactory.create();
+    return CollectionUtilities.transform(context.getTraitGroups(), new TraitGroupToDisplayTraitGroupTransformer(
+        context,
+        favorizationHandler,
+        preferences));
   }
 
   public IFolder getCharacterFolder() {
@@ -76,7 +80,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   }
 
   @Override
-  public String getGroupLabel(IDisplayTraitGroup<?> group) {
+  public String getGroupLabel(IDisplayTraitGroup< ? > group) {
     return AttributeMessages.get(group.getId());
   }
 

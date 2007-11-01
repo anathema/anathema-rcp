@@ -13,7 +13,8 @@ import net.sf.anathema.character.trait.interactive.InteractiveTrait;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.rules.ITraitTemplate;
 
-public final class TraitGroupToDisplayTraitGroupTransformer implements ITransformer<ITraitGroup, IDisplayTraitGroup> {
+public final class TraitGroupToDisplayTraitGroupTransformer implements
+    ITransformer<ITraitGroup, IDisplayTraitGroup<IInteractiveTrait>> {
 
   private final ITraitCollectionContext context;
   private final IFavorizationHandler favorizationHandler;

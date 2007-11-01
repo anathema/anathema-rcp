@@ -1,8 +1,8 @@
 package net.sf.anathema.character.sheet.attributes;
 
 import java.awt.Color;
+import java.util.List;
 
-import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeFavorizationHandler;
 import net.sf.anathema.character.attributes.model.AttributeMessages;
@@ -19,7 +19,10 @@ import net.sf.anathema.character.trait.collection.TraitGroupToDisplayTraitGroupT
 import net.sf.anathema.character.trait.display.IDisplayFavorization;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
+import net.sf.anathema.lib.collection.CollectionUtilities;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
@@ -40,28 +43,36 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    IDisplayTraitGroup<IDisplayTrait>[] displayGroups = getDisplayAttributeGroups(character);
+    List<IDisplayTraitGroup< ? extends IDisplayTrait>> displayGroups = getDisplayAttributeGroups(character);
     encodeAttributes(directContent, bounds, displayGroups);
   }
 
-  private IDisplayTraitGroup<IDisplayTrait>[] getDisplayAttributeGroups(ICharacter character) {
+  private List<IDisplayTraitGroup< ? extends IDisplayTrait>> getDisplayAttributeGroups(ICharacter character) {
     AttributesContext context = new AttributesContext(character, character);
     IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(
         character,
         new AttributeTemplateProvider().getAttributeTemplate(character.getTemplateId()));
-    return ArrayUtilities.transform(
-        context.getTraitGroups(),
-        IDisplayTraitGroup.class,
-        new TraitGroupToDisplayTraitGroupTransformer(context, favorizationHandler, TraitPreferenceFactory.create()));
+    TraitGroup[] traitGroups = context.getTraitGroups();
+    TraitGroupToDisplayTraitGroupTransformer transformer = new TraitGroupToDisplayTraitGroupTransformer(
+        context,
+        favorizationHandler,
+        TraitPreferenceFactory.create());
+    return doCast(CollectionUtilities.transform(traitGroups, transformer));
+  }
+
+  @SuppressWarnings( { "cast", "unchecked" })
+  private List<IDisplayTraitGroup< ? extends IDisplayTrait>> doCast(
+      List<IDisplayTraitGroup<IInteractiveTrait>> transformedList) {
+    return (List<IDisplayTraitGroup< ? extends IDisplayTrait>>) ((List) transformedList);
   }
 
   public final void encodeAttributes(
       PdfContentByte directContent,
       Bounds contentBounds,
-      IDisplayTraitGroup<IDisplayTrait>[] attributeGroups) {
+      Iterable<IDisplayTraitGroup< ? extends IDisplayTrait>> attributeGroups) {
     float groupSpacing = smallTraitEncoder.getTraitHeight() / 2;
     float y = contentBounds.getMaxY() - groupSpacing;
-    for (IDisplayTraitGroup<IDisplayTrait> group : attributeGroups) {
+    for (IDisplayTraitGroup< ? extends IDisplayTrait> group : attributeGroups) {
       y -= groupSpacing;
       for (IDisplayTrait trait : group.getTraits()) {
         y = encodeTrait(trait, directContent, contentBounds, y);

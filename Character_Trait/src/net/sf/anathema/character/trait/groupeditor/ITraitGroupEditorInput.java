@@ -10,7 +10,7 @@ import org.eclipse.core.resources.IFolder;
 
 public interface ITraitGroupEditorInput {
 
-  public IDisplayTraitGroup<IInteractiveTrait> [] createDisplayGroups();
+  public Iterable<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups();
 
   public IFolder getCharacterFolder();
 
