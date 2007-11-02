@@ -3,6 +3,7 @@ package net.sf.anathema.character.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
@@ -104,18 +105,44 @@ public class ModelExtensionPoint {
   private Iterable<IExtensionElement> getDisplayModelElements(
       ICharacterId characterId,
       ICharacterTemplateProvider templateProvider) {
-    ICharacterTemplate template = templateProvider.getTemplate(characterId);
+    final ICharacterTemplate template = templateProvider.getTemplate(characterId);
+    return getDisplayModelElements(new IPredicate<String>() {
+      @Override
+      public boolean evaluate(String input) {
+        return template.supportsModel(input);
+      }
+    });
+  }
+
+  private Iterable<IExtensionElement> getDisplayModelElements(IPredicate<String> modeIdPredicate) {
     List<IExtensionElement> supportedElements = new ArrayList<IExtensionElement>();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
         String modelId = modelElement.getAttribute(ATTRIB_ID);
         IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
-        if (configurationElement != null && template.supportsModel(modelId)) {
+        if (configurationElement != null && modeIdPredicate.evaluate(modelId)) {
           supportedElements.add(modelElement);
         }
       }
     }
     return supportedElements;
+  }
+
+  public IModelDisplayConfiguration getDisplayConfiguration(String modelId) {
+    for (IPluginExtension extension : getPluginExtensions()) {
+      for (IExtensionElement modelElement : extension.getElements()) {
+        if (!modelId.equals(modelElement.getAttribute(ATTRIB_ID))) {
+          continue;
+        }
+        IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
+        if (configurationElement != null) {
+          String filenameAttribute = modelElement.getAttribute(ATTRIB_FILENAME);
+          String contributorId = extension.getContributorId();
+          return new ModelDisplayConfiguration(contributorId, filenameAttribute, configurationElement);
+        }
+      }
+    }
+    return null;
   }
 
   public IModelDisplayConfiguration getDisplayConfiguration(IResource resource) {

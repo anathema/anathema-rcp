@@ -3,6 +3,7 @@ package net.sf.anathema.character.points.problems;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.core.fake.DummyModelCollection;
 import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;

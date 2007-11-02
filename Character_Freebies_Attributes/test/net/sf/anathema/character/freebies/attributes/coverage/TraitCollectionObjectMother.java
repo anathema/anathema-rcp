@@ -1,7 +1,7 @@
 package net.sf.anathema.character.freebies.attributes.coverage;
 
-import net.sf.anathema.character.attributes.points.DummyTraitCollection;
 import net.sf.anathema.character.trait.BasicTrait;
+import net.sf.anathema.character.trait.fake.DummyTraitCollection;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class TraitCollectionObjectMother {

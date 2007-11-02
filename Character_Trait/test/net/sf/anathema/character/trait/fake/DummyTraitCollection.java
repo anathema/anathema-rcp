@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.trait.fake;
 
 import java.util.ArrayList;
 import java.util.List;

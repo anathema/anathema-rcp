@@ -42,4 +42,9 @@ public class ModelCache implements IModelCollection {
     modelsByIdentifier.remove(modelIdentifier);
     getModel(modelIdentifier);
   }
+
+  @Override
+  public boolean contains(IModelIdentifier identifier) {
+    return modelsByIdentifier.containsKey(identifier);
+  }
 }

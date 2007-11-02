@@ -14,6 +14,7 @@ Export-Package: net.sf.anathema.basics.eclipse.extension,
  net.sf.anathema.basics.eclipse.logging,
  net.sf.anathema.basics.eclipse.plugin,
  net.sf.anathema.basics.eclipse.resource,
+ net.sf.anathema.basics.eclipse.resource.fake,
  net.sf.anathema.basics.eclipse.runtime,
  net.sf.anathema.basics.eclipse.ui
 Bundle-Localization: plugin

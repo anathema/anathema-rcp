@@ -19,8 +19,8 @@ public class BonusPointsProvider implements IBonusPointProvider {
   public BonusPointsProvider(
       IModelCollection modelCollection,
       ICharacterTemplateProvider templateProvider,
-     IBonusPointContainer bonusPointContainer,
-     IPointConfigurationProvider pointConfigurationProvider) {
+      IBonusPointContainer bonusPointContainer,
+      IPointConfigurationProvider pointConfigurationProvider) {
     this.modelCollection = modelCollection;
     this.templateProvider = templateProvider;
     this.bonusPointContainer = bonusPointContainer;

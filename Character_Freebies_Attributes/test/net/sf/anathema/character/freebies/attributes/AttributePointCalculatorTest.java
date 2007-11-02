@@ -3,9 +3,9 @@ package net.sf.anathema.character.freebies.attributes;
 import static net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.Attributes;
-import net.sf.anathema.character.attributes.points.DummyTraitGroup;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.fake.DummyTraitGroup;
 import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.junit.Before;

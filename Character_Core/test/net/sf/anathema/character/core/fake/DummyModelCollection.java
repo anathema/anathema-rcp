@@ -1,4 +1,4 @@
-package net.sf.anathema.character.points.problems;
+package net.sf.anathema.character.core.fake;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,5 +18,10 @@ public class DummyModelCollection implements IModelCollection {
   @Override
   public IModel getModel(IModelIdentifier identifier) {
     return modelsById.get(identifier.getModelId());
+  }
+
+  @Override
+  public boolean contains(IModelIdentifier identifier) {
+    return modelsById.containsKey(identifier.getModelId());
   }
 }

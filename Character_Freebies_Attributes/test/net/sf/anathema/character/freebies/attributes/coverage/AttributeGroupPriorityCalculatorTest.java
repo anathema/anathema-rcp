@@ -1,9 +1,9 @@
 package net.sf.anathema.character.freebies.attributes.coverage;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.attributes.points.DummyTraitCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
+import net.sf.anathema.character.trait.fake.DummyTraitCollection;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.util.Identificate;
