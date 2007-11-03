@@ -32,11 +32,11 @@ public class XSLPlotConverter {
 
     }
     catch (IOException e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertConvert, e);
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertContent, e);
       throw new PersistenceException(e);
     }
     catch (TransformerException e) {
-      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertConvert, e);
+      PlotPlugin.getDefaultInstance().log(IStatus.ERROR, Messages.XSLPlotConverter_FailedToConvertContent, e);
       throw new PersistenceException(e);
     }
   }

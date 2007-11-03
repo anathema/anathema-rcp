@@ -15,7 +15,7 @@ public class Messages extends NLS {
   public static String PlotImportMessages_PageDescription;
   public static String PlotImportMessages_PageName;
   public static String PlotImportWizard_CopySubTask;
-  public static String XSLPlotConverter_FailedToConvertConvert;
+  public static String XSLPlotConverter_FailedToConvertContent;
   public static String XSLPlotConverter_FailedToConvertHierarchy;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
