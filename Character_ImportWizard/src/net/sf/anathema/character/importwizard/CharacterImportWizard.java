@@ -24,6 +24,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.wizard.IWizardPage;
 
@@ -53,11 +54,12 @@ public class CharacterImportWizard extends AbstractImportWizard {
   }
 
   @Override
-  protected void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
+  protected IStatus runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException {
     try {
-      new CharacterTemplateConverter(internalFile.getParent()).convert(DocumentUtilities.read(externalFile));
+      IStatus status = new CharacterTemplateConverter(internalFile.getParent()).convert(DocumentUtilities.read(externalFile));
+      return status;
     }
     catch (PersistenceException e) {
       throw new CoreException(logger.createErrorStatus(

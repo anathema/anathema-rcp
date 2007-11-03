@@ -24,6 +24,8 @@ import org.dom4j.Document;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.wizard.IWizardPage;
 
 public class NoteImportWizard extends AbstractImportWizard {
@@ -49,7 +51,7 @@ public class NoteImportWizard extends AbstractImportWizard {
   }
 
   @Override
-  protected void runImport(final File externalFile, final IFile internalFile, IProgressMonitor monitor)
+  protected IStatus runImport(final File externalFile, final IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException {
     try {
@@ -58,6 +60,7 @@ public class NoteImportWizard extends AbstractImportWizard {
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
       DocumentUtilities.save(document, outputStream);
       internalFile.create(new ByteArrayInputStream(outputStream.toByteArray()), true, monitor);
+      return Status.OK_STATUS;
     }
     catch (PersistenceException e) {
       throw new CoreException(logger.createErrorStatus(Messages.NoteImportWizard_ConversionError, e));

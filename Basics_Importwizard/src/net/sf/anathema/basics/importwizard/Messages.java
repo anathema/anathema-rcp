@@ -7,6 +7,7 @@ public class Messages extends NLS {
   public static String AbstractImportWizard_CouldNotOpen;
   public static String AbstractImportWizard_CreateFileError;
   public static String AbstractImportWizard_ErrorUndoing;
+  public static String AbstractImportWizard_FailureMessageTitle;
   public static String AbstractImportWizard_ImportError;
   public static String AbstractImportWizard_ImportFailed;
   public static String AbstractImportWizard_ImportJobName;

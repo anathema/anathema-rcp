@@ -11,6 +11,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -51,6 +52,20 @@ public class TemplateConversionTest {
     converter.convert(document);
     Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("template.xml").getContents()); //$NON-NLS-1$
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
+  }
+
+  @Test
+  public void statusOkForSupportedTemplate() throws Exception {
+    Document document = DocumentProvider.createDocumentForTemplate("Sidereal", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
+    IStatus status = converter.convert(document);
+    Assert.assertEquals(IStatus.OK, status.getSeverity());
+  }
+
+  @Test
+  public void warnsForUnsupportedTemplate() throws Exception {
+    Document document = DocumentProvider.createDocumentForTemplate("Sidereal", "Narf"); //$NON-NLS-1$ //$NON-NLS-2$
+    IStatus status = converter.convert(document);
+    Assert.assertEquals(IStatus.WARNING, status.getSeverity());
   }
 
   @AfterClass

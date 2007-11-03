@@ -8,6 +8,7 @@ public class Messages extends NLS {
   public static String CharacterImportMessages_OpenMessage;
   public static String CharacterImportMessages_PageName;
   public static String CharacterImportWizard_ConversionError;
+  public static String CharacterTemplateConverter_UnsupportedTemplateWarning;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }

@@ -16,8 +16,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
@@ -27,10 +27,11 @@ import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.progress.UIJob;
 
 public abstract class AbstractImportWizard extends Wizard implements IImportWizard {
 
-  public final class ImportJob extends Job {
+  public final class ImportJob extends UIJob {
     private IFile internalFile;
 
     public ImportJob() {
@@ -38,10 +39,15 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
     }
 
     @Override
-    protected IStatus run(IProgressMonitor monitor) {
+    public IStatus runInUIThread(IProgressMonitor monitor) {
       try {
         internalFile = createInternalFile(fileModel.getFile().getName());
-        importFile(monitor);
+        IStatus status = importFile(monitor);
+        if (!status.isOK()) {
+          undoImport(internalFile, monitor);
+          MessageDialog.openError(getShell(), Messages.AbstractImportWizard_FailureMessageTitle, status.getMessage());
+          return status;
+        }
         return new Status(
             IStatus.OK,
             ImportWizardPluginConstants.PLUGIN_ID,
@@ -54,9 +60,10 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
       }
     }
 
-    private void importFile(IProgressMonitor monitor) throws CoreException {
+    private IStatus importFile(IProgressMonitor monitor) throws CoreException {
       try {
-        runImport(fileModel.getFile(), internalFile, monitor);
+        IStatus importStatus = runImport(fileModel.getFile(), internalFile, monitor);
+        return importStatus;
       }
       catch (Exception e) {
         try {
@@ -120,7 +127,7 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 
   protected abstract IFile createInternalFile(String filename) throws CoreException;
 
-  protected abstract void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
+  protected abstract IStatus runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException;
 

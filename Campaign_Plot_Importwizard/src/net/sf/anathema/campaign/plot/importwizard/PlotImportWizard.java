@@ -17,7 +17,9 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.wizard.IWizardPage;
 
 public class PlotImportWizard extends AbstractImportWizard {
@@ -42,7 +44,7 @@ public class PlotImportWizard extends AbstractImportWizard {
   }
 
   @Override
-  protected void runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
+  protected IStatus runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
       throws CoreException,
       FileNotFoundException {
     monitor.subTask(Messages.PlotImportWizard_CopySubTask);
@@ -59,6 +61,7 @@ public class PlotImportWizard extends AbstractImportWizard {
     }
     monitor.worked(1);
     new LegacyMainFileConverter().convert(externalFile, internalFile, monitor);
+    return Status.OK_STATUS;
   }
 
   @Override
