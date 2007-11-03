@@ -38,7 +38,7 @@ public class CharacterFactory {
     }
   }
 
-  private void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
+  public void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
     Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_TEMPLATE, CharacterCorePlugin.ID);
     Element rootElement = document.getRootElement();
     rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, templateName);

@@ -29,7 +29,7 @@ public class BundlePersistenceUtilities {
     element.addAttribute(ATTRIB_BUNDLE_VERSION, version);
   }
 
-  private static String getBundleVersion(String bundleId) {
+  public static String getBundleVersion(String bundleId) {
     Bundle bundle = Platform.getBundle(bundleId);
     return (String) bundle.getHeaders().get(HEADER_BUNDLE_VERSION);
   }
