@@ -64,5 +64,13 @@
             templateId="net.sf.anathema.charactertype.defaultsidereal">
       </bonuspoints>
    </extension>
+   <extension
+         point="net.sf.anathema.character.importwizard.templateconverters">
+      <converter
+            newTemplateId="net.sf.anathema.charactertype.defaultsidereal"
+            oldCharacterType="Sidereal"
+            oldTemplateId="default">
+      </converter>
+   </extension>
 
 </plugin>

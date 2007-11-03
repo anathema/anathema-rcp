@@ -64,5 +64,13 @@
             resourceUrl="icons/Ball_Mortal_16.png">
       </image>
    </extension>
+   <extension
+         point="net.sf.anathema.character.importwizard.templateconverters">
+      <converter
+            newTemplateId="net.sf.anathema.charactertype.heroicmortal"
+            oldCharacterType="Mortal"
+            oldTemplateId="HeroicMortal">
+      </converter>
+   </extension>
 
 </plugin>

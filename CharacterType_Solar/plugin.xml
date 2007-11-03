@@ -64,5 +64,13 @@
          </modelList>
       </template>
    </extension>
+   <extension
+         point="net.sf.anathema.character.importwizard.templateconverters">
+      <converter
+            newTemplateId="CharacterType_Solar.converter1"
+            oldCharacterType="Solar"
+            oldTemplateId="default">
+      </converter>
+   </extension>
 
 </plugin>
