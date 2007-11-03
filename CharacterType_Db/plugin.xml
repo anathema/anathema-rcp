@@ -69,7 +69,7 @@
       <converter
             newTemplateId="net.sf.anathema.charactertype.dynastdb"
             oldCharacterType="Dragon-Blooded"
-            oldTemplateId="default">
+            oldTemplateId="TemplateType.Default">
       </converter>
    </extension>
 

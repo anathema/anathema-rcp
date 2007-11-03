@@ -69,7 +69,7 @@
       <converter
             newTemplateId="net.sf.anathema.charactertype.defaultsidereal"
             oldCharacterType="Sidereal"
-            oldTemplateId="default">
+            oldTemplateId="TemplateType.Default">
       </converter>
    </extension>
 

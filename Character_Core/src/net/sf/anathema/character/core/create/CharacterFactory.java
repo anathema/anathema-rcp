@@ -17,11 +17,13 @@ import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 
 public class CharacterFactory {
 
@@ -40,11 +42,12 @@ public class CharacterFactory {
     }
   }
 
-  public void saveTemplate(IFolder characterFolder, IProvider<String> provider) throws IOException, CoreException {
+  public void saveTemplate(IContainer characterFolder, IProvider<String> provider) throws IOException, CoreException {
     Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_TEMPLATE, CharacterCorePlugin.ID);
     Element rootElement = document.getRootElement();
-    rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, provider.get());
-    IFile templateFile = characterFolder.getFile(CharacterTemplateProvider.TEMPLATE_FILE_NAME);
+    String staring = provider.get();
+    rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, staring);
+    IFile templateFile = characterFolder.getFile(new Path(CharacterTemplateProvider.TEMPLATE_FILE_NAME));
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     DocumentUtilities.save(document, outputStream);
     new FileWriter().saveToFile(templateFile, outputStream, new NullProgressMonitor());

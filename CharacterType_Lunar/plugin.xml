@@ -84,7 +84,7 @@
       <converter
             newTemplateId="net.sf.anathema.charactertype.pactlunar"
             oldCharacterType="Lunar"
-            oldTemplateId="default">
+            oldTemplateId="TemplateType.Default">
       </converter>
    </extension>
 

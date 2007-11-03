@@ -37,9 +37,8 @@ public class TemplateConversionTest {
 
   @Test
   public void convertsTemplates() throws Exception {
-    DocumentProvider documentProvider = new DocumentProvider(getClass());
-    Document document = documentProvider.readDocument("oldcharacter.ecg"); //$NON-NLS-1$
-    Document expecteddocument = documentProvider.readDocument("newtemplate.xml"); //$NON-NLS-1$
+    Document document = DocumentProvider.createDocumentForTemplate("Solar", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
+    Document expecteddocument = new DocumentProvider(getClass()).readDocument("newtemplate.xml"); //$NON-NLS-1$
     converter.convert(document);
     Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("template.xml").getContents()); //$NON-NLS-1$
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
@@ -47,9 +46,8 @@ public class TemplateConversionTest {
 
   @Test
   public void convertsDifferentTemplates() throws Exception {
-    DocumentProvider documentProvider = new DocumentProvider(getClass());
-    Document document = documentProvider.readDocument("oldcharacterdifferenttemplate.ecg"); //$NON-NLS-1$
-    Document expecteddocument = documentProvider.readDocument("newtemplatedifferenttemplate.xml"); //$NON-NLS-1$
+    Document document = DocumentProvider.createDocumentForTemplate("Sidereal", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
+    Document expecteddocument = new DocumentProvider(getClass()).readDocument("newtemplatedifferenttemplate.xml"); //$NON-NLS-1$
     converter.convert(document);
     Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("template.xml").getContents()); //$NON-NLS-1$
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
