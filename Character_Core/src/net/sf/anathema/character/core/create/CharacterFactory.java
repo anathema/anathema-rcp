@@ -7,6 +7,8 @@ import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.FileUtils;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
+import net.sf.anathema.basics.eclipse.runtime.IProvider;
+import net.sf.anathema.basics.eclipse.runtime.StaticProvider;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
@@ -31,17 +33,17 @@ public class CharacterFactory {
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
       IFolder characterFolder = FileUtils.createUnusedFolder(project, folderName);
       characterFolder.create(true, true, new NullProgressMonitor());
-      saveTemplate(characterFolder, templateName);
+      saveTemplate(characterFolder, new StaticProvider<String>(templateName));
     }
     catch (Exception e) {
       logger.error(Messages.NewCharacterActionDelegate_CharacterCreationError, e);
     }
   }
 
-  public void saveTemplate(IFolder characterFolder, String templateName) throws IOException, CoreException {
+  public void saveTemplate(IFolder characterFolder, IProvider<String> provider) throws IOException, CoreException {
     Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_TEMPLATE, CharacterCorePlugin.ID);
     Element rootElement = document.getRootElement();
-    rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, templateName);
+    rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, provider.get());
     IFile templateFile = characterFolder.getFile(CharacterTemplateProvider.TEMPLATE_FILE_NAME);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     DocumentUtilities.save(document, outputStream);

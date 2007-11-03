@@ -2,6 +2,8 @@ package net.sf.anathema.create;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.resource.FileUtils;
+import net.sf.anathema.basics.eclipse.runtime.IProvider;
+import net.sf.anathema.basics.eclipse.runtime.StaticProvider;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.core.create.CharacterFactory;
@@ -38,21 +40,25 @@ public class CharacterFactoryTest {
   @Before
   public void createFactory() throws Exception {
     CharacterFactory factory = new CharacterFactory();
-    factory.saveTemplate(characterFolder, TEMPLATE_NAME);
+    IProvider<String> provider = new StaticProvider<String>(TEMPLATE_NAME);
+    factory.saveTemplate(characterFolder, provider);
     IFile file = getCharacterFolder().getFile("template.xml"); //$NON-NLS-1$
     document = DocumentUtilities.read(file.getContents());
   }
 
   @Test
   public void createsTemplateReference() throws Exception {
-    String reference = document.getRootElement().attributeValue("reference"); //$NON-NLS-1$
-    assertEquals(TEMPLATE_NAME, reference);
+    assertEquals(TEMPLATE_NAME, getAttributeValue("reference")); //$NON-NLS-1$
   }
 
   @Test
   public void createsBundleVersion() throws Exception {
-    String version = document.getRootElement().attributeValue("bundleVersion"); //$NON-NLS-1$
-    assertEquals(BundlePersistenceUtilities.getBundleVersion(CharacterCorePlugin.ID), version);
+    String bundleVersion = BundlePersistenceUtilities.getBundleVersion(CharacterCorePlugin.ID);
+    assertEquals(bundleVersion, getAttributeValue("bundleVersion")); //$NON-NLS-1$
+  }
+
+  private String getAttributeValue(String string) {
+    return document.getRootElement().attributeValue(string);
   }
 
   @AfterClass
