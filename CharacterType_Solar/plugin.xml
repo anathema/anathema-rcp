@@ -67,7 +67,7 @@
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
       <converter
-            newTemplateId="net.sf.anathema.character.type.solar"
+            newTemplateId="net.sf.anathema.charactertype.defaultsolar"
             oldCharacterType="Solar"
             oldTemplateId="TemplateType.Default">
       </converter>
