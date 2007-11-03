@@ -54,6 +54,7 @@ public class CharacterImportWizard extends AbstractImportWizard {
     // TODO Write Template
     // TODO Convert attribute XML
     // TODO Convert description XML
+    // TODO Convert experience XML
   }
 
   @Override
