@@ -2,6 +2,7 @@ package net.sf.anathema.character.core.importwizard;
 
 import java.io.InputStream;
 
+import net.sf.anathema.character.importwizard.XSLCharacterConverter;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.importwizard;
+package net.sf.anathema.character.importwizard;
 
 import java.io.File;
 
