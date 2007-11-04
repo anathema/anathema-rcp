@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.importwizard;
+package net.sf.anathema.character.importwizard;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.importwizard.TemplateConvertingProvider;

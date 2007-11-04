@@ -2,9 +2,13 @@
 
 <ExaltedCharacter repositoryId="AmberQuaint" repositoryPrintName="Amber Quaint">
   <Description>
-    <CharacterName><![CDATA[Amber Quaint]]></CharacterName>
+<CharacterName><![CDATA[Amber Quaint]]></CharacterName>
+    <Characterization><![CDATA[Characterization]]></Characterization>
     <Player><![CDATA[Sandra]]></Player>
     <PhysicalDescription><![CDATA[eisblaues langes Haar]]></PhysicalDescription>
+    <Periphrase><![CDATA[Periphrasis]]></Periphrase>
+    <Notes><![CDATA[Note]]></Notes>
+    <Concept><![CDATA[Concept]]></Concept>
   </Description>
   <Statistics experienced="true">
     <Rules>

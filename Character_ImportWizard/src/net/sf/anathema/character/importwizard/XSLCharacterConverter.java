@@ -15,8 +15,13 @@ public class XSLCharacterConverter {
   private static final String ATTRIBUTE_STYLESHEET = "xsl/AttributeCreation.xsl"; //$NON-NLS-1$
 
   public static Document convertAttributes(Document document) throws TransformerException, IOException {
-    //TODO Get constant character_core.id
+    // TODO Get constant character_core.id
     Map<String, String> parameters = BundlePersistenceUtilities.getBundleVersionMap("net.sf.anathema.character.core");
     return new XSLDocumentConverter("net.sf.anathema.character.core", ATTRIBUTE_STYLESHEET, parameters).run(document);
+  }
+
+  public static Document convertDescription(Document document) {
+    // TODO Auto-generated method stub
+    return null;
   }
 }
