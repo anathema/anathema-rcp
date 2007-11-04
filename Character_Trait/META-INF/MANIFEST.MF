@@ -28,3 +28,4 @@ Export-Package: net.sf.anathema.character.trait,
 Bundle-Localization: plugin
 Eclipse-LazyStart: true
 Bundle-Activator: net.sf.anathema.character.trait.plugin.CharacterTraitPlugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
