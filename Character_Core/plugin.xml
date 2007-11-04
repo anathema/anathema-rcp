@@ -42,7 +42,7 @@
       <page
             class="net.sf.anathema.character.core.preferences.CharacterPreferencePage"
             id="character.preferences"
-            name="Character">
+            name="%preferences.page.character">
       </page>
    </extension>
    <extension

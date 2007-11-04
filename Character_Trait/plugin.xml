@@ -43,7 +43,7 @@
             category="character.preferences"
             class="net.sf.anathema.character.trait.preference.internal.TraitPreferencePage"
             id="character.traits"
-            name="Traits">
+            name="%preferences.page.traits">
       </page>
    </extension>
    <extension
