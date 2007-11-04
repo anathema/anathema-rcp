@@ -12,3 +12,4 @@ Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.repository
 Eclipse-LazyStart: true
 Export-Package: net.sf.anathema.character.description
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

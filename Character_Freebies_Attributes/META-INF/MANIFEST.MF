@@ -12,3 +12,4 @@ Require-Bundle: net.sf.anathema.character.attributes,
  net.sf.anathema.character.points,
  net.sf.anathema.character.experience,
  net.sf.anathema.basics.repository
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

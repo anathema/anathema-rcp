@@ -18,3 +18,4 @@ Export-Package: net.sf.anathema.basics.eclipse.extension,
  net.sf.anathema.basics.eclipse.runtime,
  net.sf.anathema.basics.eclipse.ui
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

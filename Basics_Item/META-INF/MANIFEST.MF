@@ -18,3 +18,4 @@ Export-Package: net.sf.anathema.basics.item;uses:="net.sf.anathema.lib.util,net.
    net.sf.anathema.lib.control.objectvalue"
 Bundle-Localization: plugin
 Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

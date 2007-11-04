@@ -27,3 +27,4 @@ Export-Package: net.sf.anathema.character.core.character,
  net.sf.anathema.character.core.traitview,
  net.sf.anathema.character.core.type
 Bundle-Activator: net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

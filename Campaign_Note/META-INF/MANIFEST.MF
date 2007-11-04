@@ -11,3 +11,4 @@ Require-Bundle: net.sf.anathema.editor.styledtext,
  net.sf.anathema.basics.lib,
  net.sf.anathema.basics.eclipse
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

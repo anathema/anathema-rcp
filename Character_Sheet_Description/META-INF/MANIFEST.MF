@@ -7,3 +7,4 @@ Require-Bundle: net.sf.anathema.character.sheet,
  net.sf.anathema.character.description,
  net.sf.anathema.basics.eclipse
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

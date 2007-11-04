@@ -14,3 +14,4 @@ Eclipse-LazyStart: true
 Bundle-Localization: plugin
 Export-Package: net.sf.anathema.character.experience
 Bundle-Activator: net.sf.anathema.character.experience.plugin.ExperiencePlugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

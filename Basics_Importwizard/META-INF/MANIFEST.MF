@@ -8,3 +8,4 @@ Require-Bundle: net.sf.anathema.basics.repository,
  net.sf.anathema.basics.lib
 Export-Package: net.sf.anathema.basics.importwizard
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

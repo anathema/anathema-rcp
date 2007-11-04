@@ -9,3 +9,4 @@ Require-Bundle: net.sf.anathema.character.freebies,
  net.sf.anathema.basics.repository,
  net.sf.anathema.basics.jface,
  net.sf.anathema.character.importwizard
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

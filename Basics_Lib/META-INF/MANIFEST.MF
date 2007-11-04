@@ -47,4 +47,6 @@ Export-Package: net.disy.commons.core.exception,
  org.dom4j.xpath,
  org.dom4j.xpp
 Bundle-Localization: plugin
-Require-Bundle: Thirdparty_Testing;resolution:=optional;visibility:=reexport
+Require-Bundle: net.sf.anathema.thirdparty.testing;resolution:=optional;visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

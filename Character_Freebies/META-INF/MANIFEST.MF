@@ -10,3 +10,4 @@ Require-Bundle: net.sf.anathema.character.core;visibility:=reexport,
  net.sf.anathema.view.valuelist,
  net.sf.anathema.basics.item
 Export-Package: net.sf.anathema.character.freebies.configuration
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

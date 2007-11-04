@@ -15,3 +15,4 @@ Require-Bundle: net.sf.anathema.basics.eclipse,
 Export-Package: net.sf.anathema.character.points.configuration
 Bundle-Localization: plugin
 Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

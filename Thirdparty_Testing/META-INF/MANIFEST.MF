@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %net.sf.anathema.thirdparty.testing.BundleName
-Bundle-SymbolicName: Thirdparty_Testing
+Bundle-SymbolicName: net.sf.anathema.thirdparty.testing
 Bundle-Version: 1.0.0
 Export-Package: net.sf.anathema.test.matcher,
  org.easymock
@@ -9,3 +9,4 @@ Bundle-ClassPath: lib/easymock.jar,
  .
 Require-Bundle: org.junit4;visibility:=reexport
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

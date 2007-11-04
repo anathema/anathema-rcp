@@ -9,3 +9,4 @@ Require-Bundle: net.sf.anathema.basics.eclipse;visibility:=reexport,
  net.sf.anathema.basics.lib
 Export-Package: net.sf.anathema.view.valuelist
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

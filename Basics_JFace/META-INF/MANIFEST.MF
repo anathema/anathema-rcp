@@ -18,3 +18,4 @@ Export-Package: net.sf.anathema.basics.jface,
  net.sf.anathema.basics.swt.file,
  net.sf.anathema.basics.swt.layout
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
