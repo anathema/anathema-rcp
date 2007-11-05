@@ -14,11 +14,13 @@ public class CharacterDescriptionConverter {
   private static final String TAG_DESCRIPTION = "Description"; //$NON-NLS-1$
 
   public Document convert(Document document) {
-    Element element = document.getRootElement().element(TAG_DESCRIPTION).createCopy();
+    Element element = document.getRootElement().element(TAG_DESCRIPTION).createCopy(TAG_MODEL);
     // TODO Get constant character_core.id
     BundlePersistenceUtilities.addBundleVersionAttribute(element, "net.sf.anathema.character.core");
-    element.setName(TAG_MODEL);
-    element.element(TAG_PERIPHRASE).setName(TAG_PERIPHRASIS);
+    Element periphraseElement = element.element(TAG_PERIPHRASE);
+    if (periphraseElement != null) {
+      periphraseElement.setName(TAG_PERIPHRASIS);
+    }
     return DocumentHelper.createDocument(element);
   }
 }

@@ -19,6 +19,7 @@ import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPlugin
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
+import org.dom4j.Document;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -58,7 +59,11 @@ public class CharacterImportWizard extends AbstractImportWizard {
       throws CoreException,
       FileNotFoundException {
     try {
-      IStatus status = new CharacterTemplateConverter(internalFile.getParent()).convert(DocumentUtilities.read(externalFile));
+      Document document = DocumentUtilities.read(externalFile);
+      IStatus status = new CharacterTemplateConverter(internalFile.getParent()).convert(document);
+      if (status.isOK()) {
+        new CharacterDescriptionConverter().convert(document);
+      }
       return status;
     }
     catch (PersistenceException e) {
@@ -72,7 +77,6 @@ public class CharacterImportWizard extends AbstractImportWizard {
           e));
     }
     // TODO Convert attribute XML
-    // TODO Convert description XML
     // TODO Convert experience XML
   }
 
