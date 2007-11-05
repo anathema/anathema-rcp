@@ -7,6 +7,7 @@ import javax.xml.transform.TransformerException;
 
 import net.sf.anathema.basics.importwizard.XSLDocumentConverter;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
+import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPluginConstants;
 
 import org.dom4j.Document;
 
@@ -17,7 +18,7 @@ public class XSLCharacterConverter {
   public static Document convertAttributes(Document document) throws TransformerException, IOException {
     // TODO Get constant character_core.id
     Map<String, String> parameters = BundlePersistenceUtilities.getBundleVersionMap("net.sf.anathema.character.core");
-    return new XSLDocumentConverter("net.sf.anathema.character.core", ATTRIBUTE_STYLESHEET, parameters).run(document);
+    return new XSLDocumentConverter(CharacterImportWizardPluginConstants.PLUGIN_ID, ATTRIBUTE_STYLESHEET, parameters).run(document);
   }
 
   public static Document convertDescription(Document document) {

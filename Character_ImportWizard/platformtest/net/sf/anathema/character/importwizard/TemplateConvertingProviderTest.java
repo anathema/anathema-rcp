@@ -1,7 +1,6 @@
 package net.sf.anathema.character.importwizard;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.importwizard.TemplateConvertingProvider;
 
 import org.dom4j.Document;
 import org.junit.Test;
@@ -12,7 +11,7 @@ public class TemplateConvertingProviderTest {
   public void convertsTemplateName() throws Exception {
     Document document = DocumentProvider.createDocumentForTemplate("Solar", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
     TemplateConvertingProvider provider = new TemplateConvertingProvider(document);
-    assertEquals("net.sf.anathema.character.type.solar", provider.get()); //$NON-NLS-1$
+    assertEquals("net.sf.anathema.charactertype.defaultsolar", provider.get()); //$NON-NLS-1$
   }
 
   @Test

@@ -10,7 +10,7 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 public class DocumentProvider {
-  private static final String PATH = "net/sf/anathema/character/core/importwizard/"; //$NON-NLS-1$
+  private static final String PATH = "net/sf/anathema/character/importwizard/"; //$NON-NLS-1$
   private final Class< ? > clazz;
 
   public DocumentProvider(Class< ? > clazz) {
