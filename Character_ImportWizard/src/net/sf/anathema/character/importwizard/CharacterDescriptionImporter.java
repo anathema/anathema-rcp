@@ -7,17 +7,17 @@ import net.sf.anathema.basics.eclipse.resource.FileWriter;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
-import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 
 public class CharacterDescriptionImporter {
 
-  private final IFolder folder;
+  private final IContainer folder;
 
-  public CharacterDescriptionImporter(IFolder characterFolder) {
-    this.folder = characterFolder;
+  public CharacterDescriptionImporter(IContainer container) {
+    this.folder = container;
   }
 
   public void runImport(Document document) throws IOException, CoreException {

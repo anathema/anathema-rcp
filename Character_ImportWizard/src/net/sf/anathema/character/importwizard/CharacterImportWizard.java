@@ -20,6 +20,7 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -60,9 +61,10 @@ public class CharacterImportWizard extends AbstractImportWizard {
       FileNotFoundException {
     try {
       Document document = DocumentUtilities.read(externalFile);
-      IStatus status = new CharacterTemplateConverter(internalFile.getParent()).convert(document);
+      IContainer container = internalFile.getParent();
+      IStatus status = new CharacterTemplateConverter(container).convert(document);
       if (status.isOK()) {
-        new CharacterDescriptionConverter().convert(document);
+        new CharacterDescriptionImporter(container).runImport(new CharacterDescriptionConverter().convert(document));
       }
       return status;
     }
