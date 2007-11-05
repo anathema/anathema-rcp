@@ -13,7 +13,7 @@ public class DescriptionConversionTest {
     DocumentProvider provider = new DocumentProvider(getClass());
     Document document = provider.readDocument("oldcharacter.ecg"); //$NON-NLS-1$
     Document expecteddocument = provider.readDocument("newbasic.description"); //$NON-NLS-1$
-    Document resultdocument = XSLCharacterConverter.convertDescription(document);
+    Document resultdocument = new CharacterDescriptionConverter().convert(document);
     Assert.assertEquals(DocumentUtilities.asString(expecteddocument), DocumentUtilities.asString(resultdocument));
   }
 }

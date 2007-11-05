@@ -20,9 +20,4 @@ public class XSLCharacterConverter {
     Map<String, String> parameters = BundlePersistenceUtilities.getBundleVersionMap("net.sf.anathema.character.core");
     return new XSLDocumentConverter(CharacterImportWizardPluginConstants.PLUGIN_ID, ATTRIBUTE_STYLESHEET, parameters).run(document);
   }
-
-  public static Document convertDescription(Document document) {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }
