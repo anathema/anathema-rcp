@@ -10,7 +10,7 @@ public class AttributeConversionTest {
 
   @Test
   public void createsAttributes() throws Exception {
-    DocumentProvider documentProvider = new DocumentProvider(getClass());
+    ImportDocumentObjectMother documentProvider = new ImportDocumentObjectMother(getClass());
     Document document = documentProvider.readDocument("oldcharacter.ecg"); //$NON-NLS-1$
     Document expecteddocument = documentProvider.readDocument("newattributes.model"); //$NON-NLS-1$
     Document resultdocument = XSLCharacterConverter.convertAttributes(document);
