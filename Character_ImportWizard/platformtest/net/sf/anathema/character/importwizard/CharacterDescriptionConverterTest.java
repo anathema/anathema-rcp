@@ -26,7 +26,7 @@ public class CharacterDescriptionConverterTest {
   }
 
   @Test
-  public void createsDescriptionIfPeriphrasisIsMissing() throws Exception {
+  public void createsDescriptionIfElementsAreMissing() throws Exception {
     Document resultdocument = converter.convert(ImportDocumentObjectMother.createEmptyDescriptionDocument());
     Document expecteddocument = ImportDocumentObjectMother.createEmptyVersionedModelDocument();
     assertEquals(DocumentUtilities.asString(expecteddocument), DocumentUtilities.asString(resultdocument));

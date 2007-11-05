@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class DescriptionConversionTest {
+public class CharacterDescriptionImporterTest {
   private final static String CHARACTER_NAME = "name"; //$NON-NLS-1$
   private static IFolder characterFolder;
   private CharacterDescriptionImporter importer;

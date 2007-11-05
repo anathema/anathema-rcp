@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <model bundleVersion="1.0.0">
-  	<CharacterName><![CDATA[Amber Quaint]]></CharacterName>
+  	<Name><![CDATA[Amber Quaint]]></Name>
     <Characterization><![CDATA[Characterization]]></Characterization>
     <Player><![CDATA[Sandra]]></Player>
     <PhysicalDescription><![CDATA[eisblaues langes Haar]]></PhysicalDescription>
