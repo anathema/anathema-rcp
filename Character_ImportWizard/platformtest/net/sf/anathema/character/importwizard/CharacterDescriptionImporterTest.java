@@ -19,7 +19,7 @@ import org.junit.Test;
 public class CharacterDescriptionImporterTest {
   private final static String CHARACTER_NAME = "name"; //$NON-NLS-1$
   private static IFolder characterFolder;
-  private CharacterDescriptionImporter importer;
+  private DescriptionImporter importer;
 
   @BeforeClass
   public static void createCharacterFolder() throws Exception {
@@ -30,14 +30,14 @@ public class CharacterDescriptionImporterTest {
 
   @Before
   public void create() throws Exception {
-    importer = new CharacterDescriptionImporter(characterFolder);
+    importer = new DescriptionImporter(characterFolder);
   }
 
   @Test
   public void importsDescription() throws Exception {
     Document document = ImportDocumentObjectMother.createEmptyDescriptionDocument();
     Document expecteddocument = ImportDocumentObjectMother.createEmptyVersionedModelDocument();
-    importer.runImport(new CharacterDescriptionConverter().convert(document));
+    importer.runImport(document);
     Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("basic.description").getContents()); //$NON-NLS-1$
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
   }

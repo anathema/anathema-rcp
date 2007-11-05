@@ -1,6 +1,6 @@
 package net.sf.anathema.character.importwizard;
 
-import net.sf.anathema.character.importwizard.XSLCharacterConverter;
+import net.sf.anathema.character.importwizard.AttributesConverter;
 
 import org.dom4j.Document;
 import org.junit.Assert;
@@ -13,7 +13,7 @@ public class AttributeConversionTest {
     ImportDocumentObjectMother documentProvider = new ImportDocumentObjectMother(getClass());
     Document document = documentProvider.readDocument("oldcharacter.ecg"); //$NON-NLS-1$
     Document expecteddocument = documentProvider.readDocument("newattributes.model"); //$NON-NLS-1$
-    Document resultdocument = XSLCharacterConverter.convertAttributes(document);
+    Document resultdocument = AttributesConverter.convertAttributes(document);
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
   }
 }

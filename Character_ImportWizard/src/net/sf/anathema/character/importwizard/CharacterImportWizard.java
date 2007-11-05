@@ -62,9 +62,9 @@ public class CharacterImportWizard extends AbstractImportWizard {
     try {
       Document document = DocumentUtilities.read(externalFile);
       IContainer container = internalFile.getParent();
-      IStatus status = new CharacterTemplateConverter(container).convert(document);
+      IStatus status = new TemplateImporter(container).runImport(document);
       if (status.isOK()) {
-        new CharacterDescriptionImporter(container).runImport(new CharacterDescriptionConverter().convert(document));
+        new DescriptionImporter(container).runImport(document);
       }
       return status;
     }

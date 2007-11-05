@@ -12,16 +12,16 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
-public class CharacterTemplateConverter {
+public class TemplateImporter {
 
   private final IContainer container;
 
-  public CharacterTemplateConverter(IContainer container) {
+  public TemplateImporter(IContainer container) {
     this.container = container;
   }
 
-  public IStatus convert(Document document) throws IOException, CoreException {
-    IProvider<String> provider = new TemplateConvertingProvider(document);
+  public IStatus runImport(Document document) throws IOException, CoreException {
+    IProvider<String> provider = new TemplateConverter(document);
     if (provider.get() == null) {
       return new Status(
           IStatus.WARNING,

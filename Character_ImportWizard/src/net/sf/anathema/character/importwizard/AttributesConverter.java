@@ -11,7 +11,7 @@ import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPlugin
 
 import org.dom4j.Document;
 
-public class XSLCharacterConverter {
+public class AttributesConverter {
 
   private static final String ATTRIBUTE_STYLESHEET = "xsl/AttributeCreation.xsl"; //$NON-NLS-1$
 

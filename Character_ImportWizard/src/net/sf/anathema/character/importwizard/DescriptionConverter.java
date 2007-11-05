@@ -6,7 +6,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class CharacterDescriptionConverter {
+public class DescriptionConverter {
 
   private static final String TAG_PERIPHRASIS = "Periphrasis"; //$NON-NLS-1$
   private static final String TAG_PERIPHRASE = "Periphrase"; //$NON-NLS-1$

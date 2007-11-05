@@ -8,7 +8,7 @@ import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
-public class TemplateConvertingProvider implements IProvider<String> {
+public class TemplateConverter implements IProvider<String> {
 
   private static final String CONVERTERS_EXTENSION_POINT = "templateconverters"; //$NON-NLS-1$
   private static final String ATTRIB_NEW_TEMPLATE_ID = "newTemplateId"; //$NON-NLS-1$
@@ -19,7 +19,7 @@ public class TemplateConvertingProvider implements IProvider<String> {
   private static final String TAG_STATISTICS = "Statistics"; //$NON-NLS-1$
   private final Document document;
 
-  public TemplateConvertingProvider(Document document) {
+  public TemplateConverter(Document document) {
     this.document = document;
   }
 

@@ -12,17 +12,18 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 
-public class CharacterDescriptionImporter {
+public class DescriptionImporter {
 
   private final IContainer folder;
 
-  public CharacterDescriptionImporter(IContainer container) {
+  public DescriptionImporter(IContainer container) {
     this.folder = container;
   }
 
   public void runImport(Document document) throws IOException, CoreException {
+    Document convertedDocument = new DescriptionConverter().convert(document);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    DocumentUtilities.save(document, outputStream);
+    DocumentUtilities.save(convertedDocument, outputStream);
     new FileWriter().saveToFile(folder.getFile(new Path("basic.description")), outputStream, new NullProgressMonitor());
   }
 }

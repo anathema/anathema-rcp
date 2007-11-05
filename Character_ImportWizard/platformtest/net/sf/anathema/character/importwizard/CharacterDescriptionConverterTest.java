@@ -9,11 +9,11 @@ import org.junit.Test;
 
 public class CharacterDescriptionConverterTest {
 
-  private CharacterDescriptionConverter converter;
+  private DescriptionConverter converter;
 
   @Before
   public void createConverter() throws Exception {
-    this.converter = new CharacterDescriptionConverter();
+    this.converter = new DescriptionConverter();
   }
 
   @Test

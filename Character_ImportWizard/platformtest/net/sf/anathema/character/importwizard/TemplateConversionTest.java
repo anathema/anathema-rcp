@@ -20,7 +20,7 @@ import org.junit.Test;
 public class TemplateConversionTest {
   private final static String CHARACTER_NAME = "name"; //$NON-NLS-1$
   private static IFolder characterFolder;
-  private CharacterTemplateConverter converter;
+  private TemplateImporter converter;
 
   @BeforeClass
   public static void createCharacterFolder() throws Exception {
@@ -31,14 +31,14 @@ public class TemplateConversionTest {
 
   @Before
   public void create() throws Exception {
-    converter = new CharacterTemplateConverter(characterFolder);
+    converter = new TemplateImporter(characterFolder);
   }
 
   @Test
   public void convertsTemplates() throws Exception {
     Document document = ImportDocumentObjectMother.createDocumentForTemplate("Solar", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
     Document expecteddocument = new ImportDocumentObjectMother(getClass()).readDocument("newtemplate.xml"); //$NON-NLS-1$
-    converter.convert(document);
+    converter.runImport(document);
     Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("template.xml").getContents()); //$NON-NLS-1$
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
   }
@@ -47,7 +47,7 @@ public class TemplateConversionTest {
   public void convertsDifferentTemplates() throws Exception {
     Document document = ImportDocumentObjectMother.createDocumentForTemplate("Sidereal", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
     Document expecteddocument = new ImportDocumentObjectMother(getClass()).readDocument("newtemplatedifferenttemplate.xml"); //$NON-NLS-1$
-    converter.convert(document);
+    converter.runImport(document);
     Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("template.xml").getContents()); //$NON-NLS-1$
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
   }
@@ -55,14 +55,14 @@ public class TemplateConversionTest {
   @Test
   public void statusOkForSupportedTemplate() throws Exception {
     Document document = ImportDocumentObjectMother.createDocumentForTemplate("Sidereal", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
-    IStatus status = converter.convert(document);
+    IStatus status = converter.runImport(document);
     Assert.assertEquals(IStatus.OK, status.getSeverity());
   }
 
   @Test
   public void warnsForUnsupportedTemplate() throws Exception {
     Document document = ImportDocumentObjectMother.createDocumentForTemplate("Sidereal", "Narf"); //$NON-NLS-1$ //$NON-NLS-2$
-    IStatus status = converter.convert(document);
+    IStatus status = converter.runImport(document);
     Assert.assertEquals(IStatus.WARNING, status.getSeverity());
   }
 
