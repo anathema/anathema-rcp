@@ -1,4 +1,4 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.description.importwizard;
 
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 

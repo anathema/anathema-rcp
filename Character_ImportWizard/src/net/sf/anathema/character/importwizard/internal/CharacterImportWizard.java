@@ -1,4 +1,4 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.importwizard.internal;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +15,7 @@ import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+import net.sf.anathema.character.importwizard.IModelImporter;
 import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPluginConstants;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
@@ -62,24 +63,26 @@ public class CharacterImportWizard extends AbstractImportWizard {
     try {
       Document document = DocumentUtilities.read(externalFile);
       IContainer container = internalFile.getParent();
-      IStatus status = new TemplateImporter(container).runImport(document);
+      IStatus status = new TemplateImporter().runImport(container, document);
       if (status.isOK()) {
-        new DescriptionImporter(container).runImport(document);
+        for (IModelImporter importer : new ModelImporterExtensionPoint().getImporters()) {
+          importer.runImport(container, document);
+        }
+        // TODO Convert attribute XML
+        // TODO Convert experience XML
       }
       return status;
     }
     catch (PersistenceException e) {
       throw new CoreException(logger.createErrorStatus(
-          net.sf.anathema.character.importwizard.Messages.CharacterImportWizard_ConversionError,
+          net.sf.anathema.character.importwizard.internal.Messages.CharacterImportWizard_ConversionError,
           e));
     }
     catch (IOException e) {
       throw new CoreException(logger.createErrorStatus(
-          net.sf.anathema.character.importwizard.Messages.CharacterImportWizard_ConversionError,
+          net.sf.anathema.character.importwizard.internal.Messages.CharacterImportWizard_ConversionError,
           e));
     }
-    // TODO Convert attribute XML
-    // TODO Convert experience XML
   }
 
   @Override

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.importwizard.utility;
 
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 

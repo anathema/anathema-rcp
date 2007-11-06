@@ -1,9 +1,11 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.importwizard.internal;
 
 import java.io.IOException;
 
+import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.character.core.create.CharacterFactory;
+import net.sf.anathema.character.importwizard.IModelImporter;
 import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPluginConstants;
 
 import org.dom4j.Document;
@@ -12,15 +14,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
-public class TemplateImporter {
+public class TemplateImporter extends AbstractExecutableExtension implements IModelImporter {
 
-  private final IContainer container;
-
-  public TemplateImporter(IContainer container) {
-    this.container = container;
-  }
-
-  public IStatus runImport(Document document) throws IOException, CoreException {
+  public IStatus runImport(IContainer container, Document document) throws IOException, CoreException {
     IProvider<String> provider = new TemplateConverter(document);
     if (provider.get() == null) {
       return new Status(

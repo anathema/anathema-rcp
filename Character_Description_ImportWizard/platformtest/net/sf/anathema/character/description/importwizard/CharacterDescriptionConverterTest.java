@@ -1,6 +1,7 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.description.importwizard;
 
 import static org.junit.Assert.assertEquals;
+import net.sf.anathema.character.importwizard.utility.ImportDocumentObjectMother;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
@@ -18,17 +19,21 @@ public class CharacterDescriptionConverterTest {
 
   @Test
   public void createsDescription() throws Exception {
-    ImportDocumentObjectMother provider = new ImportDocumentObjectMother(getClass());
-    Document document = provider.readDocument("oldcharacter.ecg"); //$NON-NLS-1$
-    Document expecteddocument = provider.readDocument("newbasic.description"); //$NON-NLS-1$
+    Document document = ImportDocumentObjectMother.getDocumentFromFile(
+        getClass(),
+        "net/sf/anathema/character/description/importwizard/", //$NON-NLS-1$
+        "oldcharacter.ecg"); //$NON-NLS-1$
+    Document expecteddocument = ImportDocumentObjectMother.getDocumentFromFile(
+        getClass(),
+        "net/sf/anathema/character/description/importwizard/", "newbasic.description"); //$NON-NLS-1$ //$NON-NLS-2$
     Document resultdocument = converter.convert(document);
     assertEquals(DocumentUtilities.asString(expecteddocument), DocumentUtilities.asString(resultdocument));
   }
 
   @Test
   public void createsDescriptionIfElementsAreMissing() throws Exception {
-    Document resultdocument = converter.convert(ImportDocumentObjectMother.createEmptyDescriptionDocument());
-    Document expecteddocument = ImportDocumentObjectMother.createEmptyVersionedModelDocument();
+    Document resultdocument = converter.convert(DescriptionDocumentObjectMother.createEmptyDescriptionDocument());
+    Document expecteddocument = DescriptionDocumentObjectMother.createEmptyVersionedModelDocument();
     assertEquals(DocumentUtilities.asString(expecteddocument), DocumentUtilities.asString(resultdocument));
   }
 }

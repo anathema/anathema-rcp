@@ -1,14 +1,17 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.description.importwizard;
 
+import static org.junit.Assert.assertTrue;
 import net.sf.anathema.basics.eclipse.resource.FileUtils;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
+import net.sf.anathema.character.importwizard.utility.CharacterTestUtilities;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -30,20 +33,28 @@ public class CharacterDescriptionImporterTest {
 
   @Before
   public void create() throws Exception {
-    importer = new DescriptionImporter(characterFolder);
+    importer = new DescriptionImporter();
   }
 
   @Test
   public void importsDescription() throws Exception {
-    Document document = ImportDocumentObjectMother.createEmptyDescriptionDocument();
-    Document expecteddocument = ImportDocumentObjectMother.createEmptyVersionedModelDocument();
-    importer.runImport(document);
+    Document document = DescriptionDocumentObjectMother.createEmptyDescriptionDocument();
+    Document expecteddocument = DescriptionDocumentObjectMother.createEmptyVersionedModelDocument();
+    importer.runImport(characterFolder, document);
     Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("basic.description").getContents()); //$NON-NLS-1$
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
   }
 
   private static IFolder getCharacterFolder() {
     return CharacterTestUtilities.getCharacterFolder(CHARACTER_NAME);
+  }
+
+  @Test
+  public void returnsStatusOk() throws Exception {
+    Document document = DescriptionDocumentObjectMother.createEmptyDescriptionDocument();
+    IStatus status = importer.runImport(characterFolder, document);
+    assertTrue(status.isOK());
+
   }
 
   @AfterClass

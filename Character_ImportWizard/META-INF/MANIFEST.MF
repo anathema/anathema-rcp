@@ -12,3 +12,5 @@ Require-Bundle: net.sf.anathema.basics.importwizard,
  net.sf.anathema.basics.jface
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: net.sf.anathema.character.importwizard,
+ net.sf.anathema.character.importwizard.utility

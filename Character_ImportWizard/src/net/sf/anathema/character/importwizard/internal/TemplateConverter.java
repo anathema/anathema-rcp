@@ -1,4 +1,4 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.importwizard.internal;
 
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;

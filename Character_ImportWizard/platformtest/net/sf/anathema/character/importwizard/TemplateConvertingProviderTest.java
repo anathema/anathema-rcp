@@ -2,6 +2,9 @@ package net.sf.anathema.character.importwizard;
 
 import static org.junit.Assert.*;
 
+import net.sf.anathema.character.importwizard.internal.TemplateConverter;
+import net.sf.anathema.character.importwizard.utility.ImportDocumentObjectMother;
+
 import org.dom4j.Document;
 import org.junit.Test;
 

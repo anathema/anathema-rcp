@@ -1,4 +1,4 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.importwizard.internal;
 
 import java.io.IOException;
 import java.util.Map;

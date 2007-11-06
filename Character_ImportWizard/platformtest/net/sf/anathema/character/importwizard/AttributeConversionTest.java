@@ -1,6 +1,7 @@
 package net.sf.anathema.character.importwizard;
 
-import net.sf.anathema.character.importwizard.AttributesConverter;
+import net.sf.anathema.character.importwizard.internal.AttributesConverter;
+import net.sf.anathema.character.importwizard.utility.ImportDocumentObjectMother;
 
 import org.dom4j.Document;
 import org.junit.Assert;
@@ -10,9 +11,14 @@ public class AttributeConversionTest {
 
   @Test
   public void createsAttributes() throws Exception {
-    ImportDocumentObjectMother documentProvider = new ImportDocumentObjectMother(getClass());
-    Document document = documentProvider.readDocument("oldcharacter.ecg"); //$NON-NLS-1$
-    Document expecteddocument = documentProvider.readDocument("newattributes.model"); //$NON-NLS-1$
+    Document document = ImportDocumentObjectMother.getDocumentFromFile(
+        getClass(),
+        "net/sf/anathema/character/importwizard/", //$NON-NLS-1$
+        "oldcharacter.ecg"); //$NON-NLS-1$
+    Document expecteddocument = ImportDocumentObjectMother.getDocumentFromFile(
+        getClass(),
+        "net/sf/anathema/character/importwizard/", //$NON-NLS-1$
+        "newattributes.model"); //$NON-NLS-1$
     Document resultdocument = AttributesConverter.convertAttributes(document);
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
   }
