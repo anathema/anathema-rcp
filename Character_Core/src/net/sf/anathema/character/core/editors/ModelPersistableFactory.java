@@ -16,13 +16,25 @@ import org.eclipse.ui.IMemento;
 
 public class ModelPersistableFactory extends AbstractExecutableExtension implements IElementFactory {
   public static final String PROP_FULL_PATH = "fullPath"; //$NON-NLS-1$
+  private final IContainer root;
+
+  public ModelPersistableFactory() {
+    this(ResourcesPlugin.getWorkspace().getRoot());
+  }
+
+  public ModelPersistableFactory(IContainer root) {
+    this.root = root;
+  }
 
   @Override
   public IAdaptable createElement(IMemento memento) {
     IPath path = new Path(memento.getString(PROP_FULL_PATH));
-    IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-    IModelDisplayConfiguration displayConfiguration = new ModelExtensionPoint().getDisplayConfiguration(file);
+    IFile file = root.getFile(path);
     IContainer characterFolder = file.getParent();
+    if (!characterFolder.exists()) {
+      return new MessageEditorInput("Character not found at " + characterFolder.getLocation());
+    }
+    IModelDisplayConfiguration displayConfiguration = new ModelExtensionPoint().getDisplayConfiguration(file);
     try {
       return displayConfiguration.createEditorInput(characterFolder, new CharacterDisplayNameProvider(characterFolder));
     }
