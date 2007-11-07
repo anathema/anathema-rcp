@@ -11,7 +11,7 @@ public class ErrorMessageEditorInputTest {
   private String message;
 
   @Before
-  public void creteEditorInput() throws Exception {
+  public void createEditorInput() throws Exception {
     message = "Wir haben einen Fehler. Schubiduh"; //$NON-NLS-1$
     editorInput = new ErrorMessageEditorInput(message);
   }
