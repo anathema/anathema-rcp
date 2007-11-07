@@ -1,45 +1,45 @@
 package net.sf.anathema.basics.item.editor;
 
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
-public class ErrorMessageEditorInput implements IEditorInput {
+public class ErrorMessageEditorInput extends DefaultAdaptable implements IEditorInput {
+
+  private final String message;
 
   public ErrorMessageEditorInput(String message) {
-    // TODO Auto-generated constructor stub
+    this.message = message;
   }
 
   @Override
   public boolean exists() {
-    return true;
+    return false;
   }
 
   @Override
   public ImageDescriptor getImageDescriptor() {
-    // TODO Auto-generated method stub
     return null;
   }
 
   @Override
   public String getName() {
-    return "Mein Name";
+    return "Error message";
   }
 
   @Override
   public IPersistableElement getPersistable() {
-    // TODO Auto-generated method stub
     return null;
   }
 
   @Override
   public String getToolTipText() {
-    return "Hallo Tooltip";
+    return "Error message";
   }
-
-  @Override
-  public Object getAdapter(Class adapter) {
-    // TODO Auto-generated method stub
-    return null;
+  
+  public String getMessage() {
+    return message;
   }
 }
