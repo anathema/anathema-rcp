@@ -1,19 +1,18 @@
-package net.sf.anathema.character.core.editors;
+package net.sf.anathema.basics.item.editor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
-public class MessageEditorInput implements IEditorInput {
+public class ErrorMessageEditorInput implements IEditorInput {
 
-  public MessageEditorInput(String message) {
+  public ErrorMessageEditorInput(String message) {
     // TODO Auto-generated constructor stub
   }
 
   @Override
   public boolean exists() {
-    // TODO Auto-generated method stub
-    return false;
+    return true;
   }
 
   @Override
@@ -24,8 +23,7 @@ public class MessageEditorInput implements IEditorInput {
 
   @Override
   public String getName() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Mein Name";
   }
 
   @Override
@@ -36,8 +34,7 @@ public class MessageEditorInput implements IEditorInput {
 
   @Override
   public String getToolTipText() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Hallo Tooltip";
   }
 
   @Override

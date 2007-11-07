@@ -1,6 +1,9 @@
 package net.sf.anathema.character.core.editors;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.basics.item.editor.ErrorMessageEditorInput;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IContainer;
@@ -14,14 +17,16 @@ import org.junit.Test;
 public class ModelPersistableFactoryTest {
 
   private ModelPersistableFactory factory;
-  private IContainer characterFolder;
+  private ICharacterTemplateProvider templateProvider;
 
   @Before
   public void createFactory() {
-    characterFolder = EasyMock.createNiceMock(IContainer.class);
+    templateProvider = EasyMock.createMock(ICharacterTemplateProvider.class);
+    IContainer characterFolder = EasyMock.createNiceMock(IContainer.class);
+    EasyMock.replay(characterFolder);
     IFile file = createFile(characterFolder);
     IContainer root = createContainerWithFileAtArbitraryPath(file);
-    this.factory = new ModelPersistableFactory(root);
+    this.factory = new ModelPersistableFactory(root, templateProvider);
   }
 
   private IContainer createContainerWithFileAtArbitraryPath(IFile file) {
@@ -39,13 +44,13 @@ public class ModelPersistableFactoryTest {
   }
 
   @Test
-  public void returnsMessageEditorInputForNonExistingFolder() throws Exception {
-    EasyMock.expect(characterFolder.exists()).andStubReturn(false);
-    EasyMock.replay(characterFolder);
+  public void returnsMessageEditorInputForNonExistingTemplate() throws Exception {
+    EasyMock.expect(templateProvider.isTemplateAvailable(EasyMock.isA(ICharacterId.class))).andStubReturn(false);
+    EasyMock.replay(templateProvider);
     IMemento memento = EasyMock.createNiceMock(IMemento.class);
     EasyMock.expect(memento.getString(EasyMock.isA(String.class))).andReturn("karzenfuﬂ"); //$NON-NLS-1$
     EasyMock.replay(memento);
     IAdaptable adaptable = factory.createElement(memento);
-    assertTrue(adaptable instanceof MessageEditorInput);
+    assertTrue(adaptable instanceof ErrorMessageEditorInput);
   }
 }
