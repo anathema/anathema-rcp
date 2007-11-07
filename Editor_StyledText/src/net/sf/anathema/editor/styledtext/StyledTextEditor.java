@@ -36,11 +36,11 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
   }
 
   private ITitledText getItem() {
-    return getEditorInput().getItem();
+    return getPersistableEditorInput().getItem();
   }
 
   @Override
-  public void createPartControl(Composite parent) {
+  public void createPartControlForItem(Composite parent) {
     parent.setLayout(new GridLayout(2, false));
     Label nameLabel = new Label(parent, SWT.LEFT);
     nameLabel.setText(getColonLabel(Messages.StyledTextEditor_Name));

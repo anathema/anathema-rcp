@@ -26,7 +26,7 @@ public final class CharacterPartNameListener implements IResourceChangeListener 
       display.asyncExec(new Runnable() {
         @Override
         public void run() {
-          editorPart.setPartName(editorPart.getEditorInput().getName());
+          editorPart.setPartName(editorPart.getPersistableEditorInput().getName());
         }
       });
     }

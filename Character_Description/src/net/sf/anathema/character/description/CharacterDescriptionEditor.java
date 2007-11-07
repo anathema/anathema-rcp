@@ -24,11 +24,11 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
   private ITextView nameView;
 
   private ICharacterDescription getItem() {
-    return getEditorInput().getItem();
+    return getPersistableEditorInput().getItem();
   }
 
   @Override
-  public void createPartControl(Composite parent) {
+  public void createPartControlForItem(Composite parent) {
     parent.setLayout(new GridLayout(2, false));
     nameView = initSingleLineText(parent, Messages.CharacterDescriptionEditor_Name, getItem().getName());
     initSingleLineText(parent, Messages.CharacterDescriptionEditor_Player, getItem().getPlayer());

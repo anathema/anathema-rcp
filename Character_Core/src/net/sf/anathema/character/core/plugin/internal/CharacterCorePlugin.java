@@ -27,7 +27,7 @@ public class CharacterCorePlugin extends AbstractAnathemaUIPlugin {
       if (!editorPart.isDirty()) {
         return;
       }
-      IPersistableEditorInput< ? > input = editorPart.getEditorInput();
+      IPersistableEditorInput< ? > input = editorPart.getPersistableEditorInput();
       if (!(input instanceof AbstractCharacterModelEditorInput)) {
         return;
       }

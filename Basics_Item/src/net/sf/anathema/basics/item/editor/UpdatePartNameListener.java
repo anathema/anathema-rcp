@@ -11,6 +11,6 @@ public final class UpdatePartNameListener implements IObjectValueChangedListener
 
   @Override
   public void valueChanged(String newValue) {
-    editorPart.setPartName(editorPart.getEditorInput().getName());
+    editorPart.setPartName(editorPart.getPersistableEditorInput().getName());
   }
 }

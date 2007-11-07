@@ -21,7 +21,7 @@ public final class SaveEditorJob extends Job {
   private static final ILogger logger = new Logger(IBasicItemPluginConstants.PLUGIN_ID);
 
   public SaveEditorJob(IPersistableItemEditor editorPart, Display display) {
-    this(editorPart.getEditorInput(), new FireDirtyRunnable(editorPart), display);
+    this(editorPart.getPersistableEditorInput(), new FireDirtyRunnable(editorPart), display);
   }
 
   public SaveEditorJob(IPersistableEditorInput< ? > editorInput, Runnable postSave, Display display) {

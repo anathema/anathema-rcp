@@ -8,5 +8,5 @@ public interface IPersistableItemEditor {
   
   public void firePropertyChange(final int propertyId);
   
-  public IPersistableEditorInput<?> getEditorInput();
+  public IPersistableEditorInput<?> getPersistableEditorInput();
 }

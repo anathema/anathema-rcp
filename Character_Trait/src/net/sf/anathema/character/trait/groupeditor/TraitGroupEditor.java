@@ -24,7 +24,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
   private final ClassedProvider<ITraitGroupEditorDecoration> decorations = new ClassedProvider<ITraitGroupEditorDecoration>();
 
   @Override
-  public void createPartControl(Composite parent) {
+  public void createPartControlForItem(Composite parent) {
     decorations.addAll(new TraitGroupEditorDecorationFactory().create());
     ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
     TraitViewFactory factory = new TraitViewFactory(parent, editorInput.getImageProvider());

@@ -10,6 +10,9 @@ import net.sf.anathema.lib.ui.IDisposable;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -57,14 +60,20 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
   }
 
   @SuppressWarnings("unchecked")
-  @Override
-  public IPersistableEditorInput<I> getEditorInput() {
+  public IPersistableEditorInput<I> getPersistableEditorInput() {
     return (IPersistableEditorInput<I>) super.getEditorInput();
   }
 
   @Override
-  public boolean isDirty() {
-    return getEditorInput().getItem().isDirty();
+  public final boolean isDirty() {
+    if (isErrorInput()) {
+      return false;
+    }
+    return getPersistableEditorInput().getItem().isDirty();
+  }
+
+  private boolean isErrorInput() {
+    return getEditorInput() instanceof ErrorMessageEditorInput;
   }
 
   @Override
@@ -73,6 +82,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
   }
 
   @Override
+  // protected in superclass
   public void setPartName(String partName) {
     super.setPartName(partName);
   }
@@ -81,19 +91,35 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
   public void init(final IEditorSite site, IEditorInput input) throws PartInitException {
     try {
       setInput(input);
-      final IPersistableEditorInput<I> itemInput = getEditorInput();
+      setSite(site);
+      if (isErrorInput()) {
+        return;
+      }
+      final IPersistableEditorInput<I> itemInput = getPersistableEditorInput();
       I item = itemInput.getItem();
       item.addDirtyListener(dirtyChangeListener);
-      addDisposable(new DirtyChangeDisposable(itemInput));
-      setSite(site);
-      setTitleImage(itemInput.getImageDescriptor().createImage());
       setPartName(getEditorInput().getName());
+      addDisposable(new DirtyChangeDisposable(itemInput));
+      setTitleImage(itemInput.getImageDescriptor().createImage());
       addDisposable(new ImageDisposable(getTitleImage()));
     }
     catch (Exception e) {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
   }
+
+  @Override
+  public final void createPartControl(Composite parent) {
+    IEditorInput input = super.getEditorInput();
+    if (input instanceof ErrorMessageEditorInput) {
+      new Label(parent, SWT.NONE).setText("Has‰‰‰. Jawoll");
+    }
+    else {
+      createPartControlForItem(parent);
+    }
+  }
+
+  protected abstract void createPartControlForItem(Composite parent);
 
   @Override
   public void dispose() {
