@@ -41,7 +41,7 @@ public class AttributeBonusPointHandlerTest {
   public void zeroBonusPointsReturnedWithoutLoadingModelForModelsNotYetLoadedAndWithoutResource() throws Exception {
     EasyMock.expect(modelCollection.contains(modelIdentifier)).andReturn(false);
     EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andReturn(
-        ResourceObjectMother.createNonExistingResource());
+        ResourceObjectMother.createNonExistingFile());
     EasyMock.replay(modelCollection, resourceHandler);
     assertEquals(0, bonusPointHandler.getPoints(modelIdentifier.getCharacterId()));
     EasyMock.verify(modelCollection, resourceHandler);

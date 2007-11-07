@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.PartInitException;
 
 public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledText> implements
     IStyledTextEditor,
@@ -30,8 +29,7 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
   private StyledTextView contentView;
 
   @Override
-  public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-    super.init(site, input);
+  protected void initForItem(IEditorSite site, IEditorInput input) {
     getItem().getName().addTextChangedListener(new UpdatePartNameListener(this));
   }
 
@@ -66,7 +64,7 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
   }
 
   @Override
-  public void setFocus() {
+  protected void setFocusForItem() {
     contentView.setFocus();
   }
 

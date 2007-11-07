@@ -18,6 +18,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
 
 public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
@@ -47,6 +49,11 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     addDisposable(new ResourceChangeListenerDisposable(resourceListener));
   }
 
+  @Override
+  protected void initForItem(IEditorSite site, IEditorInput input) {
+    // nothing to do
+  }
+
   public <T extends ITraitGroupEditorDecoration> T getDecoration(Class<T> clazz) {
     return decorations.get(clazz);
   }
@@ -55,10 +62,5 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     Label label = new Label(parent, SWT.NULL);
     label.setLayoutData(data);
     return label;
-  }
-
-  @Override
-  public void setFocus() {
-    // nothing to do
   }
 }

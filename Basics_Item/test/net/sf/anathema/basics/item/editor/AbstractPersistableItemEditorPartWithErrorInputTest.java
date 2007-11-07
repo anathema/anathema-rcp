@@ -43,4 +43,15 @@ public class AbstractPersistableItemEditorPartWithErrorInputTest {
     editor.createPartControl(new Shell());
     assertFalse(editor.isItemPartCreated());
   }
+
+  @Test
+  public void itemInitializationIsNotPerformed() throws Exception {
+    assertFalse(editor.isInitedForItem());
+  }
+  
+  @Test
+  public void noFocusForItemRequested() throws Exception {
+    editor.setFocus();
+    assertFalse(editor.isFocusIsSetForItem());
+  }
 }

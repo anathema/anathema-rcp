@@ -66,13 +66,13 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   @Override
   public final boolean isDirty() {
-    if (isErrorInput()) {
+    if (couldNotBeRestored()) {
       return false;
     }
     return getPersistableEditorInput().getItem().isDirty();
   }
 
-  private boolean isErrorInput() {
+  private final boolean couldNotBeRestored() {
     return getEditorInput() instanceof ErrorMessageEditorInput;
   }
 
@@ -88,11 +88,11 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
   }
 
   @Override
-  public void init(final IEditorSite site, IEditorInput input) throws PartInitException {
+  public final void init(final IEditorSite site, IEditorInput input) throws PartInitException {
     try {
       setInput(input);
       setSite(site);
-      if (isErrorInput()) {
+      if (couldNotBeRestored()) {
         return;
       }
       final IPersistableEditorInput<I> itemInput = getPersistableEditorInput();
@@ -102,11 +102,14 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
       addDisposable(new DirtyChangeDisposable(itemInput));
       setTitleImage(itemInput.getImageDescriptor().createImage());
       addDisposable(new ImageDisposable(getTitleImage()));
+      initForItem(site, input);
     }
     catch (Exception e) {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
   }
+
+  protected abstract void initForItem(IEditorSite site, IEditorInput input);
 
   @Override
   public final void createPartControl(Composite parent) {
@@ -129,5 +132,16 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   protected final <T extends IDisposable> T addDisposable(T disposable) {
     return disposables.addDisposable(disposable);
+  }
+
+  @Override
+  public final void setFocus() {
+    if (!couldNotBeRestored()) {
+      setFocusForItem();
+    }
+  }
+
+  protected void setFocusForItem() {
+    // nothing to do
   }
 }

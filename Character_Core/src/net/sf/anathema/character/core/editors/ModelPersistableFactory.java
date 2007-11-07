@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IMemento;
 
@@ -41,9 +40,7 @@ public class ModelPersistableFactory extends AbstractExecutableExtension impleme
     IFile file = root.getFile(path);
     IContainer characterFolder = file.getParent();
     if (!templateProvider.isTemplateAvailable(new CharacterId(characterFolder))) {
-      return new ErrorMessageEditorInput(NLS.bind(
-          Messages.ModelPersistableFactory_NoTemplateAvailableMessage,
-          characterFolder.getLocation()));
+      return new ErrorMessageEditorInput(Messages.ModelPersistableFactory_NoTemplateAvailableMessage, characterFolder);
     }
     IModelDisplayConfiguration displayConfiguration = new ModelExtensionPoint().getDisplayConfiguration(file);
     try {
