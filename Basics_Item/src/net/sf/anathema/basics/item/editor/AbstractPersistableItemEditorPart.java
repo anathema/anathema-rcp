@@ -112,7 +112,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
   public final void createPartControl(Composite parent) {
     IEditorInput input = super.getEditorInput();
     if (input instanceof ErrorMessageEditorInput) {
-      new Label(parent, SWT.NONE).setText("Has‰‰‰. Jawoll");
+      new Label(parent, SWT.NONE).setText(((ErrorMessageEditorInput) input).getMessage());
     }
     else {
       createPartControlForItem(parent);
