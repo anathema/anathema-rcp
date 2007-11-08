@@ -1,6 +1,7 @@
 package net.sf.anathema.character.description.importwizard;
 
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
+import net.sf.anathema.character.description.plugin.CharacterDescriptionPluginConstants;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -17,8 +18,7 @@ public class DescriptionConverter {
 
   public Document convert(Document document) {
     Element element = document.getRootElement().element(TAG_DESCRIPTION).createCopy(TAG_MODEL);
-    // TODO Get constant character_core.id
-    BundlePersistenceUtilities.addBundleVersionAttribute(element, "net.sf.anathema.character.core");
+    BundlePersistenceUtilities.addBundleVersionAttribute(element, CharacterDescriptionPluginConstants.PLUGIN_ID);
     renameElement(element, TAG_CHARACTER_NAME, TAG_NAME);
     renameElement(element, TAG_PERIPHRASE, TAG_PERIPHRASIS);
     return DocumentHelper.createDocument(element);
