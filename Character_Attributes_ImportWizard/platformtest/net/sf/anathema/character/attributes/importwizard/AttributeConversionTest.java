@@ -1,6 +1,6 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.attributes.importwizard;
 
-import net.sf.anathema.character.importwizard.internal.AttributesConverter;
+import net.sf.anathema.character.attributes.importwizard.AttributesConverter;
 import net.sf.anathema.character.importwizard.utility.ImportDocumentObjectMother;
 
 import org.dom4j.Document;
