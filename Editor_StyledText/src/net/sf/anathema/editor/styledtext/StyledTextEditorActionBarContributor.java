@@ -3,7 +3,6 @@ package net.sf.anathema.editor.styledtext;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.lib.textualdescription.TextAspect;
 
-import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -33,19 +32,15 @@ public class StyledTextEditorActionBarContributor extends EditorActionBarContrib
   private IStyledTextEditor targetEditor;
 
   @Override
-  public void contributeToToolBar(IToolBarManager toolBarManager) {
-    addToContributionManager(toolBarManager);
+  public void contributeToToolBar(IToolBarManager manager) {
+    for (IStyledTextAction action : actions) {
+      manager.add(action);
+    }
   }
 
   private void updateState() {
     for (IStyledTextAction action : actions) {
       action.updateState();
-    }
-  }
-
-  private void addToContributionManager(IContributionManager manager) {
-    for (IStyledTextAction action : actions) {
-      manager.add(action);
     }
   }
 
