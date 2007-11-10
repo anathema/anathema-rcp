@@ -45,6 +45,7 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
 
       @Override
       public void init(IEditorSite editorSite, IEditorInput input) {
+        super.init(editorSite, input);
         getItem().getName().addTextChangedListener(new UpdatePartNameListener(StyledTextEditor.this));
       }
 

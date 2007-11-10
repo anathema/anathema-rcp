@@ -20,8 +20,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorSite;
 
 public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
@@ -33,11 +31,6 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
       @Override
       public void setFocus() {
-        // nothing to do
-      }
-
-      @Override
-      public void init(IEditorSite editorSite, IEditorInput input) {
         // nothing to do
       }
 

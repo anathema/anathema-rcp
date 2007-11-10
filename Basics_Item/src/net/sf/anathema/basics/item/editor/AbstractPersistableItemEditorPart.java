@@ -1,7 +1,5 @@
 package net.sf.anathema.basics.item.editor;
 
-import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.basics.eclipse.resource.ImageDisposable;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
@@ -10,6 +8,7 @@ import net.sf.anathema.lib.ui.IDisposable;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
@@ -18,25 +17,6 @@ import org.eclipse.ui.part.EditorPart;
 
 public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends EditorPart implements
     IPersistableItemEditor {
-
-  private final class DirtyChangeDisposable implements IDisposable {
-    private final IPersistableEditorInput<I> itemInput;
-
-    private DirtyChangeDisposable(IPersistableEditorInput<I> itemInput) {
-      this.itemInput = itemInput;
-    }
-
-    @Override
-    public void dispose() {
-      itemInput.getItem().removeDirtyListener(dirtyChangeListener);
-    }
-  }
-
-  private final IChangeListener dirtyChangeListener = new IChangeListener() {
-    public void stateChanged() {
-      getSite().getShell().getDisplay().asyncExec(new FireDirtyRunnable(AbstractPersistableItemEditorPart.this));
-    }
-  };
 
   private final AggregatedDisposable disposables = new AggregatedDisposable();
 
@@ -80,6 +60,12 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
     super.setPartName(partName);
   }
 
+  @Override
+  // protected in superclass
+  public void setTitleImage(Image titleImage) {
+    super.setTitleImage(titleImage);
+  }
+
   protected abstract IEditorControl createItemEditorControl();
 
   @Override
@@ -89,16 +75,13 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
       setSite(site);
       if (getEditorInput() instanceof ErrorMessageEditorInput) {
         this.editorContent = new ErrorEditorContent();
-        this.editorContent.init(site, input);
-        return;
       }
-      this.editorContent = createItemEditorControl();
-      final IPersistableEditorInput<I> itemInput = getPersistableEditorInput();
-      itemInput.getItem().addDirtyListener(dirtyChangeListener);
-      setPartName(getEditorInput().getName());
-      addDisposable(new DirtyChangeDisposable(itemInput));
-      setTitleImage(itemInput.getImageDescriptor().createImage());
-      addDisposable(new ImageDisposable(getTitleImage()));
+      else {
+        this.editorContent = createItemEditorControl();
+      }
+      if (editorContent instanceof IDisposable) {
+        addDisposable((IDisposable) editorContent);
+      }
       this.editorContent.init(site, input);
     }
     catch (Exception e) {

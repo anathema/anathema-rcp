@@ -6,6 +6,7 @@ import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
+import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 import net.sf.anathema.lib.textualdescription.ITextView;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
 import net.sf.anathema.lib.textualdescription.TextualPresenter;
@@ -23,10 +24,6 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
 
   public static final String EDITOR_ID = "net.sf.anathema.character.description.editor"; //$NON-NLS-1$
 
-  private ICharacterDescription getItem() {
-    return getPersistableEditorInput().getItem();
-  }
-
   @Override
   protected IEditorControl createItemEditorControl() {
     return new AbstractItemEditorControl(this) {
@@ -39,7 +36,9 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
 
       @Override
       public void init(IEditorSite editorSite, IEditorInput input) {
-        getItem().getName().addTextChangedListener(new UpdatePartNameListener(CharacterDescriptionEditor.this));
+        super.init(editorSite, input);
+        IObjectValueChangedListener<String> nameListener = new UpdatePartNameListener(CharacterDescriptionEditor.this);
+        getItem().getName().addTextChangedListener(nameListener);
       }
 
       @Override
@@ -56,25 +55,30 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
             getItem().getPhysicalDescription());
         initMultiLineText(parent, Messages.CharacterDescriptionEditor_Notes, getItem().getNotes());
       }
+
+      private void initMultiLineText(Composite parent, String label, ITextualDescription description) {
+        createLabel(parent, label);
+        ITextView view = SimpleTextView.createMultiLineView(parent);
+        addDisposable(new TextualPresenter(view, description)).initPresentation();
+      }
+
+      private ITextView initSingleLineText(Composite parent, String label, ITextualDescription description) {
+        createLabel(parent, label);
+        ITextView view = SimpleTextView.createSingleLineView(parent);
+        addDisposable(new TextualPresenter(view, description)).initPresentation();
+        return view;
+      }
+
+      private void createLabel(Composite parent, String text) {
+        Label contentLabel = new Label(parent, SWT.LEFT);
+        contentLabel.setText(text + ":"); //$NON-NLS-1$
+        contentLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
+      }
+
+      private ICharacterDescription getItem() {
+        return getPersistableEditorInput().getItem();
+      }
+
     };
-  }
-
-  private void initMultiLineText(Composite parent, String label, ITextualDescription description) {
-    createLabel(parent, label);
-    ITextView view = SimpleTextView.createMultiLineView(parent);
-    addDisposable(new TextualPresenter(view, description)).initPresentation();
-  }
-
-  private ITextView initSingleLineText(Composite parent, String label, ITextualDescription description) {
-    createLabel(parent, label);
-    ITextView view = SimpleTextView.createSingleLineView(parent);
-    addDisposable(new TextualPresenter(view, description)).initPresentation();
-    return view;
-  }
-
-  private void createLabel(Composite parent, String text) {
-    Label contentLabel = new Label(parent, SWT.LEFT);
-    contentLabel.setText(text + ":"); //$NON-NLS-1$
-    contentLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
   }
 }
