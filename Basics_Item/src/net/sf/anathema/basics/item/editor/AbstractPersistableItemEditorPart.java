@@ -10,9 +10,7 @@ import net.sf.anathema.lib.ui.IDisposable;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -42,6 +40,8 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   private final AggregatedDisposable disposables = new AggregatedDisposable();
 
+  private IEditorContent editorContent;
+
   @Override
   public void doSave(IProgressMonitor monitor) {
     Job saveJob = new SaveEditorJob(this, getSite().getShell().getDisplay());
@@ -66,14 +66,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   @Override
   public final boolean isDirty() {
-    if (couldNotBeRestored()) {
-      return false;
-    }
-    return getPersistableEditorInput().getItem().isDirty();
-  }
-
-  private final boolean couldNotBeRestored() {
-    return getEditorInput() instanceof ErrorMessageEditorInput;
+    return editorContent.isDirty();
   }
 
   @Override
@@ -87,14 +80,19 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
     super.setPartName(partName);
   }
 
+  protected abstract IEditorContent createItemEditorContent();
+
   @Override
-  public final void init(final IEditorSite site, IEditorInput input) throws PartInitException {
+  public final void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
     try {
       setInput(input);
       setSite(site);
-      if (couldNotBeRestored()) {
+      if (getEditorInput() instanceof ErrorMessageEditorInput) {
+        this.editorContent = new ErrorEditorContent();
+        this.editorContent.init(site, input);
         return;
       }
+      this.editorContent = createItemEditorContent();
       final IPersistableEditorInput<I> itemInput = getPersistableEditorInput();
       I item = itemInput.getItem();
       item.addDirtyListener(dirtyChangeListener);
@@ -102,27 +100,17 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
       addDisposable(new DirtyChangeDisposable(itemInput));
       setTitleImage(itemInput.getImageDescriptor().createImage());
       addDisposable(new ImageDisposable(getTitleImage()));
-      initForItem(site, input);
+      this.editorContent.init(site, input);
     }
     catch (Exception e) {
       throw new PartInitException("Error initializing styled text editor.", e); //$NON-NLS-1$
     }
   }
 
-  protected abstract void initForItem(IEditorSite site, IEditorInput input);
-
   @Override
   public final void createPartControl(Composite parent) {
-    IEditorInput input = super.getEditorInput();
-    if (input instanceof ErrorMessageEditorInput) {
-      new Label(parent, SWT.NONE).setText(((ErrorMessageEditorInput) input).getMessage());
-    }
-    else {
-      createPartControlForItem(parent);
-    }
+    editorContent.createPartControl(parent);
   }
-
-  protected abstract void createPartControlForItem(Composite parent);
 
   @Override
   public void dispose() {
@@ -136,12 +124,6 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   @Override
   public final void setFocus() {
-    if (!couldNotBeRestored()) {
-      setFocusForItem();
-    }
-  }
-
-  protected void setFocusForItem() {
-    // nothing to do
+    editorContent.setFocus();
   }
 }

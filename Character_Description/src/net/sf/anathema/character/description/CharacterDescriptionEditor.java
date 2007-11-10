@@ -1,6 +1,7 @@
 package net.sf.anathema.character.description;
 
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
+import net.sf.anathema.basics.item.editor.IEditorContent;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
@@ -20,30 +21,46 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
     IPersistableItemEditor {
 
   public static final String EDITOR_ID = "net.sf.anathema.character.description.editor"; //$NON-NLS-1$
-  private ITextView nameView;
 
   private ICharacterDescription getItem() {
     return getPersistableEditorInput().getItem();
   }
 
   @Override
-  public void createPartControlForItem(Composite parent) {
-    parent.setLayout(new GridLayout(2, false));
-    nameView = initSingleLineText(parent, Messages.CharacterDescriptionEditor_Name, getItem().getName());
-    initSingleLineText(parent, Messages.CharacterDescriptionEditor_Player, getItem().getPlayer());
-    initSingleLineText(parent, Messages.CharacterDescriptionEditor_Concept, getItem().getConcept());
-    initSingleLineText(parent, Messages.CharacterDescriptionEditor_Periphrasis, getItem().getPeriphrasis());
-    initMultiLineText(parent, Messages.CharacterDescriptionEditor_Characterization, getItem().getCharacterization());
-    initMultiLineText(
-        parent,
-        Messages.CharacterDescriptionEditor_PhysicalDescription,
-        getItem().getPhysicalDescription());
-    initMultiLineText(parent, Messages.CharacterDescriptionEditor_Notes, getItem().getNotes());
-  }
+  protected IEditorContent createItemEditorContent() {
+    return new IEditorContent() {
+      private ITextView nameView;
 
-  @Override
-  protected void initForItem(IEditorSite site, IEditorInput input) {
-    getItem().getName().addTextChangedListener(new UpdatePartNameListener(this));
+      @Override
+      public void setFocus() {
+        nameView.setFocus();
+      }
+
+      @Override
+      public boolean isDirty() {
+        return getPersistableEditorInput().getItem().isDirty();
+      }
+
+      @Override
+      public void init(IEditorSite editorSite, IEditorInput input) {
+        getItem().getName().addTextChangedListener(new UpdatePartNameListener(CharacterDescriptionEditor.this));
+      }
+
+      @Override
+      public void createPartControl(Composite parent) {
+        parent.setLayout(new GridLayout(2, false));
+        nameView = initSingleLineText(parent, Messages.CharacterDescriptionEditor_Name, getItem().getName());
+        initSingleLineText(parent, Messages.CharacterDescriptionEditor_Player, getItem().getPlayer());
+        initSingleLineText(parent, Messages.CharacterDescriptionEditor_Concept, getItem().getConcept());
+        initSingleLineText(parent, Messages.CharacterDescriptionEditor_Periphrasis, getItem().getPeriphrasis());
+        initMultiLineText(parent, Messages.CharacterDescriptionEditor_Characterization, getItem().getCharacterization());
+        initMultiLineText(
+            parent,
+            Messages.CharacterDescriptionEditor_PhysicalDescription,
+            getItem().getPhysicalDescription());
+        initMultiLineText(parent, Messages.CharacterDescriptionEditor_Notes, getItem().getNotes());
+      }
+    };
   }
 
   private void initMultiLineText(Composite parent, String label, ITextualDescription description) {
@@ -63,10 +80,5 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
     Label contentLabel = new Label(parent, SWT.LEFT);
     contentLabel.setText(text + ":"); //$NON-NLS-1$
     contentLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
-  }
-
-  @Override
-  protected void setFocusForItem() {
-    nameView.setFocus();
   }
 }

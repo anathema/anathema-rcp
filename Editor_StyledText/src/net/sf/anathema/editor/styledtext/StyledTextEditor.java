@@ -2,6 +2,7 @@ package net.sf.anathema.editor.styledtext;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
+import net.sf.anathema.basics.item.editor.IEditorContent;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.item.text.ITitledText;
@@ -28,44 +29,55 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
 
   private StyledTextView contentView;
 
-  @Override
-  protected void initForItem(IEditorSite site, IEditorInput input) {
-    getItem().getName().addTextChangedListener(new UpdatePartNameListener(this));
-  }
-
   private ITitledText getItem() {
     return getPersistableEditorInput().getItem();
   }
 
   @Override
-  public void createPartControlForItem(Composite parent) {
-    parent.setLayout(new GridLayout(2, false));
-    Label nameLabel = new Label(parent, SWT.LEFT);
-    nameLabel.setText(getColonLabel(Messages.StyledTextEditor_Name));
-    nameLabel.setLayoutData(createLabelData());
-    final ITextView nameView = SimpleTextView.createSingleLineView(parent);
-    final ITextualDescription nameModel = getItem().getName();
-    addDisposable(new TextualPresenter(nameView, nameModel)).initPresentation();
-    Label contentLabel = new Label(parent, SWT.LEFT);
-    contentLabel.setText(getColonLabel(Messages.StyledTextEditor_Content));
-    contentLabel.setLayoutData(createLabelData());
-    final IStyledTextualDescription contentDescription = getItem().getContent();
-    contentView = new StyledTextView(parent);
-    new StyledTextPresenter(contentView, contentDescription).initPresentation();
-    getSite().setSelectionProvider(contentView.createSelectionProvider());
-  }
+  protected IEditorContent createItemEditorContent() {
+    return new IEditorContent() {
 
-  private String getColonLabel(String string) {
-    return string + ':';
-  }
+      @Override
+      public void setFocus() {
+        contentView.setFocus();
+      }
 
-  protected GridData createLabelData() {
-    return new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false);
-  }
+      @Override
+      public boolean isDirty() {
+        return getPersistableEditorInput().getItem().isDirty();
+      }
 
-  @Override
-  protected void setFocusForItem() {
-    contentView.setFocus();
+      @Override
+      public void init(IEditorSite editorSite, IEditorInput input) {
+        getItem().getName().addTextChangedListener(new UpdatePartNameListener(StyledTextEditor.this));
+      }
+
+      @Override
+      public void createPartControl(Composite parent) {
+        parent.setLayout(new GridLayout(2, false));
+        Label nameLabel = new Label(parent, SWT.LEFT);
+        nameLabel.setText(getColonLabel(Messages.StyledTextEditor_Name));
+        nameLabel.setLayoutData(createLabelData());
+        final ITextView nameView = SimpleTextView.createSingleLineView(parent);
+        final ITextualDescription nameModel = getItem().getName();
+        addDisposable(new TextualPresenter(nameView, nameModel)).initPresentation();
+        Label contentLabel = new Label(parent, SWT.LEFT);
+        contentLabel.setText(getColonLabel(Messages.StyledTextEditor_Content));
+        contentLabel.setLayoutData(createLabelData());
+        final IStyledTextualDescription contentDescription = getItem().getContent();
+        contentView = new StyledTextView(parent);
+        new StyledTextPresenter(contentView, contentDescription).initPresentation();
+        getSite().setSelectionProvider(contentView.createSelectionProvider());
+      }
+
+      private String getColonLabel(String string) {
+        return string + ':';
+      }
+
+      protected GridData createLabelData() {
+        return new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false);
+      }
+    };
   }
 
   @Override

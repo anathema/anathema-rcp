@@ -13,13 +13,29 @@ public class TestPersistableItemEditorPart extends AbstractPersistableItemEditor
   private boolean focusIsSetForItem;
 
   @Override
-  protected void createPartControlForItem(Composite parent) {
-    this.itemPartCreated = true;
-  }
+  protected IEditorContent createItemEditorContent() {
+    return new IEditorContent() {
 
-  @Override
-  protected void initForItem(IEditorSite site, IEditorInput input) {
-    initedForItem = true;
+      @Override
+      public void createPartControl(Composite parent) {
+        itemPartCreated = true;
+      }
+
+      @Override
+      public void init(IEditorSite editorSite, IEditorInput input) {
+        initedForItem = true;
+      }
+
+      @Override
+      public boolean isDirty() {
+        return false;
+      }
+
+      @Override
+      public void setFocus() {
+        focusIsSetForItem = true;
+      }
+    };
   }
 
   public boolean isItemPartCreated() {
@@ -28,11 +44,6 @@ public class TestPersistableItemEditorPart extends AbstractPersistableItemEditor
 
   public boolean isInitedForItem() {
     return initedForItem;
-  }
-
-  @Override
-  protected void setFocusForItem() {
-    focusIsSetForItem = true;
   }
 
   public boolean isFocusIsSetForItem() {
