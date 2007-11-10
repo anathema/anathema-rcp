@@ -78,7 +78,6 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
       private ICharacterDescription getItem() {
         return getPersistableEditorInput().getItem();
       }
-
     };
   }
 }
