@@ -5,7 +5,9 @@ import net.sf.anathema.basics.eclipse.resource.FileUtils;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 import net.sf.anathema.character.importwizard.utility.CharacterTestUtilities;
+import net.sf.anathema.lib.xml.DocumentUtilities;
 
+import org.dom4j.Document;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -36,17 +38,17 @@ public class AttributeImporterTest {
 
   @Test
   public void importsAttributes() throws Exception {
-    // Document document =
-    // Document expecteddocument =
-    // importer.runImport(characterFolder, document);
-    // Document resultdocument =
-    // DocumentUtilities.read(getCharacterFolder().getFile("attributes.model").getContents()); //$NON-NLS-1$
-    // Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
+    Document document = AttributesDocumentObjectMother.createAttributesDocument();
+    Document expecteddocument = AttributesDocumentObjectMother.createConvertedAttributesDocument();
+    importer.runImport(characterFolder, document);
+    Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("attributes.model").getContents()); //$NON-NLS-1$
+    CharacterTestUtilities.assertEqualWithoutWhitespace(expecteddocument, resultdocument);
   }
 
   @Test
   public void returnsOkStatus() throws Exception {
-    IStatus status = importer.runImport(null, null);
+    Document document = AttributesDocumentObjectMother.createAttributesDocument();
+    IStatus status = importer.runImport(characterFolder, document);
     assertTrue(status.isOK());
   }
 
