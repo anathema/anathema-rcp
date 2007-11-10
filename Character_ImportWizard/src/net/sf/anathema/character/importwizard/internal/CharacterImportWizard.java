@@ -68,8 +68,6 @@ public class CharacterImportWizard extends AbstractImportWizard {
         for (IModelImporter importer : new ModelImporterExtensionPoint().getImporters()) {
           importer.runImport(container, document);
         }
-        // TODO Convert attribute XML
-        // TODO Convert experience XML
       }
       return status;
     }

@@ -3,7 +3,6 @@
 
 <product name="%net.sf.anathema.rcp.ProductName" id="net.sf.anathema.rcp.product" application="net.sf.anathema.rcp.application" useFeatures="false">
 
-
    <configIni use="default"/>
 
    <launcherArgs>
@@ -18,7 +17,6 @@
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>
@@ -37,12 +35,15 @@
       <plugin id="net.sf.anathema.campaign.note.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.campaign.plot"/>
       <plugin id="net.sf.anathema.campaign.plot.importwizard" fragment="true"/>
+      <plugin id="net.sf.anathema.character.attribute.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes"/>
       <plugin id="net.sf.anathema.character.core"/>
       <plugin id="net.sf.anathema.character.description"/>
+      <plugin id="net.sf.anathema.character.description.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.character.experience"/>
       <plugin id="net.sf.anathema.character.freebies"/>
       <plugin id="net.sf.anathema.character.freebies.attributes"/>
+      <plugin id="net.sf.anathema.character.importwizard"/>
       <plugin id="net.sf.anathema.character.points"/>
       <plugin id="net.sf.anathema.character.points.i18n.en" fragment="true"/>
       <plugin id="net.sf.anathema.character.sheet"/>
