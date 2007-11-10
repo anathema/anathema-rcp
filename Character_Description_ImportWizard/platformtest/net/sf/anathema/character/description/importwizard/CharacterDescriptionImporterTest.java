@@ -14,7 +14,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -38,11 +37,11 @@ public class CharacterDescriptionImporterTest {
 
   @Test
   public void importsDescription() throws Exception {
-    Document document = DescriptionDocumentObjectMother.createEmptyDescriptionDocument();
-    Document expecteddocument = DescriptionDocumentObjectMother.createEmptyVersionedModelDocument();
+    Document document = DescriptionDocumentObjectMother.createDescriptionWithMissingElements();
+    Document expecteddocument = DescriptionDocumentObjectMother.createConvertedDescriptionWithMissingElements();
     importer.runImport(characterFolder, document);
     Document resultdocument = DocumentUtilities.read(getCharacterFolder().getFile("basic.description").getContents()); //$NON-NLS-1$
-    Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
+    CharacterTestUtilities.assertEqualWithoutWhitespace(expecteddocument, resultdocument);
   }
 
   private static IFolder getCharacterFolder() {
@@ -51,7 +50,7 @@ public class CharacterDescriptionImporterTest {
 
   @Test
   public void returnsStatusOk() throws Exception {
-    Document document = DescriptionDocumentObjectMother.createEmptyDescriptionDocument();
+    Document document = DescriptionDocumentObjectMother.createDescriptionWithMissingElements();
     IStatus status = importer.runImport(characterFolder, document);
     assertTrue(status.isOK());
 

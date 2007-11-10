@@ -32,8 +32,8 @@ public class CharacterDescriptionConverterTest {
 
   @Test
   public void createsDescriptionIfElementsAreMissing() throws Exception {
-    Document resultdocument = converter.convert(DescriptionDocumentObjectMother.createEmptyDescriptionDocument());
-    Document expecteddocument = DescriptionDocumentObjectMother.createEmptyVersionedModelDocument();
+    Document resultdocument = converter.convert(DescriptionDocumentObjectMother.createDescriptionWithMissingElements());
+    Document expecteddocument = DescriptionDocumentObjectMother.createConvertedDescriptionWithMissingElements();
     assertEquals(DocumentUtilities.asString(expecteddocument), DocumentUtilities.asString(resultdocument));
   }
 }
