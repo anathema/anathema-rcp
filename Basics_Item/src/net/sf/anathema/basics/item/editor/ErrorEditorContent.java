@@ -6,7 +6,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 
-public final class ErrorEditorContent implements IEditorContent {
+public final class ErrorEditorContent implements IEditorControl {
   private ErrorMessageEditorInput input;
 
   @Override

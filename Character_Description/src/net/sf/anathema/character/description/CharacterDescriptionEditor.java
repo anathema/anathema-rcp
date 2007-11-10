@@ -1,7 +1,8 @@
 package net.sf.anathema.character.description;
 
+import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
-import net.sf.anathema.basics.item.editor.IEditorContent;
+import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
@@ -27,18 +28,13 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
   }
 
   @Override
-  protected IEditorContent createItemEditorContent() {
-    return new IEditorContent() {
+  protected IEditorControl createItemEditorControl() {
+    return new AbstractItemEditorControl(this) {
       private ITextView nameView;
 
       @Override
       public void setFocus() {
         nameView.setFocus();
-      }
-
-      @Override
-      public boolean isDirty() {
-        return getPersistableEditorInput().getItem().isDirty();
       }
 
       @Override

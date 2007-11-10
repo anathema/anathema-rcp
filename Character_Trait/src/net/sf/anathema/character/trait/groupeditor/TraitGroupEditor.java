@@ -2,8 +2,9 @@ package net.sf.anathema.character.trait.groupeditor;
 
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
 import net.sf.anathema.basics.item.IItem;
+import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
-import net.sf.anathema.basics.item.editor.IEditorContent;
+import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
@@ -27,17 +28,12 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
   private final ClassedProvider<ITraitGroupEditorDecoration> decorations = new ClassedProvider<ITraitGroupEditorDecoration>();
 
   @Override
-  protected IEditorContent createItemEditorContent() {
-    return new IEditorContent() {
+  protected IEditorControl createItemEditorControl() {
+    return new AbstractItemEditorControl(this) {
 
       @Override
       public void setFocus() {
         // nothing to do
-      }
-
-      @Override
-      public boolean isDirty() {
-        return getPersistableEditorInput().getItem().isDirty();
       }
 
       @Override

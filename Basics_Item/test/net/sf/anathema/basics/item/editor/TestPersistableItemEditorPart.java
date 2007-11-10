@@ -13,8 +13,8 @@ public class TestPersistableItemEditorPart extends AbstractPersistableItemEditor
   private boolean focusIsSetForItem;
 
   @Override
-  protected IEditorContent createItemEditorContent() {
-    return new IEditorContent() {
+  protected IEditorControl createItemEditorControl() {
+    return new IEditorControl() {
 
       @Override
       public void createPartControl(Composite parent) {

@@ -40,7 +40,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   private final AggregatedDisposable disposables = new AggregatedDisposable();
 
-  private IEditorContent editorContent;
+  private IEditorControl editorContent;
 
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -80,7 +80,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
     super.setPartName(partName);
   }
 
-  protected abstract IEditorContent createItemEditorContent();
+  protected abstract IEditorControl createItemEditorControl();
 
   @Override
   public final void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
@@ -92,10 +92,9 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
         this.editorContent.init(site, input);
         return;
       }
-      this.editorContent = createItemEditorContent();
+      this.editorContent = createItemEditorControl();
       final IPersistableEditorInput<I> itemInput = getPersistableEditorInput();
-      I item = itemInput.getItem();
-      item.addDirtyListener(dirtyChangeListener);
+      itemInput.getItem().addDirtyListener(dirtyChangeListener);
       setPartName(getEditorInput().getName());
       addDisposable(new DirtyChangeDisposable(itemInput));
       setTitleImage(itemInput.getImageDescriptor().createImage());

@@ -1,8 +1,9 @@
 package net.sf.anathema.editor.styledtext;
 
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
-import net.sf.anathema.basics.item.editor.IEditorContent;
+import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.item.text.ITitledText;
@@ -34,17 +35,12 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
   }
 
   @Override
-  protected IEditorContent createItemEditorContent() {
-    return new IEditorContent() {
+  protected IEditorControl createItemEditorControl() {
+    return new AbstractItemEditorControl(this) {
 
       @Override
       public void setFocus() {
         contentView.setFocus();
-      }
-
-      @Override
-      public boolean isDirty() {
-        return getPersistableEditorInput().getItem().isDirty();
       }
 
       @Override
