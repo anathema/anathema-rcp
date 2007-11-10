@@ -5,6 +5,7 @@ import net.sf.anathema.lib.textualdescription.TextAspect;
 
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;
@@ -45,19 +46,32 @@ public class StyledTextEditorActionBarContributor extends EditorActionBarContrib
   }
 
   @Override
-  public void setActiveEditor(IEditorPart targetEditor) {
-    if (this.targetEditor != null) {
-      this.targetEditor.getEditorSite().getSelectionProvider().removeSelectionChangedListener(selectionListener);
-      this.targetEditor.removeCaretChangeListener(caretChangeListener);
+  public void setActiveEditor(IEditorPart newEditor) {
+    disposeTargetEditor();
+    if (newEditor != null && newEditor.getEditorSite().getSelectionProvider() != null) {
+      initializeTargetEditor(newEditor);
     }
-    this.targetEditor = (IStyledTextEditor) targetEditor;
-    if (this.targetEditor != null) {
-      this.targetEditor.getEditorSite().getSelectionProvider().addSelectionChangedListener(selectionListener);
-      this.targetEditor.addCaretChangeListener(caretChangeListener);
+    else {
+      this.targetEditor = null;
     }
     for (IStyledTextAction action : actions) {
       action.setEditor(this.targetEditor);
     }
     updateState();
+  }
+
+  private void initializeTargetEditor(IEditorPart editor) {
+    this.targetEditor = (IStyledTextEditor) editor;
+    ISelectionProvider selectionProvider = editor.getEditorSite().getSelectionProvider();
+    selectionProvider.addSelectionChangedListener(selectionListener);
+    this.targetEditor.addCaretChangeListener(caretChangeListener);
+  }
+
+  private void disposeTargetEditor() {
+    if (this.targetEditor != null) {
+      ISelectionProvider selectionProvider = this.targetEditor.getEditorSite().getSelectionProvider();
+      selectionProvider.removeSelectionChangedListener(selectionListener);
+      this.targetEditor.removeCaretChangeListener(caretChangeListener);
+    }
   }
 }
