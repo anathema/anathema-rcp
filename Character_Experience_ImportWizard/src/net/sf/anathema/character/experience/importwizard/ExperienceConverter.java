@@ -1,12 +1,24 @@
 package net.sf.anathema.character.experience.importwizard;
 
+import net.sf.anathema.character.experience.internal.Experience;
+import net.sf.anathema.character.experience.internal.ExperiencePersister;
+import net.sf.anathema.lib.xml.ElementUtilities;
+
 import org.dom4j.Document;
 
 public class ExperienceConverter {
 
+  private static final String TAG_EXPERIENCED = "experienced"; //$NON-NLS-1$
+  private static final String TAG_STATISTICS = "Statistics"; //$NON-NLS-1$
+
   public Document convert(Document document) {
-    // TODO Auto-generated method stub
-    return document;
+    boolean attribute = ElementUtilities.getBooleanAttribute(
+        document.getRootElement().element(TAG_STATISTICS),
+        TAG_EXPERIENCED,
+        false);
+    Experience experience = new Experience();
+    experience.setExperienced(attribute);
+    return new ExperiencePersister().createExperienceDocument(experience);
   }
 
 }
