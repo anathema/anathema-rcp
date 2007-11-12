@@ -23,7 +23,7 @@ public class XSLCharacterConverter {
   private static Document runConversion(Document document, String attributeStylesheet)
       throws TransformerException,
       IOException {
-    Map<String, String> parameters = BundlePersistenceUtilities.getBundleVersionMap(CharacterCorePlugin.ID);
+    Map<String, String> parameters = new BundlePersistenceUtilities().getBundleVersionMap(CharacterCorePlugin.ID);
     return new XSLDocumentConverter(CharacterCorePlugin.ID, attributeStylesheet, parameters).run(document);
   }
 

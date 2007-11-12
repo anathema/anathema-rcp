@@ -21,7 +21,7 @@ public class TitledTextPersister implements ISingleFileItemPersister<ITitledText
 
   @Override
   public void save(OutputStream stream, ITitledText itemData) throws IOException, PersistenceException {
-    Document document = BundlePersistenceUtilities.createVersionedDocument(
+    Document document = new BundlePersistenceUtilities().createVersionedDocument(
         TAG_TEXT,
         IBasicItemPluginConstants.PLUGIN_ID);
     save(itemData, document.getRootElement());

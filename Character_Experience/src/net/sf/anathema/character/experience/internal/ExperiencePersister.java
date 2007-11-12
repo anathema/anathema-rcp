@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
+import net.sf.anathema.basics.item.persistence.BundleVersionCollection;
+import net.sf.anathema.basics.item.persistence.IBundleVersionCollection;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
 import net.sf.anathema.character.experience.IExperience;
@@ -18,6 +20,15 @@ public class ExperiencePersister implements IModelPersister<NullModelTemplate, I
 
   private static final String TAG_MODEL = "model"; //$NON-NLS-1$
   private static final String ATTRIB_EXPERIENCED = "experienced"; //$NON-NLS-1$
+  private final IBundleVersionCollection collection;
+
+  public ExperiencePersister() {
+    this(new BundleVersionCollection());
+  }
+
+  public ExperiencePersister(IBundleVersionCollection collection) {
+    this.collection = collection;
+  }
 
   @Override
   public IExperience load(Document document) throws PersistenceException {
@@ -28,9 +39,16 @@ public class ExperiencePersister implements IModelPersister<NullModelTemplate, I
 
   @Override
   public void save(OutputStream stream, IExperience item) throws IOException, PersistenceException {
-    Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_MODEL, ExperiencePlugin.PLUGIN_ID);
-    ElementUtilities.addAttribute(document.getRootElement(), ATTRIB_EXPERIENCED, item.isExperienced());
+    Document document = createExperienceDocument(item);
     DocumentUtilities.save(document, stream);
+  }
+
+  public Document createExperienceDocument(IExperience item) {
+    Document document = new BundlePersistenceUtilities(collection).createVersionedDocument(
+        TAG_MODEL,
+        ExperiencePlugin.PLUGIN_ID);
+    ElementUtilities.addAttribute(document.getRootElement(), ATTRIB_EXPERIENCED, item.isExperienced());
+    return document;
   }
 
   @Override

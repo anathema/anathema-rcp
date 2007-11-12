@@ -58,7 +58,7 @@ public class XSLPlotConverter {
   private static Document convertDocument(Document sourceDocument, String contentStylesheet)
       throws TransformerException,
       IOException {
-    Map<String, String> parameters = BundlePersistenceUtilities.getBundleVersionMap(PlotPlugin.ID);
+    Map<String, String> parameters = new BundlePersistenceUtilities().getBundleVersionMap(PlotPlugin.ID);
     return new XSLDocumentConverter(PlotPlugin.ID, contentStylesheet, parameters).run(sourceDocument);
   }
 }

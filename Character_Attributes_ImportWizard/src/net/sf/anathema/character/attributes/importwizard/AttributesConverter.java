@@ -16,7 +16,7 @@ public class AttributesConverter {
   private static final String ATTRIBUTE_STYLESHEET = "xsl/AttributeCreation.xsl"; //$NON-NLS-1$
 
   public static Document convertAttributes(Document document) throws TransformerException, IOException {
-    Map<String, String> parameters = BundlePersistenceUtilities.getBundleVersionMap(AttributesPlugin.ID);
+    Map<String, String> parameters = new BundlePersistenceUtilities().getBundleVersionMap(AttributesPlugin.ID);
     return new XSLDocumentConverter(AttributesPlugin.ID, ATTRIBUTE_STYLESHEET, parameters).run(document);
   }
 }

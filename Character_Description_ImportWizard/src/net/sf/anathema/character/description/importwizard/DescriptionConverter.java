@@ -18,7 +18,7 @@ public class DescriptionConverter {
 
   public Document convert(Document document) {
     Element element = document.getRootElement().element(TAG_DESCRIPTION).createCopy(TAG_MODEL);
-    BundlePersistenceUtilities.addBundleVersionAttribute(element, CharacterDescriptionPluginConstants.PLUGIN_ID);
+    new BundlePersistenceUtilities().addBundleVersionAttribute(element, CharacterDescriptionPluginConstants.PLUGIN_ID);
     renameElement(element, TAG_CHARACTER_NAME, TAG_NAME);
     renameElement(element, TAG_PERIPHRASE, TAG_PERIPHRASIS);
     return DocumentHelper.createDocument(element);

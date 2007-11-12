@@ -43,7 +43,7 @@ public class CharacterFactory {
   }
 
   public void saveTemplate(IContainer characterFolder, IProvider<String> provider) throws IOException, CoreException {
-    Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_TEMPLATE, CharacterCorePlugin.ID);
+    Document document = new BundlePersistenceUtilities().createVersionedDocument(TAG_TEMPLATE, CharacterCorePlugin.ID);
     Element rootElement = document.getRootElement();
     String staring = provider.get();
     rootElement.addAttribute(CharacterTemplateProvider.ATTRIB_REFERENCE, staring);

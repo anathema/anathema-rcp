@@ -57,7 +57,9 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
 
   @Override
   public void save(OutputStream stream, M item) throws IOException, PersistenceException {
-    Document document = BundlePersistenceUtilities.createVersionedDocument(TAG_MODEL, CharacterTraitPlugin.PLUGIN_ID);
+    Document document = new BundlePersistenceUtilities().createVersionedDocument(
+        TAG_MODEL,
+        CharacterTraitPlugin.PLUGIN_ID);
     Element root = document.getRootElement();
     for (IBasicTrait trait : item.getTraits()) {
       Element traitElement = root.addElement(TAG_TRAIT);

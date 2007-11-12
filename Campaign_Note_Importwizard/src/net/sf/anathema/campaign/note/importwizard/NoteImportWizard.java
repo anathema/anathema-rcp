@@ -56,7 +56,9 @@ public class NoteImportWizard extends AbstractImportWizard {
       FileNotFoundException {
     try {
       Document document = DocumentUtilities.read(externalFile);
-      BundlePersistenceUtilities.addBundleVersionAttribute(document.getRootElement(), NotePluginConstants.PLUGIN_ID);
+      new BundlePersistenceUtilities().addBundleVersionAttribute(
+          document.getRootElement(),
+          NotePluginConstants.PLUGIN_ID);
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
       DocumentUtilities.save(document, outputStream);
       internalFile.create(new ByteArrayInputStream(outputStream.toByteArray()), true, monitor);
