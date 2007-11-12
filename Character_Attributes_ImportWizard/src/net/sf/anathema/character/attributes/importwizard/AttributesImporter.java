@@ -8,6 +8,8 @@ import javax.xml.transform.TransformerException;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
 import net.sf.anathema.character.attributes.AttributesPlugin;
+import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.importwizard.IModelImporter;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -28,13 +30,14 @@ public class AttributesImporter extends AbstractExecutableExtension implements I
       Document convertedDocument = AttributesConverter.convertAttributes(document);
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
       DocumentUtilities.save(convertedDocument, outputStream);
-      IFile targetFile = container.getFile(new Path("attributes.model"));
+      String filename = new ModelExtensionPoint().getModelFilename(Attributes.MODEL_ID);
+      IFile targetFile = container.getFile(new Path(filename));
       new FileWriter().saveToFile(targetFile, outputStream, new NullProgressMonitor());
       return Status.OK_STATUS;
     }
     catch (TransformerException e) {
       throw new CoreException(AttributesPlugin.getDefaultInstance().createErrorStatus(
-          "Could not convert attributes.",
+          Messages.AttributesImporter_ErrorMessage,
           e));
     }
   }

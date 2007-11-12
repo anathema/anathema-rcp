@@ -145,6 +145,18 @@ public class ModelExtensionPoint {
     return null;
   }
 
+  public String getModelFilename(String modelId) {
+    for (IPluginExtension extension : getPluginExtensions()) {
+      for (IExtensionElement modelElement : extension.getElements()) {
+        if (!modelId.equals(modelElement.getAttribute(ATTRIB_ID))) {
+          continue;
+        }
+        return modelElement.getAttribute(ATTRIB_FILENAME);
+      }
+    }
+    return null;
+  }
+
   public IModelDisplayConfiguration getDisplayConfiguration(IResource resource) {
     String fileName = resource.getName();
     for (IPluginExtension extension : getPluginExtensions()) {

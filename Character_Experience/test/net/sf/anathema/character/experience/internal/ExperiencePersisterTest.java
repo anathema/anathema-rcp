@@ -16,11 +16,11 @@ public class ExperiencePersisterTest {
   @Test
   public void createsVersionedExperienceDocument() throws Exception {
     IBundleVersionCollection collection = EasyMock.createMock(IBundleVersionCollection.class);
-    EasyMock.expect(collection.getBundleVersion("net.sf.anathema.character.experience")).andReturn(VERSION);
+    EasyMock.expect(collection.getBundleVersion("net.sf.anathema.character.experience")).andReturn(VERSION); //$NON-NLS-1$
     EasyMock.replay(collection);
     Element root = DocumentHelper.createElement("model"); //$NON-NLS-1$
-    root.addAttribute("bundleVersion", VERSION);
-    root.addAttribute("experienced", "true");
+    root.addAttribute("bundleVersion", VERSION); //$NON-NLS-1$
+    root.addAttribute("experienced", "true"); //$NON-NLS-1$ //$NON-NLS-2$
     Document document = DocumentHelper.createDocument(root);
     ExperiencePersister experiencePersister = new ExperiencePersister(collection);
     Experience xp = new Experience();
