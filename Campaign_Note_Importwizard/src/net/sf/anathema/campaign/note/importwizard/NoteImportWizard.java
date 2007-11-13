@@ -15,6 +15,7 @@ import net.sf.anathema.basics.importwizard.IFileSelectionModel;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.repository.input.UnusedFileFactory;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.basics.repository.treecontent.itemtype.ResourceEditorOpener;
 import net.sf.anathema.campaign.note.NotesRepositoryUtilities;
 import net.sf.anathema.campaign.note.plugin.NotePluginConstants;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -27,6 +28,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 
 public class NoteImportWizard extends AbstractImportWizard {
   private static final Logger logger = new Logger(NotePluginConstants.PLUGIN_ID);
@@ -48,6 +51,11 @@ public class NoteImportWizard extends AbstractImportWizard {
   @Override
   protected IWizardPage createImportPage(IFileSelectionModel fileModel, BooleanModel openModel) {
     return new FileSelectionWizardPage(fileModel, openModel, new NoteImportMessages(), new OpenNoteDialog());
+  }
+
+  @Override
+  protected void openEditor(final IFile file, IWorkbenchPage page) throws PartInitException {
+    new ResourceEditorOpener(file, getItemType().getUntitledName(), getItemType().getIconUrl()).openEditor(page);
   }
 
   @Override

@@ -7,7 +7,6 @@ import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.importwizard.plugin.ImportWizardPluginConstants;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
-import net.sf.anathema.basics.repository.treecontent.itemtype.ResourceEditorOpener;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -112,18 +111,20 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
     if (openModel.getValue()) {
       display.asyncExec(new Runnable() {
         public void run() {
-          IItemType itemType = getItemType();
           IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
           try {
-            new ResourceEditorOpener(file, itemType.getUntitledName(), itemType.getIconUrl()).openEditor(page);
+            openEditor(file, page);
           }
           catch (PartInitException e) {
             logger.error(NLS.bind(Messages.AbstractImportWizard_CouldNotOpen, file.getName()), e);
           }
         }
+
       });
     }
   }
+
+  protected abstract void openEditor(final IFile file, IWorkbenchPage page) throws PartInitException;
 
   protected abstract IFile createInternalFile(String filename) throws CoreException;
 

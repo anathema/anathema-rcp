@@ -14,6 +14,9 @@ import net.sf.anathema.basics.importwizard.IFileSelectionModel;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
+import net.sf.anathema.character.core.model.ModelExtensionPoint;
+import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
+import net.sf.anathema.character.core.resource.CharacterModelEditorOpener;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.importwizard.IModelImporter;
 import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPluginConstants;
@@ -29,7 +32,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 
 public class CharacterImportWizard extends AbstractImportWizard {
   private static final Logger logger = new Logger(CharacterImportWizardPluginConstants.PLUGIN_ID);
@@ -81,6 +87,14 @@ public class CharacterImportWizard extends AbstractImportWizard {
           net.sf.anathema.character.importwizard.internal.Messages.CharacterImportWizard_ConversionError,
           e));
     }
+  }
+
+  @Override
+  protected void openEditor(final IFile file, IWorkbenchPage page) throws PartInitException {
+    IContainer container = file.getParent();
+    IModelDisplayConfiguration configuration = new ModelExtensionPoint().getDisplayConfiguration(container.getFile(new Path(
+        "basic.description")));
+    new CharacterModelEditorOpener().openEditor(page, container, configuration);
   }
 
   @Override

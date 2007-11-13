@@ -10,6 +10,7 @@ import net.sf.anathema.basics.importwizard.AbstractImportWizard;
 import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
 import net.sf.anathema.basics.importwizard.IFileSelectionModel;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.basics.repository.treecontent.itemtype.ResourceEditorOpener;
 import net.sf.anathema.campaign.plot.creation.PlotRepositoryUtilities;
 import net.sf.anathema.campaign.plot.creation.UnusedPlotFileFactory;
 
@@ -21,6 +22,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 
 public class PlotImportWizard extends AbstractImportWizard {
 
@@ -41,6 +44,11 @@ public class PlotImportWizard extends AbstractImportWizard {
   @Override
   protected IItemType getItemType() {
     return PlotRepositoryUtilities.getPlotItemType();
+  }
+
+  @Override
+  protected void openEditor(final IFile file, IWorkbenchPage page) throws PartInitException {
+    new ResourceEditorOpener(file, getItemType().getUntitledName(), getItemType().getIconUrl()).openEditor(page);
   }
 
   @Override
