@@ -82,16 +82,19 @@ public class ModelExtensionPoint {
     List<IViewElement> viewElements = new ArrayList<IViewElement>();
     for (IExtensionElement modelElement : getDisplayModelElements(new CharacterId(characterFolder), templateProvider)) {
       IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
-      String filename = modelElement.getAttribute(ATTRIB_FILENAME);
-      String contributorId = modelElement.getContributorId();
-      ModelDisplayConfiguration configuration = new ModelDisplayConfiguration(
-          contributorId,
-          filename,
-          configurationElement);
+      IModelDisplayConfiguration configuration = createModelDisplayConfiguration(modelElement, configurationElement);
       CharacterModelViewElement viewElement = new CharacterModelViewElement(parent, characterFolder, configuration);
       viewElements.add(viewElement);
     }
     return viewElements.toArray(new IViewElement[viewElements.size()]);
+  }
+
+  private IModelDisplayConfiguration createModelDisplayConfiguration(
+      IExtensionElement modelElement,
+      IExtensionElement configurationElement) {
+    String filename = modelElement.getAttribute(ATTRIB_FILENAME);
+    String contributorId = modelElement.getContributorId();
+    return new ModelDisplayConfiguration(contributorId, filename, configurationElement);
   }
 
   public Iterable<String> getModelFileNames(ICharacterId characterId, ICharacterTemplateProvider templateProvider) {
@@ -136,9 +139,7 @@ public class ModelExtensionPoint {
         }
         IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
         if (configurationElement != null) {
-          String filenameAttribute = modelElement.getAttribute(ATTRIB_FILENAME);
-          String contributorId = extension.getContributorId();
-          return new ModelDisplayConfiguration(contributorId, filenameAttribute, configurationElement);
+          return createModelDisplayConfiguration(modelElement, configurationElement);
         }
       }
     }
@@ -165,8 +166,7 @@ public class ModelExtensionPoint {
         if (configurationElement != null) {
           String filenameAttribute = modelElement.getAttribute(ATTRIB_FILENAME);
           if (fileName.equals(filenameAttribute)) {
-            String contributorId = extension.getContributorId();
-            return new ModelDisplayConfiguration(contributorId, filenameAttribute, configurationElement);
+            return createModelDisplayConfiguration(modelElement, configurationElement);
           }
         }
       }
