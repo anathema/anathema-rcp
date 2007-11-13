@@ -83,8 +83,7 @@ public class ModelExtensionPoint {
     for (IExtensionElement modelElement : getDisplayModelElements(new CharacterId(characterFolder), templateProvider)) {
       IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
       IModelDisplayConfiguration configuration = createModelDisplayConfiguration(modelElement, configurationElement);
-      CharacterModelViewElement viewElement = new CharacterModelViewElement(parent, characterFolder, configuration);
-      viewElements.add(viewElement);
+      viewElements.add(new CharacterModelViewElement(parent, characterFolder, configuration));
     }
     return viewElements.toArray(new IViewElement[viewElements.size()]);
   }
