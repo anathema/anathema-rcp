@@ -24,7 +24,7 @@ import org.eclipse.ui.PartInitException;
 public class CharacterModelEditorOpener extends AbstractExecutableExtension implements IResourceEditorOpener {
 
   public static final String ID = "net.sf.anathema.character.modelopener"; //$NON-NLS-1$
-  
+
   public void openEditor(IWorkbenchPage page, IResource modelResource) throws PartInitException {
     IModelDisplayConfiguration configuration = new ModelExtensionPoint().getDisplayConfiguration(modelResource);
     final IContainer characterFolder = modelResource.getParent();
@@ -59,7 +59,7 @@ public class CharacterModelEditorOpener extends AbstractExecutableExtension impl
   }
 
   private void ensureResourceExists(IEditorInput input, IEditorPart openEditor) {
-    // TODO Eine andere Lösung muss her, sobald Abhängigkeiten zwischen Model exisiteren.
+    // TODO Eine andere Lösung muss her, sobald Abhängigkeiten zwischen Models exisiteren.
     IResource resource = (IResource) input.getAdapter(IResource.class);
     if (!resource.exists()) {
       openEditor.doSave(new NullProgressMonitor());
