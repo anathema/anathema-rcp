@@ -31,7 +31,7 @@ import org.eclipse.ui.progress.UIJob;
 
 public abstract class AbstractImportWizard extends Wizard implements IImportWizard {
 
-  public final class ImportJob extends UIJob {
+  private final class ImportJob extends UIJob {
     private IFile internalFile;
 
     public ImportJob() {
