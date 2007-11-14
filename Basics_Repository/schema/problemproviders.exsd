@@ -6,7 +6,7 @@
          <meta.schema plugin="net.sf.anathema.basics.repository" id="problemproviders" name="Problem Providers"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         Used to register new problem-providers. Problem providers fill the problems-view with custom data.
       </documentation>
    </annotation>
 
@@ -43,11 +43,16 @@
    </element>
 
    <element name="provider">
+      <annotation>
+         <documentation>
+            Specifies the implementation of net.sf.anathema.basics.repository.IRepositoryDND to use. This class is responsible for setting up all required sources, targets and listeners to properly support drag and drop operations.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  Specifies the implementation ofnet.sf.anathema.basics.repository.problems.IProblemProvider to use. This class&apos;s responsibility is to browse the workspace for problems.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":net.sf.anathema.basics.repository.problems.IProblemProvider"/>
@@ -62,7 +67,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         2.0.0
       </documentation>
    </annotation>
 
@@ -71,35 +76,14 @@
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         [Enter extension point usage example here.]
+         &lt;!--Registers a provider that reports a problem when a character model has not yet been edited.--&gt;
+&lt;extension point=&quot;net.sf.anathema.basics.repository.problemproviders&quot;&gt;
+  &lt;provider class=&quot;net.sf.anathema.character.core.problem.UneditedModelProblemsProvider&quot;/&gt;
+&lt;/extension&gt;   
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="apiInfo"/>
-      </appInfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="implementation"/>
-      </appInfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>

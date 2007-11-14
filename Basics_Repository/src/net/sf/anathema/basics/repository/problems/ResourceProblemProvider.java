@@ -10,14 +10,13 @@ import net.sf.anathema.basics.repository.RepositoryPlugin;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 
 public class ResourceProblemProvider extends AbstractExecutableExtension implements IProblemProvider {
 
   @Override
-  public Collection<IProblem> findProblems(IWorkspaceRoot workspaceRoot) {
+  public Collection<IProblem> findProblems(IContainer workspaceRoot) {
     List<IProblem> problems = new ArrayList<IProblem>();
     try {
       addProblemsForContainer(workspaceRoot, problems);

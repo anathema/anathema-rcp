@@ -14,12 +14,11 @@ import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IWorkspaceRoot;
 
 public abstract class AbstractCharacterProblemProvider extends AbstractExecutableExtension implements IProblemProvider {
 
   @Override
-  public final Collection<IProblem> findProblems(IWorkspaceRoot workspaceRoot) {
+  public final Collection<IProblem> findProblems(IContainer workspaceRoot) {
     List<IProblem> problems = new ArrayList<IProblem>();
     for (IContainer characterFolder : getCharacterFolders()) {
       addProblemsForCharacter(problems, new CharacterId(characterFolder));
