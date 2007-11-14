@@ -3,6 +3,7 @@ package net.sf.anathema.basics.repository.problems;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IWorkbenchPage;
 
+/** Usually created by an IProblemProvider. */
 public interface IProblem {
 
   /** Return the human-readable description. */
