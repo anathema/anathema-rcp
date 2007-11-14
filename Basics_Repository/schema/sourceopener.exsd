@@ -57,7 +57,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.basics.repository.problems.IResourceEditorOpener"/>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.basics.eclipse.ui.IResourceEditorOpener"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -100,13 +100,5 @@
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>
