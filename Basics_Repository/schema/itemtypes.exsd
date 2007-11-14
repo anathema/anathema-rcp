@@ -140,14 +140,6 @@ Notes are registered like this:
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="apiInfo"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
    <annotation>
       <appInfo>
@@ -155,17 +147,9 @@ Notes are registered like this:
       </appInfo>
       <documentation>
          Use net.sf.anathema.basics.repository.itemtype.ItemTypeProvider to retrieve either all registered item types or to get a specific one via its unique id.
-Objects returned by this method are of type IItemType and allow to request the extension point attributes via getter methods.
+Objects returned by these methods are of type IItemType and allow to request the extension point&apos;s attributes via getter methods.
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>
