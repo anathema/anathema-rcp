@@ -7,5 +7,6 @@ import org.eclipse.ui.PartInitException;
 
 public interface IResourceEditorOpener extends IExecutableExtension {
 
-  public void openEditor(IWorkbenchPage page, IResource modelResource) throws PartInitException;
+  /** Opens the given resource in the page provided. */
+  public void openEditor(IWorkbenchPage page, IResource resource) throws PartInitException;
 }
