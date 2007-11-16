@@ -3,7 +3,6 @@ package net.sf.anathema.character.core.problem;
 import java.text.MessageFormat;
 
 import net.sf.anathema.basics.repository.problems.IProblem;
-import net.sf.anathema.basics.repository.problems.ResourceEditorOpenerExtensionPoint;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
 import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
@@ -17,8 +16,8 @@ import org.eclipse.ui.IWorkbenchPage;
 public class UneditedModelProblem implements IProblem {
 
   private final IResource modelResource;
-  private String path;
-  private String description;
+  private final String path;
+  private final String description;
 
   public UneditedModelProblem(IResource modelResource) {
     this.modelResource = modelResource;
@@ -43,6 +42,6 @@ public class UneditedModelProblem implements IProblem {
 
   @Override
   public void showSource(IWorkbenchPage page) throws CoreException {
-    new ResourceEditorOpenerExtensionPoint().open(page, CharacterModelEditorOpener.ID, modelResource);
+    new CharacterModelEditorOpener().openEditor(page, modelResource);
   }
 }
