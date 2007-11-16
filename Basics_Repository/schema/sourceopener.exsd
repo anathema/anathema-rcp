@@ -6,7 +6,7 @@
          <meta.schema plugin="net.sf.anathema.basics.repository" id="markeropener" name="Marker Opener"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         Used to specify a way to open a resource by id only. By means of this extension point, the repository can open file types it doesn&apos;t know about directly.
       </documentation>
    </annotation>
 
@@ -47,14 +47,14 @@
          <attribute name="openerId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The opener&apos;s id. Used as an argument in calls to the extension point class.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The opener class itself, responsible for providing some means of opening a resource in a given editor page.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":net.sf.anathema.basics.eclipse.ui.IResourceEditorOpener"/>
@@ -69,7 +69,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         2.0.0
       </documentation>
    </annotation>
 
@@ -78,7 +78,13 @@
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         [Enter extension point usage example here.]
+         &lt;!--Registers the opener for Character models.--&gt;
+&lt;extension point=&quot;net.sf.anathema.basics.repository.sourceopener&quot;&gt;
+  &lt;opener
+    class=&quot;net.sf.anathema.character.core.resource.CharacterModelEditorOpener&quot;
+    openerId=&quot;net.sf.anathema.character.modelopener&quot;&gt;
+  &lt;/opener&gt;
+&lt;/extension&gt;
       </documentation>
    </annotation>
 
@@ -87,18 +93,10 @@
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         [Enter API information here.]
+         Openers are called via net.sf.anathema.basics.repository.problems.ResourceEditorOpenerExtensionPoint.open(IWorkbenchPage page, String openerId, IResource resource).
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="implementation"/>
-      </appInfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
 
 
 </schema>
