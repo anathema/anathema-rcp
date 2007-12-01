@@ -42,9 +42,8 @@ public class AttributeFreebiesBonusPointReducer extends AbstractExecutableExtens
     int favoredSpent = 0;
     int unfavoredSpent = 0;
     for (IAttributeGroupFreebies handler : freebiesHandlers) {
-      ITraitCollectionModel model = (ITraitCollectionModel) modelProvider.getModel(new ModelIdentifier(
-          characterId,
-          Attributes.MODEL_ID));
+      ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, Attributes.MODEL_ID);
+      ITraitCollectionModel model = (ITraitCollectionModel) modelProvider.getModel(modelIdentifier);
       Dots dots = new AttributePointCalculator(model, new AttributeGroupConfiguration().getGroups()).dotsFor(handler.getPriority());
       int credit = creditManager.getCredit(characterId, handler.getCreditId());
       favoredSpent += dots.favoredSpentAsPartOfCredit(credit);
