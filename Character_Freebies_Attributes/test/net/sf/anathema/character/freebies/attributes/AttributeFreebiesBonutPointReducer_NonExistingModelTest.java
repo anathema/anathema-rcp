@@ -28,7 +28,7 @@ public class AttributeFreebiesBonutPointReducer_NonExistingModelTest {
         new AttributeGroupConfiguration().getGroups(),
         new EssenceSensitiveTraitTemplate());
     this.characterId = EasyMock.createMock(ICharacterId.class);
-    IModelCollection modelProvider = CharacterObjectMother.createEmptyModelProvider();
+    IModelCollection modelProvider = CharacterObjectMother.createNonLoadingEmptyModelProvider();
     IModelResourceHandler resourceManager = CharacterObjectMother.createEmptyResourceHandler();
     this.reducer = new AttributeFreebiesBonusPointReducer(modelProvider, resourceManager, new DummyCreditManager());
   }

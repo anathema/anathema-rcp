@@ -28,7 +28,7 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
   }
 
   @Override
-  public int getPoints(ICharacterId characterId) {
+  public final int getPoints(ICharacterId characterId) {
     if (characterId == null) {
       return 0;
     }

@@ -2,8 +2,9 @@ package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.freebies.attributes.FavoredAttributeBonusPointReducer;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 
@@ -11,7 +12,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FavoredAttributeBonusPointReducerTest {
+public class FavoredAttributeBonusPointReducer_ExistingModelTest {
 
   private FavoredAttributeBonusPointReducer reducer;
   private ICharacterId characterId = new DummyCharacterId();
@@ -24,8 +25,16 @@ public class FavoredAttributeBonusPointReducerTest {
         characterId,
         "net.sf.anthema.character.attributes.freebies.favored", //$NON-NLS-1$
         credit);
-    handler = EasyMock.createMock(IFreebiesHandler.class);
-    reducer = new FavoredAttributeBonusPointReducer(handler, creditManager);
+    handler = EasyMock.createNiceMock(IFreebiesHandler.class);
+    IModelCollection modelCollection = EasyMock.createNiceMock(IModelCollection.class);
+    EasyMock.expect(modelCollection.contains(EasyMock.isA(IModelIdentifier.class))).andStubReturn(true);
+    EasyMock.replay(modelCollection);
+    reducer = new FavoredAttributeBonusPointReducer(modelCollection, null, creditManager) {
+      @Override
+      protected IFreebiesHandler createFreebiesHandler() {
+        return handler;
+      }
+    };
   }
 
   @Test

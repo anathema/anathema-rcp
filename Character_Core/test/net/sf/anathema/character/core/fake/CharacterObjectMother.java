@@ -53,8 +53,11 @@ public class CharacterObjectMother {
     return resourceHandler;
   }
 
-  public static IModelCollection createEmptyModelProvider() {
+  public static IModelCollection createNonLoadingEmptyModelProvider() {
+    Throwable expection = new IllegalStateException("Demand for non-existing model"); //$NON-NLS-1$
     IModelCollection modelProvider = EasyMock.createNiceMock(IModelCollection.class);
+    EasyMock.expect(modelProvider.contains(EasyMock.isA(IModelIdentifier.class))).andStubReturn(false);
+    EasyMock.expect(modelProvider.getModel(EasyMock.isA(IModelIdentifier.class))).andStubThrow(expection);
     EasyMock.replay(modelProvider);
     return modelProvider;
   }
