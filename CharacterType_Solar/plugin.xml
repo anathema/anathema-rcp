@@ -5,13 +5,13 @@
          point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="15"
-            templateId="net.sf.anathema.charactertype.defaultsolar">
+            templateId="net.sf.anathema.character.template.defaultsolar">
       </bonuspoints>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.credits">
       <creditList
-            templateId="net.sf.anathema.charactertype.defaultsolar">
+            templateId="net.sf.anathema.character.template.defaultsolar">
          <credit
                id="net.sf.anathema.character.attributes.freebies.primary"
                value="8">
@@ -57,7 +57,7 @@
          point="net.sf.anathema.character.core.templates">
       <template
             characterTypeId="net.sf.anathema.character.type.solar"
-            templateId="net.sf.anathema.charactertype.defaultsolar"
+            templateId="net.sf.anathema.character.template.defaultsolar"
             name="%template.defaultsolar.name">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
@@ -67,7 +67,7 @@
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
       <converter
-            newTemplateId="net.sf.anathema.charactertype.defaultsolar"
+            newTemplateId="net.sf.anathema.character.template.defaultsolar"
             oldCharacterType="Solar"
             oldTemplateId="TemplateType.Default">
       </converter>

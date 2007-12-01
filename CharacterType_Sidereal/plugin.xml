@@ -6,7 +6,7 @@
       <template
             characterTypeId="net.sf.anathema.character.type.sidereal"
             name="%template.defaultsidereal.name"
-            templateId="net.sf.anathema.charactertype.defaultsidereal">
+            templateId="net.sf.anathema.character.template.defaultsidereal">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>
@@ -15,7 +15,7 @@
    <extension
          point="net.sf.anathema.character.freebies.credits">
       <creditList
-            templateId="net.sf.anathema.charactertype.defaultsidereal">
+            templateId="net.sf.anathema.character.template.defaultsidereal">
          <credit
                id="net.sf.anathema.character.attributes.freebies.primary"
                value="8">
@@ -61,13 +61,13 @@
          point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="18"
-            templateId="net.sf.anathema.charactertype.defaultsidereal">
+            templateId="net.sf.anathema.character.template.defaultsidereal">
       </bonuspoints>
    </extension>
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
       <converter
-            newTemplateId="net.sf.anathema.charactertype.defaultsidereal"
+            newTemplateId="net.sf.anathema.character.template.defaultsidereal"
             oldCharacterType="Sidereal"
             oldTemplateId="TemplateType.Default">
       </converter>

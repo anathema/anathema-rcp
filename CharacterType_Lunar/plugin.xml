@@ -5,7 +5,7 @@
          point="net.sf.anathema.character.core.templates">
       <template
             characterTypeId="net.sf.anathema.character.type.lunar"
-            templateId="net.sf.anathema.charactertype.pactlunar"
+            templateId="net.sf.anathema.character.template.pactlunar"
             name="%template.pactlunar.name">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
@@ -16,13 +16,13 @@
          point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="15"
-            templateId="net.sf.anathema.charactertype.pactlunar">
+            templateId="net.sf.anathema.character.template.pactlunar">
       </bonuspoints>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.credits">
       <creditList
-            templateId="net.sf.anathema.charactertype.pactlunar">
+            templateId="net.sf.anathema.character.template.pactlunar">
          <credit
                id="net.sf.anathema.character.attributes.freebies.primary"
                value="8">
@@ -76,13 +76,13 @@
          point="net.sf.anathema.character.attributes.templates">
       <attributeTemplate
             favorizationCount="1"
-            characterTemplateId="net.sf.anathema.charactertype.pactlunar">
+            characterTemplateId="net.sf.anathema.character.template.pactlunar">
       </attributeTemplate>
    </extension>
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
       <converter
-            newTemplateId="net.sf.anathema.charactertype.pactlunar"
+            newTemplateId="net.sf.anathema.character.template.pactlunar"
             oldCharacterType="Lunar"
             oldTemplateId="TemplateType.Default">
       </converter>

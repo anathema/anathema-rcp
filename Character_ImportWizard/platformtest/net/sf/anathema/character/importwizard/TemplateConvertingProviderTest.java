@@ -1,7 +1,6 @@
 package net.sf.anathema.character.importwizard;
 
 import static org.junit.Assert.*;
-
 import net.sf.anathema.character.importwizard.internal.TemplateConverter;
 import net.sf.anathema.character.importwizard.utility.ImportDocumentObjectMother;
 
@@ -14,14 +13,14 @@ public class TemplateConvertingProviderTest {
   public void convertsTemplateName() throws Exception {
     Document document = ImportDocumentObjectMother.createDocumentForTemplate("Solar", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
     TemplateConverter provider = new TemplateConverter(document);
-    assertEquals("net.sf.anathema.charactertype.defaultsolar", provider.get()); //$NON-NLS-1$
+    assertEquals("net.sf.anathema.character.template.defaultsolar", provider.get()); //$NON-NLS-1$
   }
 
   @Test
   public void convertsDifferentTemplateName() throws Exception {
     Document document = ImportDocumentObjectMother.createDocumentForTemplate("Sidereal", "TemplateType.Default"); //$NON-NLS-1$ //$NON-NLS-2$
     TemplateConverter provider = new TemplateConverter(document);
-    assertEquals("net.sf.anathema.charactertype.defaultsidereal", provider.get()); //$NON-NLS-1$
+    assertEquals("net.sf.anathema.character.template.defaultsidereal", provider.get()); //$NON-NLS-1$
   }
 
   @Test

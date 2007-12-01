@@ -9,8 +9,6 @@ import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
-import net.sf.anathema.character.points.view.ICharacterValueEntryFactory;
-import net.sf.anathema.character.points.view.PointViewInputStore;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;
@@ -31,7 +29,7 @@ public class PointViewInputStoreTest {
 
   @Before
   public void createCharacterAndEditorInput() {
-    this.characterId = TemplateProviderObjectMother.createCharacterId("net.sf.anathema.charactertype.heroicmortal"); //$NON-NLS-1$
+    this.characterId = TemplateProviderObjectMother.createCharacterId("net.sf.anathema.character.template.heroicmortal"); //$NON-NLS-1$
     characterId.addContentHandle("experience.model", new DummyContentHandler("<model experienced=\"false\"/>")); //$NON-NLS-1$ //$NON-NLS-2$
     this.modelIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
     this.editorInput = EasyMock.createStrictMock(IEditorInput.class);

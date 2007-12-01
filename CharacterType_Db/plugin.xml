@@ -5,7 +5,7 @@
          point="net.sf.anathema.character.core.templates">
       <template
             characterTypeId="net.sf.anathema.character.type.db"
-            templateId="net.sf.anathema.charactertype.dynastdb"
+            templateId="net.sf.anathema.character.template.dynastdb"
             name="%template.dynastdb.name">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
@@ -16,13 +16,13 @@
          point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="15"
-            templateId="net.sf.anathema.charactertype.dynastdb">
+            templateId="net.sf.anathema.character.template.dynastdb">
       </bonuspoints>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.credits">
       <creditList
-            templateId="net.sf.anathema.charactertype.dynastdb">
+            templateId="net.sf.anathema.character.template.dynastdb">
          <credit
                id="net.sf.anathema.character.attributes.freebies.primary"
                value="7">
@@ -67,7 +67,7 @@
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
       <converter
-            newTemplateId="net.sf.anathema.charactertype.dynastdb"
+            newTemplateId="net.sf.anathema.character.template.dynastdb"
             oldCharacterType="Dragon-Blooded"
             oldTemplateId="TemplateType.Default">
       </converter>

@@ -7,7 +7,7 @@ public class NewDefaultSiderealWizard extends EmptyNewWizard {
 
   @Override
   public boolean performFinish() {
-    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.defaultsidereal", "Sidereal"); //$NON-NLS-1$ //$NON-NLS-2$
+    new CharacterFactory().createNewCharacter("net.sf.anathema.character.template.defaultsidereal", "Sidereal"); //$NON-NLS-1$ //$NON-NLS-2$
     return true;
   }
 }

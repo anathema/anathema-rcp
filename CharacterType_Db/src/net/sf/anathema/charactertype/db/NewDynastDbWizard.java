@@ -7,7 +7,7 @@ public class NewDynastDbWizard extends EmptyNewWizard {
 
   @Override
   public boolean performFinish() {
-    new CharacterFactory().createNewCharacter("net.sf.anathema.charactertype.dynastdb", "Dragon-Blooded"); //$NON-NLS-1$ //$NON-NLS-2$
+    new CharacterFactory().createNewCharacter("net.sf.anathema.character.template.dynastdb", "Dragon-Blooded"); //$NON-NLS-1$ //$NON-NLS-2$
     return true;
   }
 }

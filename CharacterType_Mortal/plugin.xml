@@ -5,7 +5,7 @@
          point="net.sf.anathema.character.core.templates">
       <template
             characterTypeId="net.sf.anathema.character.type.mortal"
-            templateId="net.sf.anathema.charactertype.heroicmortal"
+            templateId="net.sf.anathema.character.template.heroicmortal"
             name="%template.heroicMortal.name">
          <modelList
                modelListId="net.sf.anathema.character.basic.modelList">
@@ -16,13 +16,13 @@
          point="net.sf.anathema.character.points.bonuspoints">
       <bonuspoints
             amount="21"
-            templateId="net.sf.anathema.charactertype.heroicmortal">
+            templateId="net.sf.anathema.character.template.heroicmortal">
       </bonuspoints>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.credits">
       <creditList
-            templateId="net.sf.anathema.charactertype.heroicmortal">
+            templateId="net.sf.anathema.character.template.heroicmortal">
          <credit
                id="net.sf.anathema.character.attributes.freebies.primary"
                value="6">
@@ -67,7 +67,7 @@
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
       <converter
-            newTemplateId="net.sf.anathema.charactertype.heroicmortal"
+            newTemplateId="net.sf.anathema.character.template.heroicmortal"
             oldCharacterType="Mortal"
             oldTemplateId="HeroicMortal">
       </converter>
