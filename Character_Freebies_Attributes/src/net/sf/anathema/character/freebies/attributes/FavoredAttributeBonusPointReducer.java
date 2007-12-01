@@ -3,6 +3,7 @@ package net.sf.anathema.character.freebies.attributes;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
@@ -15,11 +16,11 @@ public class FavoredAttributeBonusPointReducer extends AbstractExecutableExtensi
   private final IFreebiesHandler handler;
 
   public FavoredAttributeBonusPointReducer() {
-    this(new CreditManager());
+    this(ModelCache.getInstance(), new CreditManager());
   }
 
-  private FavoredAttributeBonusPointReducer(ICreditManager manager) {
-    this(new FavoredAttributeFreebiesHandler(ModelCache.getInstance(), manager), manager);
+  private FavoredAttributeBonusPointReducer(IModelCollection modelCollection, ICreditManager manager) {
+    this(new FavoredAttributeFreebiesHandler(modelCollection, manager), manager);
   }
 
   public FavoredAttributeBonusPointReducer(IFreebiesHandler handler, ICreditManager creditManager) {

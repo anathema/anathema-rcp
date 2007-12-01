@@ -24,6 +24,7 @@ public class AttributesMarker extends AbstractExecutableExtension implements IMo
   public void mark(IMarkerHandle markerHandler, IModelIdentifier modelIdentifier) {
     ICharacterId characterId = modelIdentifier.getCharacterId();
     IModelCollection modelCache = ModelCache.getInstance();
+    CreditManager creditManager = new CreditManager();
     IAttributeCreditCollection creditCollection = new AttributeCreditCollection(new CreditManager(), characterId);
     IChangeableModel changeableModel = modelCache.getModel(modelIdentifier);
     TotalDotsSpent dotsSpent = new TotalDotsSpent(AttributesContext.create(characterId, modelCache));
@@ -43,7 +44,7 @@ public class AttributesMarker extends AbstractExecutableExtension implements IMo
         PriorityGroup.Tertiary,
         TERTIARY_MARKER);
     FavoredAttributePicksMarker picksMarker = new FavoredAttributePicksMarker(characterId);
-    FavoredAttributeFreebiesMarker freebiesMarker = new FavoredAttributeFreebiesMarker(characterId);
+    FavoredAttributeFreebiesMarker freebiesMarker = new FavoredAttributeFreebiesMarker(modelCache, creditManager, characterId);
     new ResourceModelMarker(changeableModel, markerHandler, primaryMarker).mark();
     new ResourceModelMarker(changeableModel, markerHandler, secondaryMarker).mark();
     new ResourceModelMarker(changeableModel, markerHandler, tertiaryMarker).mark();
