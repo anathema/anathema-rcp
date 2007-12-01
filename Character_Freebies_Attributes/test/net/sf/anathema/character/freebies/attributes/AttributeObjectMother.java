@@ -22,7 +22,8 @@ public class AttributeObjectMother {
 
   private static IModelCollection createModelProvider(ITraitCollectionModel attributes, IModelIdentifier identifier) {
     IModelCollection modelProvider = EasyMock.createNiceMock(IModelCollection.class);
-    EasyMock.expect(modelProvider.getModel(identifier)).andReturn(attributes).anyTimes();
+    EasyMock.expect(modelProvider.getModel(identifier)).andStubReturn(attributes);
+    EasyMock.expect(modelProvider.contains(identifier)).andStubReturn(true);
     EasyMock.replay(modelProvider);
     return modelProvider;
   }

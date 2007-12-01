@@ -14,7 +14,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FreebiesBonusPointReducerTest {
+public class AttributeFreebiesBonusPointReducer_ExistingModelTest {
 
   public static final class DummyCreditManager implements ICreditManager {
     private static final int DEFAULT_CREDIT = 3;
@@ -36,10 +36,12 @@ public class FreebiesBonusPointReducerTest {
 
   @Before
   public void createReducer() throws Exception {
-    this.attributes = Attributes.create(new AttributeGroupConfiguration().getGroups(), new EssenceSensitiveTraitTemplate());
+    this.attributes = Attributes.create(
+        new AttributeGroupConfiguration().getGroups(),
+        new EssenceSensitiveTraitTemplate());
     this.characterId = EasyMock.createMock(ICharacterId.class);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
-    this.reducer = new AttributeFreebiesBonusPointReducer(modelProvider, new DummyCreditManager());
+    this.reducer = new AttributeFreebiesBonusPointReducer(modelProvider, null, new DummyCreditManager());
   }
 
   @Test
