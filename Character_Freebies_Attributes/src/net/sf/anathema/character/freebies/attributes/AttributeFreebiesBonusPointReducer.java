@@ -15,17 +15,17 @@ import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class FreebiesBonusPointReducer extends AbstractExecutableExtension implements IPointHandler {
+public class AttributeFreebiesBonusPointReducer extends AbstractExecutableExtension implements IPointHandler {
 
   private final ICreditManager creditManager;
   private final IAttributeGroupFreebies[] freebiesHandlers;
   private final IModelCollection modelProvider;
 
-  public FreebiesBonusPointReducer() {
+  public AttributeFreebiesBonusPointReducer() {
     this(ModelCache.getInstance(), new CreditManager());
   }
 
-  public FreebiesBonusPointReducer(IModelCollection modelProvider, ICreditManager creditManager) {
+  public AttributeFreebiesBonusPointReducer(IModelCollection modelProvider, ICreditManager creditManager) {
     this.modelProvider = modelProvider;
     this.creditManager = creditManager;
     this.freebiesHandlers = new IAttributeGroupFreebies[] {

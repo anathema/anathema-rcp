@@ -30,7 +30,7 @@ public class FreebiesBonusPointReducerTest {
     }
   }
 
-  private FreebiesBonusPointReducer reducer;
+  private AttributeFreebiesBonusPointReducer reducer;
   private ITraitCollectionModel attributes;
   private ICharacterId characterId;
 
@@ -39,7 +39,7 @@ public class FreebiesBonusPointReducerTest {
     this.attributes = Attributes.create(new AttributeGroupConfiguration().getGroups(), new EssenceSensitiveTraitTemplate());
     this.characterId = EasyMock.createMock(ICharacterId.class);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
-    this.reducer = new FreebiesBonusPointReducer(modelProvider, new DummyCreditManager());
+    this.reducer = new AttributeFreebiesBonusPointReducer(modelProvider, new DummyCreditManager());
   }
 
   @Test

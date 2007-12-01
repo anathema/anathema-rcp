@@ -28,7 +28,7 @@
          point="net.sf.anathema.character.points.configurations">
       <bonusPointCalculator
             groupReference="attributepoints"
-            handlerClass="net.sf.anathema.character.freebies.attributes.FreebiesBonusPointReducer">
+            handlerClass="net.sf.anathema.character.freebies.attributes.AttributeFreebiesBonusPointReducer">
       </bonusPointCalculator>
       <bonusPointCalculator
             groupReference="attributepoints"
