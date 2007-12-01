@@ -45,8 +45,8 @@
             class="net.sf.anathema.charactertype.db.NewDynastDbWizard"
             hasPages="false"
             icon="icons/DbIcon_16.png"
-            id="net.sf.anathema.charactertype.defaultsolar.newwizard"
-            name="%new.wizard.charactertype.dynastdb">
+            id="net.sf.anathema.character.template.defaultsolar.newwizard"
+            name="%new.wizard.character.template.dynastdb">
       </wizard>
    </extension>
    <extension

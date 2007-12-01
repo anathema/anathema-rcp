@@ -45,8 +45,8 @@
             class="net.sf.anathema.charactertype.mortal.NewHeroicMortalWizard"
             hasPages="false"
             icon="icons/MortalIcon_16.png"
-            id="net.sf.anathema.charactertype.heroicmortal.newwizard"
-            name="%new.wizard.charactertype.heroicmortal">
+            id="net.sf.anathema.character.template.heroicmortal.newwizard"
+            name="%new.wizard.character.template.heroicmortal">
       </wizard>
    </extension>
    <extension

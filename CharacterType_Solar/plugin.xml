@@ -34,8 +34,8 @@
             class="net.sf.anathema.charactertype.solar.NewDefaultSolarWizard"
             hasPages="false"
             icon="icons/SolarIcon_16.png"
-            id="net.sf.anathema.charactertype.defaultsolar.newwizard"
-            name="%new.wizard.charactertype.defaultsolar">
+            id="net.sf.anathema.character.template.defaultsolar.newwizard"
+            name="%new.wizard.character.template.defaultsolar">
       </wizard>
    </extension>
    <extension

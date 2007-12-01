@@ -53,8 +53,8 @@
             class="net.sf.anathema.charactertype.lunar.NewPactLunarWizard"
             hasPages="false"
             icon="icons/LunarIcon_16.png"
-            id="net.sf.anathema.charactertype.pactlunar.newwizard"
-            name="%new.wizard.charactertype.pactlunar">
+            id="net.sf.anathema.character.template.pactlunar.newwizard"
+            name="%new.wizard.character.template.pactlunar">
       </wizard>
    </extension>
    <extension

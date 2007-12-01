@@ -53,8 +53,8 @@
             class="net.sf.anathema.charactertype.sidereal.NewDefaultSiderealWizard"
             hasPages="false"
             icon="icons/SiderealIcon16.png"
-            id="net.sf.anathema.charactertype.defaultsidereal.newwizard"
-            name="%new.wizard.charactertype.defaultsidereal">
+            id="net.sf.anathema.character.template.defaultsidereal.newwizard"
+            name="%new.wizard.character.template.defaultsidereal">
       </wizard>
    </extension>
    <extension
