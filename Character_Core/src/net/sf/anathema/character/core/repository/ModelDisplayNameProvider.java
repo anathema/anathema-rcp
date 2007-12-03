@@ -16,4 +16,18 @@ public class ModelDisplayNameProvider implements IDisplayNameProvider {
   public String getDisplayName() {
     return baseName + " - " + personalizer.getDisplayName(); //$NON-NLS-1$
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof ModelDisplayNameProvider)) {
+      return false;
+    }
+    ModelDisplayNameProvider provider = (ModelDisplayNameProvider) obj;
+    return getDisplayName().equals(provider.getDisplayName());
+  }
+
+  @Override
+  public int hashCode() {
+    return baseName.hashCode() + 3 * personalizer.hashCode();
+  }
 }

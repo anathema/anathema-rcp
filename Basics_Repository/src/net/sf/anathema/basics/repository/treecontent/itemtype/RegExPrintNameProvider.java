@@ -26,7 +26,7 @@ public class RegExPrintNameProvider implements IPrintNameProvider {
   public String getPrintName(IFile file) {
     InputStreamReader reader = null;
     try {
-      if (!file.exists()) {
+      if (file == null || !file.exists()) {
         return getFallbackName();
       }
       reader = new InputStreamReader(file.getContents());

@@ -1,6 +1,6 @@
 package net.sf.anathema.basics.repository.treecontent.itemtype;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -18,12 +18,18 @@ public class RegExPrintNameProviderTest {
     InputStream inputStream = new ByteArrayInputStream(new byte[0]);
     assertEquals("mySpecialFallbackName", nameProvider.getPrintName(createExistingFile(inputStream))); //$NON-NLS-1$
   }
-  
+
   @Test
   public void fallbackNameIsTakenIfFileNotExists() throws Exception {
     RegExPrintNameProvider nameProvider = new RegExPrintNameProvider("mySpecialFallbackName"); //$NON-NLS-1$
     assertEquals("mySpecialFallbackName", nameProvider.getPrintName(createNonExistingFile())); //$NON-NLS-1$
-    
+  }
+
+  @Test
+  public void fallbackNameIsTakenForNullFile() throws Exception {
+    RegExPrintNameProvider nameProvider = new RegExPrintNameProvider("mySpecialFallbackName"); //$NON-NLS-1$
+    assertEquals("mySpecialFallbackName", nameProvider.getPrintName(null)); //$NON-NLS-1$
+
   }
 
   private IFile createNonExistingFile() {
