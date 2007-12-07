@@ -1,5 +1,8 @@
 package net.sf.anathema.character.attributes.points;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.Attributes;
@@ -39,19 +42,19 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
       return 0;
     }
     ModelIdentifier identifier = new ModelIdentifier(characterId, Attributes.MODEL_ID);
-    if (modelCollection.contains(identifier)) {
-      return calculatePoints(identifier);
-    }
-    IResource resource = resourceHandler.getResource(identifier);
-    if (!resource.exists()) {
-      return 0;
-    }
     try {
+      IResource resource = resourceHandler.getResource(identifier);
+      if (modelCollection.contains(identifier)) {
+        return calculatePoints(resource, identifier);
+      }
+      if (!resource.exists()) {
+        return 0;
+      }
       IMarker marker = findBonusPointMarker(resource);
       if (marker != null) {
         return ((Number) marker.getAttribute(ATTRIB_BONUS_POINTS)).intValue();
       }
-      return calculatePoints(identifier);
+      return calculatePoints(resource, identifier);
     }
     catch (CoreException e) {
       throw new UnreachableCodeReachedException(e);
@@ -67,9 +70,15 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
     return null;
   }
 
-  private int calculatePoints(ModelIdentifier identifier) {
+  private int calculatePoints(IResource resource, ModelIdentifier identifier) throws CoreException {
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelCollection.getModel(identifier);
-    return calculatePoints(attributes, identifier.getCharacterId());
+    int bonusPoints = calculatePoints(attributes, identifier.getCharacterId());
+    IMarker marker = resource.createMarker(MARKER_TYPE);
+    Map<String, Object> markerAttributes = new HashMap<String, Object>();
+    markerAttributes.put(ATTRIB_HANDLER_TYPE, "attributes");
+    markerAttributes.put(ATTRIB_BONUS_POINTS, bonusPoints);
+    marker.setAttributes(markerAttributes);
+    return bonusPoints;
   }
 
   protected abstract int calculatePoints(ITraitCollectionModel attributes, ICharacterId characterId);

@@ -42,7 +42,7 @@ public class CharacterObjectMother {
 
   public static IModelCollection createModelProvider(IModelIdentifier identifier, IModel model) {
     IModelCollection modelProvider = EasyMock.createNiceMock(IModelCollection.class);
-    EasyMock.expect(modelProvider.getModel(identifier)).andReturn(model).anyTimes();
+    EasyMock.expect(modelProvider.getModel(identifier)).andStubReturn(model);
     EasyMock.expect(modelProvider.contains(identifier)).andStubReturn(true);
     EasyMock.replay(modelProvider);
     return modelProvider;
@@ -78,6 +78,7 @@ public class CharacterObjectMother {
     EasyMock.expect(file.exists()).andStubReturn(true);
     EasyMock.expect(file.findMarkers("net.sf.anathema.markers.bonuspoints", false, IResource.DEPTH_ZERO)).andReturn( //$NON-NLS-1$
         markers);
+    EasyMock.expect(file.createMarker(EasyMock.isA(String.class))).andStubReturn(ResourceObjectMother.createMarker());
     EasyMock.replay(file);
     return file;
   }

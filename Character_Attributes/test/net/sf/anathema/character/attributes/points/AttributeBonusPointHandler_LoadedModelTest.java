@@ -1,13 +1,23 @@
 package net.sf.anathema.character.attributes.points;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.trait.fake.DummyTraitCollection;
 
 import org.easymock.EasyMock;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,25 +26,43 @@ public class AttributeBonusPointHandler_LoadedModelTest {
   private ModelIdentifier modelIdentifier;
   private AttributeBonusPointHandler bonusPointHandler;
   private IModelResourceHandler resourceHandler;
-  private IModelCollection modelCollection;
 
   @Before
   public void createHandler() throws Exception {
     ICharacterId characterId = EasyMock.createMock(ICharacterId.class);
     modelIdentifier = new ModelIdentifier(characterId, "net.sf.anathema.character.attributes.model"); //$NON-NLS-1$
-    modelCollection = EasyMock.createMock(IModelCollection.class);
+    IModelCollection modelCollection = CharacterObjectMother.createModelProvider(
+        modelIdentifier,
+        new DummyTraitCollection());
     resourceHandler = EasyMock.createMock(IModelResourceHandler.class);
     bonusPointHandler = new AttributeBonusPointHandler(modelCollection, resourceHandler);
   }
 
   @Test
   public void modelAlreadyLoadedIsUsedForCalculation() throws Exception {
-    EasyMock.expect(modelCollection.contains(modelIdentifier)).andStubReturn(true);
-    EasyMock.expect(modelCollection.getModel(modelIdentifier)).andStubReturn(new DummyTraitCollection());
-    EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andStubReturn(
-        ResourceObjectMother.createExistingResource());
-    EasyMock.replay(modelCollection, resourceHandler);
+    IResource resource = ResourceObjectMother.createExistingResource();
+    EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andStubReturn(resource);
+    EasyMock.replay(resourceHandler);
+    assertEquals(0, bonusPointHandler.getPoints(modelIdentifier.getCharacterId()));
+  }
+
+  @Test
+  public void markerIsSetWithCalculation() throws Exception {
+    Map<String, Object> markerAttributes = new HashMap<String, Object>();
+    markerAttributes.put("handlerType", "attributes"); //$NON-NLS-1$//$NON-NLS-2$
+    markerAttributes.put("bonusPoints", 0); //$NON-NLS-1$
+    IMarker marker = createEditedMarker(markerAttributes);
+    IFile file = ResourceObjectMother.createFileWithCreatedMarker("net.sf.anathema.markers.bonuspoints", marker); //$NON-NLS-1$
+    EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andStubReturn(file);
+    EasyMock.replay(resourceHandler);
     bonusPointHandler.getPoints(modelIdentifier.getCharacterId());
-    EasyMock.verify(modelCollection, resourceHandler);
+    EasyMock.verify(marker);
+  }
+
+  private IMarker createEditedMarker(Map<String, Object> attributes) throws CoreException {
+    IMarker marker = EasyMock.createMock(IMarker.class);
+    marker.setAttributes(attributes);
+    EasyMock.replay(marker);
+    return marker;
   }
 }
