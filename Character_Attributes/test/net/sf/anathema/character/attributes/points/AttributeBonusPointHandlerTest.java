@@ -1,6 +1,6 @@
 package net.sf.anathema.character.attributes.points;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -30,8 +30,10 @@ public class AttributeBonusPointHandlerTest {
 
   @Test
   public void modelAlreadyLoadedIsUsedForCalculation() throws Exception {
-    EasyMock.expect(modelCollection.contains(modelIdentifier)).andReturn(true);
-    EasyMock.expect(modelCollection.getModel(modelIdentifier)).andReturn(new DummyTraitCollection());
+    EasyMock.expect(modelCollection.contains(modelIdentifier)).andStubReturn(true);
+    EasyMock.expect(modelCollection.getModel(modelIdentifier)).andStubReturn(new DummyTraitCollection());
+    EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andStubReturn(
+        ResourceObjectMother.createExistingResource());
     EasyMock.replay(modelCollection, resourceHandler);
     bonusPointHandler.getPoints(modelIdentifier.getCharacterId());
     EasyMock.verify(modelCollection, resourceHandler);
@@ -39,8 +41,8 @@ public class AttributeBonusPointHandlerTest {
 
   @Test
   public void zeroBonusPointsReturnedWithoutLoadingModelForModelsNotYetLoadedAndWithoutResource() throws Exception {
-    EasyMock.expect(modelCollection.contains(modelIdentifier)).andReturn(false);
-    EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andReturn(
+    EasyMock.expect(modelCollection.contains(modelIdentifier)).andStubReturn(false);
+    EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andStubReturn(
         ResourceObjectMother.createNonExistingFile());
     EasyMock.replay(modelCollection, resourceHandler);
     assertEquals(0, bonusPointHandler.getPoints(modelIdentifier.getCharacterId()));

@@ -3,13 +3,14 @@ package net.sf.anathema.basics.eclipse.resource.fake;
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 
 public class ResourceObjectMother {
 
   public static IFile createNonExistingFile() {
     IFile resource = EasyMock.createNiceMock(IFile.class);
-    EasyMock.expect(resource.exists()).andReturn(false);
+    EasyMock.expect(resource.exists()).andStubReturn(false);
     EasyMock.replay(resource);
     return resource;
   }
@@ -28,4 +29,10 @@ public class ResourceObjectMother {
     return root;
   }
 
+  public static IResource createExistingResource() {
+    IFile resource = EasyMock.createNiceMock(IFile.class);
+    EasyMock.expect(resource.exists()).andStubReturn(true);
+    EasyMock.replay(resource);
+    return resource;
+  }
 }

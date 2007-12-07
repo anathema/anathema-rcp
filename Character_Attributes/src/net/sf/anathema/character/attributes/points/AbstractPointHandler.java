@@ -33,14 +33,14 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
       return 0;
     }
     ModelIdentifier identifier = new ModelIdentifier(characterId, Attributes.MODEL_ID);
+    IResource resource = resourceHandler.getResource(identifier);
+    if (!resource.exists()) {
+      return 0;
+    }
     if (modelCollection.contains(identifier)) {
       return calculatePoints(identifier);
     }
-    IResource resource = resourceHandler.getResource(identifier);
-    if (resource.exists()) {
-      return calculatePoints(identifier);
-    }
-    return 0;
+    return calculatePoints(identifier);
   }
 
   private int calculatePoints(ModelIdentifier identifier) {
