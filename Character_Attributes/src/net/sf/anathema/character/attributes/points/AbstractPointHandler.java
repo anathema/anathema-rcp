@@ -26,14 +26,19 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
   private static final String ATTRIB_BONUS_POINTS = "bonusPoints"; //$NON-NLS-1$
   private final IModelCollection modelCollection;
   private final IModelResourceHandler resourceHandler;
+  private final String handlerType;
 
-  public AbstractPointHandler() {
-    this(ModelCache.getInstance(), new ModelResourceHandler());
+  public AbstractPointHandler(String handlerType) {
+    this(ModelCache.getInstance(), new ModelResourceHandler(), handlerType);
   }
 
-  public AbstractPointHandler(IModelCollection modelCollection, IModelResourceHandler resourceHandler) {
+  public AbstractPointHandler(
+      IModelCollection modelCollection,
+      IModelResourceHandler resourceHandler,
+      String handlerType) {
     this.modelCollection = modelCollection;
     this.resourceHandler = resourceHandler;
+    this.handlerType = handlerType;
   }
 
   @Override
@@ -63,7 +68,7 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
 
   private IMarker findBonusPointMarker(IResource resource) throws CoreException {
     for (IMarker marker : resource.findMarkers(MARKER_TYPE, false, IResource.DEPTH_ZERO)) {
-      if (marker.getAttribute(ATTRIB_HANDLER_TYPE).equals("attributes")) {
+      if (marker.getAttribute(ATTRIB_HANDLER_TYPE).equals(handlerType)) {
         return marker;
       }
     }
@@ -75,7 +80,7 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
     int bonusPoints = calculatePoints(attributes, identifier.getCharacterId());
     IMarker marker = resource.createMarker(MARKER_TYPE);
     Map<String, Object> markerAttributes = new HashMap<String, Object>();
-    markerAttributes.put(ATTRIB_HANDLER_TYPE, "attributes");
+    markerAttributes.put(ATTRIB_HANDLER_TYPE, handlerType);
     markerAttributes.put(ATTRIB_BONUS_POINTS, bonusPoints);
     marker.setAttributes(markerAttributes);
     return bonusPoints;

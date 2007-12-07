@@ -1,12 +1,15 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.assertEquals;
+import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
+import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.model.IModelResourceHandler;
-import net.sf.anathema.character.trait.collection.TraitCollection;
+import net.sf.anathema.character.freebies.attributes.AttributeFreebiesBonusPointReducer_CalculationTest.DummyCreditManager;
+import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;
@@ -14,10 +17,10 @@ import org.eclipse.core.resources.IMarker;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AttributeBonusPointHandler_UnloadedModelExistingInfoTest {
+public class AttributeFreebiesBonusPointReducer_UnloadedModelMissingInfoTest {
 
   private ModelIdentifier modelIdentifier;
-  private AttributeBonusPointHandler bonusPointHandler;
+  private AttributeFreebiesBonusPointReducer bonusPointHandler;
   private IModelResourceHandler resourceHandler;
   private IModelCollection modelCollection;
 
@@ -27,10 +30,14 @@ public class AttributeBonusPointHandler_UnloadedModelExistingInfoTest {
     modelIdentifier = new ModelIdentifier(characterId, "net.sf.anathema.character.attributes.model"); //$NON-NLS-1$
     modelCollection = EasyMock.createNiceMock(IModelCollection.class);
     EasyMock.expect(modelCollection.contains(modelIdentifier)).andStubReturn(false);
-    EasyMock.expect(modelCollection.getModel(modelIdentifier)).andReturn(new TraitCollection());
+    EasyMock.expect(modelCollection.getModel(modelIdentifier)).andReturn(
+        Attributes.create(new AttributeGroupConfiguration().getGroups(), new EssenceSensitiveTraitTemplate()));
     EasyMock.replay(modelCollection);
     resourceHandler = EasyMock.createMock(IModelResourceHandler.class);
-    bonusPointHandler = new AttributeBonusPointHandler(modelCollection, resourceHandler);
+    bonusPointHandler = new AttributeFreebiesBonusPointReducer(
+        modelCollection,
+        resourceHandler,
+        new DummyCreditManager());
   }
 
   @Test
@@ -44,7 +51,7 @@ public class AttributeBonusPointHandler_UnloadedModelExistingInfoTest {
 
   @Test
   public void modelIsReloadedIfOnlyNonAttributeHandlerMarkerIsFound() throws Exception {
-    IMarker[] markers = new IMarker[] { CharacterObjectMother.createBonusPointMarker("unkonwn", 3) }; //$NON-NLS-1$
+    IMarker[] markers = new IMarker[] { CharacterObjectMother.createBonusPointMarker("unkown", 3) }; //$NON-NLS-1$
     IFile file = CharacterObjectMother.createFileWithBonusPointMarkers(markers);
     EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andStubReturn(file);
     EasyMock.replay(resourceHandler);

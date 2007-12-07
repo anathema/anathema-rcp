@@ -25,7 +25,7 @@ public class FavoredAttributeBonusPointReducer extends AbstractPointHandler {
       IModelCollection modelCollection,
       IModelResourceHandler resourceHandler,
       ICreditManager creditManager) {
-    super(modelCollection, resourceHandler);
+    super(modelCollection, resourceHandler, null);
     this.modelCollection = modelCollection;
     this.creditManager = creditManager;
   }

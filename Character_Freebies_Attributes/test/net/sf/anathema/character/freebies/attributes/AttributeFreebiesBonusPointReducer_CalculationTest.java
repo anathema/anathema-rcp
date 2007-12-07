@@ -16,7 +16,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AttributeFreebiesBonusPointReducer_ExistingModelTest {
+public class AttributeFreebiesBonusPointReducer_CalculationTest {
 
   public static final class DummyCreditManager implements ICreditManager {
     private static final int DEFAULT_CREDIT = 3;

@@ -16,6 +16,7 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler {
 
+  private static final String HANDLER_TYPE = "attributeFreebies"; //$NON-NLS-1$
   private final ICreditManager creditManager;
   private final IAttributeGroupFreebies[] freebiesHandlers;
 
@@ -27,7 +28,7 @@ public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler {
       IModelCollection modelProvider,
       IModelResourceHandler modelResourceHandler,
       ICreditManager creditManager) {
-    super(modelProvider, modelResourceHandler);
+    super(modelProvider, modelResourceHandler, HANDLER_TYPE);
     this.creditManager = creditManager;
     this.freebiesHandlers = new IAttributeGroupFreebies[] {
         new PrimaryAttributeFreebies(modelProvider),
