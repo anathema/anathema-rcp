@@ -14,7 +14,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FavoredAttributeBonusPointReducer_ExistingModelTest {
+public class FavoredAttributeBonusPointReducer_CalculationTest {
 
   private FavoredAttributeBonusPointReducer reducer;
   private final ICharacterId characterId = new DummyCharacterId();

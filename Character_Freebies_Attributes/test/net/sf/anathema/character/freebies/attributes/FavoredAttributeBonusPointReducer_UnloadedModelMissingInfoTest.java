@@ -17,10 +17,10 @@ import org.eclipse.core.resources.IMarker;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AttributeFreebiesBonusPointReducer_UnloadedModelMissingInfoTest {
+public class FavoredAttributeBonusPointReducer_UnloadedModelMissingInfoTest {
 
   private ModelIdentifier modelIdentifier;
-  private AttributeFreebiesBonusPointReducer bonusPointHandler;
+  private FavoredAttributeBonusPointReducer bonusPointHandler;
   private IModelResourceHandler resourceHandler;
   private IModelCollection modelCollection;
 
@@ -34,7 +34,7 @@ public class AttributeFreebiesBonusPointReducer_UnloadedModelMissingInfoTest {
         Attributes.create(new AttributeGroupConfiguration().getGroups(), new EssenceSensitiveTraitTemplate()));
     EasyMock.replay(modelCollection);
     resourceHandler = EasyMock.createMock(IModelResourceHandler.class);
-    bonusPointHandler = new AttributeFreebiesBonusPointReducer(
+    bonusPointHandler = new FavoredAttributeBonusPointReducer(
         modelCollection,
         resourceHandler,
         new DummyCreditManager());
