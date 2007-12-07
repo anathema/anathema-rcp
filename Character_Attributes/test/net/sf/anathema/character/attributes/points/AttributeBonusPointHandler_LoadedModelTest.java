@@ -1,6 +1,5 @@
 package net.sf.anathema.character.attributes.points;
 
-import static org.junit.Assert.assertEquals;
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -12,7 +11,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AttributeBonusPointHandlerTest {
+public class AttributeBonusPointHandler_LoadedModelTest {
 
   private ModelIdentifier modelIdentifier;
   private AttributeBonusPointHandler bonusPointHandler;
@@ -36,16 +35,6 @@ public class AttributeBonusPointHandlerTest {
         ResourceObjectMother.createExistingResource());
     EasyMock.replay(modelCollection, resourceHandler);
     bonusPointHandler.getPoints(modelIdentifier.getCharacterId());
-    EasyMock.verify(modelCollection, resourceHandler);
-  }
-
-  @Test
-  public void zeroBonusPointsReturnedWithoutLoadingModelForModelsNotYetLoadedAndWithoutResource() throws Exception {
-    EasyMock.expect(modelCollection.contains(modelIdentifier)).andStubReturn(false);
-    EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andStubReturn(
-        ResourceObjectMother.createNonExistingFile());
-    EasyMock.replay(modelCollection, resourceHandler);
-    assertEquals(0, bonusPointHandler.getPoints(modelIdentifier.getCharacterId()));
     EasyMock.verify(modelCollection, resourceHandler);
   }
 }

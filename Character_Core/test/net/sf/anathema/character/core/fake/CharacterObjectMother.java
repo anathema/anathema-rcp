@@ -10,7 +10,10 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.IModelResourceHandler;
 
 import org.easymock.EasyMock;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IEditorInput;
 
 public class CharacterObjectMother {
@@ -60,5 +63,22 @@ public class CharacterObjectMother {
     EasyMock.expect(modelProvider.getModel(EasyMock.isA(IModelIdentifier.class))).andStubThrow(expection);
     EasyMock.replay(modelProvider);
     return modelProvider;
+  }
+
+  public static IMarker createBonusPointMarker(String handlerType, int bonusPoints) throws CoreException {
+    IMarker marker = EasyMock.createNiceMock(IMarker.class);
+    EasyMock.expect(marker.getAttribute("handlerType")).andStubReturn(handlerType); //$NON-NLS-1$
+    EasyMock.expect(marker.getAttribute("bonusPoints")).andStubReturn(bonusPoints); //$NON-NLS-1$
+    EasyMock.replay(marker);
+    return marker;
+  }
+
+  public static IFile createFileWithBonusPointMarkers(IMarker[] markers) throws CoreException {
+    IFile file = EasyMock.createNiceMock(IFile.class);
+    EasyMock.expect(file.exists()).andStubReturn(true);
+    EasyMock.expect(file.findMarkers("net.sf.anathema.markers.bonuspoints", false, IResource.DEPTH_ZERO)).andReturn( //$NON-NLS-1$
+        markers);
+    EasyMock.replay(file);
+    return file;
   }
 }
