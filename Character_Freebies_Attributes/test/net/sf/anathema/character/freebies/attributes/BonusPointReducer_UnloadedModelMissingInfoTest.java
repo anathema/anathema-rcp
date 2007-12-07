@@ -1,6 +1,12 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.assertEquals;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -9,23 +15,36 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.freebies.attributes.AttributeFreebiesBonusPointReducer_CalculationTest.DummyCreditManager;
+import net.sf.anathema.character.freebies.configuration.ICreditManager;
+import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
-public class AttributeFreebiesBonusPointReducer_UnloadedModelMissingInfoTest {
+@RunWith(Parameterized.class)
+public class BonusPointReducer_UnloadedModelMissingInfoTest {
 
-  private ModelIdentifier modelIdentifier;
-  private AttributeFreebiesBonusPointReducer bonusPointHandler;
-  private IModelResourceHandler resourceHandler;
-  private IModelCollection modelCollection;
+  @Parameters
+  public static Collection<Object[]> data() {
+    List<Object[]> handlerClasses = new ArrayList<Object[]>();
+    handlerClasses.add(new Object[] { AttributeFreebiesBonusPointReducer.class });
+    handlerClasses.add(new Object[] { FavoredAttributeBonusPointReducer.class });
+    return handlerClasses;
+  }
 
-  @Before
-  public void createHandler() throws Exception {
+  private final ModelIdentifier modelIdentifier;
+  private final IPointHandler bonusPointHandler;
+  private final IModelResourceHandler resourceHandler;
+  private final IModelCollection modelCollection;
+
+  public BonusPointReducer_UnloadedModelMissingInfoTest(Class< ? extends IPointHandler> handlerClass)
+      throws Exception {
     ICharacterId characterId = EasyMock.createMock(ICharacterId.class);
     modelIdentifier = new ModelIdentifier(characterId, "net.sf.anathema.character.attributes.model"); //$NON-NLS-1$
     modelCollection = EasyMock.createNiceMock(IModelCollection.class);
@@ -34,10 +53,11 @@ public class AttributeFreebiesBonusPointReducer_UnloadedModelMissingInfoTest {
         Attributes.create(new AttributeGroupConfiguration().getGroups(), new EssenceSensitiveTraitTemplate()));
     EasyMock.replay(modelCollection);
     resourceHandler = EasyMock.createMock(IModelResourceHandler.class);
-    bonusPointHandler = new AttributeFreebiesBonusPointReducer(
-        modelCollection,
-        resourceHandler,
-        new DummyCreditManager());
+    Constructor< ? extends IPointHandler> constructor = handlerClass.getConstructor(
+        IModelCollection.class,
+        IModelResourceHandler.class,
+        ICreditManager.class);
+    bonusPointHandler = constructor.newInstance(modelCollection, resourceHandler, new DummyCreditManager());
   }
 
   @Test
