@@ -1,10 +1,12 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
+import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 
@@ -15,12 +17,12 @@ import org.junit.Test;
 public class FavoredAttributeBonusPointReducer_ExistingModelTest {
 
   private FavoredAttributeBonusPointReducer reducer;
-  private ICharacterId characterId = new DummyCharacterId();
+  private final ICharacterId characterId = new DummyCharacterId();
   private IFreebiesHandler handler;
-  private int credit = 0;
+  private final int credit = 0;
 
   @Before
-  public void createReducer() {
+  public void createReducer() throws Exception {
     ICreditManager creditManager = CreditManagerObjectMother.createCreditManager(
         characterId,
         "net.sf.anthema.character.attributes.freebies.favored", //$NON-NLS-1$
@@ -29,7 +31,8 @@ public class FavoredAttributeBonusPointReducer_ExistingModelTest {
     IModelCollection modelCollection = EasyMock.createNiceMock(IModelCollection.class);
     EasyMock.expect(modelCollection.contains(EasyMock.isA(IModelIdentifier.class))).andStubReturn(true);
     EasyMock.replay(modelCollection);
-    reducer = new FavoredAttributeBonusPointReducer(modelCollection, null, creditManager) {
+    IModelResourceHandler resourceHandler = CharacterObjectMother.createFriendlyResourceHandler();
+    reducer = new FavoredAttributeBonusPointReducer(modelCollection, resourceHandler, creditManager) {
       @Override
       protected IFreebiesHandler createFreebiesHandler() {
         return handler;

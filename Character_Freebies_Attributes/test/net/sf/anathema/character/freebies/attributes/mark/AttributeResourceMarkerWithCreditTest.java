@@ -17,15 +17,15 @@ public class AttributeResourceMarkerWithCreditTest {
   private DummyChangeableModel model;
   private ITotalDotsSpent dotsSpent;
   private ResourceModelMarker attributeResourceMarker;
-  private IMarkerHandle markerHandler;
+  private IMarkerHandle markerHandle;
 
   @Before
   public void createMarker() throws Exception {
     IAttributeCreditCollection creditCollection = createCreditCollection(PRIORITY, CREDIT);
     dotsSpent = EasyMock.createMock(ITotalDotsSpent.class);
     model = new DummyChangeableModel();
-    markerHandler = EasyMock.createMock(IMarkerHandle.class);
-    attributeResourceMarker = new ResourceModelMarker(model, markerHandler, new AttributeGroupModelMarker(
+    markerHandle = EasyMock.createMock(IMarkerHandle.class);
+    attributeResourceMarker = new ResourceModelMarker(model, markerHandle, new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
         PRIORITY,
@@ -41,41 +41,41 @@ public class AttributeResourceMarkerWithCreditTest {
 
   @Test
   public void noMarkerManipulationIfHandleDoesNotExist() throws Exception {
-    EasyMock.expect(markerHandler.exists()).andReturn(false).anyTimes();
-    EasyMock.replay(markerHandler);
+    EasyMock.expect(markerHandle.exists()).andReturn(false).anyTimes();
+    EasyMock.replay(markerHandle);
     attributeResourceMarker.mark();
-    EasyMock.verify(markerHandler);
+    EasyMock.verify(markerHandle);
   }
 
   @Test
   public void markerDeletedIfCreditIsDepleted() throws Exception {
-    EasyMock.expect(markerHandler.exists()).andReturn(true).anyTimes();
-    markerHandler.deleteMarkers(MARKER_ID, true, 0);
+    EasyMock.expect(markerHandle.exists()).andReturn(true).anyTimes();
+    markerHandle.deleteMarkers(MARKER_ID, true, 0);
     EasyMock.expect(dotsSpent.get(PRIORITY)).andReturn(CREDIT).anyTimes();
-    EasyMock.replay(markerHandler, dotsSpent);
+    EasyMock.replay(markerHandle, dotsSpent);
     attributeResourceMarker.mark();
-    EasyMock.verify(markerHandler);
+    EasyMock.verify(markerHandle);
   }
 
   @Test
   public void markerIsCreatedIfCreditPointsAreStillAvailableAndNoMarkerIsSet() throws Exception {
-    EasyMock.expect(markerHandler.exists()).andReturn(true).anyTimes();
-    EasyMock.expect(markerHandler.findMarkers(MARKER_ID, true, 0)).andReturn(new IMarker[0]);
-    EasyMock.expect(markerHandler.createMarker(MARKER_ID)).andReturn(null);
+    EasyMock.expect(markerHandle.exists()).andReturn(true).anyTimes();
+    EasyMock.expect(markerHandle.findMarkers(MARKER_ID, true, 0)).andReturn(new IMarker[0]);
+    EasyMock.expect(markerHandle.createMarker(MARKER_ID)).andReturn(null);
     EasyMock.expect(dotsSpent.get(PRIORITY)).andReturn(CREDIT - 1).anyTimes();
-    EasyMock.replay(markerHandler, dotsSpent);
+    EasyMock.replay(markerHandle, dotsSpent);
     attributeResourceMarker.mark();
-    EasyMock.verify(markerHandler);
+    EasyMock.verify(markerHandle);
   }
 
   @Test
   public void noDuplicatedMarkersAreCreated() throws Exception {
-    EasyMock.expect(markerHandler.exists()).andReturn(true).anyTimes();
-    EasyMock.expect(markerHandler.findMarkers(MARKER_ID, true, 0)).andReturn(
+    EasyMock.expect(markerHandle.exists()).andReturn(true).anyTimes();
+    EasyMock.expect(markerHandle.findMarkers(MARKER_ID, true, 0)).andReturn(
         new IMarker[] { EasyMock.createMock(IMarker.class) });
     EasyMock.expect(dotsSpent.get(PRIORITY)).andReturn(CREDIT - 1).anyTimes();
-    EasyMock.replay(markerHandler, dotsSpent);
+    EasyMock.replay(markerHandle, dotsSpent);
     attributeResourceMarker.mark();
-    EasyMock.verify(markerHandler);
+    EasyMock.verify(markerHandle);
   }
 }

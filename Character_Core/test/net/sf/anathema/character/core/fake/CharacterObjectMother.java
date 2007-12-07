@@ -49,8 +49,15 @@ public class CharacterObjectMother {
   }
 
   public static IModelResourceHandler createEmptyResourceHandler() {
+    return createStaticResourceHandler(ResourceObjectMother.createNonExistingFile());
+  }
+
+  public static IModelResourceHandler createFriendlyResourceHandler() throws Exception {
+    return createStaticResourceHandler(ResourceObjectMother.createExistingResource());
+  }
+
+  private static IModelResourceHandler createStaticResourceHandler(IResource resource) {
     IModelResourceHandler resourceHandler = EasyMock.createNiceMock(IModelResourceHandler.class);
-    IResource resource = ResourceObjectMother.createNonExistingFile();
     EasyMock.expect(resourceHandler.getResource(EasyMock.isA(IModelIdentifier.class))).andStubReturn(resource);
     EasyMock.replay(resourceHandler);
     return resourceHandler;

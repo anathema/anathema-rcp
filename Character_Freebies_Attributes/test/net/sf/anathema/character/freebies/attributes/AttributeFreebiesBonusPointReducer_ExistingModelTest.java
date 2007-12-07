@@ -6,6 +6,7 @@ import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
+import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -42,10 +43,8 @@ public class AttributeFreebiesBonusPointReducer_ExistingModelTest {
         new EssenceSensitiveTraitTemplate());
     this.characterId = EasyMock.createMock(ICharacterId.class);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
-    this.reducer = new AttributeFreebiesBonusPointReducer(
-        modelProvider,
-        CharacterObjectMother.createEmptyResourceHandler(),
-        new DummyCreditManager());
+    IModelResourceHandler resourceHandler = CharacterObjectMother.createFriendlyResourceHandler();
+    this.reducer = new AttributeFreebiesBonusPointReducer(modelProvider, resourceHandler, new DummyCreditManager());
   }
 
   @Test
