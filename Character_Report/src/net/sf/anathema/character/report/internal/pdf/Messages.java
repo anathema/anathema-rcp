@@ -1,9 +1,9 @@
-package net.sf.anathema.character.report.pdf;
+package net.sf.anathema.character.report.internal.pdf;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-  private static final String BUNDLE_NAME = "net.sf.anathema.character.report.pdf.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "net.sf.anathema.character.report.internal.pdf.messages"; //$NON-NLS-1$
   public static String CharacterReportRunner_CharacterPdfErrorMessage;
   public static String CharacterReportRunner_FileInUseMessage;
   public static String CharacterReportRunner_Title;

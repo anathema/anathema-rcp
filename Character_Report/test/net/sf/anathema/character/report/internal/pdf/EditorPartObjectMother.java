@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.pdf;
+package net.sf.anathema.character.report.internal.pdf;
 
 import org.easymock.EasyMock;
 import org.eclipse.ui.IEditorInput;

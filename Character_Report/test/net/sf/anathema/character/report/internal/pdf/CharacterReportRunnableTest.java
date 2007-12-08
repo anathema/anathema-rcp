@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.pdf;
+package net.sf.anathema.character.report.internal.pdf;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -6,6 +6,8 @@ import java.io.OutputStream;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
+import net.sf.anathema.character.report.internal.pdf.CharacterReportRunnable;
+import net.sf.anathema.character.report.pdf.ICharacterReportWriter;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.runtime.IProgressMonitor;

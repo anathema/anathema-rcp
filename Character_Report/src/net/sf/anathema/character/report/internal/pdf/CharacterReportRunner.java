@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.pdf;
+package net.sf.anathema.character.report.internal.pdf;
 
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
+import net.sf.anathema.character.report.pdf.ICharacterReportWriter;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableContext;

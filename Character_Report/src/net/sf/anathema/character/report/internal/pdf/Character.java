@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.pdf;
+package net.sf.anathema.character.report.internal.pdf;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -8,7 +8,6 @@ import net.sf.anathema.character.core.character.ICharacterTypeFinder;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
-
 
 public class Character implements ICharacter {
 

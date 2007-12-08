@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.pdf;
+package net.sf.anathema.character.report.internal.pdf;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
+import net.sf.anathema.character.report.internal.pdf.CharacterReportRunnable;
+import net.sf.anathema.character.report.internal.pdf.CharacterReportRunner;
 
 import org.easymock.EasyMock;
 import org.eclipse.jface.operation.IRunnableContext;
