@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pdf;
+package net.sf.anathema.character.report.pdf;
 
 import java.io.OutputStream;
 
@@ -8,7 +8,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 import com.lowagie.text.DocumentException;
 
-public interface ICharacterSheetWriter {
+public interface ICharacterReportWriter {
 
   public void write(IProgressMonitor monitor, ICharacter character, OutputStream outputStream) throws DocumentException;
   

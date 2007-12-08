@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pdf;
+package net.sf.anathema.character.report.pdf;
 
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
@@ -13,13 +13,13 @@ import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 
-public class CharacterSheetRunner {
+public class CharacterReportRunner {
 
-  private final Logger logger = new Logger("net.sf.anathema.character.sheet"); //$NON-NLS-1$
+  private final Logger logger = new Logger("net.sf.anathema.character.report"); //$NON-NLS-1$
   private final IOutputStreamFactory streamFactory;
-  private final ICharacterSheetWriter writer;
+  private final ICharacterReportWriter writer;
 
-  public CharacterSheetRunner(IOutputStreamFactory streamFactory, ICharacterSheetWriter writer) {
+  public CharacterReportRunner(IOutputStreamFactory streamFactory, ICharacterReportWriter writer) {
     this.streamFactory = streamFactory;
     this.writer = writer;
   }
@@ -31,7 +31,7 @@ public class CharacterSheetRunner {
       if (outputStream == null) {
         return;
       }
-      runnableContext.run(true, false, new CharacterSheetRunnable(editorPart, outputStream, writer));
+      runnableContext.run(true, false, new CharacterReportRunnable(editorPart, outputStream, writer));
     }
     catch (InvocationTargetException e) {
       indicateError(shell, e.getCause());
@@ -48,15 +48,15 @@ public class CharacterSheetRunner {
     if (cause instanceof FileNotFoundException) {
       MessageDialog.openError(
           shell,
-          Messages.CharacterSheetRunner_Title,
-          Messages.CharacterSheetRunner_FileInUseMessage);
+          Messages.CharacterReportRunner_Title,
+          Messages.CharacterReportRunner_FileInUseMessage);
     }
     else {
-      logger.error(Messages.CharacterSheetHandler_CharacterPdfErrorMessage, cause);
+      logger.error(Messages.CharacterReportRunner_CharacterPdfErrorMessage, cause);
       MessageDialog.openError(
           shell,
-          Messages.CharacterSheetRunner_Title,
-          Messages.CharacterSheetHandler_CharacterPdfErrorMessage);
+          Messages.CharacterReportRunner_Title,
+          Messages.CharacterReportRunner_CharacterPdfErrorMessage);
     }
   }
 }

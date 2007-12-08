@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pdf;
+package net.sf.anathema.character.report.pdf;
 
 import com.lowagie.text.Rectangle;
 

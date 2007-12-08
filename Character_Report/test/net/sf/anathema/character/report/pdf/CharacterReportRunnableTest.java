@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pdf;
+package net.sf.anathema.character.report.pdf;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -13,13 +13,13 @@ import org.eclipse.ui.IEditorPart;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CharacterSheetRunnableTest {
+public class CharacterReportRunnableTest {
 
-  private ICharacterSheetWriter writer;
+  private ICharacterReportWriter writer;
 
   @Before
   public void createWriter() throws Exception {
-    writer = EasyMock.createMock(ICharacterSheetWriter.class);
+    writer = EasyMock.createMock(ICharacterReportWriter.class);
   }
 
   private IProgressMonitor createNiceProgressMonitor() {
@@ -36,7 +36,7 @@ public class CharacterSheetRunnableTest {
     writer.write(EasyMock.same(progressMonitor), EasyMock.isA(ICharacter.class), EasyMock.same(outputStream));
     EasyMock.replay(writer);
     IEditorPart editorPart = EditorPartObjectMother.createEditorPart(CharacterObjectMother.createCharacterEditorInput(new DummyCharacterId()));
-    CharacterSheetRunnable runner = new CharacterSheetRunnable(editorPart, outputStream, writer);
+    CharacterReportRunnable runner = new CharacterReportRunnable(editorPart, outputStream, writer);
     runner.run(progressMonitor);
     EasyMock.verify(writer);
   }

@@ -7,6 +7,8 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.description.ICharacterDescription;
+import net.sf.anathema.character.report.pdf.CharacterReportRunner;
+import net.sf.anathema.character.report.pdf.ICharacterReportWriter;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -24,11 +26,15 @@ public class CharacterSheetPdfHandler extends AbstractHandler {
     Shell shell = HandlerUtil.getActiveShell(event);
     IEditorPart editorPart = HandlerUtil.getActiveEditor(event);
     PdfFileOutputStreamFactory outputStreamFactory = new PdfFileOutputStreamFactory(getSuggestedName(editorPart));
-    CharacterSheetPdfWriter characterSheetWriter = new CharacterSheetPdfWriter();
+    ICharacterReportWriter reportWriter = createReportWriter();
     IRunnableContext runnableContext = HandlerUtil.getActiveWorkbenchWindow(event);
-    CharacterSheetRunner runner = new CharacterSheetRunner(outputStreamFactory, characterSheetWriter);
+    CharacterReportRunner runner = new CharacterReportRunner(outputStreamFactory, reportWriter);
     runner.runWriting(shell, editorPart, runnableContext);
     return null;
+  }
+
+  protected CharacterSheetPdfWriter createReportWriter() {
+    return new CharacterSheetPdfWriter();
   }
 
   private String getSuggestedName(IEditorPart editorPart) {

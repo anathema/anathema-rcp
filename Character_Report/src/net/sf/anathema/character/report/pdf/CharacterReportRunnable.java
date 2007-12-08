@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pdf;
+package net.sf.anathema.character.report.pdf;
 
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -16,12 +16,12 @@ import org.eclipse.ui.IEditorPart;
 
 import com.lowagie.text.DocumentException;
 
-public final class CharacterSheetRunnable implements IRunnableWithProgress {
+public final class CharacterReportRunnable implements IRunnableWithProgress {
   private final IEditorPart editorPart;
   private final OutputStream outputStream;
-  private final ICharacterSheetWriter writer;
+  private final ICharacterReportWriter writer;
 
-  public CharacterSheetRunnable(IEditorPart editorPart, OutputStream outputStream, ICharacterSheetWriter writer) {
+  public CharacterReportRunnable(IEditorPart editorPart, OutputStream outputStream, ICharacterReportWriter writer) {
     this.editorPart = editorPart;
     this.outputStream = outputStream;
     this.writer = writer;
@@ -30,8 +30,8 @@ public final class CharacterSheetRunnable implements IRunnableWithProgress {
   @Override
   public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
     try {
-      monitor.beginTask(Messages.CharacterSheetRunnable_MainTaskSheet, 1 + writer.getTaskCount());
-      monitor.subTask(Messages.CharacterSheetRunnable_SubTaskCreateCharacter);
+      monitor.beginTask(Messages.CharacterReportRunnable_MainTaskSheet, 1 + writer.getTaskCount());
+      monitor.subTask(Messages.CharacterReportRunnable_SubTaskCreateCharacter);
       ICharacter character = createCharacter();
       monitor.worked(1);
       writer.write(monitor, character, outputStream);

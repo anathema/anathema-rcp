@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pdf;
+package net.sf.anathema.character.report.pdf;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -13,14 +13,14 @@ import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.ui.IEditorPart;
 import org.junit.Test;
 
-public class CharacterSheetRunnerTest {
+public class CharacterReportRunnerTest {
 
   @Test
   public void noWritingWithoutOutputStream() throws Exception {
     IOutputStreamFactory outputStreamFactory = createOutputStreamFactory(null);
     IRunnableContext runnableContext = EasyMock.createMock(IRunnableContext.class);
     EasyMock.replay(runnableContext);
-    new CharacterSheetRunner(outputStreamFactory, null).runWriting(null, null, runnableContext);
+    new CharacterReportRunner(outputStreamFactory, null).runWriting(null, null, runnableContext);
   }
 
   @Test
@@ -28,9 +28,9 @@ public class CharacterSheetRunnerTest {
     OutputStream outputStream = new ByteArrayOutputStream();
     IOutputStreamFactory outputStreamFactory = createOutputStreamFactory(outputStream);
     IEditorPart editorPart = EditorPartObjectMother.createEditorPart(CharacterObjectMother.createCharacterEditorInput(new DummyCharacterId()));
-    CharacterSheetRunner runner = new CharacterSheetRunner(outputStreamFactory, null);
+    CharacterReportRunner runner = new CharacterReportRunner(outputStreamFactory, null);
     IRunnableContext runnableContext = EasyMock.createNiceMock(IRunnableContext.class);
-    runnableContext.run(EasyMock.eq(true), EasyMock.eq(false), EasyMock.isA(CharacterSheetRunnable.class));
+    runnableContext.run(EasyMock.eq(true), EasyMock.eq(false), EasyMock.isA(CharacterReportRunnable.class));
     EasyMock.replay(runnableContext);
     runner.runWriting(null, editorPart, runnableContext);
     EasyMock.verify(runnableContext);

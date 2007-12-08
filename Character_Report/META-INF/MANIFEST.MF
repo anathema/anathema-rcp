@@ -3,3 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Character_Report Plug-in
 Bundle-SymbolicName: net.sf.anathema.character.report
 Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.character.core,
+ net.sf.anathema.basics.lib,
+ net.sf.anathema.basics.pdf,
+ org.eclipse.core.runtime,
+ net.sf.anathema.basics.jface,
+ net.sf.anathema.basics.eclipse
+Export-Package: net.sf.anathema.character.report.pdf
