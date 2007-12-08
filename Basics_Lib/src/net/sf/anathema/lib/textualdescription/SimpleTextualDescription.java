@@ -43,4 +43,9 @@ public class SimpleTextualDescription extends ChangeManagement implements ITextu
   public boolean isEmpty() {
     return StringUtilities.isNullOrEmpty(getText());
   }
+
+  @Override
+  public int getTextChangeListenerCount() {
+    return textControl.getListenerCount();
+  }
 }

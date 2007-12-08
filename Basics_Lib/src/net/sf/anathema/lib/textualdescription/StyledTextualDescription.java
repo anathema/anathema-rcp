@@ -156,4 +156,9 @@ public class StyledTextualDescription extends ChangeManagement implements IStyle
     }
     return true;
   }
+
+  @Override
+  public int getTextChangeListenerCount() {
+    return textListeners.getListenerCount();
+  }
 }

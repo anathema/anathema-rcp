@@ -6,12 +6,14 @@ import net.disy.commons.core.util.Ensure;
 public class AggregatedChangeManagement implements IChangeManagement {
 
   private IChangeManagement[] changeManagements;
+  private int changeListenerCount = 0;
 
   @Override
   public final void addDirtyListener(IChangeListener changeListener) {
     for (IChangeManagement changeManagement : changeManagements) {
       changeManagement.addDirtyListener(changeListener);
     }
+    changeListenerCount++;
   }
 
   @Override
@@ -29,6 +31,7 @@ public class AggregatedChangeManagement implements IChangeManagement {
     for (IChangeManagement changeManagement : changeManagements) {
       changeManagement.removeDirtyListener(changeListener);
     }
+    changeListenerCount--;
   }
 
   @Override
@@ -41,5 +44,10 @@ public class AggregatedChangeManagement implements IChangeManagement {
   protected void setChangeManagments(IChangeManagement... changeManagements) {
     Ensure.ensureNull(this.changeManagements);
     this.changeManagements = changeManagements;
+  }
+
+  @Override
+  public int getDirtyListenerCount() {
+    return changeListenerCount;
   }
 }

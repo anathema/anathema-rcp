@@ -37,8 +37,11 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
       @Override
       public void init(IEditorSite editorSite, IEditorInput input) {
         super.init(editorSite, input);
-        IObjectValueChangedListener<String> nameListener = new UpdatePartNameListener(CharacterDescriptionEditor.this);
-        getItem().getName().addTextChangedListener(nameListener);
+        final IObjectValueChangedListener<String> nameListener = new UpdatePartNameListener(
+            CharacterDescriptionEditor.this);
+        final ITextualDescription name = getItem().getName();
+        addDisposable(new TextListenerDisposable(nameListener, name));
+        name.addTextChangedListener(nameListener);
       }
 
       @Override

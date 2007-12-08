@@ -2,7 +2,9 @@ package net.sf.anathema.lib.textualdescription;
 
 import static org.junit.Assert.*;
 import net.disy.commons.core.text.font.FontStyle;
+import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 
+import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -172,5 +174,21 @@ public class StyledTextualDescriptionTest {
     description.setDirty(false);
     description.replaceText(0, 2, "Tum"); //$NON-NLS-1$
     assertTrue(description.isDirty());
+  }
+  
+  @Test
+  public void noListenersRegisteredAfterCreation() throws Exception {
+    assertEquals(0, description.getTextChangeListenerCount());
+  }
+  
+  @Test
+  public void listenerCountIncreasesWithListenerAddition() throws Exception {
+    description.addTextChangedListener(createMockTextChangeListener());
+    assertEquals(1, description.getTextChangeListenerCount());
+  }
+
+  @SuppressWarnings("unchecked")
+  private IObjectValueChangedListener<String> createMockTextChangeListener() {
+    return EasyMock.createMock(IObjectValueChangedListener.class);
   }
 }

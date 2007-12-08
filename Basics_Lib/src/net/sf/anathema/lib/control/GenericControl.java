@@ -27,4 +27,8 @@ public class GenericControl<L> {
   private synchronized List<L> cloneListenerList() {
     return new ArrayList<L>(listeners);
   }
+
+  public int getListenerCount() {
+    return listeners.size();
+  }
 }

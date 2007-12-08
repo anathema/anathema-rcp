@@ -13,5 +13,7 @@ public interface ITextualDescription extends IChangeManagement {
 
   public void removeTextChangeListener(IObjectValueChangedListener<String> listener);
 
+  public int getTextChangeListenerCount();
+  
   public String getText();
 }

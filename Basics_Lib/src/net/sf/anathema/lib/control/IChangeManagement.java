@@ -11,4 +11,6 @@ public interface IChangeManagement {
   public void removeDirtyListener(IChangeListener changeListener);
 
   public void addDirtyListener(IChangeListener changeListener);
+  
+  public int getDirtyListenerCount();
 }

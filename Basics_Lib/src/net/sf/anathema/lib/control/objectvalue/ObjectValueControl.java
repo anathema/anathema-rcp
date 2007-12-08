@@ -21,4 +21,8 @@ public class ObjectValueControl<T> {
       listener.valueChanged(newValue);
     }
   }
+
+  public int getListenerCount() {
+    return listeners.size();
+  }
 }

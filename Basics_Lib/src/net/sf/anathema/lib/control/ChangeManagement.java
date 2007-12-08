@@ -35,4 +35,9 @@ public class ChangeManagement implements IChangeManagement {
   public void removeDirtyListener(IChangeListener dirtyListener) {
     dirtyChangeControl.removeChangeListener(dirtyListener);
   }
+
+  @Override
+  public int getDirtyListenerCount() {
+    return dirtyChangeControl.getListenerCount();
+  }
 }

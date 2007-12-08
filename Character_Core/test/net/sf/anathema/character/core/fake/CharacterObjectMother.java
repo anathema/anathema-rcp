@@ -2,6 +2,8 @@ package net.sf.anathema.character.core.fake;
 
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
+import net.sf.anathema.basics.item.IItem;
+import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -14,6 +16,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 
 public class CharacterObjectMother {
@@ -88,5 +91,14 @@ public class CharacterObjectMother {
     EasyMock.expect(file.createMarker(EasyMock.isA(String.class))).andStubReturn(ResourceObjectMother.createMarker());
     EasyMock.replay(file);
     return file;
+  }
+
+  public static IPersistableEditorInput< ? > createPersistableEditorInputFor(IItem item) {
+    IPersistableEditorInput< ? > input = EasyMock.createMock(IPersistableEditorInput.class);
+    EasyMock.expect(input.getItem()).andStubReturn(item);
+    EasyMock.expect(input.getName()).andStubReturn("name"); //$NON-NLS-1$
+    EasyMock.expect(input.getImageDescriptor()).andStubReturn(ImageDescriptor.getMissingImageDescriptor());
+    EasyMock.replay(input);
+    return input;
   }
 }
