@@ -1,7 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Campaign_ConflictWeb Plug-in
-Bundle-SymbolicName: net.sf.anathema.campaign.conflictweb
+Bundle-Name: %net.sf.anathema.campaign.conflictweb.Bundle-Name
+Bundle-SymbolicName: net.sf.anathema.campaign.conflictweb;singleton:=true
 Bundle-Version: 1.0.0
 Eclipse-LazyStart: true
-Require-Bundle: org.eclipse.gef
+Require-Bundle: org.eclipse.gef,
+ net.sf.anathema.basics.jface,
+ net.sf.anathema.basics.repository
+Bundle-Localization: plugin

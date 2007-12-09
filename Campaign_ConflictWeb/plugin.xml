@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="net.sf.anathema.campaign.conflictweb.ConflictWebEditor"
+            extensions="conflict"
+            icon="icons/TabConflictWeb16.png"
+            id="net.sf.anathema.editors.conflictweb"
+            name="%conflictWebEditor.name">
+      </editor>
+   </extension>
+   <extension
+         point="net.sf.anathema.basics.repository.itemtypes">
+      <itemtype
+            file-extension="conflict"
+            icon="icons/TabConflictWeb16.png"
+            id="net.sf.anathema.itemtype.ConflictWeb"
+            project="ConflictWeb"
+            type="%itemtype.type.conflictweb"
+            untitledName="%itemtype.untitled.conflictweb"
+            viewElementFactoryClass="net.sf.anathema.basics.repository.treecontent.itemtype.FileItemTypeViewElementFactory">
+      </itemtype>
+   </extension>
+
+</plugin>
