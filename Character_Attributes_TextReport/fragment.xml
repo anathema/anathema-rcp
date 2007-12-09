@@ -4,8 +4,7 @@
    <extension
          point="net.sf.anathema.character.textreport.textencoder">
       <textencoder
-            class="net.sf.anathema.character.attributes.textreport.AttributesTextEncoder"
-            modelId="net.sf.anathema.character.attributes.model">
+            class="net.sf.anathema.character.attributes.textreport.AttributesTextEncoder">
       </textencoder>
    </extension>
 

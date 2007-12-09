@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_TextReport Plug-in
+Bundle-Name: %TextReport.Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.character.textreport;singleton:=true
 Bundle-Version: 1.0.0
 Eclipse-LazyStart: true
@@ -13,3 +13,4 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.character.report
 Export-Package: net.sf.anathema.character.textreport.encoder,
  net.sf.anathema.character.textreport.util
+Bundle-Localization: plugin

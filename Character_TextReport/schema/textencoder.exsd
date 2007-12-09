@@ -54,13 +54,6 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="modelId" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
       </complexType>
    </element>
 

@@ -13,14 +13,14 @@ import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Phrase;
 
-public abstract class AttributesTextEncoder extends AbstractTextEncoder implements ITextReportEncoder {
+public class AttributesTextEncoder extends AbstractTextEncoder implements ITextReportEncoder {
 
   public AttributesTextEncoder(TextReportUtils utils) {
     super(utils);
   }
 
   public Phrase createParagraphs(ICharacter character) throws DocumentException {
-    Phrase traitPhrase = createTextParagraph(createBoldTitle("Attributes:"));
+    Phrase traitPhrase = createTextParagraph(createBoldTitle(Messages.AttributesTextEncoder_AttributesTitle));
     traitPhrase.add(createBoldTitle(" ")); //$NON-NLS-1$
     List<IDisplayTraitGroup<IDisplayTrait>> groups = AttributeDisplayUtilties.getDisplayAttributeGroups(character);
     boolean firstPrinted = true;
@@ -41,5 +41,10 @@ public abstract class AttributesTextEncoder extends AbstractTextEncoder implemen
     }
     }
     return traitPhrase;
+  }
+
+  @Override
+  public String getModelId() {
+    return "net.sf.anathema.character.attributes.model"; //$NON-NLS-1$
   }
 }

@@ -10,4 +10,6 @@ import com.lowagie.text.Phrase;
 public interface ITextReportEncoder extends IExecutableExtension {
 
   public Phrase createParagraphs(ICharacter character) throws DocumentException;
+  
+  public String getModelId();
 }

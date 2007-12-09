@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.eclipse.extension.fake;
 
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 
@@ -14,7 +15,7 @@ public class ExtensionObjectMother {
     return pluginExtension;
   }
 
-  public static IExtensionElement createExtensionElementWithAttributes(IMockAttribute... attributes) {
+  public static IExtensionElement createExtensionElementWithAttributes(IMockAttribute... attributes) throws ExtensionException {
     IExtensionElement element = EasyMock.createNiceMock(IExtensionElement.class);
     for (IMockAttribute attribute : attributes) {
       attribute.configure(element);
