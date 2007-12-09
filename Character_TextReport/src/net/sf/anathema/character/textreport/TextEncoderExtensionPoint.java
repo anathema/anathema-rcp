@@ -24,7 +24,7 @@ public class TextEncoderExtensionPoint {
     this.pluginExtensions = pluginExtensions;
   }
 
-  public ITextReportEncoder[] getEncoders() {
+  public List<ITextReportEncoder> getEncoders() {
     List<ITextReportEncoder> encoders = new ArrayList<ITextReportEncoder>();
     for (IPluginExtension extension : pluginExtensions) {
       for (IExtensionElement element : extension.getElements()) {
@@ -36,6 +36,6 @@ public class TextEncoderExtensionPoint {
         }
       }
     }
-    return encoders.toArray(new ITextReportEncoder[encoders.size()]);
+    return encoders;
   }
 }

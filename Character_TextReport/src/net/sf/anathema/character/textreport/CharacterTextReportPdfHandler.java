@@ -10,6 +10,6 @@ public class CharacterTextReportPdfHandler extends AbstractReportHandler {
 
   @Override
   protected ICharacterReportWriter createReportWriter() {
-    return new CharacterTextReportWriter(new ArrayList<ITextReportEncoder>());
+    return new CharacterTextReportWriter(new TextEncoderExtensionPoint().getEncoders());
   }
 }

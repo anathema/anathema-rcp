@@ -1,6 +1,9 @@
 package net.sf.anathema.character.textreport;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ErroneousExecutableExtensionMockAttribute;
@@ -15,7 +18,7 @@ import org.junit.Test;
 
 public class TextEncoderExtensionPoint_FilledTest {
 
-  private ITextReportEncoder[] encoders;
+  private List<ITextReportEncoder> encoders;
   private ITextReportEncoder encoder;
 
   @Before
@@ -36,11 +39,11 @@ public class TextEncoderExtensionPoint_FilledTest {
 
   @Test
   public void oneEncoderFund() throws Exception {
-    assertEquals(1, encoders.length);
+    assertEquals(1, encoders.size());
   }
 
   @Test
   public void encoderIsFound() throws Exception {
-    assertSame(encoder, encoders[0]);
+    assertSame(encoder, encoders.get(0));
   }
 }

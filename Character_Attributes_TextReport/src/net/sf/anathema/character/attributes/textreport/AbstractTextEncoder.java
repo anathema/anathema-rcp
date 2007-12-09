@@ -2,18 +2,17 @@ package net.sf.anathema.character.attributes.textreport;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
-import net.sf.anathema.character.textreport.util.TextReportUtils;
 import net.sf.anathema.character.textreport.util.TextPartFactory;
+import net.sf.anathema.character.textreport.util.TextReportUtils;
 
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Paragraph;
 
 public abstract class AbstractTextEncoder extends AbstractExecutableExtension implements ITextReportEncoder {
-  private final TextReportUtils utils;
+  private final TextReportUtils utils = new TextReportUtils();
   private final TextPartFactory factory;
 
-  public AbstractTextEncoder(TextReportUtils utils) {
-    this.utils = utils;
+  public AbstractTextEncoder() {
     this.factory = new TextPartFactory(utils);
   }
 
