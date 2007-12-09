@@ -3,6 +3,7 @@ package net.sf.anathema.character.textreport;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
@@ -40,11 +41,11 @@ public class CharacterTextReportWriterTest {
     character = EasyMock.createMock(ICharacter.class);
   }
 
-  private void performPrint(final List<Phrase> addedPhrases) throws DocumentException {
+  private void performPrint(final List<Element> addedPhrases) throws DocumentException {
     CharacterTextReportWriter writer = new CharacterTextReportWriter(encoders) {
       @Override
-      protected void addPhrase(MultiColumnText columnText, Phrase phrase) throws DocumentException {
-        addedPhrases.add(phrase);
+      protected void addPhrase(MultiColumnText columnText, Element element) throws DocumentException {
+        addedPhrases.add(element);
       }
     };
     writer.performPrint(new NullProgressMonitor(), character, document, null);
@@ -52,7 +53,7 @@ public class CharacterTextReportWriterTest {
   
   @Test
   public void emptyMultiColumnTextIsAddedToDocumentWithoutEncoders() throws Exception {
-    performPrint(new ArrayList<Phrase>());
+    performPrint(new ArrayList<Element>());
     assertTrue(lastElement instanceof MultiColumnText);
   }
   
@@ -60,10 +61,10 @@ public class CharacterTextReportWriterTest {
   public void encoderPhraseIsAdded() throws Exception {
     Phrase phrase = new Phrase();
     ITextReportEncoder encoder = EasyMock.createMock(ITextReportEncoder.class);
-    EasyMock.expect(encoder.createParagraphs(character)).andReturn(phrase);
+    EasyMock.expect(encoder.createParagraphs(character)).andReturn(Collections.singletonList((Element) phrase));
     EasyMock.replay(encoder);
     encoders.add(encoder);
-    ArrayList<Phrase> addedPhrases = new ArrayList<Phrase>();
+    ArrayList<Element> addedPhrases = new ArrayList<Element>();
     performPrint(addedPhrases);
     assertEquals(1, addedPhrases.size());
     assertTrue(addedPhrases.contains(phrase));

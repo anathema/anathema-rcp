@@ -8,7 +8,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Phrase;
+import com.lowagie.text.Element;
 import com.lowagie.text.pdf.MultiColumnText;
 import com.lowagie.text.pdf.PdfWriter;
 
@@ -32,7 +32,9 @@ public class CharacterTextReportWriter extends AbstractReportPdfWriter {
     columnText.addRegularColumns(document.left(), document.right(), 20, 2);
     try {
       for (ITextReportEncoder encoder : encoders) {
-        addPhrase(columnText, encoder.createParagraphs(character));
+        for (Element element : encoder.createParagraphs(character)) {
+          addPhrase(columnText, element);
+        }
       }
       writeColumnText(document, columnText);
     }
@@ -41,8 +43,8 @@ public class CharacterTextReportWriter extends AbstractReportPdfWriter {
     }
   }
 
-  protected void addPhrase(MultiColumnText columnText, Phrase phrase) throws DocumentException {
-    columnText.addElement(phrase);
+  protected void addPhrase(MultiColumnText columnText, Element element) throws DocumentException {
+    columnText.addElement(element);
   }
 
   private void writeColumnText(Document document, MultiColumnText columnText) throws DocumentException {

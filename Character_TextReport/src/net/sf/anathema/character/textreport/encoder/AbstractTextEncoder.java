@@ -1,7 +1,6 @@
-package net.sf.anathema.character.attributes.textreport;
+package net.sf.anathema.character.textreport.encoder;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
 import net.sf.anathema.character.textreport.util.TextPartFactory;
 import net.sf.anathema.character.textreport.util.TextReportUtils;
 
