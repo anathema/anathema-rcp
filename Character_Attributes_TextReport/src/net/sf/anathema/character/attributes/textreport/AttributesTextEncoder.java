@@ -6,7 +6,7 @@ import net.sf.anathema.character.attributes.model.AttributeMessages;
 import net.sf.anathema.character.attributes.util.AttributeDisplayUtilties;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
-import net.sf.anathema.character.textreport.util.ITextReportUtils;
+import net.sf.anathema.character.textreport.util.TextReportUtils;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 
@@ -15,7 +15,7 @@ import com.lowagie.text.Phrase;
 
 public abstract class AttributesTextEncoder extends AbstractTextEncoder implements ITextReportEncoder {
 
-  public AttributesTextEncoder(ITextReportUtils utils) {
+  public AttributesTextEncoder(TextReportUtils utils) {
     super(utils);
   }
 

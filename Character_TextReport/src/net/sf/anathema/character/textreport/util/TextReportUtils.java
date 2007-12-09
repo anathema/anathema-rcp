@@ -9,13 +9,13 @@ import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.Paragraph;
 
-public class ITextReportUtils {
+public class TextReportUtils {
 
   public Paragraph createNewParagraph(String text, int alignment, int style) {
     Font font = createDefaultFont(10, style);
     Paragraph paragraph = new Paragraph(text, font);
     paragraph.setAlignment(alignment);
-    paragraph.setLeading(font.size() * 1.2f);
+    paragraph.setLeading(font.getSize() * 1.2f);
     return paragraph;
   }
 

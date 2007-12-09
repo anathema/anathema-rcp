@@ -7,9 +7,9 @@ import com.lowagie.text.Paragraph;
 public final class TextPartFactory {
 
   private static final int STANDARD_FONT_SIZE = 8;
-  private final ITextReportUtils utils;
+  private final TextReportUtils utils;
 
-  public TextPartFactory(ITextReportUtils utils) {
+  public TextPartFactory(TextReportUtils utils) {
     this.utils = utils;
   }
 
