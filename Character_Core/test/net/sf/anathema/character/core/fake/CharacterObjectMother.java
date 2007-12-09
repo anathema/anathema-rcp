@@ -75,19 +75,11 @@ public class CharacterObjectMother {
     return modelProvider;
   }
 
-  public static IMarker createBonusPointMarker(String handlerType, int bonusPoints) throws CoreException {
-    IMarker marker = EasyMock.createNiceMock(IMarker.class);
-    EasyMock.expect(marker.getAttribute("handlerType")).andStubReturn(handlerType); //$NON-NLS-1$
-    EasyMock.expect(marker.getAttribute("bonusPoints")).andStubReturn(bonusPoints); //$NON-NLS-1$
-    EasyMock.replay(marker);
-    return marker;
-  }
-
   public static IFile createFileWithBonusPointMarkers(IMarker[] markers) throws CoreException {
     IFile file = EasyMock.createNiceMock(IFile.class);
     EasyMock.expect(file.exists()).andStubReturn(true);
-    EasyMock.expect(file.findMarkers("net.sf.anathema.markers.bonuspoints", false, IResource.DEPTH_ZERO)).andReturn( //$NON-NLS-1$
-        markers);
+    String markerType = "net.sf.anathema.markers.bonuspoints"; //$NON-NLS-1$
+    EasyMock.expect(file.findMarkers(markerType, false, IResource.DEPTH_ZERO)).andStubReturn(markers);
     EasyMock.expect(file.createMarker(EasyMock.isA(String.class))).andStubReturn(ResourceObjectMother.createMarker());
     EasyMock.replay(file);
     return file;
@@ -100,5 +92,13 @@ public class CharacterObjectMother {
     EasyMock.expect(input.getImageDescriptor()).andStubReturn(ImageDescriptor.getMissingImageDescriptor());
     EasyMock.replay(input);
     return input;
+  }
+
+  public static IMarker createBonusPointMarker(String handlerType, int bonusPoints) throws CoreException {
+    IMarker marker = EasyMock.createNiceMock(IMarker.class);
+    EasyMock.expect(marker.getAttribute("bonusPoints")).andStubReturn(bonusPoints); //$NON-NLS-1$
+    EasyMock.expect(marker.getAttribute("handlerType")).andStubReturn(handlerType); //$NON-NLS-1$
+    EasyMock.replay(marker);
+    return marker;
   }
 }

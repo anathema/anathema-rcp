@@ -1,5 +1,8 @@
 package net.sf.anathema.character.attributes.points;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.Attributes;
@@ -52,11 +55,10 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
       if (!resource.exists()) {
         return 0;
       }
-      // TODO Marker wieder auslesen wenn Endlos-SchleifenProblem gelöst
-      // IMarker marker = findBonusPointMarker(resource);
-      // if (marker != null) {
-      // return ((Number) marker.getAttribute(ATTRIB_BONUS_POINTS)).intValue();
-      // }
+      IMarker marker = findBonusPointMarker(resource);
+      if (marker != null) {
+        return ((Number) marker.getAttribute(ATTRIB_BONUS_POINTS)).intValue();
+      }
       return calculatePoints(resource, identifier);
     }
     catch (CoreException e) {
@@ -76,13 +78,22 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
   private int calculatePoints(IResource resource, ModelIdentifier identifier) throws CoreException {
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelCollection.getModel(identifier);
     int bonusPoints = calculatePoints(attributes, identifier.getCharacterId());
-    // TODO Endlos-Resource-Update-Schleife
-    // IMarker marker = resource.createMarker(MARKER_TYPE);
-    // Map<String, Object> markerAttributes = new HashMap<String, Object>();
-    // markerAttributes.put(ATTRIB_HANDLER_TYPE, handlerType);
-    // markerAttributes.put(ATTRIB_BONUS_POINTS, bonusPoints);
-    // marker.setAttributes(markerAttributes);
+    updateMarker(resource, bonusPoints);
     return bonusPoints;
+  }
+
+  private void updateMarker(IResource resource, int bonusPoints) throws CoreException {
+    IMarker marker = findBonusPointMarker(resource);
+    if (marker == null) {
+      marker = resource.createMarker(MARKER_TYPE);
+    }
+    if (Integer.valueOf(bonusPoints).equals(marker.getAttribute(ATTRIB_BONUS_POINTS))) {
+      return;
+    }
+    Map<String, Object> markerAttributes = new HashMap<String, Object>();
+    markerAttributes.put(ATTRIB_HANDLER_TYPE, handlerType);
+    markerAttributes.put(ATTRIB_BONUS_POINTS, bonusPoints);
+    marker.setAttributes(markerAttributes);
   }
 
   protected abstract int calculatePoints(ITraitCollectionModel attributes, ICharacterId characterId);

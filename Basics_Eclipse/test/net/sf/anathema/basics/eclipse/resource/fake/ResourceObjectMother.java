@@ -1,5 +1,7 @@
 package net.sf.anathema.basics.eclipse.resource.fake;
 
+import java.util.Map;
+
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -33,12 +35,16 @@ public class ResourceObjectMother {
 
   public static IResource createExistingResource() throws Exception {
     IFile resource = EasyMock.createNiceMock(IFile.class);
+    configureMarkerResource(resource);
+    EasyMock.replay(resource);
+    return resource;
+  }
+
+  private static void configureMarkerResource(IResource resource) throws CoreException {
     EasyMock.expect(resource.exists()).andStubReturn(true);
     EasyMock.expect(resource.findMarkers(EasyMock.isA(String.class), EasyMock.anyBoolean(), EasyMock.anyInt()))
         .andStubReturn(new IMarker[0]);
     EasyMock.expect(resource.createMarker(EasyMock.isA(String.class))).andStubReturn(createMarker());
-    EasyMock.replay(resource);
-    return resource;
   }
 
   public static IMarker createMarker() {
@@ -49,9 +55,16 @@ public class ResourceObjectMother {
 
   public static IFile createFileWithCreatedMarker(String markerType, IMarker marker) throws CoreException {
     IFile file = EasyMock.createNiceMock(IFile.class);
-    EasyMock.expect(file.exists()).andStubReturn(true);
+    configureMarkerResource(file);
     EasyMock.expect(file.createMarker(markerType)).andReturn(marker);
     EasyMock.replay(file);
     return file;
+  }
+
+  public static IMarker createEditedMarker(Map<String, Object> attributes) throws CoreException {
+    IMarker marker = EasyMock.createNiceMock(IMarker.class);
+    marker.setAttributes(attributes);
+    EasyMock.replay(marker);
+    return marker;
   }
 }
