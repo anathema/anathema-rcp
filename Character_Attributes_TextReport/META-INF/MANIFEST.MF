@@ -4,5 +4,5 @@ Bundle-Name: %CharacterAttributeTextReport.Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.character.attributes.textreport;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.attributes;bundle-version="1.0.0"
-Require-Bundle: net.sf.anathema.character.textreport
+Require-Bundle: net.sf.anathema.character.textreport;bundle-version="1.0.0"
 Bundle-Localization: plugin

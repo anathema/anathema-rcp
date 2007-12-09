@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Description_TextReport Fragment
+Bundle-Name: %CharacterDescriptionTextReport.Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.character.description.textreport;singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.description;bundle-version="1.0.0"
 Require-Bundle: net.sf.anathema.character.textreport;bundle-version="1.0.0"
+Bundle-Localization: plugin
