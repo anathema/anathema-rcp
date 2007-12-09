@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Character_Attributes_TextReport Fragment
-Bundle-SymbolicName: net.sf.anathema.character.attributes.textreport
+Bundle-SymbolicName: net.sf.anathema.character.attributes.textreport;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.attributes;bundle-version="1.0.0"
 Require-Bundle: net.sf.anathema.character.textreport
