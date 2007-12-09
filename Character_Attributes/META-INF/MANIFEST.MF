@@ -16,5 +16,6 @@ Require-Bundle: net.sf.anathema.basics.item,
  net.sf.anathema.character.points
 Eclipse-LazyStart: true
 Export-Package: net.sf.anathema.character.attributes.model,
- net.sf.anathema.character.attributes.points
+ net.sf.anathema.character.attributes.points,
+ net.sf.anathema.character.attributes.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

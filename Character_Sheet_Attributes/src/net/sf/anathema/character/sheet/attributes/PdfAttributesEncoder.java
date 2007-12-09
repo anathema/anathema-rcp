@@ -4,25 +4,17 @@ import java.awt.Color;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.attributes.model.AttributeFavorizationHandler;
 import net.sf.anathema.character.attributes.model.AttributeMessages;
-import net.sf.anathema.character.attributes.model.AttributeTemplateProvider;
-import net.sf.anathema.character.attributes.model.AttributesContext;
+import net.sf.anathema.character.attributes.util.AttributeDisplayUtilties;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.trait.PdfTraitEncoder;
-import net.sf.anathema.character.trait.IFavorizationHandler;
-import net.sf.anathema.character.trait.display.DisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.display.IDisplayFavorization;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
-import net.sf.anathema.character.trait.template.StaticTraitTemplate;
-import net.sf.anathema.lib.collection.CollectionUtilities;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
@@ -42,22 +34,8 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    List<IDisplayTraitGroup<IDisplayTrait>> displayGroups = getDisplayAttributeGroups(character);
+    List<IDisplayTraitGroup<IDisplayTrait>> displayGroups = AttributeDisplayUtilties.getDisplayAttributeGroups(character);
     encodeAttributes(directContent, bounds, displayGroups);
-  }
-
-  private List<IDisplayTraitGroup<IDisplayTrait>> getDisplayAttributeGroups(ICharacter character) {
-    AttributesContext context = new AttributesContext(character, character) {
-      @Override
-      public ITraitTemplate getTraitTemplate() {
-        return new StaticTraitTemplate(10);
-      }
-    };
-    IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(
-        character,
-        new AttributeTemplateProvider().getAttributeTemplate(character.getTemplateId()));
-    TraitGroup[] traitGroups = context.getTraitGroups();
-    return CollectionUtilities.transform(traitGroups, new DisplayTraitGroupTransformer(context, favorizationHandler));
   }
 
   public final void encodeAttributes(

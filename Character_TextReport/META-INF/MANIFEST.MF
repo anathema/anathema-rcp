@@ -5,9 +5,11 @@ Bundle-SymbolicName: net.sf.anathema.character.textreport;singleton:=true
 Bundle-Version: 1.0.0
 Eclipse-LazyStart: true
 Require-Bundle: net.sf.anathema.character.core,
- net.sf.anathema.basics.pdf,
+ net.sf.anathema.basics.pdf;visibility:=reexport,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.jface,
  net.sf.anathema.character.description,
  net.sf.anathema.basics.lib,
  net.sf.anathema.character.report
+Export-Package: net.sf.anathema.character.textreport.encoder,
+ net.sf.anathema.character.textreport.util
