@@ -23,6 +23,5 @@ public class ConflictWebEditor extends GraphicalEditor {
   @Override
   public void doSave(IProgressMonitor monitor) {
     throw new UnsupportedOperationException("No save allowed"); //$NON-NLS-1$
-
   }
 }
