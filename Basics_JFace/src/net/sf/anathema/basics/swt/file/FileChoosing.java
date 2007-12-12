@@ -65,7 +65,7 @@ public class FileChoosing {
   }
 
   private static File getFile(String path) {
-    if (StringUtilities.isNullOrTrimEmpty(path)) {
+    if (StringUtilities.isNullOrTrimmedEmpty(path)) {
       return null;
     }
     return new File(path.trim());

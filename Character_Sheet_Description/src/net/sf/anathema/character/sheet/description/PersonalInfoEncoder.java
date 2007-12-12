@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.description;
 
-import static net.sf.anathema.character.sheet.page.IVoidStateFormatConstants.TEXT_PADDING;
+import static net.sf.anathema.character.sheet.page.IVoidStateFormatConstants.*;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
@@ -26,7 +26,7 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
   public String getHeader(ICharacter character) {
     ICharacterDescription description = (ICharacterDescription) character.getModel(ICharacterDescription.MODEL_ID);
     String characterName = description.getName().getText();
-    if (StringUtilities.isNullOrTrimEmpty(characterName)) {
+    if (StringUtilities.isNullOrTrimmedEmpty(characterName)) {
       return Messages.PersonalInfoEncoder_EncoderTitle;
     }
     return characterName;

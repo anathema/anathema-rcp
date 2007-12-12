@@ -98,7 +98,7 @@ public abstract class AbstractNewItemEditorInput implements IFileItemEditorInput
 
   protected String getFileNameSuggestion(ITitledText itemData) {
     String name = itemData.getName().getText();
-    return StringUtilities.isNullOrTrimEmpty(name) ? "Unnamed" //$NON-NLS-1$
+    return StringUtilities.isNullOrTrimmedEmpty(name) ? "Unnamed" //$NON-NLS-1$
         : AnathemaStringUtilities.getFileNameRepresentation(name);
   }
 }

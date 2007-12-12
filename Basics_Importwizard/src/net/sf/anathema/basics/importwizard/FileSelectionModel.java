@@ -21,7 +21,7 @@ public class FileSelectionModel implements IFileSelectionModel {
 
   @Override
   public void setFile(String filename) {
-    if (StringUtilities.isNullOrTrimEmpty(filename)) {
+    if (StringUtilities.isNullOrTrimmedEmpty(filename)) {
       changeCurrentFileTo(null);
     }
     setFile(new File(filename));

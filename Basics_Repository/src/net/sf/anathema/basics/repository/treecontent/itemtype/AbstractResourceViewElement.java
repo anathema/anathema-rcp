@@ -30,7 +30,7 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   @Override
   public final String getDisplayName() {
     String printName = printNameProvider.getPrintName(getEditFile());
-    if (StringUtilities.isNullOrTrimEmpty(printName)) {
+    if (StringUtilities.isNullOrTrimmedEmpty(printName)) {
       return untitledName;
     }
     return printName;
