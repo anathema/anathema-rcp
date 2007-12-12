@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Map Plug-in
+Bundle-SymbolicName: Map;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.basics.eclipse
+Eclipse-LazyStart: true
+Bundle-Activator: net.sf.anathema.map.MapPlugin
