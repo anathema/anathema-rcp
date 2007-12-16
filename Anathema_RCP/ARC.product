@@ -3,6 +3,13 @@
 
 <product name="%net.sf.anathema.rcp.ProductName" id="net.sf.anathema.rcp.product" application="net.sf.anathema.rcp.application" useFeatures="false">
 
+   <aboutInfo>
+      <image path="/Anathema_RCP/icons/SunGear_128.gif"/>
+      <text>
+         Hallo Du
+      </text>
+   </aboutInfo>
+
    <configIni use="default"/>
 
    <launcherArgs>
@@ -17,6 +24,7 @@
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
@@ -35,20 +43,26 @@
       <plugin id="net.sf.anathema.campaign.note.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.campaign.plot"/>
       <plugin id="net.sf.anathema.campaign.plot.importwizard" fragment="true"/>
-      <plugin id="net.sf.anathema.character.attribute.importwizard" fragment="true"/>
+      <plugin id="net.sf.anathema.character.attribute.importwizard"/>
       <plugin id="net.sf.anathema.character.attributes"/>
+      <plugin id="net.sf.anathema.character.attributes.importwizard" fragment="true"/>
+      <plugin id="net.sf.anathema.character.attributes.textreport" fragment="true"/>
       <plugin id="net.sf.anathema.character.core"/>
       <plugin id="net.sf.anathema.character.description"/>
       <plugin id="net.sf.anathema.character.description.importwizard" fragment="true"/>
+      <plugin id="net.sf.anathema.character.description.textreport" fragment="true"/>
       <plugin id="net.sf.anathema.character.experience"/>
+      <plugin id="net.sf.anathema.character.experience.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.character.freebies"/>
       <plugin id="net.sf.anathema.character.freebies.attributes"/>
       <plugin id="net.sf.anathema.character.importwizard"/>
       <plugin id="net.sf.anathema.character.points"/>
       <plugin id="net.sf.anathema.character.points.i18n.en" fragment="true"/>
+      <plugin id="net.sf.anathema.character.report"/>
       <plugin id="net.sf.anathema.character.sheet"/>
       <plugin id="net.sf.anathema.character.sheet.attributes"/>
       <plugin id="net.sf.anathema.character.sheet.description"/>
+      <plugin id="net.sf.anathema.character.textreport"/>
       <plugin id="net.sf.anathema.character.trait"/>
       <plugin id="net.sf.anathema.charactertype.db"/>
       <plugin id="net.sf.anathema.charactertype.lunar"/>

@@ -27,6 +27,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     register(ActionFactory.SAVE_ALL.create(window));
     register(ActionFactory.QUIT.create(window));
     register(ActionFactory.PREFERENCES.create(window));
+    register(ActionFactory.ABOUT.create(window));
   }
 
   @Override
