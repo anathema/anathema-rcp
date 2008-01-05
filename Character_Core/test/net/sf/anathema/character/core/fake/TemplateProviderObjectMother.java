@@ -39,7 +39,7 @@ public class TemplateProviderObjectMother {
   }
 
   public static IModelList createModelList(String modelId) {
-    ModelList modelList = new ModelList();
+    ModelList modelList = new ModelList(null);
     modelList.addModelId(modelId);
     return modelList;
   }
