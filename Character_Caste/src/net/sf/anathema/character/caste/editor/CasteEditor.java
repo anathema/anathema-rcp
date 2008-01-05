@@ -6,23 +6,56 @@ import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.character.caste.model.ICasteModel;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> {
 
+  private final class CasteSelectionListener implements SelectionListener {
+    private final Combo combo;
+
+    private CasteSelectionListener(Combo combo) {
+      this.combo = combo;
+    }
+
+    @Override
+    public void widgetSelected(SelectionEvent e) {
+      changeCaste();
+    }
+
+    @Override
+    public void widgetDefaultSelected(SelectionEvent e) {
+      changeCaste();
+    }
+
+    private void changeCaste() {
+      int selectionIndex = combo.getSelectionIndex();
+      String caste = selectionIndex < 0 ? null : combo.getItem(selectionIndex);
+      getPersistableEditorInput().getItem().setCaste(caste);
+    }
+  }
+
   @Override
   protected IEditorControl createItemEditorControl() {
     return new AbstractItemEditorControl(this) {
-    
+
       @Override
       public void setFocus() {
         // nothing to do
       }
-    
+
       @Override
       public void createPartControl(Composite parent) {
-        new Label(parent, SWT.NONE).setText("Hasä an Bord");
+        parent.setLayout(new GridLayout(2, false));
+        Label label = new Label(parent, SWT.NONE);
+        label.setText("Caste:");
+        final Combo combo = new Combo(parent, SWT.DROP_DOWN | SWT.READ_ONLY);
+        combo.setItems(getPersistableEditorInput().getItem().getOptions());
+        combo.addSelectionListener(new CasteSelectionListener(combo));
       }
     };
   }
