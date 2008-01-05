@@ -4,13 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
-import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.osgi.util.NLS;
@@ -49,9 +46,9 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
   public String getName() {
     return NLS.bind(Messages.CharacterDescriptionEditorInput_Description_Message, item.getName().getText());
   }
-
+  
   @Override
-  protected IModelIdentifier getModelIdentifier() {
-    return new ModelIdentifier((IFolder) getFile().getParent(), ICharacterDescription.MODEL_ID);
+  protected String getModelId() {
+    return ICharacterDescription.MODEL_ID;
   }
 }

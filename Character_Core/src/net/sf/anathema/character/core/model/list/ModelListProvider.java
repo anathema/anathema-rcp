@@ -15,6 +15,7 @@ public class ModelListProvider implements IModelListProvider {
     ModelList modelList = new ModelList();
     modelList.addModelId("net.sf.anathema.character.description.model"); //$NON-NLS-1$
     modelList.addModelId("net.sf.anathema.character.attributes.model"); //$NON-NLS-1$
+    modelList.addModelId("net.sf.anathema.character.caste.model"); //$NON-NLS-1$
     addModelList("net.sf.anathema.character.basic.modelList", modelList); //$NON-NLS-1$
   }
 

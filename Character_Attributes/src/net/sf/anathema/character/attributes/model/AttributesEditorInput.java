@@ -9,8 +9,6 @@ import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
@@ -70,13 +68,14 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
         preferences));
   }
 
-  public IFolder getCharacterFolder() {
-    return (IFolder) getFile().getParent();
-  }
-
   @Override
-  protected IModelIdentifier getModelIdentifier() {
-    return new ModelIdentifier(getCharacterFolder(), Attributes.MODEL_ID);
+  public IFolder getCharacterFolder() {
+    return super.getCharacterFolder();
+  }
+  
+  @Override
+  protected String getModelId() {
+    return Attributes.MODEL_ID;
   }
 
   @Override

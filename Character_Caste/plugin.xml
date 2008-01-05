@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sf.anathema.character.core.models">
+      <model
+            filename="caste.model"
+            id="net.sf.anathema.character.caste.model"
+            modelFactory="net.sf.anathema.character.caste.model.CasteModelFactory">
+         <displayConfiguration
+               displayName="Caste"
+               editorId="net.sf.anathema.character.caste.editor"
+               editorInputFactory="net.sf.anathema.character.caste.editor.CasteEditorInputFactory"
+               icon="icons/TabCharacter16.png">
+         </displayConfiguration>
+      </model>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="net.sf.anathema.character.caste.editor.CasteEditor"
+            icon="icons/TabCharacter16.png"
+            id="net.sf.anathema.character.caste.editor"
+            name="Caste Editor">
+      </editor>
+   </extension>
+
+</plugin>

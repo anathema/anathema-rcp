@@ -9,9 +9,11 @@ import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.editors.ModelPersistable;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.ui.IPersistableElement;
 
 public abstract class AbstractCharacterModelEditorInput<M extends IModel> extends FileEditorInput implements
@@ -42,10 +44,18 @@ public abstract class AbstractCharacterModelEditorInput<M extends IModel> extend
     });
   }
 
+  protected IFolder getCharacterFolder() {
+    return (IFolder) getFile().getParent();
+  }
+
+  protected final IModelIdentifier getModelIdentifier() {
+    return new ModelIdentifier(getCharacterFolder(), getModelId());
+  }
+
+  protected abstract String getModelId();
+
   @Override
   public String getName() {
     return displayNameProvider.getDisplayName();
   }
-  
-  protected abstract IModelIdentifier getModelIdentifier();
 }
