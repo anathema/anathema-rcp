@@ -1,31 +1,19 @@
 package net.sf.anathema.character.description;
 
-import java.io.IOException;
 import java.net.URL;
 
-import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
-import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.osgi.util.NLS;
 
 public class CharacterDescriptionEditorInput extends AbstractCharacterModelEditorInput<ICharacterDescription> {
 
   private ICharacterDescription item;
-  private final CharacterDescriptionPersister persister = new CharacterDescriptionPersister();
 
   public CharacterDescriptionEditorInput(IFile file, URL imageUrl, ICharacterDescription description) {
-    super(file, imageUrl, null);
+    super(file, imageUrl, null, new CharacterDescriptionPersister());
     this.item = description;
-  }
-
-  @Override
-  public ICharacterDescription save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
-    new ItemFileWriter().saveToFile(getFile(), persister, item, monitor);
-    return item;
   }
 
   @Override
@@ -46,7 +34,7 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
   public String getName() {
     return NLS.bind(Messages.CharacterDescriptionEditorInput_Description_Message, item.getName().getText());
   }
-  
+
   @Override
   protected String getModelId() {
     return ICharacterDescription.MODEL_ID;

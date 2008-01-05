@@ -1,12 +1,10 @@
 package net.sf.anathema.character.attributes.model;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.List;
 
 import net.disy.commons.core.util.ArrayUtilities;
-import net.sf.anathema.basics.repository.input.ItemFileWriter;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
@@ -22,18 +20,14 @@ import net.sf.anathema.character.trait.interactive.InteractiveTraitGroupTransfor
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
 import net.sf.anathema.lib.collection.CollectionUtilities;
-import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 
 public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
 
-  private final AttributesPersister attributesPersister = new AttributesPersister();
   private final ITraitCollectionContext context;
   private final IFavorizationHandler favorizationHandler;
 
@@ -43,7 +37,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
       IDisplayNameProvider displayNameProvider,
       final ITraitCollectionContext context,
       final IFavorizationHandler favorizationHandler) {
-    super(file, imageUrl, displayNameProvider);
+    super(file, imageUrl, displayNameProvider, new AttributesPersister());
     this.context = context;
     this.favorizationHandler = favorizationHandler;
   }
@@ -51,12 +45,6 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   @Override
   public ITraitCollectionModel getItem() {
     return context.getCollection();
-  }
-
-  @Override
-  public ITraitCollectionModel save(IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
-    new ItemFileWriter().saveToFile(getFile(), attributesPersister, getItem(), monitor);
-    return getItem();
   }
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */

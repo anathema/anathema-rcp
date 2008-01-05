@@ -54,8 +54,18 @@ public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> 
         Label label = new Label(parent, SWT.NONE);
         label.setText("Caste:");
         final Combo combo = new Combo(parent, SWT.DROP_DOWN | SWT.READ_ONLY);
-        combo.setItems(getPersistableEditorInput().getItem().getOptions());
+        ICasteModel item = getPersistableEditorInput().getItem();
+        combo.setItems(item.getOptions());
         combo.addSelectionListener(new CasteSelectionListener(combo));
+        String caste = item.getCaste();
+        if (caste != null) {
+          String[] items = combo.getItems();
+          for (int index = 0; index < items.length; index++) {
+            if (items[index].equals(caste)) {
+              combo.select(index);
+            }
+          }
+        }
       }
     };
   }
