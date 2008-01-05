@@ -7,7 +7,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 
 import org.junit.Test;
 
-public class CasteModelTest {
+public class CasteModelExtensionTest {
 
   @Test
   public void casteModelIsRegistered() throws Exception {

@@ -9,15 +9,14 @@ public class CasteModel extends AbstractModel implements ICasteModel {
 
   private ChangeControl changeControl = new ChangeControl();
   private String caste;
-  private final IChangeListener changeListener = new IChangeListener() {
-    @Override
-    public void stateChanged() {
-      setDirty(true);
-    }
-  };
-  
+  private final String[] options;
+
   public CasteModel() {
-    changeControl.addChangeListener(changeListener);
+    this(new String[] { "Dawn", "Zenith", "Twilight", "Night", "Eclipse" });
+  }
+  
+  private CasteModel(String[] options) {
+    this.options = options;
   }
 
   public void setCaste(String caste) {
@@ -25,6 +24,7 @@ public class CasteModel extends AbstractModel implements ICasteModel {
       return;
     }
     this.caste = caste;
+    setDirty(true);
     changeControl.fireChangedEvent();
   }
 
@@ -33,7 +33,7 @@ public class CasteModel extends AbstractModel implements ICasteModel {
   }
 
   public String[] getOptions() {
-    return new String[] { "Dawn", "Zenith", "Twilight", "Night", "Eclipse" };
+    return options;
   }
 
   @Override
