@@ -1,4 +1,4 @@
-package net.sf.anathema.character.caste.editor;
+package net.sf.anathema.character.caste.persistence;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -44,10 +44,15 @@ public class CasteModelPersister implements IModelPersister< IModelTemplate , IC
     Document document = new BundlePersistenceUtilities().createVersionedDocument(
         TAG_MODEL,
         ICastePluginConstants.PLUGIN_ID);
+    Element rootElement = document.getRootElement();
+    save(rootElement, item);
+    DocumentUtilities.save(document, stream);
+  }
+
+  protected void save(Element rootElement, ICasteModel item) {
     String caste = item.getCaste();
     if (caste != null) {
-      document.getRootElement().addAttribute(caste, caste);
+      rootElement.addAttribute(ATTRIB_CASTE, caste);
     }
-    DocumentUtilities.save(document, stream);
   }
 }
