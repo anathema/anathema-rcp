@@ -6,10 +6,10 @@ import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.basics.eclipse.extension.fake.ErroneousExecutableExtensionMockAttribute;
-import net.sf.anathema.basics.eclipse.extension.fake.ExecutableExtensionMockAttribute;
+import net.sf.anathema.basics.eclipse.extension.fake.MockErroneousExecutableExtensionAttribute;
+import net.sf.anathema.basics.eclipse.extension.fake.MockExecutableExtensionAttribute;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
-import net.sf.anathema.basics.eclipse.extension.fake.IMockAttribute;
+import net.sf.anathema.basics.eclipse.extension.fake.IMockProp;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
 
 import org.easymock.EasyMock;
@@ -24,11 +24,11 @@ public class TextEncoderExtensionPoint_FilledTest {
   @Before
   public void createEncodersFromEmptyExtensionPoint() throws ExtensionException {
     encoder = EasyMock.createMock(ITextReportEncoder.class);
-    IMockAttribute legalAttribute = new ExecutableExtensionMockAttribute<ITextReportEncoder>(
+    IMockProp legalAttribute = new MockExecutableExtensionAttribute<ITextReportEncoder>(
         "class", //$NON-NLS-1$
         ITextReportEncoder.class,
         encoder);
-    ErroneousExecutableExtensionMockAttribute<ITextReportEncoder> illegalAttribute = new ErroneousExecutableExtensionMockAttribute<ITextReportEncoder>(
+    MockErroneousExecutableExtensionAttribute<ITextReportEncoder> illegalAttribute = new MockErroneousExecutableExtensionAttribute<ITextReportEncoder>(
         "class", //$NON-NLS-1$
         ITextReportEncoder.class);
     IPluginExtension pluginExtension = ExtensionObjectMother.createPluginExtension(

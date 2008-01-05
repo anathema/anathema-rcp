@@ -6,6 +6,7 @@
    <extension-point id="types" name="%extension-point.name.charactertypes" schema="schema/types.exsd"/>
    <extension-point id="resources" name="%extension-point.name.characterresources" schema="schema/resources.exsd"/>
    <extension-point id="modelmarkers" name="%extension-point.name.modelmarker" schema="schema/modelmarkers.exsd"/>
+   <extension-point id="modellists" name="Model Lists" schema="schema/modellists.exsd"/>
    <extension
          point="net.sf.anathema.basics.repository.itemtypes">
       <itemtype
@@ -55,6 +56,20 @@
    <extension
          id="net.sf.anathema.markers.bonuspoints"
          point="org.eclipse.core.resources.markers">
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.modellists">
+      <modelList
+            id="net.sf.anathema.character.basic.modelList">
+         <modelReference
+               modelId="net.sf.anathema.character.description.model">
+         </modelReference>
+         <modelReference
+               modelId="net.sf.anathema.character.attributes.model">
+         </modelReference>
+         <modelReference
+               modelId="net.sf.anathema.character.caste.model">
+         </modelReference></modelList>
    </extension>
 
 </plugin>

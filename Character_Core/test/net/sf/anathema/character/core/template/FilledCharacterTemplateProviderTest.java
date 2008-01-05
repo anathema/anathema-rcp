@@ -24,7 +24,7 @@ public class FilledCharacterTemplateProviderTest {
     element.addElement("modelList", createModelListElement("supportedModelList")); //$NON-NLS-1$ //$NON-NLS-2$
     element.addElement("modelList", createModelListElement("otherSupportedModelList")); //$NON-NLS-1$ //$NON-NLS-2$
     IPluginExtension pluginExtension = ExtensionObjectMother.createPluginExtension(element);
-    ModelListProvider modelListProvider = new ModelListProvider();
+    ModelListProvider modelListProvider = new ModelListProvider(new IPluginExtension[0]);
     modelListProvider.addModelList(
         "supportedModelList", //$NON-NLS-1$
         TemplateProviderObjectMother.createModelList("supportedModel")); //$NON-NLS-1$

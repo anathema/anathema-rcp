@@ -15,9 +15,9 @@ public class ExtensionObjectMother {
     return pluginExtension;
   }
 
-  public static IExtensionElement createExtensionElementWithAttributes(IMockAttribute... attributes) throws ExtensionException {
+  public static IExtensionElement createExtensionElementWithAttributes(IMockProp... attributes) throws ExtensionException {
     IExtensionElement element = EasyMock.createNiceMock(IExtensionElement.class);
-    for (IMockAttribute attribute : attributes) {
+    for (IMockProp attribute : attributes) {
       attribute.configure(element);
     }
     EasyMock.replay(element);

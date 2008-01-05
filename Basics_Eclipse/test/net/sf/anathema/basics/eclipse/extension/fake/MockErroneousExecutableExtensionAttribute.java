@@ -6,12 +6,12 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import org.easymock.EasyMock;
 import org.eclipse.core.runtime.IExecutableExtension;
 
-public class ErroneousExecutableExtensionMockAttribute<E extends IExecutableExtension> implements IMockAttribute {
+public class MockErroneousExecutableExtensionAttribute<E extends IExecutableExtension> implements IMockProp {
 
   private final String name;
   private final Class<E> clazz;
 
-  public ErroneousExecutableExtensionMockAttribute(String name, Class<E> clazz) {
+  public MockErroneousExecutableExtensionAttribute(String name, Class<E> clazz) {
     this.name = name;
     this.clazz = clazz;
   }

@@ -3,8 +3,8 @@ package net.sf.anathema.character.points.problems;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
-import net.sf.anathema.basics.eclipse.extension.fake.IntegerMockAttribute;
-import net.sf.anathema.basics.eclipse.extension.fake.StringMockAttribute;
+import net.sf.anathema.basics.eclipse.extension.fake.MockIntegerAttribute;
+import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,8 @@ public class BonusPointsExtensionPointTest {
 
   @Before
   public void createExtensionPoint() throws Exception {
-    IntegerMockAttribute amoutAttribute = new IntegerMockAttribute("amount", BONUS_POINT_COUNT); //$NON-NLS-1$
-    StringMockAttribute templateIdAttribute = new StringMockAttribute("templateId", TEMPLATE_ID); //$NON-NLS-1$
+    MockIntegerAttribute amoutAttribute = new MockIntegerAttribute("amount", BONUS_POINT_COUNT); //$NON-NLS-1$
+    MockStringAttribute templateIdAttribute = new MockStringAttribute("templateId", TEMPLATE_ID); //$NON-NLS-1$
     IExtensionElement element = ExtensionObjectMother.createExtensionElementWithAttributes(
         amoutAttribute,
         templateIdAttribute);

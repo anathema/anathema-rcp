@@ -4,17 +4,18 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 
 import org.easymock.EasyMock;
 
-public class StringMockAttribute implements IMockAttribute {
+public class MockIntegerAttribute implements IMockProp {
 
   private final String name;
-  private final String value;
+  private final int value;
 
-  public StringMockAttribute(String name, String value) {
+  public MockIntegerAttribute(String name, int value) {
     this.name = name;
     this.value = value;
   }
-
+  
+  @Override
   public void configure(IExtensionElement element) {
-    EasyMock.expect(element.getAttribute(name)).andReturn(value).anyTimes();
+    EasyMock.expect(element.getIntegerAttribute(name)).andReturn(value).anyTimes();
   }
 }
