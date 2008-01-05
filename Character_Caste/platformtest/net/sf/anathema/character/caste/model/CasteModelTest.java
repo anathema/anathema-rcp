@@ -11,7 +11,7 @@ public class CasteModelTest {
 
   @Test
   public void casteModelIsRegistered() throws Exception {
-    assertTrue("Caste model must be registered with id " + ICaste.ID, modelIsRegistered(ICaste.ID)); //$NON-NLS-1$
+    assertTrue("Caste model must be registered with id " + ICasteModel.ID, modelIsRegistered(ICasteModel.ID)); //$NON-NLS-1$
   }
 
   private boolean modelIsRegistered(String modelId) {

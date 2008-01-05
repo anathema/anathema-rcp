@@ -12,6 +12,6 @@ public class CasteModelFactory extends AbstractExecutableExtension implements IM
 
   @Override
   public IModel create(IContentHandle modelContent, ICharacterTemplate template) throws CoreException {
-    return new Caste();
+    return new CasteModel();
   }
 }
