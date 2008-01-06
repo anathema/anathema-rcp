@@ -22,7 +22,6 @@ public class PartyEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected void createEditPolicies() {
-    // TODO Auto-generated method stub
-
+    // nothing to do
   }
 }
