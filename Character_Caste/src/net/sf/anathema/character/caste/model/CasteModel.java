@@ -9,14 +9,10 @@ public class CasteModel extends AbstractModel implements ICasteModel {
 
   private ChangeControl changeControl = new ChangeControl();
   private String caste;
-  private final String[] options;
+  private final CasteTemplate casteTemplate;
 
-  public CasteModel() {
-    this(new String[] { "Dawn", "Zenith", "Twilight", "Night", "Eclipse" });
-  }
-  
-  private CasteModel(String[] options) {
-    this.options = options;
+  public CasteModel(CasteTemplate casteTemplate) {
+    this.casteTemplate = casteTemplate;
   }
 
   public void setCaste(String caste) {
@@ -33,7 +29,7 @@ public class CasteModel extends AbstractModel implements ICasteModel {
   }
 
   public String[] getOptions() {
-    return options;
+    return casteTemplate.getCastes();
   }
 
   @Override

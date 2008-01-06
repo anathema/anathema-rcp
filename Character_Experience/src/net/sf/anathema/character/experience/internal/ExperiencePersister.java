@@ -31,8 +31,8 @@ public class ExperiencePersister implements IModelPersister<NullModelTemplate, I
   }
 
   @Override
-  public IExperience load(Document document) throws PersistenceException {
-    IExperience experience = createNew(null);
+  public IExperience load(Document document, NullModelTemplate template) throws PersistenceException {
+    IExperience experience = createNew(template);
     experience.setExperienced(ElementUtilities.getRequiredBooleanAttrib(document.getRootElement(), ATTRIB_EXPERIENCED));
     return experience;
   }

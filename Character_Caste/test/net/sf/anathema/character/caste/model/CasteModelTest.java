@@ -11,7 +11,7 @@ public class CasteModelTest {
 
   @Before
   public void createCleanModel() throws Exception {
-    casteModel = new CasteModel();
+    casteModel = new CasteModel(new CasteTemplate());
     casteModel.setClean();
   }
 

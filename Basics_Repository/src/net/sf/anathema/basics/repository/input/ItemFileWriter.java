@@ -8,7 +8,7 @@ import net.sf.anathema.basics.eclipse.resource.FileContentHandle;
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.item.IItem;
-import net.sf.anathema.basics.item.persistence.ISingleFileItemPersister;
+import net.sf.anathema.basics.item.persistence.ISingleFileItemSaver;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -19,7 +19,7 @@ public class ItemFileWriter {
 
   public <D extends IItem> void saveToFile(
       IFile file,
-      ISingleFileItemPersister<D> persister,
+      ISingleFileItemSaver<D> persister,
       D item,
       IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     save(new FileContentHandle(file), persister, item, monitor);
@@ -27,7 +27,7 @@ public class ItemFileWriter {
 
   public <D extends IItem> void save(
       IContentHandle content,
-      ISingleFileItemPersister<D> persister,
+      ISingleFileItemSaver<D> persister,
       D item,
       IProgressMonitor monitor) throws IOException, CoreException, PersistenceException {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

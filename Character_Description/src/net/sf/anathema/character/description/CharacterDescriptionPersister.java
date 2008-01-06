@@ -27,8 +27,8 @@ public class CharacterDescriptionPersister implements IModelPersister<NullModelT
 
   private final TextPersister textPersister = new TextPersister();
 
-  public ICharacterDescription load(Document document) {
-    ICharacterDescription description = createNew(null);
+  public ICharacterDescription load(Document document, NullModelTemplate template) {
+    ICharacterDescription description = createNew(template);
     if (document == null) {
       return description;
     }

@@ -2,6 +2,7 @@ package net.sf.anathema.character.caste.persistence;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.caste.model.CasteModel;
+import net.sf.anathema.character.caste.model.CasteTemplate;
 import net.sf.anathema.character.caste.model.ICasteModel;
 
 import org.dom4j.DocumentHelper;
@@ -18,7 +19,7 @@ public class CasteModelPersisterTest {
   @Before
   public void createPersister() {
     persister = new CasteModelPersister();
-    casteModel = new CasteModel();
+    casteModel = new CasteModel(new CasteTemplate());
     rootElement = DocumentHelper.createElement("root"); //$NON-NLS-1$
   }
 
@@ -40,7 +41,7 @@ public class CasteModelPersisterTest {
   public void casteIsReloaded() throws Exception {
     casteModel.setCaste("EvilTwin"); //$NON-NLS-1$
     persister.save(rootElement, casteModel);
-    ICasteModel loadedCasteModel = persister.load(DocumentHelper.createDocument(rootElement));
+    ICasteModel loadedCasteModel = persister.load(DocumentHelper.createDocument(rootElement), new CasteTemplate());
     assertNotSame(casteModel, loadedCasteModel);
     assertEquals(casteModel.getCaste(), loadedCasteModel.getCaste());
   }

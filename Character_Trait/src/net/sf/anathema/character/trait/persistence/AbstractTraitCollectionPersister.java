@@ -33,7 +33,7 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
   private static final String TAG_TRAIT = "trait"; //$NON-NLS-1$
 
   @Override
-  public M load(Document document) throws PersistenceException {
+  public M load(Document document, T modelTemplate) throws PersistenceException {
     final List<IBasicTrait> attributeTraits = new ArrayList<IBasicTrait>();
     for (Element traitElement : ElementUtilities.elements(document.getRootElement(), TAG_TRAIT)) {
       IIdentificate traitType = new Identificate(ElementUtilities.getRequiredAttrib(traitElement, ATTRIB_ID));

@@ -16,11 +16,12 @@ public abstract class AbstractModelFactory<T extends IModelTemplate> extends Abs
   @Override
   public IModel create(IContentHandle modelContent, ICharacterTemplate template) throws PersistenceException, CoreException {
     IModelPersister<T, ?> persister = getPersister();
+    T modelTemplate = createModelTemplate(template);
     if (!modelContent.exists()) {
-      return persister.createNew(createModelTemplate(template));
+      return persister.createNew(modelTemplate);
     }
     Document document = DocumentUtilities.read(modelContent.getContents());
-    return persister.load(document);
+    return persister.load(document, modelTemplate);
   }
   
   protected abstract T createModelTemplate(ICharacterTemplate template);

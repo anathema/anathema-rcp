@@ -47,7 +47,7 @@ public class AttributesPersisterTest {
     String xmlString = "<model bundleVersion=\"1.0.0\">" //$NON-NLS-1$
         + "<trait id=\"Strength\" creationValue=\"1\"/>" //$NON-NLS-1$
         + "</model>"; //$NON-NLS-1$
-    ITraitCollectionModel loadedAttributes = persister.load(DocumentUtilities.read(xmlString));
+    ITraitCollectionModel loadedAttributes = persister.load(DocumentUtilities.read(xmlString), new AttributeTemplate(0));
     assertIsInitialAttribute(loadedAttributes.getTrait("Strength")); //$NON-NLS-1$
     assertEquals(1, loadedAttributes.getTraits().length);
   }
@@ -64,7 +64,7 @@ public class AttributesPersisterTest {
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     persister.save(stream, attributes);
     String xmlString = new String(stream.toByteArray());
-    ITraitCollectionModel loadedAttributes = persister.load(DocumentUtilities.read(xmlString));
+    ITraitCollectionModel loadedAttributes = persister.load(DocumentUtilities.read(xmlString), new AttributeTemplate(0));
     return loadedAttributes;
   }
 }

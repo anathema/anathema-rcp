@@ -3,6 +3,7 @@ package net.sf.anathema.character.caste.editor;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
 import net.sf.anathema.character.caste.model.CasteModel;
+import net.sf.anathema.character.caste.model.CasteTemplate;
 import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.core.fake.DummyModelCollection;
 
@@ -39,7 +40,7 @@ public class CasteEditorInputFactoryTest {
 
   @Test
   public void createdInputHasCorrectItem() throws Exception {
-    CasteModel casteModel = new CasteModel();
+    CasteModel casteModel = new CasteModel(new CasteTemplate());
     modelCollection.addModel(ICasteModel.ID, casteModel);
     CasteEditorInput editorInput = factory.create(file, null, null, null, modelCollection);
     assertSame(casteModel, editorInput.getItem());

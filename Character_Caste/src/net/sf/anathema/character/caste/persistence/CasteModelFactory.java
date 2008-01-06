@@ -1,21 +1,20 @@
 package net.sf.anathema.character.caste.persistence;
 
+import net.sf.anathema.character.caste.model.CasteTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelPersister;
-import net.sf.anathema.character.core.model.template.IModelTemplate;
-import net.sf.anathema.character.core.model.template.NullModelTemplate;
 
-public class CasteModelFactory extends AbstractModelFactory<IModelTemplate> {
+public class CasteModelFactory extends AbstractModelFactory<CasteTemplate> {
   private final CasteModelPersister persister = new CasteModelPersister();
 
   @Override
-  protected IModelTemplate createModelTemplate(ICharacterTemplate template) {
-    return new NullModelTemplate();
+  protected CasteTemplate createModelTemplate(ICharacterTemplate template) {
+    return new CasteTemplate();
   }
 
   @Override
-  protected IModelPersister<IModelTemplate, ? > getPersister() {
+  protected IModelPersister<CasteTemplate, ? > getPersister() {
     return persister;
   }
 }

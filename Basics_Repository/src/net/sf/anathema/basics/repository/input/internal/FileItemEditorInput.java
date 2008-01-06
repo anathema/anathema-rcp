@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.IPersistableElement;
 
-public class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput<ITitledText> {
+public final class FileItemEditorInput extends FileEditorInput implements IFileItemEditorInput<ITitledText> {
 
   private ITitledText item;
   private final ItemNameProvider provider;
