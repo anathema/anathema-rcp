@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<fragment>
+   <extension
+         point="net.sf.anathema.character.caste.castes">
+      <casteList
+            characterType="test.type">
+         <caste
+               casteId="test.caste"
+               printName="test.name">
+         </caste>
+      </casteList>
+   </extension>
+
+</fragment>

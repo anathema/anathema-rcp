@@ -12,6 +12,7 @@ import org.junit.Test;
 
 public class CasteModelPersisterTest {
 
+  private static final String CASTE = "EvilTwin"; //$NON-NLS-1$
   private CasteModelPersister persister;
   private CasteModel casteModel;
   private Element rootElement;
@@ -19,7 +20,7 @@ public class CasteModelPersisterTest {
   @Before
   public void createPersister() {
     persister = new CasteModelPersister();
-    casteModel = new CasteModel(new CasteTemplate());
+    casteModel = new CasteModel(new CasteTemplate(CASTE));
     rootElement = DocumentHelper.createElement("root"); //$NON-NLS-1$
   }
 
@@ -41,7 +42,7 @@ public class CasteModelPersisterTest {
   public void casteIsReloaded() throws Exception {
     casteModel.setCaste("EvilTwin"); //$NON-NLS-1$
     persister.save(rootElement, casteModel);
-    ICasteModel loadedCasteModel = persister.load(DocumentHelper.createDocument(rootElement), new CasteTemplate());
+    ICasteModel loadedCasteModel = persister.load(DocumentHelper.createDocument(rootElement), new CasteTemplate(CASTE));
     assertNotSame(casteModel, loadedCasteModel);
     assertEquals(casteModel.getCaste(), loadedCasteModel.getCaste());
   }

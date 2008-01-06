@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Character_Caste_Test Fragment
+Bundle-SymbolicName: net.sf.anathema.character.caste.test;singleton:=true
+Bundle-Version: 1.0.0
+Fragment-Host: net.sf.anathema.character.caste;bundle-version="1.0.0"
