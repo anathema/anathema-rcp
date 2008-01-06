@@ -71,6 +71,16 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="modelSupporter" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.core.model.IExecutableModelSupporter"/>
+               </appInfo>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

@@ -7,7 +7,8 @@
       <model
             filename="caste.model"
             id="net.sf.anathema.character.caste.model"
-            modelFactory="net.sf.anathema.character.caste.persistence.CasteModelFactory">
+            modelFactory="net.sf.anathema.character.caste.persistence.CasteModelFactory"
+            modelSupporter="net.sf.anathema.character.caste.model.CasteModelSupporter">
          <displayConfiguration
                displayName="Caste"
                editorId="net.sf.anathema.character.caste.editor"

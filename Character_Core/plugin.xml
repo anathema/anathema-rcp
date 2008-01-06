@@ -67,15 +67,6 @@
          <modelReference
                modelId="net.sf.anathema.character.attributes.model">
          </modelReference></modelList>
-      <modelList
-            id="net.sf.anathema.character.exalts.modelList">
-         <listReference
-               listId="net.sf.anathema.character.basic.modelList">
-         </listReference>
-         <modelReference
-               modelId="net.sf.anathema.character.caste.model">
-         </modelReference>
-      </modelList>
    </extension>
 
 </plugin>

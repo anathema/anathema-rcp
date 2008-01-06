@@ -8,7 +8,7 @@
             name="%template.defaultsidereal.name"
             templateId="net.sf.anathema.character.template.defaultsidereal">
          <modelList
-               modelListId="net.sf.anathema.character.exalts.modelList">
+               modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>
       </template>
    </extension>
