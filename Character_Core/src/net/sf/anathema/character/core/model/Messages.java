@@ -6,6 +6,7 @@ public class Messages extends NLS {
   private static final String BUNDLE_NAME = "net.sf.anathema.character.core.model.messages"; //$NON-NLS-1$
   public static String ModelCache_ModelLoadError;
   public static String ModelCache_ModelNotFound_Message;
+  public static String ModelExtensionPoint_ModelDescriptionLoadErrorMessage;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }

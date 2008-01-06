@@ -2,7 +2,9 @@ package net.sf.anathema.character.core.model;
 
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 
-public interface IModelDescriptor {
+import org.eclipse.core.runtime.IExecutableExtension;
 
-  public boolean isSupportedFor(ICharacterTemplate template);
+public interface IModelDescriptor extends IExecutableExtension {
+
+  public boolean isSupportedBy(ICharacterTemplate template);
 }

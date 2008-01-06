@@ -114,9 +114,9 @@ public class ModelExtensionPoint {
     List<IExtensionElement> supportedElements = new ArrayList<IExtensionElement>();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
-        ModelDescriptor modelDescriptor = new ModelDescriptor(modelElement);
+        IModelDescriptor modelDescriptor = ModelDescriptor.create(modelElement);
         IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
-        if (configurationElement != null && modelDescriptor.isSupportedFor(template)) {
+        if (configurationElement != null && modelDescriptor.isSupportedBy(template)) {
           supportedElements.add(modelElement);
         }
       }
@@ -166,13 +166,14 @@ public class ModelExtensionPoint {
     }
     return null;
   }
-  
+
   public IModelDescriptor getModelDescriptor(String modelId) {
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
+        IModelDescriptor modelDescriptor = ModelDescriptor.create(modelElement);
         String elementModelId = modelElement.getAttribute(ATTRIB_ID);
         if (elementModelId.equals(modelId)) {
-          return new ModelDescriptor(modelElement);
+          return modelDescriptor;
         }
       }
     }

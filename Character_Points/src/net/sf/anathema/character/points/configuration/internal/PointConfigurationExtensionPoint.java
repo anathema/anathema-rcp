@@ -54,7 +54,7 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
           String groupId = configurationElement.getAttribute(ATTRIB_GROUP_ID);
           String name = configurationElement.getAttribute(ATTRIB_NAME);
           String modelId = configurationElement.getAttribute(ATTRIB_MODEL_ID);
-          if (new ModelExtensionPoint().getModelDescriptor(modelId).isSupportedFor(template)) {
+          if (new ModelExtensionPoint().getModelDescriptor(modelId).isSupportedBy(template)) {
             configurationsByGroupId.put(groupId, new PointConfiguration(name));
           }
         }
