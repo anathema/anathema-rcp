@@ -17,6 +17,8 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.internal.CharacterId;
 import net.sf.anathema.character.core.model.initialize.IModelInitializer;
 import net.sf.anathema.character.core.model.initialize.ModelInitializer;
+import net.sf.anathema.character.core.model.internal.ModelDescriptor;
+import net.sf.anathema.character.core.model.internal.NullModelDescriptor;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
 import net.sf.anathema.character.core.repository.internal.CharacterModelViewElement;
@@ -64,9 +66,13 @@ public class ModelExtensionPoint {
   }
 
   private IExtensionElement getModelElement(IModelIdentifier identifier) {
+    return getModelElement(identifier.getModelId());
+  }
+
+  private IExtensionElement getModelElement(String modelId) {
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
-        if (extensionElement.getAttribute(ATTRIB_ID).equals(identifier.getModelId())) {
+        if (extensionElement.getAttribute(ATTRIB_ID).equals(modelId)) {
           return extensionElement;
         }
       }
@@ -125,30 +131,23 @@ public class ModelExtensionPoint {
   }
 
   public IModelDisplayConfiguration getDisplayConfiguration(String modelId) {
-    for (IPluginExtension extension : getPluginExtensions()) {
-      for (IExtensionElement modelElement : extension.getElements()) {
-        if (!modelId.equals(modelElement.getAttribute(ATTRIB_ID))) {
-          continue;
-        }
-        IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
-        if (configurationElement != null) {
-          return createModelDisplayConfiguration(modelElement, configurationElement);
-        }
-      }
+    IExtensionElement modelElement = getModelElement(modelId);
+    if (modelElement == null) {
+      return null;
+    }
+    IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
+    if (configurationElement != null) {
+      return createModelDisplayConfiguration(modelElement, configurationElement);
     }
     return null;
   }
 
   public String getModelFilename(String modelId) {
-    for (IPluginExtension extension : getPluginExtensions()) {
-      for (IExtensionElement modelElement : extension.getElements()) {
-        if (!modelId.equals(modelElement.getAttribute(ATTRIB_ID))) {
-          continue;
-        }
-        return modelElement.getAttribute(ATTRIB_FILENAME);
-      }
+    IExtensionElement modelElement = getModelElement(modelId);
+    if (modelElement == null) {
+      return null;
     }
-    return null;
+    return modelElement.getAttribute(ATTRIB_FILENAME);
   }
 
   public IModelDisplayConfiguration getDisplayConfiguration(IResource resource) {
@@ -168,16 +167,11 @@ public class ModelExtensionPoint {
   }
 
   public IModelDescriptor getModelDescriptor(String modelId) {
-    for (IPluginExtension extension : getPluginExtensions()) {
-      for (IExtensionElement modelElement : extension.getElements()) {
-        IModelDescriptor modelDescriptor = ModelDescriptor.create(modelElement);
-        String elementModelId = modelElement.getAttribute(ATTRIB_ID);
-        if (elementModelId.equals(modelId)) {
-          return modelDescriptor;
-        }
-      }
+    IExtensionElement modelElement = getModelElement(modelId);
+    if (modelElement == null) {
+      return new NullModelDescriptor();
     }
-    return new NullModelDescriptor();
+    return ModelDescriptor.create(modelElement);
   }
 
   private IPluginExtension[] getPluginExtensions() {
