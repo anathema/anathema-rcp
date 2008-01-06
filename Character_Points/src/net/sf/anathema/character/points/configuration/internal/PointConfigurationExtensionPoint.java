@@ -12,7 +12,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.ILogger;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
-import net.sf.anathema.character.core.model.ModelSupportPredicate;
+import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.plugin.PointPluginConstants;
 import net.sf.anathema.lib.collection.MultiEntryMap;
@@ -54,7 +54,7 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
           String groupId = configurationElement.getAttribute(ATTRIB_GROUP_ID);
           String name = configurationElement.getAttribute(ATTRIB_NAME);
           String modelId = configurationElement.getAttribute(ATTRIB_MODEL_ID);
-          if (new ModelSupportPredicate(template).evaluate(modelId)) {
+          if (new ModelExtensionPoint().getModelDescriptor(modelId).isSupportedFor(template)) {
             configurationsByGroupId.put(groupId, new PointConfiguration(name));
           }
         }

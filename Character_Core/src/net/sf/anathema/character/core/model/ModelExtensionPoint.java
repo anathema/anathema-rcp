@@ -3,7 +3,6 @@ package net.sf.anathema.character.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
@@ -108,16 +107,16 @@ public class ModelExtensionPoint {
       ICharacterId characterId,
       ICharacterTemplateProvider templateProvider) {
     final ICharacterTemplate template = templateProvider.getTemplate(characterId);
-    return getDisplayModelElements(new ModelSupportPredicate(template));
+    return getDisplayModelElements(template);
   }
 
-  private Iterable<IExtensionElement> getDisplayModelElements(IPredicate<String> modeIdPredicate) {
+  private Iterable<IExtensionElement> getDisplayModelElements(ICharacterTemplate template) {
     List<IExtensionElement> supportedElements = new ArrayList<IExtensionElement>();
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
-        String modelId = modelElement.getAttribute(ATTRIB_ID);
+        ModelDescriptor modelDescriptor = new ModelDescriptor(modelElement);
         IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
-        if (configurationElement != null && modeIdPredicate.evaluate(modelId)) {
+        if (configurationElement != null && modelDescriptor.isSupportedFor(template)) {
           supportedElements.add(modelElement);
         }
       }
@@ -166,6 +165,18 @@ public class ModelExtensionPoint {
       }
     }
     return null;
+  }
+  
+  public IModelDescriptor getModelDescriptor(String modelId) {
+    for (IPluginExtension extension : getPluginExtensions()) {
+      for (IExtensionElement modelElement : extension.getElements()) {
+        String elementModelId = modelElement.getAttribute(ATTRIB_ID);
+        if (elementModelId.equals(modelId)) {
+          return new ModelDescriptor(modelElement);
+        }
+      }
+    }
+    return new NullModelDescriptor();
   }
 
   private IPluginExtension[] getPluginExtensions() {
