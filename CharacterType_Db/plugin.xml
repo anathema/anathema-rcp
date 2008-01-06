@@ -72,5 +72,31 @@
             oldTemplateId="TemplateType.Default">
       </converter>
    </extension>
+   <extension
+         point="net.sf.anathema.character.caste.castes">
+      <casteList
+            characterType="net.sf.anathema.character.type.db">
+         <caste
+               casteId="Air"
+               printName="Air">
+         </caste>
+         <caste
+               casteId="Earth"
+               printName="Earth">
+         </caste>
+         <caste
+               casteId="Fire"
+               printName="Fire">
+         </caste>
+         <caste
+               casteId="Water"
+               printName="Water">
+         </caste>
+         <caste
+               casteId="Wood"
+               printName="Wood">
+         </caste>
+      </casteList>
+   </extension>
 
 </plugin>

@@ -72,5 +72,31 @@
             oldTemplateId="TemplateType.Default">
       </converter>
    </extension>
+   <extension
+         point="net.sf.anathema.character.caste.castes">
+      <casteList
+            characterType="net.sf.anathema.character.type.sidereal">
+         <caste
+               casteId="Journeys"
+               printName="Journeys">
+         </caste>
+         <caste
+               casteId="Serenity"
+               printName="Serenity">
+         </caste>
+         <caste
+               casteId="Battles"
+               printName="Battles">
+         </caste>
+         <caste
+               casteId="Secrets"
+               printName="Secrets">
+         </caste>
+         <caste
+               casteId="Endings"
+               printName="Endings">
+         </caste>
+      </casteList>
+   </extension>
 
 </plugin>

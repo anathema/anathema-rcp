@@ -87,5 +87,23 @@
             oldTemplateId="TemplateType.Default">
       </converter>
    </extension>
+   <extension
+         point="net.sf.anathema.character.caste.castes">
+      <casteList
+            characterType="net.sf.anathema.character.type.lunar">
+         <caste
+               casteId="FullMoon"
+               printName="Full Moon">
+         </caste>
+         <caste
+               casteId="ChangingMoon"
+               printName="Changing Moon">
+         </caste>
+         <caste
+               casteId="NoMoon"
+               printName="No Moon">
+         </caste>
+      </casteList>
+   </extension>
 
 </plugin>

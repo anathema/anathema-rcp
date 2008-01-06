@@ -8,5 +8,6 @@ Bundle-Localization: plugin
 Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.repository,
  net.sf.anathema.basics.jface,
- net.sf.anathema.character.importwizard
+ net.sf.anathema.character.importwizard,
+ net.sf.anathema.character.caste
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

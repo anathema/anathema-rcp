@@ -72,5 +72,31 @@
             oldTemplateId="TemplateType.Default">
       </converter>
    </extension>
+   <extension
+         point="net.sf.anathema.character.caste.castes">
+      <casteList
+            characterType="net.sf.anathema.character.type.solar">
+         <caste
+               casteId="Dawn"
+               printName="Dawn">
+         </caste>
+         <caste
+               casteId="Zenith"
+               printName="Zenith">
+         </caste>
+         <caste
+               casteId="Twilight"
+               printName="Twilight">
+         </caste>
+         <caste
+               casteId="Night"
+               printName="Night">
+         </caste>
+         <caste
+               casteId="Eclipse"
+               printName="Eclipse">
+         </caste>
+      </casteList>
+   </extension>
 
 </plugin>

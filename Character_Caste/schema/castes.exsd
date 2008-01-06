@@ -58,6 +58,11 @@
    </element>
 
    <element name="caste">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="printName"/>
+         </appInfo>
+      </annotation>
       <complexType>
          <attribute name="casteId" type="string" use="required">
             <annotation>
