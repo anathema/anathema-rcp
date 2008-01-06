@@ -108,12 +108,7 @@ public class ModelExtensionPoint {
       ICharacterId characterId,
       ICharacterTemplateProvider templateProvider) {
     final ICharacterTemplate template = templateProvider.getTemplate(characterId);
-    return getDisplayModelElements(new IPredicate<String>() {
-      @Override
-      public boolean evaluate(String input) {
-        return template.supportsModel(input);
-      }
-    });
+    return getDisplayModelElements(new ModelSupportPredicate(template));
   }
 
   private Iterable<IExtensionElement> getDisplayModelElements(IPredicate<String> modeIdPredicate) {
