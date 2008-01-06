@@ -6,9 +6,9 @@ public interface ICasteModel extends IModel {
 
   public static final String ID = "net.sf.anathema.character.caste.model"; //$NON-NLS-1$
 
-  public String getCaste();
+  public ICaste getCaste();
 
-  public String[] getOptions();
+  public String[] getPrintNameOptions();
 
-  public void setCaste(String caste);
+  public void setCasteByPrintName(String caste);
 }

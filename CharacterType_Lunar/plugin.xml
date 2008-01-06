@@ -93,15 +93,15 @@
             characterType="net.sf.anathema.character.type.lunar">
          <caste
                casteId="FullMoon"
-               printName="Full Moon">
+               printName="%caste.printName.FullMoon">
          </caste>
          <caste
                casteId="ChangingMoon"
-               printName="Changing Moon">
+               printName="%caste.printName.ChangingMoon">
          </caste>
          <caste
                casteId="NoMoon"
-               printName="No Moon">
+               printName="%caste.printName.NoMoon">
          </caste>
       </casteList>
    </extension>

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Report Plug-in
+Bundle-Name: %net.sf.anathema.character.report.Bundel-Name
 Bundle-SymbolicName: net.sf.anathema.character.report
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.character.core,
@@ -11,3 +11,4 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.character.description
 Export-Package: net.sf.anathema.character.report.pdf
+Bundle-Localization: plugin

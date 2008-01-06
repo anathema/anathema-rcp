@@ -78,23 +78,23 @@
             characterType="net.sf.anathema.character.type.sidereal">
          <caste
                casteId="Journeys"
-               printName="Journeys">
+               printName="%caste.printName.Journeys">
          </caste>
          <caste
                casteId="Serenity"
-               printName="Serenity">
+               printName="%caste.printName.Serenity">
          </caste>
          <caste
                casteId="Battles"
-               printName="Battles">
+               printName="%caste.printName.Battles">
          </caste>
          <caste
                casteId="Secrets"
-               printName="Secrets">
+               printName="%caste.printName.Secrets">
          </caste>
          <caste
                casteId="Endings"
-               printName="Endings">
+               printName="%caste.printName.Endings">
          </caste>
       </casteList>
    </extension>

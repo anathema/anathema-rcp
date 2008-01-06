@@ -78,23 +78,23 @@
             characterType="net.sf.anathema.character.type.solar">
          <caste
                casteId="Dawn"
-               printName="Dawn">
+               printName="%caste.printName.Dawn">
          </caste>
          <caste
                casteId="Zenith"
-               printName="Zenith">
+               printName="%caste.printName.Zenith">
          </caste>
          <caste
                casteId="Twilight"
-               printName="Twilight">
+               printName="%caste.printName.Twilight">
          </caste>
          <caste
                casteId="Night"
-               printName="Night">
+               printName="%caste.printName.Night">
          </caste>
          <caste
                casteId="Eclipse"
-               printName="Eclipse">
+               printName="%caste.printName.Eclipse">
          </caste>
       </casteList>
    </extension>

@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.caste.model.CasteTemplate;
+import net.sf.anathema.character.caste.model.ICaste;
 import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.caste.plugin.ICastePluginConstants;
 import net.sf.anathema.character.core.model.IModelPersister;
@@ -21,19 +22,19 @@ public class CasteModelPersister implements IModelPersister<CasteTemplate, ICast
   private static final String TAG_MODEL = "casteModel"; //$NON-NLS-1$
 
   @Override
-  public ICasteModel createNew(CasteTemplate template) {
+  public CasteModel createNew(CasteTemplate template) {
     return new CasteModel(template);
   }
 
   @Override
   public ICasteModel load(Document document, CasteTemplate template) throws PersistenceException {
-    ICasteModel casteModel = createNew(template);
+    CasteModel casteModel = createNew(template);
     if (document == null) {
       return casteModel;
     }
     Element root = document.getRootElement();
     String caste = root.attributeValue(ATTRIB_CASTE);
-    casteModel.setCaste(caste);
+    casteModel.setCasteById(caste);
     return casteModel;
   }
 
@@ -48,9 +49,9 @@ public class CasteModelPersister implements IModelPersister<CasteTemplate, ICast
   }
 
   protected void save(Element rootElement, ICasteModel item) {
-    String caste = item.getCaste();
+    ICaste caste = item.getCaste();
     if (caste != null) {
-      rootElement.addAttribute(ATTRIB_CASTE, caste);
+      rootElement.addAttribute(ATTRIB_CASTE, caste.getId());
     }
   }
 }

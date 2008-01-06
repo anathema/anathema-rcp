@@ -3,6 +3,7 @@ package net.sf.anathema.character.caste.editor;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
+import net.sf.anathema.character.caste.model.ICaste;
 import net.sf.anathema.character.caste.model.ICasteModel;
 
 import org.eclipse.swt.SWT;
@@ -35,7 +36,7 @@ public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> 
     private void changeCaste() {
       int selectionIndex = combo.getSelectionIndex();
       String caste = selectionIndex < 0 ? null : combo.getItem(selectionIndex);
-      getPersistableEditorInput().getItem().setCaste(caste);
+      getPersistableEditorInput().getItem().setCasteByPrintName(caste);
     }
   }
 
@@ -55,13 +56,13 @@ public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> 
         label.setText("Caste:");
         final Combo combo = new Combo(parent, SWT.DROP_DOWN | SWT.READ_ONLY);
         ICasteModel item = getPersistableEditorInput().getItem();
-        combo.setItems(item.getOptions());
+        combo.setItems(item.getPrintNameOptions());
         combo.addSelectionListener(new CasteSelectionListener(combo));
-        String caste = item.getCaste();
+        ICaste caste = item.getCaste();
         if (caste != null) {
           String[] items = combo.getItems();
           for (int index = 0; index < items.length; index++) {
-            if (items[index].equals(caste)) {
+            if (items[index].equals(caste.getPrintName())) {
               combo.select(index);
             }
           }

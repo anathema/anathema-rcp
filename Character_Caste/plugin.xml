@@ -23,7 +23,7 @@
             class="net.sf.anathema.character.caste.editor.CasteEditor"
             icon="icons/TabCharacter16.png"
             id="net.sf.anathema.character.caste.editor"
-            name="Caste Editor">
+            name="%editor.name.casteEditor">
       </editor>
    </extension>
 

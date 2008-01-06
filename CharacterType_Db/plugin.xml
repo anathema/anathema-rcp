@@ -78,23 +78,23 @@
             characterType="net.sf.anathema.character.type.db">
          <caste
                casteId="Air"
-               printName="Air">
+               printName="%caste.printName.Air">
          </caste>
          <caste
                casteId="Earth"
-               printName="Earth">
+               printName="%caste.printName.Earth">
          </caste>
          <caste
                casteId="Fire"
-               printName="Fire">
+               printName="%caste.printName.Fire">
          </caste>
          <caste
                casteId="Water"
-               printName="Water">
+               printName="%caste.printName.Water">
          </caste>
          <caste
                casteId="Wood"
-               printName="Wood">
+               printName="%caste.printName.Wood">
          </caste>
       </casteList>
    </extension>

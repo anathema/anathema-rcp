@@ -4,13 +4,13 @@ import net.sf.anathema.character.core.model.template.IModelTemplate;
 
 public class CasteTemplate implements IModelTemplate {
   
-  private final String[] castes;
+  private final ICaste[] castes;
 
-  public CasteTemplate(String... castes) {
+  public CasteTemplate(ICaste... castes) {
     this.castes = castes;
   }
 
-  public String[] getCastes() {
+  public ICaste[] getCastes() {
     return castes;
   }
 }

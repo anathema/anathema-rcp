@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Caste Plug-in
+Bundle-Name: %net.sf.anathema.character.caste.Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.character.caste;singleton:=true
 Bundle-Version: 1.0.0
 Eclipse-LazyStart: true
@@ -10,3 +10,4 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.repository,
  net.sf.anathema.basics.jface,
  net.sf.anathema.basics.item
+Bundle-Localization: plugin

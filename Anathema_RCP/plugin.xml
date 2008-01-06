@@ -101,7 +101,7 @@
             </command>
          </menu>
          <menu
-               label="Help">
+               label="%menu.label.help">
             <command
                   commandId="org.eclipse.ui.help.aboutAction">
             </command>

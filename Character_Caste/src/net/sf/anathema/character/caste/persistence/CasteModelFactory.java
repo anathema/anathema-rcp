@@ -1,6 +1,5 @@
 package net.sf.anathema.character.caste.persistence;
 
-import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.character.caste.model.CasteProvider;
 import net.sf.anathema.character.caste.model.CasteTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
@@ -21,10 +20,7 @@ public class CasteModelFactory extends AbstractModelFactory<CasteTemplate> {
 
   @Override
   public CasteTemplate createModelTemplate(ICharacterTemplate template) {
-    return new CasteTemplate(ArrayUtilities.transform(
-        provider.getCastes(template.getCharacterTypeId()),
-        String.class,
-        new CasteToIdTransformer()));
+    return new CasteTemplate(provider.getCastes(template.getCharacterTypeId()));
   }
 
   @Override
