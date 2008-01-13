@@ -4,11 +4,9 @@ import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.IMockProp;
 import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
-import net.sf.anathema.basics.eclipse.extension.fake.MockImageDescriptorAttribute;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.lib.util.Identificate;
 
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.junit.Test;
 
 public class CasteTest {
@@ -29,15 +27,6 @@ public class CasteTest {
     IMockProp nameAttribute = new MockStringAttribute("printName", "Böser Wolf"); //$NON-NLS-1$ //$NON-NLS-2$
     assertEquals(
         "Böser Wolf", new Caste(ExtensionObjectMother.createExtensionElementWithAttributes(nameAttribute)).getPrintName()); //$NON-NLS-1$
-  }
-
-  @Test
-  public void configuredImageDescriptorIsReturned() throws Exception {
-    ImageDescriptor imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
-    IMockProp nameAttribute = new MockImageDescriptorAttribute("icon", imageDescriptor); //$NON-NLS-1$
-    assertSame(
-        imageDescriptor,
-        new Caste(ExtensionObjectMother.createExtensionElementWithAttributes(nameAttribute)).getIcon());
   }
 
   @Test

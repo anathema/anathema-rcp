@@ -43,6 +43,11 @@
    </element>
 
    <element name="image">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="referenceId"/>
+         </appInfo>
+      </annotation>
       <complexType>
          <attribute name="referenceId" type="string" use="required">
             <annotation>

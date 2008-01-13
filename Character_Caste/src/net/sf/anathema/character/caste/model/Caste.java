@@ -3,8 +3,6 @@ package net.sf.anathema.character.caste.model;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.lib.util.IIdentificate;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-
 public class Caste implements ICaste {
 
   private final IExtensionElement element;
@@ -13,6 +11,7 @@ public class Caste implements ICaste {
     this.element = element;
   }
 
+  @Override
   public String getId() {
     String id = element.getAttribute("casteId"); //$NON-NLS-1$
     if (id == null) {
@@ -21,12 +20,9 @@ public class Caste implements ICaste {
     return id;
   }
 
+  @Override
   public String getPrintName() {
     return element.getAttribute("printName"); //$NON-NLS-1$
-  }
-
-  public ImageDescriptor getIcon() {
-    return element.createImageDescriptorFromAttribute("icon"); //$NON-NLS-1$
   }
 
   @Override

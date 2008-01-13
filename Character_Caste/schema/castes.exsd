@@ -84,16 +84,6 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="icon" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute kind="resource"/>
-               </appInfo>
-            </annotation>
-         </attribute>
       </complexType>
    </element>
 
