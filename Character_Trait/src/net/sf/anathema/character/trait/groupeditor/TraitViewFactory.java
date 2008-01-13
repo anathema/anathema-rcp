@@ -29,15 +29,23 @@ public class TraitViewFactory {
     final Button favoredButton = new Button(parent, SWT.TOGGLE);
     initListening(trait, favoredButton);
     createLabel(GridDataFactory.createIndentData(5)).setText(text);
-    final CanvasIntValueDisplay view = new CanvasIntValueDisplay(parent, passiveImage, activeImage, trait.getMaximalValue());
+    final CanvasIntValueDisplay view = new CanvasIntValueDisplay(
+        parent,
+        passiveImage,
+        activeImage,
+        trait.getMaximalValue());
     new TraitPresenter().initPresentation(trait, view);
     return view;
   }
 
   private void initListening(final IInteractiveTrait trait, final Button favoredButton) {
     trait.getFavorization().addFavorableChangeListener(new EnabledUpdateListener(favoredButton, trait));
+    IImageProvider favorizationImageProvider = new FavorizationImageProvider(
+        trait,
+        passiveImage,
+        activeImage);
     trait.getFavorization().addFavoredChangeListener(
-        new FavorizationModelListener(favoredButton, trait, passiveImage, activeImage));
+        new FavorizationModelListener(favoredButton, trait, favorizationImageProvider));
     favoredButton.addListener(SWT.MouseUp, new FavorizationButtonChangeListener(favoredButton, trait));
   }
 

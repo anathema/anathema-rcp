@@ -1,22 +1,22 @@
 package net.sf.anathema.character.trait.groupeditor;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.character.trait.display.IDisplayTrait;
 
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 
 public final class FavorizationModelListener implements IChangeListener {
   private final Button favoredButton;
-  private final IInteractiveTrait trait;
-  private final Image passiveImage;
-  private final Image activeImage;
+  private final IDisplayTrait trait;
+  private final IImageProvider buttonImageProvider;
 
-  public FavorizationModelListener(Button favoredButton, IInteractiveTrait trait, Image passiveImage, Image activeImage) {
+  public FavorizationModelListener(
+      Button favoredButton,
+      IDisplayTrait trait,
+      IImageProvider buttonImageProvider) {
     this.favoredButton = favoredButton;
     this.trait = trait;
-    this.passiveImage = passiveImage;
-    this.activeImage = activeImage;
+    this.buttonImageProvider = buttonImageProvider;
     stateChanged();
   }
 
@@ -24,6 +24,6 @@ public final class FavorizationModelListener implements IChangeListener {
   public void stateChanged() {
     boolean favored = trait.getFavorization().isFavored();
     favoredButton.setSelection(favored);
-    favoredButton.setImage(favored ? activeImage : passiveImage);
+    favoredButton.setImage(buttonImageProvider.getImage());
   }
 }
