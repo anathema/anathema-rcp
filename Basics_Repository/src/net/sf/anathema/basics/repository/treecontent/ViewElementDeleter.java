@@ -5,9 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.IWorkbenchPage;
 
 public class ViewElementDeleter {
@@ -16,17 +14,7 @@ public class ViewElementDeleter {
 
   public void delete(final IPageDelible element) {
     try {
-      page.getWorkbenchWindow().run(true, false, new IRunnableWithProgress() {
-        @Override
-        public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-          try {
-            element.delete(page, monitor);
-          }
-          catch (Exception e) {
-            throw new InvocationTargetException(e);
-          }
-        }
-      });
+      page.getWorkbenchWindow().run(true, false, new ViewElementDeleteRunnable(page, element));
     }
     catch (InvocationTargetException e) {
       RepositoryPlugin.getDefaultInstance().log(
