@@ -11,7 +11,7 @@ public class DummyFavorizationHandler implements IFavorizationHandler {
   }
 
   @Override
-  public void toogleFavored(IIdentificate traitType) {
+  public void toggleFavored(IIdentificate traitType) {
     // nothing to do
   }
 }

@@ -33,7 +33,7 @@ public class InteractiveFavorization extends DisplayFavorization implements IInt
 
   @Override
   public void toggleFavored() {
-    getFavorizationHandler().toogleFavored(getBasicTrait().getTraitType());
+    getFavorizationHandler().toggleFavored(getBasicTrait().getTraitType());
   }
 
   @Override

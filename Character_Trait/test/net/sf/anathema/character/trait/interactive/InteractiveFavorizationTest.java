@@ -44,7 +44,7 @@ public class InteractiveFavorizationTest {
 
   @Test
   public void favorizationHandlerIsCalledIfFavorizationChanges() throws Exception {
-    favorizationHandler.toogleFavored(traitType);
+    favorizationHandler.toggleFavored(traitType);
     EasyMock.replay(favorizationHandler);
     favorization.toggleFavored();
     EasyMock.verify(favorizationHandler);
