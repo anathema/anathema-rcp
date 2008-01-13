@@ -53,8 +53,9 @@ public class TraitViewFactory {
         passiveImage,
         imageProvider,
         characterId);
-    trait.getFavorization().addFavoredChangeListener(
-        new FavorizationModelListener(favoredButton, trait, favorizationImageProvider));
+    FavorizationModelListener listener = new FavorizationModelListener(favoredButton, trait, favorizationImageProvider);
+    trait.getFavorization().addFavoredChangeListener(listener);
+    trait.getFavorization().addFavorableChangeListener(listener);
     favoredButton.addListener(SWT.MouseUp, new FavorizationButtonChangeListener(favoredButton, trait));
   }
 

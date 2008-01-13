@@ -6,5 +6,5 @@ public interface IFavorizationHandler {
 
   public boolean isFavorable();
 
-  public void toogleFavored(IIdentificate traitType);
+  public void toggleFavored(IIdentificate traitType);
 }
