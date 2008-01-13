@@ -20,6 +20,10 @@ public class EclipseExtensionPoint implements IExtensionProvider {
     this.pluginId = pluginId;
     this.pointId = pointId;
   }
+  
+  public String getPluginId() {
+    return pluginId;
+  }
 
   @Override
   public IPluginExtension[] getExtensions() {

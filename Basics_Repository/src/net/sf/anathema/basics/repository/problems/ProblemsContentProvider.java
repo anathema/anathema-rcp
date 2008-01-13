@@ -3,35 +3,21 @@ package net.sf.anathema.basics.repository.problems;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
-import net.sf.anathema.basics.eclipse.extension.ExtensionException;
-import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 
-import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.osgi.util.NLS;
 
 public class ProblemsContentProvider extends AbstractFlatTreeContentProvider {
 
-  private static final String ATTRIB_CLASS = "class"; //$NON-NLS-1$
   private static final String POINT_ID = "problemproviders"; //$NON-NLS-1$
-  private final List<IProblemProvider> problemProviders = new ArrayList<IProblemProvider>();
+  private final List<IProblemProvider> problemProviders;
 
   public ProblemsContentProvider() {
-    for (IPluginExtension extension : new EclipseExtensionPoint(RepositoryPlugin.ID, POINT_ID).getExtensions()) {
-      for (IExtensionElement element : extension.getElements()) {
-        try {
-          problemProviders.add(element.getAttributeAsObject(ATTRIB_CLASS, IProblemProvider.class));
-        }
-        catch (ExtensionException e) {
-          String message = NLS.bind(Messages.ProblemsContentProvider_ProvoiderLoadErrorMessage, element.getAttribute(ATTRIB_CLASS));
-          new Logger(RepositoryPlugin.ID).error(message, e);
-        }
-      }
-    }
+    EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(RepositoryPlugin.ID, POINT_ID);
+    this.problemProviders = new ClassConveyerBelt<IProblemProvider>(extensionPoint, IProblemProvider.class).getAllObjects();
   }
 
   @Override
@@ -48,7 +34,7 @@ public class ProblemsContentProvider extends AbstractFlatTreeContentProvider {
   public IProblem[] getElements(Object inputElement) {
     List<IProblem> problems = new ArrayList<IProblem>();
     for (IProblemProvider provider : problemProviders) {
-      problems.addAll(provider.findProblems((IWorkspaceRoot) inputElement));
+      problems.addAll(provider.findProblems((IContainer) inputElement));
     }
     return problems.toArray(new IProblem[problems.size()]);
   }

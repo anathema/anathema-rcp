@@ -1,13 +1,10 @@
 package net.sf.anathema.character.trait.groupeditor;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
+import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
-import net.sf.anathema.basics.eclipse.extension.ExtensionException;
-import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
 public class TraitGroupEditorDecorationFactory {
@@ -23,19 +20,9 @@ public class TraitGroupEditorDecorationFactory {
   }
 
   public Collection<ITraitGroupEditorDecoration> create() {
-    Collection<ITraitGroupEditorDecoration> decorations = new ArrayList<ITraitGroupEditorDecoration>();
-    for (IPluginExtension extension : extensions) {
-      for (IExtensionElement element : extension.getElements()) {
-        try {
-          decorations.add(element.getAttributeAsObject("class", ITraitGroupEditorDecoration.class)); //$NON-NLS-1$
-        }
-        catch (ExtensionException e) {
-          new Logger(CharacterTraitPlugin.PLUGIN_ID).error(
-              Messages.TraitGroupEditorDecorationFactory_ErrorMessageLoadingDecoration,
-              e);
-        }
-      }
-    }
-    return decorations;
+    return new ClassConveyerBelt<ITraitGroupEditorDecoration>(
+        CharacterTraitPlugin.PLUGIN_ID,
+        extensions,
+        ITraitGroupEditorDecoration.class).getAllObjects();
   }
 }

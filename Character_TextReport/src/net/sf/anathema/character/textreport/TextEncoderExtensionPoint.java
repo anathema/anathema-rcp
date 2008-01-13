@@ -1,19 +1,14 @@
 package net.sf.anathema.character.textreport;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
-import net.sf.anathema.basics.eclipse.extension.ExtensionException;
-import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
 
 public class TextEncoderExtensionPoint {
 
-  private Logger logger = new Logger(IPluginConstants.PLUGIN_ID);
-  private static final String ATTRIB_CLASS = "class"; //$NON-NLS-1$
   private final IPluginExtension[] pluginExtensions;
 
   public TextEncoderExtensionPoint() {
@@ -25,17 +20,9 @@ public class TextEncoderExtensionPoint {
   }
 
   public List<ITextReportEncoder> getEncoders() {
-    List<ITextReportEncoder> encoders = new ArrayList<ITextReportEncoder>();
-    for (IPluginExtension extension : pluginExtensions) {
-      for (IExtensionElement element : extension.getElements()) {
-        try {
-          encoders.add(element.getAttributeAsObject(ATTRIB_CLASS, ITextReportEncoder.class));
-        }
-        catch (ExtensionException e) {
-          logger.error(Messages.TextEncoderExtensionPoint_ErrorMessage, e);
-        }
-      }
-    }
-    return encoders;
+    return new ClassConveyerBelt<ITextReportEncoder>(
+        IPluginConstants.PLUGIN_ID,
+        pluginExtensions,
+        ITextReportEncoder.class).getAllObjects();
   }
 }

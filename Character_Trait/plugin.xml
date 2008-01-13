@@ -2,6 +2,7 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension-point id="editordecorations" name="%traitGroupEditorDecorations.extension-point.name" schema="schema/editordecorations.exsd"/>
+   <extension-point id="traitstatus" name="Trait Status" schema="schema/traitstatus.exsd"/>
    <extension
          point="net.sf.anathema.character.core.resources">
       <image
