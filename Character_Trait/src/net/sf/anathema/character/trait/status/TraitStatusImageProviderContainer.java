@@ -9,13 +9,13 @@ import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
 public class TraitStatusImageProviderContainer {
 
-  public ITraitStatusImageProvider[] getImageProvider() {
+  public List<ITraitStatusImageProvider> getImageProvider() {
     EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, "traitStatus"); //$NON-NLS-1$
     Class<ITraitStatusImageProvider> objectClass = ITraitStatusImageProvider.class;
     ClassConveyerBelt<ITraitStatusImageProvider> belt = new ClassConveyerBelt<ITraitStatusImageProvider>(
         extensionPoint,
         objectClass);
     List<ITraitStatusImageProvider> allProviders = belt.getAllObjects();
-    return allProviders.toArray(new ITraitStatusImageProvider[allProviders.size()]);
+    return allProviders;
   }
 }

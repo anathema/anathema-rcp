@@ -1,10 +1,13 @@
 package net.sf.anathema.character.trait.groupeditor;
 
+import java.util.List;
+
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.interactive.TraitPresenter;
+import net.sf.anathema.character.trait.status.TraitStatusImageProviderContainer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -40,10 +43,9 @@ public class TraitViewFactory {
 
   private void initListening(final IInteractiveTrait trait, final Button favoredButton) {
     trait.getFavorization().addFavorableChangeListener(new EnabledUpdateListener(favoredButton, trait));
-    IImageProvider favorizationImageProvider = new FavorizationImageProvider(
-        trait,
-        passiveImage,
-        new FavoredTraitStatusImageProvider(activeImage));
+    List<ITraitStatusImageProvider> imageProvider = new TraitStatusImageProviderContainer().getImageProvider();
+    imageProvider.add(new FavoredTraitStatusImageProvider(activeImage));
+    IImageProvider favorizationImageProvider = new FavorizationImageProvider(trait, passiveImage, imageProvider);
     trait.getFavorization().addFavoredChangeListener(
         new FavorizationModelListener(favoredButton, trait, favorizationImageProvider));
     favoredButton.addListener(SWT.MouseUp, new FavorizationButtonChangeListener(favoredButton, trait));
