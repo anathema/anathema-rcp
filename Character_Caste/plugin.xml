@@ -26,5 +26,11 @@
             name="%editor.name.casteEditor">
       </editor>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.traitstatus">
+      <statusImageProvider
+            class="net.sf.anathema.character.caste.trait.CasteTraitImageProvider">
+      </statusImageProvider>
+   </extension>
 
 </plugin>

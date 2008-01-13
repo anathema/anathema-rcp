@@ -12,7 +12,7 @@
 
    <element name="extension">
       <complexType>
-         <sequence minOccurs="1" maxOccurs="unbounded">
+         <sequence>
             <element ref="casteList"/>
          </sequence>
          <attribute name="point" type="string" use="required">
@@ -64,6 +64,9 @@
          </appInfo>
       </annotation>
       <complexType>
+         <sequence>
+            <element ref="trait" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
          <attribute name="casteId" type="string" use="required">
             <annotation>
                <documentation>
@@ -89,6 +92,18 @@
                <appInfo>
                   <meta.attribute kind="resource"/>
                </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="trait">
+      <complexType>
+         <attribute name="traitId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

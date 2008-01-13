@@ -93,15 +93,45 @@
             characterType="net.sf.anathema.character.type.lunar">
          <caste
                casteId="FullMoon"
+               icon="icons/Caste_FullMoon_16.png"
                printName="%caste.printName.FullMoon">
+            <trait
+                  traitId="Strength">
+            </trait>
+            <trait
+                  traitId="Dexterity">
+            </trait>
+            <trait
+                  traitId="Stamina">
+            </trait>
          </caste>
          <caste
                casteId="ChangingMoon"
+               icon="icons/Caste_ChangingMoon_16.png"
                printName="%caste.printName.ChangingMoon">
+            <trait
+                  traitId="Charisma">
+            </trait>
+            <trait
+                  traitId="Manipulation">
+            </trait>
+            <trait
+                  traitId="Appearance">
+            </trait>
          </caste>
          <caste
                casteId="NoMoon"
+               icon="icons/Caste_NoMoon_16.png"
                printName="%caste.printName.NoMoon">
+            <trait
+                  traitId="Perception">
+            </trait>
+            <trait
+                  traitId="Intelligence">
+            </trait>
+            <trait
+                  traitId="Wits">
+            </trait>
          </caste>
       </casteList>
    </extension>

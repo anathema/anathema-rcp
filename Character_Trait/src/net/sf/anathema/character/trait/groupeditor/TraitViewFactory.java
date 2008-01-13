@@ -3,11 +3,12 @@ package net.sf.anathema.character.trait.groupeditor;
 import java.util.List;
 
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.interactive.TraitPresenter;
-import net.sf.anathema.character.trait.status.TraitStatusImageProviderContainer;
+import net.sf.anathema.character.trait.status.ITraitStatusImageProvider;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -21,9 +22,11 @@ public class TraitViewFactory {
   private final Composite parent;
   private final Image passiveImage;
   private final Image activeImage;
+  private final ICharacterId characterId;
 
-  public TraitViewFactory(Composite parent, IIntViewImageProvider provider) {
+  public TraitViewFactory(Composite parent, IIntViewImageProvider provider, ICharacterId characterId) {
     this.parent = parent;
+    this.characterId = characterId;
     this.passiveImage = provider.createPassiveImage();
     this.activeImage = provider.createActiveImage();
   }
@@ -45,7 +48,11 @@ public class TraitViewFactory {
     trait.getFavorization().addFavorableChangeListener(new EnabledUpdateListener(favoredButton, trait));
     List<ITraitStatusImageProvider> imageProvider = new TraitStatusImageProviderContainer().getImageProvider();
     imageProvider.add(new FavoredTraitStatusImageProvider(activeImage));
-    IImageProvider favorizationImageProvider = new FavorizationImageProvider(trait, passiveImage, imageProvider);
+    IImageProvider favorizationImageProvider = new FavorizationImageProvider(
+        trait,
+        passiveImage,
+        imageProvider,
+        characterId);
     trait.getFavorization().addFavoredChangeListener(
         new FavorizationModelListener(favoredButton, trait, favorizationImageProvider));
     favoredButton.addListener(SWT.MouseUp, new FavorizationButtonChangeListener(favoredButton, trait));

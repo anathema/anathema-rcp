@@ -1,6 +1,7 @@
 package net.sf.anathema.character.caste.model;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.lib.util.IIdentificate;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 
@@ -26,5 +27,15 @@ public class Caste implements ICaste {
 
   public ImageDescriptor getIcon() {
     return element.createImageDescriptorFromAttribute("icon"); //$NON-NLS-1$
+  }
+
+  @Override
+  public boolean supportsTrait(IIdentificate traitType) {
+    for (IExtensionElement child : element.getElements()) {
+      if (traitType.getId().equals(child.getAttribute("traitId"))) { //$NON-NLS-1$
+        return true;
+      }
+    }
+    return false;
   }
 }
