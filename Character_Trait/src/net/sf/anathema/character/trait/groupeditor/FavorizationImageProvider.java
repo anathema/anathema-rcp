@@ -6,17 +6,26 @@ import org.eclipse.swt.graphics.Image;
 
 public class FavorizationImageProvider implements IImageProvider {
 
-  private final Image activeImage;
   private final Image passiveImage;
   private final IDisplayTrait trait;
+  private final ITraitStatusImageProvider[] imageProviders;
 
-  public FavorizationImageProvider(IDisplayTrait trait, Image passiveImage, Image activeImage) {
+  public FavorizationImageProvider(
+      IDisplayTrait trait,
+      Image passiveImage,
+      ITraitStatusImageProvider... imageProviders) {
     this.trait = trait;
     this.passiveImage = passiveImage;
-    this.activeImage = activeImage;
+    this.imageProviders = imageProviders;
   }
 
   public Image getImage() {
-    return trait.getFavorization().isFavored() ? activeImage : passiveImage;
+    for (ITraitStatusImageProvider statusImageProvder : imageProviders) {
+      Image statusImage = statusImageProvder.getImage(trait);
+      if (statusImage != null) {
+        return statusImage;
+      }
+    }
+    return passiveImage;
   }
 }
