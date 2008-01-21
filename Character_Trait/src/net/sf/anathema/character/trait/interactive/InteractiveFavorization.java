@@ -38,8 +38,8 @@ public class InteractiveFavorization extends DisplayFavorization implements IInt
 
   @Override
   public void addFavoredChangeListener(IChangeListener listener) {
-    getBasicTrait().getFavoredModel().addChangeListener(listener);
-    allDisposables.addDisposable(new ChangeableModelDisposable(getBasicTrait().getFavoredModel(), listener));
+    getBasicTrait().getStatusManager().addChangeListener(listener);
+    allDisposables.addDisposable(new ChangeableModelDisposable(getBasicTrait().getStatusManager(), listener));
   }
 
   @Override

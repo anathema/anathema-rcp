@@ -3,6 +3,7 @@ package net.sf.anathema.character.attributes.points;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.TraitCollection;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -20,7 +21,7 @@ public class SingleAttributeExperienceCalculationTest {
   }
 
   private void assertFavoredCalculation(int creationValue, int experienceValue, int expectedPoints) {
-    basicTrait.getFavoredModel().setValue(true);
+    basicTrait.getStatusManager().setStatus(new FavoredStatus());
     assertCalculation(creationValue, experienceValue, expectedPoints);
   }
 

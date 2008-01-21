@@ -2,6 +2,7 @@ package net.sf.anathema.character.trait.display;
 
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 
 public class DisplayFavorization implements IDisplayFavorization {
 
@@ -20,7 +21,7 @@ public class DisplayFavorization implements IDisplayFavorization {
 
   @Override
   public boolean isFavored() {
-    return basicTrait.getFavoredModel().getValue();
+    return basicTrait.getStatusManager().getStatus() instanceof FavoredStatus;
   }
   
   protected final IBasicTrait getBasicTrait() {

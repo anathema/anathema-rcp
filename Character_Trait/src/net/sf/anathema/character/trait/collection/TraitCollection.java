@@ -25,7 +25,7 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
       // TODO wieder abmelden
       basicTrait.getCreationModel().addChangeListener(changeListener);
       basicTrait.getExperiencedModel().addChangeListener(changeListener);
-      basicTrait.getFavoredModel().addChangeListener(changeListener);
+      basicTrait.getStatusManager().addChangeListener(changeListener);
     }
   }
 

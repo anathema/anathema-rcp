@@ -27,8 +27,8 @@ public class PointCoverageCalculator {
     Arrays.sort(ids, new Comparator<String>() {
       @Override
       public int compare(String firstType, String secondType) {
-        boolean firstFavored = collection.getTrait(firstType).getFavoredModel().getValue();
-        boolean secondFavored = collection.getTrait(secondType).getFavoredModel().getValue();
+        boolean firstFavored = collection.getTrait(firstType).getStatusManager().getStatus().isCheap();
+        boolean secondFavored = collection.getTrait(secondType).getStatusManager().getStatus().isCheap();
         if (firstFavored && secondFavored || !(firstFavored || secondFavored)) {
           return 0;
         }

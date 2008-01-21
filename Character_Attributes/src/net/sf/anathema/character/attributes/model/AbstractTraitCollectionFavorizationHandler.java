@@ -1,9 +1,9 @@
 package net.sf.anathema.character.attributes.model;
 
-import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public abstract class AbstractTraitCollectionFavorizationHandler implements IFavorizationHandler {
@@ -24,20 +24,19 @@ public abstract class AbstractTraitCollectionFavorizationHandler implements IFav
     }
     ITraitCollectionModel traitCollection = getTraitCollectionModel();
     IBasicTrait trait = traitCollection.getTrait(traitType.getId());
-    BooleanModel favoredModel = trait.getFavoredModel();
     if (isToggleFavoredAllowed(traitCollection, trait)) {
-      favoredModel.setValue(!favoredModel.getValue());
+      trait.getStatusManager().toggleStatus();
     }
   }
 
   private boolean isToggleFavoredAllowed(ITraitCollectionModel traitCollection, IBasicTrait trait) {
-    boolean isFavored = trait.getFavoredModel().getValue();
+    boolean isFavored = trait.getStatusManager().getStatus() instanceof FavoredStatus;
     if (isFavored) {
       return true;
     }
     int favoredCount = 0;
     for (IBasicTrait collectionTrait : traitCollection.getTraits()) {
-      if (collectionTrait.getFavoredModel().getValue()) {
+      if (collectionTrait.getStatusManager().getStatus() instanceof FavoredStatus) {
         favoredCount++;
       }
     }

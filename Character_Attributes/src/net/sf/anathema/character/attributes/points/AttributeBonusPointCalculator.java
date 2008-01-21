@@ -22,7 +22,7 @@ public class AttributeBonusPointCalculator {
 
   private int calculate(IBasicTrait trait) {
     int paidIncrement = trait.getCreationModel().getValue() - ATTRIBUTE_CALCULATION_BASE;
-    int dotCosts = trait.getFavoredModel().getValue() ? FAVORED_BONUS_POINT_COST : BONUS_POINT_COST;
+    int dotCosts = trait.getStatusManager().getStatus().isCheap() ? FAVORED_BONUS_POINT_COST : BONUS_POINT_COST;
     return Math.max(0, paidIncrement * dotCosts);
   }
 }

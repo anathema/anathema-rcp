@@ -1,8 +1,9 @@
 package net.sf.anathema.character.attributes.points;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.TraitCollection;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -43,7 +44,7 @@ public class SingleAttributeBonusCalculatorTest {
   
   @Test
   public void calculate3PointsForFavoredCreationValue2() throws Exception {
-    basicTrait.getFavoredModel().setValue(true);
+    basicTrait.getStatusManager().setStatus(new FavoredStatus());
     assertCalculation(2, 3);
   }
 

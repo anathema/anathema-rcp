@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.status.DefaultStatus;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -26,20 +28,19 @@ public class AttributesPersisterTest {
   public void favoredAttributeIsFavoredAfterLoad() throws Exception {
     ITraitCollectionModel attributes = persister.createNew(new AttributeTemplate(2));
     IBasicTrait favoredTrait = attributes.getTraits()[0];
-    favoredTrait.getFavoredModel().setValue(true);
+    favoredTrait.getStatusManager().setStatus(new FavoredStatus());
     String favoredTraitId = favoredTrait.getTraitType().getId();
     ITraitCollectionModel loadedAttributes = saveAndLoadAttributes(attributes);
-    assertTrue(loadedAttributes.getTrait(favoredTraitId).getFavoredModel().getValue());
+    assertTrue(loadedAttributes.getTrait(favoredTraitId).getStatusManager().getStatus() instanceof FavoredStatus);
   }
 
   @Test
   public void unfavoredAttributeIsUnfavoredAfterLoad() throws Exception {
     ITraitCollectionModel attributes = persister.createNew(new AttributeTemplate(2));
     IBasicTrait favoredTrait = attributes.getTraits()[0];
-    favoredTrait.getFavoredModel().setValue(false);
     String favoredTraitId = favoredTrait.getTraitType().getId();
     ITraitCollectionModel loadedAttributes = saveAndLoadAttributes(attributes);
-    assertFalse(loadedAttributes.getTrait(favoredTraitId).getFavoredModel().getValue());
+    assertTrue(loadedAttributes.getTrait(favoredTraitId).getStatusManager().getStatus() instanceof DefaultStatus);
   }
 
   @Test
@@ -53,7 +54,7 @@ public class AttributesPersisterTest {
   }
 
   private void assertIsInitialAttribute(IBasicTrait trait) {
-    assertFalse(trait.getFavoredModel().getValue());
+    assertTrue(trait.getStatusManager().getStatus() instanceof DefaultStatus);
     assertEquals(1, trait.getCreationModel().getValue());
     assertEquals(-1, trait.getExperiencedModel().getValue());
   }

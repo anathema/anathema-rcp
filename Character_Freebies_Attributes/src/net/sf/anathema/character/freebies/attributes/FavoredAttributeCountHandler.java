@@ -10,6 +10,7 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 
 public class FavoredAttributeCountHandler extends AbstractExecutableExtension implements IFreebiesHandler {
 
@@ -34,7 +35,7 @@ public class FavoredAttributeCountHandler extends AbstractExecutableExtension im
     ITraitCollectionModel traitCollection = (ITraitCollectionModel) modelProvider.getModel(modelIdentifer);
     int count = 0;
     for (IBasicTrait trait : traitCollection.getTraits()) {
-      if(trait.getFavoredModel().getValue()) {
+      if(trait.getStatusManager().getStatus() instanceof FavoredStatus) {
         count++;
       }
     }

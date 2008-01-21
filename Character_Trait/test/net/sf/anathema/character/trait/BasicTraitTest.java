@@ -1,6 +1,7 @@
 package net.sf.anathema.character.trait;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -22,7 +23,7 @@ public class BasicTraitTest {
   
   @Test
   public void isNotFavored() throws Exception {
-    assertFalse(trait.getFavoredModel().getValue());
+    assertTrue(trait.getStatusManager().getStatus() instanceof DefaultStatus);
   }
   
   public void hasCreationValue0() throws Exception {

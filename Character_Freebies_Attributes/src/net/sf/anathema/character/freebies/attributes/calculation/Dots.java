@@ -38,10 +38,10 @@ public class Dots {
     return pointsSpent;
   }
 
-  public int spentOnFavored() {
+  public int spentOnCheap() {
     int points = 0;
     for (IBasicTrait trait : traits) {
-      if (trait.getFavoredModel().getValue()) {
+      if (trait.getStatusManager().getStatus().isCheap()) {
         int creationValue = trait.getCreationModel().getValue();
         points += Math.max(0, creationValue - calculationBase);
       }
@@ -49,17 +49,17 @@ public class Dots {
     return points;
   }
 
-  public int spentOnFavoredInExcessOfCredit(int groupCredit) {
+  public int spentOnCheapInExcessOfCredit(int groupCredit) {
     int pointSpentWithoutCredit = Math.max(spentTotally() - groupCredit, 0);
-    return Math.min(spentOnFavored(), pointSpentWithoutCredit);
+    return Math.min(spentOnCheap(), pointSpentWithoutCredit);
   }
 
-  public int favoredSpentAsPartOfCredit(int credit) {
-    return spentOnFavored() - spentOnFavoredInExcessOfCredit(credit);
+  public int cheaplySpentAsPartOfCredit(int credit) {
+    return spentOnCheap() - spentOnCheapInExcessOfCredit(credit);
   }
 
-  public int unfavoredSpentAsPartOfCredit(int credit) {
+  public int expensivlySpentAsPartOfCredit(int credit) {
     int creditSpent = Math.min(credit, spentTotally());
-    return creditSpent - favoredSpentAsPartOfCredit(credit);
+    return creditSpent - cheaplySpentAsPartOfCredit(credit);
   }
 }

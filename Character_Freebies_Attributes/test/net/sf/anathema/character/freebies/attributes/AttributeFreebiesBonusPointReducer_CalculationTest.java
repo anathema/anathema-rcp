@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -10,6 +10,7 @@ import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.easymock.EasyMock;
@@ -70,7 +71,7 @@ public class AttributeFreebiesBonusPointReducer_CalculationTest {
     setAllAttributesTo(1);
     IBasicTrait attribute = attributes.getTraits()[0];
     attribute.getCreationModel().setValue(2);
-    attribute.getFavoredModel().setValue(true);
+    attribute.getStatusManager().setStatus(new FavoredStatus());
     assertEquals(-3, reducer.getPoints(characterId));
   }
 

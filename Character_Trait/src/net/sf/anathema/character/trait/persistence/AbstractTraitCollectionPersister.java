@@ -5,7 +5,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.IModelTemplate;
@@ -13,6 +12,7 @@ import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
@@ -44,9 +44,10 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
         int experiencedValue = ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE);
         trait.getExperiencedModel().setValue(experiencedValue);
       }
-      BooleanModel favoredModel = trait.getFavoredModel();
-      boolean favored = ElementUtilities.getBooleanAttribute(traitElement, ATTRIB_FAVORED, favoredModel.getValue());
-      favoredModel.setValue(favored);
+      boolean favored = ElementUtilities.getBooleanAttribute(traitElement, ATTRIB_FAVORED, false);
+      if (favored) {
+        trait.getStatusManager().setStatus(new FavoredStatus());
+      }
     }
     M model = createModelFor(attributeTraits.toArray(new IBasicTrait[attributeTraits.size()]));
     model.setClean();
@@ -70,7 +71,10 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
       if (experiencedValue > -1) {
         ElementUtilities.addAttribute(traitElement, ATTRIB_EXPERIENCED_VALUE, experiencedValue);
       }
-      ElementUtilities.addAttribute(traitElement, ATTRIB_FAVORED, trait.getFavoredModel().getValue());
+      ElementUtilities.addAttribute(
+          traitElement,
+          ATTRIB_FAVORED,
+          trait.getStatusManager().getStatus() instanceof FavoredStatus);
     }
     DocumentUtilities.save(document, stream);
   }

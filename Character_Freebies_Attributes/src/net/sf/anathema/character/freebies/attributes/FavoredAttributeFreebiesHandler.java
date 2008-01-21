@@ -43,7 +43,7 @@ public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension
     int freeFavored = 0;
     for (IAttributeGroupFreebies handler : groupHandler) {
       int groupCredit = creditManager.getCredit(id, handler.getCreditId());
-      freeFavored += calculator.dotsFor(handler.getPriority()).spentOnFavoredInExcessOfCredit(groupCredit);
+      freeFavored += calculator.dotsFor(handler.getPriority()).spentOnCheapInExcessOfCredit(groupCredit);
     }
     return Math.min(credit, freeFavored);
   }

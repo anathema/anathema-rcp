@@ -53,18 +53,18 @@ public class InteractiveFavorizationTest {
   @Test
   public void favorizationListenerIsAddedToBasicTraitFavorizationModel() throws Exception {
     IChangeListener favorizationListener = EasyMock.createMock(IChangeListener.class);
-    assertEquals(0, basicTrait.getFavoredModel().getChangeListenerCount());
+    assertEquals(0, basicTrait.getStatusManager().getListenerCount());
     favorization.addFavoredChangeListener(favorizationListener);
-    assertEquals(1, basicTrait.getFavoredModel().getChangeListenerCount());
+    assertEquals(1, basicTrait.getStatusManager().getListenerCount());
   }
   
   @Test
   public void favorizationListenerIsRemovedOnDispose() throws Exception {
     IChangeListener favorizationListener = EasyMock.createMock(IChangeListener.class);
     favorization.addFavoredChangeListener(favorizationListener);
-    assertEquals(1, basicTrait.getFavoredModel().getChangeListenerCount());
+    assertEquals(1, basicTrait.getStatusManager().getListenerCount());
     favorization.dispose();
-    assertEquals(0, basicTrait.getFavoredModel().getChangeListenerCount());
+    assertEquals(0, basicTrait.getStatusManager().getListenerCount());
   }
  
   @Test

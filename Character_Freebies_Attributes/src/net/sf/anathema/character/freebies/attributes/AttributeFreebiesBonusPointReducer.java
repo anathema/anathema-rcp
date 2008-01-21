@@ -43,8 +43,8 @@ public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler {
     for (IAttributeGroupFreebies handler : freebiesHandlers) {
       Dots dots = new AttributePointCalculator(attributes, new AttributeGroupConfiguration().getGroups()).dotsFor(handler.getPriority());
       int credit = creditManager.getCredit(characterId, handler.getCreditId());
-      favoredSpent += dots.favoredSpentAsPartOfCredit(credit);
-      unfavoredSpent += dots.unfavoredSpentAsPartOfCredit(credit);
+      favoredSpent += dots.cheaplySpentAsPartOfCredit(credit);
+      unfavoredSpent += dots.expensivlySpentAsPartOfCredit(credit);
     }
     int bonusSaved = favoredSpent * IAttributeConstants.FAVORED_BONUS_POINT_COST;
     bonusSaved += unfavoredSpent * IAttributeConstants.BONUS_POINT_COST;

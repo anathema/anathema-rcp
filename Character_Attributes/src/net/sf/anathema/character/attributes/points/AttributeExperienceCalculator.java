@@ -26,7 +26,7 @@ public class AttributeExperienceCalculator {
     int favoredReduction = 0; 
     for (int experienceValueStep = creationValue; experienceValueStep < experienceValue; experienceValueStep++) {
       increasedCurrentValueSum += experienceValueStep;
-      if (attribute.getFavoredModel().getValue()) {
+      if (attribute.getStatusManager().getStatus().isCheap()) {
         favoredReduction++;
       }
     }
