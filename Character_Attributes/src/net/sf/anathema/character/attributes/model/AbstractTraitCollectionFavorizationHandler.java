@@ -30,16 +30,19 @@ public abstract class AbstractTraitCollectionFavorizationHandler implements IFav
   }
 
   private boolean isToggleFavoredAllowed(ITraitCollectionModel traitCollection, IBasicTrait trait) {
-    boolean isFavored = trait.getStatusManager().getStatus() instanceof FavoredStatus;
-    if (isFavored) {
+    if (isFavored(trait)) {
       return true;
     }
     int favoredCount = 0;
     for (IBasicTrait collectionTrait : traitCollection.getTraits()) {
-      if (collectionTrait.getStatusManager().getStatus() instanceof FavoredStatus) {
+      if (isFavored(collectionTrait)) {
         favoredCount++;
       }
     }
     return favoredCount < getFavoredCount();
+  }
+
+  private boolean isFavored(IBasicTrait trait) {
+    return trait.getStatusManager().getStatus() instanceof FavoredStatus;
   }
 }

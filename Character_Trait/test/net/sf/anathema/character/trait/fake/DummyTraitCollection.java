@@ -7,6 +7,8 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.status.ITraitStatus;
+import net.sf.anathema.lib.util.IIdentificate;
 
 public class DummyTraitCollection extends AbstractModel  implements ITraitCollectionModel {
 
@@ -38,6 +40,11 @@ public class DummyTraitCollection extends AbstractModel  implements ITraitCollec
 
   @Override
   public void removeChangeListener(IChangeListener modelChangeListener) {
+    // nothing to do
+  }
+
+  @Override
+  public void setStatusFor(ITraitStatus newStatus, List< ? extends IIdentificate> traits) {
     // nothing to do
   }
 }

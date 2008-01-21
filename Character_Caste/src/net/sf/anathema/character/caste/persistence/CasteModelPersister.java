@@ -20,7 +20,7 @@ public class CasteModelPersister implements IModelPersister<CasteTemplate, ICast
 
   private static final String ATTRIB_CASTE = "caste"; //$NON-NLS-1$
   private static final String TAG_MODEL = "casteModel"; //$NON-NLS-1$
-
+  
   @Override
   public CasteModel createNew(CasteTemplate template) {
     return new CasteModel(template);

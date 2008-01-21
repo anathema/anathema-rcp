@@ -1,9 +1,15 @@
 package net.sf.anathema.character.trait.collection;
 
+import java.util.List;
+
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.status.DefaultStatus;
+import net.sf.anathema.character.trait.status.ITraitStatus;
+import net.sf.anathema.character.trait.status.ITraitStatusModel;
 import net.sf.anathema.lib.control.change.ChangeControl;
+import net.sf.anathema.lib.util.IIdentificate;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -52,5 +58,19 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
   @Override
   public void removeChangeListener(IChangeListener listener) {
     changeControl.removeChangeListener(listener);
+  }
+  
+  @Override
+  public void setStatusFor(ITraitStatus newStatus, List< ? extends IIdentificate> statusTraits) {
+    for (IBasicTrait trait : getTraits()) {
+      ITraitStatusModel statusManager = trait.getStatusManager();
+      ITraitStatus status = statusManager.getStatus();
+      if (newStatus.equals(status) && !statusTraits.contains(trait.getTraitType())) {
+        statusManager.setStatus(new DefaultStatus());
+      }
+      else if (statusTraits.contains(trait.getTraitType())) {
+        statusManager.setStatus(newStatus);
+      }
+    }
   }
 }

@@ -1,10 +1,15 @@
 package net.sf.anathema.character.caste.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.lib.util.IIdentificate;
+import net.sf.anathema.lib.util.Identificate;
 
 public class Caste implements ICaste {
 
+  private static final String ATTRIB_TRAIT_ID = "traitId"; //$NON-NLS-1$
   private final IExtensionElement element;
 
   public Caste(IExtensionElement element) {
@@ -28,10 +33,19 @@ public class Caste implements ICaste {
   @Override
   public boolean supportsTrait(IIdentificate traitType) {
     for (IExtensionElement child : element.getElements()) {
-      if (traitType.getId().equals(child.getAttribute("traitId"))) { //$NON-NLS-1$
+      if (traitType.getId().equals(child.getAttribute(ATTRIB_TRAIT_ID))) {
         return true;
       }
     }
     return false;
+  }
+
+  @Override
+  public List< ? extends IIdentificate> getTraitTypes() {
+    List<IIdentificate> traitIds = new ArrayList<IIdentificate>();
+    for (IExtensionElement child : element.getElements()) {
+      traitIds.add(new Identificate(child.getAttribute(ATTRIB_TRAIT_ID)));
+    }
+    return traitIds;
   }
 }

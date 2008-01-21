@@ -6,4 +6,9 @@ public class FavoredStatus implements ITraitStatus {
   public boolean isCheap() {
     return true;
   }
+
+  @Override
+  public boolean isModifiable() {
+    return true;
+  }
 }

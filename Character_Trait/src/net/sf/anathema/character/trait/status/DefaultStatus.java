@@ -6,4 +6,9 @@ public class DefaultStatus implements ITraitStatus {
   public boolean isCheap() {
     return false;
   }
+
+  @Override
+  public boolean isModifiable() {
+    return true;
+  }
 }
