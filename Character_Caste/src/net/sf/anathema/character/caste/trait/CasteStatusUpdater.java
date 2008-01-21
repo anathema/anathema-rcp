@@ -5,13 +5,13 @@ import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public final class CasteStateUpdater implements IChangeListener {
+public final class CasteStatusUpdater implements IChangeListener {
 
   private final ICasteModel model;
   private final ITraitCollectionProvider traitProvider;
   private final ICharacterId id;
 
-  public CasteStateUpdater(ICasteModel model, ITraitCollectionProvider traitProvider, ICharacterId id) {
+  public CasteStatusUpdater(ICasteModel model, ITraitCollectionProvider traitProvider, ICharacterId id) {
     this.model = model;
     this.traitProvider = traitProvider;
     this.id = id;

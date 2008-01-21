@@ -6,6 +6,6 @@ import net.sf.anathema.character.core.character.ICharacterId;
 public class CasteStatusController {
 
   public CasteStatusController(ICasteModel model, ITraitCollectionProvider traitProvider, ICharacterId id) {
-    model.addChangeListener(new CasteStateUpdater(model, traitProvider, id));
+    model.addChangeListener(new CasteStatusUpdater(model, traitProvider, id));
   }
 }

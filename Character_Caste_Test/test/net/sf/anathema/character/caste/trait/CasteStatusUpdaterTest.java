@@ -14,7 +14,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CasteStateUpdaterTest {
+public class CasteStatusUpdaterTest {
 
   private static final String CASTE_ID = "myCasteId"; //$NON-NLS-1$
   private CasteModel casteModel;
@@ -48,7 +48,7 @@ public class CasteStateUpdaterTest {
   public void casteStatusIsSetForCasteTraits() throws Exception {
     traitCollection.setStatusFor(new CasteStatus(), casteTraitTypes);
     EasyMock.replay(traitCollection);
-    new CasteStateUpdater(casteModel, createTraitCollctionProvider(), id).stateChanged();
+    new CasteStatusUpdater(casteModel, createTraitCollctionProvider(), id).stateChanged();
     EasyMock.verify(traitCollection);
   }
 
