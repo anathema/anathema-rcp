@@ -46,7 +46,7 @@ public class ModelExtensionPoint {
       IModelFactory factory = extensionElement.getAttributeAsObject(ATTRIB_MODEL_FACTORY, IModelFactory.class);
       ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(identifier.getCharacterId());
       IContentHandle file = getFile(identifier, extensionElement);
-      IModel model = factory.create(file, template);
+      IModel model = factory.create(file, template, identifier.getCharacterId());
       model.setClean();
       IMarkerHandle markerHandler = (IMarkerHandle) file.getAdapter(IMarkerHandle.class);
       return new ModelInitializer(model, markerHandler, identifier);

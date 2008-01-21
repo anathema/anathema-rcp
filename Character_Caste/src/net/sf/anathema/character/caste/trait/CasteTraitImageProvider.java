@@ -21,7 +21,7 @@ public class CasteTraitImageProvider extends AbstractExecutableExtension impleme
     ICasteModel model = (ICasteModel) modelCollection.getModel(new ModelIdentifier(characterId, ICasteModel.ID));
     if (model == null) {
       return null;
-    }
+    }    
     ICaste caste = model.getCaste();
     if (caste != null && caste.supportsTrait(trait.getTraitType())) {
       return ICharacterCorePluginConstants.IMAGE_REGISTRY.get(caste.getId());
