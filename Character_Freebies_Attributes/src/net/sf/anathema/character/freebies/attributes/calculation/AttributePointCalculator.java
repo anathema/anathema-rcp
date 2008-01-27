@@ -1,9 +1,7 @@
 package net.sf.anathema.character.freebies.attributes.calculation;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +29,7 @@ public class AttributePointCalculator {
   final ITraitCollectionModel attributes;
   private final ITraitGroup[] groups;
   private final Map<PriorityGroup, Integer> creditByGroup;
-  private Map<PriorityGroup, Dots> dots;
+  private DotPriority dots;
 
   public AttributePointCalculator(
       Map<PriorityGroup, Integer> creditByGroup,
@@ -43,22 +41,19 @@ public class AttributePointCalculator {
   }
 
   public Dots dotsFor(PriorityGroup priority) {
-    getDotsForGroups();
-    return dots.get(priority);
+    return getDots().get(priority);
   }
 
   public Dots[] getDotsForGroups() {
-    if (dots == null) {
-      dots = calculateDots();
-    }
-    Collection<Dots> values = dots.values();
-    return values.toArray(new Dots[values.size()]);
+    return getDots().getAllDots();
   }
-
-  private Map<PriorityGroup, Dots> calculateDots() {
+  
+  private DotPriority getDots() {
+    if (dots != null) {
+      return dots;
+    }
     PriorityGroup[] priorityGroups = PriorityGroup.values();
-    Map<PriorityGroup, Dots> bestDots = new HashMap<PriorityGroup, Dots>();
-    int bestPointReduction = Integer.MAX_VALUE;
+    DotPriority dotPriority = new DotPriority();
     for (PriorityGroup firstGroup : priorityGroups) {
       for (PriorityGroup secondGroup : priorityGroups) {
         if (firstGroup == secondGroup) {
@@ -70,16 +65,10 @@ public class AttributePointCalculator {
             new Dots(creditByGroup.get(secondGroup), attributes, groups[1]),
             new Dots(creditByGroup.get(thirdGroup), attributes, groups[2]) };
         int pointReduction = calculatePoints(currentDots);
-        if (bestPointReduction > pointReduction) {
-          bestDots.clear();
-          bestDots.put(firstGroup, currentDots[0]);
-          bestDots.put(secondGroup, currentDots[1]);
-          bestDots.put(thirdGroup, currentDots[2]);
-          bestPointReduction = pointReduction;
-        }
+        dotPriority.set(new PriorityGroup[] { firstGroup, secondGroup, thirdGroup }, currentDots, pointReduction);
       }
     }
-    return bestDots;
+    return dotPriority;
   }
 
   private PriorityGroup getLastGroup(PriorityGroup firstGroup, PriorityGroup secondGroup) {
