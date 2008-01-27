@@ -12,6 +12,7 @@ import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
 import net.sf.anathema.character.core.traitview.SurplusPainter;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributeCreditCollection;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
@@ -71,11 +72,14 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
   }
 
   private int getPointsCoveredByCredit(IIdentificate traitType) {
-    ITraitGroup traitGroup = input.findTraitGroup(traitType);
-    PriorityGroup priority = new AttributeGroupPriorityCalculator(context).getPriority(traitGroup);
-    int credit = creditCollection.getCredit(priority);
-    PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
-    return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
+    // TODO SurplusMarking wieder aktivieren
+//    ITraitGroup traitGroup = input.findTraitGroup(traitType);
+//    new AttributePointCalculator()
+//    PriorityGroup priority = new AttributeGroupPriorityCalculator(context).getPriority(traitGroup);
+//    int credit = creditCollection.getCredit(priority);
+//    PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
+//    return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
+    return 0;
   }
 
   public void toggleMarkBonusPoints() {

@@ -1,14 +1,18 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import static net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.*;
 import static org.junit.Assert.*;
+
+import java.util.Map;
+
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.fake.DummyTraitGroup;
 import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class AttributePointCalculatorTest {
@@ -38,6 +42,8 @@ public class AttributePointCalculatorTest {
 
 
   @Test
+  @Ignore("Test für Case 120")
+  // TODO Case 120
   public void higherAttributeFromDifferentGroupsProvidesPrimaryGroupPointsSpent() throws Exception {
     traitGroups[0].addTraitId("lower"); //$NON-NLS-1$
     traitGroups[1].addTraitId("higher"); //$NON-NLS-1$
@@ -48,9 +54,10 @@ public class AttributePointCalculatorTest {
   }
 
   private void assertPointsSpent(int primary, int secondary, int tertiary, ITraitCollectionModel attributes) {
-    AttributePointCalculator freebiesCalculator = new AttributePointCalculator(attributes, traitGroups);
-    assertEquals(primary, freebiesCalculator.pointsSpentFor(PriorityGroup.Primary));
-    assertEquals(secondary, freebiesCalculator.pointsSpentFor(PriorityGroup.Secondary));
-    assertEquals(tertiary, freebiesCalculator.pointsSpentFor(PriorityGroup.Tertiary));
+    Map<PriorityGroup, Integer> creditsByGroup = new AttributePriorityFreebies().getEmpty();
+    AttributePointCalculator freebiesCalculator = new AttributePointCalculator(creditsByGroup, attributes, traitGroups);
+    assertEquals(primary, freebiesCalculator.dotsFor(PriorityGroup.Primary).spentTotally());
+    assertEquals(secondary, freebiesCalculator.dotsFor(PriorityGroup.Secondary).spentTotally());
+    assertEquals(tertiary, freebiesCalculator.dotsFor(PriorityGroup.Tertiary).spentTotally());
   }
 }

@@ -11,6 +11,7 @@ public class Dots {
 
   private final IBasicTrait[] traits;
   private int calculationBase = IAttributeConstants.ATTRIBUTE_CALCULATION_BASE;
+  private final int credit;
 
   private static IBasicTrait[] findTraits(final ITraitCollectionModel collection, ITraitGroup group) {
     return ArrayUtilities.transform(group.getTraitIds(), IBasicTrait.class, new ITransformer<String, IBasicTrait>() {
@@ -21,11 +22,12 @@ public class Dots {
     });
   }
 
-  public Dots(ITraitCollectionModel collection, ITraitGroup group) {
-    this(findTraits(collection, group));
+  public Dots(int credit, ITraitCollectionModel collection, ITraitGroup group) {
+    this(credit, findTraits(collection, group));
   }
 
-  public Dots(IBasicTrait... traits) {
+  public Dots(int credit, IBasicTrait... traits) {
+    this.credit = credit;
     this.traits = traits;
   }
 
@@ -49,17 +51,17 @@ public class Dots {
     return points;
   }
 
-  public int spentOnCheapInExcessOfCredit(int groupCredit) {
-    int pointSpentWithoutCredit = Math.max(spentTotally() - groupCredit, 0);
+  public int spentOnCheapInExcessOfCredit() {
+    int pointSpentWithoutCredit = Math.max(spentTotally() - credit, 0);
     return Math.min(spentOnCheap(), pointSpentWithoutCredit);
   }
 
-  public int cheaplySpentAsPartOfCredit(int credit) {
-    return spentOnCheap() - spentOnCheapInExcessOfCredit(credit);
+  public int cheaplySpentAsPartOfCredit() {
+    return spentOnCheap() - spentOnCheapInExcessOfCredit();
   }
 
-  public int expensivlySpentAsPartOfCredit(int credit) {
+  public int expensivlySpentAsPartOfCredit() {
     int creditSpent = Math.min(credit, spentTotally());
-    return creditSpent - cheaplySpentAsPartOfCredit(credit);
+    return creditSpent - cheaplySpentAsPartOfCredit();
   }
 }

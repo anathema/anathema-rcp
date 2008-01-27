@@ -10,7 +10,7 @@ public class SecondaryAttributeFreebiesHandlerTest {
 
   @Test
   public void priorityGroupIsSecondary() throws Exception {
-    SecondaryAttributeFreebies handler = new SecondaryAttributeFreebies(null);
+    SecondaryAttributeFreebies handler = new SecondaryAttributeFreebies(null, null);
     assertEquals(AttributePointCalculator.PriorityGroup.Secondary, handler.getPriority());
   }
 }

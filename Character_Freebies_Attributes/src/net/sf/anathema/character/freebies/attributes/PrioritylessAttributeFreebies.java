@@ -1,5 +1,7 @@
 package net.sf.anathema.character.freebies.attributes;
 
+import java.util.Map;
+
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
 import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -8,6 +10,8 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.configuration.CreditManager;
+import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 
@@ -15,21 +19,27 @@ public class PrioritylessAttributeFreebies {
 
   private final IModelCollection modelProvider;
   private final PriorityGroup priority;
+  private final ICreditManager creditManager;
 
   public PrioritylessAttributeFreebies(PriorityGroup priority) {
-    this(ModelCache.getInstance(), priority);
+    this(ModelCache.getInstance(), new CreditManager(), priority);
   }
 
-  public PrioritylessAttributeFreebies(IModelCollection modelProvider, PriorityGroup priority) {
+  public PrioritylessAttributeFreebies(
+      IModelCollection modelProvider,
+      ICreditManager creditManager,
+      PriorityGroup priority) {
     this.modelProvider = modelProvider;
+    this.creditManager = creditManager;
     this.priority = priority;
   }
 
   public int getPoints(ICharacterId id, int credit) {
+    Map<PriorityGroup, Integer> creditsByGroup = new AttributePriorityFreebies().get(id, creditManager);
     TraitGroup[] groups = new AttributeGroupConfiguration().getGroups();
     ModelIdentifier modelIdentifier = new ModelIdentifier(id, Attributes.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(modelIdentifier);
-    AttributePointCalculator calculator = new AttributePointCalculator(attributes, groups);
-    return Math.min(credit, calculator.pointsSpentFor(priority));
+    AttributePointCalculator calculator = new AttributePointCalculator(creditsByGroup, attributes, groups);
+    return Math.min(credit, calculator.dotsFor(priority).spentTotally());
   }
 }

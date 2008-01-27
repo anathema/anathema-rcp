@@ -1,5 +1,8 @@
 package net.sf.anathema.character.freebies.attributes.mark;
 
+import java.util.Map;
+
+import net.sf.anathema.character.freebies.attributes.AttributePriorityFreebies;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.Dots;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
@@ -15,7 +18,8 @@ public class TotalDotsSpent implements ITotalDotsSpent {
   
   @Override
   public int get(PriorityGroup priority) {
-    Dots dots = new AttributePointCalculator(context.getCollection(), context.getTraitGroups()).dotsFor(priority);
+    Map<PriorityGroup, Integer> hashMap = new AttributePriorityFreebies().getEmpty();
+    Dots dots = new AttributePointCalculator(hashMap, context.getCollection(), context.getTraitGroups()).dotsFor(priority);
     return dots.spentTotally();
   }
 }

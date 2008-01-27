@@ -10,7 +10,7 @@ public class PrimaryAttributeFreebiesHandlerTest {
 
   @Test
   public void priorityGroupIsPrimary() throws Exception {
-    PrimaryAttributeFreebies handler = new PrimaryAttributeFreebies(null);
+    PrimaryAttributeFreebies handler = new PrimaryAttributeFreebies(null, null);
     assertEquals(AttributePointCalculator.PriorityGroup.Primary, handler.getPriority());
   }
 }

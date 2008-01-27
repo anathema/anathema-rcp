@@ -14,4 +14,9 @@ public class CreditManagerObjectMother {
     return creditManager;
   }
 
+  public static ICreditManager createNiceManager() {
+    ICreditManager creditManager = EasyMock.createNiceMock(ICreditManager.class);
+    EasyMock.replay(creditManager);
+    return creditManager;
+  }
 }
