@@ -1,5 +1,6 @@
 package net.sf.anathema.character.caste.editor;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
@@ -67,6 +68,14 @@ public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> 
             }
           }
         }
+        final CasteEditorInput casteEditorInput = ((CasteEditorInput) getEditorInput());
+        casteEditorInput.addModifiableListener(new IChangeListener() {
+          @Override
+          public void stateChanged() {
+            combo.setEnabled(casteEditorInput.isModifiable());
+          }
+        });
+        combo.setEnabled(casteEditorInput.isModifiable());
       }
     };
   }

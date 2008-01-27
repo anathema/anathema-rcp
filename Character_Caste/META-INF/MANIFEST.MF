@@ -10,5 +10,6 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.repository,
  net.sf.anathema.basics.jface,
  net.sf.anathema.basics.item,
- net.sf.anathema.character.trait
+ net.sf.anathema.character.trait,
+ net.sf.anathema.character.experience
 Bundle-Localization: plugin
