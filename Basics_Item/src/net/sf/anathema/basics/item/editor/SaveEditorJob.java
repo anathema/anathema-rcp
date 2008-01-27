@@ -41,7 +41,7 @@ public final class SaveEditorJob extends Job {
     monitor.beginTask(Messages.StyledTextEditor_SaveJobTask, IProgressMonitor.UNKNOWN);
     try {
       editorInput.save(monitor);
-      if (!display.isDisposed()) {
+      if (display != null || !display.isDisposed()) {
         display.asyncExec(postSave);
       }
       return Status.OK_STATUS;
