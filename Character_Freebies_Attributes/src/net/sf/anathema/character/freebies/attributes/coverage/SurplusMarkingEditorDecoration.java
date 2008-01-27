@@ -11,10 +11,10 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
 import net.sf.anathema.character.core.traitview.SurplusPainter;
-import net.sf.anathema.character.freebies.attributes.calculation.AttributeCreditCollection;
-import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
+import net.sf.anathema.character.freebies.attributes.AttributePriorityFreebies;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
-import net.sf.anathema.character.freebies.configuration.ICreditManager;
+import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
@@ -31,17 +31,14 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
   private final Map<IIntValueView, SurplusPainter> surplusPainters = new HashMap<IIntValueView, SurplusPainter>();
   private final Map<IIdentificate, IIntValueView> viewsByType = new HashMap<IIdentificate, IIntValueView>();
   private ITraitGroupEditorInput input;
-  private IAttributeCreditCollection creditCollection;
   private AttributesContext context;
 
   public void decorate(
       final IInteractiveTrait trait,
       final IExtendableIntValueView view,
       ITraitGroupEditorInput editorInput) {
-    ICreditManager creditManager = new CreditManager();
     this.input = editorInput;
     this.context = AttributesContext.create(editorInput.getCharacterId(), ModelCache.getInstance());
-    this.creditCollection = new AttributeCreditCollection(creditManager, editorInput.getCharacterId());
     Image surplusImage = ICharacterCorePluginConstants.IMAGE_REGISTRY.get(ITraitResources.SURPLUS_BUTTON);
     SurplusPainter surplusPainter = new SurplusPainter(surplusImage);
     surplusPainters.put(view, surplusPainter);
@@ -74,13 +71,14 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
 
   private int getPointsCoveredByCredit(IIdentificate traitType) {
     // TODO Case 118 - SurplusMarking wieder aktivieren
-    // ITraitGroup traitGroup = input.findTraitGroup(traitType);
-    // new AttributePointCalculator()
-    // PriorityGroup priority = new AttributeGroupPriorityCalculator(context).getPriority(traitGroup);
-    // int credit = creditCollection.getCredit(priority);
-    // PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
-    // return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
-    return 0;
+    ITraitGroup traitGroup = input.findTraitGroup(traitType);
+    Map<PriorityGroup, Integer> creditByPriority = new AttributePriorityFreebies().get(
+        input.getCharacterId(),
+        new CreditManager());
+    PriorityGroup priority = new AttributeGroupPriorityCalculator(context, creditByPriority).getPriority(traitGroup);
+    int credit = creditByPriority.get(priority);
+    PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
+    return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
   }
 
   public void toggleMarkBonusPoints() {
