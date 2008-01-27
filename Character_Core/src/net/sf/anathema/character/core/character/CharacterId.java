@@ -1,10 +1,9 @@
-package net.sf.anathema.character.core.character.internal;
+package net.sf.anathema.character.core.character;
 
 import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.eclipse.resource.FileContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
-import net.sf.anathema.character.core.character.ICharacterId;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.runtime.Path;

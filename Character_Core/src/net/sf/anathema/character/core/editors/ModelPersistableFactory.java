@@ -2,8 +2,8 @@ package net.sf.anathema.character.core.editors;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.item.editor.ErrorMessageEditorInput;
+import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
-import net.sf.anathema.character.core.character.internal.CharacterId;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;

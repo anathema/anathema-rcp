@@ -6,7 +6,7 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.resource.ResourceUtils;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.core.character.internal.CharacterId;
+import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;

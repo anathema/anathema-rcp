@@ -8,8 +8,8 @@ import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.problems.IProblem;
 import net.sf.anathema.basics.repository.problems.IProblemProvider;
+import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.internal.CharacterId;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 
 import org.eclipse.core.resources.IContainer;
