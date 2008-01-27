@@ -57,6 +57,7 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
     drawLabelledContent(directContent, Messages.PersonalInfoEncoder_ConceptLabel, conceptContent, new Position(
         firstColumnX,
         secondRowY), entryWidth);
+    //TODO Case 100 - Kastendruck setzt hier an.
     boolean isExaltType = true;
     if (isExaltType) {
       String casteContent = null;
