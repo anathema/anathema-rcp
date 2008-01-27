@@ -22,7 +22,7 @@ public class ColumnViewRefresher extends Job {
 
   @Override
   protected IStatus run(IProgressMonitor monitor) {
-    if (display == null) {
+    if (display == null || display.isDisposed()) {
       return Status.CANCEL_STATUS;
     }
     display.syncExec(new Runnable() {
