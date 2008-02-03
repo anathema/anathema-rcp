@@ -51,7 +51,7 @@ public class ModelListProvider implements IModelListProvider {
   public IModelList getModelList(String modelListId) {
     IModelList modelList = modelListsById.get(modelListId);
     if (modelList == null) {
-      return new ModelList(this);
+      return new NullModelList();
     }
     return modelList;
   }

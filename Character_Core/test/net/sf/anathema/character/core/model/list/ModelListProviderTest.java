@@ -45,4 +45,9 @@ public class ModelListProviderTest {
   public void containsDelegatingModelListWithModelId() throws Exception {
     assertTrue(modelListProvider.getModelList(DELEGATING_MODEL_LIST_ID).contains(CONTAINED_MODEL_ID));
   }
+
+  @Test
+  public void returnsEmptyModelListForUnknownModelListId() throws Exception {
+    assertFalse(modelListProvider.getModelList("Nonsens").contains(CONTAINED_MODEL_ID)); //$NON-NLS-1$
+  }
 }
