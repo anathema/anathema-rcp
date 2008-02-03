@@ -22,7 +22,7 @@ public class DummyCaste implements ICaste {
 
   @Override
   public String getPrintName() {
-    return null;
+    return casteId + "PrintName"; //$NON-NLS-1$
   }
 
   @Override

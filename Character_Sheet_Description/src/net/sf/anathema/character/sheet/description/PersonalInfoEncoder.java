@@ -62,7 +62,7 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
     ICharacterText casteText = new CharacterTextContainer().getText("caste"); //$NON-NLS-1$
     if (casteText != null && casteText.isActiveFor(character)) {
       String casteContent = casteText.getTextFor(character);
-      String label = casteText.getLabelFor(character);
+      String label = casteText.getLabel();
       drawLabelledContent(directContent, label, casteContent, new Position(secondColumnX, secondRowY), entryWidth);
     }
     float thirdRowY = secondRowY - lineHeight;

@@ -10,5 +10,5 @@ public interface ICharacterText extends IExecutableExtension {
   
   public boolean isActiveFor(ICharacter character);
 
-  public String getLabelFor(ICharacter character);
+  public String getLabel();
 }
