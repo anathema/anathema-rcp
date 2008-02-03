@@ -34,11 +34,11 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
 
   @Override
   public M load(Document document, T modelTemplate) throws PersistenceException {
-    final List<IBasicTrait> attributeTraits = new ArrayList<IBasicTrait>();
+    final List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
     for (Element traitElement : ElementUtilities.elements(document.getRootElement(), TAG_TRAIT)) {
       IIdentificate traitType = new Identificate(ElementUtilities.getRequiredAttrib(traitElement, ATTRIB_ID));
       IBasicTrait trait = new BasicTrait(traitType);
-      attributeTraits.add(trait);
+      traits.add(trait);
       trait.getCreationModel().setValue(ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_CREATION_VALUE));
       if (traitElement.attribute(ATTRIB_EXPERIENCED_VALUE) != null) {
         int experiencedValue = ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE);
@@ -49,7 +49,7 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
         trait.getStatusManager().setStatus(new FavoredStatus());
       }
     }
-    M model = createModelFor(attributeTraits.toArray(new IBasicTrait[attributeTraits.size()]));
+    M model = createModelFor(traits.toArray(new IBasicTrait[traits.size()]));
     model.setClean();
     return model;
   }
