@@ -6,6 +6,8 @@ import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.caste.model.CasteTemplate;
 import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.core.fake.DummyModelCollection;
+import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.IExperience;
 
 import org.eclipse.core.resources.IFile;
 import org.junit.Before;
@@ -30,6 +32,7 @@ public class CasteEditorInputFactoryTest {
   @Before
   public void createModelCollection() {
     modelCollection = new DummyModelCollection();
+    modelCollection.addModel(IExperience.MODEL_ID, new DummyExperience());
   }
 
   @Test

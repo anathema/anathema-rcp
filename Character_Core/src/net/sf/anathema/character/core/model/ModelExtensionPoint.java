@@ -52,7 +52,9 @@ public class ModelExtensionPoint {
       return new ModelInitializer(model, markerHandler, identifier);
     }
     catch (Exception e) {
-      throw new IllegalArgumentException(Messages.ModelCache_ModelLoadError, e);
+      throw new IllegalArgumentException(
+          NLS.bind(Messages.ModelCache_ModelLoadError_Format, identifier.getModelId()),
+          e);
     }
   }
 

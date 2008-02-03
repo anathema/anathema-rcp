@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -24,6 +25,7 @@ public class CasteEditorInputFactory extends AbstractExecutableExtension impleme
       IDisplayNameProvider nameProvider,
       IModelCollection modelProvider) throws PersistenceException, CoreException {
     ICasteModel casteModel = (ICasteModel) modelProvider.getModel(new ModelIdentifier(characterId, ICasteModel.ID));
-    return new CasteEditorInput(modelFile, imageUrl, nameProvider, casteModel);
+    IExperience experience = (IExperience) modelProvider.getModel(new ModelIdentifier(characterId, IExperience.MODEL_ID));
+    return new CasteEditorInput(modelFile, imageUrl, nameProvider, casteModel, experience);
   }
 }

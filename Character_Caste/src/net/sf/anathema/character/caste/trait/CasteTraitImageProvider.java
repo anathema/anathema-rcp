@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
+import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.character.trait.status.ITraitStatusImageProvider;
 
 import org.eclipse.swt.graphics.Image;
@@ -17,13 +18,15 @@ public class CasteTraitImageProvider extends AbstractExecutableExtension impleme
 
   @Override
   public Image getImage(IDisplayTrait trait, ICharacterId characterId) {
-    IModelCollection modelCollection = ModelCache.getInstance();
-    ICasteModel model = (ICasteModel) modelCollection.getModel(new ModelIdentifier(characterId, ICasteModel.ID));
-    if (model == null) {
+    ITraitStatus status = trait.getFavorization().getStatusModel().getStatus();
+    if (!(status instanceof CasteStatus)) {
       return null;
-    }    
+    }
+    IModelCollection modelCollection = ModelCache.getInstance();
+    ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, ICasteModel.ID);
+    ICasteModel model = (ICasteModel) modelCollection.getModel(modelIdentifier);
     ICaste caste = model.getCaste();
-    if (caste != null && caste.supportsTrait(trait.getTraitType())) {
+    if (caste.supportsTrait(trait.getTraitType())) {
       return ICharacterCorePluginConstants.IMAGE_REGISTRY.get(caste.getId());
     }
     return null;
