@@ -33,7 +33,7 @@ public class ModelInitializerWithoutMarkerHandleTest {
     IModelMarker uncalledMarker = EasyMock.createMock(IModelMarker.class);
     EasyMock.replay(uncalledMarker);
     markers.add(uncalledMarker);
-    modelInitializer.createMarkers();
+    modelInitializer.initialize();
     EasyMock.verify(uncalledMarker);
   }
 }

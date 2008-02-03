@@ -48,8 +48,7 @@ public class ModelExtensionPoint {
       IContentHandle file = getFile(identifier, extensionElement);
       IModel model = factory.create(file, template, identifier.getCharacterId());
       model.setClean();
-      IMarkerHandle markerHandler = (IMarkerHandle) file.getAdapter(IMarkerHandle.class);
-      return new ModelInitializer(model, markerHandler, identifier);
+      return new ModelInitializer(model, file, identifier);
     }
     catch (Exception e) {
       throw new IllegalArgumentException(

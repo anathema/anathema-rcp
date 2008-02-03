@@ -1,8 +1,11 @@
 package net.sf.anathema.character.core.model.initialize;
 
+import static org.easymock.EasyMock.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
@@ -28,7 +31,10 @@ public class ModelInitializerWithMarkerHandleTest {
     EasyMock.expect(markerCollection.getModelMarkers(MY_NICE_MODEL)).andReturn(markers).anyTimes();
     EasyMock.replay(markerCollection);
     markerHandle = EasyMock.createMock(IMarkerHandle.class);
-    modelInitializer = new ModelInitializer(null, markerHandle, modelIdentifier, markerCollection);
+    IContentHandle contentHandler = createMock(IContentHandle.class);
+    expect(contentHandler.getAdapter(IMarkerHandle.class)).andReturn(markerHandle).anyTimes();
+    replay(contentHandler);
+    modelInitializer = new ModelInitializer(null, contentHandler, modelIdentifier, markerCollection);
   }
 
   @Test
@@ -37,7 +43,7 @@ public class ModelInitializerWithMarkerHandleTest {
     calledMarker.mark(markerHandle, modelIdentifier);
     EasyMock.replay(calledMarker);
     markers.add(calledMarker);
-    modelInitializer.createMarkers();
+    modelInitializer.initialize();
     EasyMock.verify(calledMarker);
   }
 }

@@ -1,5 +1,6 @@
 package net.sf.anathema.character.core.model.initialize;
 
+import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -12,17 +13,17 @@ public class ModelInitializer implements IModelInitializer {
   private final IModelIdentifier modelIdentifier;
   private final IModelMarkerCollection modelMarkerCollection;
 
-  public ModelInitializer(IModel modelObject, IMarkerHandle handler, IModelIdentifier modelIdentifier) {
-    this(modelObject, handler, modelIdentifier, new ModelMarkerExtensionPoint());
+  public ModelInitializer(IModel modelObject, IContentHandle file, IModelIdentifier modelIdentifier) {
+    this(modelObject, file, modelIdentifier, new ModelMarkerExtensionPoint());
   }
 
   public ModelInitializer(
       IModel modelObject,
-      IMarkerHandle handler,
+      IContentHandle file,
       IModelIdentifier modelIdentifier,
       IModelMarkerCollection modelMarkerCollection) {
     this.modelObject = modelObject;
-    this.markerHandle = handler;
+    this.markerHandle = (IMarkerHandle) file.getAdapter(IMarkerHandle.class);
     this.modelIdentifier = modelIdentifier;
     this.modelMarkerCollection = modelMarkerCollection;
   }
@@ -33,7 +34,11 @@ public class ModelInitializer implements IModelInitializer {
   }
 
   @Override
-  public void createMarkers() {
+  public void initialize() {
+    createMarkers();
+  }
+
+  private void createMarkers() {
     if (markerHandle == null) {
       return;
     }

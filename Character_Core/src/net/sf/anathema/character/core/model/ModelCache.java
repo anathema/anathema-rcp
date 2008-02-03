@@ -30,7 +30,7 @@ public class ModelCache implements IModelCollection {
       if (model != null) {
         modelsByIdentifier.put(identifier, model);
         identifiersByModel.put(model, identifier);
-        initializer.createMarkers();
+        initializer.initialize();
       }
     }
     return model;
