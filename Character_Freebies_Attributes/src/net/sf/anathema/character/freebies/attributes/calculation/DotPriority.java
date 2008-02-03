@@ -7,29 +7,26 @@ import java.util.Map;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 
 public class DotPriority {
-  private Map<Priority, Dots> bestDots = new HashMap<Priority, Dots>();
+  private Map<Priority, Dots> bestDotsByPriority = new HashMap<Priority, Dots>();
   private int bestPointReduction = Integer.MAX_VALUE;
 
-  public void set(Priority[] priorities, Dots[] dots, int pointReduction) {
+  public void set(Map<Priority, Dots> dotsByPriority, int pointReduction) {
     if (bestPointReduction > pointReduction) {
-      exchange(priorities, dots, pointReduction);
+      exchange(dotsByPriority, pointReduction);
     }
   }
 
-  private void exchange(Priority[] priorityGroups, Dots[] currentDots, int pointReduction) {
+  private void exchange(Map<Priority, Dots> dotsByPriority, int pointReduction) {
     bestPointReduction = pointReduction;
-    bestDots.clear();
-    for (int index = 0; index < priorityGroups.length; index++) {
-      bestDots.put(priorityGroups[index], currentDots[index]);
-    }
+    bestDotsByPriority = dotsByPriority;
   }
 
   public Dots get(Priority priority) {
-    return bestDots.get(priority);
+    return bestDotsByPriority.get(priority);
   }
 
   public Dots[] getAllDots() {
-    Collection<Dots> values = bestDots.values();
+    Collection<Dots> values = bestDotsByPriority.values();
     return values.toArray(new Dots[values.size()]);
   }
 }

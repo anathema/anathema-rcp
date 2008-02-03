@@ -2,6 +2,7 @@ package net.sf.anathema.character.freebies.attributes.calculation;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,13 +61,17 @@ public class AttributePointCalculator {
         if (firstPriority == secondPriority) {
           continue;
         }
-        Priority thirdGroup = getLastGroup(firstPriority, secondPriority);
+        Priority thirdPriority = getLastGroup(firstPriority, secondPriority);
         Dots[] currentDots = new Dots[] {
             new Dots(creditByPriorityGroup.get(firstPriority), traitCollection, traitGroups[0]),
             new Dots(creditByPriorityGroup.get(secondPriority), traitCollection, traitGroups[1]),
-            new Dots(creditByPriorityGroup.get(thirdGroup), traitCollection, traitGroups[2]) };
+            new Dots(creditByPriorityGroup.get(thirdPriority), traitCollection, traitGroups[2]) };
         int pointReduction = calculatePoints(currentDots);
-        newPriority.set(new Priority[] { firstPriority, secondPriority, thirdGroup }, currentDots, pointReduction);
+        Map<Priority, Dots> dotsByPriority = new HashMap<Priority, Dots>();
+        dotsByPriority.put(firstPriority, currentDots[0]);
+        dotsByPriority.put(secondPriority, currentDots[1]);
+        dotsByPriority.put(thirdPriority, currentDots[2]);
+        newPriority.set(dotsByPriority, pointReduction);
       }
     }
     return newPriority;
