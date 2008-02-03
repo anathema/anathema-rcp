@@ -31,7 +31,15 @@
          </property>
          <property
                name="windowImages"
-               value="icons/SunGear_16.gif,icons/SunGear_32.gif,icons/SunGear_48.gif">
+               value="icons/SunGear_16.gif,icons/SunGear_32.gif,icons/SunGear_48.gif,icons/SunGear_64.gif,icons/SunGear_128.gif">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/SunGear_128.gif">
+         </property>
+         <property
+               name="aboutText"
+               value="Hallo Du">
          </property>
       </product>
    </extension>
