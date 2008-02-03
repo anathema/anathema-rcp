@@ -74,7 +74,6 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
   }
 
   private int getPointsCoveredByCredit(IIdentificate traitType) {
-    // TODO Case 118 - SurplusMarking wieder aktivieren
     ITraitGroup traitGroup = input.findTraitGroup(traitType);
     Map<PriorityGroup, Integer> creditByPriority = new AttributePriorityFreebies().get(
         input.getCharacterId(),
