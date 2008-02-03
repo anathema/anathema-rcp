@@ -10,7 +10,7 @@ public class CasteCharacterText extends AbstractExecutableExtension implements I
 
   @Override
   public String getLabel() {
-    return "Caste";
+    return "Caste:";
   }
 
   @Override

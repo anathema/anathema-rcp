@@ -31,7 +31,7 @@ public class CasteCharacterTextTest {
 
   @Test
   public void returnsCasteLabel() throws Exception {
-    assertEquals("Caste", casteText.getLabel()); //$NON-NLS-1$
+    assertEquals("Caste:", casteText.getLabel()); //$NON-NLS-1$
   }
 
   @Test
