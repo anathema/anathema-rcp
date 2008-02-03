@@ -1,5 +1,6 @@
 package net.sf.anathema.character.attributes.points;
 
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
@@ -56,6 +57,17 @@ public class AttributeBonusPointHandler_LoadedModelTest {
     EasyMock.replay(resourceHandler);
     bonusPointHandler.getPoints(modelIdentifier.getCharacterId());
     EasyMock.verify(marker);
+  }
+
+  @Test
+  public void setsNoMarkerWithCalculationIfResourceDoesNotExist() throws Exception {
+    IFile resource = EasyMock.createMock(IFile.class);
+    EasyMock.expect(resource.exists()).andStubReturn(false);
+    EasyMock.replay(resource);
+    EasyMock.expect(resourceHandler.getResource(modelIdentifier)).andStubReturn(resource);
+    EasyMock.replay(resourceHandler);
+    bonusPointHandler.getPoints(modelIdentifier.getCharacterId());
+    verify(resource);
   }
 
   @Test

@@ -78,7 +78,9 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
   private int calculatePoints(IResource resource, ModelIdentifier identifier) throws CoreException {
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelCollection.getModel(identifier);
     int bonusPoints = calculatePoints(attributes, identifier.getCharacterId());
-    updateMarker(resource, bonusPoints);
+    if (resource.exists()) {
+      updateMarker(resource, bonusPoints);
+    }
     return bonusPoints;
   }
 
