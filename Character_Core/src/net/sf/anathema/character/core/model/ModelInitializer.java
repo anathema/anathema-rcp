@@ -37,6 +37,7 @@ public class ModelInitializer implements IModelInitializer {
 
   @Override
   public void initialize() {
+    getModel().setClean();
     createMarkers();
   }
 
@@ -47,5 +48,9 @@ public class ModelInitializer implements IModelInitializer {
     for (IModelMarker marking : modelMarkerCollection.getModelMarkers(modelIdentifier.getModelId())) {
       marking.mark(markerHandle, modelIdentifier);
     }
+  }
+  
+  protected final IModelIdentifier getModelIdentifier() {
+    return modelIdentifier;
   }
 }

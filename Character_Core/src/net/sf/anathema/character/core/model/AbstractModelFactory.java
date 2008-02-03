@@ -2,7 +2,6 @@ package net.sf.anathema.character.core.model;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -16,8 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 public abstract class AbstractModelFactory<T extends IModelTemplate, M extends IModel> extends
     AbstractExecutableExtension implements IModelFactory<M> {
 
-  @Override
-  public M create(IContentHandle modelContent, ICharacterTemplate template, ICharacterId characterId)
+  protected final M create(IContentHandle modelContent, ICharacterTemplate template)
       throws PersistenceException,
       CoreException {
     IModelPersister<T, M> persister = getPersister();
@@ -34,7 +32,11 @@ public abstract class AbstractModelFactory<T extends IModelTemplate, M extends I
   protected abstract IModelPersister<T, M> getPersister();
 
   @Override
-  public IModelInitializer createInitializer(M model, IContentHandle file, IModelIdentifier identifier) {
-    return new ModelInitializer(model, file, identifier);
+  public IModelInitializer createInitializer(
+      IContentHandle contentHandler,
+      ICharacterTemplate template,
+      IModelIdentifier identifier) throws PersistenceException, CoreException {
+    M model = create(contentHandler, template);
+    return new ModelInitializer(model, contentHandler, identifier);
   }
 }

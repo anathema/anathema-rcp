@@ -9,6 +9,9 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelInitializer;
 import net.sf.anathema.character.core.model.IModelPersister;
+import net.sf.anathema.lib.exception.PersistenceException;
+
+import org.eclipse.core.runtime.CoreException;
 
 public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICasteModel> {
   private final CasteModelPersister persister = new CasteModelPersister();
@@ -29,10 +32,11 @@ public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICast
 
   @Override
   public IModelInitializer createInitializer(
-      final ICasteModel model,
-      IContentHandle file,
-      final IModelIdentifier identifier) {
-    return new CasteModelInitializer(model, file, identifier, identifier, model);
+      IContentHandle contentHandler,
+      ICharacterTemplate template,
+      IModelIdentifier identifier) throws PersistenceException, CoreException {
+    ICasteModel model = create(contentHandler, template);
+    return new CasteModelInitializer(contentHandler, identifier, model);
   }
 
   @Override

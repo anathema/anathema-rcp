@@ -12,7 +12,6 @@ import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
-import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.internal.ModelDescriptor;
 import net.sf.anathema.character.core.model.internal.NullModelDescriptor;
@@ -40,12 +39,10 @@ public class ModelExtensionPoint {
       throw new IllegalArgumentException(NLS.bind(Messages.ModelCache_ModelNotFound_Message, identifier.getModelId()));
     }
     try {
-      IModelFactory factory = extensionElement.getAttributeAsObject(ATTRIB_MODEL_FACTORY, IModelFactory.class);
+      IModelFactory< ? > factory = extensionElement.getAttributeAsObject(ATTRIB_MODEL_FACTORY, IModelFactory.class);
       ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(identifier.getCharacterId());
       IContentHandle file = getFile(identifier, extensionElement);
-      IModel model = factory.create(file, template, identifier.getCharacterId());
-      model.setClean();
-      return factory.createInitializer(model, file, identifier);
+      return factory.createInitializer(file, template, identifier);
     }
     catch (Exception e) {
       throw new IllegalArgumentException(
