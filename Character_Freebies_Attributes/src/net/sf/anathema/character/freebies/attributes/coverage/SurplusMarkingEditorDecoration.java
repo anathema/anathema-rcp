@@ -12,9 +12,13 @@ import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
 import net.sf.anathema.character.core.traitview.SurplusPainter;
 import net.sf.anathema.character.freebies.attributes.AttributePriorityFreebies;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
+import net.sf.anathema.character.freebies.attributes.calculation.Dots;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
@@ -75,9 +79,10 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
     Map<PriorityGroup, Integer> creditByPriority = new AttributePriorityFreebies().get(
         input.getCharacterId(),
         new CreditManager());
-    PriorityGroup priority = new AttributeGroupPriorityCalculator(context, creditByPriority).getPriority(traitGroup);
-    int credit = creditByPriority.get(priority);
-    PointCoverageCalculator calculator = new PointCoverageCalculator(context, credit);
+    TraitGroup[] traitGroups = context.getTraitGroups();
+    ITraitCollectionModel collection = context.getCollection();
+    Dots dots = new AttributePointCalculator(creditByPriority, collection, traitGroups).getDotsFor(traitType);
+    PointCoverageCalculator calculator = new PointCoverageCalculator(context, dots.getCredit());
     return calculator.calculateCoverageFor(traitGroup).getPointsCovered(traitType);
   }
 

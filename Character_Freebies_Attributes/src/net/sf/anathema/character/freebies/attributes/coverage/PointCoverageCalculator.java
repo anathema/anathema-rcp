@@ -1,7 +1,6 @@
 package net.sf.anathema.character.freebies.attributes.coverage;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
@@ -24,17 +23,7 @@ public class PointCoverageCalculator {
     }
     String[] ids = traitGroup.getTraitIds();
     final ITraitCollectionModel collection = context.getCollection();
-    Arrays.sort(ids, new Comparator<String>() {
-      @Override
-      public int compare(String firstType, String secondType) {
-        boolean firstFavored = collection.getTrait(firstType).getStatusManager().getStatus().isCheap();
-        boolean secondFavored = collection.getTrait(secondType).getStatusManager().getStatus().isCheap();
-        if (firstFavored && secondFavored || !(firstFavored || secondFavored)) {
-          return 0;
-        }
-        return firstFavored ? -1 : 1;
-      }
-    });
+    Arrays.sort(ids, new CheapTraitComparator(collection));
     CoverageCalculation calculation = new CoverageCalculation(context.getCollection());
     int creditLeft = credit;
     for (String id : ids) {

@@ -6,6 +6,7 @@ import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.lib.util.IIdentificate;
 
 public class Dots {
 
@@ -63,5 +64,18 @@ public class Dots {
   public int expensivlySpentAsPartOfCredit() {
     int creditSpent = Math.min(credit, spentTotally());
     return creditSpent - cheaplySpentAsPartOfCredit();
+  }
+  
+  public boolean containsTrait(IIdentificate traitId) {
+    for (IBasicTrait trait : traits) {
+      if (trait.getTraitType().equals(traitId)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public int getCredit() {
+    return credit;
   }
 }

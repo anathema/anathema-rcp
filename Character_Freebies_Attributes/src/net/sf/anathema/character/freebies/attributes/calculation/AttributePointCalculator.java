@@ -8,6 +8,7 @@ import java.util.Map;
 import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.lib.util.IIdentificate;
 
 public class AttributePointCalculator {
 
@@ -26,18 +27,18 @@ public class AttributePointCalculator {
     }
   }
 
-  final ITraitCollectionModel attributes;
-  private final ITraitGroup[] groups;
-  private final Map<PriorityGroup, Integer> creditByGroup;
-  private DotPriority dots;
+  final ITraitCollectionModel traitCollection;
+  private final ITraitGroup[] traitGroups;
+  private final Map<PriorityGroup, Integer> creditByPriorityGroup;
+  private DotPriority dotPriority;
 
   public AttributePointCalculator(
       Map<PriorityGroup, Integer> creditByGroup,
       ITraitCollectionModel attributes,
       ITraitGroup[] groups) {
-    this.creditByGroup = creditByGroup;
-    this.attributes = attributes;
-    this.groups = groups;
+    this.creditByPriorityGroup = creditByGroup;
+    this.traitCollection = attributes;
+    this.traitGroups = groups;
   }
 
   public Dots dotsFor(PriorityGroup priority) {
@@ -49,8 +50,8 @@ public class AttributePointCalculator {
   }
   
   private DotPriority getDots() {
-    if (dots != null) {
-      return dots;
+    if (dotPriority != null) {
+      return dotPriority;
     }
     PriorityGroup[] priorityGroups = PriorityGroup.values();
     DotPriority dotPriority = new DotPriority();
@@ -61,9 +62,9 @@ public class AttributePointCalculator {
         }
         PriorityGroup thirdGroup = getLastGroup(firstGroup, secondGroup);
         Dots[] currentDots = new Dots[] {
-            new Dots(creditByGroup.get(firstGroup), attributes, groups[0]),
-            new Dots(creditByGroup.get(secondGroup), attributes, groups[1]),
-            new Dots(creditByGroup.get(thirdGroup), attributes, groups[2]) };
+            new Dots(creditByPriorityGroup.get(firstGroup), traitCollection, traitGroups[0]),
+            new Dots(creditByPriorityGroup.get(secondGroup), traitCollection, traitGroups[1]),
+            new Dots(creditByPriorityGroup.get(thirdGroup), traitCollection, traitGroups[2]) };
         int pointReduction = calculatePoints(currentDots);
         dotPriority.set(new PriorityGroup[] { firstGroup, secondGroup, thirdGroup }, currentDots, pointReduction);
       }
@@ -89,5 +90,14 @@ public class AttributePointCalculator {
     int bonusSaved = favoredSpent * IAttributeConstants.FAVORED_BONUS_POINT_COST;
     bonusSaved += unfavoredSpent * IAttributeConstants.BONUS_POINT_COST;
     return -bonusSaved;
+  }
+
+  public Dots getDotsFor(IIdentificate traitType) {
+    for (Dots dots : getDotsForGroups()) {
+      if (dots.containsTrait(traitType)) {
+        return dots;
+      }
+    }
+    return null;
   }
 }
