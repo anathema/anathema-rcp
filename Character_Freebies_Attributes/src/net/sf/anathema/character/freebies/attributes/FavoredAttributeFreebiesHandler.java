@@ -12,7 +12,7 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.Dots;
-import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
@@ -36,7 +36,7 @@ public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension
   public int getPoints(ICharacterId id, int credit) {
     IModelIdentifier identifier = new ModelIdentifier(id, Attributes.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(identifier);
-    Map<PriorityGroup, Integer> creditsByGroup = new AttributePriorityFreebies().get(id, creditManager);
+    Map<Priority, Integer> creditsByGroup = new AttributePriorityFreebies().get(id, creditManager);
     AttributePointCalculator calculator = new AttributePointCalculator(
         creditsByGroup,
         attributes,

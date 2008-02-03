@@ -10,7 +10,7 @@ import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.repository.ModelResourceHandler;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
-import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -35,7 +35,7 @@ public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler {
 
   @Override
   protected int calculatePoints(ITraitCollectionModel attributes, ICharacterId characterId) {
-    Map<PriorityGroup, Integer> creditByGroup = new AttributePriorityFreebies().get(characterId, creditManager);
+    Map<Priority, Integer> creditByGroup = new AttributePriorityFreebies().get(characterId, creditManager);
     TraitGroup[] attributeGroups = new AttributeGroupConfiguration().getGroups();
     AttributePointCalculator dotsCalculator = new AttributePointCalculator(creditByGroup, attributes, attributeGroups);
     return AttributePointCalculator.calculatePoints(dotsCalculator.getDotsForGroups());

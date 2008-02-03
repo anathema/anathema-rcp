@@ -49,7 +49,7 @@ public class PrioritylessAttributeFreebiesTest {
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(
         modelProvider,
         CreditManagerObjectMother.createNiceManager(),
-        AttributePointCalculator.PriorityGroup.Primary);
+        AttributePointCalculator.Priority.Primary);
     assertEquals(freebiesPoints, freebies.getPoints(null, 3));
   }
 }

@@ -11,6 +11,6 @@ public class PrimaryAttributeFreebiesHandlerTest {
   @Test
   public void priorityGroupIsPrimary() throws Exception {
     PrimaryAttributeFreebies handler = new PrimaryAttributeFreebies(null, null);
-    assertEquals(AttributePointCalculator.PriorityGroup.Primary, handler.getPriority());
+    assertEquals(AttributePointCalculator.Priority.Primary, handler.getPriority());
   }
 }

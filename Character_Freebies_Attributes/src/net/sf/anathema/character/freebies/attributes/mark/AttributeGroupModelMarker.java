@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
-import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -12,20 +12,20 @@ public class AttributeGroupModelMarker implements IModelMarker {
 
   private final IAttributeCreditCollection creditCollection;
   private final ITotalDotsSpent dotsSpent;
-  private final PriorityGroup priorityGroup;
+  private final Priority priorityGroup;
   private final String markerId;
-  private final Map<PriorityGroup, String> messageFormatByGroup = new HashMap<PriorityGroup, String>() {
+  private final Map<Priority, String> messageFormatByGroup = new HashMap<Priority, String>() {
     {
-      put(PriorityGroup.Primary, Messages.AttributeGroupModelMarker_UnspentPrimaryDescription);
-      put(PriorityGroup.Secondary, Messages.AttributeGroupModelMarker_UnspentSecondaryDescription);
-      put(PriorityGroup.Tertiary, Messages.AttributeGroupModelMarker_UnspentTertiaryDescription);
+      put(Priority.Primary, Messages.AttributeGroupModelMarker_UnspentPrimaryDescription);
+      put(Priority.Secondary, Messages.AttributeGroupModelMarker_UnspentSecondaryDescription);
+      put(Priority.Tertiary, Messages.AttributeGroupModelMarker_UnspentTertiaryDescription);
     }
   };
 
   public AttributeGroupModelMarker(
       IAttributeCreditCollection creditCollection,
       ITotalDotsSpent dotsSpent,
-      PriorityGroup priorityGroup,
+      Priority priorityGroup,
       String markerId) {
     this.creditCollection = creditCollection;
     this.dotsSpent = dotsSpent;

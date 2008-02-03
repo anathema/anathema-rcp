@@ -14,7 +14,7 @@ import net.sf.anathema.character.core.traitview.SurplusPainter;
 import net.sf.anathema.character.freebies.attributes.AttributePriorityFreebies;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.Dots;
-import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
@@ -75,7 +75,7 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractExecutableExtensi
 
   private int getPointsCoveredByCredit(IIdentificate traitType) {
     ITraitGroup traitGroup = input.findTraitGroup(traitType);
-    Map<PriorityGroup, Integer> creditByPriority = new AttributePriorityFreebies().get(
+    Map<Priority, Integer> creditByPriority = new AttributePriorityFreebies().get(
         input.getCharacterId(),
         new CreditManager());
     TraitGroup[] traitGroups = context.getTraitGroups();

@@ -10,6 +10,6 @@ public class TertiaryAttributeFreebiesHandlerTest {
   @Test
   public void priorityGroupIsTertiary() throws Exception {
     TertiaryAttributeFreebies handler = new TertiaryAttributeFreebies(null, null);
-    assertEquals(AttributePointCalculator.PriorityGroup.Tertiary, handler.getPriority());
+    assertEquals(AttributePointCalculator.Priority.Tertiary, handler.getPriority());
   }
 }

@@ -11,7 +11,7 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.mark.IModelMarker;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
-import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 
 public class AttributesMarker extends AbstractExecutableExtension implements IModelMarker {
@@ -31,17 +31,17 @@ public class AttributesMarker extends AbstractExecutableExtension implements IMo
     AttributeGroupModelMarker primaryMarker = new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
-        PriorityGroup.Primary,
+        Priority.Primary,
         PRIMARY_MARKER);
     AttributeGroupModelMarker secondaryMarker = new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
-        PriorityGroup.Secondary,
+        Priority.Secondary,
         SECONDARY_MARKER);
     AttributeGroupModelMarker tertiaryMarker = new AttributeGroupModelMarker(
         creditCollection,
         dotsSpent,
-        PriorityGroup.Tertiary,
+        Priority.Tertiary,
         TERTIARY_MARKER);
     FavoredAttributePicksMarker picksMarker = new FavoredAttributePicksMarker(characterId);
     FavoredAttributeFreebiesMarker freebiesMarker = new FavoredAttributeFreebiesMarker(modelCache, creditManager, characterId);

@@ -2,7 +2,7 @@ package net.sf.anathema.character.freebies.attributes.mark;
 
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
-import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IMarker;
@@ -13,7 +13,7 @@ public class AttributeResourceMarkerWithCreditTest {
 
   private static final String MARKER_ID = "so.ein.schicker.marker.ist.schon.da"; //$NON-NLS-1$
   private static final int CREDIT = 2;
-  private static final PriorityGroup PRIORITY = PriorityGroup.Primary;
+  private static final Priority PRIORITY = Priority.Primary;
   private DummyChangeableModel model;
   private ITotalDotsSpent dotsSpent;
   private ResourceModelMarker attributeResourceMarker;
@@ -32,7 +32,7 @@ public class AttributeResourceMarkerWithCreditTest {
         MARKER_ID));
   }
 
-  private IAttributeCreditCollection createCreditCollection(PriorityGroup priority, int credit) {
+  private IAttributeCreditCollection createCreditCollection(Priority priority, int credit) {
     IAttributeCreditCollection creditCollection = EasyMock.createMock(IAttributeCreditCollection.class);
     EasyMock.expect(creditCollection.getCredit(priority)).andReturn(credit).anyTimes();
     EasyMock.replay(creditCollection);

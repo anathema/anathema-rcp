@@ -2,7 +2,7 @@ package net.sf.anathema.character.freebies.attributes.mark;
 
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
-import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.PriorityGroup;
+import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
@@ -18,7 +18,7 @@ public class AttributeResourceMarkerWithoutCreditTest {
 
   @Before
   public void createMarker() throws Exception {
-    PriorityGroup priority = PriorityGroup.Primary;
+    Priority priority = Priority.Primary;
     IAttributeCreditCollection creditCollection = createEmptyCreditCollection(priority);
     dotsSpent = EasyMock.createMock(ITotalDotsSpent.class);
     model = new DummyChangeableModel();
@@ -30,7 +30,7 @@ public class AttributeResourceMarkerWithoutCreditTest {
         MARKER_ID));
   }
 
-  private IAttributeCreditCollection createEmptyCreditCollection(PriorityGroup priority) {
+  private IAttributeCreditCollection createEmptyCreditCollection(Priority priority) {
     IAttributeCreditCollection creditCollection = EasyMock.createMock(IAttributeCreditCollection.class);
     EasyMock.expect(creditCollection.getCredit(priority)).andReturn(0).anyTimes();
     EasyMock.replay(creditCollection);
