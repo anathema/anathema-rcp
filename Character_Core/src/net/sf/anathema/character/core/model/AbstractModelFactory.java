@@ -5,6 +5,7 @@ import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModel;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.template.IModelTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
@@ -12,11 +13,14 @@ import net.sf.anathema.lib.xml.DocumentUtilities;
 import org.dom4j.Document;
 import org.eclipse.core.runtime.CoreException;
 
-public abstract class AbstractModelFactory<T extends IModelTemplate> extends AbstractExecutableExtension implements IModelFactory {
+public abstract class AbstractModelFactory<T extends IModelTemplate, M extends IModel> extends
+    AbstractExecutableExtension implements IModelFactory<M> {
 
   @Override
-  public IModel create(IContentHandle modelContent, ICharacterTemplate template, ICharacterId characterId) throws PersistenceException, CoreException {
-    IModelPersister<T, ?> persister = getPersister();
+  public M create(IContentHandle modelContent, ICharacterTemplate template, ICharacterId characterId)
+      throws PersistenceException,
+      CoreException {
+    IModelPersister<T, M> persister = getPersister();
     T modelTemplate = createModelTemplate(template);
     if (!modelContent.exists()) {
       return persister.createNew(modelTemplate);
@@ -24,8 +28,13 @@ public abstract class AbstractModelFactory<T extends IModelTemplate> extends Abs
     Document document = DocumentUtilities.read(modelContent.getContents());
     return persister.load(document, modelTemplate);
   }
-  
+
   protected abstract T createModelTemplate(ICharacterTemplate template);
 
-  protected abstract IModelPersister<T, ?> getPersister();
+  protected abstract IModelPersister<T, M> getPersister();
+
+  @Override
+  public IModelInitializer createInitializer(M model, IContentHandle file, IModelIdentifier identifier) {
+    return new ModelInitializer(model, file, identifier);
+  }
 }

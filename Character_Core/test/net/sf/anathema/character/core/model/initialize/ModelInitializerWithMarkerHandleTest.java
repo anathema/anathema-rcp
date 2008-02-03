@@ -9,6 +9,7 @@ import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.character.core.model.ModelInitializer;
 import net.sf.anathema.character.core.model.mark.IModelMarker;
 
 import org.easymock.EasyMock;

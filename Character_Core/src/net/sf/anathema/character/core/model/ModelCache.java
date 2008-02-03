@@ -6,7 +6,6 @@ import java.util.Map;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.model.initialize.IModelInitializer;
 
 public class ModelCache implements IModelCollection {
 

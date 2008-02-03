@@ -1,9 +1,11 @@
-package net.sf.anathema.character.core.model.initialize;
+package net.sf.anathema.character.core.model;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.model.initialize.IModelMarkerCollection;
+import net.sf.anathema.character.core.model.initialize.ModelMarkerExtensionPoint;
 import net.sf.anathema.character.core.model.mark.IModelMarker;
 
 public class ModelInitializer implements IModelInitializer {

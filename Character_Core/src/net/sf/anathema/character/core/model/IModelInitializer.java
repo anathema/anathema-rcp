@@ -6,5 +6,5 @@ public interface IModelInitializer {
 
   public IModel getModel();
 
-  public void createMarkers();
+  public void initialize();
 }

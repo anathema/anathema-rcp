@@ -7,7 +7,6 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -15,8 +14,6 @@ import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.model.initialize.IModelInitializer;
-import net.sf.anathema.character.core.model.initialize.ModelInitializer;
 import net.sf.anathema.character.core.model.internal.ModelDescriptor;
 import net.sf.anathema.character.core.model.internal.NullModelDescriptor;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
@@ -48,7 +45,7 @@ public class ModelExtensionPoint {
       IContentHandle file = getFile(identifier, extensionElement);
       IModel model = factory.create(file, template, identifier.getCharacterId());
       model.setClean();
-      return new ModelInitializer(model, file, identifier);
+      return factory.createInitializer(model, file, identifier);
     }
     catch (Exception e) {
       throw new IllegalArgumentException(
