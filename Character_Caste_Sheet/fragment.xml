@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<fragment>
+   <extension
+         point="net.sf.anathema.character.report.texts">
+      <text
+            class="net.sf.anathema.character.caste.sheet.CasteCharacterText"
+            id="caste">
+      </text>
+   </extension>
+
+</fragment>

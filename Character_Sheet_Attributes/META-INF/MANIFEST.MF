@@ -11,3 +11,4 @@ Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.character.core,
  net.sf.anathema.character.sheet
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Eclipse-LazyStart: true

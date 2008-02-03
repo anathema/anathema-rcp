@@ -5,6 +5,8 @@ import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.description.ICharacterDescription;
+import net.sf.anathema.character.report.text.CharacterTextContainer;
+import net.sf.anathema.character.report.text.ICharacterText;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.content.AbstractPdfEncoder;
@@ -57,13 +59,11 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
     drawLabelledContent(directContent, Messages.PersonalInfoEncoder_ConceptLabel, conceptContent, new Position(
         firstColumnX,
         secondRowY), entryWidth);
-    //TODO Case 100 - Kastendruck setzt hier an.
-    boolean isExaltType = true;
-    if (isExaltType) {
-      String casteContent = null;
-      drawLabelledContent(directContent, Messages.PersonalInfoEncoder_CasteLabel, casteContent, new Position(
-          secondColumnX,
-          secondRowY), entryWidth);
+    ICharacterText casteText = new CharacterTextContainer().getText("caste"); //$NON-NLS-1$
+    if (casteText != null && casteText.isActiveFor(character)) {
+      String casteContent = casteText.getTextFor(character);
+      String label = casteText.getLabelFor(character);
+      drawLabelledContent(directContent, label, casteContent, new Position(secondColumnX, secondRowY), entryWidth);
     }
     float thirdRowY = secondRowY - lineHeight;
     String motivationContent = null;
