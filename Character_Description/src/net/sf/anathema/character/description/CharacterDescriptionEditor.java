@@ -24,6 +24,34 @@ public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPar
 
   public static final String EDITOR_ID = "net.sf.anathema.character.description.editor"; //$NON-NLS-1$
 
+  // TODO: Case 104: Hier Einsprungstelle für Umbenennen von Dateien, super Runnable nicht vergessen. Vielleicht im Persister?
+  // TODO: Case 104: Name beim Laden aus dem Filesystem erzeugen und nicht ins XML speichern
+  // TODO: Case 104: CharacterDisplayNameProvider umstellen
+  // TODO: Case 104: ImportWizard umstellen
+  // @Override
+  // protected Runnable createPostSaveRunnable() {
+  // return new Runnable() {
+  // @Override
+  // public void run() {
+  // CharacterDescriptionEditorInput editorInput = (CharacterDescriptionEditorInput) getPersistableEditorInput();
+  // IFolder characterFolder = editorInput.getCharacterFolder();
+  // String newCharacterName = editorInput.getItem().getName().getText();
+  // if (newCharacterName != null) {
+  // try {
+  // String previousCharacterName = URLDecoder.decode(characterFolder.getName(), "UTF-8"); //$NON-NLS-1$
+  // if (!previousCharacterName.equals(newCharacterName)) {
+  // String encode = URLEncoder.encode(newCharacterName, "UTF-8");
+  // characterFolder.move(new Path(encode), true, new NullProgressMonitor());
+  // }
+  // }
+  // catch (Exception e) {
+  // e.printStackTrace();
+  // }
+  // }
+  // }
+  // };
+  // }
+
   @Override
   protected IEditorControl createItemEditorControl() {
     return new AbstractItemEditorControl(this) {

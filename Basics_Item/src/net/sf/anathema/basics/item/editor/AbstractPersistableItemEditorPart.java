@@ -24,9 +24,14 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
 
   @Override
   public void doSave(IProgressMonitor monitor) {
-    Job saveJob = new SaveEditorJob(this, getSite().getShell().getDisplay());
+    Runnable postSave = createPostSaveRunnable();
+    Job saveJob = new SaveEditorJob(this.getPersistableEditorInput(), postSave, getSite().getShell().getDisplay());
     saveJob.setRule(ResourcesPlugin.getWorkspace().getRoot());
     saveJob.schedule();
+  }
+
+  protected Runnable createPostSaveRunnable() {
+    return new FireDirtyRunnable(this);
   }
 
   @Override

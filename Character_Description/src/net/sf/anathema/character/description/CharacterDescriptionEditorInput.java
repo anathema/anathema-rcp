@@ -5,6 +5,7 @@ import java.net.URL;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.osgi.util.NLS;
 
 public class CharacterDescriptionEditorInput extends AbstractCharacterModelEditorInput<ICharacterDescription> {
@@ -38,5 +39,10 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
   @Override
   protected String getModelId() {
     return ICharacterDescription.MODEL_ID;
+  }
+  
+  @Override
+  public IFolder getCharacterFolder() {
+    return super.getCharacterFolder();
   }
 }
