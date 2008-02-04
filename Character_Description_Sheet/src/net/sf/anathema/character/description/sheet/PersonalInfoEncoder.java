@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.description;
+package net.sf.anathema.character.description.sheet;
 
 import static net.sf.anathema.character.sheet.page.IVoidStateFormatConstants.*;
 import net.disy.commons.core.util.StringUtilities;
