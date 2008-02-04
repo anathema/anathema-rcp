@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
 import org.junit.Test;
 
 public class FileContentHandleTest {
@@ -18,5 +19,13 @@ public class FileContentHandleTest {
     FileContentHandle contentHandle = new FileContentHandle(file);
     IMarkerHandle markerHandler = (IMarkerHandle) contentHandle.getAdapter(IMarkerHandle.class);
     assertSame(marker, markerHandler.createMarker("markerID")); //$NON-NLS-1$
+  }
+  
+  @Test
+  public void isAdaptableForResource() throws Exception {
+    IFile file = EasyMock.createMock(IFile.class);
+    EasyMock.replay(file);
+    FileContentHandle contentHandle = new FileContentHandle(file);
+    assertSame(file, contentHandle.getAdapter(IResource.class));
   }
 }

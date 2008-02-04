@@ -5,6 +5,7 @@ import java.io.InputStream;
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
@@ -15,6 +16,7 @@ public class FileContentHandle extends DefaultAdaptable implements IContentHandl
   public FileContentHandle(IFile file) {
     this.file = file;
     add(IMarkerHandle.class, new ResourceMarkerHandle(file));
+    add(IResource.class, file);
   }
 
   @Override
