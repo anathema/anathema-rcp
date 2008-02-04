@@ -14,7 +14,7 @@ public class ViewElementDeleter {
 
   public void delete(final IPageDelible element) {
     try {
-      page.getWorkbenchWindow().run(true, false, new ViewElementDeleteRunnable(page, element));
+      page.getWorkbenchWindow().run(false, false, new ViewElementDeleteRunnable(page, element));
     }
     catch (InvocationTargetException e) {
       RepositoryPlugin.getDefaultInstance().log(
