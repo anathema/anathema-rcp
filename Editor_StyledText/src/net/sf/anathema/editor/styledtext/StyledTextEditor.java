@@ -9,6 +9,7 @@ import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.basics.jface.text.StyledTextView;
+import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
 import net.sf.anathema.lib.textualdescription.ITextView;
 import net.sf.anathema.lib.textualdescription.ITextualDescription;
@@ -46,7 +47,10 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
       @Override
       public void init(IEditorSite editorSite, IEditorInput input) {
         super.init(editorSite, input);
-        getItem().getName().addTextChangedListener(new UpdatePartNameListener(StyledTextEditor.this));
+        final IObjectValueChangedListener<String> listener = new UpdatePartNameListener(StyledTextEditor.this);
+        final ITextualDescription name = getItem().getName();
+        addDisposable(new TextChangeListenerDisposable(name, listener));
+        name.addTextChangedListener(listener);
       }
 
       @Override
