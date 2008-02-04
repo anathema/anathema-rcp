@@ -4,7 +4,7 @@
    <extension
          point="net.sf.anathema.character.sheet.encoders">
       <encoder
-            class="net.sf.anathema.character.sheet.description.PersonalInfoEncoder"
+            class="net.sf.anathema.character.description.sheet.PersonalInfoEncoder"
             fieldId="encoder.personalInfo">
       </encoder>
    </extension>
