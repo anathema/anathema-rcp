@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.core.runtime,
  net.sf.anathema.basics.pdf;visibility:=reexport,
  net.sf.anathema.character.core;visibility:=reexport,
  net.sf.anathema.basics.jface,
- net.sf.anathema.character.description,
  net.sf.anathema.character.report;visibility:=reexport
 Bundle-ClassPath: .
 Bundle-Localization: plugin
