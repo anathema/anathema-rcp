@@ -3,17 +3,19 @@ package net.sf.anathema.character.description;
 import java.net.URL;
 
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.osgi.util.NLS;
 
 public class CharacterDescriptionEditorInput extends AbstractCharacterModelEditorInput<ICharacterDescription> {
 
   private ICharacterDescription item;
 
   public CharacterDescriptionEditorInput(IFile file, URL imageUrl, ICharacterDescription description) {
-    super(file, imageUrl, null, new CharacterDescriptionPersister());
+    super(file, imageUrl, new ModelDisplayNameProvider(
+        Messages.CharacterDescriptionEditorInput_Description,
+        new DescriptionCharacterDisplayNameProvider(file, description)), new CharacterDescriptionPersister());
     this.item = description;
   }
 
@@ -32,15 +34,10 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
   }
 
   @Override
-  public String getName() {
-    return NLS.bind(Messages.CharacterDescriptionEditorInput_Description_Message, item.getName().getText());
-  }
-
-  @Override
   protected String getModelId() {
     return ICharacterDescription.MODEL_ID;
   }
-  
+
   @Override
   public IFolder getCharacterFolder() {
     return super.getCharacterFolder();

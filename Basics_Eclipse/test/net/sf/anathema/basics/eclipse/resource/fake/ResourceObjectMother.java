@@ -14,21 +14,28 @@ public class ResourceObjectMother {
 
   public static IFile createNonExistingFile() {
     IFile resource = EasyMock.createNiceMock(IFile.class);
-    EasyMock.expect(resource.exists()).andStubReturn(false);
+    EasyMock.expect(resource.exists()).andReturn(false).anyTimes();
     EasyMock.replay(resource);
     return resource;
   }
 
   public static IFile createFile(IContainer parent) {
     IFile file = EasyMock.createNiceMock(IFile.class);
-    EasyMock.expect(file.getParent()).andStubReturn(parent);
+    EasyMock.expect(file.getParent()).andReturn(parent).anyTimes();
     EasyMock.replay(file);
     return file;
   }
 
   public static IContainer createContainerWithFileAtArbitraryPath(IFile file) {
     IContainer root = EasyMock.createNiceMock(IContainer.class);
-    EasyMock.expect(root.getFile(EasyMock.isA(IPath.class))).andStubReturn(file);
+    EasyMock.expect(root.getFile(EasyMock.isA(IPath.class))).andReturn(file).anyTimes();
+    EasyMock.replay(root);
+    return root;
+  }
+
+  public static IContainer createNamedContainer(String name) {
+    IContainer root = EasyMock.createNiceMock(IContainer.class);
+    EasyMock.expect(root.getName()).andReturn(name).anyTimes();
     EasyMock.replay(root);
     return root;
   }
