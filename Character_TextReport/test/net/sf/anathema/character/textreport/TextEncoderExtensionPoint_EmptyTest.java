@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
+import net.sf.anathema.character.textreport.encoder.TextEncoderExtensionPoint;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -22,8 +22,9 @@ public class CasteTextReportEncoder extends AbstractTextEncoder implements IText
     if (model != null) {
       ICaste caste = model.getCaste();
       if (caste != null) {
-        Phrase traitPhrase = createTextParagraph(createBoldTitle("Caste:"));
-        traitPhrase.add(createTextChunk(caste.getPrintName()));
+        Phrase castePhrase = createTextParagraph(createBoldTitle("Caste:"));
+        castePhrase.add(createTextChunk(caste.getPrintName()));
+        paragraphics.add(castePhrase);
       }
     }
     return paragraphics;

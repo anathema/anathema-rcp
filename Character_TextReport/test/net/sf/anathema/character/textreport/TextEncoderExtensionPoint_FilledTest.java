@@ -11,6 +11,7 @@ import net.sf.anathema.basics.eclipse.extension.fake.MockExecutableExtensionAttr
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.IMockProp;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
+import net.sf.anathema.character.textreport.encoder.TextEncoderExtensionPoint;
 
 import org.easymock.EasyMock;
 import org.junit.Before;

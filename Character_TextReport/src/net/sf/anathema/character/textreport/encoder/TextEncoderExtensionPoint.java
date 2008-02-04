@@ -1,11 +1,11 @@
-package net.sf.anathema.character.textreport;
+package net.sf.anathema.character.textreport.encoder;
 
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
+import net.sf.anathema.character.textreport.IPluginConstants;
 
 public class TextEncoderExtensionPoint {
 
