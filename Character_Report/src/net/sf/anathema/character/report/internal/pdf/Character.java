@@ -8,6 +8,9 @@ import net.sf.anathema.character.core.character.ICharacterTypeFinder;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
+
+import org.eclipse.core.resources.IContainer;
 
 public class Character implements ICharacter {
 
@@ -39,5 +42,11 @@ public class Character implements ICharacter {
   @Override
   public ICharacterType getCharacterType() {
     return characterTypeFinder.getCharacterType(characterId);
+  }
+
+  @Override
+  public String getDisplayName() {
+    IContainer container = (IContainer) characterId.getAdapter(IContainer.class);
+    return new CharacterDisplayNameProvider(container).getDisplayName();
   }
 }

@@ -3,15 +3,13 @@ package net.sf.anathema.character.report.pdf;
 import net.sf.anathema.basics.swt.file.PdfFileOutputStreamFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.character.ModelIdentifier;
-import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.template.CharacterTemplateProvider;
-import net.sf.anathema.character.description.ICharacterDescription;
+import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
 import net.sf.anathema.character.report.internal.pdf.CharacterReportRunner;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -38,12 +36,8 @@ public abstract class AbstractReportHandler extends AbstractHandler {
     IEditorInput editorInput = editorPart.getEditorInput();
     IModelIdentifier identifier = (IModelIdentifier) editorInput.getAdapter(IModelIdentifier.class);
     ICharacterId characterId = identifier.getCharacterId();
-    ICharacterDescription description = (ICharacterDescription) ModelCache.getInstance().getModel(
-        new ModelIdentifier(characterId, ICharacterDescription.MODEL_ID));
-    if (description == null || description.getName().isEmpty()) {
-      return new CharacterTemplateProvider().getTemplate(characterId).getName();
-    }
-    return description.getName().getText();
+    IContainer container = (IContainer) characterId.getAdapter(IContainer.class);
+    return new CharacterDisplayNameProvider(container).getDisplayName();
   }
 
 }

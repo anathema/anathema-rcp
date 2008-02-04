@@ -8,8 +8,7 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.pdf,
  org.eclipse.core.runtime,
  net.sf.anathema.basics.jface,
- net.sf.anathema.basics.eclipse,
- net.sf.anathema.character.description
+ net.sf.anathema.basics.eclipse
 Export-Package: net.sf.anathema.character.report.pdf,
  net.sf.anathema.character.report.text
 Bundle-Localization: plugin
