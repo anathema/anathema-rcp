@@ -4,3 +4,6 @@ Bundle-Name: Character_Attributes_Sheet Fragment
 Bundle-SymbolicName: net.sf.anathema.character.attributes.sheet
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.attributes;bundle-version="1.0.0"
+Require-Bundle: net.sf.anathema.character.report;bundle-version="1.0.0",
+ net.sf.anathema.basics.pdf;bundle-version="1.0.0",
+ net.sf.anathema.character.sheet;bundle-version="1.0.0"

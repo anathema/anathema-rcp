@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.trait;
+package net.sf.anathema.character.trait.sheet;
 
 import net.sf.anathema.character.sheet.content.AbstractPdfEncoder;
 import net.sf.anathema.character.sheet.elements.Position;

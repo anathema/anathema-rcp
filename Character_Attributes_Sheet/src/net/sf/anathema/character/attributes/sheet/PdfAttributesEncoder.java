@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.attributes;
+package net.sf.anathema.character.attributes.sheet;
 
 import java.awt.Color;
 import java.util.List;
@@ -11,10 +11,10 @@ import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
-import net.sf.anathema.character.sheet.trait.PdfTraitEncoder;
 import net.sf.anathema.character.trait.display.IDisplayFavorization;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
