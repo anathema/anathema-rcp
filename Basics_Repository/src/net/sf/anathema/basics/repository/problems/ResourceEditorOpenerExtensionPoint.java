@@ -1,21 +1,18 @@
 package net.sf.anathema.basics.repository.problems;
 
+import net.disy.commons.core.predicate.IPredicate;
+import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
-import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.ui.IResourceEditorOpener;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
 public class ResourceEditorOpenerExtensionPoint {
 
-  private static final String ATTRIB_CLASS = "class"; //$NON-NLS-1$
   private static final String ATTRIB_OPENER_ID = "openerId"; //$NON-NLS-1$
 
   public void open(IWorkbenchPage page, String openerId, IResource resource) throws PartInitException {
@@ -23,29 +20,20 @@ public class ResourceEditorOpenerExtensionPoint {
       return;
     }
     IResourceEditorOpener opener = null;
-    try {
-      opener = getOpener(openerId);
-    }
-    catch (ExtensionException e) {
-      RepositoryPlugin.getDefaultInstance().log(
-          IStatus.ERROR,
-          NLS.bind(Messages.ResourceEditorOpenerExtensionPoint_ErrorMessage, resource, openerId),
-          e);
-    }
+    opener = getOpener(openerId);
     if (opener == null) {
       return;
     }
     opener.openEditor(page, resource);
   }
 
-  private IResourceEditorOpener getOpener(String openerId) throws ExtensionException {
-    for (IPluginExtension extension : new EclipseExtensionPoint(RepositoryPlugin.ID, "sourceopener").getExtensions()) { //$NON-NLS-1$
-      for (IExtensionElement element : extension.getElements()) {
-        if (openerId.equals(element.getAttribute(ATTRIB_OPENER_ID))) {
-          return element.getAttributeAsObject(ATTRIB_CLASS, IResourceEditorOpener.class);
-        }
+  private IResourceEditorOpener getOpener(final String openerId) {
+    EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(RepositoryPlugin.ID, "sourceopener"); //$NON-NLS-1$
+    return new ClassConveyerBelt<IResourceEditorOpener>(extensionPoint, IResourceEditorOpener.class).getFirstObject(new IPredicate<IExtensionElement>() {
+      @Override
+      public boolean evaluate(IExtensionElement element) {
+        return openerId.equals(element.getAttribute(ATTRIB_OPENER_ID));
       }
-    }
-    return null;
+    });
   }
 }

@@ -22,7 +22,7 @@ public class TraitGroupEditorDecorationFactory {
   public Collection<ITraitGroupEditorDecoration> create() {
     return new ClassConveyerBelt<ITraitGroupEditorDecoration>(
         CharacterTraitPlugin.PLUGIN_ID,
-        extensions,
-        ITraitGroupEditorDecoration.class).getAllObjects();
+        ITraitGroupEditorDecoration.class,
+        extensions).getAllObjects();
   }
 }

@@ -22,7 +22,7 @@ public class TextEncoderExtensionPoint {
   public List<ITextReportEncoder> getEncoders() {
     return new ClassConveyerBelt<ITextReportEncoder>(
         IPluginConstants.PLUGIN_ID,
-        pluginExtensions,
-        ITextReportEncoder.class).getAllObjects();
+        ITextReportEncoder.class,
+        pluginExtensions).getAllObjects();
   }
 }
