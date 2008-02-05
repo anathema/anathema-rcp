@@ -56,7 +56,7 @@ public class NewPlotElementHandler extends AbstractHandler implements IElementUp
     IFolder folder = (IFolder) plotElementViewElement.getEditFile().getParent();
     String extension = PlotRepositoryUtilities.getPlotItemType().getFileExtension();
     IUnusedFileFactory unusedFileFactory = new UnusedFileFactory(folder, extension);
-    URL imageUrl = plotElement.getPlotUnit().getSuccessor().getImage();
+    URL imageUrl = PlotRepositoryUtilities.getPlotItemType().getIconUrl();
     return new NewPlotElementEditorInput(unusedFileFactory, imageUrl, unnamedName, plotElement, folder);
   }
 
