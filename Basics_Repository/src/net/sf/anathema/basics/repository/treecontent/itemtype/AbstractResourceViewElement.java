@@ -46,7 +46,11 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   }
 
   private ResourceEditorOpener createEditorOpener() {
-    return new ResourceEditorOpener(getEditFile(), untitledName, getImageUrl());
+    return new ResourceEditorOpener(getEditFile(), untitledName, getEditorImageUrl());
+  }
+  
+  protected URL getEditorImageUrl() {
+    return getImageUrl();
   }
 
   @Override

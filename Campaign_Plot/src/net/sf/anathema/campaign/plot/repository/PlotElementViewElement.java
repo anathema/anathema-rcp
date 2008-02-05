@@ -79,6 +79,11 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
   public boolean isPartOf(IContainer parent) {
     return folder.equals(parent);
   }
+  
+  @Override
+  protected URL getEditorImageUrl() {
+    return PlotRepositoryUtilities.getPlotItemType().getIconUrl();
+  }
 
   @Override
   protected IPageDelible createDelible() {
