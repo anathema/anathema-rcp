@@ -15,8 +15,7 @@ public final class CharacterDisplayNameProvider implements IDisplayNameProvider 
 
   @Override
   public String getDisplayName() {
-    //String fallback = new CharacterTemplateProvider().getTemplate(new CharacterId(characterFolder)).getName();
-    String fallback = characterFolder.getName();
+    String fallback = new CharacterTemplateProvider().getTemplate(new CharacterId(characterFolder)).getName();
     return new CharacterPrintNameProvider().getPrintName(characterFolder, fallback);
   }
 }

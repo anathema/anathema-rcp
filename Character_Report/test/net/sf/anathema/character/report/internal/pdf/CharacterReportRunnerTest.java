@@ -1,14 +1,14 @@
 package net.sf.anathema.character.report.internal.pdf;
 
+import static org.easymock.EasyMock.*;
+
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.OutputStream;
 
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
+import net.sf.anathema.basics.swt.file.IStreamResult;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.report.internal.pdf.CharacterReportRunnable;
-import net.sf.anathema.character.report.internal.pdf.CharacterReportRunner;
 
 import org.easymock.EasyMock;
 import org.eclipse.jface.operation.IRunnableContext;
@@ -38,9 +38,12 @@ public class CharacterReportRunnerTest {
     EasyMock.verify(runnableContext);
   }
 
-  private IOutputStreamFactory createOutputStreamFactory(OutputStream outputStream) throws FileNotFoundException {
+  private IOutputStreamFactory createOutputStreamFactory(OutputStream outputStream) throws Exception {
     IOutputStreamFactory outputStreamFactory = EasyMock.createMock(IOutputStreamFactory.class);
-    EasyMock.expect(outputStreamFactory.create(null)).andReturn(outputStream).anyTimes();
+    IStreamResult streamResult = createMock(IStreamResult.class);
+    expect(streamResult.createStream()).andReturn(outputStream);
+    replay(streamResult);
+    EasyMock.expect(outputStreamFactory.create(null)).andReturn(streamResult).anyTimes();
     EasyMock.replay(outputStreamFactory);
     return outputStreamFactory;
   }

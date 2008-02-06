@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
+import net.sf.anathema.basics.swt.file.IStreamResult;
 import net.sf.anathema.character.report.pdf.ICharacterReportWriter;
 
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -27,11 +28,13 @@ public class CharacterReportRunner {
 
   public void runWriting(Shell shell, final IEditorPart editorPart, IRunnableContext runnableContext) {
     OutputStream outputStream = null;
+    IStreamResult streamResult = null;
     try {
-      outputStream = streamFactory.create(shell);
-      if (outputStream == null) {
+      streamResult = streamFactory.create(shell);
+      if (streamResult == null) {
         return;
       }
+      outputStream = streamResult.createStream();
       runnableContext.run(true, false, new CharacterReportRunnable(editorPart, outputStream, writer));
     }
     catch (InvocationTargetException e) {
@@ -42,6 +45,9 @@ public class CharacterReportRunner {
     }
     finally {
       IOUtilities.close(outputStream);
+      if (streamResult != null) {
+        streamResult.obenResult();
+      }
     }
   }
 

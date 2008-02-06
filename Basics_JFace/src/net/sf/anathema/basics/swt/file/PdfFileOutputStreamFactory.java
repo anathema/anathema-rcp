@@ -3,7 +3,6 @@ package net.sf.anathema.basics.swt.file;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -16,7 +15,7 @@ public class PdfFileOutputStreamFactory implements IOutputStreamFactory {
     this.suggestedFileName = suggestedFileName;
   }
 
-  public OutputStream create(Shell shell) throws FileNotFoundException {
+  public IStreamResult create(Shell shell) throws FileNotFoundException {
     File file = FileChoosing.savePdfFile(null, shell, suggestedFileName);
     if (file == null) {
       return null;
@@ -33,6 +32,6 @@ public class PdfFileOutputStreamFactory implements IOutputStreamFactory {
         return null;
       }
     }
-    return new FileOutputStream(file);
+    return new FileOutputStreamResult(file);
   }
 }
