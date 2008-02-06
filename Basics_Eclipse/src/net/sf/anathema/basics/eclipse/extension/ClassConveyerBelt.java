@@ -16,10 +16,12 @@ public class ClassConveyerBelt<T extends IExecutableExtension> {
   private final Class<T> objectClass;
   private final IPredicate<IExtensionElement> predicate;
 
-  public ClassConveyerBelt(
-      EclipseExtensionPoint extensionPoint,
-      Class<T> objectClass) {
-    this(extensionPoint.getPluginId(), objectClass, new AcceptAllPredicate<IExtensionElement>());
+  public ClassConveyerBelt(EclipseExtensionPoint extensionPoint, Class<T> objectClass) {
+    this(
+        extensionPoint.getPluginId(),
+        objectClass,
+        new AcceptAllPredicate<IExtensionElement>(),
+        extensionPoint.getExtensions());
   }
 
   public ClassConveyerBelt(

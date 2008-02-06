@@ -3,10 +3,8 @@ package net.sf.anathema.basics.repository.view.internal;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
-import net.sf.anathema.basics.eclipse.extension.ExtensionException;
-import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.linkage.EditorViewLinker;
@@ -84,19 +82,9 @@ public class RepositoryView extends ViewPart implements IResourceSelector, ILink
   }
 
   private void initDragAndDrop() {
-    IPluginExtension[] extensions = new EclipseExtensionPoint(RepositoryPlugin.ID, DRAG_AND_DROP_EXTENSION_POINT).getExtensions();
-    for (IPluginExtension extension : extensions) {
-      IExtensionElement[] elements = extension.getElements();
-      for (IExtensionElement extensionElement : elements) {
-        try {
-          IRepositoryDND dnd = extensionElement.getAttributeAsObject("class", IRepositoryDND.class); //$NON-NLS-1$
-          dnd.initDragAndDrop(viewer, getViewSite());
-        }
-        catch (ExtensionException e) {
-          RepositoryPlugin.getDefaultInstance()
-              .log(IStatus.ERROR, Messages.RepositoryView_InitializeDndErrorMessage, e);
-        }
-      }
+    EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(RepositoryPlugin.ID, DRAG_AND_DROP_EXTENSION_POINT);
+    for (IRepositoryDND dnd : new ClassConveyerBelt<IRepositoryDND>(extensionPoint, IRepositoryDND.class).getAllObjects()) {
+      dnd.initDragAndDrop(viewer, getViewSite());
     }
   }
 
