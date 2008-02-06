@@ -1,6 +1,8 @@
 package net.sf.anathema.character.core.resource;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.core.character.CharacterId;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 
 import org.eclipse.core.resources.IContainer;
 
@@ -13,6 +15,8 @@ public final class CharacterDisplayNameProvider implements IDisplayNameProvider 
 
   @Override
   public String getDisplayName() {
-    return new CharacterPrintNameProvider().getPrintName(characterFolder, characterFolder.getName());
+    //String fallback = new CharacterTemplateProvider().getTemplate(new CharacterId(characterFolder)).getName();
+    String fallback = characterFolder.getName();
+    return new CharacterPrintNameProvider().getPrintName(characterFolder, fallback);
   }
 }

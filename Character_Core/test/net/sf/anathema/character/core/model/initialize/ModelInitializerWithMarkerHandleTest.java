@@ -8,6 +8,7 @@ import java.util.List;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelInitializer;
 import net.sf.anathema.character.core.model.mark.IModelMarker;
@@ -35,7 +36,11 @@ public class ModelInitializerWithMarkerHandleTest {
     IContentHandle contentHandler = createMock(IContentHandle.class);
     expect(contentHandler.getAdapter(IMarkerHandle.class)).andReturn(markerHandle).anyTimes();
     replay(contentHandler);
-    modelInitializer = new ModelInitializer(null, contentHandler, modelIdentifier, markerCollection);
+    modelInitializer = new ModelInitializer(
+        createNiceMock(IModel.class),
+        contentHandler,
+        modelIdentifier,
+        markerCollection);
   }
 
   @Test
