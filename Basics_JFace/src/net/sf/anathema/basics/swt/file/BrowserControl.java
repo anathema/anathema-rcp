@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.swt.file;
 
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
 
 import net.sf.anathema.basics.eclipse.logging.Logger;
@@ -14,7 +15,7 @@ public class BrowserControl {
     try {
       Desktop.getDesktop().browse(uri);
     }
-    catch (final Exception e) {
+    catch (final IOException e) {
       new Logger(PLUGIN_ID).error(NLS.bind(Messages.BrowserControl_ErrorOpeningUriFormat, uri), e);
     }
   }
