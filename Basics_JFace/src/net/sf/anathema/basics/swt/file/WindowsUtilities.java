@@ -39,7 +39,7 @@ public class WindowsUtilities {
       return runtime.exec(WINDOWS_9X_COMMAND + command);
     }
     else {
-      throw new IllegalStateException("Operating System must be Windows");
+      throw new IllegalStateException(Messages.WindowsUtilities_OnlyWindowsOperationSystem);
     }
   }
 }
