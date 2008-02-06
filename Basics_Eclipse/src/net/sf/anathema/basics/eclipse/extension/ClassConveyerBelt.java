@@ -14,22 +14,37 @@ public class ClassConveyerBelt<T extends IExecutableExtension> {
   private final String pluginId;
   private final IPluginExtension[] extensions;
   private final Class<T> objectClass;
+  private final IPredicate<IExtensionElement> predicate;
 
-  public ClassConveyerBelt(EclipseExtensionPoint extensionPoint, Class<T> objectClass) {
-    this(extensionPoint.getPluginId(), objectClass, extensionPoint.getExtensions());
+  public ClassConveyerBelt(
+      EclipseExtensionPoint extensionPoint,
+      Class<T> objectClass) {
+    this(extensionPoint.getPluginId(), objectClass, new AcceptAllPredicate<IExtensionElement>());
+  }
+
+  public ClassConveyerBelt(
+      EclipseExtensionPoint extensionPoint,
+      Class<T> objectClass,
+      IPredicate<IExtensionElement> predicate) {
+    this(extensionPoint.getPluginId(), objectClass, predicate, extensionPoint.getExtensions());
   }
 
   public ClassConveyerBelt(String pluginId, Class<T> objectClass, IPluginExtension... extensions) {
+    this(pluginId, objectClass, new AcceptAllPredicate<IExtensionElement>(), extensions);
+  }
+
+  public ClassConveyerBelt(
+      String pluginId,
+      Class<T> objectClass,
+      IPredicate<IExtensionElement> predicate,
+      IPluginExtension... extensions) {
     this.pluginId = pluginId;
+    this.predicate = predicate;
     this.extensions = extensions;
     this.objectClass = objectClass;
   }
 
   public List<T> getAllObjects() {
-    return getObjects(new AcceptAllPredicate<IExtensionElement>());
-  }
-
-  public List<T> getObjects(IPredicate<IExtensionElement> predicate) {
     List<T> allObjects = new ArrayList<T>();
     for (IPluginExtension extension : extensions) {
       for (IExtensionElement element : extension.getElements()) {
@@ -47,7 +62,7 @@ public class ClassConveyerBelt<T extends IExecutableExtension> {
     return allObjects;
   }
 
-  public T getFirstObject(IPredicate<IExtensionElement> predicate) {
+  public T getFirstObject() {
     for (IPluginExtension extension : extensions) {
       for (IExtensionElement element : extension.getElements()) {
         try {

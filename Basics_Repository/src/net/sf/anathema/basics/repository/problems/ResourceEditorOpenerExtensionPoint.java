@@ -13,6 +13,19 @@ import org.eclipse.ui.PartInitException;
 
 public class ResourceEditorOpenerExtensionPoint {
 
+  public static final class OpenerIdPredicate implements IPredicate<IExtensionElement> {
+    private final String openerId;
+
+    public OpenerIdPredicate(String openerId) {
+      this.openerId = openerId;
+    }
+
+    @Override
+    public boolean evaluate(IExtensionElement element) {
+      return openerId.equals(element.getAttribute(ATTRIB_OPENER_ID));
+    }
+  }
+
   private static final String ATTRIB_OPENER_ID = "openerId"; //$NON-NLS-1$
 
   public void open(IWorkbenchPage page, String openerId, IResource resource) throws PartInitException {
@@ -29,11 +42,7 @@ public class ResourceEditorOpenerExtensionPoint {
 
   private IResourceEditorOpener getOpener(final String openerId) {
     EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(RepositoryPlugin.ID, "sourceopener"); //$NON-NLS-1$
-    return new ClassConveyerBelt<IResourceEditorOpener>(extensionPoint, IResourceEditorOpener.class).getFirstObject(new IPredicate<IExtensionElement>() {
-      @Override
-      public boolean evaluate(IExtensionElement element) {
-        return openerId.equals(element.getAttribute(ATTRIB_OPENER_ID));
-      }
-    });
+    OpenerIdPredicate predicate = new OpenerIdPredicate(openerId);
+    return new ClassConveyerBelt<IResourceEditorOpener>(extensionPoint, IResourceEditorOpener.class, predicate).getFirstObject();
   }
 }
