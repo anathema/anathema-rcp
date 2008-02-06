@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
 
 public class FileOutputStreamResult implements IStreamResult {
 
@@ -24,14 +23,8 @@ public class FileOutputStreamResult implements IStreamResult {
 
   @Override
   public void obenResult() {
-    try {
-      if (file != null) {
-        BrowserControl.displayUrl(file.toURL());
-      }
-    }
-    catch (MalformedURLException e) {
-      // TODO Fehlerhandling
-      e.printStackTrace();
+    if (file != null) {
+      BrowserControl.displayUrl(file.toURI());
     }
   }
 }
