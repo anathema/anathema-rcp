@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.sf.anathema.character.description;
 
 import net.disy.commons.core.util.StringUtilities;
@@ -22,7 +19,7 @@ public final class DescriptionCharacterDisplayNameProvider implements IDisplayNa
   public String getDisplayName() {
     String characterName = description.getName().getText();
     if (StringUtilities.isNullOrEmpty(characterName)) {
-      return new CharacterDisplayNameProvider(resource.getParent()).getDisplayName();
+      return new CharacterDisplayNameProvider(resource.getParent()).getFallbackName();
     }
     return characterName;
   }

@@ -2,6 +2,7 @@ package net.sf.anathema.character.description;
 
 import java.net.URL;
 
+import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
 
@@ -13,9 +14,19 @@ public class CharacterDescriptionEditorInput extends AbstractCharacterModelEdito
   private ICharacterDescription item;
 
   public CharacterDescriptionEditorInput(IFile file, URL imageUrl, ICharacterDescription description) {
-    super(file, imageUrl, new ModelDisplayNameProvider(
-        Messages.CharacterDescriptionEditorInput_Description,
-        new DescriptionCharacterDisplayNameProvider(file, description)), new CharacterDescriptionPersister());
+    this(file, imageUrl, description, new DescriptionCharacterDisplayNameProvider(file, description));
+  }
+
+  public CharacterDescriptionEditorInput(
+      IFile file,
+      URL imageUrl,
+      ICharacterDescription description,
+      IDisplayNameProvider provider) {
+    super(
+        file,
+        imageUrl,
+        new ModelDisplayNameProvider(Messages.CharacterDescriptionEditorInput_Description, provider),
+        new CharacterDescriptionPersister());
     this.item = description;
   }
 
