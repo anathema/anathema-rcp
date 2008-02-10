@@ -13,6 +13,7 @@ import net.sf.anathema.basics.importexport.IFileSelectionModel;
 import net.sf.anathema.basics.importexport.ImportFileSelectionStatusFactory;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
+import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
 import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
@@ -64,8 +65,8 @@ public class CharacterImportWizard extends AbstractImportWizard {
 
   @Override
   protected IStatus runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
-  throws CoreException,
-  FileNotFoundException {
+      throws CoreException,
+      FileNotFoundException {
     try {
       Document document = DocumentUtilities.read(externalFile);
       IContainer container = internalFile.getParent();
@@ -92,10 +93,18 @@ public class CharacterImportWizard extends AbstractImportWizard {
   @Override
   protected void openEditor(final IFile file, IWorkbenchPage page) throws PartInitException {
     IContainer container = file.getParent();
-    // TODO Case 37: Öffne den Character nach dem Import
-    IModelDisplayConfiguration configuration = new ModelExtensionPoint().getDisplayConfiguration(container.getFile(new Path(
-    "basic.description"))); //$NON-NLS-1$
-    new CharacterModelEditorOpener().openEditor(page, container, configuration);
+    ModelExtensionPoint modelExtensionPoint = new ModelExtensionPoint();
+    Iterable<String> filenames = modelExtensionPoint.getModelFileNames(
+        new CharacterId(container),
+        new CharacterTemplateProvider());
+    for (String filename : filenames) {
+      IModelDisplayConfiguration configuration = modelExtensionPoint.getDisplayConfiguration(container.getFile(new Path(
+          filename)));
+      if (configuration != null) {
+        new CharacterModelEditorOpener().openEditor(page, container, configuration);
+        return;
+      }
+    }
   }
 
   @Override
