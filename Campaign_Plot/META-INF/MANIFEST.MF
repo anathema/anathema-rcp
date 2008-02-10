@@ -11,7 +11,7 @@ Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.editor.styledtext,
  net.sf.anathema.campaign.core,
  org.eclipse.core.expressions
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Activator: net.sf.anathema.campaign.plot.PlotPlugin
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

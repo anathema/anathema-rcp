@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %net.sf.anathema.charactertype.sidereal.Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.charactertype.sidereal;singleton:=true
 Bundle-Version: 1.0.0
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.repository,

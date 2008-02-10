@@ -7,7 +7,7 @@
             characterType="test.type">
          <caste
                casteId="test.caste"
-               printName="test.name">
+               printName="%caste.printName.f0">
          </caste>
       </casteList>
    </extension>

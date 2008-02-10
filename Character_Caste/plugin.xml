@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="castes" name="Castes ExtensionPoint" schema="schema/castes.exsd"/>
+   <extension-point id="castes" name="%extension-point.name.0" schema="schema/castes.exsd"/>
    <extension
          point="net.sf.anathema.character.core.models">
       <model
@@ -10,7 +10,7 @@
             modelFactory="net.sf.anathema.character.caste.persistence.CasteModelFactory"
             modelSupporter="net.sf.anathema.character.caste.model.CasteModelSupporter">
          <displayConfiguration
-               displayName="Caste"
+               displayName="%displayConfiguration.displayName.0"
                editorId="net.sf.anathema.character.caste.editor"
                editorInputFactory="net.sf.anathema.character.caste.editor.CasteEditorInputFactory"
                icon="icons/TabCharacter16.png">

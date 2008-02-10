@@ -19,6 +19,6 @@ Require-Bundle: net.sf.anathema.basics.jface,
  net.sf.anathema.basics.item,
  org.eclipse.core.expressions
 Bundle-Activator: net.sf.anathema.basics.repository.RepositoryPlugin
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -8,7 +8,7 @@
             class="net.sf.anathema.character.textreport.wizard.TextReportExportWizard"
             icon="icons/pdf_icon.png"
             id="net.sf.anathema.character.textreport.wizard"
-            name="Character Text Report">
+            name="%wizard.name.0">
       </wizard>
    </extension>
 

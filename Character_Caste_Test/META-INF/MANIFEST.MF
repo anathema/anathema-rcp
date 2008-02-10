@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Caste_Test Fragment
+Bundle-Name: %Bundle-Name.f0
 Bundle-SymbolicName: net.sf.anathema.character.caste.test;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.caste;bundle-version="1.0.0"
@@ -10,3 +10,4 @@ Require-Bundle: net.sf.anathema.charactertype.solar;resolution:=optional,
  net.sf.anathema.charactertype.sidereal;resolution:=optional,
  net.sf.anathema.charactertype.db;resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Localization: plugin

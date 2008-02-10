@@ -27,6 +27,6 @@ Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.status,
  net.sf.anathema.character.trait.template
 Bundle-Localization: plugin
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Activator: net.sf.anathema.character.trait.plugin.CharacterTraitPlugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

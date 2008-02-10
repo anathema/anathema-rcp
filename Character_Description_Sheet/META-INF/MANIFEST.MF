@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Description_Sheet Fragment
+Bundle-Name: %Bundle-Name.f0
 Bundle-SymbolicName: net.sf.anathema.character.description.sheet;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.description;bundle-version="1.0.0"
 Require-Bundle: net.sf.anathema.character.sheet;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Localization: plugin

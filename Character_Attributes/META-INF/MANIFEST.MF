@@ -14,7 +14,7 @@ Require-Bundle: net.sf.anathema.basics.item,
  net.sf.anathema.character.trait;visibility:=reexport,
  net.sf.anathema.character.experience,
  net.sf.anathema.character.points
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: net.sf.anathema.character.attributes.model,
  net.sf.anathema.character.attributes.points,
  net.sf.anathema.character.attributes.util
