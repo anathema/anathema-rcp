@@ -4,6 +4,7 @@ import java.io.File;
 
 import net.disy.commons.core.model.BooleanModel;
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.basics.importwizard.control.FileDisplayNameUpdater;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.WizardPage;
@@ -99,16 +100,7 @@ public final class FileSelectionWizardPage extends WizardPage {
         model.setFile(text.getText());
       }
     });
-    model.addChangeListener(new IChangeListener() {
-      @Override
-      public void stateChanged() {
-        File file = model.getFile();
-        if (new File(text.getText()).equals(file)) {
-          return;
-        }
-        text.setText(file.getAbsolutePath());
-      }
-    });
+    model.addChangeListener(new FileDisplayNameUpdater(text, model));
   }
 
   private void createBrowseButton(final Composite composite) {

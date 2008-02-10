@@ -2,11 +2,11 @@ package net.sf.anathema.basics.importwizard;
 
 import java.io.File;
 
-import org.eclipse.jface.dialogs.IMessageProvider;
-
 import net.disy.commons.core.model.listener.IChangeListener;
 
-public interface IFileSelectionModel {
+import org.eclipse.jface.dialogs.IMessageProvider;
+
+public interface IFileSelectionModel extends IFileProvider {
 
   public boolean isComplete();
 
@@ -17,6 +17,4 @@ public interface IFileSelectionModel {
   public void addChangeListener(IChangeListener changeListener);
 
   public IMessageProvider getMessage();
-
-  public File getFile();
 }
