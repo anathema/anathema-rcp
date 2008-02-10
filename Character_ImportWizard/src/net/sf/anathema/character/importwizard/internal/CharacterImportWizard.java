@@ -8,7 +8,7 @@ import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.FileUtils;
 import net.sf.anathema.basics.importwizard.AbstractImportWizard;
-import net.sf.anathema.basics.importwizard.FileSelectionStatusFactory;
+import net.sf.anathema.basics.importwizard.ImportFileSelectionStatusFactory;
 import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
 import net.sf.anathema.basics.importwizard.IFileSelectionModel;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
@@ -41,7 +41,7 @@ public class CharacterImportWizard extends AbstractImportWizard {
   private static final Logger logger = new Logger(CharacterImportWizardPluginConstants.PLUGIN_ID);
 
   public CharacterImportWizard() {
-    super(new FileSelectionStatusFactory());
+    super(new ImportFileSelectionStatusFactory());
   }
 
   @Override

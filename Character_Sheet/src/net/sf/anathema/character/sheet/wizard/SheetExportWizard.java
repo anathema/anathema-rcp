@@ -2,8 +2,8 @@ package net.sf.anathema.character.sheet.wizard;
 
 
 import net.disy.commons.core.model.BooleanModel;
+import net.sf.anathema.basics.importwizard.ExportFileSelectionStatusFactory;
 import net.sf.anathema.basics.importwizard.FileSelectionModel;
-import net.sf.anathema.basics.importwizard.FileSelectionStatusFactory;
 import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
 import net.sf.anathema.basics.importwizard.IFileSelectionModel;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
@@ -43,7 +43,7 @@ public class SheetExportWizard extends Wizard implements IExportWizard {
     exportWorkbench = workbench;
     editorPart = exportWorkbench.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
     setWindowTitle("Character Sheet");
-    fileSelectionModel = new FileSelectionModel(new FileSelectionStatusFactory());
+    fileSelectionModel = new FileSelectionModel(new ExportFileSelectionStatusFactory());
     openModel = new BooleanModel(true);
     PdfExportDialog dialog = new PdfExportDialog(null, getSuggestedName());
     addPage(new FileSelectionWizardPage(fileSelectionModel, openModel, new SheetExportMessages(), dialog));

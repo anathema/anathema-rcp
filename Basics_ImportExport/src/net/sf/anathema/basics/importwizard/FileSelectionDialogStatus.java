@@ -2,46 +2,28 @@ package net.sf.anathema.basics.importwizard;
 
 import java.io.File;
 
-public final class FileSelectionDialogStatus implements IFileSelectionDialogStatus {
+import net.sf.anathema.basics.importwizard.filestatus.FileNotExistsStatus;
+import net.sf.anathema.basics.importwizard.filestatus.FileOkayStatus;
+import net.sf.anathema.basics.importwizard.filestatus.ISmartFileSelectionDialogStatus;
+import net.sf.anathema.basics.importwizard.filestatus.IsFolderStatus;
+import net.sf.anathema.basics.importwizard.filestatus.NullFileStatus;
 
-  private final String message;
-  private final int messageType;
-  private final boolean complete;
+public final class FileSelectionDialogStatus {
 
-  public FileSelectionDialogStatus(File file) {
-    if (file == null) {
-      this.message = Messages.FileSelectionDialogStatus_SelectFileMessage;
-      this.messageType = NONE;
-      this.complete = false;
-    }
-    else if (!file.exists()) {
-      this.message = Messages.FileSelectionDialogStatus_MissingFileMessage;
-      this.messageType = ERROR;
-      this.complete = false;
-    }
-    else if (file.isDirectory()) {
-      this.message = Messages.FileSelectionDialogStatus_FolderMessage;
-      this.messageType = ERROR;
-      this.complete = false;
-    }
-    else {
-      this.message = Messages.FileSelectionDialogStatus_FinishWizardMessage;
-      this.messageType = NONE;
-      this.complete = true;
-    }
+  public static IFileSelectionDialogStatus createImportStatus(File file) {
+    return create(file, new NullFileStatus(), new FileNotExistsStatus(), new IsFolderStatus());
   }
 
-  @Override
-  public String getMessage() {
-    return message;
+  public static IFileSelectionDialogStatus createExportStatus(File file) {
+    return create(file, new NullFileStatus(), new IsFolderStatus());
   }
 
-  @Override
-  public int getMessageType() {
-    return messageType;
-  }
-
-  public boolean isComplete() {
-    return complete;
+  private static IFileSelectionDialogStatus create(File file, ISmartFileSelectionDialogStatus... smartFileStatus) {
+    for (ISmartFileSelectionDialogStatus status : smartFileStatus) {
+      if (status.isActiveFor(file)) {
+        return status;
+      }
+    }
+    return new FileOkayStatus();
   }
 }

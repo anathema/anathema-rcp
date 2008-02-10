@@ -3,6 +3,7 @@ package net.sf.anathema.basics.importwizard;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +11,13 @@ import org.junit.Test;
 public class FileSelectionModelFileTest {
 
   private FileSelectionModel model;
-  private final String path = "/Campaign_Note/test/net/sf/anathema/campaign/note/importwizard/FileSelectionModelUninitializedTest.java"; //$NON-NLS-1$
+  private String path;
 
   @Before
-  public void create() {
-    this.model = new FileSelectionModel(new DummyStatusFactory());
+  public void create() throws IOException {
+    model = new FileSelectionModel(new DummyStatusFactory());
+    File file = File.createTempFile("horst", "hugo"); //$NON-NLS-1$ //$NON-NLS-2$
+    path = file.getPath();
     model.setFile(path);
   }
 

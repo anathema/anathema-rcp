@@ -9,7 +9,7 @@ import java.io.IOException;
 import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.importwizard.AbstractImportWizard;
-import net.sf.anathema.basics.importwizard.FileSelectionStatusFactory;
+import net.sf.anathema.basics.importwizard.ImportFileSelectionStatusFactory;
 import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
 import net.sf.anathema.basics.importwizard.IFileSelectionModel;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
@@ -35,7 +35,7 @@ public class NoteImportWizard extends AbstractImportWizard {
   private static final Logger logger = new Logger(NotePluginConstants.PLUGIN_ID);
 
   public NoteImportWizard() {
-    super(new FileSelectionStatusFactory());
+    super(new ImportFileSelectionStatusFactory());
   }
 
   @Override

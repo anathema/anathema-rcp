@@ -3,10 +3,10 @@ package net.sf.anathema.basics.importwizard;
 import java.io.File;
 
 
-public class FileSelectionStatusFactory implements IFileSelectionStatusFactory {
+public class ImportFileSelectionStatusFactory implements IFileSelectionStatusFactory {
 
   @Override
   public IFileSelectionDialogStatus create(File file) {
-    return new FileSelectionDialogStatus(file);
+    return FileSelectionDialogStatus.createImportStatus(file);
   }
 }
