@@ -17,11 +17,9 @@ public final class FileSelectionDialogStatus {
   }
 
   public static IFileSelectionDialogStatus createExportStatus(File file) {
-    return create(
-        file,
-        "Click 'Finish' to export.",
-        new NullFileStatus("Please select a file to export to."),
-        new IsFolderStatus("You have specified a folder. Please select a file to export to."));
+    return create(file, Messages.FileSelectionDialogStatus_ExportFileOkayMessage, new NullFileStatus(
+        Messages.FileSelectionDialogStatus_NoExportFileSelectedMessage), new IsFolderStatus(
+            Messages.FileSelectionDialogStatus_ExportFolderSelectedMessage));
   }
 
   private static IFileSelectionDialogStatus create(
