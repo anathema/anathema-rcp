@@ -1,9 +1,14 @@
 package net.sf.anathema.basics.importwizard.filestatus;
 
 import net.sf.anathema.basics.importwizard.IFileSelectionDialogStatus;
-import net.sf.anathema.basics.importwizard.Messages;
 
 public class FileOkayStatus implements IFileSelectionDialogStatus{
+
+  private final String message;
+
+  public FileOkayStatus(String message) {
+    this.message = message;
+  }
 
   @Override
   public boolean isComplete() {
@@ -12,7 +17,7 @@ public class FileOkayStatus implements IFileSelectionDialogStatus{
 
   @Override
   public String getMessage() {
-    return Messages.FileSelectionDialogStatus_FinishWizardMessage;
+    return message;
   }
 
   @Override

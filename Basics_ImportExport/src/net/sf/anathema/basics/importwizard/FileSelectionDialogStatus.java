@@ -11,19 +11,28 @@ import net.sf.anathema.basics.importwizard.filestatus.NullFileStatus;
 public final class FileSelectionDialogStatus {
 
   public static IFileSelectionDialogStatus createImportStatus(File file) {
-    return create(file, new NullFileStatus(), new FileNotExistsStatus(), new IsFolderStatus());
+    return create(file, Messages.FileSelectionDialogStatus_FinishWizardMessage, new NullFileStatus(
+        Messages.FileSelectionDialogStatus_SelectFileMessage), new FileNotExistsStatus(), new IsFolderStatus(
+            Messages.FileSelectionDialogStatus_FolderMessage));
   }
 
   public static IFileSelectionDialogStatus createExportStatus(File file) {
-    return create(file, new NullFileStatus(), new IsFolderStatus());
+    return create(
+        file,
+        "Click 'Finish' to export.",
+        new NullFileStatus("Please select a file to export to."),
+        new IsFolderStatus("You have specified a folder. Please select a file to export to."));
   }
 
-  private static IFileSelectionDialogStatus create(File file, ISmartFileSelectionDialogStatus... smartFileStatus) {
+  private static IFileSelectionDialogStatus create(
+      File file,
+      String finishMessage,
+      ISmartFileSelectionDialogStatus... smartFileStatus) {
     for (ISmartFileSelectionDialogStatus status : smartFileStatus) {
       if (status.isActiveFor(file)) {
         return status;
       }
     }
-    return new FileOkayStatus();
+    return new FileOkayStatus(finishMessage);
   }
 }

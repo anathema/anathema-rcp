@@ -2,9 +2,14 @@ package net.sf.anathema.basics.importwizard.filestatus;
 
 import java.io.File;
 
-import net.sf.anathema.basics.importwizard.Messages;
-
 public class NullFileStatus implements ISmartFileSelectionDialogStatus {
+  
+  private final String message;
+
+  public NullFileStatus(String message) {
+    this.message = message;
+  }
+  
 
   public boolean isActiveFor(File file) {
     return file == null;
@@ -17,7 +22,7 @@ public class NullFileStatus implements ISmartFileSelectionDialogStatus {
 
   @Override
   public String getMessage() {
-    return Messages.FileSelectionDialogStatus_SelectFileMessage;
+    return message;
   }
 
   @Override

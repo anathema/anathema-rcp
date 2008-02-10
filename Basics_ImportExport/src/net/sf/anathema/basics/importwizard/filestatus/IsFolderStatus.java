@@ -2,9 +2,14 @@ package net.sf.anathema.basics.importwizard.filestatus;
 
 import java.io.File;
 
-import net.sf.anathema.basics.importwizard.Messages;
-
 public class IsFolderStatus implements ISmartFileSelectionDialogStatus {
+
+  private final String message;
+
+  public IsFolderStatus(String message) {
+    this.message = message;
+  }
+
 
   public boolean isActiveFor(File file) {
     return file.isDirectory();
@@ -17,7 +22,7 @@ public class IsFolderStatus implements ISmartFileSelectionDialogStatus {
 
   @Override
   public String getMessage() {
-    return Messages.FileSelectionDialogStatus_FolderMessage;
+    return message;
   }
 
   @Override
