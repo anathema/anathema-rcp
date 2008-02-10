@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.wizard;
+package net.sf.anathema.character.report.wizard;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
