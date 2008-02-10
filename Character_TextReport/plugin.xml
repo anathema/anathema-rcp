@@ -39,5 +39,14 @@
          </toolbar>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <wizard
+            class="net.sf.anathema.character.textreport.wizard.TextReportExportWizard"
+            icon="icons/pdf_icon.png"
+            id="net.sf.anathema.character.textreport.wizard"
+            name="Character Text Report">
+      </wizard>
+   </extension>
 
 </plugin>
