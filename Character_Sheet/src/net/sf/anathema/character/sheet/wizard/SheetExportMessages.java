@@ -5,21 +5,21 @@ import net.sf.anathema.basics.importwizard.IFileSelectionPageMessages;
 public final class SheetExportMessages implements IFileSelectionPageMessages {
   @Override
   public String getPageTitle() {
-    return "Character Sheet";
+    return Messages.SheetExportMessages_PageTitle;
   }
 
   @Override
   public String getPageName() {
-    return "Character Sheet";
+    return Messages.SheetExportMessages_PageTitle;
   }
 
   @Override
   public String getOpenLabel() {
-    return "Open file after export";
+    return Messages.SheetExportMessages_OpenLabel;
   }
 
   @Override
   public String getDescription() {
-    return "Please select a file to export to.";
+    return Messages.SheetExportMessages_Description;
   }
 }
