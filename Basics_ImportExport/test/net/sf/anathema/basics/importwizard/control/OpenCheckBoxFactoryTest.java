@@ -2,6 +2,7 @@ package net.sf.anathema.basics.importwizard.control;
 
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.BooleanModel;
+import net.sf.anathema.basics.importexport.control.OpenCheckBoxFactory;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;

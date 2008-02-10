@@ -2,6 +2,9 @@ package net.sf.anathema.basics.importwizard;
 
 import java.io.File;
 
+import net.sf.anathema.basics.importexport.IFileSelectionDialogStatus;
+import net.sf.anathema.basics.importexport.IFileSelectionStatusFactory;
+
 public class DummyStatusFactory implements IFileSelectionStatusFactory {
 
   @Override

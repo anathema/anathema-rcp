@@ -1,11 +1,11 @@
-package net.sf.anathema.basics.importwizard;
+package net.sf.anathema.basics.importexport;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
 import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.eclipse.logging.Logger;
-import net.sf.anathema.basics.importwizard.plugin.ImportWizardPluginConstants;
+import net.sf.anathema.basics.importexport.plugin.ImportWizardPluginConstants;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 
 import org.eclipse.core.resources.IFile;

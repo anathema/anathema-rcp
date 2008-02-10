@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.importwizard.plugin;
+package net.sf.anathema.basics.importexport.plugin;
 
 public interface ImportWizardPluginConstants {
 

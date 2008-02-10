@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.importwizard.filestatus;
+package net.sf.anathema.basics.importexport.filestatus;
 
 import java.io.File;
 

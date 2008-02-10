@@ -1,9 +1,9 @@
-package net.sf.anathema.basics.importwizard.control;
+package net.sf.anathema.basics.importexport.control;
 
 import java.io.File;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.basics.importwizard.IFileProvider;
+import net.sf.anathema.basics.importexport.IFileProvider;
 
 import org.eclipse.swt.widgets.Text;
 

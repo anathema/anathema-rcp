@@ -2,7 +2,7 @@ package net.sf.anathema.campaign.plot.importwizard;
 
 import java.io.File;
 
-import net.sf.anathema.basics.importwizard.IFileSelectionDialogStatus;
+import net.sf.anathema.basics.importexport.IFileSelectionDialogStatus;
 
 public class FolderSelectionDialogStatus implements IFileSelectionDialogStatus {
 

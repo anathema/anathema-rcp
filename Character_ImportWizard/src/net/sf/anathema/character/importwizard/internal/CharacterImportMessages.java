@@ -1,6 +1,6 @@
 package net.sf.anathema.character.importwizard.internal;
 
-import net.sf.anathema.basics.importwizard.IFileSelectionPageMessages;
+import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
 
 public class CharacterImportMessages implements IFileSelectionPageMessages {
 

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import net.disy.commons.core.model.BooleanModel;
-import net.sf.anathema.basics.importwizard.IFileSelectionModel;
+import net.sf.anathema.basics.importexport.IFileSelectionModel;
 import net.sf.anathema.basics.swt.file.BrowserControl;
 import net.sf.anathema.basics.swt.file.IStreamResult;
 

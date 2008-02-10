@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.importwizard;
+package net.sf.anathema.basics.importexport;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 

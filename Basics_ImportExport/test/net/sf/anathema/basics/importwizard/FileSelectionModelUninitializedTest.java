@@ -2,6 +2,8 @@ package net.sf.anathema.basics.importwizard;
 
 import static org.junit.Assert.*;
 
+import net.sf.anathema.basics.importexport.FileSelectionModel;
+
 import org.junit.Before;
 import org.junit.Test;
 

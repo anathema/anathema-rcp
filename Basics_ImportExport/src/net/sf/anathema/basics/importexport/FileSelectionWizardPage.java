@@ -1,11 +1,11 @@
-package net.sf.anathema.basics.importwizard;
+package net.sf.anathema.basics.importexport;
 
 import java.io.File;
 
 import net.disy.commons.core.model.BooleanModel;
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.basics.importwizard.control.FileDisplayNameUpdater;
-import net.sf.anathema.basics.importwizard.control.OpenCheckBoxFactory;
+import net.sf.anathema.basics.importexport.control.FileDisplayNameUpdater;
+import net.sf.anathema.basics.importexport.control.OpenCheckBoxFactory;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.WizardPage;

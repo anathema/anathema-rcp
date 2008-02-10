@@ -1,6 +1,6 @@
 package net.sf.anathema.campaign.plot.importwizard;
 
-import net.sf.anathema.basics.importwizard.IFileSelectionPageMessages;
+import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
 
 public class PlotImportMessages implements IFileSelectionPageMessages {
 

@@ -1,12 +1,12 @@
-package net.sf.anathema.basics.importwizard;
+package net.sf.anathema.basics.importexport;
 
 import java.io.File;
 
-import net.sf.anathema.basics.importwizard.filestatus.FileNotExistsStatus;
-import net.sf.anathema.basics.importwizard.filestatus.FileOkayStatus;
-import net.sf.anathema.basics.importwizard.filestatus.ISmartFileSelectionDialogStatus;
-import net.sf.anathema.basics.importwizard.filestatus.IsFolderStatus;
-import net.sf.anathema.basics.importwizard.filestatus.NullFileStatus;
+import net.sf.anathema.basics.importexport.filestatus.FileNotExistsStatus;
+import net.sf.anathema.basics.importexport.filestatus.FileOkayStatus;
+import net.sf.anathema.basics.importexport.filestatus.ISmartFileSelectionDialogStatus;
+import net.sf.anathema.basics.importexport.filestatus.IsFolderStatus;
+import net.sf.anathema.basics.importexport.filestatus.NullFileStatus;
 
 public final class FileSelectionDialogStatus {
 

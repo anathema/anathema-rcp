@@ -6,9 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import net.disy.commons.core.model.BooleanModel;
-import net.sf.anathema.basics.importwizard.AbstractImportWizard;
-import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
-import net.sf.anathema.basics.importwizard.IFileSelectionModel;
+import net.sf.anathema.basics.importexport.AbstractImportWizard;
+import net.sf.anathema.basics.importexport.FileSelectionWizardPage;
+import net.sf.anathema.basics.importexport.IFileSelectionModel;
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.treecontent.itemtype.ResourceEditorOpener;
 import net.sf.anathema.campaign.plot.creation.PlotRepositoryUtilities;

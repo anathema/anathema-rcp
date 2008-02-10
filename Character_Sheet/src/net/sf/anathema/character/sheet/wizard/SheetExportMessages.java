@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.wizard;
 
-import net.sf.anathema.basics.importwizard.IFileSelectionPageMessages;
+import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
 
 public final class SheetExportMessages implements IFileSelectionPageMessages {
   @Override

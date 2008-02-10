@@ -2,7 +2,7 @@ package net.sf.anathema.character.sheet.wizard;
 
 import java.io.File;
 
-import net.sf.anathema.basics.importwizard.IFileDialog;
+import net.sf.anathema.basics.importexport.IFileDialog;
 import net.sf.anathema.basics.swt.file.FileChoosing;
 
 import org.eclipse.swt.widgets.Shell;

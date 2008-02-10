@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.IOException;
 
+import net.sf.anathema.basics.importexport.FileSelectionModel;
+
 import org.junit.Before;
 import org.junit.Test;
 

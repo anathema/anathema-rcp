@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 
-import net.sf.anathema.basics.importwizard.IFileProvider;
+import net.sf.anathema.basics.importexport.IFileProvider;
+import net.sf.anathema.basics.importexport.control.FileDisplayNameUpdater;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;

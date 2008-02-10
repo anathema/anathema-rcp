@@ -8,10 +8,10 @@ import java.io.IOException;
 
 import net.disy.commons.core.model.BooleanModel;
 import net.sf.anathema.basics.eclipse.logging.Logger;
-import net.sf.anathema.basics.importwizard.AbstractImportWizard;
-import net.sf.anathema.basics.importwizard.ImportFileSelectionStatusFactory;
-import net.sf.anathema.basics.importwizard.FileSelectionWizardPage;
-import net.sf.anathema.basics.importwizard.IFileSelectionModel;
+import net.sf.anathema.basics.importexport.AbstractImportWizard;
+import net.sf.anathema.basics.importexport.FileSelectionWizardPage;
+import net.sf.anathema.basics.importexport.IFileSelectionModel;
+import net.sf.anathema.basics.importexport.ImportFileSelectionStatusFactory;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.repository.input.UnusedFileFactory;
 import net.sf.anathema.basics.repository.itemtype.IItemType;

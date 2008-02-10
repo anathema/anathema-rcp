@@ -6,6 +6,6 @@ Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.basics.repository,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.lib
-Export-Package: net.sf.anathema.basics.importwizard
+Export-Package: net.sf.anathema.basics.importexport
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

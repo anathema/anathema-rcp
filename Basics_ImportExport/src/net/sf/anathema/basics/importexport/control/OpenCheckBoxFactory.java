@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.importwizard.control;
+package net.sf.anathema.basics.importexport.control;
 
 import net.disy.commons.core.model.BooleanModel;
 
