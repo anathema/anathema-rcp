@@ -1,6 +1,6 @@
 package net.sf.anathema.basics.importwizard;
 
-public interface IImportPageMessages {
+public interface IFileSelectionPageMessages {
 
   String getPageName();
 
@@ -9,5 +9,4 @@ public interface IImportPageMessages {
   String getDescription();
 
   String getOpenLabel();
-
 }

@@ -1,8 +1,8 @@
 package net.sf.anathema.character.importwizard.internal;
 
-import net.sf.anathema.basics.importwizard.IImportPageMessages;
+import net.sf.anathema.basics.importwizard.IFileSelectionPageMessages;
 
-public class CharacterImportMessages implements IImportPageMessages {
+public class CharacterImportMessages implements IFileSelectionPageMessages {
 
   @Override
   public String getDescription() {

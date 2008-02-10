@@ -1,8 +1,8 @@
 package net.sf.anathema.campaign.note.importwizard;
 
-import net.sf.anathema.basics.importwizard.IImportPageMessages;
+import net.sf.anathema.basics.importwizard.IFileSelectionPageMessages;
 
-public class NoteImportMessages implements IImportPageMessages {
+public class NoteImportMessages implements IFileSelectionPageMessages {
 
   @Override
   public String getPageName() {

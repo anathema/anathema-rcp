@@ -22,13 +22,13 @@ import org.eclipse.swt.widgets.Text;
 public final class FileSelectionWizardPage extends WizardPage {
   private final IFileSelectionModel model;
   private final BooleanModel openModel;
-  private final IImportPageMessages messages;
+  private final IFileSelectionPageMessages messages;
   private final IFileDialog dialog;
 
   public FileSelectionWizardPage(
       final IFileSelectionModel model,
       BooleanModel openModel,
-      IImportPageMessages messages,
+      IFileSelectionPageMessages messages,
       IFileDialog dialog) {
     super(messages.getPageName(), messages.getPageTitle(), null);
     this.openModel = openModel;

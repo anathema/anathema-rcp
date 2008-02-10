@@ -1,8 +1,8 @@
 package net.sf.anathema.campaign.plot.importwizard;
 
-import net.sf.anathema.basics.importwizard.IImportPageMessages;
+import net.sf.anathema.basics.importwizard.IFileSelectionPageMessages;
 
-public class PlotImportMessages implements IImportPageMessages {
+public class PlotImportMessages implements IFileSelectionPageMessages {
 
   @Override
   public String getDescription() {
