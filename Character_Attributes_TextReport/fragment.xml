@@ -4,7 +4,14 @@
    <extension
          point="net.sf.anathema.character.textreport.textencoder">
       <textencoder
-            class="net.sf.anathema.character.attributes.textreport.AttributesTextEncoder">
+            class="net.sf.anathema.character.attributes.textreport.AttributesTextEncoder"
+            id="attributes">
+         <after
+               referenceId="description">
+         </after>
+         <after
+               referenceId="caste">
+         </after>
       </textencoder>
    </extension>
 
