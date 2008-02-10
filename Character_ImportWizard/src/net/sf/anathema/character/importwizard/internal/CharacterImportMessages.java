@@ -23,5 +23,4 @@ public class CharacterImportMessages implements IFileSelectionPageMessages {
   public String getPageTitle() {
     return Messages.CharacterImportMessages_PageName;
   }
-
 }

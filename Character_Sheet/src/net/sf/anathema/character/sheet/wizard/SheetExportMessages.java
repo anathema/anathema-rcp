@@ -5,12 +5,12 @@ import net.sf.anathema.basics.importwizard.IFileSelectionPageMessages;
 public final class SheetExportMessages implements IFileSelectionPageMessages {
   @Override
   public String getPageTitle() {
-    return "Export Character Sheet";
+    return "Character Sheet";
   }
 
   @Override
   public String getPageName() {
-    return "File Selection";
+    return "Character Sheet";
   }
 
   @Override
@@ -20,6 +20,6 @@ public final class SheetExportMessages implements IFileSelectionPageMessages {
 
   @Override
   public String getDescription() {
-    return "Select pdf file for export";
+    return "Please select a file to export to.";
   }
 }
