@@ -14,3 +14,4 @@ Require-Bundle: net.sf.anathema.character.core,
 Export-Package: net.sf.anathema.character.textreport.encoder,
  net.sf.anathema.character.textreport.util
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

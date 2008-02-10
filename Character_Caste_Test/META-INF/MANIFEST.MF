@@ -9,3 +9,4 @@ Require-Bundle: net.sf.anathema.charactertype.solar;resolution:=optional,
  net.sf.anathema.charactertype.mortal;resolution:=optional,
  net.sf.anathema.charactertype.sidereal;resolution:=optional,
  net.sf.anathema.charactertype.db;resolution:=optional
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

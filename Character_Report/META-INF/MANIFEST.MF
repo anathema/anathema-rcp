@@ -13,3 +13,4 @@ Require-Bundle: net.sf.anathema.character.core,
 Export-Package: net.sf.anathema.character.report.text,
  net.sf.anathema.character.report.wizard
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
