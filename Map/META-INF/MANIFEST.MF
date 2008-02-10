@@ -5,7 +5,7 @@ Bundle-SymbolicName: Map;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.lib
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Activator: net.sf.anathema.map.MapPlugin
 Bundle-ClassPath: .,
  lib/gisterm.jar,
@@ -32,3 +32,4 @@ Bundle-ClassPath: .,
  lib/jts.jar,
  lib/vecmath.jar,
  lib/icons.jar
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
