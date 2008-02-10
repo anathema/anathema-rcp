@@ -42,7 +42,6 @@ public class SheetExportWizard extends Wizard implements IExportWizard {
   public void init(IWorkbench workbench, IStructuredSelection selection) {
     exportWorkbench = workbench;
     editorPart = exportWorkbench.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-    setWindowTitle("Character Sheet");
     fileSelectionModel = new FileSelectionModel(new ExportFileSelectionStatusFactory());
     openModel = new BooleanModel(true);
     PdfExportDialog dialog = new PdfExportDialog(null, getSuggestedName());

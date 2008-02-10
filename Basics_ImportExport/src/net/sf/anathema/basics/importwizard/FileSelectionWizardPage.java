@@ -5,6 +5,7 @@ import java.io.File;
 import net.disy.commons.core.model.BooleanModel;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.importwizard.control.FileDisplayNameUpdater;
+import net.sf.anathema.basics.importwizard.control.OpenCheckBoxFactory;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.WizardPage;
@@ -59,31 +60,8 @@ public final class FileSelectionWizardPage extends WizardPage {
     createLabel(composite);
     createTextField(composite);
     createBrowseButton(composite);
-    createOpenCheckBox(composite);
+    new OpenCheckBoxFactory(messages.getOpenLabel(), openModel).create(composite);
     setControl(composite);
-  }
-
-  private void createOpenCheckBox(Composite composite) {
-    final Button checkBox = new Button(composite, SWT.CHECK);
-    GridData gridData = new GridData();
-    gridData.horizontalSpan = 3;
-    checkBox.setLayoutData(gridData);
-    checkBox.setText(messages.getOpenLabel());
-    checkBox.addSelectionListener(new SelectionListener() {
-      @Override
-      public void widgetDefaultSelected(SelectionEvent e) {
-        updateModel();
-      }
-
-      @Override
-      public void widgetSelected(SelectionEvent e) {
-        updateModel();
-      }
-
-      private void updateModel() {
-        openModel.setValue(checkBox.getSelection());
-      }
-    });
   }
 
   private void createLabel(final Composite composite) {
