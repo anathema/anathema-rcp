@@ -4,6 +4,6 @@ Bundle-Name: %Bundle-Name.campaing.note.importwizard
 Bundle-SymbolicName: net.sf.anathema.campaign.note.importwizard;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.campaign.note;bundle-version="1.0.0"
-Require-Bundle: net.sf.anathema.basics.importwizard
+Require-Bundle: net.sf.anathema.basics.importexport
 Bundle-Localization: fragment
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

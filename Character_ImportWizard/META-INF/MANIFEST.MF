@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name.CharacterImportWizard
 Bundle-SymbolicName: net.sf.anathema.character.importwizard;singleton:=true
 Bundle-Version: 1.0.0
-Require-Bundle: net.sf.anathema.basics.importwizard,
+Require-Bundle: net.sf.anathema.basics.importexport,
  net.sf.anathema.basics.lib,
  net.sf.anathema.character.core,
  net.sf.anathema.basics.item,

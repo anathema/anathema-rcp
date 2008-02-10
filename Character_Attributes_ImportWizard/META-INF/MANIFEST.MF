@@ -6,5 +6,5 @@ Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.attributes;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: net.sf.anathema.character.importwizard,
- net.sf.anathema.basics.importwizard
+ net.sf.anathema.basics.importexport
 Bundle-Localization: plugin
