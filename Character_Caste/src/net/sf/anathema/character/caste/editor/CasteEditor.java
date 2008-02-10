@@ -54,7 +54,7 @@ public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> 
       public void createPartControl(Composite parent) {
         parent.setLayout(new GridLayout(2, false));
         Label label = new Label(parent, SWT.NONE);
-        label.setText("Caste:");
+        label.setText(Messages.CasteEditor_CasteLabel);
         final Combo combo = new Combo(parent, SWT.DROP_DOWN | SWT.READ_ONLY);
         ICasteModel item = getPersistableEditorInput().getItem();
         combo.setItems(item.getPrintNameOptions());

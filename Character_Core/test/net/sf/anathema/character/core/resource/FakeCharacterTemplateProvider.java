@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.sf.anathema.character.core.resource;
 
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -11,7 +8,7 @@ import net.sf.anathema.character.core.template.CharacterTemplate;
 public final class FakeCharacterTemplateProvider implements ICharacterTemplateProvider {
   @Override
   public ICharacterTemplate getTemplate(ICharacterId characterId) {
-    return new CharacterTemplate(null, "Test", null);
+    return new CharacterTemplate(null, "Test", null); //$NON-NLS-1$
   }
 
   @Override

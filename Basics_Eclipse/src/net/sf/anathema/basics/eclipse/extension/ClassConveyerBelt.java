@@ -57,7 +57,7 @@ public class ClassConveyerBelt<T extends IExecutableExtension> {
         }
         catch (Exception e) {
           Logger logger = new Logger(pluginId);
-          logger.error("Could not instantiate object for extension point", e);
+          logger.error(Messages.ClassConveyerBelt_InstantiationException, e);
         }
       }
     }
@@ -74,7 +74,7 @@ public class ClassConveyerBelt<T extends IExecutableExtension> {
         }
         catch (Exception e) {
           Logger logger = new Logger(pluginId);
-          logger.error("Could not instantiate object for extension point", e);
+          logger.error(Messages.ClassConveyerBelt_InstantiationException, e);
         }
       }
     }

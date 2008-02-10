@@ -64,8 +64,8 @@ public class CharacterImportWizard extends AbstractImportWizard {
 
   @Override
   protected IStatus runImport(File externalFile, IFile internalFile, IProgressMonitor monitor)
-      throws CoreException,
-      FileNotFoundException {
+  throws CoreException,
+  FileNotFoundException {
     try {
       Document document = DocumentUtilities.read(externalFile);
       IContainer container = internalFile.getParent();
@@ -92,8 +92,9 @@ public class CharacterImportWizard extends AbstractImportWizard {
   @Override
   protected void openEditor(final IFile file, IWorkbenchPage page) throws PartInitException {
     IContainer container = file.getParent();
+    // TODO Case 37: Öffne den Character nach dem Import
     IModelDisplayConfiguration configuration = new ModelExtensionPoint().getDisplayConfiguration(container.getFile(new Path(
-        "basic.description")));
+    "basic.description"))); //$NON-NLS-1$
     new CharacterModelEditorOpener().openEditor(page, container, configuration);
   }
 

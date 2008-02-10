@@ -32,7 +32,7 @@ public class ErrorMessageEditorInput extends DefaultAdaptable implements IEditor
 
   @Override
   public String getName() {
-    return "Error message";
+    return Messages.ErrorMessageEditorInput_Name;
   }
 
   @Override
@@ -42,7 +42,7 @@ public class ErrorMessageEditorInput extends DefaultAdaptable implements IEditor
 
   @Override
   public String getToolTipText() {
-    return "Error message";
+    return Messages.ErrorMessageEditorInput_Tooltip;
   }
 
   public String getMessage() {
