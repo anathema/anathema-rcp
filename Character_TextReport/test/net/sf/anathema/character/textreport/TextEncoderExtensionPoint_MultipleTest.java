@@ -7,9 +7,6 @@ import java.util.List;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
-import net.sf.anathema.basics.eclipse.extension.fake.IMockProp;
-import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
-import net.sf.anathema.basics.eclipse.extension.fake.MockExecutableExtensionAttribute;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
 import net.sf.anathema.character.textreport.encoder.TextEncoderExtensionPoint;
 
@@ -27,15 +24,9 @@ public class TextEncoderExtensionPoint_MultipleTest {
   public void createEncodersFromEmptyExtensionPoint() throws ExtensionException {
     firstEncoder = EasyMock.createMock(ITextReportEncoder.class);
     secondEncoder = EasyMock.createMock(ITextReportEncoder.class);
-    IMockProp firstLegalAttribute = new MockExecutableExtensionAttribute<ITextReportEncoder>("class", //$NON-NLS-1$
-        ITextReportEncoder.class,
-        firstEncoder);
-    IMockProp secondLegalAttribute = new MockExecutableExtensionAttribute<ITextReportEncoder>("class", //$NON-NLS-1$
-        ITextReportEncoder.class,
-        secondEncoder);
     IPluginExtension pluginExtension = ExtensionObjectMother.createPluginExtension(
-        ExtensionObjectMother.createExtensionElementWithAttributes(firstLegalAttribute, new MockChildren()),
-        ExtensionObjectMother.createExtensionElementWithAttributes(secondLegalAttribute, new MockChildren()));
+        TextEncoderElementObjectMother.create(firstEncoder, null, null),
+        TextEncoderElementObjectMother.create(secondEncoder, null, null));
     encoders = new TextEncoderExtensionPoint(pluginExtension).getEncoders();
   }
 

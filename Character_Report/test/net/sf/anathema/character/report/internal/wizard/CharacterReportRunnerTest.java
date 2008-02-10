@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.internal.pdf;
+package net.sf.anathema.character.report.internal.wizard;
 
 import static org.easymock.EasyMock.*;
 
@@ -10,7 +10,7 @@ import net.sf.anathema.basics.swt.file.IStreamResult;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.report.internal.wizard.CharacterReportRunnable;
-import net.sf.anathema.character.report.wizard.CharacterReportRunner;
+import net.sf.anathema.character.report.internal.wizard.CharacterReportRunner;
 
 import org.easymock.EasyMock;
 import org.eclipse.jface.operation.IRunnableContext;

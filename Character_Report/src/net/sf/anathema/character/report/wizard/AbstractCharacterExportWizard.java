@@ -10,6 +10,7 @@ import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
+import net.sf.anathema.character.report.internal.wizard.CharacterReportRunner;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.jface.viewers.IStructuredSelection;

@@ -16,9 +16,9 @@ import net.sf.anathema.character.textreport.IPluginConstants;
 
 public class TextEncoderExtensionPoint {
 
-  private static final String ATTRIB_ID = "id";
-  private static final String ATTRIB_REFERENCE_ID = "referenceId";
-  private static final String ATTRIB_CLASS = "class";
+  private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
+  private static final String ATTRIB_REFERENCE_ID = "referenceId"; //$NON-NLS-1$
+  private static final String ATTRIB_CLASS = "class"; //$NON-NLS-1$
   private final IPluginExtension[] pluginExtensions;
 
   private static class TextEncoderConfiguration {
