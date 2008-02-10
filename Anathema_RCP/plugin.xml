@@ -92,6 +92,9 @@
             <command
                   commandId="org.eclipse.ui.file.import">
             </command>
+            <command
+                  commandId="org.eclipse.ui.file.export">
+            </command>
             <separator
                   name="separator"
                   visible="true">

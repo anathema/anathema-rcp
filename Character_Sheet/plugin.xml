@@ -40,5 +40,13 @@
          </activeWhen>
       </handler>
    </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <wizard
+            class="net.sf.anathema.character.sheet.wizard.SheetExportWizard"
+            id="net.sf.anathema.character.sheet.export"
+            name="Character Sheet">
+      </wizard>
+   </extension>
 
 </plugin>
