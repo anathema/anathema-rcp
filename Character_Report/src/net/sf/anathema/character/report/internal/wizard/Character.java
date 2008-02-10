@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.internal.pdf;
+package net.sf.anathema.character.report.internal.wizard;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.character.ICharacterId;

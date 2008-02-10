@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.internal.pdf;
+package net.sf.anathema.character.report.internal.wizard;
 
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -8,7 +8,7 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
-import net.sf.anathema.character.report.pdf.ICharacterReportWriter;
+import net.sf.anathema.character.report.wizard.ICharacterReportWriter;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;

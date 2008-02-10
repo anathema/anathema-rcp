@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.report.pdf.AbstractReportPdfWriter;
+import net.sf.anathema.character.report.wizard.AbstractReportPdfWriter;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 import net.sf.anathema.character.sheet.page.IPdfPageEncoder;
 import net.sf.anathema.character.sheet.page.PdfFirstPageEncoder;

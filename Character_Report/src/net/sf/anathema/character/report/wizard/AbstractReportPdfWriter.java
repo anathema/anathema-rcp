@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.pdf;
+package net.sf.anathema.character.report.wizard;
 
 import java.io.OutputStream;
 
@@ -36,6 +36,8 @@ public abstract class AbstractReportPdfWriter implements ICharacterReportWriter 
   }
 
   private String getCharacterName(ICharacter character) {
-    return character.getDisplayName();
+    return "Horst";
+//    ICharacterDescription model = (ICharacterDescription) character.getModel("net.sf.anathema.character.description.model"); //$NON-NLS-1$
+//    return model.getName().getText();
   }
 }

@@ -10,7 +10,6 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.jface,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.importexport;bundle-version="1.0.0"
-Export-Package: net.sf.anathema.character.report.pdf,
- net.sf.anathema.character.report.text,
+Export-Package: net.sf.anathema.character.report.text,
  net.sf.anathema.character.report.wizard
 Bundle-Localization: plugin

@@ -2,8 +2,8 @@ package net.sf.anathema.character.sheet.wizard;
 
 
 import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
-import net.sf.anathema.character.report.pdf.ICharacterReportWriter;
 import net.sf.anathema.character.report.wizard.AbstractCharacterExportWizard;
+import net.sf.anathema.character.report.wizard.ICharacterReportWriter;
 import net.sf.anathema.character.sheet.pdf.CharacterSheetPdfWriter;
 
 
