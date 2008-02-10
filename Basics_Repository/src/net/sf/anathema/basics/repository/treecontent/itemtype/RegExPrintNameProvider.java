@@ -25,10 +25,10 @@ public class RegExPrintNameProvider implements IPrintNameProvider {
 
   public String getPrintName(IFile file) {
     InputStreamReader reader = null;
+    if (file == null || !file.exists()) {
+      return getFallbackName();
+    }
     try {
-      if (file == null || !file.exists()) {
-        return getFallbackName();
-      }
       reader = new InputStreamReader(file.getContents());
       String content = IOUtilities.readString(reader);
       Matcher printNameMatcher = PRINT_NAME_PATTERN.matcher(content);

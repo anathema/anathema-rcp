@@ -18,7 +18,7 @@ public class CharacterPreferencePage extends PreferencePage implements IWorkbenc
   protected Control createContents(Composite parent) {
     Composite composite = new Composite(parent, SWT.NONE);
     composite.setLayout(new GridLayout());
-    new Label(composite, SWT.NONE).setText("Hasänpreference");
+    new Label(composite, SWT.NONE);
     return composite;
   }
 
@@ -29,7 +29,7 @@ public class CharacterPreferencePage extends PreferencePage implements IWorkbenc
 
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
-      throws CoreException {
+  throws CoreException {
     // nothing to do
   }
 }
