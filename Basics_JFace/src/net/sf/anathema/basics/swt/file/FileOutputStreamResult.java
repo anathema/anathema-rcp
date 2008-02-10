@@ -22,7 +22,7 @@ public class FileOutputStreamResult implements IStreamResult {
   }
 
   @Override
-  public void obenResult() {
+  public void openResult() {
     if (file != null) {
       BrowserControl.displayUrl(file.toURI());
     }

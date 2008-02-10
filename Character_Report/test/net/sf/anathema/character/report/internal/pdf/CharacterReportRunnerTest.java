@@ -9,6 +9,7 @@ import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.basics.swt.file.IStreamResult;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
+import net.sf.anathema.character.report.pdf.CharacterReportRunner;
 
 import org.easymock.EasyMock;
 import org.eclipse.jface.operation.IRunnableContext;

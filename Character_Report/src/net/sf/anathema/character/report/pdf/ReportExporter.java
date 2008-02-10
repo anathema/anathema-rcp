@@ -4,7 +4,6 @@ import net.sf.anathema.basics.swt.file.PdfFileOutputStreamFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
-import net.sf.anathema.character.report.internal.pdf.CharacterReportRunner;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.jface.operation.IRunnableContext;

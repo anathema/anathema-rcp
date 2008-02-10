@@ -7,5 +7,5 @@ public interface IStreamResult {
 
   public OutputStream createStream() throws IOException;
   
-  public void obenResult();
+  public void openResult();
 }
