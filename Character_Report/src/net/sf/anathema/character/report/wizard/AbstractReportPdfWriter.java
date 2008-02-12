@@ -2,6 +2,7 @@ package net.sf.anathema.character.report.wizard;
 
 import java.io.OutputStream;
 
+import net.sf.anathema.basics.pdfexport.PageSize;
 import net.sf.anathema.character.core.character.ICharacter;
 
 import org.eclipse.core.runtime.IProgressMonitor;

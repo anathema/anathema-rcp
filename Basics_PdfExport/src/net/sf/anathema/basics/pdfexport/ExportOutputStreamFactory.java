@@ -1,4 +1,4 @@
-package net.sf.anathema.character.report.wizard;
+package net.sf.anathema.basics.pdfexport;
 
 import java.io.FileNotFoundException;
 

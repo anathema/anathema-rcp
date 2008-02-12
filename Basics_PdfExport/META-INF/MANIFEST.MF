@@ -7,6 +7,10 @@ Bundle-Localization: plugin
 Bundle-ClassPath: lib/itext-2.0.5.jar,
  .
 Export-Package: com.lowagie.text,
- com.lowagie.text.pdf
+ com.lowagie.text.pdf,
+ net.sf.anathema.basics.pdfexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: net.sf.anathema.basics.importexport
+Require-Bundle: net.sf.anathema.basics.importexport,
+ org.eclipse.ui,
+ net.sf.anathema.basics.lib,
+ net.sf.anathema.basics.jface

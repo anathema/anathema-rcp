@@ -5,6 +5,7 @@ import static org.easymock.EasyMock.*;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
+import net.sf.anathema.basics.pdfexport.IReportRunner;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.basics.swt.file.IStreamResult;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
@@ -32,7 +33,7 @@ public class CharacterReportRunnerTest {
     OutputStream outputStream = new ByteArrayOutputStream();
     IOutputStreamFactory outputStreamFactory = createOutputStreamFactory(outputStream);
     IEditorPart editorPart = EditorPartObjectMother.createEditorPart(CharacterObjectMother.createCharacterEditorInput(new DummyCharacterId()));
-    CharacterReportRunner runner = new CharacterReportRunner(outputStreamFactory, null);
+    IReportRunner runner = new CharacterReportRunner(outputStreamFactory, null);
     IRunnableContext runnableContext = EasyMock.createNiceMock(IRunnableContext.class);
     runnableContext.run(EasyMock.eq(true), EasyMock.eq(false), EasyMock.isA(CharacterReportRunnable.class));
     EasyMock.replay(runnableContext);
