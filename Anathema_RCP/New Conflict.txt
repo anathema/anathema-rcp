@@ -1,0 +1,300 @@
+Social Conflict
+From Fixalted
+Jump to: navigation, search
+
+This is a revised Social conflict system designed to replace the Social Combat system in Exalted 2e. It is heavily based upon Strangelooper's Social Conflict 1.0, which was in turn a fusion and reworking of both Tickless Social Combat by Democritus, and Revised Social Combat by Similarian.
+Rule used by: Strangelooper,Bazzalisk
+Contents
+[hide]
+
+    * 1 Intimacies and Virtues
+          o 1.1 Types of Intimacy
+          o 1.2 Minimum Number of Intimacies
+          o 1.3 Virtue Channel Gain and Loss
+          o 1.4 No Willpower Cost to Channel Virtues
+    * 2 Social Conflict
+          o 2.1 Joining Debate
+                + 2.1.1 Social Surprise
+          o 2.2 The Floor
+          o 2.3 Timing in Social Conflict
+          o 2.4 Social Actions
+                + 2.4.1 Seize Debate (-1 MDV)
+                + 2.4.2 Relinquish Floor* (special)
+                + 2.4.3 Hold the Floor* (special)
+                + 2.4.4 Monologue/Study* (-1 MDV)
+                + 2.4.5 Coordinate (-1 MDV)
+                + 2.4.6 Social Attack* (-1 MDV)
+          o 2.5 Social Attacks
+                + 2.5.1 1. Declare attack
+                      # 2.5.1.1 Emotions
+                      # 2.5.1.2 Intimacies
+                      # 2.5.1.3 Compulsions
+                + 2.5.2 2. Defender Declares Response
+                      # 2.5.2.1 Dodge MDV
+                      # 2.5.2.2 Parry MDV
+                + 2.5.3 3. Attack Roll
+                + 2.5.4 4. Attack Reroll
+                + 2.5.5 5. Subtract External Penalties and MDV modifiers
+                      # 2.5.5.1 MDV Modifiers
+                + 2.5.6 6. Defense Reroll
+                + 2.5.7 7. Calculate Raw Damage
+                + 2.5.8 8. Apply Soak and Roll Damage
+                + 2.5.9 9. Counterattacks
+                + 2.5.10 10. Apply Effects
+    * 3 Influences
+          o 3.1 Duration
+          o 3.2 Weak Influences
+          o 3.3 Overwhelming Influences
+          o 3.4 Unnatural Influences
+    * 4 Social Conflict and Combat
+    * 5 Unusual Situations
+          o 5.1 Physical Social Attacks
+          o 5.2 Social Range
+          o 5.3 Attacks to Distract
+    * 6 Charms
+          o 6.1 Solar Charm edits for Social Conflict
+          o 6.2 Terrestrial Charm edits for Social Conflict
+          o 6.3 Lunar Charm edits for Social Conflict
+          o 6.4 Sidereal Charm edits for Social Conflict
+
+Intimacies and Virtues
+
+Characters may have intimacies: these are strong emotional positions or rational opinions held by the character. These can be any sort of opinion or emotion which the player and GM feel is appropriate. A character may have as many intimacies as desired; while having too many will restrict the character's actions, having too few will leave the character more open to social manipulation by others. Each intimacy is associated with one of the character's Virtues, and has a rating that can be anywhere between 1 and the character's Virtue rating (but see Influences later).
+Types of Intimacy
+
+Each Virtue has a particular type of intimacy which can be associated to it:
+Virtue 	Intimacy Type
+Compassion 	Passions
+Conviction 	Ideas/Beliefs
+Temperance 	Taboos
+Valour 	Duties/Vows
+Minimum Number of Intimacies
+
+Each Virtue has a minimum number of Intimacies which it must have associated to it, depending upon its rating.
+Virtue Rating 	Minimum number of associated intimacies
+O 	none
+OO 	none
+OOO 	one
+OOOO 	two
+OOOOO 	three
+Virtue Channel Gain and Loss
+
+Any time a character acts in accordance with one of their intimacies they regain a Virtue Channel for the associated Virtue, as long as this will not raise their available number of channels above the permanent rating of the virtue. If the player wishes, the permanent rating of the intimacy in question may also be raised by one at this time, as long as this will not increase the rating above that of the associated Virtue.
+
+Any time a character acts against an intimacy they must mark off one Virtue Channel from the associated Virtue. In addition the strength of the intimacy must be reduced by one immediately. If this reduces the Intimacy to zero, then it will disappear completely at the end of the scene. If the character acts against an intimacy but has no Channels for that Virtue remaining, then they must spend a point of temporary Willpower instead. A character with neither Willpower nor channels in a particular Virtue remaining may not act against intimacies of that Virtue.
+
+If an action would cause two intimacies associated to different Virtues to conflict with each other, then apply the rules as usual.
+
+If an action would cause two intimacies associated to the same Virtue to conflict, then immediately after the player has decided which way to act roll a number of dice equal to the rating of each of the conflicting intimacies as opposed dice-pools. The intimacy which wins is the one which governs whether a Virtue Channel is gained or lost. Both intimacies will be strengthened and/or weakened as normal according to the character's chosen action, regardless of which intimacy won the opposed roll.
+
+The same intimacy may not cause virtue channel gain or loss more than once in the same scene, however it may cause both gain and loss in the same scene (effectively canceling out). Note that Willpower is not gained by acting in accordance with a Virtue; if a character with zero Channels remaining in a Virtue acts against it (and therefore spends a Willpower to do so), they will gain a Virtue Channel should they subsequently act in accordance with the intimacy. They do not get the Willpower back.
+No Willpower Cost to Channel Virtues
+
+A Virtue Channel may be spent to gain extra dice on any roll that the Virtue could be reasonably applied to, as in the corebook. However, is is no longer necessary to spend a Willpower point in order to channel a Virtue in this way. All that is necessary to channel a Virtue for dice is to spend the Virtue Channel itself. This applies to spending Virtue Channels for dice on any roll, it is not limited to Social Conflict.
+
+    This is a major rule change designed to increase the value of Virtue Channels 
+
+Social Conflict
+
+Social conflict replaces social combat.
+Joining Debate
+
+Join Debate is an opposed Wits + Socialise roll. The winner takes the floor (see below).
+Social Surprise
+
+A character who wishes to enter social conflict in an unexpected manner may attempt to make a social attack during ordinary conversation. The aggressor declares what sort of social attack is being made, which may not be flurried. The aggressor then rolls Manipulation + Socialise which all other people present defend against with a "Surprise MDV" of (Wits + Socialise)/2. Any character whose Surprise MDV was lower than the number of rolled successes is surprised.
+
+The aggressor and any unsurprised characters now roll join debate normally. If the aggressor wins the floor then they must immediately make the attack they declared. All surprised characters have their MDVs rendered inapplicable against this attack. If the aggressor fails to win the floor then all surprised characters are no longer surprised, and may now take part in Social conflict as normal.
+The Floor
+
+At any time only one character will have the floor, this character is referred to as "The Speaker". Certain social actions may only be attempted by the Speaker, these will be marked below.
+
+The Speaker is expected to roleplay out his speech to some extent. Other characters may make brief comments, but are not allowed to interrupt him unless using the Seize Debate action (see later).
+Timing in Social Conflict
+
+Unlike Physical Combat Social Conflict does not use tick-counting for timing. Instead each time the current speaker takes an action all other players get an oportunity to interrupt with a valid action. If preferred for the flow of roleplay the GM may allow more active players to actually interrupt in the middle of the speaker's stunt, however this has no additional effect, the interruption still occurs mechanically after the speaker's action has been completed. Since the actions which may be taken by interrupting players are limited it is unlikely that there will be a timing disagreement.
+Social Actions
+
+Social actions which may only be attempted by the Speaker are marked with an asterisk.
+Seize Debate (-1 MDV)
+
+This action may be attempted at any point by any participant other than the Speaker. The character attempts to interrupt the Speaker, who may if they wish immediately take the Relinquish Floor action, ceding to the interrupting character. However if the Speaker chooses to contest the interruption, then the character taking the Seize Debate action immediately rolls Charisma + Socialise vs. the Speaker's highest Parry MDV.
+
+If the Seize Debate action is contested, and the character making it succeeds, then that character immediately takes the Floor. All characters involved in the debate other than the previous speaker and the new speaker may reduce their current MDV penalty by one. If the character fails, then the original speaker retains the Floor and no one may reduce their MDV penalties.
+
+If multiple participants simultaneously attempt to Seize Debate then they all roll and the one with the most excess successes receives the floor. None of those who attempt to Seize Debate may reduce their MDV penalty should the Floor change hands.
+Relinquish Floor* (special)
+
+The Speaker may at any point choose to Relinquish the Floor. At this point all characters except the old speaker immediately roll Join Debate, and the winner gains the Floor. The old speaker and any characters who didn't win the Join Debate roll may immediately reduce their MDV penalty by one.
+
+The Speaker may choose to Relinquish Floor in response to a Seize Debate action. In this case the character taking the Seize Debate action is automatically considered to have taken the Floor, and the old speaker and all other involved characters may immediately reduce their MDV penalty by 1.
+
+After the completion of a Social Attack (or flurry of Social Attacks), the Speaker must always Relinquish the Floor unless they wish to try to Hold the Floor (see below).
+Hold the Floor* (special)
+
+This action may only be attempted immediately after making a social attack. The Speaker attempts to retain the floor. The Speaker rolls Charisma + Socialise and compares the result to the highest Parry MDV of ever participant in the social conflict. If the successes exceed all compared MDVs then the Speaker retains control of the Floor and all other characters may immediately reduce their MDV penalty by 1. If not then the character who applied the highest Parry MDV takes the Floor, and all characters except for the old Speaker and the new Speaker may immediately reduce their MDV penalty by 1.
+Monologue/Study* (-1 MDV)
+
+The speaker makes an extended speech or stunts how they are observing a particular person's behaviour in response to their words. Each Monologue action must be on a specific subject. Each Study action must be directed at a particular target. For the effects of these actions see the section on social attacks.
+Coordinate (-1 MDV)
+
+By taking this action a social leader can organise their allies to work together in a coordinated manner when socially attacking a particular target. Roll Charisma + Socialise at a difficulty of half the number of people being organised (all of whom must be willing participants). If the roll is successful then the participants are considered to be a coordinated group.
+
+When any member of the coordinated group makes a Seize Debate, Monologue, or Study action all members of the group take the same MDV penalty. No member of a coordinated group may make any social attacks against any target other than the one originally named.
+
+When any member of the coordinated group makes a social attack targeted at the originally named target all other members of the group may also take a -1 MDV penalty in order to make an attack targeting the same target. All these attacks must be linked in a way that the GM feels is appropriate, all members of the group benefit fully from any monologue or study actions taken by the member making the main attack, and the target's MDV is penalised by the number of excess successes on the original roll (to a maximum of the number of members in the group).
+
+When a member of a coordinated group makes a social attack the group is immediately disbanded. Also, any member of the group may choose to reflexively disconnect from the group at any point.
+Social Attack* (-1 MDV)
+
+The Speaker makes a social attack (see the next section for details). The Speaker gains an additional number of bonus dice equal to the sum of the number of Monologue actions they took immediately prior to the attack which focused upon the same subject as the attack, and the number of Study actions they took immediately prior to the attack aimed at the same target as the attack. Only Monologue and Study actions made since the last time the speaker changed count. The maximum die bonus which may be gained through monologue and study actions is 3.
+
+Immediately after making a social attack the speaker must either take the Relinquish Floor or Hold Floor Action.
+Social Attacks
+
+Each social attack must target a specific virtue, of the attacker's choice. There are three kinds of social attacks, Presence Attacks which target a single individual, Performance attacks which target everyone in the debate, and Investigation attacks which also target a specific individual, but which have special rules.
+
+An investigation attack must take the form of a question which the attacker wants the defender to answer. This may be either a question as to whether the target has strong feelings about a particular subject, or a question asking the target for a particular piece of information.
+
+Social attacks are resolved in an 8 step process.
+1. Declare attack
+
+The attacker declares what type of attack they are making, any charms they are using, who the target is, which virtue it targets, and what the desired effect is. For investigation attacks the desired effect is the question the attacker wishes for an answer to. For other attacks the desired effect is to instill some form of Influence, these may be:
+Emotions
+
+Emotions are more general and shorter lived than intimacies, but otherwise function similarly. For example, whereas a person might have an intimacy of lust towards a particular person an Emotion can only inspire a general feeling of lust without specifying a target. Emotions are the easiest form of influence to inflict.
+Intimacies
+
+Intimacies are exactly as described before.
+Compulsions
+
+A compulsion is an order to perform a specific action, which must be declared by the attacker. Compulsions are the hardest type of influence to form.
+2. Defender Declares Response
+
+At this point the defender declares which of their MDVs they are applying to the attacks (or chooses not to apply any MDV), and declares any defensive charm usage. The MDVs are as follows:
+Dodge MDV
+
+Dodge MDV is calculated as (Willpower + Permanent Essence)/2.
+Parry MDV
+
+Parry MDVs are calculated as (Manipulation + (Presence, Performance, or Investigation))/2.
+3. Attack Roll
+
+The attack roll for a social attack is Manipulation + (appropriate ability). In addition if the attacker's Appearance is higher than the defender's Temperance then the attacker may add the difference in bonus dice to his attack roll. If the defender's Temperance is higher than the Attacker's appearance then he must instead apply the difference as an internal penalty on his attack roll. For a performance attack the highest temperance of any valid target is used in these calculations. The difficulty on all attack rolls is 1.
+4. Attack Reroll
+
+Some charms may allow the attacker to reroll at this step.
+5. Subtract External Penalties and MDV modifiers
+
+At this point the defender's chosen MDV is subtracted from the attacker's successes. On Performance attacks this is done separately for each target, and from this point forward all steps of combat resolution are handled separately for each target.
+MDV Modifiers
+
+The presence of supporting or conflicting intimacies, motivations, and virtues will adjust the defender's MDVs.
+	Aligned 	Opposed
+Intimacy/influence 	+1 each 	-1 each
+Strong Virtue (3+) 	+2 	-2
+Motivation 	+3 	-3
+
+The total bonus/penalty from these factors cannot exceed +/- 3.
+
+If two virtues contradict use the higher. On a tie they cancel each other out.
+
+Situational modifiers also apply to MDV based upon what the intended effect of the attack is:
+Emotions 	Intimacies 	Investigation Questions 	Compulsions 	MDV modifier
+Laudable / Expected 				-2
+Normal 	Obvious ideas 	Common knowledge 		-1
+Unusual 	Lust / like, Plausible Idea, Inconsequential Duty or Taboo 	Intimacy, Strong Virtue 		0
+Inappropriate 	Dislike / respect, Inconvenient Duty or Taboo 	Gossip 	Laudable/Expected? 	+1
+Dangerous 	Unusual idea, Onerous Duty or Taboo 	Confidential information 	Normal 	+2
+	Love / hate, Dangerous / silly idea, Dangerous Duty or Taboo 	Motivation, Dangerous information 	Inappropriate 	+4
+	Devotion, Absurd idea, Very dangerous but useful Duty 	Deepest secrets, repressed information 	Dangerous 	+5
+	Pointless and suicidal duty 		Fatal or Suicidal 	“unacceptable order” = no chance of success
+
+Each failed attempt to instill the same influence results in an additional +2 MDV (cumulative). This resets after a successful attempt.
+6. Defense Reroll
+
+Some charms allow the defender to alter and reapply their MDV at this point.
+7. Calculate Raw Damage
+
+The raw damage of a social attack is equal to Charisma + extra successes.
+8. Apply Soak and Roll Damage
+
+If the attack is Natural mental influence then the defender's soak is equal to their Integrity + Permanent Essence. A successful attack has a minimum damage equal to the attacker's essence. Damage dice are rolled.
+
+If the attack is unnatural influence skip this step.
+9. Counterattacks
+
+At this point any counterattack takes effect.
+10. Apply Effects
+
+If the attack is natural mental influence then the number of successes on the damage roll is the strength of the newly formed influence. Influences may vary in rating from 0 to (relevant virtue + 1) (some charms may over-ride this).
+
+If the attack is unnatural mental influence then record the influence as having a rating of Unnatural, and note the charm which created it. In addition, divide the number of extra successes on the attack roll by 4 (round down) and record this as the willpower surcharge of the Influence.
+
+If the attack is an investigation attack then the newly formed influence is a compulsion to immediately Seize Debate (which happens before anyone else gets a chance to) and reveal the desired information. How the information is revealed is up to the controlling character -- the character is just as likely to lie or stay quiet as they are to speak truthfully, but something (such as body language, hesitation, poor choice of words, or a misplaced blush) informs the attacker of the actual truth. If an investigation intimacy is of overwhelming or unnatural rating then the affected character will give away all relevent information, not just that which they have been asked for.
+
+If for any reason the target does not immediately take the floor then the compulsion immediately evaporates and has no further effect.
+Influences
+
+Influences are much like intimacies. Each is attached to a particular virtue, each has a rating, and in most ways they behave exactly like intimacies. There are a few differences, however.
+Duration
+
+Intimacy type Influences of rating 0 disappear at the end of the scene in which they were created. Intimacy type Influences of a higher rating are retained and become normal intimacies at the end of the scene. An Intimacy type influence of overwhelming rating drops to have a rating equal to the associated virtue and becomes permanent at the end of the scene.
+
+Emotion type Influences reduce in rating by 1 every scene, and disappear entirely when their rating drops below zero.
+
+Compulsion type influences expire as soon as the compulsion is completed, and never last longer than a scene under any circumstances.
+
+Investigation type influences force the influenced character to immediately attempt to Seize Debate, and if successful answer the question posed. The influence has no further effect.
+
+Unnatural Influences last as long as the charm which created them says.
+Weak Influences
+
+Influences can be rated at 0. Such influences do not penalise the subject in any way if violated, but still provide the usual benefits if followed. Violating a weak influence causes it to be removed.
+Overwhelming Influences
+
+Overwhelming Influences are those which have rating higher than the associated virtue. Violating such an influence causes the subject to take one point of Limit in addition to the usual effects.
+Unnatural Influences
+
+An unnatural influence is stronger than any other influence except for another unnatural influence. Going along with an unnatural influence grants no benefits, and resisting an unnatural influence costs Willpower (and incurs Limit gain). The Willpower cost to resist will be listed in the description of the charm which created the influence. Exceptional success when creating an unnatural influence may incur an additional "Willpower Surcharge"; the Willpower cost of resisting these influences is increased by this surcharge. The Limit gain incurred is always a single point (maximum 1 point of Limit gain per scene from any single Influence) whenever any amount of WP is spent to resist the influence.
+
+If two unnatural influences conflict then the player must choose to break one of them, spending willpower as usual. If the character lacks enough willpower to pay this amount then the character loses any remaining willpower and acts in a manner determined by the GM. Catatonia is a common response.
+Social Conflict and Combat
+
+When social conflict and physical combat happen simultaneously any social action may only be taken on one's own physical action. Each such social action is considered a speed 5 miscellaneous action with a -1 DV penalty, which may be flurried normally (except Relinquish Floor, which is reflexive). All characters engaged in physical combat get a +2 bonus to Dodge MDV and a -2 penalty to all Parry MDVs.
+
+Joining Battle during social conflict may be attempted by any character.
+
+Stopping physical combat is a compulsion type influence linked to Temperance. It is usually a Performance attack, though Presence could be used in a duel.
+Unusual Situations
+Physical Social Attacks
+
+Not all social attacks are carried with words. In the correct circumstances it may be possible to make a social attack which doesn't use them at all. An appropriate stunt for such an attack might be a sly wink, a facial expression of shock, a moving dance, or an exotic sex-act. In all circumstances these attacks may only be used by the speaker, and may only be used to establish an Emotion or a Passion type intimacy building upon a previously established emotion. Such attacks are based upon Dexterity rather than Manipulation, and the target receives an additional +1 to MDV due to the imprecise nature of the medium. When Social Range is in effect physical performance-based social attacks often remove the usual restrictions for who may be effected by an attack. In all other ways they are treated as normal social attacks. Most such attacks are based upon Presence, with a dance performance being the most obvious exception.
+Social Range
+
+The social conflict rules assume that all participants are equally able to address all other participants, but in some social situations the rules of the social structure preclude this. In such circumstances divide the debate up into a number of smaller debates, each of which has its own Floor, and each of which are considered to run simultaneously. Some characters may be in more than one Floor at once, in which case they must declare when they are switching their attention from one to another. Characters receive a -2 penalty to their MDVs for all purposes with regards to Floors of which they are a part, but on which they are not concentrating; including resisting surprise.
+
+At any point it is perfectly acceptable for a character to attempt to break the division and bring everybody into a single debate. This may only be attempted by a Speaker, and forces all present to make a new Join Debate as if the debate were starting afresh. Depending upon the situation this may be considered very rude and lead to hostile behaviour from characters who have appropriate intimacies.
+
+A classic example of such a divided social encounter would be a ball. Whilst dancing most dances, the participants are divided up into pairs and may only speak freely with their partner. Each pairing in such a ball is considered to be a separate Floor with its own Speaker. Some dances include the swapping of partners at certain points, in which case the current Floors are disbanded to be replaced with new ones, requiring new Join Debate rolls. All social actions taken whilst dancing suffer a -1 dice penalty due to dancing at the same time, and the character suffers a -1 die penalty on his Dexterity + Performance roll to dance as well. However, a Speaker may instead make a physical Performance-based social attack at no penalty; unlike other social attacks in this context this attack must be applied equally to all persons present (inclusing spectators who are not even part of the formal dance). In this case, no one suffers the MDV penalty for concentrating on a different Floor.
+Attacks to Distract
+
+Distraction is an emotion effect, and due to its easiness to inflict is always considered a "normal" emotion, even if it would in fact be dangerous or innapropriate. Instead of supporting or opposing any other social attacks a character who is suffering from a natural distraction influence takes an internal penalty equal to its rating on his next action, and the distraction subsequently evaporates. A character suffering from an unnatural distraction influence is instead unnable to take any actions at all unless he spends willpower to overcome it. Many attacks to distract are also Physical Social Attacks.
+
+
+Charms
+Solar Charm edits for Social Conflict
+
+    by Strangelooper 
+
+Terrestrial Charm edits for Social Conflict
+
+    by Bazzalisk 
+
+Lunar Charm edits for Social Conflict
+
+    by Bazzalisk 
+
+Sidereal Charm edits for Social Conflict
+
+    by Strangelooper 

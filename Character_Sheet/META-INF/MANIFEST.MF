@@ -8,11 +8,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.lib;visibility:=reexport,
- net.sf.anathema.basics.pdf;visibility:=reexport,
  net.sf.anathema.character.core;visibility:=reexport,
  net.sf.anathema.basics.jface,
  net.sf.anathema.character.report;visibility:=reexport,
- net.sf.anathema.basics.importexport;bundle-version="1.0.0"
+ net.sf.anathema.basics.importexport;bundle-version="1.0.0",
+ net.sf.anathema.basics.pdfexport;visibility:=reexport
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Export-Package: net.sf.anathema.character.sheet.common,

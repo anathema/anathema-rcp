@@ -1,0 +1,529 @@
+Exalted Revised Social Conflict
+From Queen's Tower Society
+Jump to: navigation, search
+
+This is a revised Social conflict system designed to replace the Social Combat system in Exalted 2e. It is heavily based upon Strangelooper's Social Conflict 1.0.
+
+
+Contents
+[hide]
+
+    * 1 Intimacies and Virtues
+          o 1.1 Types of Intimacy
+          o 1.2 Minimum Number of Intimacies
+          o 1.3 Virtue Channel Gain and Loss
+    * 2 Social Conflict
+          o 2.1 Joining Debate
+                + 2.1.1 Social Surprise
+          o 2.2 Composure
+          o 2.3 The Floor
+          o 2.4 Timing in Social Conflict
+          o 2.5 Social Actions
+                + 2.5.1 Seize Debate (1 composure, -1 MDV)
+                + 2.5.2 Relinquish Floor* (0 composure, special)
+                + 2.5.3 Hold the Floor* (1 Composure, special)
+                + 2.5.4 Monologue/Study* (0 composure, -1 MDV)
+                + 2.5.5 Coordinate (1 composure, -1 MDV)
+                + 2.5.6 Social Attack* (1 composure, -1 MDV)
+          o 2.6 Social Attacks
+                + 2.6.1 1. Declare attack
+                      # 2.6.1.1 Emotions
+                      # 2.6.1.2 Intimacies
+                      # 2.6.1.3 Compulsions
+                + 2.6.2 2. Defender Declares Response
+                      # 2.6.2.1 Dodge MDV
+                      # 2.6.2.2 Parry MDV
+                + 2.6.3 3. Attack Roll
+                + 2.6.4 4. Attack Reroll
+                + 2.6.5 5. Subtract External Penalties and MDV modifiers
+                      # 2.6.5.1 MDV Modifiers
+                + 2.6.6 6. Defense Reroll
+                + 2.6.7 7. Calculate Raw Damage
+                + 2.6.8 8. Apply Soak and Roll Damage
+                + 2.6.9 9. Counterattacks
+                + 2.6.10 10. Apply Effects
+    * 3 Influences
+          o 3.1 Duration
+          o 3.2 Weak Influences
+          o 3.3 Overwhelming Influences
+          o 3.4 Unnatural Influences
+    * 4 Social Conflict and Combat
+    * 5 Unusual Situations
+          o 5.1 Physical Social Attacks
+          o 5.2 Social Range
+          o 5.3 Attacks to Distract
+    * 6 Solar Charms
+    * 7 Lunar Charms
+          o 7.1 Charisma Charms
+                + 7.1.1 Outworld-Forsaking Stance
+                + 7.1.2 Foe-Turning rebuke
+                + 7.1.3 Scathing Lunar Condemnation
+                + 7.1.4 Cobra Hypnotic Method
+                + 7.1.5 Forgetful Victim Prana
+                + 7.1.6 Unnoticed Confusion Attack
+                + 7.1.7 Subtle Silver Command
+                + 7.1.8 Secret Speech Method
+                + 7.1.9 Perfect Fear Scent
+                + 7.1.10 Mind-Blanking Fear Technique
+                + 7.1.11 Terrifying Lust Infliction
+                + 7.1.12 Herd Reinforcing Stance
+                + 7.1.13 Forsaking the Blood Posture
+                + 7.1.14 Culling the Pride
+                + 7.1.15 Topiary Culture Meditation
+                + 7.1.16 Herd Strengthening Invocation
+          o 7.2 Manipulation Charms
+                + 7.2.1 Mirror Sight Dismay
+                + 7.2.2 Lost Mirror Flight
+                + 7.2.3 Mask of White Jade
+                + 7.2.4 Labyrinth of the Beast
+                + 7.2.5 Commanded to Fly
+                + 7.2.6 Butterfly Eyes Fist
+                + 7.2.7 Creating the Wolf Attitude
+                + 7.2.8 Feeding the Bear Progression
+          o 7.3 Appearance Chamrs
+                + 7.3.1 Perfect Symmetry
+                + 7.3.2 New Friend Aroma
+                + 7.3.3 Glance Oration Technique
+                + 7.3.4 Irrestsitable Silver Spirit
+          o 7.4 Perception Charms
+                + 7.4.1 Wolf Ear Advantage
+                + 7.4.2 Motive Disecting Eye
+    * 8 Dragon-Blooded Charms
+          o 8.1 Linguistics Charms
+                + 8.1.1 Poison Tongue Technique
+                + 8.1.2 Voice of Mastery
+                + 8.1.3 Speach without Words
+                + 8.1.4 With One Mind
+          o 8.2 Integrity Charms
+                + 8.2.1 Oath of the Ten Thousand Dragons
+                + 8.2.2 Ten-Thousand Dragons Fight as One
+                + 8.2.3 Unflagging Vengeance Meditation
+                + 8.2.4 Granite Curtain of Serenity
+                + 8.2.5 Inviolate Dragon Spirit
+          o 8.3 Presence Charms
+                + 8.3.1 Unbearable Taunt Technique
+                + 8.3.2 Moth to the Candle
+                + 8.3.3 Warlords' Convocation
+                + 8.3.4 Auspicious First Meeting Attitude
+                + 8.3.5 Passion Transmuting Nuance
+          o 8.4 Socialise Charms
+                + 8.4.1 Jade Defense
+                + 8.4.2 Wary Yellow Dog Attitude
+                + 8.4.3 Brother against Brother Insinuation
+                + 8.4.4 Warm-Faced Seduction Style
+                + 8.4.5 Smoothing-over the Past Technique
+          o 8.5 Bureaucracy Charms
+                + 8.5.1 Geese Flying South Administration
+                + 8.5.2 Bestow the Saffron Mantle
+          o 8.6 Performance Charms
+                + 8.6.1 Dance of Flashing Swords
+                + 8.6.2 Hidden Petal Aria Method
+                + 8.6.3 Soul Stirring Performance Method
+                + 8.6.4 Protective Performance
+                + 8.6.5 Tireless String Plucking Meditation
+
+[edit] Intimacies and Virtues
+
+Characters may have intimacies, these are strong emotional positions or rational opinions held by the character. These can be any sort of opinion or emotion which the player and GM feel is appropriate. A character may have as many intimacies as desired, though having too many will restrict the character's actions. Each intimacy is associated to a virtue, and each intimacy has a rating between 1 and 5, and no permanent intimacy may have a rating higher than the rating of it's associated virtue (but see Influences later).
+[edit] Types of Intimacy
+
+Each Virtue has a particular type of intimacy which can be associated to it:
+Virtue 	Intimacy Type
+Compassion 	Passions
+Conviction 	Ideas/Beliefs
+Temperance 	Taboos
+Valour 	Duties/Vows
+[edit] Minimum Number of Intimacies
+
+Each Virtue has a minimum number of Intimacies which it must have associated to it, depending upon its rating.
+Virtue Rating 	Minimum number of associated intimacies
+O 	none
+OO 	none
+OOO 	one
+OOOO 	two
+OOOOO 	three
+[edit] Virtue Channel Gain and Loss
+
+Any time a character acts in accordance with one of their intimacies they receive an extra Virtue Channel for the associated virtue as long as this will not raise their available number of channels above the rating of the virtue, if the player wishes the rating of the intimacy in question may also be raised by one at this time, as long as this will not increase the rating above that of the associated virtue, and provided that the intimacy has not already benefited from an increase in rating during the same scene. Any time a character acts against an intimacy they must either lose one Virtue Channel from the associated virtue or spend a point of willpower, in addition the strength of the intimacy is reduced by one immediately. Spending willpower in this way counts as suppressing the virtue for the purposes of limit gain.
+
+If two intimacies associated to different virtues conflict with each other then apply the rules as usual.
+
+If two intimacies associated to the same virtue conflict then immediately after the player has decided which way to act roll the ratings of the conflicting intimacies as opposed dice-pools. The intimacy which wins is the one which governs whether a virtue channel is gained or lost. Strengthening and weakening of intimacies applies to both intimacies as normal regardless of which one won the opposed roll.
+
+The same intimacy may not cause virtue channel gain or loss more than once in the same scene, however it may cause both gain and loss in the same scene (effectively canceling out).
+[edit] Social Conflict
+
+Social conflict replaces social combat.
+[edit] Joining Debate
+
+Join Debate is an opposed Wits + Socialise roll. The winner takes the floor (see below).
+[edit] Social Surprise
+
+A character who wishes to enter social conflict in an unexpected manner may attempt to make a social attack during ordinary conversation. The aggressor declares what sort of social attack is being made, which may not be flurried. The aggressor then rolls Manipulation + Socialise which all other people present defend against with a "Surprise MDV" of (Wits + Socialise)/2. Any character who's Surprise MDV was lower than the number of rolled successes is surprised.
+
+The Aggressor and any unsurprised characters now roll join debate normally. If the aggresor wins the floor then they must immediately make the attack they declared. All surprised characters have their MDVs rendered inapplicable against this attack. If the Aggressor fails to win the floor then all surprised characters are no longer surprised, and may now take part in Social conflict as normal.
+[edit] Composure
+
+A character's composure pool is equal to their (Appearance + Socialise + Permanent Essence)/2. Composure refreshes at the start of each scene, but not during a single scene. A character may at any point spend 1 willpower to increase their composure by 1.
+[edit] The Floor
+
+At any time only one character will have the floor, this character is referred to as "The Speaker". Certain social actions may only be attempted by the speaker, these will be marked below.
+
+The speaker is expected to roleplay out his speech to some extent. Other characters may make brief comments, but are not allowed to interrupt him unless using the Seize Debate action (see later).
+[edit] Timing in Social Conflict
+
+Unlike Physical Combat Social Conflict does not use tick-counting for timing. Instead each time the current speaker takes an action all other players get an oportunity to interrupt with a valid action. If preferred for the flow of roleplay the GM may allow more active players to actually interrupt in the middle of the speaker's stunt, however this has no additional effect, the interruption still occurs mechanically after the speaker's action has been completed. Since the actions which may be taken by interrupting players are limitted it is unlikely that there will be a timing disagreement.
+[edit] Social Actions
+
+Social actions which may only be attempted by the speaker are marked with an asterisk. Some actions cost composure to attempt.
+[edit] Seize Debate (1 composure, -1 MDV)
+
+This action may be attempted at any point by any participant other than the speaker. The character attempts to interrupt the speaker, who may if they wish immediately take the Relinquish Floor action. If the speaker choses not to then the character taking the seize debate action immediately rolls Charisma + Socialise vs. the speaker's highest Parry MDV.
+
+If the Seize Debate action is contested and the character making it succeeds then they immediately take the floor, and all characters involved in the debate other than the previous speaker and the new speaker may reduce their current MDV penalty by one.
+
+If multiple participants simultaneously attempt to Sieze debate then they all roll and the one with the most excess successes receives the floor.
+[edit] Relinquish Floor* (0 composure, special)
+
+The Speaker may at any point choose to relinquish the floor. At this point all characters except the old speaker immediately roll Join Debate, and the winner gains the floor. The old speaker and any characters who didn't win the Join Debate roll may immediately reduce their MDV penalty by one.
+
+Alternatively the Speaker may choose to Relinquish Floor in response to a seize Debate action. In this case the character taking the Seize Debate action is automatically considered to have taken the floor, and the old speaker and all other involved characters may immediately reduce their MDV penalty by 1.
+[edit] Hold the Floor* (1 Composure, special)
+
+This action may only be attempted immediately after making a social attack. The Speaker attempts to retain the floor. The speaker rolls Charisma + Socialise and compares the result to the highest Parry MDV of ever participant in the social conflict. If the successes exceed all compared MDVs then the Speaker retains control of the floor and all other characters may immediately reduce their MDV penalty by 1, if not then the Character who applied the highest Parry MDV takes the floor and all characters except for the old speaker and the new speaker may immediately reduce their MDV penalty by 1.
+[edit] Monologue/Study* (0 composure, -1 MDV)
+
+The character makes an extended speech or stunts how they are observing a particular person's behaviour. Each monologue action must be on a specific subject. Each Study action must be directed at a particular target. For the effects of these actions see the section on social attacks.
+[edit] Coordinate (1 composure, -1 MDV)
+
+By taking this action a social leader can organise their allies to work together in a coordinated manner when socially attacking a particular target. Roll Charisma + Socialise at a difficulty of half the number of people being organised (all of whom must be willing participants). If the roll is successful then the participants are considered to be a coordinated group.
+
+When any member of the coordinated group makes a Seize Debate, Monologue, or Study action all members of the group take the same MDV penalty. No member of a coordinated group may make any social attacks against any target other than the one originally named.
+
+When any member of the coordinated group makes a social attack targeted at the originally named target all other members of the group may also spend one composure and take a -1 MDV penalty in order to make an attack targeting the same target. All these attacks must be linked in a way that the GM feels is appropriate, all members of the group benefit fully from any monologue or study actions taken by the member making the main attack, and the target's MDV is penalised by the number of excess successes on the original roll (to a maximum of the number of members in the group).
+
+When a member of a coordinated group makes a social attack the group is immediately disbanded. Any member of the group may choose to reflexively disconnect from the group at any point.
+[edit] Social Attack* (1 composure, -1 MDV)
+
+The speaker makes a social attack (see the next section for details). The speaker gains an additional number of bonus dice equal to the sum of the number of monologue actions they took immediately prior to the attack which focused upon the same subject as the attack, and the number of study actions they took immediately prior to the attack aimed at the same target as the attack. Only monologue and study actions made since the last time the speaker changed count. The maximum die bonus which may be gained through monologue and study actions is 3.
+
+Immediately after making a social attack the speaker must either take the Relinquish Floor or Hold Floor Action.
+[edit] Social Attacks
+
+Each social attack must target a specific virtue, of the attacker's choice. There are three kinds of social attacks, Presence Attacks which target a single individual, Performance attacks which target everyone in the debate, and Investigation attacks which also target a specific individual, but which have special rules.
+
+An investigation attack must take the form of a question which the attacker wants the defender to answer. This may be either a question as to whether the target has strong feelings about a particular subject, or a question asking the target for a particular piece of information.
+
+Social attacks are resolved in an 8 step process.
+[edit] 1. Declare attack
+
+The attacker declares what type of attack they are making, any charms they are using, who the target is, which virtue it targets, and what the desired effect is. For investigation attacks the desired effect is the question the attacker wishes for an answer to. For other attacks the desired effect is to instill some form of Influence, these may be:
+[edit] Emotions
+
+Emotions are more general and shorter lived than intimacies, but otherwise function similarly. For example, whereas a person might have an intimacy of lust towards a particular person an Emotion can only inspire a general feeling of lust without specifying a target. Emotions are the easiest form of influence to inflict.
+[edit] Intimacies
+
+Intimacies are exactly as described before.
+[edit] Compulsions
+
+A compulsion is an order to perform a specific action, which must be declared by the attacker. Compulsions are the hardest type of influence to form.
+[edit] 2. Defender Declares Response
+
+At this point the defender declares which of their MDVs they are applying to the attacks (or chooses not to apply any MDV), and declares any defensive charm usage. The MDVs are as follows:
+[edit] Dodge MDV
+
+Dodge MDV is calculated as (Willpower + Permanent Essence)/2.
+
+By committing one point of willpower at any time any character may reflexively "steel themselves" against a particular topic or direction of attack. This has several results, including increasing Dodge MDV by half willpower.
+[edit] Parry MDV
+
+Parry MDVs are calculated as (Manipulation + (Presence, Performance, or Investigation))/2.
+[edit] 3. Attack Roll
+
+The attack roll for a social attack is Manipulation + (appropriate ability). In addition if the attacker's Appearance is higher than the defender's Temperance then the attacker may add the difference in bonus dice to his attack roll. If the defender's Temperance is higher than the Attacker's appearance then he must instead apply the difference as an internal penalty on his attack roll. For a performance attack the highest temperance of any valid target is used in these calculations. The difficulty on all attack rolls is 1.
+[edit] 4. Attack Reroll
+
+Some charms may allow the attacker to reroll at this step.
+[edit] 5. Subtract External Penalties and MDV modifiers
+
+At this point the defender's chosen MDV is subtracted from the attacker's successes. On Performance attacks this is done separately for each target, and from this point forward all steps of combat resolution are handled separately for each target.
+[edit] MDV Modifiers
+
+The presence of supporting or conflicting intimacies, motivations, and virtues will adjust the defender's MDVs.
+	Aligned 	Opposed
+Intimacy/influence 	+1 each 	-1 each
+Strong Virtue (3+) 	+2 	-2
+Motivation 	+3 	-3
+
+The total bonus/penalty from these factors cannot exceed +/- 3.
+
+If two virtues contradict use the higher. On a tie they cancel each other out.
+
+Situational modifiers also apply to MDV based upon what the intended effect of the attack is:
+Emotions 	Intimacies 	Investigation Questions 	Compulsions 	MDV modifier
+Laudable / Expected 				-2
+Normal 	Obvious ideas 	Common knowledge 		-1
+Unusual 	Lust / like, Plausible Idea, Inconsequential Duty or Taboo 	Intimacy, Strong Virtue 		0
+Inappropriate 	Dislike / respect, Inconvenient Duty or Taboo 	Gossip 	Laudable/Expected? 	+1
+Dangerous 	Unusual idea, Onerous Duty or Taboo 	Confidential information 	Normal 	+2
+	Love / hate, Dangerous / silly idea, Dangerous Duty or Taboo 	Motivation, Dangerous information 	Inappropriate 	+4
+	Devotion, Absurd idea, Very dangerous but useful Duty 	Deepest secrets, repressed information 	Dangerous 	+5
+	Pointless and suicidal duty 		Fatal or Suicidal 	“unacceptable order” = no chance of success
+
+Each failed attempt to instill the same influence results in an additional +2 MDV (cumulative). This resets after a successful attempt.
+[edit] 6. Defense Reroll
+
+Some charms allow the defender to alter and reapply their MDV at this point.
+[edit] 7. Calculate Raw Damage
+
+The raw damage of a social attack is equal to Charisma + extra successes.
+[edit] 8. Apply Soak and Roll Damage
+
+If the attack is Natural mental influence then the defender's soak is equal to their Integrity + Permanent Essence. A successful attack has a minimum damage equal to the attacker's essence. Damage dice are rolled.
+
+If the attack is unnatural influence skip this step.
+[edit] 9. Counterattacks
+
+At this point any counterattack takes effect.
+[edit] 10. Apply Effects
+
+If the attack is natural mental influence then the number of successes on the damage roll is the strength of the newly formed influence. Influences may vary in rating from 0 to (relevant virtue + 1) (some charms may over-ride this).
+
+If the attack is unnatural mental influence then record the influence as having a rating of Unnatural, and note the charm which created it. In addition divide the number of extra successes on the attack roll by 4 (round down) and record this as the willpower surcharge of the Influence.
+
+If the attack is an investigation attack then the newly formed influence is a compulsion to immediately Sieze Debate (which happens before anyone else gets a chance to) and reveal the desired information. How the information is revealed is up to the controlling character -- the character is just as likely to lie or stay quiet as they are to speak truthfully, but something (such as body language, hesitation, poor choice of words, or a misplaced blush) informs the attacker of the actual truth. If an investigation intimacy is of overwhelming or unnatural rating then the affected character will give away all relevent information, not just that which they have been asked for.
+
+If for any reason the target does not immediately take the floor then the compulsion immediately evaporates and has no further effect.
+[edit] Influences
+
+Influences are much like intimacies. Each is attached to a particular virtue, each has a rating, and in most ways they behave exactly like intimacies. There are a few differences, however.
+[edit] Duration
+
+Intimacy type Influences of rating 0 disappear at the end of the scene in which they were created. Intimacy type Influences of a higher rating are retained and become normal intimacies at the end of the scene. An Intimacy type influence of overwhelming rating drops to have a rating equal to the associated virtue and becomes permanent at the end of the scene.
+
+Emotion type Influences reduce in rating by 1 every scene, and disappear entirely when their rating drops below zero.
+
+Compulsion type influences expire as soon as the compulsion is completed, and never last longer than a scene under any circumstances.
+
+Investigation type influences force the influenced character to immediately attempt to Seize Debate, and if successful answer the question posed. The influence has no further effect.
+
+Unnatural Influences last as long as the charm which created them says.
+[edit] Weak Influences
+
+Influences can be rated at 0. Such influences do not penalise the subject in any way if violated, but still provide the usual benefits if followed. Violating a weak influence causes it to be removed.
+[edit] Overwhelming Influences
+
+Overwhelming Influences are those which have rating higher than the associated virtue. Violating such an influence causes the subject to take one point of limit in addition to the usual effects.
+[edit] Unnatural Influences
+
+An unnatural influence is stronger than any other influence except for another unnatural influence. Going along with an unnatural influence grants no benefits, and resisting an unnatural influence costs willpower. The willpower cost to resist will be listed in the description of the charm which created the influence. Some unnatural influences have an additional "Willpower Surcharge", the willpower cost of resisting these influences is increase by this surcharge.
+
+If two unnatural influences conflict then the player must choose to break one of them, spending willpower as usual. If the character lacks enough willpower to pay this amount then the character loses any remaining willpower and acts in a manner determined by the GM. Catatonia is a common response.
+[edit] Social Conflict and Combat
+
+When social conflict and physical combat happen simultaneously any social action may only be taken on one's own physical action. Each such social action is considered a speed 5 miscellaneous action with a -1 DV penalty, which may be flurried normally, except relinquish floor, which is reflexive. All characters engaged in physical combat get a +2 bonus to Dodge MDV and a -2 penalty to all Parry MDVs.
+
+Joining Battle during social conflict costs 1 composure and may be attempted by any character.
+
+Stopping physical combat is a compulsion type influence linked to Temperance.
+[edit] Unusual Situations
+[edit] Physical Social Attacks
+
+Not all social attacks are carried with words. In the correct circumstances it may be possible to make a social attack which doesn't use them at all. An appropriate stunt for such an attack might be a sly wink, a facial expression of shock, a moving dance, or an exotic sex-act. In all circumstances these attacks may only be used by the speaker, and may only be used to establish an Emotion or a Passion type intimacy building upon a previously established emotion. Such attacks are based upon Dexterity rather than Manipulation, and the target receives an additional +1 to MDV due to the imprecise nature of the medium. When Social Range is in effect physical performance-based social attacks often remove the usual restrictions for who may be effected by an attack. In all other ways they are treated as normal social attacks. Most such attacks are based upon Presence, with a dance performance being the most obvious exception.
+[edit] Social Range
+
+The social conflict rules assume that all participants are equally able to address all other participants, but in some social situations the rules of the social structure preclude this. In such circumstances divide the debate up into a number of smaller debates, each of which has its own floor, and each of which are considered to run simultaneously. Some characters may be in more than one at once, in which case they must declare when they are switching their attention from one to another. When concentrating on a different floor a character receives a -2 penalty to her MDV for all purposes, including resisting surprise.
+
+At any point it is perfectly acceptable for a character to attempt to break the division and bring everybody into a single debate, this may only be attempted by a speaker, and Forces all present to make a new Join Debate as if the debate were starting afresh. Depending upon the situation this may be considered very rude and lead to hostile behaviour from characters who have appropriate intimacies.
+
+A classic example of such a divided social encounter would be a ball. Whilst dancing most dances the participants are divided up into pairs and may only speak freely with their partner. Each pairing in such a ball is considered to be a separate floor with its own speaker. Some dances include the swapping of partners at certain points, in which case the current floors are disbanded and replaced with new ones, however since the scene has not changed Composure does not refresh. All actions taken whilst dancing suffer a -1 dice penalty due to dancing at the same time, however if the character is also a speaker then this dex+performance roll to dance may be replaced by a physical performance-based social attack for no additional penalty, unlike other social attacks in this context this attack must be applied equally to all persons present (inclusing spectators who are not even part of the formal dance), although they do not suffer the MDV penalty for concentrating on multiple floors at once.
+
+GM's are advised to treat each dance in a dynastic ball as a separate scene, otherwise composure will be in short supply by teh end of the night!
+[edit] Attacks to Distract
+
+Distraction is an emotion effect, and due to its easiness to inflict is always considered a "normal" emotion, even if it would in fact be dangerous or innapropriate. Instead of supporting or opposing any other social attacks a character who is suffering from a natural distraction influence takes an internal penalty equal to its rating on his next action, and the distraction subsequently evaporates. A character suffering from an unnatural distraction influence is instead unnable to take any actions at all unless he spends willpower to overcome it. Many attacks to distract are also Physical Social Attacks.
+[edit] Solar Charms
+
+The notes at [1] apply in all cases except for Sagacious Reading of Intent, which works against all social attacks against which teh solar would not receive an overall penalty to MDV due to Virtues, Intimacies/Influences, and Motivation.
+[edit] Lunar Charms
+[edit] Charisma Charms
+[edit] Outworld-Forsaking Stance
+
+This is a perfect social parry which works only against creatures of darkness.
+[edit] Foe-Turning rebuke
+
+This charm may only target a creature of darkness. It is a presence-based attack which creates a Compulsion (Temperance) to "cease approaching" as unnatural mental influence. The cost to overcome this influence is 3 willpower.
+[edit] Scathing Lunar Condemnation
+
+This is a social attack based upon either Presence or Performance to create an Intimacy (Compasion) to "being as far away from the Lunar as possible" as an unnatural mental influence. The cost to overcome this compulsion is 2 willpower, and it will fade at the end of the scene. If used against a Creature of Darkness the Lunar may double his raw successes before applying MDV in step 5 of social attack resolution, the cost to resist is 4 willpower, and the intimacy will not fade until the end of the story.
+[edit] Cobra Hypnotic Method
+
+This is a social attack to create a Compulsion (Temperance) of "Become innactive" as an unnatural influence. The cost to overcome this influence is 2 willpower, and it will fade after the Lunar has taken a number of actions equal to her essence.
+[edit] Forgetful Victim Prana
+
+This is a social attack to create a Belief type Intimacy (Conviction) of "Nothing happened during the specified period" as unnatural influence. The period forgotten lasts for the Lunars next Essnence actions. The cost to overcome this intimacy is 1 willpower. The intimacy is permanent, and permanently unnatural unless the victim spends 3 willpower and an entire scene trying to remember -- this causes the intimacy to become natural with rating equal to the victim's Temperance.
+[edit] Unnoticed Confusion Attack
+
+This is a social attack to create a Belief type Intimacy (Conviction) of "the supplemented attack did not happen" as unnatural influence. This does not count as a flurry. The cost to overcome this influence is 2 willpower. Once it has been overcome even once this intimacy becomes a natural intimacy with rating equal to the victim's Temperance.
+[edit] Subtle Silver Command
+
+This charm is social attack (which may target even inactive characters) and which renders parry inapplicable to create an intimacy of any type as unnatural influence. The intimacy must be one shared by the Lunar. The cost to overcome this intimacy is 1 willpower. The intimacy will become natural of rating equal to the relevant virtue after the Lunar's Presence in days, or at any time when the victim spends 3 points of willpower at once to resist.
+[edit] Secret Speech Method
+
+This is a performace-based social attack against all persons present not the subject of the supplemented communication to create a Compulsion (Temperance) "Do not notice the supplemented attack" as unnatural mental influence. This does not count as a flurry and produces no extra action penalties. This compulsion may not be disobeyed even by spending willpower.
+[edit] Perfect Fear Scent
+
+This is a social attack to create either an Emotion (Compassion) effect of "Fear", or an passion type intimacy (Compassion) of "fear of (some target)", the Lunar's choice, as unnatural mental influence. The cost to overcome this influence is 1 willpower. The emotion or intimacy will become natural (of maximum rating) at the end of the scene.
+[edit] Mind-Blanking Fear Technique
+
+This is a presence-based social attack to create an Intimacy (Conviction) that "(Chosen memory) is false" as unnatural mental influence. The cost to overcome this influence is 1 willpower. The Intimacy remains unnatural until it has been broken a number of times equal to the victim's Conviction.
+[edit] Terrifying Lust Infliction
+
+This is a social attack to create either an Emotion (Compassion) effect of "Lust", or an passion type intimacy (Compassion) of "Desire for (some target)", the Lunar's choice, as unnatural mental influence. The cost to overcome this influence is 1 willpower. The emotion or intimacy will become natural (of maximum rating) at the end of the scene.
+[edit] Herd Reinforcing Stance
+
+This is a social attack to create a Duty type intimacy (Valour) to either the target's native society or the society they are currently exposed to, as unnayural mental influence. What is more this attack automatically succeeds. The cost to overcome this influence is one willpower, if this is done twice then the intimacy disappears entirely. After 24 hours this intimacy becomes natural with rating equal to the victim's Conviction.
+[edit] Forsaking the Blood Posture
+
+This is identical to Herd Reinforcing Stance except that the intimacy is against the society in question.
+[edit] Culling the Pride
+
+This supplements an attack against a social unit to create a compulsion. The attack becomes unnatural, and the cost to overcome the compulsion is set to half the Lunar's charisma.
+[edit] Topiary Culture Meditation
+
+This is a social attack against a social unit to create an intimacy directly opposed to an existing intimacy in the unit's policy as unnatural mental influence. The cost to overcome this intimacy is 1 loyalty. The intimacy is permanent until either the original intimacy it opposed has degraded to non-existence or the unit's leader has spent 8 loyalty in defying it, at which point it evaporates.
+[edit] Herd Strengthening Invocation
+
+This charm causes a single intimacy in the target unit's policy to rise in rating by the Lunar's Charisma. This may raise the intimacy's rating above the usual maximum. This increased rating will not degrade unless attacked.
+[edit] Manipulation Charms
+[edit] Mirror Sight Dismay
+
+This is a social attack to produce a belief-type Intimacy (Conviction) directly opposed to an existing one as unnatural mental influence. The cost to overcome this intimacy is 2 willpower. This belief will evaporate at the end of the scene.
+[edit] Lost Mirror Flight
+
+This is a social attack to create an intimacy of any sort which could represent a form of madness as unnatural influence. The cost to overcome this intimacy is 1 willpower. The intimacy is permanent until the target has resisted it a number of times equal to twice the Lunar's Essence.
+[edit] Mask of White Jade
+
+This is a perfect social dodge which works only against investigation attacks and costs an extra willpower if used against an attack backed up with any charms.
+[edit] Labyrinth of the Beast
+
+This is a social perfect dodge which works only against natural influence.
+[edit] Commanded to Fly
+
+This charm is Reflexive (step 9) and targets a single influence of unnatural strength for as long as the essence remains committed. For as long as the charm is active the targeted influence may be disobeyed for no willpower cost. This does not, however, remove or weaken the influence itself. This has no effect upon the duration of the unnatural influence in question, if the influence evaporates or stops being unnatural whilst this charm is still active then this charm immediately ends.
+[edit] Butterfly Eyes Fist
+
+This is a presence-based social attack to create a compulsion (Valour) to take a particular combat action as unnatural mental influence. The cost to overcome this compulsion is 2 willpower.
+[edit] Creating the Wolf Attitude
+
+This is a social attack to create either an Emotion (Compassion) effect of "Fear", or an passion type intimacy (Compassion) of "fear of (some target)", the Lunar's choice, as unnatural mental influence. The cost to overcome this influence is 2 Loyalty. The emotion or intimacy is permanent until the target group has resisted it three times, at which time it becomes natural of rating equal to the target's compassion.
+[edit] Feeding the Bear Progression
+
+This charm is identical to Creating the Wolf Attitude except that the effect is either an Emotion (Compassion) of "Craving" or a passion type intimacy (Compassion) of "Craving for (something)", the Lunar's choice.
+[edit] Appearance Chamrs
+[edit] Perfect Symmetry
+
+Whilst this charm is in effect any time the Lunar performs a social attack he may choose to compare his Appearance to that of the target instead of the target's Temperance. Similarly if the Lunar is the subject of a social attack he may force the attacker to compare his Appearance to the Lunar's Appearance instead of the Lunar's Temperance, if he so wishes. Once the Lunar reaches Essence six he may instead substitute Appearance + Temperance.
+[edit] New Friend Aroma
+
+This is a social attack to create an intimacy (Compassion) to the Lunar as a friend or foe, as unnatural mental influence, which takes no MDV penalties for attempting to establish an intimacy. This intimacy lasts until the end of the scene, when it evaporates. During the scene the unnatural intimacy will support any attempt to create a similar intimacy through other means.
+[edit] Glance Oration Technique
+
+This charm allows the Lunar to engage in social attacks even without speaking. The Lunar takes no MDV penalty for attempting the Seize Debate action. Furthermore notes that characters without this charm may not even participate in Join Debate attempts unless they can communicate somehow.
+[edit] Irrestsitable Silver Spirit
+
+Whilst in the trance a Lunar must always attempt to Hold the Floor and if she loses the floor must immediately attempt to seize it again unless she pays the apropriate willpower cost.
+[edit] Perception Charms
+[edit] Wolf Ear Advantage
+
+When using this charm each Monologue or study action grants two bonus dice, up to maximum of six.
+[edit] Motive Disecting Eye
+
+This charm can report on the rating of any intimacy or influence which it reveals.
+[edit] Dragon-Blooded Charms
+[edit] Linguistics Charms
+[edit] Poison Tongue Technique
+
+This charm may be used in social conflict by someone who is not the speaker, in which case it is Reflexive, step 3, and, if succesful, causes the attack to be retargeted.
+[edit] Voice of Mastery
+
+This charm's mechanics are bizarre, but they do still work as written. I'd say make it add Essence to Damage and Soak instead.
+[edit] Speach without Words
+
+This can allow a group to engage in social conflict without speaking, but only amongst themselves.
+[edit] With One Mind
+
+Any attempt to coordinate a group under the influence of this charm gains a number of automatic successes equal to the charm user's essence.
+[edit] Integrity Charms
+[edit] Oath of the Ten Thousand Dragons
+
+This charm must target a Duty type intimacy (Valour), and provides the stated bonus to defend against any attack which that Intimacy would oppose.
+[edit] Ten-Thousand Dragons Fight as One
+
+This charm is reflexive (step 1 for attacker, step 2 for defender) and instantly creates an Overwhelming strength Duty type intimacy (Valour) influence to another Dragon-blood. This intimacy obeys all normal rules for such influences.
+[edit] Unflagging Vengeance Meditation
+
+The intimacy is a Duty type intimacy (Valour) of Unnatural strength. The Terrestrial may add his Integrity to his social soak when defending against any attack which is opposed by this intimacy. Any attempt to create unnatural influence opposed by this intimacy automatically fails. The effect on physical soak remains unchanged. When the charm ends the Intimacy becomes natural with rating equal to the terrestrial's valour.
+[edit] Granite Curtain of Serenity
+
+For the duration this charm grants a "social hardness" equal to the character's Permanent Essence + Integrity and increases the character's social soak by her Permanent Essence.
+[edit] Inviolate Dragon Spirit
+
+This charm can be used as a reflexive (step 2) charm in which case it is a perfect social parry which doesn't work if the attacker is using unnatural influence and has an essence higher than the terrestrial.
+
+In its more usual form this charm instantly destroys one influence or intimacy currently aplied to the user. When used this way it may not function against unnatural mental influence which was created by an Exalt with an Essence higher than that of the user.
+[edit] Presence Charms
+[edit] Unbearable Taunt Technique
+
+This charm is a social attack to create a duty type intimacy (Valour) "the charm user has impinged my honour", with Essence automatic successes on the roll, and against which the target's MDV gains no situational bonuses. The dice penalties are suffered by the target every time he resists the intimacy during the charm's duration.
+[edit] Moth to the Candle
+
+This is a pressence-based social attack against which parry is innaplicable to create a compulsion (Valour) to "Attack only me!" as unnatural mental influence. Any intimacy created by Unbearable Taunt Technique will support this attack. The cost to overcome this compulsion is 3 willpower. The compulsion becomes natural with rating equal to the target's Valour when the charm ends.
+[edit] Warlords' Convocation
+
+This is a social attack to create a duty type intimacy (Valour) to the character as unnatural influence, which takes no situational penalties. The intimacy will become natural and overwhelming after one scene, and then behave normally. This charm is only usable against Terrestrials and mortals, cannot be used against a character with higher essence than the terrestrial, and may not be used on a character which is in a sworn brotherhood with the character.
+[edit] Auspicious First Meeting Attitude
+
+This is a social attack which creates a passion type intimacy (Compassion) of liking the character. If this attack fails to beat the defender's MDV then it is considered to have succeeded with no excess successes. This intimacy will support any attack the character later targets at the same target.
+[edit] Passion Transmuting Nuance
+
+This charm is a social attack which gains extra dice equal to the character's essence and allows no MDV bonuses or penalties for supporting and opposing intimacies. The only Virtue which may support or oppose this attack is Temperance (high opposes). If the attack is succesful ignore the normal damage procedure and instead transform one emotion effect or passion type intimacy currently affecting the target into a different one of the attacker's choice for the duration of the scene, and temporarily raise its rating to overwhelming.
+[edit] Socialise Charms
+[edit] Jade Defense
+
+For the duration of the charm the terrestrial may add his socialise into the calculation for his Dodge MDV (prior to halving). This makes the DMDV a valid target for a socialise excellency. Furthermore the terrestrial's essence counts as one higher for the purposes of resisting social charms which do not work on characters with a higher essence.
+[edit] Wary Yellow Dog Attitude
+
+This charm gives the same bonus on Join Debate and MDVs if the start of the debate was an attempt at surprise, and the character succesfully defended against the surprise.
+[edit] Brother against Brother Insinuation
+
+This is a social attack (based upon socialise, but otherwise treated as a presence attack) to create a passion type intimacy (Compassion) directly opposed to an existing intimacy of liking another character who is present held by the target, as unnatural mental influence. The attack gains automatic successes equal to the dragon-blood's essence. The cost to overcome this intimacy is one willpower. This intimacy will evaporate at the end of the scene, but any reductions in the original intimacy caused by behaviour in accordance with this intimacy will remain.Fails against higher esssence characters, fails against members of same sworn brotherhood.
+[edit] Warm-Faced Seduction Style
+
+This charm supplements any social attack to seduce by adding the dragon-blood's Socialise to his damage.
+[edit] Smoothing-over the Past Technique
+
+This is a social attack to create a belief type intimacy (Conviction) "The chosen event never happened" as unnatural mental influence. The attack recieves a number of automatic successes equal to the character's essence, and parry MDV is inapplicable. The cost to overcome this influence is 1 willpower. The intimacy will evaporate at the end of the scene. This charm doesn't work against targets with a higher essence than the user.
+[edit] Bureaucracy Charms
+[edit] Geese Flying South Administration
+
+The Charisma + Bureaucracy roll is treated as a performance-like social attack to create a duty-type intimacy (Valour) or a Belief type intimacy (Conviction) to the task selected as unnatural mental influence. The attack recieves (Essence) autosuccesses, and may be applied against new targets just as described. The cost to resist is 1WP. The intimacy will evaporate once the task is completed, or once a subject has spent willpower equal to the Dragon-blooded's Essence.
+[edit] Bestow the Saffron Mantle
+
+The new Motivation granted by this charm is treated like a normal motivation. This charm only works on a willing target.
+[edit] Performance Charms
+[edit] Dance of Flashing Swords
+
+This is a social attack to create a belief type intimacy (Conviction) of "this fight is fake" as unnatural mental influence. The attack receives automatic successes equal to the Terrestrial's Essence. The influence may be overcome by spending one 1 willpower. The intimacy is permanent, but will becomes natural (with rating equal to the victim's Conviction) if the victim spends willpower to overcome it three times in the same scene. This charm does not affect people with a higher essence than the user.
+[edit] Hidden Petal Aria Method
+
+This charm can help with stunting certain social attacks in situations where taking the floor would normally not be possible.
+[edit] Soul Stirring Performance Method
+
+This charm is a performance based social attack to create any emotion as unnatural mental influence. The attack takes an external penalty equal to the magnitude of the people present. The created emotion costs 1 willpower to ignore, and will evaporate at the end of the scene. The charm may also be used to create any compulsion which would be supported by a previously created emotion.
+[edit] Protective Performance
+
+This increases the MDVs of all members of the audience by the dragon-blood's essence, against unnatural mental influence only, for a scene. In addition it acts as a social attack against the audience to create a passion type intimacy (Compassion) to not attacking the charm user which gains a number of automatic successes on the attack roll equal to the user's essence. This intimacy is treated normally.
+[edit] Tireless String Plucking Meditation
+
+A Dragon-blooded under the effects of this charm will recover one composure per hour if engaged in a social conflict which lasts that long. All other effects are normal. 
