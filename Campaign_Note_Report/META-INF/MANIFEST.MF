@@ -5,3 +5,5 @@ Bundle-SymbolicName: net.sf.anathema.campaign.note.report
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.campaign.note;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: net.sf.anathema.basics.pdfexport,
+ net.sf.anathema.basics.importexport
