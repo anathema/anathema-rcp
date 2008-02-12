@@ -8,7 +8,8 @@ Bundle-ClassPath: lib/itext-2.0.5.jar,
  .
 Export-Package: com.lowagie.text,
  com.lowagie.text.pdf,
- net.sf.anathema.basics.pdfexport
+ net.sf.anathema.basics.pdfexport,
+ net.sf.anathema.basics.pdfexport.message
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: net.sf.anathema.basics.importexport,
  org.eclipse.ui,
