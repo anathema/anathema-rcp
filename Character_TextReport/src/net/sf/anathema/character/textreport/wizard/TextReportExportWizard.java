@@ -1,6 +1,7 @@
 package net.sf.anathema.character.textreport.wizard;
 
 import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
+import net.sf.anathema.basics.pdfexport.message.ExportMessages;
 import net.sf.anathema.character.report.wizard.AbstractCharacterExportWizard;
 import net.sf.anathema.character.report.wizard.ICharacterReportWriter;
 import net.sf.anathema.character.textreport.CharacterTextReportWriter;
@@ -15,6 +16,6 @@ public class TextReportExportWizard extends AbstractCharacterExportWizard {
 
   @Override
   protected IFileSelectionPageMessages createMessage() {
-    return new TextReportExportMessages();
+    return new ExportMessages(Messages.TextExportMessages_PageTitle);
   }
 }
