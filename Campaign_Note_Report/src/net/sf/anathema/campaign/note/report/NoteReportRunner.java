@@ -16,6 +16,6 @@ public class NoteReportRunner implements IReportRunner {
 
   @Override
   public void runWriting(Shell shell, IEditorPart editorPart, IRunnableContext runnableContext) {
-    // TODO Case 35: Notes in PDF drucken.
+    // TODO Case 31: Notes in PDF drucken.
   }
 }
