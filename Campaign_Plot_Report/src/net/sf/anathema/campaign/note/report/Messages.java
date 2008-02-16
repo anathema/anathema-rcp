@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.note.report;
+package net.sf.anathema.campaign.plot.report;
 
 import org.eclipse.osgi.util.NLS;
 

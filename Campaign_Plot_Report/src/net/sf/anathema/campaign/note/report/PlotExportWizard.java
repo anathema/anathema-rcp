@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.note.report;
+package net.sf.anathema.campaign.plot.report;
 
 import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
 import net.sf.anathema.basics.pdfexport.AbstractPdfExportWizard;
