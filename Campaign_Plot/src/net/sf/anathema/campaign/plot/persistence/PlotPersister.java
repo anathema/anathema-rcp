@@ -18,10 +18,12 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 
 public class PlotPersister {
 
@@ -46,10 +48,10 @@ public class PlotPersister {
     return root;
   }
 
-  public IPlotPart load(IFolder folder) throws PersistenceException {
+  public IPlotPart load(IContainer folder) throws PersistenceException {
     InputStream stream = null;
     try {
-      IFile file = folder.getFile(HIERARCHY_FILE_NAME);
+      IFile file = folder.getFile(new Path(HIERARCHY_FILE_NAME));
       stream = file.getContents();
       SAXReader saxReader = new SAXReader();
       Document document = saxReader.read(stream);

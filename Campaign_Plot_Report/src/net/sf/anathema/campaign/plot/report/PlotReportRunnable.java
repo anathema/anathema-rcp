@@ -3,8 +3,13 @@ package net.sf.anathema.campaign.plot.report;
 import java.io.OutputStream;
 
 import net.sf.anathema.basics.pdfexport.writer.AbstractReportRunnable;
+import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 import net.sf.anathema.campaign.plot.report.model.IPlotElement;
+import net.sf.anathema.campaign.plot.report.model.PlotElement;
+import net.sf.anathema.campaign.plot.repository.IPlotPart;
 
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.IEditorPart;
 
@@ -19,7 +24,14 @@ public class PlotReportRunnable extends AbstractReportRunnable<IPlotElement> imp
 
   @Override
   protected IPlotElement createItem() {
-    // TODO Hier muss das Root PlotElement erzeugt werden
-    return null;
+    IResource resource = (IResource) editorPart.getEditorInput().getAdapter(IResource.class);
+    IContainer parent = resource.getParent();
+    try {
+      IPlotPart root = new PlotPersister().load(parent);
+      return new PlotElement(root, parent);
+    }
+    catch (Exception e) {
+      return null;
+    }
   }
 }
