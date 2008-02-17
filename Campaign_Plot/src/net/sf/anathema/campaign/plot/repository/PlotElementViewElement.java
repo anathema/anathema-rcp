@@ -18,6 +18,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.osgi.util.NLS;
 
 public class PlotElementViewElement extends AbstractResourceViewElement implements IPlotElementViewElement {
@@ -53,8 +54,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
 
   @Override
   public IFile getEditFile() {
-    return folder.getFile(plotElement.getRepositoryId()
-        + "." + PlotRepositoryUtilities.getPlotItemType().getFileExtension()); //$NON-NLS-1$
+    return getPlotPartFile(plotElement, folder);
   }
 
   public IPlotPart getPlotElement() {
@@ -79,7 +79,7 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
   public boolean isPartOf(IContainer parent) {
     return folder.equals(parent);
   }
-  
+
   @Override
   protected URL getEditorImageUrl() {
     return PlotRepositoryUtilities.getPlotItemType().getIconUrl();
@@ -111,5 +111,10 @@ public class PlotElementViewElement extends AbstractResourceViewElement implemen
      */
     saveHierarchy(monitor);
     getEditFile().delete(true, false, monitor);
+  }
+
+  public static IFile getPlotPartFile(IPlotPart element, final IContainer container) {
+    String fileName = element.getRepositoryId() + "." + PlotRepositoryUtilities.getPlotItemType().getFileExtension(); //$NON-NLS-1$
+    return container.getFile(new Path(fileName));
   }
 }
