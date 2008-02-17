@@ -1,6 +1,7 @@
 package net.sf.anathema.campaign.note.report;
 
 import net.sf.anathema.basics.item.text.ITitledText;
+import net.sf.anathema.basics.pdfexport.itext.ITextReportUtils;
 import net.sf.anathema.basics.pdfexport.writer.AbstractReportPdfWriter;
 import net.sf.anathema.lib.textualdescription.ITextPart;
 

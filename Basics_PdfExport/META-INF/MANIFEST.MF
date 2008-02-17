@@ -9,6 +9,7 @@ Bundle-ClassPath: lib/itext-2.0.5.jar,
 Export-Package: com.lowagie.text,
  com.lowagie.text.pdf,
  net.sf.anathema.basics.pdfexport,
+ net.sf.anathema.basics.pdfexport.itext,
  net.sf.anathema.basics.pdfexport.message,
  net.sf.anathema.basics.pdfexport.writer
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

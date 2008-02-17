@@ -1,4 +1,4 @@
-package net.sf.anathema.campaign.note.report;
+package net.sf.anathema.basics.pdfexport.itext;
 
 import java.awt.Color;
 

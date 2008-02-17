@@ -26,7 +26,7 @@ public abstract class AbstractReportRunner implements IReportRunner {
     this.streamFactory = streamFactory;
   }
 
-  public void runWriting(Shell shell, final IEditorPart editorPart, IRunnableContext runnableContext) {
+  public final void runWriting(Shell shell, final IEditorPart editorPart, IRunnableContext runnableContext) {
     OutputStream outputStream = null;
     IStreamResult streamResult = null;
     try {
