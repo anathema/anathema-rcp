@@ -29,7 +29,7 @@ public final class CasteModelInitializer extends ModelInitializer {
   }
 
   private ITraitCollectionProvider getTraitCollectionProvider() {
-    // TODO: Case 108: Richtigen ITraitCollectionProvider verwenden (ExtensionPoint einführen)
+    // TODO Case 108: Richtigen ITraitCollectionProvider verwenden (ExtensionPoint einführen)
     return new ITraitCollectionProvider() {
       @Override
       public ITraitCollectionModel getModel(ICharacterId id) {
