@@ -3,9 +3,9 @@ package net.sf.anathema.campaign.note.report;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 
+import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.pdfexport.writer.IReportWriter;
-import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -42,7 +42,7 @@ public final class NoteReportRunnable implements IRunnableWithProgress {
   }
 
   private ITitledText createNote() {
-    IFileItemEditorInput<ITitledText> editorInput = (IFileItemEditorInput<ITitledText>) editorPart.getEditorInput();
+    IPersistableEditorInput<ITitledText> editorInput = (IPersistableEditorInput<ITitledText>) editorPart.getEditorInput();
     return editorInput.getItem();
   }
 }
