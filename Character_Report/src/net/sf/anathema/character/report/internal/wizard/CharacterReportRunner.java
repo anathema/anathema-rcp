@@ -27,9 +27,6 @@ public class CharacterReportRunner implements IReportRunner {
     this.writer = writer;
   }
 
-  /* (non-Javadoc)
-   * @see net.sf.anathema.character.report.internal.wizard.IReportRunner#runWriting(org.eclipse.swt.widgets.Shell, org.eclipse.ui.IEditorPart, org.eclipse.jface.operation.IRunnableContext)
-   */
   public void runWriting(Shell shell, final IEditorPart editorPart, IRunnableContext runnableContext) {
     OutputStream outputStream = null;
     IStreamResult streamResult = null;
