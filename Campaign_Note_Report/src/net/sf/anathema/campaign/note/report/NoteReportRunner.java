@@ -1,21 +1,21 @@
 package net.sf.anathema.campaign.note.report;
 
-import net.sf.anathema.basics.pdfexport.IReportRunner;
+import java.io.OutputStream;
+
+import net.sf.anathema.basics.pdfexport.writer.AbstractReportRunner;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 
-import org.eclipse.jface.operation.IRunnableContext;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.IEditorPart;
 
-public class NoteReportRunner implements IReportRunner {
-  private final IOutputStreamFactory outputStreamFactory;
+public class NoteReportRunner extends AbstractReportRunner {
 
   public NoteReportRunner(IOutputStreamFactory outputStreamFactory) {
-    this.outputStreamFactory = outputStreamFactory;
+    super(outputStreamFactory);
   }
 
   @Override
-  public void runWriting(Shell shell, IEditorPart editorPart, IRunnableContext runnableContext) {
-    // TODO Case 31: Notes in PDF drucken.
+  protected IRunnableWithProgress createRunnable(IEditorPart editorPart, OutputStream outputStream) {
+    return new NoteReportRunnable(editorPart, outputStream, new NoteReportWriter());
   }
 }

@@ -1,7 +1,7 @@
 package net.sf.anathema.character.textreport;
 
+import net.sf.anathema.basics.pdfexport.writer.AbstractReportPdfWriter;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.report.wizard.AbstractReportPdfWriter;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
 
 import org.eclipse.core.runtime.IProgressMonitor;

@@ -3,12 +3,12 @@ package net.sf.anathema.character.report.internal.wizard;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 
+import net.sf.anathema.basics.pdfexport.writer.IReportWriter;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
-import net.sf.anathema.character.report.wizard.IReportWriter;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -20,9 +20,9 @@ import com.lowagie.text.DocumentException;
 public final class CharacterReportRunnable implements IRunnableWithProgress {
   private final IEditorPart editorPart;
   private final OutputStream outputStream;
-  private final IReportWriter writer;
+  private final IReportWriter<ICharacter> writer;
 
-  public CharacterReportRunnable(IEditorPart editorPart, OutputStream outputStream, IReportWriter writer) {
+  public CharacterReportRunnable(IEditorPart editorPart, OutputStream outputStream, IReportWriter<ICharacter> writer) {
     this.editorPart = editorPart;
     this.outputStream = outputStream;
     this.writer = writer;

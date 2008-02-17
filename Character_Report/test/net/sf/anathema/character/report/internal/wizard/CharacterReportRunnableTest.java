@@ -3,11 +3,11 @@ package net.sf.anathema.character.report.internal.wizard;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
+import net.sf.anathema.basics.pdfexport.writer.IReportWriter;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.report.internal.wizard.CharacterReportRunnable;
-import net.sf.anathema.character.report.wizard.IReportWriter;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.runtime.IProgressMonitor;

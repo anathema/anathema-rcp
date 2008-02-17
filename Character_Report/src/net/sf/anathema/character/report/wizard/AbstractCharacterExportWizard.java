@@ -2,6 +2,7 @@ package net.sf.anathema.character.report.wizard;
 
 import net.sf.anathema.basics.pdfexport.AbstractPdfExportWizard;
 import net.sf.anathema.basics.pdfexport.IReportRunner;
+import net.sf.anathema.basics.pdfexport.writer.IReportWriter;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelIdentifier;

@@ -25,31 +25,37 @@
       </win>
    </launcher>
 
-
    <vm>
    </vm>
 
    <plugins>
       <plugin id="com.ibm.icu"/>
       <plugin id="net.sf.anathema.basics.eclipse"/>
-      <plugin id="net.sf.anathema.basics.importwizard"/>
+      <plugin id="net.sf.anathema.basics.importexport"/>
       <plugin id="net.sf.anathema.basics.item"/>
       <plugin id="net.sf.anathema.basics.jface"/>
       <plugin id="net.sf.anathema.basics.lib"/>
-      <plugin id="net.sf.anathema.basics.pdf"/>
+      <plugin id="net.sf.anathema.basics.pdfexport"/>
       <plugin id="net.sf.anathema.basics.repository"/>
       <plugin id="net.sf.anathema.campaign.core"/>
       <plugin id="net.sf.anathema.campaign.note"/>
       <plugin id="net.sf.anathema.campaign.note.importwizard" fragment="true"/>
+      <plugin id="net.sf.anathema.campaign.note.report" fragment="true"/>
       <plugin id="net.sf.anathema.campaign.plot"/>
       <plugin id="net.sf.anathema.campaign.plot.importwizard" fragment="true"/>
-      <plugin id="net.sf.anathema.character.attribute.importwizard"/>
+      <plugin id="net.sf.anathema.campaign.plot.report" fragment="true"/>
+      <plugin id="net.sf.anathema.caste.import" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes"/>
       <plugin id="net.sf.anathema.character.attributes.importwizard" fragment="true"/>
+      <plugin id="net.sf.anathema.character.attributes.sheet" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes.textreport" fragment="true"/>
+      <plugin id="net.sf.anathema.character.caste"/>
+      <plugin id="net.sf.anathema.character.caste.sheet" fragment="true"/>
+      <plugin id="net.sf.anathema.character.caste.textreport" fragment="true"/>
       <plugin id="net.sf.anathema.character.core"/>
       <plugin id="net.sf.anathema.character.description"/>
       <plugin id="net.sf.anathema.character.description.importwizard" fragment="true"/>
+      <plugin id="net.sf.anathema.character.description.sheet" fragment="true"/>
       <plugin id="net.sf.anathema.character.description.textreport" fragment="true"/>
       <plugin id="net.sf.anathema.character.experience"/>
       <plugin id="net.sf.anathema.character.experience.importwizard" fragment="true"/>
@@ -60,8 +66,6 @@
       <plugin id="net.sf.anathema.character.points.i18n.en" fragment="true"/>
       <plugin id="net.sf.anathema.character.report"/>
       <plugin id="net.sf.anathema.character.sheet"/>
-      <plugin id="net.sf.anathema.character.sheet.attributes"/>
-      <plugin id="net.sf.anathema.character.sheet.description"/>
       <plugin id="net.sf.anathema.character.textreport"/>
       <plugin id="net.sf.anathema.character.trait"/>
       <plugin id="net.sf.anathema.charactertype.db"/>
@@ -82,7 +86,7 @@
       <plugin id="org.eclipse.core.jobs"/>
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.resources.compatibility" fragment="true"/>
-      <plugin id="org.eclipse.core.resources.win32" fragment="true"/>
+      <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
       <plugin id="org.eclipse.core.runtime.compatibility"/>
       <plugin id="org.eclipse.core.runtime.compatibility.auth"/>

@@ -7,5 +7,4 @@ import org.eclipse.ui.IEditorPart;
 public interface IReportRunner {
 
   public void runWriting(Shell shell, final IEditorPart editorPart, IRunnableContext runnableContext);
-
 }
