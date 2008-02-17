@@ -2,11 +2,12 @@ package net.sf.anathema.character.experience.importwizard;
 
 import net.sf.anathema.character.experience.internal.Experience;
 import net.sf.anathema.character.experience.internal.ExperiencePersister;
+import net.sf.anathema.character.importwizard.IDocumentConverter;
 import net.sf.anathema.lib.xml.ElementUtilities;
 
 import org.dom4j.Document;
 
-public class ExperienceConverter {
+public class ExperienceConverter implements IDocumentConverter {
 
   private static final String TAG_EXPERIENCED = "experienced"; //$NON-NLS-1$
   private static final String TAG_STATISTICS = "Statistics"; //$NON-NLS-1$

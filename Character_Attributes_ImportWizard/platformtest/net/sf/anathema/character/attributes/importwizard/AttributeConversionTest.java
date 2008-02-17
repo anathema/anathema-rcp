@@ -14,7 +14,7 @@ public class AttributeConversionTest {
   public void createsAttributes() throws Exception {
     Document document = ImportDocumentObjectMother.getDocumentFromFile(getClass(), PATH, "oldcharacter.ecg"); //$NON-NLS-1$
     Document expecteddocument = ImportDocumentObjectMother.getDocumentFromFile(getClass(), PATH, "newattributes.model"); //$NON-NLS-1$
-    Document resultdocument = AttributesConverter.convertAttributes(document);
+    Document resultdocument = new AttributesConverter().convert(document);
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
   }
 }

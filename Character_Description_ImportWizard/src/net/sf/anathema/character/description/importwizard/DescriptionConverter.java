@@ -2,12 +2,13 @@ package net.sf.anathema.character.description.importwizard;
 
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.description.plugin.CharacterDescriptionPluginConstants;
+import net.sf.anathema.character.importwizard.IDocumentConverter;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class DescriptionConverter {
+public class DescriptionConverter implements IDocumentConverter {
 
   private static final String TAG_PERIPHRASIS = "Periphrasis"; //$NON-NLS-1$
   private static final String TAG_PERIPHRASE = "Periphrase"; //$NON-NLS-1$
