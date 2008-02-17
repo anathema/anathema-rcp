@@ -13,6 +13,7 @@ public class Messages extends NLS {
   public static String AbstractImportWizard_ImportJobName;
   public static String AbstractImportWizard_ImportSuccessful;
   public static String AbstractImportWizard_WindowTitle;
+  public static String FileExistsStatus_FileAlreadyExists;
   public static String FileSelectionWizardPage_FileNameLabel;
   public static String FileSelectionWizardPage_BrowseButtonLabel;
   public static String FileSelectionDialogStatus_ExportFileOkayMessage;
