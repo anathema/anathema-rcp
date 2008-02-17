@@ -9,7 +9,7 @@ import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.pdfexport.IReportRunner;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.basics.swt.file.IStreamResult;
-import net.sf.anathema.character.report.wizard.ICharacterReportWriter;
+import net.sf.anathema.character.report.wizard.IReportWriter;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableContext;
@@ -20,9 +20,9 @@ public class CharacterReportRunner implements IReportRunner {
 
   private final Logger logger = new Logger("net.sf.anathema.character.report"); //$NON-NLS-1$
   private final IOutputStreamFactory streamFactory;
-  private final ICharacterReportWriter writer;
+  private final IReportWriter writer;
 
-  public CharacterReportRunner(IOutputStreamFactory streamFactory, ICharacterReportWriter writer) {
+  public CharacterReportRunner(IOutputStreamFactory streamFactory, IReportWriter writer) {
     this.streamFactory = streamFactory;
     this.writer = writer;
   }

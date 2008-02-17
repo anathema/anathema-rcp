@@ -7,7 +7,7 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.report.internal.wizard.CharacterReportRunnable;
-import net.sf.anathema.character.report.wizard.ICharacterReportWriter;
+import net.sf.anathema.character.report.wizard.IReportWriter;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -17,11 +17,11 @@ import org.junit.Test;
 
 public class CharacterReportRunnableTest {
 
-  private ICharacterReportWriter writer;
+  private IReportWriter writer;
 
   @Before
   public void createWriter() throws Exception {
-    writer = EasyMock.createMock(ICharacterReportWriter.class);
+    writer = EasyMock.createMock(IReportWriter.class);
   }
 
   private IProgressMonitor createNiceProgressMonitor() {

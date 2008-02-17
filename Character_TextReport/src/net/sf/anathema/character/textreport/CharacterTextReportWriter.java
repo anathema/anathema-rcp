@@ -12,7 +12,7 @@ import com.lowagie.text.Element;
 import com.lowagie.text.pdf.MultiColumnText;
 import com.lowagie.text.pdf.PdfWriter;
 
-public class CharacterTextReportWriter extends AbstractReportPdfWriter {
+public class CharacterTextReportWriter extends AbstractReportPdfWriter<ICharacter> {
 
   private final Iterable<ITextReportEncoder> encoders;
 
@@ -53,5 +53,10 @@ public class CharacterTextReportWriter extends AbstractReportPdfWriter {
       columnText.nextColumn();
     }
     while (columnText.isOverflow());
+  }
+
+  @Override
+  protected String getTitle(ICharacter character) {
+    return character.getDisplayName();
   }
 }

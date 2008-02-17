@@ -29,5 +29,5 @@ public abstract class AbstractCharacterExportWizard extends AbstractPdfExportWiz
     return new CharacterDisplayNameProvider(container).getDisplayName();
   }
 
-  protected abstract ICharacterReportWriter createCharacterPdfWriter();
+  protected abstract IReportWriter createCharacterPdfWriter();
 }

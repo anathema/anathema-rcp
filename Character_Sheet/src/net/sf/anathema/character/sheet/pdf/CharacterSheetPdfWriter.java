@@ -18,7 +18,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 
-public class CharacterSheetPdfWriter extends AbstractReportPdfWriter {
+public class CharacterSheetPdfWriter extends AbstractReportPdfWriter<ICharacter> {
 
   private final IContentEncoderProvider encoderProvider = new ContentEncoderProvider(
       new RegisteredContentEncoderProvider());
@@ -52,5 +52,10 @@ public class CharacterSheetPdfWriter extends AbstractReportPdfWriter {
   @Override
   public int getTaskCount() {
     return encoderList.size();
+  }
+
+  @Override
+  protected String getTitle(ICharacter character) {
+    return character.getDisplayName();
   }
 }
