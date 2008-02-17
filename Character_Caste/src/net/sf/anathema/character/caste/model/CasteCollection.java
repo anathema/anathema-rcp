@@ -6,15 +6,15 @@ import java.util.List;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.caste.persistence.ICasteProvider;
+import net.sf.anathema.character.caste.persistence.ICasteCollection;
 import net.sf.anathema.character.caste.plugin.ICastePluginConstants;
 
-public class CasteProvider implements ICasteProvider {
+public class CasteCollection implements ICasteCollection {
 
   private static final String ATTRIB_CHARACTER_TYPE = "characterType"; //$NON-NLS-1$
-  private IPluginExtension[] pluginExtensions;
+  private final IPluginExtension[] pluginExtensions;
 
-  public CasteProvider() {
+  public CasteCollection() {
     this.pluginExtensions = new EclipseExtensionPoint(ICastePluginConstants.PLUGIN_ID, "castes").getExtensions(); //$NON-NLS-1$
   }
 

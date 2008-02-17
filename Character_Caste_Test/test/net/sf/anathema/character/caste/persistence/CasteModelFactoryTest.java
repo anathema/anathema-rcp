@@ -17,7 +17,7 @@ public class CasteModelFactoryTest {
   @Test
   public void createdTemplateReturnsIdsAsOptions() throws Exception {
     ICaste[] castes = new ICaste[] { CasteObjectMother.createCaste("TollerHengst", "Toller Hengst") }; //$NON-NLS-1$ //$NON-NLS-2$
-    ICasteProvider provider = createCasteProvider(castes);
+    ICasteCollection provider = createCasteProvider(castes);
     ICharacterTemplate template = EasyMock.createMock(ICharacterTemplate.class);
     EasyMock.expect(template.getCharacterTypeId()).andReturn(CHARACTER_TYPE_ID).anyTimes();
     EasyMock.replay(template);
@@ -25,8 +25,8 @@ public class CasteModelFactoryTest {
     assertArrayEquals(new String[] { "Toller Hengst" }, new CasteModel(casteTemplate).getPrintNameOptions()); //$NON-NLS-1$
   }
 
-  private ICasteProvider createCasteProvider(ICaste[] castes) {
-    ICasteProvider provider = EasyMock.createMock(ICasteProvider.class);
+  private ICasteCollection createCasteProvider(ICaste[] castes) {
+    ICasteCollection provider = EasyMock.createMock(ICasteCollection.class);
     EasyMock.expect(provider.getCastes(CHARACTER_TYPE_ID)).andStubReturn(castes);
     EasyMock.replay(provider);
     return provider;

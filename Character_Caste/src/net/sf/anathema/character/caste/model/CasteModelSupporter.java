@@ -8,6 +8,6 @@ public class CasteModelSupporter extends AbstractExecutableExtension implements 
 
   @Override
   public boolean isSupportedBy(ICharacterTemplate template) {
-    return new CasteProvider().getCastes(template.getCharacterTypeId()).length > 0;
+    return new CasteCollection().getCastes(template.getCharacterTypeId()).length > 0;
   }
 }

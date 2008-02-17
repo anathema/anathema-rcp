@@ -1,7 +1,7 @@
 package net.sf.anathema.character.caste.persistence;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.character.caste.model.CasteProvider;
+import net.sf.anathema.character.caste.model.CasteCollection;
 import net.sf.anathema.character.caste.model.CasteTemplate;
 import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
@@ -15,13 +15,13 @@ import org.eclipse.core.runtime.CoreException;
 
 public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICasteModel> {
   private final CasteModelPersister persister = new CasteModelPersister();
-  private final ICasteProvider provider;
+  private final ICasteCollection provider;
 
   public CasteModelFactory() {
-    this(new CasteProvider());
+    this(new CasteCollection());
   }
 
-  public CasteModelFactory(ICasteProvider provider) {
+  public CasteModelFactory(ICasteCollection provider) {
     this.provider = provider;
   }
 

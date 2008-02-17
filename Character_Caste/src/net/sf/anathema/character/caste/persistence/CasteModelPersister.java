@@ -6,11 +6,11 @@ import java.io.OutputStream;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.caste.model.CasteTemplate;
-import net.sf.anathema.character.caste.model.ICaste;
 import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.caste.plugin.ICastePluginConstants;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.lib.exception.PersistenceException;
+import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
@@ -20,7 +20,7 @@ public class CasteModelPersister implements IModelPersister<CasteTemplate, ICast
 
   private static final String ATTRIB_CASTE = "caste"; //$NON-NLS-1$
   private static final String TAG_MODEL = "casteModel"; //$NON-NLS-1$
-  
+
   @Override
   public CasteModel createNew(CasteTemplate template) {
     return new CasteModel(template);
@@ -40,16 +40,20 @@ public class CasteModelPersister implements IModelPersister<CasteTemplate, ICast
 
   @Override
   public void save(OutputStream stream, ICasteModel item) throws IOException, PersistenceException {
+    Document document = createCasteDocument(item.getCaste());
+    DocumentUtilities.save(document, stream);
+  }
+
+  public Document createCasteDocument(IIdentificate caste) {
     Document document = new BundlePersistenceUtilities().createVersionedDocument(
         TAG_MODEL,
         ICastePluginConstants.PLUGIN_ID);
     Element rootElement = document.getRootElement();
-    save(rootElement, item);
-    DocumentUtilities.save(document, stream);
+    save(rootElement, caste);
+    return document;
   }
 
-  protected void save(Element rootElement, ICasteModel item) {
-    ICaste caste = item.getCaste();
+  protected void save(Element rootElement, IIdentificate caste) {
     if (caste != null) {
       rootElement.addAttribute(ATTRIB_CASTE, caste.getId());
     }

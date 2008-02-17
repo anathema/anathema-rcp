@@ -1,6 +1,6 @@
 package net.sf.anathema.character.caste.persistence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 
@@ -11,9 +11,10 @@ public class CasteModelFactoryIntegrationTest {
 
   @Test
   public void createdTemplateReturnsIdsAsOptions() throws Exception {
+    // TODO Hier kommt nur der i18n-String zurück. Warum?
     assertCastesAreFoundForCharacterType("test.type", new String[] { "test.name" }); //$NON-NLS-1$ //$NON-NLS-2$
   }
-  
+
   @Test
   public void noMortalCastesAreFound() throws Exception {
     assertCastesAreFoundForCharacterType("net.sf.anathema.character.type.mortal", new String[0]); //$NON-NLS-1$

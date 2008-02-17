@@ -7,6 +7,7 @@ import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.caste.model.CasteTemplate;
 import net.sf.anathema.character.caste.model.ICaste;
 import net.sf.anathema.character.caste.model.ICasteModel;
+import net.sf.anathema.lib.util.Identificate;
 
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -31,22 +32,21 @@ public class CasteModelPersisterTest {
 
   @Test
   public void casteIsSavedInAttributeCaste() throws Exception {
-    casteModel.setCasteById(CASTE_ID);
-    persister.save(rootElement, casteModel);
+    persister.save(rootElement, new Identificate(CASTE_ID));
     assertEquals(CASTE_ID, rootElement.attributeValue("caste")); //$NON-NLS-1$
   }
 
   @Test
   public void nothingIsSavedForNullCaste() throws Exception {
     casteModel.setCasteById(null);
-    persister.save(rootElement, casteModel);
+    persister.save(rootElement, null);
     assertNull(rootElement.attributeValue("caste")); //$NON-NLS-1$ 
   }
 
   @Test
   public void casteIsReloaded() throws Exception {
     casteModel.setCasteById("EvilTwin"); //$NON-NLS-1$
-    persister.save(rootElement, casteModel);
+    persister.save(rootElement, new Identificate("EvilTwin")); //$NON-NLS-1$
     ICasteModel loadedCasteModel = persister.load(DocumentHelper.createDocument(rootElement), new CasteTemplate(caste));
     assertNotSame(casteModel, loadedCasteModel);
     assertEquals(casteModel.getCaste(), loadedCasteModel.getCaste());
