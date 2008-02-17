@@ -37,10 +37,10 @@ public class TableOfContentsPrinter {
       }
     });
     Paragraph titleParagraph = reportUtils.createNewParagraph(seriesTitle, Element.ALIGN_CENTER, Font.BOLD);
-    titleParagraph.font().setSize(15);
+    titleParagraph.getFont().setSize(15);
     document.add(titleParagraph);
     Paragraph tocParagraph = reportUtils.createNewParagraph(tableTitle, Element.ALIGN_CENTER, Font.BOLD);
-    tocParagraph.font().setSize(13);
+    tocParagraph.getFont().setSize(13);
     document.add(tocParagraph);
     float yCoordinate = document.top() - 35;
     yCoordinate -= 15;

@@ -130,7 +130,7 @@ public class MultiColumnSeriesReportWriter extends AbstractReportPdfWriter<IPlot
     getAttributeMap(title).put(Chunk.GENERICTAG, titleString);
     Paragraph paragraph = new Paragraph(title);
     paragraph.setAlignment(Element.ALIGN_JUSTIFIED);
-    paragraph.setLeading(font.size() * 1.2f);
+    paragraph.setLeading(font.getSize() * 1.2f);
     return paragraph;
   }
 

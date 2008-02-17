@@ -6,12 +6,12 @@ import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Phrase;
+import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.ColumnText;
 import com.lowagie.text.pdf.PdfAction;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
-;
 
 public class SeriesReportUtils {
 
@@ -19,14 +19,20 @@ public class SeriesReportUtils {
 
   public void printPageNumber(PdfWriter writer, Document document, String pageNumber) {
     PdfContentByte directContent = writer.getDirectContent();
-    PdfTemplate template = directContent.createTemplate(document.getPageSize().width(), document.getPageSize().height());
+    Rectangle pageSize = document.getPageSize();
+    PdfTemplate template = directContent.createTemplate(pageSize.getWidth(), pageSize.getHeight());
     template.moveTo(document.left(), document.bottom() - 11);
     template.lineTo(document.right(), document.bottom() - 11);
     template.stroke();
     directContent.addTemplate(template, 0, 0);
-    ColumnText.showTextAligned(directContent, Element.ALIGN_CENTER, new Phrase(
-        pageNumber,
-        reportUtils.createDefaultFont(8, Font.NORMAL)), document.getPageSize().width() / 2, document.bottom() - 20, 0);
+    Phrase pageNumberPhrase = new Phrase(pageNumber, reportUtils.createDefaultFont(8, Font.NORMAL));
+    ColumnText.showTextAligned(
+        directContent,
+        Element.ALIGN_CENTER,
+        pageNumberPhrase,
+        pageSize.getWidth() / 2,
+        document.bottom() - 20,
+        0);
   }
 
   public void textLine(

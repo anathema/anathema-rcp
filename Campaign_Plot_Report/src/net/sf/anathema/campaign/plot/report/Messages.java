@@ -7,6 +7,7 @@ public class Messages extends NLS {
   public static String MultiColumnSeriesReport_Synopsis;
   public static String MultiColumnSeriesReport_TableOfContent;
   public static String PlotExportWizard_Title;
+  public static String PlotReportRunnable_ErrorLoadingPlotMessageFormat;
   static {
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
