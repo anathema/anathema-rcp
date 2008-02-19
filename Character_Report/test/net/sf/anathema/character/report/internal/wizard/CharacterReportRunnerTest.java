@@ -8,10 +8,9 @@ import java.io.OutputStream;
 import net.sf.anathema.basics.pdfexport.IReportRunner;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.basics.swt.file.IStreamResult;
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.report.internal.wizard.CharacterReportRunnable;
-import net.sf.anathema.character.report.internal.wizard.CharacterReportRunner;
 
 import org.easymock.EasyMock;
 import org.eclipse.jface.operation.IRunnableContext;
@@ -25,7 +24,7 @@ public class CharacterReportRunnerTest {
     IOutputStreamFactory outputStreamFactory = createOutputStreamFactory(null);
     IRunnableContext runnableContext = EasyMock.createMock(IRunnableContext.class);
     EasyMock.replay(runnableContext);
-    new CharacterReportRunner(outputStreamFactory, null).runWriting(null, null, runnableContext);
+    new CharacterReportRunner(outputStreamFactory, null).runWriting(null, null, null, runnableContext);
   }
 
   @Test
@@ -33,11 +32,11 @@ public class CharacterReportRunnerTest {
     OutputStream outputStream = new ByteArrayOutputStream();
     IOutputStreamFactory outputStreamFactory = createOutputStreamFactory(outputStream);
     IEditorPart editorPart = EditorPartObjectMother.createEditorPart(CharacterObjectMother.createCharacterEditorInput(new DummyCharacterId()));
-    IReportRunner runner = new CharacterReportRunner(outputStreamFactory, null);
+    IReportRunner<ICharacter> runner = new CharacterReportRunner(outputStreamFactory, null);
     IRunnableContext runnableContext = EasyMock.createNiceMock(IRunnableContext.class);
     runnableContext.run(EasyMock.eq(true), EasyMock.eq(false), EasyMock.isA(CharacterReportRunnable.class));
     EasyMock.replay(runnableContext);
-    runner.runWriting(null, editorPart, runnableContext);
+    runner.runWriting(null, null, editorPart, runnableContext);
     EasyMock.verify(runnableContext);
   }
 

@@ -1,7 +1,8 @@
 package net.sf.anathema.basics.pdfexport.item;
 
+import java.util.ArrayList;
+
 import net.disy.commons.core.model.ObjectModel;
-import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
 
 import org.eclipse.swt.SWT;
@@ -32,7 +33,7 @@ public class TransformingList<T> {
     private void updateSelection() {
       int selectionIndex = itemList.getSelectionIndex();
       if (selectionIndex > -1) {
-        selectionModel.setValue(items[selectionIndex]);
+        selectionModel.setValue(items.get(selectionIndex));
       }
       else {
         selectionModel.setValue(null);
@@ -40,11 +41,11 @@ public class TransformingList<T> {
     }
   }
 
-  private final T[] items;
+  private final java.util.List<T> items;
   private final ITransformer<T, String> transformer;
   private final ObjectModel<T> selectionModel;
 
-  public TransformingList(T[] items, ITransformer<T, String> transformer, ObjectModel<T> selectionModel) {
+  public TransformingList(java.util.List<T> items, ITransformer<T, String> transformer, ObjectModel<T> selectionModel) {
     this.items = items;
     this.transformer = transformer;
     this.selectionModel = selectionModel;
@@ -52,7 +53,11 @@ public class TransformingList<T> {
 
   public List createList(Composite parent) {
     final List itemList = new List(parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
-    itemList.setItems(ArrayUtilities.transform(items, String.class, transformer));
+    java.util.List<String> stringPresentation = new ArrayList<String>();
+    for (T item : items) {
+      stringPresentation.add(transformer.transform(item));
+    }
+    itemList.setItems(stringPresentation.toArray(new String[stringPresentation.size()]));
     itemList.addSelectionListener(new ListSelectionListener(itemList));
     return itemList;
   }

@@ -8,6 +8,7 @@ import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.pdfexport.IPluginConstants;
 import net.sf.anathema.basics.pdfexport.IReportRunner;
+import net.sf.anathema.basics.pdfexport.item.IExportItem;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.basics.swt.file.IStreamResult;
 
@@ -17,7 +18,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 
-public abstract class AbstractReportRunner implements IReportRunner {
+public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
 
   private final Logger logger = new Logger(IPluginConstants.PLUGIN_ID);
   private final IOutputStreamFactory streamFactory;
@@ -26,7 +27,11 @@ public abstract class AbstractReportRunner implements IReportRunner {
     this.streamFactory = streamFactory;
   }
 
-  public final void runWriting(Shell shell, final IEditorPart editorPart, IRunnableContext runnableContext) {
+  public final void runWriting(
+      Shell shell,
+      IExportItem<I> exportItem,
+      final IEditorPart editorPart,
+      IRunnableContext runnableContext) {
     OutputStream outputStream = null;
     IStreamResult streamResult = null;
     try {
@@ -53,17 +58,11 @@ public abstract class AbstractReportRunner implements IReportRunner {
 
   private void indicateError(Shell shell, Throwable cause) {
     if (cause instanceof FileNotFoundException) {
-      MessageDialog.openError(
-          shell,
-          Messages.ReportRunner_Title,
-          Messages.ReportRunner_FileInUseMessage);
+      MessageDialog.openError(shell, Messages.ReportRunner_Title, Messages.ReportRunner_FileInUseMessage);
     }
     else {
       logger.error(Messages.ReportRunner_PdfErrorMessage, cause);
-      MessageDialog.openError(
-          shell,
-          Messages.ReportRunner_Title,
-          Messages.ReportRunner_PdfErrorMessage);
+      MessageDialog.openError(shell, Messages.ReportRunner_Title, Messages.ReportRunner_PdfErrorMessage);
     }
   }
 

@@ -7,19 +7,19 @@ import net.disy.commons.core.util.ITransformer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.widgets.Composite;
 
-public class ExportItemDialogPage extends WizardPage {
+public class ExportItemDialogPage<T> extends WizardPage {
 
-  public static final class ExportItemToPrintNameTransformer implements ITransformer<IExportItem, String> {
+  public static final class ExportItemToPrintNameTransformer<T> implements ITransformer<IExportItem<T>, String> {
     @Override
-    public String transform(IExportItem exportItem) {
+    public String transform(IExportItem<T> exportItem) {
       return exportItem.getPrintName();
     }
   }
 
-  private final IExportItem[] exportItems;
-  private final ObjectModel<IExportItem> selectedItem;
+  private final java.util.List<IExportItem<T>> exportItems;
+  private final ObjectModel<IExportItem<T>> selectedItem;
 
-  public ExportItemDialogPage(IExportItem[] exportItems, ObjectModel<IExportItem> selectedItem) {
+  public ExportItemDialogPage(java.util.List<IExportItem<T>> exportItems, ObjectModel<IExportItem<T>> selectedItem) {
     super("ExportItem"); //$NON-NLS-1$
     this.exportItems = exportItems;
     this.selectedItem = selectedItem;
@@ -35,8 +35,8 @@ public class ExportItemDialogPage extends WizardPage {
 
   @Override
   public void createControl(Composite parent) {
-    ExportItemToPrintNameTransformer transformer = new ExportItemToPrintNameTransformer();
-    TransformingList<IExportItem> list = new TransformingList<IExportItem>(exportItems, transformer, selectedItem);
+    ExportItemToPrintNameTransformer<T> transformer = new ExportItemToPrintNameTransformer<T>();
+    TransformingList<IExportItem<T>> list = new TransformingList<IExportItem<T>>(exportItems, transformer, selectedItem);
     setControl(list.createList(parent));
   }
 
