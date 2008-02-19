@@ -24,6 +24,6 @@ public class PlotReportRunner extends AbstractReportRunner<IPlotElement> {
       IEditorPart editorPart,
       OutputStream outputStream,
       IExportItem<IPlotElement> exportItem) {
-    return new PlotReportRunnable(rootElement, outputStream);
+    return new PlotReportRunnable(exportItem, outputStream);
   }
 }

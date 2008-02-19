@@ -1,6 +1,7 @@
 package net.sf.anathema.campaign.note.report;
 
 import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
+import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.pdfexport.AbstractPdfExportWizard;
 import net.sf.anathema.basics.pdfexport.IReportRunner;
 import net.sf.anathema.basics.pdfexport.message.ExportMessages;
@@ -8,7 +9,7 @@ import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 
 import org.eclipse.ui.IEditorPart;
 
-public class NoteExportWizard extends AbstractPdfExportWizard {
+public class NoteExportWizard extends AbstractPdfExportWizard<ITitledText> {
 
   @Override
   protected IFileSelectionPageMessages createMessage() {
@@ -16,7 +17,7 @@ public class NoteExportWizard extends AbstractPdfExportWizard {
   }
 
   @Override
-  protected IReportRunner createRunner(IOutputStreamFactory outputStreamFactory) {
+  protected IReportRunner<ITitledText> createRunner(IOutputStreamFactory outputStreamFactory) {
     return new NoteReportRunner(outputStreamFactory);
   }
 
