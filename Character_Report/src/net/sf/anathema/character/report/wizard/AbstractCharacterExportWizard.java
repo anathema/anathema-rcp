@@ -10,14 +10,9 @@ import net.sf.anathema.basics.pdfexport.writer.IReportWriter;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
-import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
 import net.sf.anathema.character.report.internal.wizard.CharacterReportRunner;
 
-import org.eclipse.core.resources.IContainer;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IExportWizard;
 
 public abstract class AbstractCharacterExportWizard extends AbstractPdfExportWizard<ICharacter> implements
@@ -40,15 +35,6 @@ public abstract class AbstractCharacterExportWizard extends AbstractPdfExportWiz
       exportItems.add(new CharacterExportItem(characterId));
     }
     return exportItems;
-  }
-
-  @Override
-  protected String getSuggestedName(IEditorPart editorPart) {
-    IEditorInput editorInput = editorPart.getEditorInput();
-    IModelIdentifier identifier = (IModelIdentifier) editorInput.getAdapter(IModelIdentifier.class);
-    ICharacterId characterId = identifier.getCharacterId();
-    IContainer container = (IContainer) characterId.getAdapter(IContainer.class);
-    return new CharacterDisplayNameProvider(container).getDisplayName();
   }
 
   protected abstract IReportWriter<ICharacter> createCharacterPdfWriter();

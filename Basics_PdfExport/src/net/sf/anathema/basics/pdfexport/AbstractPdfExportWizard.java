@@ -19,7 +19,6 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 
@@ -28,7 +27,6 @@ public abstract class AbstractPdfExportWizard<I> extends Wizard implements IExpo
   private IWorkbench exportWorkbench;
   private IFileSelectionModel fileSelectionModel;
   private BooleanModel openModel;
-  private IEditorPart editorPart;
   private ObjectModel<IExportItem<I>> selectedItem;
 
   @Override
@@ -52,11 +50,10 @@ public abstract class AbstractPdfExportWizard<I> extends Wizard implements IExpo
   @Override
   public final void init(IWorkbench workbench, IStructuredSelection selection) {
     exportWorkbench = workbench;
-    editorPart = exportWorkbench.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
     fileSelectionModel = new FileSelectionModel(new ExportFileSelectionStatusFactory());
     openModel = new BooleanModel(true);
-    PdfExportDialog dialog = new PdfExportDialog(null, getSuggestedName(editorPart));
     selectedItem = new ObjectModel<IExportItem<I>>();
+    PdfExportDialog dialog = new PdfExportDialog(null, new ExportPrintNameProvider<I>(selectedItem));
     if (supportsExportItems()) {
       addPage(new ExportItemDialogPage<I>(getExportItems(), selectedItem));
     }
@@ -70,8 +67,6 @@ public abstract class AbstractPdfExportWizard<I> extends Wizard implements IExpo
   protected List<IExportItem<I>> getExportItems() {
     return new ArrayList<IExportItem<I>>();
   }
-
-  protected abstract String getSuggestedName(IEditorPart editor);
 
   protected abstract IFileSelectionPageMessages createMessage();
 }

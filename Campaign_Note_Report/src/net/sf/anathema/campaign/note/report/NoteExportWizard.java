@@ -16,7 +16,6 @@ import net.sf.anathema.campaign.note.plugin.NotePluginConstants;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.ui.IEditorPart;
 
 public class NoteExportWizard extends AbstractPdfExportWizard<ITitledText> {
   public static final Logger logger = new Logger(NotePluginConstants.PLUGIN_ID);
@@ -29,11 +28,6 @@ public class NoteExportWizard extends AbstractPdfExportWizard<ITitledText> {
   @Override
   protected IReportRunner<ITitledText> createRunner(IOutputStreamFactory outputStreamFactory) {
     return new NoteReportRunner(outputStreamFactory);
-  }
-
-  @Override
-  protected String getSuggestedName(IEditorPart editor) {
-    return editor.getEditorInput().getName();
   }
 
   @Override

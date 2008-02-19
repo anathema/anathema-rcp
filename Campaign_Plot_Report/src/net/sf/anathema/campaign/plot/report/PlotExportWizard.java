@@ -16,7 +16,6 @@ import net.sf.anathema.campaign.plot.report.model.IPlotElement;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.ui.IEditorPart;
 
 public class PlotExportWizard extends AbstractPdfExportWizard<IPlotElement> {
   private final static Logger logger = new Logger(PlotPlugin.ID);
@@ -50,10 +49,5 @@ public class PlotExportWizard extends AbstractPdfExportWizard<IPlotElement> {
       }
     }
     return plotElements;
-  }
-
-  @Override
-  protected String getSuggestedName(IEditorPart editor) {
-    return "Plot";
   }
 }
