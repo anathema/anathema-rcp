@@ -1,4 +1,4 @@
-package net.sf.anathema.basics.pdfexport.item;
+package net.sf.anathema.basics.pdfexport.writer;
 
 public interface IExportItem<T> {
   

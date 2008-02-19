@@ -3,6 +3,7 @@ package net.sf.anathema.basics.pdfexport.item;
 import net.disy.commons.core.model.ObjectModel;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.basics.pdfexport.writer.IExportItem;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.widgets.Composite;

@@ -11,7 +11,7 @@ import net.sf.anathema.basics.importexport.FileSelectionWizardPage;
 import net.sf.anathema.basics.importexport.IFileSelectionModel;
 import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
 import net.sf.anathema.basics.pdfexport.item.ExportItemDialogPage;
-import net.sf.anathema.basics.pdfexport.item.IExportItem;
+import net.sf.anathema.basics.pdfexport.writer.IExportItem;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 
 import org.eclipse.jface.viewers.IStructuredSelection;

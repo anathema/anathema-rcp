@@ -8,7 +8,6 @@ import net.disy.commons.core.io.IOUtilities;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.pdfexport.IPluginConstants;
 import net.sf.anathema.basics.pdfexport.IReportRunner;
-import net.sf.anathema.basics.pdfexport.item.IExportItem;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.basics.swt.file.IStreamResult;
 
@@ -40,7 +39,7 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
         return;
       }
       outputStream = streamResult.createStream();
-      runnableContext.run(true, false, createRunnable(editorPart, outputStream));
+      runnableContext.run(true, false, createRunnable(editorPart, outputStream, exportItem));
     }
     catch (InvocationTargetException e) {
       indicateError(shell, e.getCause());
@@ -66,5 +65,8 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
     }
   }
 
-  protected abstract IRunnableWithProgress createRunnable(final IEditorPart editorPart, OutputStream outputStream);
+  protected abstract IRunnableWithProgress createRunnable(
+      final IEditorPart editorPart,
+      OutputStream outputStream,
+      IExportItem<I> exportItem);
 }
