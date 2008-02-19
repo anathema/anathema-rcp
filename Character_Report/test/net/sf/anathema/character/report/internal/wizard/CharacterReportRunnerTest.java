@@ -24,7 +24,7 @@ public class CharacterReportRunnerTest {
     IOutputStreamFactory outputStreamFactory = createOutputStreamFactory(null);
     IRunnableContext runnableContext = EasyMock.createMock(IRunnableContext.class);
     EasyMock.replay(runnableContext);
-    new CharacterReportRunner(outputStreamFactory, null).runWriting(null, null, null, runnableContext);
+    new CharacterReportRunner(outputStreamFactory, null).runWriting(null, null, runnableContext);
   }
 
   @Test
@@ -36,7 +36,7 @@ public class CharacterReportRunnerTest {
     IRunnableContext runnableContext = EasyMock.createNiceMock(IRunnableContext.class);
     runnableContext.run(EasyMock.eq(true), EasyMock.eq(false), EasyMock.isA(CharacterReportRunnable.class));
     EasyMock.replay(runnableContext);
-    runner.runWriting(null, null, editorPart, runnableContext);
+    runner.runWriting(null, null, runnableContext);
     EasyMock.verify(runnableContext);
   }
 

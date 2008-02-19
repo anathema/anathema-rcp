@@ -8,7 +8,6 @@ import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.campaign.plot.report.model.IPlotElement;
 
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ui.IEditorPart;
 
 public class PlotReportRunner extends AbstractReportRunner<IPlotElement> {
 
@@ -21,9 +20,8 @@ public class PlotReportRunner extends AbstractReportRunner<IPlotElement> {
 
   @Override
   protected IRunnableWithProgress createRunnable(
-      IEditorPart editorPart,
-      OutputStream outputStream,
-      IExportItem<IPlotElement> exportItem) {
+      IExportItem<IPlotElement> exportItem,
+      OutputStream outputStream) {
     return new PlotReportRunnable(exportItem, outputStream);
   }
 }

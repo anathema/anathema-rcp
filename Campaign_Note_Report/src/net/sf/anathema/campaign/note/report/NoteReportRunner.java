@@ -8,7 +8,6 @@ import net.sf.anathema.basics.pdfexport.writer.IExportItem;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ui.IEditorPart;
 
 public class NoteReportRunner extends AbstractReportRunner<ITitledText> {
 
@@ -18,9 +17,8 @@ public class NoteReportRunner extends AbstractReportRunner<ITitledText> {
 
   @Override
   protected IRunnableWithProgress createRunnable(
-      IEditorPart editorPart,
-      OutputStream outputStream,
-      IExportItem<ITitledText> exportItem) {
-    return new NoteReportRunnable(editorPart, outputStream, new NoteReportWriter());
+      IExportItem<ITitledText> exportItem,
+      OutputStream outputStream) {
+    return new NoteReportRunnable(exportItem, outputStream, new NoteReportWriter());
   }
 }

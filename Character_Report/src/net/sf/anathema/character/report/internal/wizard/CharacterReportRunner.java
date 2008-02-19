@@ -9,7 +9,6 @@ import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.character.core.character.ICharacter;
 
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ui.IEditorPart;
 
 public class CharacterReportRunner extends AbstractReportRunner<ICharacter> {
 
@@ -22,9 +21,8 @@ public class CharacterReportRunner extends AbstractReportRunner<ICharacter> {
 
   @Override
   protected IRunnableWithProgress createRunnable(
-      final IEditorPart editorPart,
-      OutputStream outputStream,
-      IExportItem<ICharacter> exportItem) {
+      IExportItem<ICharacter> exportItem,
+      OutputStream outputStream) {
     return new CharacterReportRunnable(exportItem, outputStream, writer);
   }
 }

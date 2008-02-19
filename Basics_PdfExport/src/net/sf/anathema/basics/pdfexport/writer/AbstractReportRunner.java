@@ -15,7 +15,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
 
 public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
 
@@ -29,7 +28,6 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
   public final void runWriting(
       Shell shell,
       IExportItem<I> exportItem,
-      final IEditorPart editorPart,
       IRunnableContext runnableContext) {
     OutputStream outputStream = null;
     IStreamResult streamResult = null;
@@ -39,7 +37,7 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
         return;
       }
       outputStream = streamResult.createStream();
-      runnableContext.run(true, false, createRunnable(editorPart, outputStream, exportItem));
+      runnableContext.run(true, false, createRunnable(exportItem, outputStream));
     }
     catch (InvocationTargetException e) {
       indicateError(shell, e.getCause());
@@ -66,7 +64,6 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
   }
 
   protected abstract IRunnableWithProgress createRunnable(
-      final IEditorPart editorPart,
-      OutputStream outputStream,
-      IExportItem<I> exportItem);
+      IExportItem<I> exportItem,
+      OutputStream outputStream);
 }

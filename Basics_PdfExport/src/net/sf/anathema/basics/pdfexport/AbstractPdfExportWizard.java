@@ -43,7 +43,7 @@ public abstract class AbstractPdfExportWizard<I> extends Wizard implements IExpo
       }
     }
     IOutputStreamFactory outputStreamFactory = new ExportOutputStreamFactory(fileSelectionModel, openModel);
-    createRunner(outputStreamFactory).runWriting(shell, selectedItem.getValue(), editorPart, getContainer());
+    createRunner(outputStreamFactory).runWriting(shell, selectedItem.getValue(), getContainer());
     return true;
   }
 
