@@ -3,8 +3,8 @@ package net.sf.anathema.character.caste.textreport;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.character.caste.model.ICaste;
-import net.sf.anathema.character.caste.model.ICasteModel;
+import net.sf.anathema.character.caste.ICaste;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.AbstractTextEncoder;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;

@@ -1,9 +1,9 @@
 package net.sf.anathema.character.caste.persistence;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.model.CasteCollection;
 import net.sf.anathema.character.caste.model.CasteTemplate;
-import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModelFactory;

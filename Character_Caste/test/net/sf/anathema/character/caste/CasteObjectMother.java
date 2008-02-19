@@ -4,7 +4,6 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.character.caste.model.Caste;
-import net.sf.anathema.character.caste.model.ICaste;
 
 public class CasteObjectMother {
 

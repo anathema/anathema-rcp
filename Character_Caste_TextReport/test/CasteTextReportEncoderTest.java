@@ -3,10 +3,10 @@ import static org.junit.Assert.*;
 
 import java.util.Iterator;
 
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.fake.DummyCaste;
 import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.caste.model.CasteTemplate;
-import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.caste.textreport.CasteTextReportEncoder;
 import net.sf.anathema.character.core.character.ICharacter;
 

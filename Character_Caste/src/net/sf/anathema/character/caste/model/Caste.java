@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
 

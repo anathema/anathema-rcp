@@ -2,9 +2,9 @@ package net.sf.anathema.character.caste.editor;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.caste.model.CasteTemplate;
-import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.core.fake.DummyModelCollection;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;

@@ -4,7 +4,7 @@ import java.net.URL;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.caste.model.ICasteModel;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.persistence.CasteModelPersister;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.experience.IExperience;

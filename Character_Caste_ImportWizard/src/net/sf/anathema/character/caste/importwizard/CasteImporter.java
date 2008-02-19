@@ -3,7 +3,7 @@ package net.sf.anathema.character.caste.importwizard;
 import java.io.IOException;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.caste.model.ICasteModel;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.importwizard.IModelImporter;
 import net.sf.anathema.character.importwizard.ModelImporter;
 

@@ -2,9 +2,9 @@ package net.sf.anathema.character.caste.persistence;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.caste.CasteObjectMother;
+import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.caste.model.CasteTemplate;
-import net.sf.anathema.character.caste.model.ICaste;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 
 import org.easymock.EasyMock;

@@ -64,7 +64,7 @@ public class ModelExtensionPoint {
     return getModelElement(identifier.getModelId());
   }
 
-  private IExtensionElement getModelElement(String modelId) {
+  public IExtensionElement getModelElement(String modelId) {
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
         if (extensionElement.getAttribute(ATTRIB_ID).equals(modelId)) {

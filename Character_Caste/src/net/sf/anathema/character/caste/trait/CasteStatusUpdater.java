@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.caste.model.ICaste;
-import net.sf.anathema.character.caste.model.ICasteModel;
+import net.sf.anathema.character.caste.ICaste;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.lib.util.IIdentificate;

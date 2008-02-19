@@ -1,6 +1,6 @@
 package net.sf.anathema.character.caste.persistence;
 
-import net.sf.anathema.character.caste.model.ICaste;
+import net.sf.anathema.character.caste.ICaste;
 
 public interface ICasteCollection {
 

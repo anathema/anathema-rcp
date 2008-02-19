@@ -1,7 +1,7 @@
 package net.sf.anathema.character.caste.persistence;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
-import net.sf.anathema.character.caste.model.ICasteModel;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.trait.CasteStatusUpdater;
 import net.sf.anathema.character.caste.trait.ITraitCollectionProvider;
 import net.sf.anathema.character.core.character.ICharacterId;

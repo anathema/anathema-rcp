@@ -3,6 +3,8 @@ package net.sf.anathema.character.caste.model;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ObjectUtilities;
+import net.sf.anathema.character.caste.ICaste;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.lib.control.change.ChangeControl;
 

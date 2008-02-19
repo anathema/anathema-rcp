@@ -4,8 +4,8 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
-import net.sf.anathema.character.caste.model.ICaste;
-import net.sf.anathema.character.caste.model.ICasteModel;
+import net.sf.anathema.character.caste.ICaste;
+import net.sf.anathema.character.caste.ICasteModel;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;

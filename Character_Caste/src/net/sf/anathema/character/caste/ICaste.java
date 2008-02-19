@@ -1,4 +1,4 @@
-package net.sf.anathema.character.caste.model;
+package net.sf.anathema.character.caste;
 
 import java.util.List;
 

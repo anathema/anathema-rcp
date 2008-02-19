@@ -6,6 +6,7 @@ import java.util.List;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.persistence.ICasteCollection;
 import net.sf.anathema.character.caste.plugin.ICastePluginConstants;
 

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.caste.model;
+package net.sf.anathema.character.caste;
 
 import net.sf.anathema.character.core.character.IModel;
 

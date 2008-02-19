@@ -1,7 +1,8 @@
 package net.sf.anathema.character.caste.persistence;
 
-import static org.junit.Assert.assertArrayEquals;
-import net.sf.anathema.character.caste.model.CasteModel;
+import static org.junit.Assert.*;
+import net.sf.anathema.character.caste.ICasteModel;
+import net.sf.anathema.character.caste.fake.IntegrationCasteModelFactory;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 
 import org.easymock.EasyMock;
@@ -48,7 +49,7 @@ public class CasteModelFactoryIntegrationTest {
     ICharacterTemplate template = EasyMock.createMock(ICharacterTemplate.class);
     EasyMock.expect(template.getCharacterTypeId()).andReturn(characterType).anyTimes();
     EasyMock.replay(template);
-    CasteModel casteModel = new CasteModel(new CasteModelFactory().createModelTemplate(template));
+    ICasteModel casteModel = IntegrationCasteModelFactory.createCasteModel(template);
     assertArrayEquals(castes, casteModel.getPrintNameOptions());
   }
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.character.caste.ICasteModel;
 
 import org.junit.Test;
 

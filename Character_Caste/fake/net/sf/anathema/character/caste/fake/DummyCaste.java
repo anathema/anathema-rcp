@@ -3,7 +3,7 @@ package net.sf.anathema.character.caste.fake;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.character.caste.model.ICaste;
+import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class DummyCaste implements ICaste {

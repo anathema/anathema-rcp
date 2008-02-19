@@ -14,3 +14,5 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.character.experience
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: net.sf.anathema.character.caste,
+ net.sf.anathema.character.caste.fake

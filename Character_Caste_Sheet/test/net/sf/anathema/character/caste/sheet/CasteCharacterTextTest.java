@@ -2,9 +2,9 @@ package net.sf.anathema.character.caste.sheet;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
+import net.sf.anathema.character.caste.ICaste;
+import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.fake.DummyCaste;
-import net.sf.anathema.character.caste.model.ICaste;
-import net.sf.anathema.character.caste.model.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacter;
 
 import org.junit.Before;
