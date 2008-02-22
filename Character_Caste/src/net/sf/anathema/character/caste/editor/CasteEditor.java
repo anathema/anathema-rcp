@@ -7,9 +7,16 @@ import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
 
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -17,27 +24,41 @@ import org.eclipse.swt.widgets.Label;
 
 public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> {
 
-  private final class CasteSelectionListener implements SelectionListener {
-    private final Combo combo;
+  private static final class CasteLabelProvider extends LabelProvider {
+    @Override
+    public String getText(Object element) {
+      return ((ICaste) element).getPrintName();
+    }
+  }
 
-    private CasteSelectionListener(Combo combo) {
-      this.combo = combo;
+  private static final class CasteSelectionChangedListener implements ISelectionChangedListener {
+    private final ICasteModel item;
+
+    private CasteSelectionChangedListener(ICasteModel item) {
+      this.item = item;
     }
 
     @Override
-    public void widgetSelected(SelectionEvent e) {
-      changeCaste();
+    public void selectionChanged(SelectionChangedEvent event) {
+      ICaste caste = (ICaste) ((IStructuredSelection) event.getSelection()).getFirstElement();
+      item.setCaste(caste);
+    }
+  }
+
+  private static final class CasteContentProvider implements IStructuredContentProvider {
+    @Override
+    public void dispose() {
+      // nothing to do
     }
 
     @Override
-    public void widgetDefaultSelected(SelectionEvent e) {
-      changeCaste();
+    public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+      // nothing to do
     }
 
-    private void changeCaste() {
-      int selectionIndex = combo.getSelectionIndex();
-      String caste = selectionIndex < 0 ? null : combo.getItem(selectionIndex);
-      getPersistableEditorInput().getItem().setCasteByPrintName(caste);
+    @Override
+    public Object[] getElements(Object inputElement) {
+      return ((ICasteModel) inputElement).getOptions();
     }
   }
 
@@ -53,22 +74,20 @@ public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> 
       @Override
       public void createPartControl(Composite parent) {
         parent.setLayout(new GridLayout(2, false));
-        Label label = new Label(parent, SWT.NONE);
-        label.setText(Messages.CasteEditor_CasteLabel);
-        final Combo combo = new Combo(parent, SWT.DROP_DOWN | SWT.READ_ONLY);
-        ICasteModel item = getPersistableEditorInput().getItem();
-        combo.setItems(item.getPrintNameOptions());
-        combo.addSelectionListener(new CasteSelectionListener(combo));
+        new Label(parent, SWT.NONE).setText(Messages.CasteEditor_CasteLabel);
+        IContentProvider provider = new CasteContentProvider();
+        ComboViewer viewer = new ComboViewer(parent);
+        viewer.setContentProvider(provider);
+        viewer.setLabelProvider(new CasteLabelProvider());
+        final ICasteModel item = getPersistableEditorInput().getItem();
+        viewer.setInput(item);
+        viewer.addSelectionChangedListener(new CasteSelectionChangedListener(item));
         ICaste caste = item.getCaste();
         if (caste != null) {
-          String[] items = combo.getItems();
-          for (int index = 0; index < items.length; index++) {
-            if (items[index].equals(caste.getPrintName())) {
-              combo.select(index);
-            }
-          }
+          viewer.setSelection(new StructuredSelection(caste));
         }
         final CasteEditorInput casteEditorInput = ((CasteEditorInput) getEditorInput());
+        final Combo combo = viewer.getCombo();
         casteEditorInput.addModifiableListener(new IChangeListener() {
           @Override
           public void stateChanged() {

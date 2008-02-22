@@ -10,7 +10,7 @@ import net.sf.anathema.lib.control.change.ChangeControl;
 
 public class CasteModel extends AbstractModel implements ICasteModel {
 
-  private ChangeControl changeControl = new ChangeControl();
+  private final ChangeControl changeControl = new ChangeControl();
   private ICaste caste;
   private final CasteTemplate casteTemplate;
 
@@ -22,12 +22,7 @@ public class CasteModel extends AbstractModel implements ICasteModel {
     setCaste(id == null ? null : ArrayUtilities.getFirst(casteTemplate.getCastes(), new CasteIdPredicate(id)));
   }
 
-  public void setCasteByPrintName(final String printName) {
-    setCaste(printName == null ? null : ArrayUtilities.getFirst(casteTemplate.getCastes(), new CastePrintNamePredicate(
-        printName)));
-  }
-
-  private void setCaste(ICaste caste) {
+  public void setCaste(ICaste caste) {
     if (ObjectUtilities.equals(this.caste, caste)) {
       return;
     }
@@ -40,8 +35,8 @@ public class CasteModel extends AbstractModel implements ICasteModel {
     return caste;
   }
 
-  public String[] getPrintNameOptions() {
-    return ArrayUtilities.transform(casteTemplate.getCastes(), String.class, new CasteToPrintNameTransformer());
+  public ICaste[] getOptions() {
+    return casteTemplate.getCastes();
   }
 
   @Override

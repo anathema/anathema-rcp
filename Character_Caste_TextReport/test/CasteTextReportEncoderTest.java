@@ -32,7 +32,7 @@ public class CasteTextReportEncoderTest {
     Iterable<Element> paragraphs = new CasteTextReportEncoder().createParagraphs(character);
     assertFalse(paragraphs.iterator().hasNext());
   }
-  
+
   @Test
   public void createsPhraseForPresentCaste() throws Exception {
     ICharacter character = createCharacterWithCasteModel(createFilledCasteModel());
@@ -40,7 +40,7 @@ public class CasteTextReportEncoderTest {
     assertTrue(paragraphs.next() instanceof Phrase);
     assertFalse(paragraphs.hasNext());
   }
-  
+
   @Test
   public void castePhraseStartsWithCasteLabel() throws Exception {
     ICharacter character = createCharacterWithCasteModel(createFilledCasteModel());
@@ -48,7 +48,7 @@ public class CasteTextReportEncoderTest {
     Phrase phrase = (Phrase) paragraphs.next();
     assertEquals("Caste:", ((Chunk) phrase.getChunks().get(0)).getContent()); //$NON-NLS-1$
   }
-  
+
   @Test
   public void castePhraseEndsWithCastePrintName() throws Exception {
     ICharacter character = createCharacterWithCasteModel(createFilledCasteModel());
@@ -60,7 +60,7 @@ public class CasteTextReportEncoderTest {
   private ICasteModel createFilledCasteModel() {
     DummyCaste caste = new DummyCaste("myCaste"); //$NON-NLS-1$
     ICasteModel casteModel = new CasteModel(new CasteTemplate(caste));
-    casteModel.setCasteByPrintName(caste.getPrintName());
+    casteModel.setCaste(caste);
     return casteModel;
   }
 

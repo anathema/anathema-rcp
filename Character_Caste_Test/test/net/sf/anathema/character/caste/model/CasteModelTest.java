@@ -17,7 +17,7 @@ public class CasteModelTest {
   }
 
   @Test
-  public void isDirtyAfterSettingCasteByPrintName() throws Exception {
+  public void isDirtyAfterSettingCaste() throws Exception {
     casteModel.setCaste(casteModel.getOptions()[0]);
     assertTrue(casteModel.isDirty());
   }

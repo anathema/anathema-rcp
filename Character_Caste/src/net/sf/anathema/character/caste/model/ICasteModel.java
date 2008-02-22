@@ -1,5 +1,6 @@
-package net.sf.anathema.character.caste;
+package net.sf.anathema.character.caste.model;
 
+import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.core.character.IModel;
 
 public interface ICasteModel extends IModel {
