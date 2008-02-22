@@ -4,8 +4,9 @@ import net.disy.commons.core.model.ObjectModel;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.pdfexport.writer.IExportItem;
 
-import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -21,10 +22,19 @@ import org.eclipse.swt.widgets.List;
 
 public class ExportItemDialogPage<T> extends WizardPage {
 
-  private final class ExportItemProvider implements IStructuredContentProvider {
+  private static final class ExportItemLabelProvider extends LabelProvider {
+    @Override
+    public String getText(Object element) {
+      return ((IExportItem< ? >) element).getPrintName();
+    }
+  }
+
+  private static final class ExportItemProvider implements IStructuredContentProvider {
+    @SuppressWarnings("unchecked")
     @Override
     public Object[] getElements(Object inputElement) {
-      return exportItems.toArray(new Object[exportItems.size()]);
+      java.util.List<IExportItem< ? >> items = (java.util.List<IExportItem< ? >>) inputElement;
+      return items.toArray(new Object[items.size()]);
     }
 
     @Override
@@ -58,21 +68,24 @@ public class ExportItemDialogPage<T> extends WizardPage {
   @Override
   public void createControl(Composite parent) {
     ListViewer viewer = new ListViewer(new List(parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER));
-    IContentProvider provider = new ExportItemProvider();
-    viewer.setContentProvider(provider);
-    IBaseLabelProvider labelProvider = new LabelProvider() {
-      @Override
-      public String getText(Object element) {
-        return ((IExportItem< ? >) element).getPrintName();
-      }
-    };
-    viewer.setLabelProvider(labelProvider);
+    viewer.setContentProvider(new ExportItemProvider());
+    viewer.setLabelProvider(new ExportItemLabelProvider());
     viewer.setInput(exportItems);
     viewer.addSelectionChangedListener(new ISelectionChangedListener() {
       @Override
       public void selectionChanged(SelectionChangedEvent event) {
-        IExportItem<T> selection = (IExportItem<T>) ((IStructuredSelection) event.getSelection()).getFirstElement();
-        selectedItem.setValue(selection);
+        setSelection(event.getSelection());
+      }
+
+    });
+    viewer.addDoubleClickListener(new IDoubleClickListener() {
+      @Override
+      public void doubleClick(DoubleClickEvent event) {
+        ISelection selection = event.getSelection();
+        setSelection(selection);
+        if (!selection.isEmpty()) {
+          getContainer().showPage(getNextPage());
+        }
       }
     });
     IExportItem<T> item = selectedItem.getValue();
@@ -90,5 +103,10 @@ public class ExportItemDialogPage<T> extends WizardPage {
   @Override
   public boolean isPageComplete() {
     return canFlipToNextPage();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void setSelection(ISelection selection) {
+    selectedItem.setValue((IExportItem<T>) ((IStructuredSelection) selection).getFirstElement());
   }
 }
