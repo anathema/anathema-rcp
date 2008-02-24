@@ -31,11 +31,6 @@ public class NoteExportWizard extends AbstractPdfExportWizard<ITitledText> {
   }
 
   @Override
-  protected boolean supportsExportItems() {
-    return true;
-  }
-
-  @Override
   protected List<IExportItem<ITitledText>> getExportItems() {
     List<IExportItem<ITitledText>> exportItems = new ArrayList<IExportItem<ITitledText>>();
     for (IFile notesFile : NotesRepositoryUtilities.getNoteFiles()) {

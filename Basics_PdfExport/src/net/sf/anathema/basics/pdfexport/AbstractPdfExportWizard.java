@@ -1,6 +1,5 @@
 package net.sf.anathema.basics.pdfexport;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.model.BooleanModel;
@@ -54,19 +53,11 @@ public abstract class AbstractPdfExportWizard<I> extends Wizard implements IExpo
     openModel = new BooleanModel(true);
     selectedItem = new ObjectModel<IExportItem<I>>();
     PdfExportDialog dialog = new PdfExportDialog(null, new ExportPrintNameProvider<I>(selectedItem));
-    if (supportsExportItems()) {
-      addPage(new ExportItemDialogPage<I>(getExportItems(), selectedItem));
-    }
+    addPage(new ExportItemDialogPage<I>(getExportItems(), selectedItem));
     addPage(new FileSelectionWizardPage(fileSelectionModel, openModel, createMessage(), dialog));
   }
 
-  protected boolean supportsExportItems() {
-    return false;
-  }
-
-  protected List<IExportItem<I>> getExportItems() {
-    return new ArrayList<IExportItem<I>>();
-  }
+  protected abstract List<IExportItem<I>> getExportItems();
 
   protected abstract IFileSelectionPageMessages createMessage();
 }

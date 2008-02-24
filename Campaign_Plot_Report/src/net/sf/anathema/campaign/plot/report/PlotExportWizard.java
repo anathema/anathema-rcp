@@ -32,11 +32,6 @@ public class PlotExportWizard extends AbstractPdfExportWizard<IPlotElement> {
   }
 
   @Override
-  protected boolean supportsExportItems() {
-    return true;
-  }
-
-  @Override
   protected List<IExportItem<IPlotElement>> getExportItems() {
     List<IExportItem<IPlotElement>> plotElements = new ArrayList<IExportItem<IPlotElement>>();
     for (IContainer container : PlotRepositoryUtilities.getAllPlotFolders()) {

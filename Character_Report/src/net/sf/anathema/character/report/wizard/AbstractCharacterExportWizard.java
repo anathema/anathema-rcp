@@ -22,12 +22,7 @@ public abstract class AbstractCharacterExportWizard extends AbstractPdfExportWiz
   protected IReportRunner<ICharacter> createRunner(IOutputStreamFactory outputStreamFactory) {
     return new CharacterReportRunner(outputStreamFactory, createCharacterPdfWriter());
   }
-  
-  @Override
-  protected boolean supportsExportItems() {
-    return true;
-  }
-  
+
   @Override
   protected List<IExportItem<ICharacter>> getExportItems() {
     List<IExportItem<ICharacter>> exportItems = new ArrayList<IExportItem<ICharacter>>();
