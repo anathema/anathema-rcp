@@ -7,10 +7,12 @@ Require-Bundle: net.sf.anathema.basics.item,
  net.sf.anathema.basics.jface,
  net.sf.anathema.basics.lib,
  net.sf.anathema.basics.repository,
- net.sf.anathema.basics.eclipse
+ net.sf.anathema.basics.eclipse,
+ org.eclipse.jface.text
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Export-Package: net.sf.anathema.editor.styledtext
+Export-Package: net.sf.anathema.editor.styledtext,
+ net.sf.anathema.editor.styledtext.jface
 Bundle-Localization: plugin
 Bundle-Activator: net.sf.anathema.editor.styledtext.StyledTextPlugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
