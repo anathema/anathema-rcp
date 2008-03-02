@@ -4,18 +4,20 @@ import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
+import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 
-public class AbilitiesFactory extends AbstractModelFactory<AbilitiesTemplate, ITraitCollectionModel> {
+public class AbilitiesFactory extends AbstractModelFactory<ITraitCollectionTemplate, ITraitCollectionModel> {
 
-  private final IModelPersister<AbilitiesTemplate, ITraitCollectionModel> persister = new AbilitiesPersister();
+  private final IModelPersister<ITraitCollectionTemplate, ITraitCollectionModel> persister = new TraitCollectionPersister();
 
   @Override
-  protected AbilitiesTemplate createModelTemplate(ICharacterTemplate template) {
+  protected ITraitCollectionTemplate createModelTemplate(ICharacterTemplate template) {
     return new AbilitiesTemplateProvider().getAttributeTemplate(template.getId());
   }
 
   @Override
-  protected IModelPersister<AbilitiesTemplate, ITraitCollectionModel> getPersister() {
+  protected IModelPersister<ITraitCollectionTemplate, ITraitCollectionModel> getPersister() {
     return persister;
   }
 }

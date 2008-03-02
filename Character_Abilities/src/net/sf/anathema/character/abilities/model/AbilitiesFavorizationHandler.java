@@ -7,17 +7,18 @@ import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.trait.collection.AbstractTraitCollectionFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 
 public class AbilitiesFavorizationHandler extends AbstractTraitCollectionFavorizationHandler {
 
-  private final AbilitiesTemplate template;
+  private final ITraitCollectionTemplate template;
   private final IModelContainer modelContainer;
 
-  public AbilitiesFavorizationHandler(ICharacterId characterId, AbilitiesTemplate template, IModelCollection modelProvider) {
+  public AbilitiesFavorizationHandler(ICharacterId characterId, ITraitCollectionTemplate template, IModelCollection modelProvider) {
     this(new ModelContainer(modelProvider, characterId), template);
   }
 
-  public AbilitiesFavorizationHandler(IModelContainer modelContainer, AbilitiesTemplate template) {
+  public AbilitiesFavorizationHandler(IModelContainer modelContainer, ITraitCollectionTemplate template) {
     this.modelContainer = modelContainer;
     this.template = template;
   }

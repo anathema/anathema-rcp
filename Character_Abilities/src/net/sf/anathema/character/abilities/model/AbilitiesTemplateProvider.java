@@ -1,5 +1,7 @@
 package net.sf.anathema.character.abilities.model;
 
+import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
+
 
 public class AbilitiesTemplateProvider {
 
@@ -7,7 +9,7 @@ public class AbilitiesTemplateProvider {
   private static final String ATTRIB_CHARACTER_TEMPLATE_ID = "characterTemplateId"; //$NON-NLS-1$
   private static final String ATTRIB_FAVORIZATION_COUNT = "favorizationCount"; //$NON-NLS-1$
 
-  public AbilitiesTemplate getAttributeTemplate(String characterTemplateId) {
+  public ITraitCollectionTemplate getAttributeTemplate(String characterTemplateId) {
     int favorizationCount = getFavorizationCount(characterTemplateId);
     return new AbilitiesTemplate(favorizationCount);
   }

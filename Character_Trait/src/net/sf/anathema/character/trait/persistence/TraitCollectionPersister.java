@@ -1,15 +1,14 @@
-package net.sf.anathema.character.abilities.model;
+package net.sf.anathema.character.trait.persistence;
 
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollection;
-import net.sf.anathema.character.trait.persistence.AbstractTraitCollectionPersister;
 
 
-public class AbilitiesPersister extends AbstractTraitCollectionPersister<AbilitiesTemplate, ITraitCollectionModel> {
+public class TraitCollectionPersister extends AbstractTraitCollectionPersister<ITraitCollectionTemplate, ITraitCollectionModel> {
 
   @Override
-  public ITraitCollectionModel createNew(AbilitiesTemplate attributeTemplate) {
+  public ITraitCollectionModel createNew(ITraitCollectionTemplate attributeTemplate) {
     return TraitCollection.create(attributeTemplate.getGroups(), attributeTemplate.getTraitTemplate());
   }
 

@@ -19,6 +19,7 @@ import net.sf.anathema.character.trait.groupeditor.IIntViewImageProvider;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.interactive.InteractiveTraitGroupTransformer;
+import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
 import net.sf.anathema.lib.collection.CollectionUtilities;
@@ -39,7 +40,7 @@ public class AbilitiesEditorInput extends AbstractCharacterModelEditorInput<ITra
       IDisplayNameProvider displayNameProvider,
       final ITraitCollectionContext context,
       final IFavorizationHandler favorizationHandler) {
-    super(file, imageUrl, displayNameProvider, new AbilitiesPersister());
+    super(file, imageUrl, displayNameProvider, new TraitCollectionPersister());
     this.context = context;
     this.favorizationHandler = favorizationHandler;
   }
