@@ -1,6 +1,9 @@
 package net.sf.anathema.character.caste.persistence;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
+import net.disy.commons.core.util.ArrayUtilities;
+import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.fake.IntegrationCasteModelFactory;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
@@ -9,6 +12,13 @@ import org.easymock.EasyMock;
 import org.junit.Test;
 
 public class CasteModelFactoryIntegrationTest {
+
+  public static final class CasteToPrintNameTransformer implements ITransformer<ICaste, String> {
+    @Override
+    public String transform(ICaste caste) {
+      return caste.getPrintName();
+    }
+  }
 
   @Test
   public void createdTemplateReturnsIdsAsOptions() throws Exception {
@@ -29,7 +39,7 @@ public class CasteModelFactoryIntegrationTest {
 
   @Test
   public void lunarCastesAreFound() throws Exception {
-    String[] castes = new String[] { "Full Moon", "Changing Moon", "No Moon" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
+    String[] castes = new String[] { "Full Moon", "Changing Moon", "No Moon" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     assertCastesAreFoundForCharacterType("net.sf.anathema.character.type.lunar", castes); //$NON-NLS-1$
   }
 
@@ -50,6 +60,9 @@ public class CasteModelFactoryIntegrationTest {
     EasyMock.expect(template.getCharacterTypeId()).andReturn(characterType).anyTimes();
     EasyMock.replay(template);
     ICasteModel casteModel = IntegrationCasteModelFactory.createCasteModel(template);
-    assertArrayEquals(castes, casteModel.getOptions());
+    assertArrayEquals(castes, ArrayUtilities.transform(
+        casteModel.getOptions(),
+        String.class,
+        new CasteToPrintNameTransformer()));
   }
 }
