@@ -39,27 +39,23 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
       streamResult.openResult();
     }
     catch (InvocationTargetException e) {
-      IOUtilities.close(outputStream);
-      if (streamResult != null) {
-        streamResult.deleteResult();
-      }
-      indicateError(shell, e.getCause());
+      handleException(shell, outputStream, streamResult, e.getCause());
     }
     catch (Exception e) {
-      IOUtilities.close(outputStream);
-      if (streamResult != null) {
-        streamResult.deleteResult();
-      }
-      indicateError(shell, e);
+      handleException(shell, outputStream, streamResult, e);
     }
   }
 
-  private void indicateError(Shell shell, Throwable cause) {
-    if (cause instanceof FileNotFoundException) {
+  private void handleException(Shell shell, OutputStream outputStream, IStreamResult streamResult, Throwable exception) {
+    if (exception instanceof FileNotFoundException) {
       MessageDialog.openError(shell, Messages.ReportRunner_Title, Messages.ReportRunner_FileInUseMessage);
     }
     else {
-      logger.error(Messages.ReportRunner_PdfErrorMessage, cause);
+      IOUtilities.close(outputStream);
+      if (streamResult != null) {
+        streamResult.deleteResult();
+      }
+      logger.error(Messages.ReportRunner_PdfErrorMessage, exception);
       MessageDialog.openError(shell, Messages.ReportRunner_Title, Messages.ReportRunner_PdfErrorMessage);
     }
   }
