@@ -1,10 +1,11 @@
 package net.sf.anathema.character.abilities.model;
 
 import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.model.ITraitGroupConfiguration;
 import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 import net.sf.anathema.character.trait.template.ITraitTemplate;
 
-public class AbilitiesGroupConfiguration {
+public class AbilitiesGroupConfiguration implements ITraitGroupConfiguration {
 
   public TraitGroup[] getGroups() {
     return new TraitGroup[] { new TraitGroup(

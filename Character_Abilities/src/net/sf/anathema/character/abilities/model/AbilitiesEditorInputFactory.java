@@ -3,12 +3,14 @@ package net.sf.anathema.character.abilities.model;
 import java.net.URL;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.abilities.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -25,7 +27,11 @@ public class AbilitiesEditorInputFactory implements IEditorInputFactory {
       URL imageUrl,
       IDisplayNameProvider nameProvider,
       IModelCollection modelProvider) throws PersistenceException, CoreException {
-    AbilitiesContext context = AbilitiesContext.create(characterId, modelProvider);
+    TraitCollectionContext context = TraitCollectionContext.create(
+        characterId,
+        modelProvider,
+        IAbilitiesPluginConstants.MODEL_ID,
+        new AbilitiesGroupConfiguration());
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     IFavorizationHandler favorizationHandler = new AbilitiesFavorizationHandler(
         characterId,

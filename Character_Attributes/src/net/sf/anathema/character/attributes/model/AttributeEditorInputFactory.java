@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -25,7 +26,11 @@ public class AttributeEditorInputFactory implements IEditorInputFactory {
       URL imageUrl,
       IDisplayNameProvider nameProvider,
       IModelCollection modelProvider) throws PersistenceException, CoreException {
-    AttributesContext context = AttributesContext.create(characterId, modelProvider);
+    TraitCollectionContext context = TraitCollectionContext.create(
+        characterId,
+        modelProvider,
+        IAttributesPluginConstants.MODEL_ID,
+        new AttributeGroupConfiguration());
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     IFavorizationHandler favorizationHandler = new AttributeFavorizationHandler(
         characterId,
