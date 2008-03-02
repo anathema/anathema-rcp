@@ -21,7 +21,7 @@ public class CasteEditorInputFactoryTest {
 
   @Before
   public void createFactory() {
-    this.factory = new CasteEditorInputFactory();
+    factory = new CasteEditorInputFactory();
   }
 
   @Before
@@ -43,7 +43,7 @@ public class CasteEditorInputFactoryTest {
 
   @Test
   public void createdInputHasCorrectItem() throws Exception {
-    CasteModel casteModel = new CasteModel(new CasteTemplate());
+    CasteModel casteModel = new CasteModel(new CasteTemplate(null));
     modelCollection.addModel(ICasteModel.ID, casteModel);
     CasteEditorInput editorInput = factory.create(file, null, null, null, modelCollection);
     assertSame(casteModel, editorInput.getItem());

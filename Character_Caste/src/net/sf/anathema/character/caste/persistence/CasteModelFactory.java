@@ -27,7 +27,9 @@ public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICast
 
   @Override
   public CasteTemplate createModelTemplate(ICharacterTemplate template) {
-    return new CasteTemplate(provider.getCastes(template.getCharacterTypeId()));
+    // TODO Case 108: TraitModelId über extensionPoint holen
+    String traitModelId = "net.sf.anathema.character.attributes.model";
+    return new CasteTemplate(traitModelId, provider.getCastes(template.getCharacterTypeId()));
   }
 
   @Override

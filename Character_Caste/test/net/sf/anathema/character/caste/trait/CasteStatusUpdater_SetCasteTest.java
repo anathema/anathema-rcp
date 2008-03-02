@@ -34,7 +34,7 @@ public class CasteStatusUpdater_SetCasteTest {
     for (IIdentificate traitType : casteTraitTypes) {
       dummyCaste.addTraitType(traitType);
     }
-    casteModel = new CasteModel(new CasteTemplate(dummyCaste));
+    casteModel = new CasteModel(new CasteTemplate(null, dummyCaste));
   }
 
   @Before
@@ -77,7 +77,7 @@ public class CasteStatusUpdater_SetCasteTest {
   public void leavesDirtyTraitCollectionDirty() throws Exception {
     casteModel.setCasteById(CASTE_ID);
     BasicTrait basicTrait = new BasicTrait(new Identificate("caste")); //$NON-NLS-1$
-    traitCollection = new TraitCollection(basicTrait); 
+    traitCollection = new TraitCollection(basicTrait);
     basicTrait.getCreationModel().setValue(basicTrait.getCreationModel().getValue() + 1);
     new CasteStatusUpdater(casteModel, createTraitCollectionProvider(), id).stateChanged();
     assertTrue(traitCollection.isDirty());

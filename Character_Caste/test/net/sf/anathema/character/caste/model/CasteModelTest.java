@@ -1,6 +1,6 @@
 package net.sf.anathema.character.caste.model;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.caste.CasteObjectMother;
 
 import org.junit.Before;
@@ -12,7 +12,7 @@ public class CasteModelTest {
 
   @Before
   public void createCleanModel() throws Exception {
-    casteModel = new CasteModel(new CasteTemplate(CasteObjectMother.createCaste("Egal", "Egal"))); //$NON-NLS-1$ //$NON-NLS-2$
+    casteModel = new CasteModel(new CasteTemplate(null, CasteObjectMother.createCaste("Egal", "Egal"))); //$NON-NLS-1$ //$NON-NLS-2$
     casteModel.setClean();
   }
 

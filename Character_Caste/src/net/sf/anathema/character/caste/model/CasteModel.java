@@ -51,7 +51,6 @@ public class CasteModel extends AbstractModel implements ICasteModel {
 
   @Override
   public String getTraitModelId() {
-    // TODO Case 108: TraitModelId über extensionPoint holen
-    return "net.sf.anathema.character.attributes.model";
+    return casteTemplate.getTraitModelId();
   }
 }

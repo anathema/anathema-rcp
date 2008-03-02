@@ -27,7 +27,7 @@ public class CasteTextReportEncoderTest {
 
   @Test
   public void createsNoParagraphsForModelWithoutSetCaste() throws Exception {
-    ICasteModel casteModel = new CasteModel(new CasteTemplate(new DummyCaste("myCaste"))); //$NON-NLS-1$
+    ICasteModel casteModel = new CasteModel(new CasteTemplate(null, new DummyCaste("myCaste"))); //$NON-NLS-1$
     ICharacter character = createCharacterWithCasteModel(casteModel);
     Iterable<Element> paragraphs = new CasteTextReportEncoder().createParagraphs(character);
     assertFalse(paragraphs.iterator().hasNext());
@@ -59,7 +59,7 @@ public class CasteTextReportEncoderTest {
 
   private ICasteModel createFilledCasteModel() {
     DummyCaste caste = new DummyCaste("myCaste"); //$NON-NLS-1$
-    ICasteModel casteModel = new CasteModel(new CasteTemplate(caste));
+    ICasteModel casteModel = new CasteModel(new CasteTemplate(null, caste));
     casteModel.setCaste(caste);
     return casteModel;
   }

@@ -26,7 +26,7 @@ public class CasteModelPersisterTest {
   public void createPersister() throws ExtensionException {
     persister = new CasteModelPersister();
     caste = CasteObjectMother.createCaste(CASTE_ID, null);
-    casteModel = new CasteModel(new CasteTemplate(caste));
+    casteModel = new CasteModel(new CasteTemplate(null, caste));
     rootElement = DocumentHelper.createElement("root"); //$NON-NLS-1$
   }
 
@@ -40,14 +40,14 @@ public class CasteModelPersisterTest {
   public void nothingIsSavedForNullCaste() throws Exception {
     casteModel.setCasteById(null);
     persister.save(rootElement, null);
-    assertNull(rootElement.attributeValue("caste")); //$NON-NLS-1$ 
+    assertNull(rootElement.attributeValue("caste")); //$NON-NLS-1$
   }
 
   @Test
   public void casteIsReloaded() throws Exception {
     casteModel.setCasteById("EvilTwin"); //$NON-NLS-1$
     persister.save(rootElement, new Identificate("EvilTwin")); //$NON-NLS-1$
-    ICasteModel loadedCasteModel = persister.load(DocumentHelper.createDocument(rootElement), new CasteTemplate(caste));
+    ICasteModel loadedCasteModel = persister.load(DocumentHelper.createDocument(rootElement), new CasteTemplate(null, caste));
     assertNotSame(casteModel, loadedCasteModel);
     assertEquals(casteModel.getCaste(), loadedCasteModel.getCaste());
   }
