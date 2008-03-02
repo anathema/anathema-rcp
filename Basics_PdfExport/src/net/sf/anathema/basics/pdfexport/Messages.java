@@ -7,10 +7,10 @@ public class Messages extends NLS {
   public static String AbstractPdfExportWizard_FileExistsBox_Question;
   public static String AbstractPdfExportWizard_FileExistsBox_Title;
   static {
-    // initialize resource bundle
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
 
   private Messages() {
+    // nothing to do
   }
 }
