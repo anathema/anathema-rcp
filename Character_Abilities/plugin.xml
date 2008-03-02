@@ -8,7 +8,7 @@
             id="net.sf.anathema.character.abilities.model"
             modelFactory="net.sf.anathema.character.abilities.model.AbilitiesFactory">
          <displayConfiguration
-               displayName="%viewelement.name.abilities"
+               displayName="Abilities"
                editorId="net.sf.anathema.character.abilities.editor"
                editorInputFactory="net.sf.anathema.character.abilities.model.AbilitiesEditorInputFactory"
                icon="icons/TabCharacter16.png">

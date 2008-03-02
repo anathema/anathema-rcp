@@ -8,6 +8,7 @@ import java.util.List;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.groupeditor.TraitCollectionEditorInput;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.easymock.EasyMock;
@@ -15,9 +16,9 @@ import org.eclipse.core.resources.IFile;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AttributesEditorInputDisplayGroupTest {
+public class TraitCollectionEditorInputDisplayGroupTest {
 
-  private AttributesEditorInput input;
+  private TraitCollectionEditorInput input;
   private List<IDisplayTraitGroup<IInteractiveTrait>> groups;
 
   @Before
@@ -25,7 +26,13 @@ public class AttributesEditorInputDisplayGroupTest {
     TraitGroup[] traitGroups = new TraitGroup[] { new TraitGroup("group1", "trait1", "trait2"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         new TraitGroup("group2", "trait3", "trait4"), }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     ITraitCollectionContext context = AttributeContextObjectMother.createContext(traitGroups);
-    this.input = new AttributesEditorInput(EasyMock.createNiceMock(IFile.class), null, null, context, null);
+    input = new TraitCollectionEditorInput(
+        EasyMock.createNiceMock(IFile.class),
+        null,
+        null,
+        context,
+        null,
+        new AttributesEditorInputConfiguration());
     groups = input.createDisplayGroups();
   }
 
