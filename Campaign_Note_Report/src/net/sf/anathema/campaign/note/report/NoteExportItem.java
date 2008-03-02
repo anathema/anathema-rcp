@@ -10,18 +10,17 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
 public class NoteExportItem implements IExportItem<ITitledText> {
 
   private final ITitledText note;
+  private final IFile file;
 
   public NoteExportItem(IFile resource) throws PersistenceException, CoreException {
-    this(new TitledTextPersister().load(DocumentUtilities.read(resource.getContents())));
-  }
-
-  public NoteExportItem(ITitledText note) {
-    this.note = note;
+    note = new TitledTextPersister().load(DocumentUtilities.read(resource.getContents()));
+    file = resource;
   }
 
   @Override
@@ -48,5 +47,10 @@ public class NoteExportItem implements IExportItem<ITitledText> {
   @Override
   public int hashCode() {
     return ObjectUtilities.getHashCode(note);
+  }
+
+  @Override
+  public boolean isFor(IResource resource) {
+    return resource.equals(file);
   }
 }

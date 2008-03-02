@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.report.internal.wizard.Character;
 
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IResource;
 
 public class CharacterExportItem implements net.sf.anathema.basics.pdfexport.writer.IExportItem<ICharacter> {
 
@@ -31,5 +32,11 @@ public class CharacterExportItem implements net.sf.anathema.basics.pdfexport.wri
   public String getPrintName() {
     IContainer container = (IContainer) characterId.getAdapter(IContainer.class);
     return new CharacterDisplayNameProvider(container).getDisplayName();
+  }
+
+  @Override
+  public boolean isFor(IResource resource) {
+    IContainer characterContainer = (IContainer) characterId.getAdapter(IContainer.class);
+    return resource.getParent().equals(characterContainer);
   }
 }

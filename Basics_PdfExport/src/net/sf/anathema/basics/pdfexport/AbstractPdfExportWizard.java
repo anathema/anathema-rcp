@@ -13,6 +13,7 @@ import net.sf.anathema.basics.pdfexport.item.ExportItemDialogPage;
 import net.sf.anathema.basics.pdfexport.writer.IExportItem;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
@@ -64,7 +65,18 @@ public abstract class AbstractPdfExportWizard<I> extends Wizard implements IExpo
     addPage(new FileSelectionWizardPage(fileSelectionModel, openModel, createMessage(), dialog));
   }
 
-  protected IExportItem<I> getSelectedItem(List<IExportItem<I>> exportItems, IEditorInput editorInput) {
+  private IExportItem<I> getSelectedItem(
+      List<IExportItem<I>> exportItems,
+      IEditorInput editorInput) {
+    IResource resource = (IResource) editorInput.getAdapter(IResource.class);
+    if (resource == null) {
+      return null;
+    }
+    for (IExportItem<I> item : exportItems) {
+      if (item.isFor(resource)) {
+        return item;
+      }
+    }
     return null;
   }
 

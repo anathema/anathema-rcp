@@ -5,8 +5,6 @@ import java.util.List;
 
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
-import net.sf.anathema.basics.item.IItem;
-import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.pdfexport.AbstractPdfExportWizard;
 import net.sf.anathema.basics.pdfexport.IReportRunner;
@@ -18,7 +16,6 @@ import net.sf.anathema.campaign.note.plugin.NotePluginConstants;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.ui.IEditorInput;
 
 public class NoteExportWizard extends AbstractPdfExportWizard<ITitledText> {
   public static final Logger logger = new Logger(NotePluginConstants.PLUGIN_ID);
@@ -45,18 +42,5 @@ public class NoteExportWizard extends AbstractPdfExportWizard<ITitledText> {
       }
     }
     return exportItems;
-  }
-
-  @Override
-  protected IExportItem<ITitledText> getSelectedItem(
-      List<IExportItem<ITitledText>> exportItems,
-      IEditorInput editorInput) {
-    if (editorInput instanceof IPersistableEditorInput) {
-      IItem item = ((IPersistableEditorInput<?>) editorInput).getItem();
-      if (item instanceof ITitledText) {
-        return new NoteExportItem((ITitledText) item);
-      }
-    }
-    return null;
   }
 }

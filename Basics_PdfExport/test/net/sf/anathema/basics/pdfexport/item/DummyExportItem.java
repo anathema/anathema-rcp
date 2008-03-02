@@ -2,6 +2,8 @@ package net.sf.anathema.basics.pdfexport.item;
 
 import net.sf.anathema.basics.pdfexport.writer.IExportItem;
 
+import org.eclipse.core.resources.IResource;
+
 public class DummyExportItem<T> implements IExportItem<T> {
 
   private final String printName;
@@ -20,5 +22,10 @@ public class DummyExportItem<T> implements IExportItem<T> {
   @Override
   public String getPrintName() {
     return printName;
+  }
+
+  @Override
+  public boolean isFor(IResource resource) {
+    return false;
   }
 }

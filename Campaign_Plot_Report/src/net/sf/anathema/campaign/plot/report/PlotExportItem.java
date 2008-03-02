@@ -10,13 +10,16 @@ import net.sf.anathema.campaign.plot.repository.IPlotPart;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
 public class PlotExportItem implements IExportItem<IPlotElement> {
 
   private final PlotElement rootElement;
+  private final IContainer container;
 
   public PlotExportItem(IContainer container) throws PersistenceException, CoreException {
+    this.container = container;
     IPlotPart root = new PlotPersister().load(container);
     rootElement = new PlotElement(root, container);
   }
@@ -32,5 +35,9 @@ public class PlotExportItem implements IExportItem<IPlotElement> {
     return StringUtilities.isNullOrTrimmedEmpty(text)
         ? PlotRepositoryUtilities.getPlotItemType().getUntitledName()
         : text;
+  }
+
+  public boolean isFor(IResource resource) {
+    return resource.getParent().equals(container);
   }
 }
