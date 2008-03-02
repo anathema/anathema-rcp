@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -17,11 +18,11 @@ import org.junit.Test;
 
 public class AttributesPersisterTest {
 
-  private AttributesPersister persister;
+  private TraitCollectionPersister persister;
 
   @Before
   public void createPersisterAndAttributes() throws Exception {
-    persister = new AttributesPersister();
+    persister = new TraitCollectionPersister();
   }
 
   @Test
