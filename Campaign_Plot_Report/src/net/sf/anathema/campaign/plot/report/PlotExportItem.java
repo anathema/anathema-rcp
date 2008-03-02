@@ -1,6 +1,8 @@
 package net.sf.anathema.campaign.plot.report;
 
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.pdfexport.writer.IExportItem;
+import net.sf.anathema.campaign.plot.creation.PlotRepositoryUtilities;
 import net.sf.anathema.campaign.plot.persistence.PlotPersister;
 import net.sf.anathema.campaign.plot.report.model.IPlotElement;
 import net.sf.anathema.campaign.plot.report.model.PlotElement;
@@ -12,11 +14,11 @@ import org.eclipse.core.runtime.CoreException;
 
 public class PlotExportItem implements IExportItem<IPlotElement> {
 
-  private PlotElement rootElement;
+  private final PlotElement rootElement;
 
   public PlotExportItem(IContainer container) throws PersistenceException, CoreException {
     IPlotPart root = new PlotPersister().load(container);
-    this.rootElement = new PlotElement(root, container);
+    rootElement = new PlotElement(root, container);
   }
 
   @Override
@@ -26,6 +28,9 @@ public class PlotExportItem implements IExportItem<IPlotElement> {
 
   @Override
   public String getPrintName() {
-    return rootElement.getContent().getName().getText();
+    String text = rootElement.getContent().getName().getText();
+    return StringUtilities.isNullOrTrimmedEmpty(text)
+        ? PlotRepositoryUtilities.getPlotItemType().getUntitledName()
+        : text;
   }
 }
