@@ -1,5 +1,8 @@
 package net.sf.anathema.editor.styledtext.jface;
 
+import java.util.Scanner;
+import java.util.regex.MatchResult;
+
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
@@ -9,16 +12,17 @@ import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.editor.styledtext.IStyledTextEditor;
 import net.sf.anathema.editor.styledtext.ITextModification;
 
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.ITypedRegion;
+import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.text.TextAttribute;
-import org.eclipse.jface.text.formatter.ContentFormatter;
-import org.eclipse.jface.text.formatter.IFormattingStrategy;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
+import org.eclipse.jface.text.projection.ProjectionDocument;
+import org.eclipse.jface.text.projection.ProjectionDocumentManager;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
-import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.rules.IPredicateRule;
 import org.eclipse.jface.text.rules.MultiLineRule;
 import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
@@ -33,30 +37,27 @@ public class StyledTextEditor2 extends AbstractPersistableItemEditorPart<ITitled
     IStyledTextEditor,
     IPersistableItemEditor {
 
-  private static final String CONTENT_TYPE_UNDERLINE = "BOLD";
+  private static final String CONTENT_TYPE_UNDERLINE = "UNDERLINE";
   private static final Token TOKEN = new Token(CONTENT_TYPE_UNDERLINE);
 
-  private final class DemoContentFormatter extends ContentFormatter {
+  private final class DemoViewerConfiguration extends SourceViewerConfiguration {
     @Override
-    public IFormattingStrategy getFormattingStrategy(String contentType) {
-      return super.getFormattingStrategy(IDocument.DEFAULT_CONTENT_TYPE);
-    }
-  }
+    public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
+      // TODO Master-abhängiger Scanner
+      RuleBasedPartitionScanner scanner = new RuleBasedPartitionScanner();
 
-  private final class DemoFormattingStrategy implements IFormattingStrategy {
-    @Override
-    public String format(String content, boolean isLineStart, String indentation, int[] positions) {
-      return content.replaceAll("<.?b>", "");
-    }
-
-    @Override
-    public void formatterStarts(String initialIndentation) {
-      // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void formatterStops() {
-      // TODO Auto-generated method stub
+      scanner.setPredicateRules(new IPredicateRule[] { new MultiLineRule("<u>", "</u>", new Token(new TextAttribute(
+          null,
+          null,
+          TextAttribute.UNDERLINE))) });
+      DefaultDamagerRepairer repairer = new DefaultDamagerRepairer(scanner);
+      PresentationReconciler reconciler = new PresentationReconciler();
+      reconciler.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
+      reconciler.setDamager(repairer, IDocument.DEFAULT_CONTENT_TYPE);
+      reconciler.setRepairer(repairer, IDocument.DEFAULT_CONTENT_TYPE);
+      reconciler.setDamager(repairer, CONTENT_TYPE_UNDERLINE);
+      reconciler.setRepairer(repairer, CONTENT_TYPE_UNDERLINE);
+      return reconciler;
     }
   }
 
@@ -66,66 +67,42 @@ public class StyledTextEditor2 extends AbstractPersistableItemEditorPart<ITitled
 
       @Override
       public void createPartControl(Composite parent) {
-        Document document = createDocument();
-        FastPartitioner partitioner = createPartitioner();
-        partitioner.connect(document);
-        document.setDocumentPartitioner(partitioner);
-        final ContentFormatter formatter = new DemoContentFormatter();
-        formatter.setFormattingStrategy(new DemoFormattingStrategy(), IDocument.DEFAULT_CONTENT_TYPE);
-        SourceViewerConfiguration configuration = new SourceViewerConfiguration() {
-          // @Override
-          // public IContentFormatter getContentFormatter(ISourceViewer sourceViewer) {
-          // return formatter;
-          // }
+        final Document document = new Document();
+        ProjectionDocumentManager manager = new ProjectionDocumentManager();
+        final ProjectionDocument displayDocument = (ProjectionDocument) manager.createSlaveDocument(document);
+        document.addDocumentListener(new IDocumentListener() {
+          @Override
+          public void documentAboutToBeChanged(DocumentEvent event) {
+            // TODO Auto-generated method stub
+
+          }
 
           @Override
-          public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
-            RuleBasedPartitionScanner scanner = new RuleBasedPartitionScanner();
-
-            scanner.setPredicateRules(new IPredicateRule[] { new MultiLineRule("<u>", "</u>", new Token(
-                new TextAttribute(null, null, TextAttribute.UNDERLINE))) });
-            DefaultDamagerRepairer repairer = new DefaultDamagerRepairer(scanner);
-            PresentationReconciler reconciler = new PresentationReconciler();
-            reconciler.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
-            reconciler.setDamager(repairer, IDocument.DEFAULT_CONTENT_TYPE);
-            reconciler.setRepairer(repairer, IDocument.DEFAULT_CONTENT_TYPE);
-            reconciler.setDamager(repairer, CONTENT_TYPE_UNDERLINE);
-            reconciler.setRepairer(repairer, CONTENT_TYPE_UNDERLINE);
-            return reconciler;
+          public void documentChanged(DocumentEvent event) {
+            try {
+              // TODO Über Event-Daten handlen, falls dort eine XML-Notation drinsteht
+              Scanner scanner = new Scanner(document.get());
+              String string;
+              do {
+                string = scanner.findInLine("(</?.?>)");
+                if (string != null) {
+                  MatchResult match = scanner.match();
+                  displayDocument.removeMasterDocumentRange(match.start(), match.end() - match.start());
+                }
+              }
+              while (string != null);
+            }
+            catch (BadLocationException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+            }
           }
-        };
+        });
+        document.set("TEXT<u>line</u>ENDE");
+        SourceViewerConfiguration configuration = new DemoViewerConfiguration();
         SourceViewer viewer = new SourceViewer(parent, null, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL | SWT.BORDER);
         viewer.configure(configuration);
-        viewer.setDocument(document);
-        // viewer.doOperation(ISourceViewer.FORMAT);
-      }
-
-      private Document createDocument() {
-        Document document = new Document();
-        document.set("TEXT<u>line</u>ENDE");
-        return document;
-      }
-
-      private FastPartitioner createPartitioner() {
-        RuleBasedPartitionScanner scanner = new RuleBasedPartitionScanner();
-        scanner.setPredicateRules(new IPredicateRule[] { new MultiLineRule("<u>", "</u>", TOKEN) });
-        return new FastPartitioner(scanner, new String[] { IDocument.DEFAULT_CONTENT_TYPE, CONTENT_TYPE_UNDERLINE }) {
-          @Override
-          public ITypedRegion[] computePartitioning(int offset, int length, boolean includeZeroLengthPartitions) {
-            ITypedRegion[] regions = super.computePartitioning(offset, length, includeZeroLengthPartitions);
-            StringBuilder builder = new StringBuilder();
-            for (ITypedRegion region : regions) {
-              builder.append(region.getType()
-                  + " from "
-                  + region.getOffset()
-                  + " to "
-                  + (region.getOffset() + region.getLength()));
-              builder.append("\n");
-            }
-            System.out.print(builder);
-            return regions;
-          }
-        };
+        viewer.setDocument(displayDocument);
       }
 
       @Override
