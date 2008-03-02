@@ -11,4 +11,6 @@ public interface ICasteModel extends IModel {
   public ICaste[] getOptions();
 
   public void setCaste(ICaste caste);
+
+  public String getTraitModelId();
 }

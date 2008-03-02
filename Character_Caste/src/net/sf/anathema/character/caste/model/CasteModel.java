@@ -48,4 +48,10 @@ public class CasteModel extends AbstractModel implements ICasteModel {
   public void removeChangeListener(IChangeListener listener) {
     changeControl.removeChangeListener(listener);
   }
+
+  @Override
+  public String getTraitModelId() {
+    // TODO Case 108: TraitModelId über extensionPoint holen
+    return "net.sf.anathema.character.attributes.model";
+  }
 }

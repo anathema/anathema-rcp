@@ -6,10 +6,8 @@ import net.sf.anathema.character.caste.trait.CasteStatusUpdater;
 import net.sf.anathema.character.caste.trait.ITraitCollectionProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelInitializer;
-import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public final class CasteModelInitializer extends ModelInitializer {
 
@@ -20,8 +18,8 @@ public final class CasteModelInitializer extends ModelInitializer {
   @Override
   public void initialize() {
     super.initialize();
-    ITraitCollectionProvider traitProvider = getTraitCollectionProvider();
     ICasteModel model = (ICasteModel) getModel();
+    ITraitCollectionProvider traitProvider = getTraitCollectionProvider();
     ICharacterId characterId = getModelIdentifier().getCharacterId();
     CasteStatusUpdater casteStatusUpdater = new CasteStatusUpdater(model, traitProvider, characterId);
     model.addChangeListener(casteStatusUpdater);
@@ -29,13 +27,7 @@ public final class CasteModelInitializer extends ModelInitializer {
   }
 
   private ITraitCollectionProvider getTraitCollectionProvider() {
-    // TODO Case 108: Richtigen ITraitCollectionProvider verwenden (ExtensionPoint einführen)
-    return new ITraitCollectionProvider() {
-      @Override
-      public ITraitCollectionModel getModel(ICharacterId id) {
-        return (ITraitCollectionModel) ModelCache.getInstance().getModel(
-            new ModelIdentifier(id, "net.sf.anathema.character.attributes.model")); //$NON-NLS-1$
-      }
-    };
+    ICasteModel model = (ICasteModel) getModel();
+    return new TraitCollectionProvider(ModelCache.getInstance(), model.getTraitModelId());
   }
 }
