@@ -27,4 +27,11 @@ public class FileOutputStreamResult implements IStreamResult {
       BrowserControl.displayUrl(file.toURI());
     }
   }
+
+  @Override
+  public void deleteResult() {
+    if (file != null) {
+      file.delete();
+    }
+  }
 }

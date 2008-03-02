@@ -6,6 +6,8 @@ import java.io.OutputStream;
 public interface IStreamResult {
 
   public OutputStream createStream() throws IOException;
-  
+
   public void openResult();
+
+  public void deleteResult();
 }

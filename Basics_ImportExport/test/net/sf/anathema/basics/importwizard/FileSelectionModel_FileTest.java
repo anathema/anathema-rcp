@@ -10,7 +10,7 @@ import net.sf.anathema.basics.importexport.FileSelectionModel;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FileSelectionModelFileTest {
+public class FileSelectionModel_FileTest {
 
   private FileSelectionModel model;
   private String path;

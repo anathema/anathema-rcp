@@ -1,5 +1,6 @@
 package net.sf.anathema.basics.pdfexport;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -20,8 +21,9 @@ public final class ExportStreamResult implements IStreamResult {
 
   @Override
   public void openResult() {
-    if (openModel.getValue()) {
-      BrowserControl.displayUrl(fileSelectionModel.getFile().toURI());
+    File file = fileSelectionModel.getFile();
+    if (openModel.getValue() && file != null) {
+      BrowserControl.displayUrl(file.toURI());
     }
   }
 
@@ -31,5 +33,13 @@ public final class ExportStreamResult implements IStreamResult {
       return new FileOutputStream(fileSelectionModel.getFile());
     }
     return null;
+  }
+
+  @Override
+  public void deleteResult() {
+    File file = fileSelectionModel.getFile();
+    if (file != null) {
+      file.delete();
+    }
   }
 }

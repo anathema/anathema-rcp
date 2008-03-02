@@ -25,10 +25,7 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
     this.streamFactory = streamFactory;
   }
 
-  public final void runWriting(
-      Shell shell,
-      IExportItem<I> exportItem,
-      IRunnableContext runnableContext) {
+  public final void runWriting(Shell shell, IExportItem<I> exportItem, IRunnableContext runnableContext) {
     OutputStream outputStream = null;
     IStreamResult streamResult = null;
     try {
@@ -39,18 +36,21 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
       outputStream = streamResult.createStream();
       runnableContext.run(true, false, createRunnable(exportItem, outputStream));
       IOUtilities.close(outputStream);
-      if (streamResult != null) {
-        streamResult.openResult();
-      }
+      streamResult.openResult();
     }
     catch (InvocationTargetException e) {
+      IOUtilities.close(outputStream);
+      if (streamResult != null) {
+        streamResult.deleteResult();
+      }
       indicateError(shell, e.getCause());
     }
     catch (Exception e) {
-      indicateError(shell, e);
-    }
-    finally {
       IOUtilities.close(outputStream);
+      if (streamResult != null) {
+        streamResult.deleteResult();
+      }
+      indicateError(shell, e);
     }
   }
 
@@ -64,7 +64,5 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
     }
   }
 
-  protected abstract IRunnableWithProgress createRunnable(
-      IExportItem<I> exportItem,
-      OutputStream outputStream);
+  protected abstract IRunnableWithProgress createRunnable(IExportItem<I> exportItem, OutputStream outputStream);
 }

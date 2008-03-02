@@ -1,19 +1,18 @@
 package net.sf.anathema.basics.importwizard;
 
 import static org.junit.Assert.*;
-
 import net.sf.anathema.basics.importexport.FileSelectionModel;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class FileSelectionModelUninitializedTest {
+public class FileSelectionModel_UninitializedTest {
 
   private FileSelectionModel model;
 
   @Before
   public void create() {
-    this.model = new FileSelectionModel(new DummyStatusFactory());
+    model = new FileSelectionModel(new DummyStatusFactory());
   }
 
   @Test
