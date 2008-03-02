@@ -18,6 +18,8 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 
@@ -51,10 +53,19 @@ public abstract class AbstractPdfExportWizard<I> extends Wizard implements IExpo
     exportWorkbench = workbench;
     fileSelectionModel = new FileSelectionModel(new ExportFileSelectionStatusFactory());
     openModel = new BooleanModel(true);
+    List<IExportItem<I>> exportItems = getExportItems();
     selectedItem = new ObjectModel<IExportItem<I>>();
+    IEditorPart activeEditor = exportWorkbench.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+    if (activeEditor != null) {
+      selectedItem.setValue(getSelectedItem(exportItems, activeEditor.getEditorInput()));
+    }
     PdfExportDialog dialog = new PdfExportDialog(null, new ExportPrintNameProvider<I>(selectedItem));
-    addPage(new ExportItemDialogPage<I>(getExportItems(), selectedItem));
+    addPage(new ExportItemDialogPage<I>(exportItems, selectedItem));
     addPage(new FileSelectionWizardPage(fileSelectionModel, openModel, createMessage(), dialog));
+  }
+
+  protected IExportItem<I> getSelectedItem(List<IExportItem<I>> exportItems, IEditorInput editorInput) {
+    return null;
   }
 
   protected abstract List<IExportItem<I>> getExportItems();

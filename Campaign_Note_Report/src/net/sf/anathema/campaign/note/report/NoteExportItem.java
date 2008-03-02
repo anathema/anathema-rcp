@@ -1,5 +1,6 @@
 package net.sf.anathema.campaign.note.report;
 
+import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.item.text.TitledTextPersister;
@@ -16,7 +17,11 @@ public class NoteExportItem implements IExportItem<ITitledText> {
   private final ITitledText note;
 
   public NoteExportItem(IFile resource) throws PersistenceException, CoreException {
-    note = new TitledTextPersister().load(DocumentUtilities.read(resource.getContents()));
+    this(new TitledTextPersister().load(DocumentUtilities.read(resource.getContents())));
+  }
+
+  public NoteExportItem(ITitledText note) {
+    this.note = note;
   }
 
   @Override
@@ -30,5 +35,18 @@ public class NoteExportItem implements IExportItem<ITitledText> {
     return StringUtilities.isNullOrTrimmedEmpty(text)
         ? NotesRepositoryUtilities.getNotesItemType().getUntitledName()
         : text;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof NoteExportItem)) {
+      return false;
+    }
+    return ObjectUtilities.equals(note, ((NoteExportItem) obj).note);
+  }
+
+  @Override
+  public int hashCode() {
+    return ObjectUtilities.getHashCode(note);
   }
 }

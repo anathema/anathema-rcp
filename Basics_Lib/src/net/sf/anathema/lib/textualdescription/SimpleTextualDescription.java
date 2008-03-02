@@ -48,4 +48,17 @@ public class SimpleTextualDescription extends ChangeManagement implements ITextu
   public int getTextChangeListenerCount() {
     return textControl.getListenerCount();
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof SimpleTextualDescription)) {
+      return false;
+    }
+    return ObjectUtilities.equals(text, ((SimpleTextualDescription) obj).text);
+  }
+
+  @Override
+  public int hashCode() {
+    return ObjectUtilities.getHashCode(text);
+  }
 }

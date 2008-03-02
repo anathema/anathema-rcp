@@ -12,8 +12,8 @@ public class TitledText extends AggregatedChangeManagement implements ITitledTex
   private final IStyledTextualDescription content;
 
   public TitledText() {
-    this.name = new SimpleTextualDescription();
-    this.content = new StyledTextualDescription();
+    name = new SimpleTextualDescription();
+    content = new StyledTextualDescription();
     setChangeManagments(name, content);
   }
 
@@ -23,5 +23,19 @@ public class TitledText extends AggregatedChangeManagement implements ITitledTex
 
   public IStyledTextualDescription getContent() {
     return content;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof TitledText)) {
+      return false;
+    }
+    TitledText other = (TitledText) obj;
+    return name.equals(other.name) && content.equals(other.content);
+  }
+
+  @Override
+  public int hashCode() {
+    return name.hashCode();
   }
 }

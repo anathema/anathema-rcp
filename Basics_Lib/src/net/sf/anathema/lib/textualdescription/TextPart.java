@@ -31,6 +31,11 @@ public class TextPart implements ITextPart {
   }
 
   @Override
+  public int hashCode() {
+    return ObjectUtilities.getHashCode(text);
+  }
+
+  @Override
   public String toString() {
     return "[" + text + ", " + format + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }

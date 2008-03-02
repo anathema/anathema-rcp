@@ -1,5 +1,6 @@
 package net.sf.anathema.lib.textualdescription;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -160,5 +161,20 @@ public class StyledTextualDescription extends ChangeManagement implements IStyle
   @Override
   public int getTextChangeListenerCount() {
     return textListeners.getListenerCount();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof StyledTextualDescription)) {
+      return false;
+    }
+    return Arrays.equals(
+        textPartCollection.getTextParts(),
+        ((StyledTextualDescription) obj).textPartCollection.getTextParts());
+  }
+
+  @Override
+  public int hashCode() {
+    return Arrays.hashCode(textPartCollection.getTextParts());
   }
 }

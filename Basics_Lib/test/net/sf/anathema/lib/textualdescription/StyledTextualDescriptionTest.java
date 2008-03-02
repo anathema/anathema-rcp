@@ -25,7 +25,7 @@ public class StyledTextualDescriptionTest {
   public void emptyDescriptionContainsNoFormat() throws Exception {
     assertFalse(description.isDominant(TextAspect.Italic, 0, 0));
   }
-  
+
   @Test
   public void replaceTextForEmptyDescription() throws Exception {
     description.replaceText(0, 0, "Hallo"); //$NON-NLS-1$
@@ -159,7 +159,7 @@ public class StyledTextualDescriptionTest {
     assertStyleAndLength(textParts[1], FontStyle.BOLD, 2);
     assertStyleAndLength(textParts[2], FontStyle.BOLD, 4);
   }
-  
+
   @Test
   public void isDirtyAfterToggleAspect() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, false))); //$NON-NLS-1$
@@ -167,7 +167,7 @@ public class StyledTextualDescriptionTest {
     description.toggleAspect(TextAspect.Bold, 0, 2);
     assertTrue(description.isDirty());
   }
-  
+
   @Test
   public void isDirtyAfterReplaceText() throws Exception {
     description.setText(new TextPart("ein", new TextFormat(FontStyle.PLAIN, false))); //$NON-NLS-1$
@@ -175,12 +175,12 @@ public class StyledTextualDescriptionTest {
     description.replaceText(0, 2, "Tum"); //$NON-NLS-1$
     assertTrue(description.isDirty());
   }
-  
+
   @Test
   public void noListenersRegisteredAfterCreation() throws Exception {
     assertEquals(0, description.getTextChangeListenerCount());
   }
-  
+
   @Test
   public void listenerCountIncreasesWithListenerAddition() throws Exception {
     description.addTextChangedListener(createMockTextChangeListener());
