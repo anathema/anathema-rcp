@@ -133,6 +133,13 @@
       </casteList>
    </extension>
    <extension
+         point="net.sf.anathema.character.caste.traitmodels">
+      <traitmodel
+            characterType="net.sf.anathema.character.type.lunar"
+            modelId="net.sf.anathema.character.attributes.model">
+      </traitmodel>
+   </extension>
+   <extension
          point="net.sf.anathema.character.core.resources">
       <image
             referenceId="FullMoon"

@@ -16,20 +16,22 @@ import org.eclipse.core.runtime.CoreException;
 public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICasteModel> {
   private final CasteModelPersister persister = new CasteModelPersister();
   private final ICasteCollection provider;
+  private final ITraitModelIdProvider traitModelIdProvider;
 
   public CasteModelFactory() {
-    this(new CasteCollection());
+    this(new CasteCollection(), new CasteTraitModelIdProvider());
   }
 
-  public CasteModelFactory(ICasteCollection provider) {
+  public CasteModelFactory(ICasteCollection provider, ITraitModelIdProvider traitModelIdProvider) {
     this.provider = provider;
+    this.traitModelIdProvider = traitModelIdProvider;
   }
 
   @Override
   public CasteTemplate createModelTemplate(ICharacterTemplate template) {
-    // TODO Case 108: TraitModelId über extensionPoint holen
-    String traitModelId = "net.sf.anathema.character.attributes.model";
-    return new CasteTemplate(traitModelId, provider.getCastes(template.getCharacterTypeId()));
+    String characterTypeId = template.getCharacterTypeId();
+    String traitModelId = traitModelIdProvider.getTraitModelId(characterTypeId);
+    return new CasteTemplate(traitModelId , provider.getCastes(characterTypeId));
   }
 
   @Override
