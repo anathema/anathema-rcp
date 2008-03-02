@@ -38,6 +38,10 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
       }
       outputStream = streamResult.createStream();
       runnableContext.run(true, false, createRunnable(exportItem, outputStream));
+      IOUtilities.close(outputStream);
+      if (streamResult != null) {
+        streamResult.openResult();
+      }
     }
     catch (InvocationTargetException e) {
       indicateError(shell, e.getCause());
@@ -47,9 +51,6 @@ public abstract class AbstractReportRunner<I> implements IReportRunner<I> {
     }
     finally {
       IOUtilities.close(outputStream);
-      if (streamResult != null) {
-        streamResult.openResult();
-      }
     }
   }
 
