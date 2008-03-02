@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.model;
+package net.sf.anathema.character.trait.display;
 
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 import net.sf.anathema.character.trait.groupeditor.IIntViewImageProvider;

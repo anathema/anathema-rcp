@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -17,6 +17,6 @@ public class AttributeObjectMother {
   }
 
   public static IModelCollection createModelProvider(ITraitCollectionModel attributes, ICharacterId characterId) {
-    return CharacterObjectMother.createModelProvider(new ModelIdentifier(characterId, Attributes.MODEL_ID), attributes);
+    return CharacterObjectMother.createModelProvider(new ModelIdentifier(characterId, IAttributesPluginConstants.MODEL_ID), attributes);
   }
 }

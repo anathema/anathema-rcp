@@ -1,5 +1,6 @@
-package net.sf.anathema.character.attributes.model;
+package net.sf.anathema.character.abilities.model;
 
+import net.sf.anathema.character.abilities.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelContainer;
@@ -7,16 +8,16 @@ import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.trait.collection.AbstractTraitCollectionFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class AttributeFavorizationHandler extends AbstractTraitCollectionFavorizationHandler {
+public class AbilitiesFavorizationHandler extends AbstractTraitCollectionFavorizationHandler {
 
-  private final AttributeTemplate template;
+  private final AbilitiesTemplate template;
   private final IModelContainer modelContainer;
 
-  public AttributeFavorizationHandler(ICharacterId characterId, AttributeTemplate template, IModelCollection modelProvider) {
+  public AbilitiesFavorizationHandler(ICharacterId characterId, AbilitiesTemplate template, IModelCollection modelProvider) {
     this(new ModelContainer(modelProvider, characterId), template);
   }
 
-  public AttributeFavorizationHandler(IModelContainer modelContainer, AttributeTemplate template) {
+  public AbilitiesFavorizationHandler(IModelContainer modelContainer, AbilitiesTemplate template) {
     this.modelContainer = modelContainer;
     this.template = template;
   }
@@ -28,6 +29,6 @@ public class AttributeFavorizationHandler extends AbstractTraitCollectionFavoriz
 
   @Override
   protected ITraitCollectionModel getTraitCollectionModel() {
-    return (ITraitCollectionModel) modelContainer.getModel(IAttributesPluginConstants.MODEL_ID);
+    return (ITraitCollectionModel) modelContainer.getModel(IAbilitiesPluginConstants.MODEL_ID);
   }
 }

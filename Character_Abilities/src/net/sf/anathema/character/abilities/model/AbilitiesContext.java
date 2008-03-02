@@ -1,5 +1,6 @@
-package net.sf.anathema.character.attributes.model;
+package net.sf.anathema.character.abilities.model;
 
+import net.sf.anathema.character.abilities.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.ICharacterTypeProvider;
@@ -14,19 +15,19 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.template.ITraitTemplate;
 
-public class AttributesContext implements ITraitCollectionContext {
+public class AbilitiesContext implements ITraitCollectionContext {
 
-  public static AttributesContext create(ICharacterId characterId, IModelCollection modelProvider) {
+  public static AbilitiesContext create(ICharacterId characterId, IModelCollection modelProvider) {
     IModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
     ICharacterTypeProvider provider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
-    return new AttributesContext(modelContainer, provider);
+    return new AbilitiesContext(modelContainer, provider);
   }
 
-  private final AttributeGroupConfiguration groups = new AttributeGroupConfiguration();
+  private final AbilitiesGroupConfiguration groups = new AbilitiesGroupConfiguration();
   private final IModelContainer modelContainer;
   private final ICharacterTypeProvider characterTypeProvider;
 
-  public AttributesContext(IModelContainer modelContainer, ICharacterTypeProvider characterTypeProvider) {
+  public AbilitiesContext(IModelContainer modelContainer, ICharacterTypeProvider characterTypeProvider) {
     this.modelContainer = modelContainer;
     this.characterTypeProvider = characterTypeProvider;
   }
@@ -47,7 +48,7 @@ public class AttributesContext implements ITraitCollectionContext {
 
   @Override
   public ITraitCollectionModel getCollection() {
-    return (ITraitCollectionModel) getModel(IAttributesPluginConstants.MODEL_ID);
+    return (ITraitCollectionModel) getModel(IAbilitiesPluginConstants.MODEL_ID);
   }
 
   @Override

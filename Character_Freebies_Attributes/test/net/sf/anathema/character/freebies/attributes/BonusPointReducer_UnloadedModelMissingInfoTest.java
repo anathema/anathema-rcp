@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.List;
 
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
-import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
@@ -17,6 +16,7 @@ import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.freebies.attributes.AttributeFreebiesBonusPointReducer_CalculationTest.DummyCreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.points.configuration.IPointHandler;
+import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.easymock.EasyMock;
@@ -50,7 +50,7 @@ public class BonusPointReducer_UnloadedModelMissingInfoTest {
     modelCollection = EasyMock.createNiceMock(IModelCollection.class);
     EasyMock.expect(modelCollection.contains(modelIdentifier)).andStubReturn(false);
     EasyMock.expect(modelCollection.getModel(modelIdentifier)).andStubReturn(
-        Attributes.create(new AttributeGroupConfiguration().getGroups(), new EssenceSensitiveTraitTemplate()));
+        TraitCollection.create(new AttributeGroupConfiguration().getGroups(), new EssenceSensitiveTraitTemplate()));
     EasyMock.replay(modelCollection);
     resourceHandler = EasyMock.createMock(IModelResourceHandler.class);
     Constructor< ? extends IPointHandler> constructor = handlerClass.getConstructor(

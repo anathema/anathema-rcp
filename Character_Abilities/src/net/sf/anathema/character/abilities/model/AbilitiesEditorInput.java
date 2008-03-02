@@ -1,4 +1,4 @@
-package net.sf.anathema.character.attributes.model;
+package net.sf.anathema.character.abilities.model;
 
 import java.net.URL;
 import java.text.MessageFormat;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.abilities.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.trait.IFavorizationHandler;
@@ -26,19 +27,19 @@ import net.sf.anathema.lib.util.IIdentificate;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 
-public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
+public class AbilitiesEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
 
   private final ITraitCollectionContext context;
   private final IFavorizationHandler favorizationHandler;
 
-  public AttributesEditorInput(
+  public AbilitiesEditorInput(
       final IFile file,
       URL imageUrl,
       IDisplayNameProvider displayNameProvider,
       final ITraitCollectionContext context,
       final IFavorizationHandler favorizationHandler) {
-    super(file, imageUrl, displayNameProvider, new AttributesPersister());
+    super(file, imageUrl, displayNameProvider, new AbilitiesPersister());
     this.context = context;
     this.favorizationHandler = favorizationHandler;
   }
@@ -61,20 +62,20 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
   public IFolder getCharacterFolder() {
     return super.getCharacterFolder();
   }
-  
+
   @Override
   protected String getModelId() {
-    return IAttributesPluginConstants.MODEL_ID;
+    return IAbilitiesPluginConstants.MODEL_ID;
   }
 
   @Override
   public String getGroupLabel(IDisplayTraitGroup< ? > group) {
-    return AttributeMessages.get(group.getId());
+    return group.getId();
   }
 
   @Override
   public String getTraitLabel(IIdentificate traitType) {
-    return AttributeMessages.get(traitType.getId());
+    return traitType.getId();
   }
 
   @Override
@@ -89,9 +90,7 @@ public class AttributesEditorInput extends AbstractCharacterModelEditorInput<ITr
       }
     }
     Object[] arguments = new Object[] { traitType.getId() };
-    throw new IllegalArgumentException(MessageFormat.format(
-        Messages.AttributesEditorInput_GroupLessTraitMessage,
-        arguments));
+    throw new IllegalArgumentException(MessageFormat.format("Trait {0} is not member of any group", arguments));
   }
 
   @Override

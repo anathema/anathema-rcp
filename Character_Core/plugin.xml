@@ -66,6 +66,9 @@
          </modelReference>
          <modelReference
                modelId="net.sf.anathema.character.attributes.model">
+         </modelReference>
+         <modelReference
+               modelId="net.sf.anathema.character.abilities.model">
          </modelReference></modelList>
    </extension>
 

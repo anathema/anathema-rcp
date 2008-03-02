@@ -5,7 +5,7 @@ import java.util.Map;
 
 import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
@@ -46,7 +46,7 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
     if (characterId == null) {
       return 0;
     }
-    ModelIdentifier identifier = new ModelIdentifier(characterId, Attributes.MODEL_ID);
+    ModelIdentifier identifier = new ModelIdentifier(characterId, IAttributesPluginConstants.MODEL_ID);
     try {
       IResource resource = resourceHandler.getResource(identifier);
       if (modelCollection.contains(identifier)) {

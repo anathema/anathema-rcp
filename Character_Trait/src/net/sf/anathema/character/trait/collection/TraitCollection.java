@@ -1,15 +1,20 @@
 package net.sf.anathema.character.trait.collection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.model.AbstractModel;
+import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.character.trait.status.ITraitStatusModel;
+import net.sf.anathema.character.trait.template.ITraitTemplate;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.util.IIdentificate;
+import net.sf.anathema.lib.util.Identificate;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -72,5 +77,17 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
         statusManager.setStatus(newStatus);
       }
     }
+  }
+
+  public static ITraitCollectionModel create(ITraitGroup[] groups, ITraitTemplate template) {
+    List<IBasicTrait> basicTraits = new ArrayList<IBasicTrait>();
+    for (ITraitGroup group : groups) {
+      for (String traitId : group.getTraitIds()) {
+        BasicTrait basicTrait = new BasicTrait(new Identificate(traitId));
+        basicTraits.add(basicTrait);
+        basicTrait.getCreationModel().setValue(template.getMinimalValue());
+      }
+    }
+    return new TraitCollection(basicTraits.toArray(new BasicTrait[basicTraits.size()]));
   }
 }

@@ -3,7 +3,7 @@ package net.sf.anathema.character.freebies.attributes;
 import java.util.Map;
 
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
-import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
@@ -37,7 +37,7 @@ public class PrioritylessAttributeFreebies {
   public int getPoints(ICharacterId id, int credit) {
     Map<Priority, Integer> creditsByGroup = new AttributePriorityFreebies().get(id, creditManager);
     TraitGroup[] groups = new AttributeGroupConfiguration().getGroups();
-    ModelIdentifier modelIdentifier = new ModelIdentifier(id, Attributes.MODEL_ID);
+    ModelIdentifier modelIdentifier = new ModelIdentifier(id, IAttributesPluginConstants.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(modelIdentifier);
     AttributePointCalculator calculator = new AttributePointCalculator(creditsByGroup, attributes, groups);
     return Math.min(credit, calculator.dotsFor(priority).spentTotally());

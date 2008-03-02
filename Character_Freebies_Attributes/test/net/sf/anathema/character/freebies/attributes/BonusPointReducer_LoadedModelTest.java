@@ -11,7 +11,6 @@ import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
-import net.sf.anathema.character.attributes.model.Attributes;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
@@ -21,6 +20,7 @@ import net.sf.anathema.character.freebies.attributes.AttributeFreebiesBonusPoint
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.easymock.EasyMock;
@@ -60,7 +60,7 @@ public class BonusPointReducer_LoadedModelTest {
   public void createHandler() throws Exception {
     ICharacterId characterId = EasyMock.createMock(ICharacterId.class);
     modelIdentifier = new ModelIdentifier(characterId, "net.sf.anathema.character.attributes.model"); //$NON-NLS-1$
-    ITraitCollectionModel attributes = Attributes.create(
+    ITraitCollectionModel attributes = TraitCollection.create(
         new AttributeGroupConfiguration().getGroups(),
         new EssenceSensitiveTraitTemplate());
     IModelCollection modelCollection = CharacterObjectMother.createModelProvider(modelIdentifier, attributes);

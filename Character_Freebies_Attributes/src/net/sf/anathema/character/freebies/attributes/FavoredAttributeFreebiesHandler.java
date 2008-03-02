@@ -4,7 +4,7 @@ import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
-import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -34,7 +34,7 @@ public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension
 
   @Override
   public int getPoints(ICharacterId id, int credit) {
-    IModelIdentifier identifier = new ModelIdentifier(id, Attributes.MODEL_ID);
+    IModelIdentifier identifier = new ModelIdentifier(id, IAttributesPluginConstants.MODEL_ID);
     ITraitCollectionModel attributes = (ITraitCollectionModel) modelProvider.getModel(identifier);
     Map<Priority, Integer> creditsByGroup = new AttributePriorityFreebies().get(id, creditManager);
     AttributePointCalculator calculator = new AttributePointCalculator(

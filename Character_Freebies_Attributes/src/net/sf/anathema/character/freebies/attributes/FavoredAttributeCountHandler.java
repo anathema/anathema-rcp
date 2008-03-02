@@ -1,7 +1,7 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.attributes.model.Attributes;
+import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -31,7 +31,7 @@ public class FavoredAttributeCountHandler extends AbstractExecutableExtension im
 
   @Override
   public int getPoints(ICharacterId id, int credit) {
-    IModelIdentifier modelIdentifer = new ModelIdentifier(id, Attributes.MODEL_ID);
+    IModelIdentifier modelIdentifer = new ModelIdentifier(id, IAttributesPluginConstants.MODEL_ID);
     ITraitCollectionModel traitCollection = (ITraitCollectionModel) modelProvider.getModel(modelIdentifer);
     int count = 0;
     for (IBasicTrait trait : traitCollection.getTraits()) {
