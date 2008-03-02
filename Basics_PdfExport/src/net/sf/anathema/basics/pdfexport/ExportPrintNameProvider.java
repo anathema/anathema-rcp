@@ -13,6 +13,7 @@ public final class ExportPrintNameProvider<T> implements IProvider<String> {
 
   @Override
   public String get() {
-    return selectedItem.getValue().getPrintName();
+    IExportItem<T> value = selectedItem.getValue();
+    return value == null ? null : value.getPrintName();
   }
 }

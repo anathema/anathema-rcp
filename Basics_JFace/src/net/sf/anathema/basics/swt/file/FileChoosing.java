@@ -50,9 +50,13 @@ public class FileChoosing {
       String[] filterNames,
       String suggestedFileName,
       int style) {
+    FileChoosingPreference directoryPreference = new FileChoosingPreference();
     FileDialog dialog = new FileDialog(shell, style);
     if (startingDirectory != null) {
       dialog.setFilterPath(startingDirectory.getPath());
+    }
+    else {
+      dialog.setFilterPath(directoryPreference.getDirectory().getAbsolutePath());
     }
     if (suggestedFileName != null) {
       dialog.setFileName(suggestedFileName);
@@ -61,7 +65,9 @@ public class FileChoosing {
       dialog.setFilterExtensions(extensions);
       dialog.setFilterNames(filterNames);
     }
-    return getFile(dialog.open());
+    File file = getFile(dialog.open());
+    directoryPreference.setDirectory(file);
+    return file;
   }
 
   private static File getFile(String path) {

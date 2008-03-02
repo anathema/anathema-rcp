@@ -11,20 +11,18 @@ import org.eclipse.swt.widgets.Shell;
 
 public class PdfExportDialog implements IFileDialog {
 
-  private final File startingDirectory;
   private final IProvider<String> fileNameProvider;
 
-  public PdfExportDialog(File startingDirectory, String suggestedFileName) {
-    this(startingDirectory, new StaticProvider<String>(suggestedFileName));
+  public PdfExportDialog(String suggestedFileName) {
+    this(new StaticProvider<String>(suggestedFileName));
   }
 
-  public PdfExportDialog(File startingDirectory, IProvider<String> fileNameProvider) {
-    this.startingDirectory = startingDirectory;
+  public PdfExportDialog(IProvider<String> fileNameProvider) {
     this.fileNameProvider = fileNameProvider;
   }
 
   @Override
   public File open(Shell shell) {
-    return FileChoosing.savePdfFile(startingDirectory, shell, fileNameProvider.get());
+    return FileChoosing.savePdfFile(null, shell, fileNameProvider.get());
   }
 }

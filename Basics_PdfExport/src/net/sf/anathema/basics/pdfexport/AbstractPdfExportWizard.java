@@ -11,6 +11,7 @@ import net.sf.anathema.basics.importexport.IFileSelectionModel;
 import net.sf.anathema.basics.importexport.IFileSelectionPageMessages;
 import net.sf.anathema.basics.pdfexport.item.ExportItemDialogPage;
 import net.sf.anathema.basics.pdfexport.writer.IExportItem;
+import net.sf.anathema.basics.swt.file.FileChoosingPreference;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 
 import org.eclipse.core.resources.IResource;
@@ -56,18 +57,21 @@ public abstract class AbstractPdfExportWizard<I> extends Wizard implements IExpo
     openModel = new BooleanModel(true);
     List<IExportItem<I>> exportItems = getExportItems();
     selectedItem = new ObjectModel<IExportItem<I>>();
+    final ExportPrintNameProvider<I> fileNameProvider = new ExportPrintNameProvider<I>(selectedItem);
+    selectedItem.addChangeListener(new FileSelectionModelUpdater<I>(
+        new FileChoosingPreference(),
+        fileSelectionModel,
+        fileNameProvider));
     IEditorPart activeEditor = exportWorkbench.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
     if (activeEditor != null) {
       selectedItem.setValue(getSelectedItem(exportItems, activeEditor.getEditorInput()));
     }
-    PdfExportDialog dialog = new PdfExportDialog(null, new ExportPrintNameProvider<I>(selectedItem));
+    PdfExportDialog dialog = new PdfExportDialog(fileNameProvider);
     addPage(new ExportItemDialogPage<I>(exportItems, selectedItem));
     addPage(new FileSelectionWizardPage(fileSelectionModel, openModel, createMessage(), dialog));
   }
 
-  private IExportItem<I> getSelectedItem(
-      List<IExportItem<I>> exportItems,
-      IEditorInput editorInput) {
+  private IExportItem<I> getSelectedItem(List<IExportItem<I>> exportItems, IEditorInput editorInput) {
     IResource resource = (IResource) editorInput.getAdapter(IResource.class);
     if (resource == null) {
       return null;
