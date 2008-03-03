@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sf.anathema.character.abilities" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="net.sf.anathema.character.abilities" id="groups" name="Ability Groups"/>
+      </appinfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="groups" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="groups">
+      <complexType>
+         <sequence>
+            <element ref="traitGroup" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="characterType" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="traitGroup">
+      <complexType>
+         <sequence>
+            <element ref="traitReference" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="traitReference">
+      <complexType>
+         <attribute name="traitId" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Archery">
+                  </enumeration>
+                  <enumeration value="Athletics">
+                  </enumeration>
+                  <enumeration value="Awareness">
+                  </enumeration>
+                  <enumeration value="Bureaucracy">
+                  </enumeration>
+                  <enumeration value="Craft">
+                  </enumeration>
+                  <enumeration value="Dodge">
+                  </enumeration>
+                  <enumeration value="Integrity">
+                  </enumeration>
+                  <enumeration value="Investigation">
+                  </enumeration>
+                  <enumeration value="Larceny">
+                  </enumeration>
+                  <enumeration value="Linguistics">
+                  </enumeration>
+                  <enumeration value="Lore">
+                  </enumeration>
+                  <enumeration value="MartialArts">
+                  </enumeration>
+                  <enumeration value="Medicine">
+                  </enumeration>
+                  <enumeration value="Melee">
+                  </enumeration>
+                  <enumeration value="Occult">
+                  </enumeration>
+                  <enumeration value="Presence">
+                  </enumeration>
+                  <enumeration value="Performance">
+                  </enumeration>
+                  <enumeration value="Resistance">
+                  </enumeration>
+                  <enumeration value="Ride">
+                  </enumeration>
+                  <enumeration value="Sail">
+                  </enumeration>
+                  <enumeration value="Socialize">
+                  </enumeration>
+                  <enumeration value="Survival">
+                  </enumeration>
+                  <enumeration value="Stealth">
+                  </enumeration>
+                  <enumeration value="Thrown">
+                  </enumeration>
+                  <enumeration value="War">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>
