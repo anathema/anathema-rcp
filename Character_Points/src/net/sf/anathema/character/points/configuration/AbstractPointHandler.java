@@ -1,18 +1,16 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.points.configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.repository.ModelResourceHandler;
-import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 import org.eclipse.core.resources.IMarker;
@@ -27,18 +25,21 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
   private final IModelCollection modelCollection;
   private final IModelResourceHandler resourceHandler;
   private final String handlerType;
+  private final String modelId;
 
-  public AbstractPointHandler(String handlerType) {
-    this(ModelCache.getInstance(), new ModelResourceHandler(), handlerType);
+  public AbstractPointHandler(String handlerType, String modelId) {
+    this(ModelCache.getInstance(), new ModelResourceHandler(), handlerType, modelId);
   }
 
   public AbstractPointHandler(
       IModelCollection modelCollection,
       IModelResourceHandler resourceHandler,
-      String handlerType) {
+      String handlerType,
+      String modelId) {
     this.modelCollection = modelCollection;
     this.resourceHandler = resourceHandler;
     this.handlerType = handlerType;
+    this.modelId = modelId;
   }
 
   @Override
@@ -46,7 +47,7 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
     if (characterId == null) {
       return 0;
     }
-    ModelIdentifier identifier = new ModelIdentifier(characterId, IAttributesPluginConstants.MODEL_ID);
+    ModelIdentifier identifier = new ModelIdentifier(characterId, modelId);
     try {
       IResource resource = resourceHandler.getResource(identifier);
       if (modelCollection.contains(identifier)) {

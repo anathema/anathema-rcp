@@ -25,5 +25,17 @@
             name="%editor.name.abilities">
       </editor>
    </extension>
+   <extension
+         point="net.sf.anathema.character.points.configurations">
+      <pointGroup
+            groupId="abilitypoints"
+            modelId="net.sf.anathema.character.abilities.model"
+            name="Ability Points">
+      </pointGroup>
+      <bonusPointCalculator
+            groupReference="abilitypoints"
+            handlerClass="net.sf.anathema.character.abilities.points.AbilitiesBonusPointHandler">
+      </bonusPointCalculator>
+   </extension>
 
 </plugin>

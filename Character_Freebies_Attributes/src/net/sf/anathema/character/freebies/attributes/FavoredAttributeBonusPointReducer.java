@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import net.sf.anathema.character.attributes.points.AbstractPointHandler;
+import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.attributes.points.IAttributeConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -10,6 +10,7 @@ import net.sf.anathema.character.core.repository.ModelResourceHandler;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
+import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class FavoredAttributeBonusPointReducer extends AbstractPointHandler {
@@ -26,7 +27,7 @@ public class FavoredAttributeBonusPointReducer extends AbstractPointHandler {
       IModelCollection modelCollection,
       IModelResourceHandler resourceHandler,
       ICreditManager creditManager) {
-    super(modelCollection, resourceHandler, HANDLER_TYPE);
+    super(modelCollection, resourceHandler, HANDLER_TYPE, IAttributesPluginConstants.MODEL_ID);
     this.modelCollection = modelCollection;
     this.creditManager = creditManager;
   }
