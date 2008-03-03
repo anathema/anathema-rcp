@@ -124,9 +124,9 @@
                   </enumeration>
                   <enumeration value="Socialize">
                   </enumeration>
-                  <enumeration value="Survival">
-                  </enumeration>
                   <enumeration value="Stealth">
+                  </enumeration>
+                  <enumeration value="Survival">
                   </enumeration>
                   <enumeration value="Thrown">
                   </enumeration>
