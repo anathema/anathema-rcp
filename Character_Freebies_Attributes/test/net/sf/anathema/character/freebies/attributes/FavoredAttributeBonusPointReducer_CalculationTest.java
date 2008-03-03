@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
+import net.sf.anathema.character.freebies.fake.CreditManagerObjectMother;
 
 import org.easymock.EasyMock;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies.attributes;
+package net.sf.anathema.character.freebies.fake;
 
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
