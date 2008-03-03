@@ -98,5 +98,12 @@
          </caste>
       </casteList>
    </extension>
+   <extension
+         point="net.sf.anathema.character.caste.traitmodels">
+      <traitmodel
+            characterType="net.sf.anathema.character.type.db"
+            modelId="net.sf.anathema.character.abilities.model">
+      </traitmodel>
+   </extension>
 
 </plugin>

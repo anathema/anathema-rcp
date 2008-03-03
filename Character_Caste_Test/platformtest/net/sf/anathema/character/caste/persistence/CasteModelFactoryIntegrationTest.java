@@ -34,7 +34,7 @@ public class CasteModelFactoryIntegrationTest {
   @Test
   public void solarCastesAreFound() throws Exception {
     String[] castes = new String[] { "Dawn", "Zenith", "Twilight", "Night", "Eclipse" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-    assertCastesAreFoundForCharacterType("net.sf.anathema.character.type.solar", castes, null); //$NON-NLS-1$
+    assertCastesAreFoundForCharacterType("net.sf.anathema.character.type.solar", castes, "net.sf.anathema.character.abilities.model"); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
   @Test
@@ -46,13 +46,13 @@ public class CasteModelFactoryIntegrationTest {
   @Test
   public void siderealCastesAreFound() throws Exception {
     String[] castes = new String[] { "Journeys", "Serenity", "Battles", "Secrets", "Endings" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-    assertCastesAreFoundForCharacterType("net.sf.anathema.character.type.sidereal", castes, null); //$NON-NLS-1$
+    assertCastesAreFoundForCharacterType("net.sf.anathema.character.type.sidereal", castes, "net.sf.anathema.character.abilities.model"); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
   @Test
   public void dragonBloodedAspectsAreFound() throws Exception {
     String[] castes = new String[] { "Air", "Earth", "Fire", "Water", "Wood" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-    assertCastesAreFoundForCharacterType("net.sf.anathema.character.type.db", castes, null); //$NON-NLS-1$
+    assertCastesAreFoundForCharacterType("net.sf.anathema.character.type.db", castes, "net.sf.anathema.character.abilities.model"); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
   private void assertCastesAreFoundForCharacterType(String characterType, String[] castes, String traitCollectionModelId) {
