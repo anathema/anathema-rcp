@@ -16,6 +16,8 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -37,13 +39,17 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
       @Override
       public void createPartControl(Composite parent) {
+        parent.setLayout(new FillLayout());
+        final ScrolledComposite scroll = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+        final Composite container = new Composite(scroll, SWT.NONE);
+        scroll.setContent(container);
         decorations.addAll(new TraitGroupEditorDecorationFactory().create());
         ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
         ICharacterId characterId = editorInput.getCharacterId();
-        TraitViewFactory factory = new TraitViewFactory(parent, editorInput.getImageProvider(), characterId);
-        parent.setLayout(new GridLayout(3, false));
+        TraitViewFactory factory = new TraitViewFactory(container, editorInput.getImageProvider(), characterId);
+        container.setLayout(new GridLayout(3, false));
         for (IDisplayTraitGroup<IInteractiveTrait> group : editorInput.createDisplayGroups()) {
-          createLabel(parent, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
+          createLabel(container, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
           for (final IInteractiveTrait trait : group.getTraits()) {
             String label = editorInput.getTraitLabel(trait.getTraitType());
             final IExtendableIntValueView view = factory.create(label, trait);
@@ -54,13 +60,14 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
           }
         }
         IFolder characterFolder = editorInput.getCharacterFolder();
-        Display display = parent.getDisplay();
+        Display display = container.getDisplay();
         final IResourceChangeListener resourceListener = new CharacterPartNameListener(
             TraitGroupEditor.this,
             characterFolder,
             display);
         ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
         addDisposable(new ResourceChangeListenerDisposable(resourceListener));
+        container.setSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
       }
 
       private Label createLabel(Composite parent, GridData data) {
