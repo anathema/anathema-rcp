@@ -10,7 +10,7 @@ public class AbilitiesEditorInputFactory extends AbstractTraitCollectionEditorIn
 
   @Override
   protected AbilitiesGroupConfiguration createGroupConfiguration(ICharacterTemplate template) {
-    return new AbilitiesGroupConfiguration();
+    return new AbilitiesGroupConfiguration(template);
   }
 
   @Override
@@ -20,6 +20,6 @@ public class AbilitiesEditorInputFactory extends AbstractTraitCollectionEditorIn
 
   @Override
   protected ITraitCollectionTemplate createTemplate(ICharacterTemplate template) {
-    return new AbilitiesTemplateProvider().getAttributeTemplate(template.getId());
+    return new AbilitiesTemplateProvider().getAttributeTemplate(template);
   }
 }

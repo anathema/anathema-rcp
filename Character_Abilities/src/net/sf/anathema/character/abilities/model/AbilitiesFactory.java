@@ -13,7 +13,7 @@ public class AbilitiesFactory extends AbstractModelFactory<ITraitCollectionTempl
 
   @Override
   protected ITraitCollectionTemplate createModelTemplate(ICharacterTemplate template) {
-    return new AbilitiesTemplateProvider().getAttributeTemplate(template.getId());
+    return new AbilitiesTemplateProvider().getAttributeTemplate(template);
   }
 
   @Override
