@@ -1,6 +1,7 @@
 package charactertype.solar.acceptance;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.fake.IntegrationCasteModelFactory;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
@@ -55,6 +56,7 @@ public class SolarCasteTest {
   }
 
   private void assertHasCaste(int index, String castePrintName) {
-    assertEquals(castePrintName, casteModel.getOptions()[index].getPrintName());
+    ICaste caste = casteModel.getOptions()[index];
+    assertEquals(castePrintName, caste.getPrintName());
   }
 }

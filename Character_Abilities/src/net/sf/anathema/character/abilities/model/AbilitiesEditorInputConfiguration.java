@@ -1,6 +1,6 @@
 package net.sf.anathema.character.abilities.model;
 
-import net.sf.anathema.character.abilities.IAbilitiesPluginConstants;
+import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.groupeditor.IEditorInputConfiguration;
 import net.sf.anathema.lib.util.IIdentificate;

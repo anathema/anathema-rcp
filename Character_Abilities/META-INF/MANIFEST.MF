@@ -12,3 +12,5 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.lib;bundle-version="1.0.0",
  net.sf.anathema.basics.repository;bundle-version="1.0.0",
  net.sf.anathema.character.experience;bundle-version="1.0.0"
+Export-Package: abilities.integration,
+ net.sf.anathema.character.abilities.util

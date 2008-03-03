@@ -6,7 +6,7 @@ import java.util.List;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.abilities.IAbilitiesPluginConstants;
+import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.trait.group.TraitGroup;
 
 public class AbilityGroupsProvider {

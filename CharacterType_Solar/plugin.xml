@@ -206,9 +206,10 @@
             <traitReference
                   traitId="Integrity"></traitReference>
             <traitReference
-                  traitId="Presence"></traitReference>
-            <traitReference
                   traitId="Performance"></traitReference>
+            <traitReference
+                  traitId="Presence">
+            </traitReference>
             <traitReference
                   traitId="Resistance">
             </traitReference>
