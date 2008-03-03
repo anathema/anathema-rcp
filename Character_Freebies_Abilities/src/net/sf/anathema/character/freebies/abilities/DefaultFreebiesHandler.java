@@ -37,6 +37,10 @@ public class DefaultFreebiesHandler extends AbstractExecutableExtension implemen
   public int getPoints(ICharacterId id, int credit) {
     IModelIdentifier identifier = new ModelIdentifier(id, IAbilitiesPluginConstants.MODEL_ID);
     ITraitCollectionModel abilities = (ITraitCollectionModel) modelCollection.getModel(identifier);
+    return getPoints(id, credit, abilities);
+  }
+
+  public int getPoints(ICharacterId id, int credit, ITraitCollectionModel abilities) {
     int totalSpent = 0;
     for (IBasicTrait trait : abilities.getTraits()) {
       totalSpent += Math.min(trait.getCreationModel().getValue(), 3);

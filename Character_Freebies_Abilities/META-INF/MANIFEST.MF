@@ -10,5 +10,6 @@ Require-Bundle: net.sf.anathema.character.freebies;bundle-version="1.0.0",
  net.sf.anathema.basics.eclipse;bundle-version="1.0.0",
  net.sf.anathema.basics.item;bundle-version="1.0.0",
  net.sf.anathema.basics.jface;bundle-version="1.0.0",
- net.sf.anathema.basics.lib;bundle-version="1.0.0"
+ net.sf.anathema.basics.lib;bundle-version="1.0.0",
+ net.sf.anathema.character.points;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.character.freebies.abilities.util

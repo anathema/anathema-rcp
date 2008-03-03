@@ -12,5 +12,16 @@
             name="Favored Free Ability Dots">
       </FreebiesConfiguration>
    </extension>
+   <extension
+         point="net.sf.anathema.character.points.configurations">
+      <bonusPointCalculator
+            groupReference="abilitypoints"
+            handlerClass="net.sf.anathema.character.freebies.abilities.DefaultFreebiesBonusPointReducer">
+      </bonusPointCalculator>
+      <bonusPointCalculator
+            groupReference="abilitypoints"
+            handlerClass="net.sf.anathema.character.freebies.abilities.FavoredFreebiesBonusPointReducer">
+      </bonusPointCalculator>
+   </extension>
 
 </plugin>

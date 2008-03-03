@@ -30,7 +30,12 @@ public class FavoredFreebiesHandler extends AbstractExecutableExtension implemen
 
   @Override
   public int getPoints(ICharacterId id, int credit) {
-    ITraitCollectionModel abilities = getAbilities(id);
+    ModelIdentifier identifier = new ModelIdentifier(id, IAbilitiesPluginConstants.MODEL_ID);
+    ITraitCollectionModel abilities = (ITraitCollectionModel) modelCollection.getModel(identifier);
+    return getPoints(abilities, credit);
+  }
+
+  public int getPoints(ITraitCollectionModel abilities, int credit) {
     int dotCount = 0;
     for (IBasicTrait trait : abilities.getTraits()) {
       if (trait.getStatusManager().getStatus().isCheap()) {
@@ -38,9 +43,5 @@ public class FavoredFreebiesHandler extends AbstractExecutableExtension implemen
       }
     }
     return Math.min(dotCount, credit);
-  }
-
-  private ITraitCollectionModel getAbilities(ICharacterId id) {
-    return (ITraitCollectionModel) modelCollection.getModel(new ModelIdentifier(id, IAbilitiesPluginConstants.MODEL_ID));
   }
 }
