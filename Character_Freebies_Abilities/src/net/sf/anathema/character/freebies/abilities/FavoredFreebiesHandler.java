@@ -2,13 +2,14 @@ package net.sf.anathema.character.freebies.abilities;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.freebies.abilities.util.IAbilityFreebiesConstants;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 
 public class FavoredFreebiesHandler extends AbstractExecutableExtension implements IFreebiesHandler {
 
   @Override
   public String getCreditId() {
-    return "net.sf.anathema.character.abilties.freebies.favored"; //$NON-NLS-1$
+    return IAbilityFreebiesConstants.FAVORED_CREDIT;
   }
 
   @Override

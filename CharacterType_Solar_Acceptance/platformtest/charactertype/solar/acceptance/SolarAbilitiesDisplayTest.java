@@ -30,7 +30,7 @@ public class SolarAbilitiesDisplayTest {
 
   @BeforeClass
   public static void createSolarFolder() {
-    new CharacterFactory().createNewCharacter("net.sf.anathema.character.template.defaultsolar", "Solar"); //$NON-NLS-1$ //$NON-NLS-2$
+    new CharacterFactory().createNewCharacter(IIntegrationConstants.DEFAULT_TEMPLATE, "Solar"); //$NON-NLS-1$
     IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
     folder = project.getFolder("Solar"); //$NON-NLS-1$
     CharacterId characterId = new CharacterId(folder);
@@ -119,5 +119,7 @@ public class SolarAbilitiesDisplayTest {
   @AfterClass
   public static void deleteSolarFolder() throws CoreException {
     folder.delete(true, null);
+    folder = null;
+    groups = null;
   }
 }
