@@ -19,7 +19,7 @@ import org.junit.Test;
 
 public class DefaultFreebiesHandlerTest {
 
-  private static final int FAVORED_CREDIT = 2;
+  private static final int FAVORED_CREDIT = 3;
   private static final String FAVORED2 = "Favored2"; //$NON-NLS-1$
   private static final String FAVORED1 = "Favored1"; //$NON-NLS-1$
   private static final String NON_FAVORED2 = "NonFavored2"; //$NON-NLS-1$
@@ -77,8 +77,14 @@ public class DefaultFreebiesHandlerTest {
 
   @Test
   public void returnsCreditValueForExceedingUnfavoredSpentSum() throws Exception {
-    model.getTrait(NON_FAVORED1).getCreationModel().setValue(5);
-    assertEquals(3, handler.getPoints(characterId, 3));
+    model.getTrait(NON_FAVORED1).getCreationModel().setValue(3);
+    assertEquals(2, handler.getPoints(characterId, 2));
+  }
+
+  @Test
+  public void returnsThreeForUnfavoredTraitExceedingThree() throws Exception {
+    model.getTrait(NON_FAVORED1).getCreationModel().setValue(4);
+    assertEquals(3, handler.getPoints(characterId, 5));
   }
 
   @Test
@@ -88,8 +94,9 @@ public class DefaultFreebiesHandlerTest {
   }
 
   @Test
-  public void returnsPointsSpentOnFavoredAboveFaoredCredit() throws Exception {
-    model.getTrait(FAVORED1).getCreationModel().setValue(FAVORED_CREDIT + 2);
+  public void returnsPointsSpentOnFavoredAboveFavoredCredit() throws Exception {
+    model.getTrait(FAVORED1).getCreationModel().setValue(FAVORED_CREDIT);
+    model.getTrait(FAVORED2).getCreationModel().setValue(2);
     assertEquals(2, handler.getPoints(characterId, 3));
   }
 }

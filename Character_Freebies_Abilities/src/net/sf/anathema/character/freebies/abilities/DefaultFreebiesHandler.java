@@ -39,7 +39,7 @@ public class DefaultFreebiesHandler extends AbstractExecutableExtension implemen
     ITraitCollectionModel abilities = (ITraitCollectionModel) modelCollection.getModel(identifier);
     int totalSpent = 0;
     for (IBasicTrait trait : abilities.getTraits()) {
-      totalSpent += trait.getCreationModel().getValue();
+      totalSpent += Math.min(trait.getCreationModel().getValue(), 3);
     }
     int favoredCredit = creditManager.getCredit(id, IAbilityFreebiesConstants.FAVORED_CREDIT);
     int favoredSpent = new FavoredFreebiesHandler(modelCollection).getPoints(id, favoredCredit);

@@ -73,7 +73,13 @@ public class FavoredFreebiesHandlerTest {
 
   @Test
   public void returnsPointsAccordingToCreditIfMoreFavoredDotsAreSpent() throws Exception {
-    model.getTrait(FAVORED1).getCreationModel().setValue(5);
+    model.getTrait(FAVORED1).getCreationModel().setValue(3);
     assertEquals(2, handler.getPoints(characterId, 2));
+  }
+
+  @Test
+  public void returnsThreePointsForHighTrait() throws Exception {
+    model.getTrait(FAVORED1).getCreationModel().setValue(5);
+    assertEquals(3, handler.getPoints(characterId, 5));
   }
 }

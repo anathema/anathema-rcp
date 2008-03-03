@@ -34,7 +34,7 @@ public class FavoredFreebiesHandler extends AbstractExecutableExtension implemen
     int dotCount = 0;
     for (IBasicTrait trait : abilities.getTraits()) {
       if (trait.getStatusManager().getStatus().isCheap()) {
-        dotCount += trait.getCreationModel().getValue();
+        dotCount += Math.min(trait.getCreationModel().getValue(), 3);
       }
     }
     return Math.min(dotCount, credit);
