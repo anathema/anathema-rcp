@@ -16,7 +16,7 @@ import org.eclipse.core.resources.IFile;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TraitCollectionEditorInputDisplayGroupTest {
+public class AttributesEditorInputDisplayGroupTest {
 
   private TraitCollectionEditorInput input;
   private List<IDisplayTraitGroup<IInteractiveTrait>> groups;
