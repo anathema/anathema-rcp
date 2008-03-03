@@ -79,22 +79,97 @@
          <caste
                casteId="Journeys"
                printName="%caste.printName.Journeys">
+            <trait
+                  traitId="Resistance">
+            </trait>
+            <trait
+                  traitId="Ride">
+            </trait>
+            <trait
+                  traitId="Sail">
+            </trait>
+            <trait
+                  traitId="Survival">
+            </trait>
+            <trait
+                  traitId="Thrown">
+            </trait>
          </caste>
          <caste
                casteId="Serenity"
                printName="%caste.printName.Serenity">
+            <trait
+                  traitId="Craft">
+            </trait>
+            <trait
+                  traitId="Dodge">
+            </trait>
+            <trait
+                  traitId="Linguistics">
+            </trait>
+            <trait
+                  traitId="Performance">
+            </trait>
+            <trait
+                  traitId="Socialize">
+            </trait>
          </caste>
          <caste
                casteId="Battles"
                printName="%caste.printName.Battles">
+            <trait
+                  traitId="Archery">
+            </trait>
+            <trait
+                  traitId="Athletics">
+            </trait>
+            <trait
+                  traitId="Melee">
+            </trait>
+            <trait
+                  traitId="Presence">
+            </trait>
+            <trait
+                  traitId="War">
+            </trait>
          </caste>
          <caste
                casteId="Secrets"
                printName="%caste.printName.Secrets">
+            <trait
+                  traitId="Investigation">
+            </trait>
+            <trait
+                  traitId="Larceny">
+            </trait>
+            <trait
+                  traitId="Lore">
+            </trait>
+            <trait
+                  traitId="Occult">
+            </trait>
+            <trait
+                  traitId="Stealth">
+            </trait>
          </caste>
          <caste
                casteId="Endings"
                printName="%caste.printName.Endings">
+            <trait
+                  traitId="Awareness">
+            </trait>
+            <trait
+                  traitId="Bureaucracy">
+            </trait>
+            <trait
+                  traitId="Integrity">
+            </trait>
+            <trait
+                  traitId="MartialArts">
+            </trait>
+            <trait
+                  traitId="Medicine">
+            </trait>
          </caste>
       </casteList>
    </extension>

@@ -79,22 +79,97 @@
          <caste
                casteId="Air"
                printName="%caste.printName.Air">
+            <trait
+                  traitId="Linguistics">
+            </trait>
+            <trait
+                  traitId="Lore">
+            </trait>
+            <trait
+                  traitId="Occult">
+            </trait>
+            <trait
+                  traitId="Stealth">
+            </trait>
+            <trait
+                  traitId="Thrown">
+            </trait>
          </caste>
          <caste
                casteId="Earth"
                printName="%caste.printName.Earth">
+            <trait
+                  traitId="Awareness">
+            </trait>
+            <trait
+                  traitId="Craft">
+            </trait>
+            <trait
+                  traitId="Integrity">
+            </trait>
+            <trait
+                  traitId="Resistance">
+            </trait>
+            <trait
+                  traitId="War">
+            </trait>
          </caste>
          <caste
                casteId="Fire"
                printName="%caste.printName.Fire">
+            <trait
+                  traitId="Athletics">
+            </trait>
+            <trait
+                  traitId="Dodge">
+            </trait>
+            <trait
+                  traitId="Melee">
+            </trait>
+            <trait
+                  traitId="Presence">
+            </trait>
+            <trait
+                  traitId="Socialize">
+            </trait>
          </caste>
          <caste
                casteId="Water"
                printName="%caste.printName.Water">
+            <trait
+                  traitId="Bureaucracy">
+            </trait>
+            <trait
+                  traitId="Investigation">
+            </trait>
+            <trait
+                  traitId="Larceny">
+            </trait>
+            <trait
+                  traitId="MartialArts">
+            </trait>
+            <trait
+                  traitId="Sail">
+            </trait>
          </caste>
          <caste
                casteId="Wood"
                printName="%caste.printName.Wood">
+            <trait
+                  traitId="Archery">
+            </trait>
+            <trait
+                  traitId="Medicine">
+            </trait>
+            <trait
+                  traitId="Performance">
+            </trait>
+            <trait
+                  traitId="Ride">
+            </trait>
+            <trait
+                  traitId="Survival">
+            </trait>
          </caste>
       </casteList>
    </extension>
