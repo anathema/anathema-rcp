@@ -9,7 +9,7 @@ import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 public class AbilitiesEditorInputFactory extends AbstractTraitCollectionEditorInputFactory {
 
   @Override
-  protected AbilitiesGroupConfiguration createGroupConfiguration() {
+  protected AbilitiesGroupConfiguration createGroupConfiguration(ICharacterTemplate template) {
     return new AbilitiesGroupConfiguration();
   }
 

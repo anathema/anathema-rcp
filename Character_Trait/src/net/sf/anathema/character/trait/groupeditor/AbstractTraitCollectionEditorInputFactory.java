@@ -32,10 +32,11 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
       URL imageUrl,
       IDisplayNameProvider nameProvider,
       IModelCollection modelProvider) throws PersistenceException, CoreException {
+    ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     IEditorInputConfiguration inputConfiguration = createEditorInputConfiguration();
     String modelId = inputConfiguration.getModelId();
-    IFavorizationHandler favorizationHandler = createFavorizationHandler(characterId, modelProvider, modelId);
-    ITraitGroupConfiguration configuration = createGroupConfiguration();
+    IFavorizationHandler favorizationHandler = createFavorizationHandler(characterId, template, modelProvider, modelId);
+    ITraitGroupConfiguration configuration = createGroupConfiguration(template);
     TraitCollectionContext context = TraitCollectionContext.create(characterId, modelProvider, modelId, configuration);
     return new TraitCollectionEditorInput(
         modelFile,
@@ -48,9 +49,9 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
 
   private IFavorizationHandler createFavorizationHandler(
       ICharacterId characterId,
+      ICharacterTemplate template,
       IModelCollection modelProvider,
       String modelId) {
-    ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     return new FavorizationHandler(characterId, createTemplate(template), modelProvider, modelId);
   }
 
@@ -58,7 +59,7 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
 
   protected abstract IEditorInputConfiguration createEditorInputConfiguration();
 
-  protected abstract ITraitGroupConfiguration createGroupConfiguration();
+  protected abstract ITraitGroupConfiguration createGroupConfiguration(ICharacterTemplate template);
 
   @Override
   public final void setInitializationData(IConfigurationElement config, String propertyName, Object data)

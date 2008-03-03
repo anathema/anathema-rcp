@@ -14,7 +14,7 @@ public class AttributeEditorInputFactory extends AbstractTraitCollectionEditorIn
   }
 
   @Override
-  protected ITraitGroupConfiguration createGroupConfiguration() {
+  protected ITraitGroupConfiguration createGroupConfiguration(ICharacterTemplate template) {
     return new AttributeGroupConfiguration();
   }
 
