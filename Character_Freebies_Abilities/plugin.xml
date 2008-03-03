@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sf.anathema.character.freebies.configurations">
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.abilities.DefaultFreebiesHandler"
+            name="Unlimited Free Ability Dots">
+      </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.abilities.FavoredFreebiesHandler"
+            name="Favored Free Ability Dots">
+      </FreebiesConfiguration>
+   </extension>
+
+</plugin>
