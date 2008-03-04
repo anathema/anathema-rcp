@@ -1,6 +1,7 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.points.trait;
 
 import static org.junit.Assert.*;
+import net.sf.anathema.character.points.trait.TraitCollectionExperienceCalculator;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.lib.util.Identificate;
@@ -8,17 +9,17 @@ import net.sf.anathema.lib.util.Identificate;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MultiAttributesExperienceCalculationTest {
+public class MultiTraitExperienceCalculationTest {
 
   private BasicTrait firstTrait;
   private BasicTrait secondTrait;
-  private AttributeExperienceCalculator calculator;
+  private TraitCollectionExperienceCalculator calculator;
 
   @Before
   public void createCalculator() {
     this.firstTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
     this.secondTrait = new BasicTrait(new Identificate("Hasänstärke")); //$NON-NLS-1$
-    this.calculator = new AttributeExperienceCalculator(new TraitCollection(firstTrait, secondTrait));
+    this.calculator = new TraitCollectionExperienceCalculator(new TraitCollection(firstTrait, secondTrait));
   }
 
   @Test

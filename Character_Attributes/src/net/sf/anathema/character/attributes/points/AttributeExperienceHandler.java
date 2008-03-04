@@ -1,19 +1,12 @@
 package net.sf.anathema.character.attributes.points;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
-import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.ModelIdentifier;
-import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.points.configuration.IPointHandler;
-import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.points.trait.ExperienceHandler;
 
-public class AttributeExperienceHandler extends AbstractExecutableExtension implements IPointHandler {
+public class AttributeExperienceHandler extends ExperienceHandler implements IPointHandler {
 
-  @Override
-  public int getPoints(ICharacterId characterId) {
-    ModelIdentifier identifier = new ModelIdentifier(characterId, IAttributesPluginConstants.MODEL_ID);
-    ITraitCollectionModel attributes = (ITraitCollectionModel) ModelCache.getInstance().getModel(identifier);
-    return new AttributeExperienceCalculator(attributes).calculate();
-  }  
+  public AttributeExperienceHandler() {
+    super(IAttributesPluginConstants.MODEL_ID);
+  }
 }

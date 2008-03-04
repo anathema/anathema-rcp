@@ -36,6 +36,10 @@
             groupReference="abilitypoints"
             handlerClass="net.sf.anathema.character.abilities.points.AbilitiesBonusPointHandler">
       </bonusPointCalculator>
+      <experiencePointCalculator
+            groupReference="abilitypoints"
+            handlerClass="net.sf.anathema.character.abilities.points.ExperiencePointHandler">
+      </experiencePointCalculator>
    </extension>
 
 </plugin>

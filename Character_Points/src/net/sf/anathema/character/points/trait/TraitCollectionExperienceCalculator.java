@@ -1,19 +1,19 @@
-package net.sf.anathema.character.attributes.points;
+package net.sf.anathema.character.points.trait;
 
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class AttributeExperienceCalculator {
+public class TraitCollectionExperienceCalculator {
 
-  private final ITraitCollectionModel attributes;
+  private final ITraitCollectionModel collection;
 
-  public AttributeExperienceCalculator(ITraitCollectionModel attributes) {
-    this.attributes = attributes;
+  public TraitCollectionExperienceCalculator(ITraitCollectionModel collection) {
+    this.collection = collection;
   }
 
   public int calculate() {
     int sum = 0;
-    for (IBasicTrait attribute : attributes.getTraits()) {
+    for (IBasicTrait attribute : collection.getTraits()) {
       sum += calculate(attribute);
     }
     return sum;
@@ -23,7 +23,7 @@ public class AttributeExperienceCalculator {
     int experienceValue = attribute.getExperiencedModel().getValue();
     int creationValue = attribute.getCreationModel().getValue();
     int increasedCurrentValueSum = 0;
-    int favoredReduction = 0; 
+    int favoredReduction = 0;
     for (int experienceValueStep = creationValue; experienceValueStep < experienceValue; experienceValueStep++) {
       increasedCurrentValueSum += experienceValueStep;
       if (attribute.getStatusManager().getStatus().isCheap()) {
