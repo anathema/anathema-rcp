@@ -18,7 +18,7 @@ public class MultiTraitExperienceCalculationTest {
   public void createCalculator() {
     firstTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
     secondTrait = new BasicTrait(new Identificate("Hasänstärke")); //$NON-NLS-1$
-    calculator = new TraitCollectionExperienceCalculator(new TraitCollection(firstTrait, secondTrait), 4);
+    calculator = new TraitCollectionExperienceCalculator(new TraitCollection(firstTrait, secondTrait), 4, 100);
   }
 
   @Test

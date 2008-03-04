@@ -11,6 +11,7 @@ import org.junit.Test;
 
 public class SingleTraitExperienceCalculationTest {
 
+  private static final int NEW_COST = 100;
   private BasicTrait basicTrait;
   private TraitCollectionExperienceCalculator calculator;
 
@@ -28,7 +29,7 @@ public class SingleTraitExperienceCalculationTest {
   @Before
   public void createCalculator() {
     basicTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
-    calculator = new TraitCollectionExperienceCalculator(new TraitCollection(basicTrait), 4);
+    calculator = new TraitCollectionExperienceCalculator(new TraitCollection(basicTrait), 4, NEW_COST);
   }
 
   @Test
@@ -69,5 +70,15 @@ public class SingleTraitExperienceCalculationTest {
   @Test
   public void calculates0PointsForExperienceValueLowerThanCreationValue() throws Exception {
     assertCalculation(5, 4, 0);
+  }
+
+  @Test
+  public void calculatesNewCostForLearningFavored() throws Exception {
+    assertFavoredCalculation(0, 1, NEW_COST);
+  }
+
+  @Test
+  public void calculatesNewCostForLearningUnfavored() throws Exception {
+    assertCalculation(0, 1, NEW_COST);
   }
 }

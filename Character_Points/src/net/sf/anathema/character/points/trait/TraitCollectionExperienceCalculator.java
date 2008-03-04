@@ -7,10 +7,12 @@ public class TraitCollectionExperienceCalculator {
 
   private final ITraitCollectionModel collection;
   private final int base;
+  private final int newCost;
 
-  public TraitCollectionExperienceCalculator(ITraitCollectionModel collection, int base) {
+  public TraitCollectionExperienceCalculator(ITraitCollectionModel collection, int base, int newCost) {
     this.collection = collection;
     this.base = base;
+    this.newCost = newCost;
   }
 
   public int calculate() {
@@ -26,12 +28,13 @@ public class TraitCollectionExperienceCalculator {
     int creationValue = attribute.getCreationModel().getValue();
     int increasedCurrentValueSum = 0;
     int favoredReduction = 0;
-    for (int experienceValueStep = creationValue; experienceValueStep < experienceValue; experienceValueStep++) {
+    for (int experienceValueStep = Math.max(1, creationValue); experienceValueStep < experienceValue; experienceValueStep++) {
       increasedCurrentValueSum += experienceValueStep;
       if (attribute.getStatusManager().getStatus().isCheap()) {
         favoredReduction++;
       }
     }
-    return increasedCurrentValueSum * base - favoredReduction;
+    int newLearningCost = creationValue == 0 && experienceValue > 0 ? newCost : 0;
+    return increasedCurrentValueSum * base - favoredReduction + newLearningCost;
   }
 }

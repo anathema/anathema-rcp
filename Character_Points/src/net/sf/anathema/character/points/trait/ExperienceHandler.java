@@ -11,16 +11,18 @@ public class ExperienceHandler extends AbstractExecutableExtension implements IP
 
   private final String modelId;
   private final int baseCost;
+  private final int newCost;
 
-  public ExperienceHandler(String modelId, int base) {
+  public ExperienceHandler(String modelId, int baseCost, int newCost) {
     this.modelId = modelId;
-    baseCost = base;
+    this.baseCost = baseCost;
+    this.newCost = newCost;
   }
 
   @Override
   public int getPoints(ICharacterId characterId) {
     ModelIdentifier identifier = new ModelIdentifier(characterId, modelId);
     ITraitCollectionModel attributes = (ITraitCollectionModel) ModelCache.getInstance().getModel(identifier);
-    return new TraitCollectionExperienceCalculator(attributes, baseCost).calculate();
+    return new TraitCollectionExperienceCalculator(attributes, baseCost, newCost).calculate();
   }
 }
