@@ -27,5 +27,12 @@
             handlerClass="net.sf.anathema.character.freebies.abilities.FavoredFreebiesBonusPointReducer">
       </bonusPointCalculator>
    </extension>
+   <extension
+         point="net.sf.anathema.character.freebies.credits">
+      <creditProvider
+            class="net.sf.anathema.character.freebies.abilities.FavoredCountCreditProvider"
+            id="net.sf.anathema.character.attributes.count.favored">
+      </creditProvider>
+   </extension>
 
 </plugin>

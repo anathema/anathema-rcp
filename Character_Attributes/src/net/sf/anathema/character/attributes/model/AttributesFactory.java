@@ -12,8 +12,8 @@ public class AttributesFactory extends AbstractModelFactory<ITraitCollectionTemp
   private final IModelPersister<ITraitCollectionTemplate, ITraitCollectionModel> persister = new TraitCollectionPersister();
 
   @Override
-  protected AttributeTemplate createModelTemplate(ICharacterTemplate template) {
-    return new AttributeTemplateProvider().getAttributeTemplate(template.getId());
+  protected ITraitCollectionTemplate createModelTemplate(ICharacterTemplate template) {
+    return new AttributeTemplateProvider().getTraitTemplate(template.getId());
   }
 
   @Override

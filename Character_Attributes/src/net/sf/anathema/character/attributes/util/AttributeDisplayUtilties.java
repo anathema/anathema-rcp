@@ -33,7 +33,7 @@ public class AttributeDisplayUtilties {
     };
     IFavorizationHandler favorizationHandler = new FavorizationHandler(
         character,
-        new AttributeTemplateProvider().getAttributeTemplate(character.getTemplateId()),
+        new AttributeTemplateProvider().getTraitTemplate(character.getTemplateId()),
         modelId);
     TraitGroup[] traitGroups = context.getTraitGroups();
     return CollectionUtilities.transform(traitGroups, new DisplayTraitGroupTransformer(context, favorizationHandler));

@@ -4,14 +4,16 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.attributes.AttributesPlugin;
+import net.sf.anathema.character.trait.collection.ITraitCollectionTemplateProvider;
+import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 
-public class AttributeTemplateProvider implements IAttributeTemplateProvider {
+public class AttributeTemplateProvider implements ITraitCollectionTemplateProvider {
 
   private static final String TEMPLATES_EXTENSION_POINT = "templates"; //$NON-NLS-1$
   private static final String ATTRIB_CHARACTER_TEMPLATE_ID = "characterTemplateId"; //$NON-NLS-1$
   private static final String ATTRIB_FAVORIZATION_COUNT = "favorizationCount"; //$NON-NLS-1$
 
-  public AttributeTemplate getAttributeTemplate(String characterTemplateId) {
+  public ITraitCollectionTemplate getTraitTemplate(String characterTemplateId) {
     int favorizationCount = getFavorizationCount(characterTemplateId);
     return new AttributeTemplate(favorizationCount);
   }
