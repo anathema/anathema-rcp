@@ -6,9 +6,11 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 public class TraitCollectionExperienceCalculator {
 
   private final ITraitCollectionModel collection;
+  private final int base;
 
-  public TraitCollectionExperienceCalculator(ITraitCollectionModel collection) {
+  public TraitCollectionExperienceCalculator(ITraitCollectionModel collection, int base) {
     this.collection = collection;
+    this.base = base;
   }
 
   public int calculate() {
@@ -30,6 +32,6 @@ public class TraitCollectionExperienceCalculator {
         favoredReduction++;
       }
     }
-    return increasedCurrentValueSum * 4 - favoredReduction;
+    return increasedCurrentValueSum * base - favoredReduction;
   }
 }

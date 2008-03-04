@@ -1,7 +1,6 @@
 package net.sf.anathema.character.points.trait;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.points.trait.TraitCollectionExperienceCalculator;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.character.trait.status.FavoredStatus;
@@ -28,8 +27,8 @@ public class SingleTraitExperienceCalculationTest {
 
   @Before
   public void createCalculator() {
-    this.basicTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
-    this.calculator = new TraitCollectionExperienceCalculator(new TraitCollection(basicTrait));
+    basicTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
+    calculator = new TraitCollectionExperienceCalculator(new TraitCollection(basicTrait), 4);
   }
 
   @Test
@@ -66,7 +65,7 @@ public class SingleTraitExperienceCalculationTest {
   public void calculates8PointsForExperienceValue3AndCreationValue2() throws Exception {
     assertCalculation(2, 3, 8);
   }
-  
+
   @Test
   public void calculates0PointsForExperienceValueLowerThanCreationValue() throws Exception {
     assertCalculation(5, 4, 0);

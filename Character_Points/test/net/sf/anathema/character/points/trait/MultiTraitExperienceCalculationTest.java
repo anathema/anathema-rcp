@@ -1,7 +1,6 @@
 package net.sf.anathema.character.points.trait;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.points.trait.TraitCollectionExperienceCalculator;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.TraitCollection;
 import net.sf.anathema.lib.util.Identificate;
@@ -17,9 +16,9 @@ public class MultiTraitExperienceCalculationTest {
 
   @Before
   public void createCalculator() {
-    this.firstTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
-    this.secondTrait = new BasicTrait(new Identificate("Hasänstärke")); //$NON-NLS-1$
-    this.calculator = new TraitCollectionExperienceCalculator(new TraitCollection(firstTrait, secondTrait));
+    firstTrait = new BasicTrait(new Identificate("Hasäntümlichkeit")); //$NON-NLS-1$
+    secondTrait = new BasicTrait(new Identificate("Hasänstärke")); //$NON-NLS-1$
+    calculator = new TraitCollectionExperienceCalculator(new TraitCollection(firstTrait, secondTrait), 4);
   }
 
   @Test

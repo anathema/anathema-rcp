@@ -10,15 +10,17 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 public class ExperienceHandler extends AbstractExecutableExtension implements IPointHandler {
 
   private final String modelId;
+  private final int baseCost;
 
-  public ExperienceHandler(String modelId) {
+  public ExperienceHandler(String modelId, int base) {
     this.modelId = modelId;
+    baseCost = base;
   }
 
   @Override
   public int getPoints(ICharacterId characterId) {
     ModelIdentifier identifier = new ModelIdentifier(characterId, modelId);
     ITraitCollectionModel attributes = (ITraitCollectionModel) ModelCache.getInstance().getModel(identifier);
-    return new TraitCollectionExperienceCalculator(attributes).calculate();
+    return new TraitCollectionExperienceCalculator(attributes, baseCost).calculate();
   }
 }

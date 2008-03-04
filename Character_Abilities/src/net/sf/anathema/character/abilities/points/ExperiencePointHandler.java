@@ -6,6 +6,6 @@ import net.sf.anathema.character.points.trait.ExperienceHandler;
 public class ExperiencePointHandler extends ExperienceHandler {
 
   public ExperiencePointHandler() {
-    super(IAbilitiesPluginConstants.MODEL_ID);
+    super(IAbilitiesPluginConstants.MODEL_ID, 2);
   }
 }
