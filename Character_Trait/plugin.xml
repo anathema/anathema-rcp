@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="editordecorations" name="%traitGroupEditorDecorations.extension-point.name" schema="schema/editordecorations.exsd"/>
    <extension-point id="traitstatus" name="%traitStatus.extension-point.name" schema="schema/traitstatus.exsd"/>
+   <extension-point id="collectionTemplates" name="Trait Collection Templates" schema="schema/collectionTemplates.exsd"/>
    <extension
          point="net.sf.anathema.character.core.resources">
       <image

@@ -54,16 +54,11 @@
       </creditList>
    </extension>
    <extension
-         point="org.eclipse.ui.newWizards">
-      <wizard
-            canFinishEarly="true"
-            category="net.sf.anathema.category.character"
-            class="net.sf.anathema.charactertype.lunar.NewPactLunarWizard"
-            hasPages="false"
-            icon="icons/LunarIcon_16.png"
-            id="net.sf.anathema.character.template.pactlunar.newwizard"
-            name="%new.wizard.character.template.pactlunar">
-      </wizard>
+         point="net.sf.anathema.character.caste.traitmodels">
+      <traitmodel
+            characterType="net.sf.anathema.character.type.lunar"
+            modelId="net.sf.anathema.character.attributes.model">
+      </traitmodel>
    </extension>
    <extension
          point="net.sf.anathema.character.core.types">
@@ -79,13 +74,6 @@
             referenceId="LunarBall"
             resourceUrl="icons/Ball_Lunar_16.png">
       </image>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.attributes.templates">
-      <attributeTemplate
-            favorizationCount="1"
-            characterTemplateId="net.sf.anathema.character.template.pactlunar">
-      </attributeTemplate>
    </extension>
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
@@ -141,13 +129,6 @@
       </casteList>
    </extension>
    <extension
-         point="net.sf.anathema.character.caste.traitmodels">
-      <traitmodel
-            characterType="net.sf.anathema.character.type.lunar"
-            modelId="net.sf.anathema.character.attributes.model">
-      </traitmodel>
-   </extension>
-   <extension
          point="net.sf.anathema.character.core.resources">
       <image
             referenceId="FullMoon"
@@ -169,6 +150,31 @@
             dependentModelId="net.sf.anathema.character.attributes.model"
             neededModelId="net.sf.anathema.character.caste.model">
       </dependency>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.trait.collectionTemplates">
+      <collectionTemplate
+            characterTemplateId="net.sf.anathema.character.template.pactlunar"
+            favoredCount="1"
+            modelId="net.sf.anathema.character.attributes.model">
+      </collectionTemplate>
+      <collectionTemplate
+            characterTemplateId="net.sf.anathema.character.template.pactlunar"
+            favoredCount="2"
+            modelId="net.sf.anathema.character.abilities.model">
+      </collectionTemplate>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.charactertype.lunar.NewPactLunarWizard"
+            hasPages="false"
+            icon="icons/LunarIcon_16.png"
+            id="net.sf.anathema.character.template.pactlunar.newwizard"
+            name="%new.wizard.character.template.pactlunar">
+      </wizard>
    </extension>
 
 </plugin>

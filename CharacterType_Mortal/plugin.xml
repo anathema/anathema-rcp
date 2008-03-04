@@ -13,11 +13,27 @@
       </template>
    </extension>
    <extension
-         point="net.sf.anathema.character.points.bonuspoints">
-      <bonuspoints
-            amount="21"
-            templateId="net.sf.anathema.character.template.heroicmortal">
-      </bonuspoints>
+         point="net.sf.anathema.character.trait.collectionTemplates">
+      <collectionTemplate
+            characterTemplateId="net.sf.anathema.character.template.heroicmortal"
+            favoredCount="1"
+            modelId="net.sf.anathema.character.abilities.model">
+      </collectionTemplate>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.types">
+      <characterType
+            id="net.sf.anathema.character.type.mortal"
+            image="icons/MortalIcon_16.png"
+            traitImageId="MortalBall">
+      </characterType>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.resources">
+      <image
+            referenceId="MortalBall"
+            resourceUrl="icons/Ball_Mortal_16.png">
+      </image>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.credits">
@@ -46,6 +62,21 @@
       </creditList>
    </extension>
    <extension
+         point="net.sf.anathema.character.points.bonuspoints">
+      <bonuspoints
+            amount="21"
+            templateId="net.sf.anathema.character.template.heroicmortal">
+      </bonuspoints>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.importwizard.templateconverters">
+      <converter
+            newTemplateId="net.sf.anathema.character.template.heroicmortal"
+            oldCharacterType="Mortal"
+            oldTemplateId="HeroicMortal">
+      </converter>
+   </extension>
+   <extension
          point="org.eclipse.ui.newWizards">
       <wizard
             canFinishEarly="true"
@@ -56,29 +87,6 @@
             id="net.sf.anathema.character.template.heroicmortal.newwizard"
             name="%new.wizard.character.template.heroicmortal">
       </wizard>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.types">
-      <characterType
-            id="net.sf.anathema.character.type.mortal"
-            image="icons/MortalIcon_16.png"
-            traitImageId="MortalBall">
-      </characterType>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.resources">
-      <image
-            referenceId="MortalBall"
-            resourceUrl="icons/Ball_Mortal_16.png">
-      </image>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.importwizard.templateconverters">
-      <converter
-            newTemplateId="net.sf.anathema.character.template.heroicmortal"
-            oldCharacterType="Mortal"
-            oldTemplateId="HeroicMortal">
-      </converter>
    </extension>
 
 </plugin>

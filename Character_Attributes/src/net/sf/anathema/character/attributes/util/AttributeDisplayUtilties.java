@@ -3,7 +3,7 @@ package net.sf.anathema.character.attributes.util;
 import java.util.List;
 
 import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
-import net.sf.anathema.character.attributes.model.AttributeTemplateProvider;
+import net.sf.anathema.character.attributes.model.AttributesTemplateProvider;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.trait.IFavorizationHandler;
@@ -33,7 +33,7 @@ public class AttributeDisplayUtilties {
     };
     IFavorizationHandler favorizationHandler = new FavorizationHandler(
         character,
-        new AttributeTemplateProvider().getTraitTemplate(character.getTemplateId()),
+        new AttributesTemplateProvider().getTraitTemplate(character.getTemplateId()),
         modelId);
     TraitGroup[] traitGroups = context.getTraitGroups();
     return CollectionUtilities.transform(traitGroups, new DisplayTraitGroupTransformer(context, favorizationHandler));

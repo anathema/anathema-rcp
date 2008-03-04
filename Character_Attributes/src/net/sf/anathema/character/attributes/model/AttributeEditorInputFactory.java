@@ -20,6 +20,6 @@ public class AttributeEditorInputFactory extends AbstractTraitCollectionEditorIn
 
   @Override
   protected ITraitCollectionTemplate createTemplate(ICharacterTemplate template) {
-    return new AttributeTemplateProvider().getTraitTemplate(template.getId());
+    return new AttributesTemplateProvider().getTraitTemplate(template.getId());
   }
 }
