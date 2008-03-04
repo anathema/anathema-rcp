@@ -43,6 +43,10 @@
                id="net.sf.anathema.character.abilties.freebies.favored"
                value="13">
          </credit>
+         <credit
+               id="net.sf.anathema.character.abilities.count.favored"
+               value="3">
+         </credit>
       </creditList>
    </extension>
    <extension

@@ -11,6 +11,10 @@
             handlerClass="net.sf.anathema.character.freebies.abilities.FavoredFreebiesHandler"
             name="Favored Free Ability Dots">
       </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.abilities.FavoredCountHandler"
+            name="Favored Abilities">
+      </FreebiesConfiguration>
    </extension>
    <extension
          point="net.sf.anathema.character.points.configurations">

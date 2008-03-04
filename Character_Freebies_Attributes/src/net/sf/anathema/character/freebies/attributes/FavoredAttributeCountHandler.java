@@ -1,27 +1,13 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
-import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
-import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.status.FavoredStatus;
+import net.sf.anathema.character.freebies.configuration.AbstractFavoredTraitCountHandler;
 
-public class FavoredAttributeCountHandler extends AbstractExecutableExtension implements IFreebiesHandler {
-
-  private final IModelCollection modelProvider;
+public class FavoredAttributeCountHandler extends AbstractFavoredTraitCountHandler {
 
   public FavoredAttributeCountHandler() {
-    this(ModelCache.getInstance());
-  }
-  
-  public FavoredAttributeCountHandler(IModelCollection modelProvider) {
-    this.modelProvider = modelProvider;
+    super(ModelCache.getInstance());
   }
 
   @Override
@@ -30,15 +16,7 @@ public class FavoredAttributeCountHandler extends AbstractExecutableExtension im
   }
 
   @Override
-  public int getPoints(ICharacterId id, int credit) {
-    IModelIdentifier modelIdentifer = new ModelIdentifier(id, IAttributesPluginConstants.MODEL_ID);
-    ITraitCollectionModel traitCollection = (ITraitCollectionModel) modelProvider.getModel(modelIdentifer);
-    int count = 0;
-    for (IBasicTrait trait : traitCollection.getTraits()) {
-      if(trait.getStatusManager().getStatus() instanceof FavoredStatus) {
-        count++;
-      }
-    }
-    return count;
+  protected String getModelId() {
+    return IAttributesPluginConstants.MODEL_ID;
   }
 }

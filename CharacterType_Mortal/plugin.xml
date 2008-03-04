@@ -39,6 +39,10 @@
                id="net.sf.anathema.character.abilties.freebies.default"
                value="25">
          </credit>
+         <credit
+               id="net.sf.anathema.character.abilities.count.favored"
+               value="1">
+         </credit>
       </creditList>
    </extension>
    <extension
