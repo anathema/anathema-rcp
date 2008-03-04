@@ -158,5 +158,13 @@
             resourceUrl="icons/Caste_ChangingMoon_16.png">
       </image>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modeldependencies">
+      <dependency
+            characterType="net.sf.anathema.character.type.lunar"
+            dependentModelId="net.sf.anathema.character.attributes.model"
+            neededModelId="net.sf.anathema.character.caste.model">
+      </dependency>
+   </extension>
 
 </plugin>

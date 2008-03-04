@@ -284,5 +284,13 @@
          </traitGroup>
       </groups>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modeldependencies">
+      <dependency
+            characterType="net.sf.anathema.character.type.db"
+            dependentModelId="net.sf.anathema.character.abilities.model"
+            neededModelId="net.sf.anathema.character.caste.model">
+      </dependency>
+   </extension>
 
 </plugin>
