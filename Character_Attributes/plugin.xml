@@ -37,8 +37,17 @@
             handlerClass="net.sf.anathema.character.attributes.points.AttributeBonusPointHandler">
       </bonusPointCalculator>
       <experiencePointCalculator
+            configurationId="attributeExperienceCosts"
             groupReference="attributepoints"
-            handlerClass="net.sf.anathema.character.attributes.points.AttributeExperienceHandler">
+            handlerClass="net.sf.anathema.character.points.trait.ExperienceHandler"
+            modelId="net.sf.anathema.character.attributes.model">
       </experiencePointCalculator>
+      <experienceConfigurations>
+         <experienceTraitConfiguration
+               baseCost="4"
+               id="attributeExperienceCosts"
+               modelId="net.sf.anathema.character.attributes.model">
+         </experienceTraitConfiguration>
+      </experienceConfigurations>
    </extension>
 </plugin>

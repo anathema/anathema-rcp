@@ -7,9 +7,9 @@ public class TraitCollectionExperienceCalculator {
 
   private final ITraitCollectionModel collection;
   private final int base;
-  private final int newCost;
+  private final Integer newCost;
 
-  public TraitCollectionExperienceCalculator(ITraitCollectionModel collection, int base, int newCost) {
+  public TraitCollectionExperienceCalculator(ITraitCollectionModel collection, int base, Integer newCost) {
     this.collection = collection;
     this.base = base;
     this.newCost = newCost;

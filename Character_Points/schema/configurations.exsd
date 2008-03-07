@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="net.sf.anathema.character.points">
+<schema targetNamespace="net.sf.anathema.character.points" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
+      <appinfo>
          <meta.schema plugin="net.sf.anathema.character.points" id="configurations" name="Point Configurations"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter description of this extension point.]
       </documentation>
@@ -14,8 +14,8 @@
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
             <element ref="experiencePointCalculator" minOccurs="0" maxOccurs="unbounded"/>
-            <element ref="pointGroup" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="bonusPointCalculator" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="experienceConfigurations" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -36,66 +36,27 @@
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
    <element name="experiencePointCalculator">
-      <annotation>
-         <appInfo>
-            <meta.element labelAttribute="groupReference"/>
-         </appInfo>
-      </annotation>
       <complexType>
-         <attribute name="groupReference" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
          <attribute name="handlerClass" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn=":net.sf.anathema.character.points.configuration.IPointHandler"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
-      </complexType>
-   </element>
-
-   <element name="pointGroup">
-      <annotation>
-         <appInfo>
-            <meta.element labelAttribute="name"/>
-         </appInfo>
-      </annotation>
-      <complexType>
-         <attribute name="groupId" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="name" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute translatable="true"/>
-               </appInfo>
-            </annotation>
-         </attribute>
-         <attribute name="modelId" type="string" use="required">
+         <attribute name="configurationId" type="string">
             <annotation>
                <documentation>
                   
@@ -106,11 +67,6 @@
    </element>
 
    <element name="bonusPointCalculator">
-      <annotation>
-         <appInfo>
-            <meta.element labelAttribute="groupReference"/>
-         </appInfo>
-      </annotation>
       <complexType>
          <attribute name="groupReference" type="string" use="required">
             <annotation>
@@ -124,57 +80,91 @@
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn=":net.sf.anathema.character.points.configuration.IPointHandler"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
+   <element name="experienceTraitConfiguration">
+      <complexType>
+        <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="modelId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="baseCost" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="newCost" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+       </complexType>
+   </element>
+
+   <element name="experienceConfigurations">
+      <complexType>
+         <sequence>
+            <element ref="experienceTraitConfiguration" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter the first release in which this extension point appears.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="examples"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter extension point usage example here.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="apiInfo"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter API information here.]
       </documentation>
    </annotation>
 
+
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="implementation"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter information about supplied implementation of this extension point.]
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>

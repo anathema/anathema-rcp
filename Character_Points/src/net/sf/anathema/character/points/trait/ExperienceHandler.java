@@ -1,28 +1,58 @@
 package net.sf.anathema.character.points.trait;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class ExperienceHandler extends AbstractExecutableExtension implements IPointHandler {
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 
-  private final String modelId;
-  private final int baseCost;
-  private final int newCost;
+public class ExperienceHandler implements IPointHandler {
 
-  public ExperienceHandler(String modelId, int baseCost, int newCost) {
-    this.modelId = modelId;
-    this.baseCost = baseCost;
-    this.newCost = newCost;
-  }
+  private String modelId;
+  private int baseCost;
+  private Integer newCost;
 
   @Override
   public int getPoints(ICharacterId characterId) {
     ModelIdentifier identifier = new ModelIdentifier(characterId, modelId);
     ITraitCollectionModel attributes = (ITraitCollectionModel) ModelCache.getInstance().getModel(identifier);
     return new TraitCollectionExperienceCalculator(attributes, baseCost, newCost).calculate();
+  }
+
+  @Override
+  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
+      throws CoreException {
+    String configurationId = config.getAttribute("configurationId"); //$NON-NLS-1$
+    IConfigurationElement configurationsElement = getConfigurationsElement(config);
+    IConfigurationElement traitConfigurationElement = getConfigurationElement(configurationsElement, configurationId);
+    modelId = traitConfigurationElement.getAttribute("modelId"); //$NON-NLS-1$
+    baseCost = Integer.valueOf(traitConfigurationElement.getAttribute("baseCost")); //$NON-NLS-1$
+    String newCostString = traitConfigurationElement.getAttribute("newCost"); //$NON-NLS-1$
+    if (newCostString != null) {
+      newCost = Integer.valueOf(newCostString);
+    }
+  }
+
+  private IConfigurationElement getConfigurationElement(
+      IConfigurationElement configurationsElement,
+      String configurationId) {
+    for (IConfigurationElement child : configurationsElement.getChildren()) {
+      if (child.getAttribute("id").equals(configurationId)) {
+        return child;
+      }
+    }
+    return null;
+  }
+
+  private IConfigurationElement getConfigurationsElement(IConfigurationElement config) {
+    for (IConfigurationElement element : config.getDeclaringExtension().getConfigurationElements()) {
+      if (element.getName().equals("experienceConfigurations")) {
+        return element;
+      }
+    }
+    return null;
   }
 }
