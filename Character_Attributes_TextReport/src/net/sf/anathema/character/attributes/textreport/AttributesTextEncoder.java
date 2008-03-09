@@ -3,6 +3,7 @@ package net.sf.anathema.character.attributes.textreport;
 import java.util.List;
 
 import net.sf.anathema.character.attributes.model.AttributeMessages;
+import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.attributes.util.AttributeDisplayUtilties;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
@@ -31,6 +32,6 @@ public class AttributesTextEncoder extends AbstractTraitCollectionTextEncoder im
 
   @Override
   public String getModelId() {
-    return "net.sf.anathema.character.attributes.model"; //$NON-NLS-1$
+    return IAttributesPluginConstants.MODEL_ID;
   }
 }
