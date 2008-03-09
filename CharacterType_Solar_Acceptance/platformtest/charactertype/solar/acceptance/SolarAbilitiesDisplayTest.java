@@ -112,7 +112,7 @@ public class SolarAbilitiesDisplayTest {
     assertEquals(5, displayTrait.getMaximalValue());
     assertEquals(0, displayTrait.getValue());
     IDisplayFavorization favorization = displayTrait.getFavorization();
-    assertFalse(favorization.isFavorable());
+    assertTrue(favorization.isFavorable());
     assertTrue(favorization.getStatusModel().getStatus() instanceof DefaultStatus);
   }
 
