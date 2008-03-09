@@ -2,7 +2,7 @@ package abilities.integration;
 
 import java.util.List;
 
-import net.sf.anathema.character.abilities.model.AbilitiesTemplate;
+import net.sf.anathema.character.abilities.template.AbilitiesTemplateProvider;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
@@ -24,7 +24,7 @@ import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 
-public class AttributeDisplayUtilties {
+public class AbilitiesDisplayUtilties {
 
   public static final class ModelContainer implements IModelContainer {
     private final ICharacterId characterId;
@@ -42,7 +42,7 @@ public class AttributeDisplayUtilties {
   public static List<IDisplayTraitGroup<IDisplayTrait>> createDisplayAttributeGroups(final ICharacterId characterId) {
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     String modelId = IAbilitiesPluginConstants.MODEL_ID;
-    ITraitCollectionTemplate modelTemplate = new AbilitiesTemplate(0, template);
+    ITraitCollectionTemplate modelTemplate = new AbilitiesTemplateProvider().getTraitTemplate(template.getId());
     IModelContainer modelContainer = new ModelContainer(characterId);
     ICharacterTypeProvider typeProvider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
     TraitCollectionContext context = new TraitCollectionContext(modelContainer, typeProvider, modelId, modelTemplate, modelTemplate);

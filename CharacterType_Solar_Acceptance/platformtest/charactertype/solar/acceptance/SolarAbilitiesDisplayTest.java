@@ -21,7 +21,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import abilities.integration.AttributeDisplayUtilties;
+import abilities.integration.AbilitiesDisplayUtilties;
 
 public class SolarAbilitiesDisplayTest {
 
@@ -34,7 +34,7 @@ public class SolarAbilitiesDisplayTest {
     IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
     folder = project.getFolder("Solar"); //$NON-NLS-1$
     CharacterId characterId = new CharacterId(folder);
-    groups = AttributeDisplayUtilties.createDisplayAttributeGroups(characterId);
+    groups = AbilitiesDisplayUtilties.createDisplayAttributeGroups(characterId);
   }
 
   @Test
