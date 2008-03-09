@@ -12,7 +12,7 @@ public class TraitTemplateFactory implements ITraitTemplateFactory {
   }
 
   @Override
-  public ITraitTemplate getTraitTemplate() {
+  public ITraitTemplate getTraitTemplate(String traitId) {
     EssenceSensitiveTraitTemplate traitTemplate = new EssenceSensitiveTraitTemplate();
     traitTemplate.setMiniumalValue(minimalValue);
     return traitTemplate;
