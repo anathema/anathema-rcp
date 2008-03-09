@@ -6,12 +6,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
-import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
+import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.trait.display.IDisplayFavorization;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 
 import org.eclipse.core.resources.IFolder;
@@ -21,27 +22,26 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import abilities.integration.AbilitiesDisplayUtilties;
+import abilities.integration.AbilitiesInteractionUtilties;
 
 public class SolarAbilitiesDisplayTest {
 
   private static IFolder folder;
-  private static List<IDisplayTraitGroup<IDisplayTrait>> groups;
+  private static List<IDisplayTraitGroup<IInteractiveTrait>> groups;
 
   @BeforeClass
-  public static void createSolarFolder() {
+  public static void createSolarFolder() throws Exception {
     new CharacterFactory().createNewCharacter(IIntegrationConstants.DEFAULT_TEMPLATE, "Solar"); //$NON-NLS-1$
     IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
     folder = project.getFolder("Solar"); //$NON-NLS-1$
-    CharacterId characterId = new CharacterId(folder);
-    groups = AbilitiesDisplayUtilties.createDisplayAttributeGroups(characterId);
+    groups = AbilitiesInteractionUtilties.createDisplayAttributeGroups(folder);
   }
 
   @Test
   public void firstGroupIsDawn() throws Exception {
-    IDisplayTraitGroup<IDisplayTrait> group = groups.get(0);
+    IDisplayTraitGroup<IInteractiveTrait> group = groups.get(0);
     assertEquals("Dawn", group.getId()); //$NON-NLS-1$
-    Iterator<IDisplayTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
     assertCreationTrait(groupTraits.next(), "Archery"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "MartialArts"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Melee"); //$NON-NLS-1$
@@ -52,9 +52,9 @@ public class SolarAbilitiesDisplayTest {
 
   @Test
   public void secondGroupIsZenith() throws Exception {
-    IDisplayTraitGroup<IDisplayTrait> group = groups.get(1);
+    IDisplayTraitGroup<IInteractiveTrait> group = groups.get(1);
     assertEquals("Zenith", group.getId()); //$NON-NLS-1$
-    Iterator<IDisplayTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
     assertCreationTrait(groupTraits.next(), "Integrity"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Performance"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Presence"); //$NON-NLS-1$
@@ -65,9 +65,9 @@ public class SolarAbilitiesDisplayTest {
 
   @Test
   public void thirdGroupIsTwilight() throws Exception {
-    IDisplayTraitGroup<IDisplayTrait> group = groups.get(2);
+    IDisplayTraitGroup<IInteractiveTrait> group = groups.get(2);
     assertEquals("Twilight", group.getId()); //$NON-NLS-1$
-    Iterator<IDisplayTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
     assertCreationTrait(groupTraits.next(), "Craft"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Investigation"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Lore"); //$NON-NLS-1$
@@ -78,9 +78,9 @@ public class SolarAbilitiesDisplayTest {
 
   @Test
   public void forthGroupIsNight() throws Exception {
-    IDisplayTraitGroup<IDisplayTrait> group = groups.get(3);
+    IDisplayTraitGroup<IInteractiveTrait> group = groups.get(3);
     assertEquals("Night", group.getId()); //$NON-NLS-1$
-    Iterator<IDisplayTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
     assertCreationTrait(groupTraits.next(), "Athletics"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Awareness"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Dodge"); //$NON-NLS-1$
@@ -91,9 +91,9 @@ public class SolarAbilitiesDisplayTest {
 
   @Test
   public void fifthGroupIsEclipse() throws Exception {
-    IDisplayTraitGroup<IDisplayTrait> group = groups.get(4);
+    IDisplayTraitGroup<IInteractiveTrait> group = groups.get(4);
     assertEquals("Eclipse", group.getId()); //$NON-NLS-1$
-    Iterator<IDisplayTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
     assertCreationTrait(groupTraits.next(), "Bureaucracy"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Linguistics"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Ride"); //$NON-NLS-1$
@@ -118,6 +118,7 @@ public class SolarAbilitiesDisplayTest {
 
   @AfterClass
   public static void deleteSolarFolder() throws CoreException {
+    ModelCache.getInstance().clear();
     folder.delete(true, null);
     folder = null;
     groups = null;

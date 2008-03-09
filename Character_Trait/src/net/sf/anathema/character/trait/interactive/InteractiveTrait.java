@@ -1,10 +1,18 @@
 package net.sf.anathema.character.trait.interactive;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.display.DisplayTrait;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
+import net.sf.anathema.character.trait.interactive.validator.IValidator;
+import net.sf.anathema.character.trait.interactive.validator.RespectCreationValueMinimum;
+import net.sf.anathema.character.trait.interactive.validator.RespectFavoredMinimum;
+import net.sf.anathema.character.trait.interactive.validator.RespectTemplateMinimum;
+import net.sf.anathema.character.trait.interactive.validator.RespectValueMaximum;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.template.ITraitTemplate;
 import net.sf.anathema.lib.control.ChangeManagement;
@@ -33,8 +41,8 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
   private final IDisplayTrait displayTrait;
   private final IInteractiveFavorization favorization;
   private final ITraitPreferences traitPreferences;
-  private final ITraitTemplate traitTemplate;
   private final IExperience experience;
+  private final List<IValidator> valueValidators = new ArrayList<IValidator>();
 
   public InteractiveTrait(
       final IBasicTrait basicTrait,
@@ -43,11 +51,14 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
       ITraitTemplate traitTemplate,
       ITraitPreferences traitPreferences) {
     this.experience = experience;
-    this.traitTemplate = traitTemplate;
     this.traitPreferences = traitPreferences;
-    displayTrait = new DisplayTrait(favorization, basicTrait, experience, traitTemplate);
     this.favorization = favorization;
     this.basicTrait = basicTrait;
+    displayTrait = new DisplayTrait(favorization, basicTrait, experience, traitTemplate);
+    valueValidators.add(new RespectCreationValueMinimum(experience, basicTrait));
+    valueValidators.add(new RespectTemplateMinimum(traitTemplate));
+    valueValidators.add(new RespectValueMaximum(displayTrait));
+    valueValidators.add(new RespectFavoredMinimum(favorization));
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getCreationModel().addChangeListener(experienceTreatmentListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);
@@ -106,19 +117,11 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
   }
 
   private int getCorrectedValue(int value) {
-    if (experience.isExperienced() && value < basicTrait.getCreationModel().getValue()) {
-      return basicTrait.getCreationModel().getValue();
+    int correctedValue = value;
+    for (IValidator validator : valueValidators) {
+      correctedValue = validator.getValidValue(correctedValue);
     }
-    if (value < traitTemplate.getMinimalValue()) {
-      return traitTemplate.getMinimalValue();
-    }
-    if (value > getMaximalValue()) {
-      return getMaximalValue();
-    }
-    if (value < 1 && favorization.isFavored()) {
-      return 1;
-    }
-    return value;
+    return correctedValue;
   }
 
   @Override

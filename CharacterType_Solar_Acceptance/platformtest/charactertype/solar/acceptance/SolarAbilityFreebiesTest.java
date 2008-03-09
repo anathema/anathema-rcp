@@ -5,6 +5,7 @@ import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
+import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.freebies.abilities.util.IAbilityFreebiesConstants;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 
@@ -47,6 +48,7 @@ public class SolarAbilityFreebiesTest {
 
   @After
   public void deleteSolarFolder() throws CoreException {
+    ModelCache.getInstance().clear();
     folder.delete(true, null);
   }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
+import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
@@ -61,6 +62,7 @@ public class SolarInteractive_FavoredAbilityTest {
 
   @AfterClass
   public static void deleteSolarFolder() throws CoreException {
+    ModelCache.getInstance().clear();
     folder.delete(true, null);
     folder = null;
     favoredAbility = null;

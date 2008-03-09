@@ -55,4 +55,9 @@ public class ModelCache implements IModelCollection {
   public boolean contains(IModelIdentifier identifier) {
     return modelsByIdentifier.containsKey(identifier);
   }
+
+  public void clear() {
+    modelsByIdentifier.clear();
+    identifiersByModel.clear();
+  }
 }

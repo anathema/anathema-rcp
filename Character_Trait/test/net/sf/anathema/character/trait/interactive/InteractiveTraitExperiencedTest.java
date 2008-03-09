@@ -75,6 +75,7 @@ public class InteractiveTraitExperiencedTest {
 
   @Test
   public void isSilentIfValueRemains() throws Exception {
+    replay(favorization);
     interactiveTrait.setValue(0);
     final boolean[] eventReceived = new boolean[] { false };
     interactiveTrait.addChangeListener(new IChangeListener() {
