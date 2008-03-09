@@ -243,42 +243,42 @@
             characterTemplateId="net.sf.anathema.character.template.dynastdb"
             favoredCount="3"
             modelId="net.sf.anathema.character.abilities.model">
-         <traitTemplate
-               minimalValue="1"
+         <minimalValue
+               value="1"
                traitId="Archery">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="2"
+         </minimalValue>
+         <minimalValue
+               value="2"
                traitId="Lore">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="MartialArts">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="Melee">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="Performance">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="Presence">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="Ride">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="2"
+         </minimalValue>
+         <minimalValue
+               value="2"
                traitId="Socialize">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="War">
-         </traitTemplate>
+         </minimalValue>
       </collectionTemplate>
    </extension>
    <extension

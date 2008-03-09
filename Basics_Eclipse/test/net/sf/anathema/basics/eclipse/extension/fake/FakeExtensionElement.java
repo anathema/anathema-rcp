@@ -23,7 +23,7 @@ public class FakeExtensionElement implements IExtensionElement {
   }
 
   public FakeExtensionElement(String name) {
-    this.elementName = name;
+    elementName = name;
   }
 
   @Override
@@ -63,6 +63,12 @@ public class FakeExtensionElement implements IExtensionElement {
       elements.addAll(children.get(key));
     }
     return elements.toArray(new IExtensionElement[elements.size()]);
+  }
+
+  @Override
+  public IExtensionElement[] getElements(String name) {
+    List<IExtensionElement> list = children.get(name);
+    return list.toArray(new IExtensionElement[list.size()]);
   }
 
   @Override

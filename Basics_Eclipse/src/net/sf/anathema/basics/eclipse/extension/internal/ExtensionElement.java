@@ -15,6 +15,13 @@ import org.eclipse.jface.resource.ImageDescriptor;
 
 public class ExtensionElement implements IExtensionElement {
 
+  public static final class ElementTransformer implements ITransformer<IConfigurationElement, IExtensionElement> {
+    @Override
+    public IExtensionElement transform(IConfigurationElement element) {
+      return new ExtensionElement(element);
+    }
+  }
+
   private final IConfigurationElement eclipseElement;
 
   public ExtensionElement(IConfigurationElement eclipseElement) {
@@ -39,12 +46,7 @@ public class ExtensionElement implements IExtensionElement {
     return ArrayUtilities.transform(
         eclipseElement.getChildren(),
         IExtensionElement.class,
-        new ITransformer<IConfigurationElement, IExtensionElement>() {
-          @Override
-          public IExtensionElement transform(IConfigurationElement element) {
-            return new ExtensionElement(element);
-          }
-        });
+        new ElementTransformer());
   }
 
   @Override
@@ -93,5 +95,13 @@ public class ExtensionElement implements IExtensionElement {
   public URL getResourceAttribute(String attributeName) {
     String resourcePath = eclipseElement.getAttribute(attributeName);
     return ResourceUtils.getResourceUrl(eclipseElement.getContributor().getName(), resourcePath);
+  }
+
+  @Override
+  public IExtensionElement[] getElements(String name) {
+    return ArrayUtilities.transform(
+        eclipseElement.getChildren(name),
+        IExtensionElement.class,
+        new ElementTransformer());
   }
 }

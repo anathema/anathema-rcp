@@ -162,10 +162,10 @@
             characterTemplateId="net.sf.anathema.character.template.pactlunar"
             favoredCount="2"
             modelId="net.sf.anathema.character.abilities.model">
-         <traitTemplate
-               minimalValue="2"
+         <minimalValue
+               value="2"
                traitId="Survival">
-         </traitTemplate>
+         </minimalValue>
       </collectionTemplate>
    </extension>
    <extension

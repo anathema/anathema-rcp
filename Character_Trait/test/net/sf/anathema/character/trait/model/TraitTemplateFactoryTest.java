@@ -5,8 +5,8 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.IMockProp;
-import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockIntegerAttribute;
+import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 
 import org.junit.Before;
@@ -22,12 +22,12 @@ public class TraitTemplateFactoryTest {
   @Before
   public void createFactory() throws ExtensionException {
     IMockProp traitIdAttribute = new MockStringAttribute("traitId", MINIMAL_TRAIT); //$NON-NLS-1$
-    IMockProp minimalValueAttribute = new MockIntegerAttribute("minimalValue", 1); //$NON-NLS-1$
+    IMockProp minimalValueAttribute = new MockIntegerAttribute("value", 1); //$NON-NLS-1$
     IExtensionElement minimalElement = ExtensionObjectMother.createExtensionElementWithAttributes(
         traitIdAttribute,
         minimalValueAttribute);
     IExtensionElement templateElement = ExtensionObjectMother.createExtensionElementWithAttributes(
-        new MockStringAttribute("characterTemplateId", TEMPLATE_ID), new MockChildren(minimalElement)); //$NON-NLS-1$
+        new MockStringAttribute("characterTemplateId", TEMPLATE_ID), new MockNamedChildren("minimalValue", minimalElement)); //$NON-NLS-1$ //$NON-NLS-2$
     factory = new TraitTemplateFactory(
         DEFAULT_MINIMAL_VALUE,
         TEMPLATE_ID,

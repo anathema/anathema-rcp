@@ -21,6 +21,8 @@ public interface IExtensionElement {
 
   public IExtensionElement[] getElements();
 
+  public IExtensionElement[] getElements(String name);
+
   public String getName();
 
   public URL getResourceAttribute(String attributeName);

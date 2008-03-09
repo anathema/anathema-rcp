@@ -30,14 +30,14 @@ public class TraitTemplateFactory implements ITraitTemplateFactory {
     if (traitElement == null) {
       return createDefaultTemplate();
     }
-    return createTemplate(traitElement.getIntegerAttribute("minimalValue")); //$NON-NLS-1$
+    return createTemplate(traitElement.getIntegerAttribute("value")); //$NON-NLS-1$
   }
 
   private IExtensionElement getExtensionElement(String traitId) {
     for (IPluginExtension extension : extensions) {
       for (IExtensionElement element : extension.getElements()) {
         if (element.getAttribute("characterTemplateId").equals(templateId)) { //$NON-NLS-1$
-          for (IExtensionElement child : element.getElements()) {
+          for (IExtensionElement child : element.getElements("minimalValue")) { //$NON-NLS-1$
             if (child.getAttribute("traitId").equals(traitId)) { //$NON-NLS-1$
               return child;
             }

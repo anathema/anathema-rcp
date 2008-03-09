@@ -245,38 +245,38 @@
             characterTemplateId="net.sf.anathema.character.template.defaultsidereal"
             favoredCount="4"
             modelId="net.sf.anathema.character.abilities.model">
-         <traitTemplate
-               minimalValue="2"
+         <minimalValue
+               value="2"
                traitId="Awareness">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="2"
+         </minimalValue>
+         <minimalValue
+               value="2"
                traitId="Bureaucracy">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="Linguistics">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="3"
+         </minimalValue>
+         <minimalValue
+               value="3"
                traitId="Lore">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="2"
+         </minimalValue>
+         <minimalValue
+               value="2"
                traitId="MartialArts">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="2"
+         </minimalValue>
+         <minimalValue
+               value="2"
                traitId="Occult">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="Socialize">
-         </traitTemplate>
-         <traitTemplate
-               minimalValue="1"
+         </minimalValue>
+         <minimalValue
+               value="1"
                traitId="Stealth">
-         </traitTemplate>
+         </minimalValue>
       </collectionTemplate>
    </extension>
    <extension
