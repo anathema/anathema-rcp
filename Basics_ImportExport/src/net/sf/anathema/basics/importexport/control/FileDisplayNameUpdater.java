@@ -14,6 +14,7 @@ public final class FileDisplayNameUpdater implements IChangeListener {
   public FileDisplayNameUpdater(Text text, IFileProvider provider) {
     this.text = text;
     this.provider = provider;
+    stateChanged();
   }
 
   @Override
