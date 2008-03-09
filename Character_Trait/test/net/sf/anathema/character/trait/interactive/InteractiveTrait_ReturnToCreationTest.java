@@ -13,7 +13,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class InteractiveTraitWithIncreaseWithCreationTest {
+public class InteractiveTrait_ReturnToCreationTest {
 
   private DummyExperience experience;
   private BasicTrait basicTrait;
@@ -25,7 +25,7 @@ public class InteractiveTraitWithIncreaseWithCreationTest {
     basicTrait = new BasicTrait(new Identificate("test")); //$NON-NLS-1$
     basicTrait.getCreationModel().setValue(2);
     basicTrait.getExperiencedModel().setValue(3);
-    this.interactiveTrait = new InteractiveTrait(
+    interactiveTrait = new InteractiveTrait(
         basicTrait,
         experience,
         EasyMock.createMock(IInteractiveFavorization.class),

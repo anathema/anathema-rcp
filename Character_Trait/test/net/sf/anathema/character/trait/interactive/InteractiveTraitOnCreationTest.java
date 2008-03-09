@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait.interactive;
 
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
@@ -34,7 +35,9 @@ public class InteractiveTraitOnCreationTest {
     this.experience.setExperienced(false);
     this.basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
     DummyTraitPreferences preferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
-    this.interactiveTrait = new InteractiveTrait(basicTrait, experience, null, traitTemplate, preferences);
+    IInteractiveFavorization favorization = createNiceMock(IInteractiveFavorization.class);
+    replay(favorization);
+    this.interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, traitTemplate, preferences);
   }
 
   @Test

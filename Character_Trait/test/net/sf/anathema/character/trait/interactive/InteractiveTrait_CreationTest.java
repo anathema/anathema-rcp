@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait.interactive;
 
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
@@ -16,7 +17,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class InteractiveTraitCreationTest {
+public class InteractiveTrait_CreationTest {
   private IIntValueModel model;
   private DummyTraitTemplate traitTemplate;
   private Identificate traitType;
@@ -26,16 +27,17 @@ public class InteractiveTraitCreationTest {
   @Before
   public final void createTrait() {
     IExperience basics = new DummyExperience();
-    this.traitTemplate = new DummyTraitTemplate();
-    this.traitType = new Identificate("test"); //$NON-NLS-1$
-    this.basicTrait = new BasicTrait(traitType);
-    this.favorization = EasyMock.createMock(IInteractiveFavorization.class);
+    traitTemplate = new DummyTraitTemplate();
+    traitType = new Identificate("test"); //$NON-NLS-1$
+    basicTrait = new BasicTrait(traitType);
+    favorization = EasyMock.createNiceMock(IInteractiveFavorization.class);
     ITraitPreferences traitPreferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
-    this.model = new InteractiveTrait(basicTrait, basics, favorization, traitTemplate, traitPreferences);
+    model = new InteractiveTrait(basicTrait, basics, favorization, traitTemplate, traitPreferences);
   }
 
   @Test
   public void favorizationIsDisposedOnDispose() throws Exception {
+    reset(favorization);
     favorization.dispose();
     EasyMock.replay(favorization);
     getDisplayTrait().dispose();
@@ -112,7 +114,7 @@ public class InteractiveTraitCreationTest {
 
   @Test
   public void respectsMaximalValueFromRules() throws Exception {
-    this.traitTemplate.setMaximalValue(6);
+    traitTemplate.setMaximalValue(6);
     assertEquals(6, getDisplayTrait().getMaximalValue());
   }
 

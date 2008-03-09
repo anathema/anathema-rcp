@@ -39,13 +39,13 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
   public InteractiveTrait(
       final IBasicTrait basicTrait,
       final IExperience experience,
-      IInteractiveFavorization favorization,
+      final IInteractiveFavorization favorization,
       ITraitTemplate traitTemplate,
       ITraitPreferences traitPreferences) {
     this.experience = experience;
     this.traitTemplate = traitTemplate;
     this.traitPreferences = traitPreferences;
-    this.displayTrait = new DisplayTrait(favorization, basicTrait, experience, traitTemplate);
+    displayTrait = new DisplayTrait(favorization, basicTrait, experience, traitTemplate);
     this.favorization = favorization;
     this.basicTrait = basicTrait;
     basicTrait.getCreationModel().addChangeListener(changeListener);
@@ -59,6 +59,14 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
         experienceTreatmentListener));
     allDisposables.addDisposable(changeControl);
     allDisposables.addDisposable(favorization);
+    favorization.addFavoredChangeListener(new IChangeListener() {
+      @Override
+      public void stateChanged() {
+        if (favorization.isFavored()) {
+          setValue(getValue());
+        }
+      }
+    });
   }
 
   @Override
@@ -106,6 +114,9 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
     }
     if (value > getMaximalValue()) {
       return getMaximalValue();
+    }
+    if (value < 1 && favorization.isFavored()) {
+      return 1;
     }
     return value;
   }

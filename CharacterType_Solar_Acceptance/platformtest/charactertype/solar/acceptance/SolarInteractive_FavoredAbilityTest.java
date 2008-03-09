@@ -45,6 +45,15 @@ public class SolarInteractive_FavoredAbilityTest {
   }
 
   @Test
+  public void leavesValueOfAbiltyWithValueTwoUnchangedOnToggleToFavored() throws Exception {
+    favoredAbility.setValue(2);
+    favoredAbility.getFavorization().toggleFavored();
+    favoredAbility.getFavorization().toggleFavored();
+    assertEquals(2, favoredAbility.getValue());
+  }
+
+
+  @Test
   public void doesNotReduceValueOfFavoredAbilityToZero() throws Exception {
     favoredAbility.setValue(0);
     assertEquals(1, favoredAbility.getValue());
