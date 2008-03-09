@@ -22,7 +22,7 @@ public class CasteTextReportEncoder extends AbstractTextEncoder implements IText
     if (model != null) {
       ICaste caste = model.getCaste();
       if (caste != null) {
-        Phrase castePhrase = createTextParagraph(createBoldTitle(Messages.CasteTextReportEncoder_CasteLabel));
+        Phrase castePhrase = createTextParagraph(createBoldTitle(Messages.CasteTextReportEncoder_CasteLabel + " ")); //$NON-NLS-1$
         castePhrase.add(createTextChunk(caste.getPrintName()));
         paragraphics.add(castePhrase);
       }

@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Character_Abilities Plug-in
 Bundle-SymbolicName: net.sf.anathema.character.abilities;singleton:=true
 Bundle-Version: 1.0.0
+Eclipse-ExtensibleAPI: true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.character.trait;bundle-version="1.0.0",

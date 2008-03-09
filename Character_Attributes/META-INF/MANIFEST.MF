@@ -5,6 +5,7 @@ Bundle-SymbolicName: net.sf.anathema.character.attributes;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: net.sf.anathema.character.attributes.AttributesPlugin
 Bundle-Localization: plugin
+Eclipse-ExtensibleAPI: true
 Require-Bundle: net.sf.anathema.basics.item,
  net.sf.anathema.character.core,
  net.sf.anathema.basics.lib,

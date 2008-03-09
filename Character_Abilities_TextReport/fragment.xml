@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<fragment>
+   <extension
+         point="net.sf.anathema.character.textreport.textencoder">
+      <textencoder
+            class="net.sf.anathema.character.abilities.textreport.AbilitiesTextEncoder"
+            id="abilities">
+         <after
+               referenceId="attributes">
+         </after>
+         <after
+               referenceId="description">
+         </after>
+         <after
+               referenceId="caste">
+         </after>
+      </textencoder>
+   </extension>
+
+</fragment>

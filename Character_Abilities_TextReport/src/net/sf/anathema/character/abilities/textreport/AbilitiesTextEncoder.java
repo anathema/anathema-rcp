@@ -1,9 +1,9 @@
-package net.sf.anathema.character.attributes.textreport;
+package net.sf.anathema.character.abilities.textreport;
 
 import java.util.List;
 
-import net.sf.anathema.character.attributes.model.AttributeMessages;
-import net.sf.anathema.character.attributes.util.AttributeDisplayUtilties;
+import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilties;
+import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
@@ -12,25 +12,25 @@ import net.sf.anathema.character.trait.textreport.AbstractTraitCollectionTextEnc
 import net.sf.anathema.lib.util.IIdentificate;
 
 
-public class AttributesTextEncoder extends AbstractTraitCollectionTextEncoder implements ITextReportEncoder {
+public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder implements ITextReportEncoder {
 
   @Override
   protected String getTraitName(IIdentificate traitType) {
-    return AttributeMessages.get(traitType.getId());
+    return traitType.getId();
   }
 
   @Override
   protected List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups(ICharacter character) {
-    return AttributeDisplayUtilties.getDisplayAttributeGroups(character);
+    return AbilitiesDisplayUtilties.getDisplayAttributeGroups(character);
   }
 
   @Override
   protected String getTitle() {
-    return Messages.AttributesTextEncoder_AttributesTitle;
+    return "Abilities:";
   }
 
   @Override
   public String getModelId() {
-    return "net.sf.anathema.character.attributes.model"; //$NON-NLS-1$
+    return IAbilitiesPluginConstants.MODEL_ID;
   }
 }
