@@ -2,7 +2,7 @@ package net.sf.anathema.character.freebies.attributes;
 
 import java.util.Map;
 
-import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
+import net.sf.anathema.character.attributes.model.AttributeGroupTemplate;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -37,7 +37,7 @@ public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler {
   @Override
   protected int calculatePoints(ITraitCollectionModel attributes, ICharacterId characterId) {
     Map<Priority, Integer> creditByGroup = new AttributePriorityFreebies().get(characterId, creditManager);
-    TraitGroup[] attributeGroups = new AttributeGroupConfiguration().getGroups();
+    TraitGroup[] attributeGroups = new AttributeGroupTemplate().getGroups();
     AttributePointCalculator dotsCalculator = new AttributePointCalculator(creditByGroup, attributes, attributeGroups);
     return AttributePointCalculator.calculatePoints(dotsCalculator.getDotsForGroups());
   }

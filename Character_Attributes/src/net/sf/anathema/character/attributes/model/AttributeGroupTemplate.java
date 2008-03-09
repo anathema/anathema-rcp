@@ -1,11 +1,9 @@
 package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.model.ITraitGroupConfiguration;
-import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
+import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 
-public class AttributeGroupConfiguration implements ITraitGroupConfiguration {
+public class AttributeGroupTemplate implements ITraitGroupTemplate {
 
   private static final TraitGroup[] groups = new TraitGroup[] {
         new TraitGroup(Messages.AttributeGroup_PhysicalLabel, "Strength", "Dexterity", "Stamina"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
@@ -14,11 +12,5 @@ public class AttributeGroupConfiguration implements ITraitGroupConfiguration {
 
   public TraitGroup[] getGroups() {
     return groups;
-  }
-
-  public ITraitTemplate getTraitTemplate() {
-    EssenceSensitiveTraitTemplate traitTemplate = new EssenceSensitiveTraitTemplate();
-    traitTemplate.setMiniumalValue(1);
-    return traitTemplate;
   }
 }

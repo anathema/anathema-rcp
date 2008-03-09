@@ -19,31 +19,35 @@ public class TraitCollectionContext implements ITraitCollectionContext {
       ICharacterId characterId,
       IModelCollection modelProvider,
       String modelId,
-      ITraitGroupConfiguration groups) {
+      ITraitGroupTemplate groups,
+      ITraitTemplateFactory templateFactory) {
     IModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
     ICharacterTypeProvider provider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
-    return new TraitCollectionContext(modelContainer, provider, modelId, groups);
+    return new TraitCollectionContext(modelContainer, provider, modelId, groups, templateFactory);
   }
 
-  private final ITraitGroupConfiguration groups;
+  private final ITraitGroupTemplate groups;
   private final IModelContainer modelContainer;
   private final ICharacterTypeProvider characterTypeProvider;
   private final String collectionModelId;
+  private final ITraitTemplateFactory templateFactory;
 
   public TraitCollectionContext(
       IModelContainer modelContainer,
       ICharacterTypeProvider characterTypeProvider,
       String collectionModelId,
-      ITraitGroupConfiguration groups) {
+      ITraitGroupTemplate groups,
+      ITraitTemplateFactory templateFactory) {
     this.modelContainer = modelContainer;
     this.characterTypeProvider = characterTypeProvider;
     this.collectionModelId = collectionModelId;
     this.groups = groups;
+    this.templateFactory = templateFactory;
   }
 
   @Override
   public ITraitTemplate getTraitTemplate() {
-    return groups.getTraitTemplate();
+    return templateFactory.getTraitTemplate();
   }
 
   @Override

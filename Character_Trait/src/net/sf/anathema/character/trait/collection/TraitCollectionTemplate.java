@@ -1,17 +1,20 @@
 package net.sf.anathema.character.trait.collection;
 
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.model.ITraitGroupConfiguration;
+import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
+import net.sf.anathema.character.trait.model.ITraitTemplateFactory;
 import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public class TraitCollectionTemplate implements ITraitCollectionTemplate {
 
-  private final ITraitGroupConfiguration groupConfiguration;
+  private final ITraitGroupTemplate groupTemplate;
   private final int favoredCount;
+  private final ITraitTemplateFactory factory;
 
-  public TraitCollectionTemplate(ITraitGroupConfiguration groupConfiguration, int favoredCount) {
-    this.groupConfiguration = groupConfiguration;
+  public TraitCollectionTemplate(ITraitGroupTemplate groupTemplate, ITraitTemplateFactory factory, int favoredCount) {
+    this.groupTemplate = groupTemplate;
+    this.factory = factory;
     this.favoredCount = favoredCount;
   }
 
@@ -22,11 +25,11 @@ public class TraitCollectionTemplate implements ITraitCollectionTemplate {
 
   @Override
   public TraitGroup[] getGroups() {
-    return groupConfiguration.getGroups();
+    return groupTemplate.getGroups();
   }
 
   @Override
   public ITraitTemplate getTraitTemplate() {
-    return groupConfiguration.getTraitTemplate();
+    return factory.getTraitTemplate();
   }
 }

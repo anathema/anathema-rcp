@@ -9,7 +9,8 @@ import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationHandler;
-import net.sf.anathema.character.trait.model.ITraitGroupConfiguration;
+import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
+import net.sf.anathema.character.trait.model.ITraitTemplateFactory;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -36,8 +37,14 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
     IEditorInputConfiguration inputConfiguration = createEditorInputConfiguration();
     String modelId = inputConfiguration.getModelId();
     IFavorizationHandler favorizationHandler = createFavorizationHandler(characterId, template, modelProvider, modelId);
-    ITraitGroupConfiguration configuration = createGroupConfiguration(template);
-    TraitCollectionContext context = TraitCollectionContext.create(characterId, modelProvider, modelId, configuration);
+    ITraitGroupTemplate groupTemplate = createGroupTemplate(template);
+    ITraitTemplateFactory templateFactory = createTemplateFactory(template);
+    TraitCollectionContext context = TraitCollectionContext.create(
+        characterId,
+        modelProvider,
+        modelId,
+        groupTemplate,
+        templateFactory);
     return new TraitCollectionEditorInput(
         modelFile,
         imageUrl,
@@ -59,7 +66,9 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
 
   protected abstract IEditorInputConfiguration createEditorInputConfiguration();
 
-  protected abstract ITraitGroupConfiguration createGroupConfiguration(ICharacterTemplate template);
+  protected abstract ITraitGroupTemplate createGroupTemplate(ICharacterTemplate template);
+
+  protected abstract ITraitTemplateFactory createTemplateFactory(ICharacterTemplate template);
 
   @Override
   public final void setInitializationData(IConfigurationElement config, String propertyName, Object data)

@@ -45,7 +45,7 @@ public class AttributeDisplayUtilties {
     ITraitCollectionTemplate modelTemplate = new AbilitiesTemplate(0, template);
     IModelContainer modelContainer = new ModelContainer(characterId);
     ICharacterTypeProvider typeProvider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
-    TraitCollectionContext context = new TraitCollectionContext(modelContainer, typeProvider, modelId, modelTemplate);
+    TraitCollectionContext context = new TraitCollectionContext(modelContainer, typeProvider, modelId, modelTemplate, modelTemplate);
     IFavorizationHandler favorizationHandler = new FavorizationHandler(modelContainer, modelTemplate, modelId);
     TraitGroup[] traitGroups = context.getTraitGroups();
     return CollectionUtilities.transform(traitGroups, new DisplayTraitGroupTransformer(context, favorizationHandler));

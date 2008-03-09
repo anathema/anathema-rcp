@@ -3,7 +3,7 @@ package net.sf.anathema.character.freebies.attributes;
 import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
+import net.sf.anathema.character.attributes.model.AttributeGroupTemplate;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -40,7 +40,7 @@ public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension
     AttributePointCalculator calculator = new AttributePointCalculator(
         creditsByGroup,
         attributes,
-        new AttributeGroupConfiguration().getGroups());
+        new AttributeGroupTemplate().getGroups());
     int freeFavored = 0;
     for (Dots dots : calculator.getDotsForGroups()) {
       freeFavored += dots.spentOnCheapInExcessOfCredit();

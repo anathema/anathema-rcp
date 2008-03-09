@@ -1,7 +1,8 @@
 package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.trait.collection.TraitCollectionTemplateProvider;
-import net.sf.anathema.character.trait.model.ITraitGroupConfiguration;
+import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
+import net.sf.anathema.character.trait.model.ITraitTemplateFactory;
 
 public class AttributesTemplateProvider extends TraitCollectionTemplateProvider {
 
@@ -10,7 +11,12 @@ public class AttributesTemplateProvider extends TraitCollectionTemplateProvider 
   }
 
   @Override
-  protected ITraitGroupConfiguration createGroupConfiguration(String characterTemplateId) {
-    return new AttributeGroupConfiguration();
+  protected ITraitGroupTemplate createGroupConfiguration(String characterTemplateId) {
+    return new AttributeGroupTemplate();
+  }
+
+  @Override
+  protected ITraitTemplateFactory createTemplateFactory(String characterTemplateId) {
+    return new AttributeTemplateFactory();
   }
 }

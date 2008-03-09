@@ -8,10 +8,13 @@ import net.sf.anathema.character.trait.model.TraitCollectionContext;
 public class AttributesContext {
 
   public static ITraitCollectionContext create(ICharacterId characterId, IModelCollection modelCollection) {
+    AttributeGroupTemplate groupTemplate = new AttributeGroupTemplate();
+    AttributeTemplateFactory templateFactory = new AttributeTemplateFactory();
     return TraitCollectionContext.create(
         characterId,
         modelCollection,
         IAttributesPluginConstants.MODEL_ID,
-        new AttributeGroupConfiguration());
+        groupTemplate,
+        templateFactory);
   }
 }

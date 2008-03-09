@@ -1,11 +1,13 @@
 package net.sf.anathema.character.abilities.template;
 
-import net.sf.anathema.character.abilities.model.AbilitiesGroupConfiguration;
+import net.sf.anathema.character.abilities.model.AbilitiesGroupTemplate;
+import net.sf.anathema.character.abilities.model.AbilityTemplateFactory;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.collection.TraitCollectionTemplateProvider;
-import net.sf.anathema.character.trait.model.ITraitGroupConfiguration;
+import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
+import net.sf.anathema.character.trait.model.ITraitTemplateFactory;
 
 public class AbilitiesTemplateProvider extends TraitCollectionTemplateProvider {
 
@@ -14,8 +16,13 @@ public class AbilitiesTemplateProvider extends TraitCollectionTemplateProvider {
   }
 
   @Override
-  protected ITraitGroupConfiguration createGroupConfiguration(String characterTemplateId) {
+  protected ITraitGroupTemplate createGroupConfiguration(String characterTemplateId) {
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterTemplateId);
-    return new AbilitiesGroupConfiguration(template);
+    return new AbilitiesGroupTemplate(template);
+  }
+
+  @Override
+  protected ITraitTemplateFactory createTemplateFactory(String characterTemplateId) {
+    return new AbilityTemplateFactory();
   }
 }

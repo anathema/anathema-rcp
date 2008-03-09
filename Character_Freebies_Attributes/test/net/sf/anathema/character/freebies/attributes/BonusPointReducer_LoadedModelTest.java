@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
-import net.sf.anathema.character.attributes.model.AttributeGroupConfiguration;
+import net.sf.anathema.character.attributes.model.AttributeGroupTemplate;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
@@ -61,7 +61,7 @@ public class BonusPointReducer_LoadedModelTest {
     ICharacterId characterId = EasyMock.createMock(ICharacterId.class);
     modelIdentifier = new ModelIdentifier(characterId, "net.sf.anathema.character.attributes.model"); //$NON-NLS-1$
     ITraitCollectionModel attributes = TraitCollectionFactory.create(
-        new AttributeGroupConfiguration().getGroups(),
+        new AttributeGroupTemplate().getGroups(),
         new EssenceSensitiveTraitTemplate());
     IModelCollection modelCollection = CharacterObjectMother.createModelProvider(modelIdentifier, attributes);
     resourceHandler = EasyMock.createMock(IModelResourceHandler.class);
