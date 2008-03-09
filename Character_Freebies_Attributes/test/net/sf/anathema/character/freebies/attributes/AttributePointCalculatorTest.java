@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import java.util.Map;
 
+import net.sf.anathema.character.attributes.model.DummyTemplateFactory;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollectionFactory;
 import net.sf.anathema.character.trait.fake.DummyTraitGroup;
-import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,14 +27,14 @@ public class AttributePointCalculatorTest {
 
   @Test
   public void zeroPointsSpentForEmptyAttributes() throws Exception {
-    ITraitCollectionModel attributes = TraitCollectionFactory.create(traitGroups, new EssenceSensitiveTraitTemplate());
+    ITraitCollectionModel attributes = TraitCollectionFactory.create(traitGroups, new DummyTemplateFactory());
     assertPointsSpent(0, 0, 0, attributes);
   }
 
   @Test
   public void oneAttributeProvidesCreationValueForPrimaryGroup() throws Exception {
     traitGroups[0].addTraitId("trait"); //$NON-NLS-1$
-    ITraitCollectionModel attributes = TraitCollectionFactory.create(traitGroups, new EssenceSensitiveTraitTemplate());
+    ITraitCollectionModel attributes = TraitCollectionFactory.create(traitGroups, new DummyTemplateFactory());
     attributes.getTrait("trait").getCreationModel().setValue(2); //$NON-NLS-1$
     assertPointsSpent(1, 0, 0, attributes);
   }
@@ -44,7 +44,7 @@ public class AttributePointCalculatorTest {
   public void higherAttributeFromDifferentGroupsProvidesPrimaryGroupPointsSpent() throws Exception {
     traitGroups[0].addTraitId("lower"); //$NON-NLS-1$
     traitGroups[1].addTraitId("higher"); //$NON-NLS-1$
-    ITraitCollectionModel attributes = TraitCollectionFactory.create(traitGroups, new EssenceSensitiveTraitTemplate());
+    ITraitCollectionModel attributes = TraitCollectionFactory.create(traitGroups, new DummyTemplateFactory());
     attributes.getTrait("lower").getCreationModel().setValue(2); //$NON-NLS-1$
     attributes.getTrait("higher").getCreationModel().setValue(5); //$NON-NLS-1$
     assertPointsSpent(4, 1, 0, attributes);

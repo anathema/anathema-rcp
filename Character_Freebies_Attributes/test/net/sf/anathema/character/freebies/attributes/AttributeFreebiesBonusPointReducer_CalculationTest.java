@@ -2,6 +2,7 @@ package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.AttributeGroupTemplate;
+import net.sf.anathema.character.attributes.model.DummyTemplateFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
@@ -11,7 +12,6 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollectionFactory;
 import net.sf.anathema.character.trait.status.FavoredStatus;
-import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
@@ -41,7 +41,7 @@ public class AttributeFreebiesBonusPointReducer_CalculationTest {
   public void createReducer() throws Exception {
     attributes = TraitCollectionFactory.create(
         new AttributeGroupTemplate().getGroups(),
-        new EssenceSensitiveTraitTemplate());
+        new DummyTemplateFactory());
     characterId = EasyMock.createMock(ICharacterId.class);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
     IModelResourceHandler resourceHandler = CharacterObjectMother.createFriendlyResourceHandler();

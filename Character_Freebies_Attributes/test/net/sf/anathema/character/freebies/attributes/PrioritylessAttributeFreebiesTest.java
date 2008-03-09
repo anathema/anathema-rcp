@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import net.sf.anathema.character.attributes.model.AttributeGroupTemplate;
+import net.sf.anathema.character.attributes.model.DummyTemplateFactory;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.fake.CreditManagerObjectMother;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollectionFactory;
-import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,7 +44,7 @@ public class PrioritylessAttributeFreebiesTest {
   public void spentFreebiesFitIntoCredits() throws Exception {
     ITraitCollectionModel attributes = TraitCollectionFactory.create(
         new AttributeGroupTemplate().getGroups(),
-        new EssenceSensitiveTraitTemplate());
+        new DummyTemplateFactory());
     attributes.getTraits()[0].getCreationModel().setValue(attributeValue);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes);
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(

@@ -22,7 +22,7 @@ public class AttributeDisplayUtilties {
 
   private static final class StaticExportTemplateFactory implements ITraitTemplateFactory {
     @Override
-    public ITraitTemplate getTraitTemplate() {
+    public ITraitTemplate getTraitTemplate(String traitId) {
       return new StaticTraitTemplate(10);
     }
   }

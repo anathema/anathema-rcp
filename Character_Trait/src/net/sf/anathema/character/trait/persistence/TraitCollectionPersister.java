@@ -10,7 +10,7 @@ public class TraitCollectionPersister extends AbstractTraitCollectionPersister<I
 
   @Override
   public ITraitCollectionModel createNew(ITraitCollectionTemplate template) {
-    return TraitCollectionFactory.create(template.getGroups(), template.getTraitTemplate());
+    return TraitCollectionFactory.create(template.getGroups(), template);
   }
 
   @Override

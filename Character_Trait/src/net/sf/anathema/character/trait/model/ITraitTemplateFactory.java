@@ -4,5 +4,5 @@ import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public interface ITraitTemplateFactory {
 
-  public ITraitTemplate getTraitTemplate();
+  public ITraitTemplate getTraitTemplate(String traitId);
 }

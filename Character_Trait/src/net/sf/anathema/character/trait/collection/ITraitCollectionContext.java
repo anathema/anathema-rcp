@@ -12,7 +12,7 @@ public interface ITraitCollectionContext {
 
   public ITraitGroup[] getTraitGroups();
 
-  public ITraitTemplate getTraitTemplate();
+  public ITraitTemplate getTraitTemplate(String traitId);
   
   public String getActiveImageId();
 }

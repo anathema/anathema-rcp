@@ -24,7 +24,7 @@ public abstract class AbstractTraitGroupTransformer<T extends IDisplayTrait> imp
     for (String traitId : group.getTraitIds()) {
       IBasicTrait trait = context.getCollection().getTrait(traitId);
       IExperience experience = context.getExperience();
-      ITraitTemplate traitTemplate = context.getTraitTemplate();
+      ITraitTemplate traitTemplate = context.getTraitTemplate(traitId);
       displayGroup.addTrait(createTrait(trait, experience, traitTemplate));
     }
     return displayGroup;

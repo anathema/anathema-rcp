@@ -46,8 +46,8 @@ public class TraitCollectionContext implements ITraitCollectionContext {
   }
 
   @Override
-  public ITraitTemplate getTraitTemplate() {
-    return templateFactory.getTraitTemplate();
+  public ITraitTemplate getTraitTemplate(String traitId) {
+    return templateFactory.getTraitTemplate(traitId);
   }
 
   @Override

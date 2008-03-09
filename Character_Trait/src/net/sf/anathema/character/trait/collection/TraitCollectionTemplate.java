@@ -29,7 +29,7 @@ public class TraitCollectionTemplate implements ITraitCollectionTemplate {
   }
 
   @Override
-  public ITraitTemplate getTraitTemplate() {
-    return factory.getTraitTemplate();
+  public ITraitTemplate getTraitTemplate(String traitId) {
+    return factory.getTraitTemplate(traitId);
   }
 }
