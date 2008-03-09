@@ -2,14 +2,14 @@ package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.core.model.template.IModelTemplate;
 import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
+import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
 import net.sf.anathema.character.trait.template.ITraitTemplate;
 
-public class AttributeTemplate extends AttributeGroupTemplate implements IModelTemplate, ITraitCollectionTemplate {
+public class DummyAttributeTemplate extends AttributeGroupTemplate implements IModelTemplate, ITraitCollectionTemplate {
 
   private final int favorizationCount;
-  private final AttributeTemplateFactory templateFactory = new AttributeTemplateFactory();
 
-  public AttributeTemplate(int favorizationCount) {
+  public DummyAttributeTemplate(int favorizationCount) {
     this.favorizationCount = favorizationCount;
   }
 
@@ -19,6 +19,8 @@ public class AttributeTemplate extends AttributeGroupTemplate implements IModelT
 
   @Override
   public ITraitTemplate getTraitTemplate() {
-    return templateFactory.getTraitTemplate();
+    EssenceSensitiveTraitTemplate traitTemplate = new EssenceSensitiveTraitTemplate();
+    traitTemplate.setMiniumalValue(1);
+    return traitTemplate;
   }
 }

@@ -1,7 +1,7 @@
 package net.sf.anathema.character.freebies.attributes;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.attributes.model.AttributeTemplate;
+import net.sf.anathema.character.attributes.model.DummyAttributeTemplate;
 import net.sf.anathema.character.trait.collection.ITraitCollectionTemplateProvider;
 
 import org.easymock.EasyMock;
@@ -15,8 +15,8 @@ public class FavoredCountCreditProviderTest {
   @Before
   public void createProvider() throws Exception {
     ITraitCollectionTemplateProvider provider = EasyMock.createNiceMock(ITraitCollectionTemplateProvider.class);
-    EasyMock.expect(provider.getTraitTemplate("myTemplate")).andReturn(new AttributeTemplate(2)); //$NON-NLS-1$
-    EasyMock.expect(provider.getTraitTemplate("yourTemplate")).andReturn(new AttributeTemplate(0)); //$NON-NLS-1$
+    EasyMock.expect(provider.getTraitTemplate("myTemplate")).andReturn(new DummyAttributeTemplate(2)); //$NON-NLS-1$
+    EasyMock.expect(provider.getTraitTemplate("yourTemplate")).andReturn(new DummyAttributeTemplate(0)); //$NON-NLS-1$
     EasyMock.replay(provider);
     favoredCountCreditProvider = new FavoredCountCreditProvider(provider);
   }

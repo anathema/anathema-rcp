@@ -3,6 +3,7 @@ package net.sf.anathema.character.attributes.model;
 import net.sf.anathema.character.trait.collection.TraitCollectionTemplateProvider;
 import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 import net.sf.anathema.character.trait.model.ITraitTemplateFactory;
+import net.sf.anathema.character.trait.model.TraitTemplateFactory;
 
 public class AttributesTemplateProvider extends TraitCollectionTemplateProvider {
 
@@ -17,6 +18,6 @@ public class AttributesTemplateProvider extends TraitCollectionTemplateProvider 
 
   @Override
   protected ITraitTemplateFactory createTemplateFactory(String characterTemplateId) {
-    return new AttributeTemplateFactory();
+    return new TraitTemplateFactory(1);
   }
 }

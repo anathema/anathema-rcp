@@ -11,7 +11,7 @@ public class AttributePersisterTest {
 
   @Test
   public void startValuesForNewAttributes() throws Exception {
-    ITraitCollectionModel attributes = new TraitCollectionPersister().createNew(new AttributeTemplate(0));
+    ITraitCollectionModel attributes = new TraitCollectionPersister().createNew(new DummyAttributeTemplate(0));
     for (IBasicTrait trait : attributes.getTraits()) {
       assertEquals(1, trait.getCreationModel().getValue());
     }
