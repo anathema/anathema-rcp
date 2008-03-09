@@ -16,6 +16,7 @@ public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder imp
 
   @Override
   protected String getTraitName(IIdentificate traitType) {
+    // TODO Case 195: Internationalisierung von Abilties
     return traitType.getId();
   }
 
