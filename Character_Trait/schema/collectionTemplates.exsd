@@ -80,7 +80,7 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="minimalValue" type="string">
+         <attribute name="minimalValue" type="string" use="required">
             <annotation>
                <documentation>
                   

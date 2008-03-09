@@ -18,6 +18,6 @@ public class AttributesTemplateProvider extends TraitCollectionTemplateProvider 
 
   @Override
   protected ITraitTemplateFactory createTemplateFactory(String characterTemplateId) {
-    return new TraitTemplateFactory(1);
+    return new TraitTemplateFactory(1, characterTemplateId);
   }
 }

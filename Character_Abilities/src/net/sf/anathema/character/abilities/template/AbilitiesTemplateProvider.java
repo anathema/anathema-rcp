@@ -23,6 +23,6 @@ public class AbilitiesTemplateProvider extends TraitCollectionTemplateProvider {
 
   @Override
   protected ITraitTemplateFactory createTemplateFactory(String characterTemplateId) {
-    return new TraitTemplateFactory(0);
+    return new TraitTemplateFactory(0, characterTemplateId);
   }
 }
