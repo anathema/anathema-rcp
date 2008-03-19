@@ -31,6 +31,7 @@ public class MapView extends ViewPart {
       StandardLayerFactory layerFactory = new StandardLayerFactory(gisDataDirectory);
       mapModel.getThemeModel().addTheme(new LayerTheme(layerFactory.createXeriarRasterLayer()));
       mapModel.getThemeModel().addTheme(new LayerTheme(layerFactory.createSketchLayer()));
+      mapModel.getThemeModel().addTheme(new LayerTheme(layerFactory.createFeatureLayer()));
       mapModel.getViewProperties().setSuggestedWorldBox(new WorldBox(5050, 6900, 8350, 4150));
       anathemaGisView.initGisView(mapModel);
       bridgeFrame.add(anathemaGisView.getComponent());
