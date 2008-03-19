@@ -31,6 +31,8 @@ Bundle-ClassPath: .,
  lib/jai_core.jar,
  lib/jts.jar,
  lib/vecmath.jar,
- lib/icons.jar
+ lib/icons.jar,
+ lib/disy-commons-core.jar,
+ lib/disy-commons-animated.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Localization: plugin

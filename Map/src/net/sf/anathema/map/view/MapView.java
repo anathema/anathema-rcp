@@ -27,7 +27,7 @@ public class MapView extends ViewPart {
       AnathemaGisView anathemaGisView = new AnathemaGisView();
       final BasicMapModel mapModel = new BasicMapModel();
       GisDataDirectory gisDataDirectory = new GisDataDirectory();
-      gisDataDirectory.setDirectory(new File("H:\\RCP\\ws\\Map\\gisdata\\")); //$NON-NLS-1$
+      gisDataDirectory.setDirectory(new File("H:\\RCP\\trunk\\Map\\gisdata\\")); //$NON-NLS-1$
       StandardLayerFactory layerFactory = new StandardLayerFactory(gisDataDirectory);
       mapModel.getThemeModel().addTheme(new LayerTheme(layerFactory.createXeriarRasterLayer()));
       mapModel.getThemeModel().addTheme(new LayerTheme(layerFactory.createSketchLayer()));
