@@ -2,6 +2,8 @@ package net.sf.anathema.map.view.gisterm;
 
 import javax.swing.JPopupMenu;
 
+import net.sf.anathema.map.view.exchange.LayerPanelPopupFactory;
+
 import de.disy.cadenza.core.extensions.IExtensionProvider;
 import de.disy.cadenza.core.extensions.NullExtensionProvider;
 import de.disy.cadenza.core.util.IRegistry;

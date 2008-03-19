@@ -1,5 +1,5 @@
 // Copyright (c) 2003 by disy Informationssysteme GmbH
-package net.sf.anathema.map.view.gisterm;
+package net.sf.anathema.map.view.exchange;
 
 import gis.gisterm.gcore.GenericLayer;
 import gis.gisterm.map.FeatureLayer;
