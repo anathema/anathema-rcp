@@ -23,12 +23,13 @@ public class CharacterTypeExtensionPoint implements ICharacterTypeCollection {
   }
 
   public ICharacterType getCharacterTypeById(final String id) {
-    return CollectionUtilities.find(getCharacterTypes(), new IPredicate<ICharacterType>() {
+    List<ICharacterType> foundObjects = CollectionUtilities.filter(getCharacterTypes(), new IPredicate<ICharacterType>() {
       @Override
       public boolean evaluate(ICharacterType type) {
         return id.equals(type.getId());
       }
     });
+    return foundObjects.size() > 0 ? foundObjects.get(0) : null;
   }
 
   private synchronized List<ICharacterType> getCharacterTypes() {
