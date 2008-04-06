@@ -1,5 +1,6 @@
 package net.sf.anathema.character.abilities.sheet;
 
+import java.awt.Color;
 import java.util.List;
 
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilties;
@@ -10,14 +11,16 @@ import net.sf.anathema.lib.util.Identificate;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExecutableExtension;
 
+import com.lowagie.text.Font;
 import com.lowagie.text.pdf.BaseFont;
 
-public class AbilitiesEncoder extends FavorableTraitEncoder {
-
-  private AbilitiesEncoder(BaseFont baseFont) {
-    super(
-        baseFont,
+public class AbilitiesEncoder extends FavorableTraitEncoder implements IExecutableExtension{
+  private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
+  
+  public AbilitiesEncoder() {
+    super(BASEFONT,
         new Identificate("Athletics"),
         new Identificate("Dodge"),
         new Identificate("Larceny"),
