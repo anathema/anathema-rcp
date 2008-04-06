@@ -17,3 +17,4 @@ Require-Bundle: net.sf.anathema.character.core,
 Export-Package: abilities.integration,
  net.sf.anathema.character.abilities.template,
  net.sf.anathema.character.abilities.util
+Bundle-ActivationPolicy: lazy

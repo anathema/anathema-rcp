@@ -24,7 +24,7 @@ import com.lowagie.text.pdf.PdfContentByte;
 public class PdfAttributesEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
 
   private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
-  private PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
+  private final PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
 
   @Override
   public String getHeader(ICharacter character) {

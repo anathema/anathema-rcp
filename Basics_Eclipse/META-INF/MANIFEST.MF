@@ -8,7 +8,7 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  net.sf.anathema.basics.lib,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.ui;visibility:=reexport
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: net.sf.anathema.basics.eclipse.extension,
  net.sf.anathema.basics.eclipse.extension.fake,
  net.sf.anathema.basics.eclipse.logging,

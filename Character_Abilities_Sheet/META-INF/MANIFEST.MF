@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Character_Abilities_Sheet Fragment
+Bundle-SymbolicName: net.sf.anathema.character.abilities.sheet;singleton:=true
+Bundle-Version: 1.0.0
+Fragment-Host: net.sf.anathema.character.abilities;bundle-version="1.0.0"
+Require-Bundle: net.sf.anathema.character.sheet;bundle-version="1.0.0",
+ net.sf.anathema.character.trait.sheet;bundle-version="1.0.0"

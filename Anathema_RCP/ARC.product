@@ -45,6 +45,9 @@
       <plugin id="net.sf.anathema.campaign.plot.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.campaign.plot.report" fragment="true"/>
       <plugin id="net.sf.anathema.caste.import" fragment="true"/>
+      <plugin id="net.sf.anathema.character.abilities"/>
+      <plugin id="net.sf.anathema.character.abilities.sheet" fragment="true"/>
+      <plugin id="net.sf.anathema.character.abilities.textreport" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes"/>
       <plugin id="net.sf.anathema.character.attributes.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes.sheet" fragment="true"/>
@@ -60,6 +63,7 @@
       <plugin id="net.sf.anathema.character.experience"/>
       <plugin id="net.sf.anathema.character.experience.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.character.freebies"/>
+      <plugin id="net.sf.anathema.character.freebies.abilities"/>
       <plugin id="net.sf.anathema.character.freebies.attributes"/>
       <plugin id="net.sf.anathema.character.importwizard"/>
       <plugin id="net.sf.anathema.character.points"/>
@@ -68,6 +72,8 @@
       <plugin id="net.sf.anathema.character.sheet"/>
       <plugin id="net.sf.anathema.character.textreport"/>
       <plugin id="net.sf.anathema.character.trait"/>
+      <plugin id="net.sf.anathema.character.trait.sheet"/>
+      <plugin id="net.sf.anathema.character.trait.textreport"/>
       <plugin id="net.sf.anathema.charactertype.db"/>
       <plugin id="net.sf.anathema.charactertype.lunar"/>
       <plugin id="net.sf.anathema.charactertype.mortal"/>

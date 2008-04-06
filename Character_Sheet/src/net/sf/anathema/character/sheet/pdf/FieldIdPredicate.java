@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.sf.anathema.character.sheet.pdf;
 
 import net.disy.commons.core.predicate.IPredicate;
