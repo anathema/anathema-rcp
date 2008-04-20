@@ -27,6 +27,9 @@ public class ResourceCloseHandler implements ICloseHandler {
   public void closeIfRequired(IEditorReference reference) throws PartInitException {
     IEditorInput editorInput = reference.getEditorInput();
     IFileEditorInput input = (IFileEditorInput) editorInput.getAdapter(IFileEditorInput.class);
+    if (input == null) {
+    	return;
+    }
     if (file.equals(input.getFile())) {
       closer.close(reference.getEditor(false));
     }

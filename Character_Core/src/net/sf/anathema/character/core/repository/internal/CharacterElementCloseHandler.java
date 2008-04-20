@@ -1,13 +1,13 @@
 package net.sf.anathema.character.core.repository.internal;
 
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.PartInitException;
-
 import net.sf.anathema.basics.item.editor.EditorCloser;
 import net.sf.anathema.basics.item.editor.IEditorCloser;
 import net.sf.anathema.basics.repository.treecontent.deletion.ICloseHandler;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelIdentifier;
+
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.PartInitException;
 
 public class CharacterElementCloseHandler implements ICloseHandler {
 

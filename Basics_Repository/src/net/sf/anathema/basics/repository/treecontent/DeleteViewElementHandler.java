@@ -16,15 +16,44 @@ public class DeleteViewElementHandler extends AbstractHandler {
 
   @Override
   public Object execute(ExecutionEvent event) throws ExecutionException {
-    IViewElement element = (IViewElement) ((StructuredSelection) HandlerUtil.getCurrentSelection(event)).getFirstElement();
-    deleter.setPage(HandlerUtil.getActiveSite(event).getPage());
-    boolean confirmed = MessageDialog.openQuestion(
-        HandlerUtil.getActiveShell(event),
-        Messages.DeleteViewElementActionDelegate_Confirm_Dialog_Title,
-        NLS.bind(Messages.DeleteViewElementActionDelegate_Confirm_Dialog_Message, element.getDisplayName()));
-    if (confirmed) {
-      deleter.delete((IPageDelible) element.getAdapter(IPageDelible.class));
+    StructuredSelection selection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
+	deleter.setPage(HandlerUtil.getActiveSite(event).getPage());
+    if (selection.size() == 1){
+    	deleteSingleElement(event, selection);
+    }
+    else{
+    	deleteMultipleElements(event, selection);    	
     }
     return null;
+  }
+
+private void deleteMultipleElements(ExecutionEvent event,
+		StructuredSelection selection) {
+	boolean	confirmed =	confirmDeletion(event, selection.size() + " elements");
+	if (confirmed) {
+	  for (Object element :selection.toArray()){
+		deleteElement((IViewElement)element);
+	  }
+	}
+}
+
+private void deleteSingleElement(ExecutionEvent event,
+		StructuredSelection selection) {
+	IViewElement element = (IViewElement) selection.getFirstElement();
+	boolean confirmed =	confirmDeletion(event, '"' + element.getDisplayName() + '"');
+	if (confirmed) {
+		deleteElement(element);
+	}
+}
+
+  private void deleteElement(IViewElement element) {
+	deleter.delete((IPageDelible) element.getAdapter(IPageDelible.class));
+  }
+
+  private boolean confirmDeletion(ExecutionEvent event, String completion) {
+	return MessageDialog.openQuestion(
+        HandlerUtil.getActiveShell(event),
+        Messages.DeleteViewElementActionDelegate_Confirm_Dialog_Title,
+        NLS.bind(Messages.DeleteViewElementActionDelegate_Confirm_Dialog_Message, completion));
   }
 }

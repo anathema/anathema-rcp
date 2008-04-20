@@ -141,9 +141,6 @@
             commandId="net.sf.anathema.basics.commands.delete">
          <activeWhen>
             <and>
-               <reference
-                     definitionId="net.sf.anathema.definitions.singleViewElementSelection">
-               </reference>
                <with
                      variable="selection">
                   <iterate>
