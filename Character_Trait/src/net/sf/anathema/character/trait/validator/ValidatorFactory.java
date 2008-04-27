@@ -14,7 +14,6 @@ import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 import net.sf.anathema.character.trait.validator.where.AllWhere;
 import net.sf.anathema.character.trait.validator.where.ConditionalFactory;
 import net.sf.anathema.character.trait.validator.where.IWhere;
-import net.sf.anathema.character.trait.validator.where.MinimalValueValidator;
 import net.sf.anathema.character.trait.validator.where.Where;
 
 public class ValidatorFactory implements IValidatorFactory {
@@ -38,14 +37,13 @@ public class ValidatorFactory implements IValidatorFactory {
 
   private void addConfiguredValidators(
       List<IValidator> validators,
-      IExtensionElement minimumElement,
+      IExtensionElement validatorElement,
       String templateId,
       IModelContainer container,
       String modelId,
       IBasicTrait trait) {
-    IValidator validator = new MinimalValueValidator(minimumElement.getIntegerAttribute("value"));
-    AllWhere whereClause = createWhereClause(minimumElement);
-    IValidatorFactory factory = new ConditionalFactory(validator, whereClause);
+    AllWhere whereClause = createWhereClause(validatorElement.getElement("condition"));
+    IValidatorFactory factory = new ConditionalFactory(validatorElement, whereClause);
     validators.addAll(factory.create(templateId, container, modelId, trait));
   }
 

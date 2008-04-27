@@ -52,12 +52,17 @@
    </extension>
    <extension
          point="net.sf.anathema.character.trait.validator">
-      <minimum
-            value="1">
-         <where>
-            <modelId
-                  id="net.sf.anathema.character.attributes.model">
-            </modelId></where>
-      </minimum>
+      <validator>
+         <condition>
+            <where>
+               <modelId
+                     id="net.sf.anathema.character.attributes.model">
+               </modelId>
+            </where>
+         </condition>
+         <minimum
+               value="1">
+         </minimum>
+      </validator>
    </extension>
 </plugin>

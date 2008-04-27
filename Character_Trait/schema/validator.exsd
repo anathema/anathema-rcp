@@ -13,7 +13,7 @@
    <element name="extension">
       <complexType>
          <sequence>
-            <element ref="minimum" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="validator" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -44,10 +44,14 @@
 
    <element name="minimum">
       <complexType>
-         <sequence>
-            <element ref="where" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
          <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="traitId" type="string">
             <annotation>
                <documentation>
                   
@@ -62,7 +66,6 @@
          <choice>
             <element ref="modelContent"/>
             <element ref="modelId"/>
-            <element ref="traitId"/>
          </choice>
       </complexType>
    </element>
@@ -91,15 +94,20 @@
       </complexType>
    </element>
 
-   <element name="traitId">
+   <element name="condition">
       <complexType>
-         <attribute name="id" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
+         <sequence>
+            <element ref="where" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="validator">
+      <complexType>
+         <sequence>
+            <element ref="condition"/>
+            <element ref="minimum" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
       </complexType>
    </element>
 
