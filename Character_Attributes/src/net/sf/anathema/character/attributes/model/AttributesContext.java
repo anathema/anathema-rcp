@@ -17,7 +17,6 @@ public class AttributesContext {
         characterId,
         modelCollection,
         IAttributesPluginConstants.MODEL_ID,
-        traitTemplate,
         traitTemplate);
   }
 }

@@ -7,7 +7,7 @@ import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.collection.TraitCollectionTemplateProvider;
 import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 import net.sf.anathema.character.trait.model.IMinimalValueFactory;
-import net.sf.anathema.character.trait.model.TraitTemplateFactory;
+import net.sf.anathema.character.trait.model.MinimalValueFactory;
 
 public class AbilitiesTemplateProvider extends TraitCollectionTemplateProvider {
 
@@ -23,6 +23,6 @@ public class AbilitiesTemplateProvider extends TraitCollectionTemplateProvider {
 
   @Override
   protected IMinimalValueFactory createTemplateFactory(String characterTemplateId) {
-    return new TraitTemplateFactory(0, characterTemplateId);
+    return new MinimalValueFactory(0, characterTemplateId);
   }
 }

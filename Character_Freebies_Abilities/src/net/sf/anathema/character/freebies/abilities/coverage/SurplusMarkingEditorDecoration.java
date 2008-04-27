@@ -30,7 +30,6 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
         characterId,
         modelCollection,
         IAbilitiesPluginConstants.MODEL_ID,
-        traitTemplate,
         traitTemplate);
   }
 

@@ -12,12 +12,12 @@ import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TraitTemplateFactoryTest {
+public class MinimalValueFactoryTest {
 
   private static final String MINIMAL_TRAIT = "minimalTrait"; //$NON-NLS-1$
   private static final String TEMPLATE_ID = "myTemplateId"; //$NON-NLS-1$
   private static final int DEFAULT_MINIMAL_VALUE = 2;
-  private TraitTemplateFactory factory;
+  private MinimalValueFactory factory;
 
   @Before
   public void createFactory() throws ExtensionException {
@@ -28,7 +28,7 @@ public class TraitTemplateFactoryTest {
         minimalValueAttribute);
     IExtensionElement templateElement = ExtensionObjectMother.createExtensionElementWithAttributes(
         new MockStringAttribute("characterTemplateId", TEMPLATE_ID), new MockNamedChildren("minimalValue", minimalElement)); //$NON-NLS-1$ //$NON-NLS-2$
-    factory = new TraitTemplateFactory(
+    factory = new MinimalValueFactory(
         DEFAULT_MINIMAL_VALUE,
         TEMPLATE_ID,
         ExtensionObjectMother.createPluginExtension(templateElement));

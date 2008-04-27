@@ -13,7 +13,6 @@ import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.groupeditor.FavorizationHandler;
-import net.sf.anathema.character.trait.model.StaticExportTemplateFactory;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 
@@ -23,11 +22,11 @@ public class AbilitiesDisplayUtilties {
     String modelId = IAbilitiesPluginConstants.MODEL_ID;
     ICharacterTemplate characterTemplate = new CharacterTemplateProvider().getTemplate(character.getTemplateId());
     TraitCollectionContext context = new TraitCollectionContext(
+        characterTemplate.getId(),
         character,
         character,
         modelId,
-        new AbilitiesGroupTemplate(characterTemplate),
-        new StaticExportTemplateFactory());
+        new AbilitiesGroupTemplate(characterTemplate));
     IFavorizationHandler favorizationHandler = new FavorizationHandler(
         character,
         new AbilitiesTemplateProvider().getTraitTemplate(character.getTemplateId()),

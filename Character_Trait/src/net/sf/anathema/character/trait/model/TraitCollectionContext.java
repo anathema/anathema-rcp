@@ -8,6 +8,7 @@ import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.ModelContainer;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.core.type.CharacterTypeProvider;
 import net.sf.anathema.character.trait.IBasicTrait;
@@ -23,36 +24,36 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
       ICharacterId characterId,
       IModelCollection modelProvider,
       String modelId,
-      ITraitGroupTemplate groups,
-      IMinimalValueFactory templateFactory) {
+      ITraitGroupTemplate groups) {
     IModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
     ICharacterTypeProvider provider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
-    return new TraitCollectionContext(modelContainer, provider, modelId, groups, templateFactory);
+    String templateId = new CharacterTemplateProvider().getTemplate(characterId).getId();
+    return new TraitCollectionContext(templateId, modelContainer, provider, modelId, groups);
   }
 
   private final ITraitGroupTemplate groups;
   private final IModelContainer modelContainer;
   private final ICharacterTypeProvider characterTypeProvider;
   private final String collectionModelId;
-  private final IMinimalValueFactory templateFactory;
+  private final String templateId;
 
   public TraitCollectionContext(
+      String templateId,
       IModelContainer modelContainer,
       ICharacterTypeProvider characterTypeProvider,
       String collectionModelId,
-      ITraitGroupTemplate groups,
-      IMinimalValueFactory templateFactory) {
+      ITraitGroupTemplate groups) {
+    this.templateId = templateId;
     this.modelContainer = modelContainer;
     this.characterTypeProvider = characterTypeProvider;
     this.collectionModelId = collectionModelId;
     this.groups = groups;
-    this.templateFactory = templateFactory;
   }
 
   @Override
   public List<IValidator> getValidators(String traitId) {
     IBasicTrait trait = getCollection().getTrait(traitId);
-    return new ValidatorFactory().create(getModelContainer(), trait, templateFactory);
+    return new ValidatorFactory().create(templateId, getModelContainer(), trait);
   }
 
   @Override

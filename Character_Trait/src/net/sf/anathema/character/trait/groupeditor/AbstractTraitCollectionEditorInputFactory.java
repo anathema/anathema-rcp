@@ -40,7 +40,6 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
         characterId,
         modelProvider,
         modelId,
-        collectionTemplate,
         collectionTemplate);
     return new TraitCollectionEditorInput(
         modelFile,
