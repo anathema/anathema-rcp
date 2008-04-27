@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.character.abilities.model.AbilitiesMessages;
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilties;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
@@ -89,8 +90,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
       if (markedTraits.isMarked(trait)) {
         markerEncoder.encode(directContent, new Position(markerX, yPosition + 1));
       }
-      // TODO i18n für Abilities
-      String label = trait.getTraitType().getId();
+      String label = AbilitiesMessages.get(trait.getTraitType().getId());
       Position traitPosition = new Position(traitX, yPosition);
       height += encodeFavorableTrait(directContent, label, trait, traitPosition, width - groupLabelWidth);
     }

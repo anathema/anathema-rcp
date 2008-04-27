@@ -2,6 +2,7 @@ package net.sf.anathema.character.abilities.textreport;
 
 import java.util.List;
 
+import net.sf.anathema.character.abilities.model.AbilitiesMessages;
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilties;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacter;
@@ -11,13 +12,11 @@ import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.textreport.AbstractTraitCollectionTextEncoder;
 import net.sf.anathema.lib.util.IIdentificate;
 
-
 public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder implements ITextReportEncoder {
 
   @Override
   protected String getTraitName(IIdentificate traitType) {
-    // TODO Case 195: Internationalisierung von Abilties
-    return traitType.getId();
+    return AbilitiesMessages.get(traitType.getId());
   }
 
   @Override

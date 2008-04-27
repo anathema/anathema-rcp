@@ -19,7 +19,6 @@ public class AbilitiesEditorInputConfiguration implements IEditorInputConfigurat
 
   @Override
   public String getTraitLabel(IIdentificate traitType) {
-    // TODO Case 195: Internationalisierung von Abilties
-    return traitType.getId();
+    return AbilitiesMessages.get(traitType.getId());
   }
 }

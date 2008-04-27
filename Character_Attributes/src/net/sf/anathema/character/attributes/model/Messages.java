@@ -7,7 +7,6 @@ public class Messages extends NLS {
   public static String AttributeGroup_MentalLabel;
   public static String AttributeGroup_PhysicalLabel;
   public static String AttributeGroup_SocialLabel;
-  public static String AttributeMessages_I18nFailed;
   public static String Attributes_NotFound_Message;
   public static String AttributesEditorInput_GroupLessTraitMessage;
   static {
