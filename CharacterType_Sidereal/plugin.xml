@@ -341,5 +341,33 @@
             templateId="net.sf.anathema.character.template.defaultsidereal">
       </bonuspoints>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.validator">
+      <minimum
+            value="3">
+         <where>
+            <traitId
+                  id="Socialize">
+            </traitId>
+         </where>
+         <where>
+            <modelContent
+                  definition="caste.is.Serenity">
+            </modelContent>
+         </where>
+      </minimum>
+      <minimum
+            value="2">
+         <where>
+            <traitId
+                  id="Athletics">
+            </traitId></where>
+         <where>
+            <modelContent
+                  definition="caste.is.Journeys">
+            </modelContent>
+         </where>
+      </minimum>
+   </extension>
 
 </plugin>

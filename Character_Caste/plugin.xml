@@ -33,5 +33,12 @@
             class="net.sf.anathema.character.caste.trait.CasteTraitImageProvider">
       </statusImageProvider>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modelcheck">
+      <contentCheck
+            class="net.sf.anathema.character.caste.model.CasteModelCheck"
+            contentId="caste.is">
+      </contentCheck>
+   </extension>
 
 </plugin>

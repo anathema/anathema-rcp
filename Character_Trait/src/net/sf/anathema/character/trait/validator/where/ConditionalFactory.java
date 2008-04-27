@@ -21,9 +21,7 @@ public class ConditionalFactory implements IValidatorFactory {
   @Override
   public List<IValidator> create(String templateId, IModelContainer container, String modelId, IBasicTrait trait) {
     List<IValidator> validators = new ArrayList<IValidator>();
-    if (whereClause.evaluate(templateId, container, modelId, trait)) {
-      validators.add(validator);
-    }
+    validators.add(new ConditionalValidator(validator, whereClause, modelId, container, modelId, trait));
     return validators;
   }
 }

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="net.sf.anathema.character.trait" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="net.sf.anathema.character.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="net.sf.anathema.character.trait" id="validator" name="Trait Validators"/>
+         <meta.schema plugin="net.sf.anathema.character.core" id="modelCheck" name="Character Model Check"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -13,7 +13,7 @@
    <element name="extension">
       <complexType>
          <sequence>
-            <element ref="minimum" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="contentCheck" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -42,58 +42,19 @@
       </complexType>
    </element>
 
-   <element name="minimum">
+   <element name="contentCheck">
       <complexType>
-         <sequence>
-            <element ref="where" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
-         <attribute name="value" type="string" use="required">
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.core.model.content.IModelContentCheck"/>
+               </appinfo>
             </annotation>
          </attribute>
-      </complexType>
-   </element>
-
-   <element name="where">
-      <complexType>
-         <choice>
-            <element ref="modelContent"/>
-            <element ref="modelId"/>
-            <element ref="traitId"/>
-         </choice>
-      </complexType>
-   </element>
-
-   <element name="modelId">
-      <complexType>
-         <attribute name="id" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="modelContent">
-      <complexType>
-         <attribute name="definition" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="traitId">
-      <complexType>
-         <attribute name="id" type="string" use="required">
+         <attribute name="contentId" type="string" use="required">
             <annotation>
                <documentation>
                   
