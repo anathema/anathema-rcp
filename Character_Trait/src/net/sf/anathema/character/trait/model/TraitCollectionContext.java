@@ -53,7 +53,9 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
   @Override
   public List<IValidator> getValidators(String traitId) {
     IBasicTrait trait = getCollection().getTrait(traitId);
-    return new ValidatorFactory().create(templateId, getModelContainer(), trait);
+    // TODO: Case 183: Hack entfernen
+    int defaultMinimalValue = collectionModelId.equals("net.sf.anathema.character.attributes.model") ? 1 : 0; //$NON-NLS-1$
+    return new ValidatorFactory(defaultMinimalValue).create(templateId, getModelContainer(), trait);
   }
 
   @Override

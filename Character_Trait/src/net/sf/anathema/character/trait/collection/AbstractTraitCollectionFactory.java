@@ -24,7 +24,11 @@ import org.eclipse.core.runtime.CoreException;
 public abstract class AbstractTraitCollectionFactory extends
     AbstractModelFactory<ITraitCollectionTemplate, ITraitCollectionModel> {
 
-  private final ValidatorFactory validatorFactory = new ValidatorFactory();
+  private final ValidatorFactory validatorFactory;
+
+  public AbstractTraitCollectionFactory(int defaultMinimumValue) {
+    validatorFactory = new ValidatorFactory(defaultMinimumValue);
+  }
 
   @Override
   public final IModelInitializer createInitializer(

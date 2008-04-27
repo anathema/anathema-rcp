@@ -9,6 +9,10 @@ import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 
 public class AttributesFactory extends AbstractTraitCollectionFactory {
 
+  public AttributesFactory() {
+    super(1);
+  }
+
   private final IModelPersister<ITraitCollectionTemplate, ITraitCollectionModel> persister = new TraitCollectionPersister();
 
   @Override
