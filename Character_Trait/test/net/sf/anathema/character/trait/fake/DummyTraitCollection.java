@@ -8,17 +8,18 @@ import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.status.ITraitStatus;
+import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class DummyTraitCollection extends AbstractModel  implements ITraitCollectionModel {
 
   private final List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
-  
+
   @Override
   public IBasicTrait[] getTraits() {
     return traits.toArray(new IBasicTrait[traits.size()]);
   }
-  
+
   public void addTrait(IBasicTrait trait) {
     traits.add(trait);
   }
@@ -46,5 +47,11 @@ public class DummyTraitCollection extends AbstractModel  implements ITraitCollec
   @Override
   public void setStatusFor(ITraitStatus newStatus, List< ? extends IIdentificate> traits) {
     // nothing to do
+  }
+
+  @Override
+  public void setDependencyUpdatable(IUpdatable updatable) {
+    // TODO Auto-generated method stub
+
   }
 }

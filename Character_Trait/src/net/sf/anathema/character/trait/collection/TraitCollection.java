@@ -9,6 +9,7 @@ import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.character.trait.status.ITraitStatusModel;
 import net.sf.anathema.lib.control.change.ChangeControl;
+import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.lib.util.IIdentificate;
 
 import org.eclipse.osgi.util.NLS;
@@ -24,6 +25,12 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
     }
   };
   private final ChangeControl changeControl = new ChangeControl();
+  private IUpdatable dependencyUpdatable = new IUpdatable() {
+    @Override
+    public void update() {
+      // nothing to do
+    }
+  };
 
   public TraitCollection(IBasicTrait... traits) {
     this.traits = traits;
@@ -72,5 +79,15 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
         statusManager.setStatus(newStatus);
       }
     }
+  }
+
+  @Override
+  public void setDependencyUpdatable(IUpdatable updatable) {
+    dependencyUpdatable = updatable;
+  }
+
+  @Override
+  public void updateToDependencies() {
+    dependencyUpdatable.update();
   }
 }

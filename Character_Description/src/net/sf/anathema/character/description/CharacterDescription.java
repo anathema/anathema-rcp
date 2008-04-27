@@ -72,4 +72,9 @@ public class CharacterDescription extends AggregatedChangeManagement implements 
   public void removeChangeListener(IChangeListener modelChangeListener) {
     // nothing to do
   }
+
+  @Override
+  public void updateToDependencies() {
+    // nothing to do
+  }
 }

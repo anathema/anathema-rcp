@@ -13,4 +13,9 @@ public abstract class AbstractModel extends ChangeManagement implements IModel{
       throws CoreException {
     // nothing to do
   }
+
+  @Override
+  public void updateToDependencies() {
+    // nothing to do
+  }
 }

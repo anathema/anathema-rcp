@@ -3,6 +3,7 @@ package net.sf.anathema.character.core.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -33,15 +34,21 @@ public class ModelCache implements IModelCollection {
         modelsByIdentifier.put(identifier, model);
         identifiersByModel.put(model, identifier);
         initializer.initialize();
-        loadDependencies(identifier);
+        loadDependencies(identifier, model);
       }
     }
     return model;
   }
 
-  private void loadDependencies(IModelIdentifier identifier) {
+  private void loadDependencies(IModelIdentifier identifier, final IModel dependentModel) {
     for (String neededId : dependenciesHandler.getNeededIds(identifier)) {
-      getModel(new ModelIdentifier(identifier.getCharacterId(), neededId));
+      IModel neededModel = getModel(new ModelIdentifier(identifier.getCharacterId(), neededId));
+      neededModel.addChangeListener(new IChangeListener() {
+        @Override
+        public void stateChanged() {
+          dependentModel.updateToDependencies();
+        }
+      });
     }
   }
 

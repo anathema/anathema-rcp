@@ -6,5 +6,6 @@ import net.sf.anathema.basics.item.IItem;
 import org.eclipse.core.runtime.IExecutableExtension;
 
 public interface IModel extends IItem, IExecutableExtension, IChangeableModel {
-  // nothing to do
+
+  public void updateToDependencies();
 }

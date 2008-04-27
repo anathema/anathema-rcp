@@ -356,12 +356,12 @@
                value="3">
          </minimum>
          <minimum
-               traitId="2"
-               value="Linguistics">
+               traitId="Linguistics"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Medicine">
+               traitId="Medicine"
+               value="2">
          </minimum>
       </validator>
       <validator>
@@ -373,20 +373,20 @@
             </where>
          </condition>
          <minimum
-               traitId="2"
-               value="Athletics">
+               traitId="Athletics"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Linguistics">
+               traitId="Linguistics"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Resistance">
+               traitId="Resistance"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Survival">
+               traitId="Survival"
+               value="2">
          </minimum>
       </validator>
       <validator>
@@ -398,20 +398,20 @@
             </where>
          </condition>
          <minimum
-               traitId="2"
-               value="Athletics">
+               traitId="Athletics"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Dodge">
+               traitId="Dodge"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Presence">
+               traitId="Presence"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="War">
+               traitId="War"
+               value="2">
          </minimum>
       </validator>
       <validator>
@@ -423,24 +423,24 @@
             </where>
          </condition>
          <minimum
-               traitId="2"
-               value="Awareness">
+               traitId="Awareness"
+               value="2">
          </minimum>
          <minimum
-               traitId="3"
-               value="Investigaton">
+               traitId="Investigation"
+               value="3">
          </minimum>
          <minimum
-               traitId="2"
-               value="Larceny">
+               traitId="Larceny"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Socialize">
+               traitId="Socialize"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Stealth">
+               traitId="Stealth"
+               value="2">
          </minimum>
       </validator>
       <validator>
@@ -452,24 +452,24 @@
             </where>
          </condition>
          <minimum
-               traitId="2"
-               value="Awareness">
+               traitId="Awareness"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Dodge">
+               traitId="Dodge"
+               value="2">
          </minimum>
          <minimum
-               traitId="2"
-               value="Integrity">
+               traitId="Integrity"
+               value="2">
          </minimum>
          <minimum
-               traitId="3"
-               value="MartialArts">
+               traitId="MartialArts"
+               value="3">
          </minimum>
          <minimum
-               traitId="2"
-               value="Stealth">
+               traitId="Stealth"
+               value="2">
          </minimum>
       </validator>
    </extension>
