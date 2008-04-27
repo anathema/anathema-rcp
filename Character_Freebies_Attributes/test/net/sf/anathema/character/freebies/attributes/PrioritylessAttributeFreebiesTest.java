@@ -10,7 +10,7 @@ import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.fake.CreditManagerObjectMother;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.collection.TraitCollectionFactory;
+import net.sf.anathema.character.trait.collection.TraitCollectionModelFactory;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +41,7 @@ public class PrioritylessAttributeFreebiesTest {
 
   @Test
   public void spentFreebiesFitIntoCredits() throws Exception {
-    ITraitCollectionModel attributes = TraitCollectionFactory.create(new AttributeGroupTemplate().getGroups());
+    ITraitCollectionModel attributes = TraitCollectionModelFactory.create(new AttributeGroupTemplate().getGroups());
     attributes.getTraits()[0].getCreationModel().setValue(attributeValue);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes);
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(

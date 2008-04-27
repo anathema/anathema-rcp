@@ -10,6 +10,7 @@ import net.sf.anathema.character.trait.display.DisplayTrait;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.validator.IValidator;
+import net.sf.anathema.character.trait.validator.ValidationUtilities;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
@@ -99,21 +100,13 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
 
   @Override
   public void setValue(int value) {
-    int correctedValue = getCorrectedValue(value);
+    int correctedValue = ValidationUtilities.getCorrectedValue(valueValidators, value);
     if (experience.isExperienced()) {
       basicTrait.getExperiencedModel().setValue(correctedValue);
     }
     else {
       basicTrait.getCreationModel().setValue(correctedValue);
     }
-  }
-
-  private int getCorrectedValue(int value) {
-    int correctedValue = value;
-    for (IValidator validator : valueValidators) {
-      correctedValue = validator.getValidValue(correctedValue);
-    }
-    return correctedValue;
   }
 
   @Override
