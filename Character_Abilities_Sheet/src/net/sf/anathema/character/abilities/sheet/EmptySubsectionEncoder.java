@@ -8,7 +8,7 @@ import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class EmptySubsectionEncoder extends AbstractNamedTraitEncoder {
+public class EmptySubsectionEncoder extends AbstractTraitSubsectionEncoder {
 
   private final String title;
   private final int dotCount;
