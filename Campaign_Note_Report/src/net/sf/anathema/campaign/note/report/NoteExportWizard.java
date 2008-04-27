@@ -38,7 +38,7 @@ public class NoteExportWizard extends AbstractPdfExportWizard<ITitledText> {
         exportItems.add(new NoteExportItem(notesFile));
       }
       catch (Exception e) {
-        logger.error(NLS.bind("Error creating note from file {0}.", notesFile), e);
+        logger.error(NLS.bind(Messages.NoteExportWizard_ErrorMessage, notesFile), e);
       }
     }
     return exportItems;

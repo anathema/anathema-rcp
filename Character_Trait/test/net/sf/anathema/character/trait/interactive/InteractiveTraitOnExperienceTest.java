@@ -31,7 +31,6 @@ public class InteractiveTraitOnExperienceTest {
     }
   }
 
-  private static final int CURRENT_ESSENCE = 7;
   private static final int CREATION_VALUE = 2;
   private IExperience experience;
   private IBasicTrait basicTrait;

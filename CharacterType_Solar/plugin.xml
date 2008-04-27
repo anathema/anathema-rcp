@@ -14,7 +14,7 @@
             characterType="net.sf.anathema.character.type.solar">
          <traitGroup
                id="Dawn"
-               label="Dawn">
+               label="%caste.printName.Dawn">
             <traitReference
                   traitId="Archery"></traitReference>
             <traitReference
@@ -32,7 +32,7 @@
          </traitGroup>
          <traitGroup
                id="Zenith"
-               label="Zenith">
+               label="%caste.printName.Zenith">
             <traitReference
                   traitId="Integrity"></traitReference>
             <traitReference
@@ -48,7 +48,7 @@
          </traitGroup>
          <traitGroup
                id="Twilight"
-               label="Twilight">
+               label="%caste.printName.Twilight">
             <traitReference
                   traitId="Craft">
             </traitReference>
@@ -67,7 +67,7 @@
          </traitGroup>
          <traitGroup
                id="Night"
-               label="Night">
+               label="%caste.printName.Night">
             <traitReference
                   traitId="Athletics">
             </traitReference>
@@ -86,7 +86,7 @@
          </traitGroup>
          <traitGroup
                id="Eclipse"
-               label="Eclipse">
+               label="%caste.printName.Eclipse">
             <traitReference
                   traitId="Bureaucracy">
             </traitReference>

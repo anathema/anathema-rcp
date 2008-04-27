@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Freebies_Abilities Plug-in
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.character.freebies.abilities;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -13,3 +13,4 @@ Require-Bundle: net.sf.anathema.character.freebies;bundle-version="1.0.0",
  net.sf.anathema.basics.lib;bundle-version="1.0.0",
  net.sf.anathema.character.points;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.character.freebies.abilities.util
+Bundle-Localization: plugin

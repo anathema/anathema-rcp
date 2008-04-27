@@ -18,6 +18,10 @@ import net.sf.anathema.character.trait.validator.where.Where;
 
 public class ValidatorFactory implements IValidatorFactory {
 
+  private static final String EXTENSION_POINT = "validator"; //$NON-NLS-1$
+  private static final String TAG_CONDITION = "condition"; //$NON-NLS-1$
+  private static final String TAG_WHERE = "where"; //$NON-NLS-1$
+
   @Override
   public List<IValidator> create(String templateId, IModelContainer container, String modelId, IBasicTrait trait) {
     IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
@@ -27,7 +31,7 @@ public class ValidatorFactory implements IValidatorFactory {
     MinimalValueFactory minValueFactory = new MinimalValueFactory(0, templateId);
     validators.add(new RespectTemplateMinimum(trait.getTraitType().getId(), minValueFactory));
     validators.add(new RespectValueMaximum(experience));
-    for (IPluginExtension extension : new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, "validator").getExtensions()) {
+    for (IPluginExtension extension : new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, EXTENSION_POINT).getExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
         addConfiguredValidators(validators, extensionElement, templateId, container, modelId, trait);
       }
@@ -42,14 +46,14 @@ public class ValidatorFactory implements IValidatorFactory {
       IModelContainer container,
       String modelId,
       IBasicTrait trait) {
-    AllWhere whereClause = createWhereClause(validatorElement.getElement("condition"));
+    AllWhere whereClause = createWhereClause(validatorElement.getElement(TAG_CONDITION));
     IValidatorFactory factory = new ConditionalFactory(validatorElement, whereClause);
     validators.addAll(factory.create(templateId, container, modelId, trait));
   }
 
   private AllWhere createWhereClause(IExtensionElement parent) {
     List<IWhere> allWheres = new ArrayList<IWhere>();
-    for (IExtensionElement whereElement : parent.getElements("where")) {
+    for (IExtensionElement whereElement : parent.getElements(TAG_WHERE)) {
       allWheres.add(new Where(whereElement));
     }
     return new AllWhere(allWheres);

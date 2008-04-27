@@ -11,11 +11,8 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 
 public class PlotReportRunner extends AbstractReportRunner<IPlotElement> {
 
-  private final IPlotElement rootElement;
-
-  public PlotReportRunner(IOutputStreamFactory outputStreamFactory, IPlotElement rootElement) {
+  public PlotReportRunner(IOutputStreamFactory outputStreamFactory) {
     super(outputStreamFactory);
-    this.rootElement = rootElement;
   }
 
   @Override

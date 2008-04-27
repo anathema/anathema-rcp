@@ -5,15 +5,15 @@
          point="net.sf.anathema.character.freebies.configurations">
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.freebies.abilities.DefaultFreebiesHandler"
-            name="Unlimited Free Ability Dots">
+            name="%FreebiesConfiguration.UnlimitedFreeAbilityDots">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.freebies.abilities.FavoredFreebiesHandler"
-            name="Favored Free Ability Dots">
+            name="%FreebiesConfiguration.FavoredFreeAbilityDots">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.freebies.abilities.FavoredCountHandler"
-            name="Favored Abilities">
+            name="%FreebiesConfiguration.FavoredAbilities">
       </FreebiesConfiguration>
    </extension>
    <extension

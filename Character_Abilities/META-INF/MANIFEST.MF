@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Abilities Plug-in
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.character.abilities;singleton:=true
 Bundle-Version: 1.0.0
 Eclipse-ExtensibleAPI: true
@@ -18,3 +18,4 @@ Export-Package: abilities.integration,
  net.sf.anathema.character.abilities.template,
  net.sf.anathema.character.abilities.util
 Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin

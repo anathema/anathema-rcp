@@ -15,7 +15,7 @@ public class ITextReportUtils {
     Font font = createDefaultFont(10, style);
     Paragraph paragraph = new Paragraph(text, font);
     paragraph.setAlignment(alignment);
-    paragraph.setLeading(font.size() * 1.2f);
+    paragraph.setLeading(font.getSize() * 1.2f);
     return paragraph;
   }
 

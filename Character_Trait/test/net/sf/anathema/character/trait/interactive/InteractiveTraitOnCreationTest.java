@@ -20,16 +20,10 @@ import org.junit.Test;
 
 public class InteractiveTraitOnCreationTest {
 
-  private static final int CREATION_MAX = 5;
-  private static final int MIN_VALUE = 2;
   private IExperience experience;
   private IBasicTrait basicTrait;
   private InteractiveTrait interactiveTrait;
   private ArrayList<IValidator> valueValidators;
-
-  private void assertNoExperienceValueSet() {
-    assertEquals(-1, basicTrait.getExperiencedModel().getValue());
-  }
 
   @Before
   public void createRules() throws Exception {

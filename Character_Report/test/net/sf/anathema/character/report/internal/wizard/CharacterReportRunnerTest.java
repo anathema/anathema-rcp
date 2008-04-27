@@ -9,12 +9,9 @@ import net.sf.anathema.basics.pdfexport.IReportRunner;
 import net.sf.anathema.basics.swt.file.IOutputStreamFactory;
 import net.sf.anathema.basics.swt.file.IStreamResult;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.core.fake.CharacterObjectMother;
-import net.sf.anathema.character.core.fake.DummyCharacterId;
 
 import org.easymock.EasyMock;
 import org.eclipse.jface.operation.IRunnableContext;
-import org.eclipse.ui.IEditorPart;
 import org.junit.Test;
 
 public class CharacterReportRunnerTest {
@@ -31,7 +28,6 @@ public class CharacterReportRunnerTest {
   public void runnableContextIsCalledWithCorrectOutputStream() throws Exception {
     OutputStream outputStream = new ByteArrayOutputStream();
     IOutputStreamFactory outputStreamFactory = createOutputStreamFactory(outputStream);
-    IEditorPart editorPart = EditorPartObjectMother.createEditorPart(CharacterObjectMother.createCharacterEditorInput(new DummyCharacterId()));
     IReportRunner<ICharacter> runner = new CharacterReportRunner(outputStreamFactory, null);
     IRunnableContext runnableContext = EasyMock.createNiceMock(IRunnableContext.class);
     runnableContext.run(EasyMock.eq(true), EasyMock.eq(false), EasyMock.isA(CharacterReportRunnable.class));

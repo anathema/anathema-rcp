@@ -7,7 +7,7 @@
             class="net.sf.anathema.campaign.plot.report.PlotExportWizard"
             icon="icons/pdf_icon.png"
             id="net.sf.anathema.campaign.plot.report"
-            name="Plot Report">
+            name="%Export-Wizard-Name">
       </wizard>
    </extension>
 

@@ -7,8 +7,8 @@
    <extension-point id="resources" name="%extension-point.name.characterresources" schema="schema/resources.exsd"/>
    <extension-point id="modelmarkers" name="%extension-point.name.modelmarker" schema="schema/modelmarkers.exsd"/>
    <extension-point id="modellists" name="%modelList.extension-point.name" schema="schema/modellists.exsd"/>
-   <extension-point id="modeldependencies" name="Charactre Model dependencies" schema="schema/modeldependencies.exsd"/>
-   <extension-point id="modelcheck" name="Character Model Check" schema="schema/modelCheck.exsd"/>
+   <extension-point id="modeldependencies" name="%extension-point.name.modeldependencies" schema="schema/modeldependencies.exsd"/>
+   <extension-point id="modelcheck" name="%extension-point.name.modelcontentcheck" schema="schema/modelcheck.exsd"/>
    <extension
          point="net.sf.anathema.basics.repository.itemtypes">
       <itemtype

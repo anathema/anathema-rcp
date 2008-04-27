@@ -36,8 +36,18 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
 
   public AbilitiesEncoder() {
     traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
-    addSubsectionEncoder(new EmptySubsectionEncoder(BASEFONT, traitEncoder, "Crafts", 10, 9));
-    addSubsectionEncoder(new EmptySubsectionEncoder(BASEFONT, traitEncoder, "Specialities", 3, 9));
+    addSubsectionEncoder(new EmptySubsectionEncoder(
+        BASEFONT,
+        traitEncoder,
+        Messages.AbilitiesEncoder_CraftsHeader,
+        10,
+        9));
+    addSubsectionEncoder(new EmptySubsectionEncoder(
+        BASEFONT,
+        traitEncoder,
+        Messages.AbilitiesEncoder_SpecialtiesHeader,
+        3,
+        9));
   }
 
   protected final void addSubsectionEncoder(ISubSectionEncoder encoder) {
@@ -118,7 +128,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
 
   private float encodeMarkerCommentText(PdfContentByte directContent, Position position, float yPosition) {
     markerEncoder.encode(directContent, new Position(position.x, yPosition));
-    String mobilityPenaltyText = " : This ability is commonly affected by mobility penalty.";
+    String mobilityPenaltyText = Messages.AbilitiesEncoder_MarkerComment;
     Position commentPosition = new Position(position.x + 5, yPosition);
     drawComment(directContent, mobilityPenaltyText, commentPosition, PdfContentByte.ALIGN_LEFT);
     return 10;
@@ -126,7 +136,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
 
   @Override
   public String getHeader(ICharacter character) {
-    return "Abilities";
+    return Messages.AbilitiesEncoder_AbilitiesHeader;
   }
 
   @Override

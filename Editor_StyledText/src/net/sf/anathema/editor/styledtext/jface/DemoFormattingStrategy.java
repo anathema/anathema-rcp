@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.sf.anathema.editor.styledtext.jface;
 
 import org.eclipse.jface.text.formatter.IFormattingStrategy;

@@ -91,7 +91,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
       }
     }
     Object[] arguments = new Object[] { traitType.getId() };
-    throw new IllegalArgumentException(MessageFormat.format("Trait {0} is not member of any group.", arguments));
+    throw new IllegalArgumentException(MessageFormat.format(Messages.TraitCollectionEditorInput_NotInGroupMessage, arguments));
   }
 
   @Override

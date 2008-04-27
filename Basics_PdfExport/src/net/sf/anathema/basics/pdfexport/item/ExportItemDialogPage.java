@@ -55,8 +55,8 @@ public class ExportItemDialogPage<T> extends WizardPage {
     super("ExportItem"); //$NON-NLS-1$
     this.exportItems = exportItems;
     this.selectedItem = selectedItem;
-    setDescription("Please select the item you want to export.");
-    setTitle("Export item selection");
+    setDescription(Messages.ExportItemDialogPage_Message);
+    setTitle(Messages.ExportItemDialogPage_Title);
     selectedItem.addChangeListener(new IChangeListener() {
       @Override
       public void stateChanged() {

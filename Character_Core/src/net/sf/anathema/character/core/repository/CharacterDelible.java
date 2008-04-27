@@ -18,11 +18,8 @@ public class CharacterDelible extends ResourcePageDelible {
     return new CharacterElementCloseHandler(id);
   }
 
-  private final ICharacterId id;
-
   public CharacterDelible(ICharacterId id) {
     super(createHandler(id), (IContainer) id.getAdapter(IContainer.class));
-    this.id = id;
   }
 
   @Override

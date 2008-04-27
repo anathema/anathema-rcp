@@ -19,7 +19,6 @@ import org.eclipse.osgi.util.NLS;
 
 public class PlotExportWizard extends AbstractPdfExportWizard<IPlotElement> {
   private final static Logger logger = new Logger(PlotPlugin.ID);
-  private IPlotElement rootElement;
 
   @Override
   protected IFileSelectionPageMessages createMessage() {
@@ -28,7 +27,7 @@ public class PlotExportWizard extends AbstractPdfExportWizard<IPlotElement> {
 
   @Override
   protected IReportRunner<IPlotElement> createRunner(IOutputStreamFactory outputStreamFactory) {
-    return new PlotReportRunner(outputStreamFactory, rootElement);
+    return new PlotReportRunner(outputStreamFactory);
   }
 
   @Override

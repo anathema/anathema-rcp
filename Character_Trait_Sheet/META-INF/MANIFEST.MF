@@ -1,9 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Character_Trait_Sheet Plug-in
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.sf.anathema.character.trait.sheet;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Require-Bundle: net.sf.anathema.character.sheet;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.character.trait.sheet
+Bundle-Localization: plugin

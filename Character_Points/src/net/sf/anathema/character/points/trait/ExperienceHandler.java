@@ -11,6 +11,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 
 public class ExperienceHandler implements IPointHandler {
 
+  private static final String TAG_EXPERIENCE_CONFIGURATIONS = "experienceConfigurations"; //$NON-NLS-1$
+  private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private String modelId;
   private int baseCost;
   private Integer newCost;
@@ -40,7 +42,7 @@ public class ExperienceHandler implements IPointHandler {
       IConfigurationElement configurationsElement,
       String configurationId) {
     for (IConfigurationElement child : configurationsElement.getChildren()) {
-      if (child.getAttribute("id").equals(configurationId)) {
+      if (child.getAttribute(ATTRIB_ID).equals(configurationId)) {
         return child;
       }
     }
@@ -49,7 +51,7 @@ public class ExperienceHandler implements IPointHandler {
 
   private IConfigurationElement getConfigurationsElement(IConfigurationElement config) {
     for (IConfigurationElement element : config.getDeclaringExtension().getConfigurationElements()) {
-      if (element.getName().equals("experienceConfigurations")) {
+      if (element.getName().equals(TAG_EXPERIENCE_CONFIGURATIONS)) {
         return element;
       }
     }

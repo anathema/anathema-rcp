@@ -26,7 +26,7 @@ public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder imp
 
   @Override
   protected String getTitle() {
-    return "Abilities:";
+    return Messages.AbilitiesTextEncoder_Title;
   }
 
   @Override
