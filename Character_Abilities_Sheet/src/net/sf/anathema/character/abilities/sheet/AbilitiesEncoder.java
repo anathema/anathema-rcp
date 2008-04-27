@@ -26,8 +26,8 @@ public class AbilitiesEncoder extends FavorableTraitEncoder implements IExecutab
         new Identificate("Larceny"),
         new Identificate("Ride"),
         new Identificate("Stealth"));
-    addNamedTraitEncoder(new EmptyNamedTraitEncoder(BASEFONT, getTraitEncoder(), "Crafts", 10, 9));
-    addNamedTraitEncoder(new EmptyNamedTraitEncoder(BASEFONT, getTraitEncoder(), "Specialities", 3, 9));
+    addSubsectionEncoder(new EmptySubsectionEncoder(BASEFONT, getTraitEncoder(), "Crafts", 10, 9));
+    addSubsectionEncoder(new EmptySubsectionEncoder(BASEFONT, getTraitEncoder(), "Specialities", 3, 9));
   }
 
   @Override

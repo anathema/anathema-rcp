@@ -23,7 +23,7 @@ import com.lowagie.text.pdf.PdfContentByte;
 public abstract class FavorableTraitEncoder extends AbstractPdfEncoder implements IPdfContentBoxEncoder {
 
   private final List<IIdentificate> markedTraitTypes = new ArrayList<IIdentificate>();
-  private final List<INamedTraitEncoder> namedTraitEncoders = new ArrayList<INamedTraitEncoder>();
+  private final List<ISubSectionEncoder> subsectionEncoders = new ArrayList<ISubSectionEncoder>();
   private final PdfTraitEncoder traitEncoder;
   private final BaseFont baseFont;
 
@@ -33,8 +33,8 @@ public abstract class FavorableTraitEncoder extends AbstractPdfEncoder implement
     Collections.addAll(markedTraitTypes, markedTypes);
   }
 
-  protected final void addNamedTraitEncoder(INamedTraitEncoder encoder) {
-    namedTraitEncoders.add(encoder);
+  protected final void addSubsectionEncoder(ISubSectionEncoder encoder) {
+    subsectionEncoders.add(encoder);
   }
 
   @Override
@@ -52,7 +52,7 @@ public abstract class FavorableTraitEncoder extends AbstractPdfEncoder implement
     Position position = new Position(bounds.getMinX(), bounds.getMaxY());
     float width = bounds.width;
     float yPosition = encodeTraitGroups(directContent, character, position, width);
-    for (INamedTraitEncoder encoder : namedTraitEncoders) {
+    for (ISubSectionEncoder encoder : subsectionEncoders) {
       yPosition -= IVoidStateFormatConstants.LINE_HEIGHT;
       yPosition -= encoder.encode(directContent, character, new Position(position.x, yPosition), width);
     }
@@ -93,8 +93,8 @@ public abstract class FavorableTraitEncoder extends AbstractPdfEncoder implement
       }
       // TODO i18n für Abilities
       String label = trait.getTraitType().getId();
-      height += encodeFavorableTrait(directContent, label, trait, new Position(traitX, yPosition), width
-          - groupLabelWidth);
+      Position traitPosition = new Position(traitX, yPosition);
+      height += encodeFavorableTrait(directContent, label, trait, traitPosition, width - groupLabelWidth);
     }
     Position groupLabelPosition = new Position(groupLabelX, position.y - height / 2);
     addGroupLabel(directContent, group, groupLabelPosition);

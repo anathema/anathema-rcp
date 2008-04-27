@@ -6,7 +6,7 @@ import net.sf.anathema.character.sheet.elements.Position;
 
 import com.lowagie.text.pdf.PdfContentByte;
 
-public interface INamedTraitEncoder {
+public interface ISubSectionEncoder {
 
   public int encode(PdfContentByte directContent, ICharacter character, Position position, float width);
 }

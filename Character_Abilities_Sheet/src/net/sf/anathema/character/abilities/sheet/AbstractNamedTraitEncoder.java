@@ -8,7 +8,7 @@ import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public abstract class AbstractNamedTraitEncoder extends AbstractPdfEncoder implements INamedTraitEncoder {
+public abstract class AbstractNamedTraitEncoder extends AbstractPdfEncoder implements ISubSectionEncoder {
   private static final int SUBSECTION_FONT_SIZE = 8;
   private final PdfTraitEncoder traitEncoder;
   private final BaseFont baseFont;
