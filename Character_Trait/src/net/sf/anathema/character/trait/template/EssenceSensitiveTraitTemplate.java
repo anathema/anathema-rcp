@@ -12,9 +12,4 @@ public final class EssenceSensitiveTraitTemplate implements ITraitTemplate {
   public int getMinimalValue() {
     return minimalValue;
   }
-
-  @Override
-  public int getMaximalValue(int essenceValue) {
-    return Math.max(5, essenceValue);
-  }
 }
