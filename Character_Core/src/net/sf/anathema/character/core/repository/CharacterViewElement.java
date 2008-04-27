@@ -4,12 +4,10 @@ import java.net.URL;
 
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
-import net.sf.anathema.basics.repository.treecontent.deletion.ResourcePageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
-import net.sf.anathema.character.core.repository.internal.CharacterElementCloseHandler;
 import net.sf.anathema.character.core.resource.CharacterPrintNameProvider;
 
 import org.eclipse.core.resources.IFolder;
@@ -43,10 +41,7 @@ public class CharacterViewElement implements IViewElement {
   }
 
   private IPageDelible createPageDelible() {
-    // TODO: Case 221: Anhand der CharacterId die Models aus dem Cache entfernen.
-    CharacterId characterId = new CharacterId(characterFolder);
-    CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(characterId);
-    return new ResourcePageDelible(closeHandler, characterFolder);
+    return new CharacterDelible(new CharacterId(characterFolder));
   }
 
   @Override
