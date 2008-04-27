@@ -1,17 +1,19 @@
 package net.sf.anathema.character.trait.interactive.validator;
 
-import net.sf.anathema.character.trait.display.IDisplayFavorization;
+import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 
 public class RespectFavoredMinimum implements IValidator {
 
-  private final IDisplayFavorization favorization;
+  private final IBasicTrait basicTrait;
 
-  public RespectFavoredMinimum(IDisplayFavorization favorization) {
-    this.favorization = favorization;
+  public RespectFavoredMinimum(IBasicTrait basicTrait) {
+    this.basicTrait = basicTrait;
   }
 
   @Override
   public int getValidValue(int value) {
-    return Math.max(favorization.isFavored() ? 1 : 0, value);
+    boolean isFavored = basicTrait.getStatusManager().getStatus() instanceof FavoredStatus;
+    return Math.max(isFavored ? 1 : 0, value);
   }
 }
