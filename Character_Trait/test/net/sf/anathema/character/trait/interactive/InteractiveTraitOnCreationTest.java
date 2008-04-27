@@ -2,12 +2,17 @@ package net.sf.anathema.character.trait.interactive;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.fake.DummyTraitPreferences;
+import net.sf.anathema.character.trait.interactive.InteractiveTraitOnExperienceTest.IncreasingValidator;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
+import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -20,6 +25,7 @@ public class InteractiveTraitOnCreationTest {
   private IExperience experience;
   private IBasicTrait basicTrait;
   private InteractiveTrait interactiveTrait;
+  private ArrayList<IValidator> valueValidators;
 
   private void assertNoExperienceValueSet() {
     assertEquals(-1, basicTrait.getExperiencedModel().getValue());
@@ -33,38 +39,32 @@ public class InteractiveTraitOnCreationTest {
     DummyTraitPreferences preferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
     IInteractiveFavorization favorization = createNiceMock(IInteractiveFavorization.class);
     replay(favorization);
+    valueValidators = new ArrayList<IValidator>();
     interactiveTrait = new InteractiveTrait(
         basicTrait,
         ModelContainerObjectMother.create(experience),
         favorization,
-        0,
+        valueValidators,
         preferences);
   }
 
   @Test
-  public void enforcesMinimumValue() throws Exception {
-    interactiveTrait.setValue(MIN_VALUE - 1);
-    assertEquals(MIN_VALUE, basicTrait.getCreationModel().getValue());
-    assertNoExperienceValueSet();
+  public void setValidatedValue() throws Exception {
+    valueValidators.add(new IncreasingValidator(1));
+    interactiveTrait.setValue(2);
+    assertEquals(3, basicTrait.getCreationModel().getValue());
   }
 
   @Test
-  public void enforcesCreationMaximumValue() throws Exception {
-    interactiveTrait.setValue(CREATION_MAX + 1);
-    assertEquals(CREATION_MAX, basicTrait.getCreationModel().getValue());
-    assertNoExperienceValueSet();
+  public void concatenatesValidatorChanges() throws Exception {
+    valueValidators.add(new IncreasingValidator(1));
+    valueValidators.add(new IncreasingValidator(1));
+    interactiveTrait.setValue(2);
+    assertEquals(4, basicTrait.getCreationModel().getValue());
   }
 
   @Test
-  public void allowsValueGreaterThanMinimum() throws Exception {
-    int value = MIN_VALUE + 1;
-    interactiveTrait.setValue(value);
-    assertEquals(value, basicTrait.getCreationModel().getValue());
-    assertNoExperienceValueSet();
-  }
-
-  @Test
-  public void hasStaticMaximumVAlueOf5() throws Exception {
+  public void hasStaticMaximumValueOf5() throws Exception {
     assertEquals(5, interactiveTrait.getMaximalValue());
   }
 }

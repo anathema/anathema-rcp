@@ -26,7 +26,8 @@ Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.persistence,
  net.sf.anathema.character.trait.preference,
  net.sf.anathema.character.trait.resources,
- net.sf.anathema.character.trait.status
+ net.sf.anathema.character.trait.status,
+ net.sf.anathema.character.trait.validator
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: net.sf.anathema.character.trait.plugin.CharacterTraitPlugin

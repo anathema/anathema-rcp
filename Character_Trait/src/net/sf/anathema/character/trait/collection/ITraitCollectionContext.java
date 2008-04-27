@@ -1,7 +1,10 @@
 package net.sf.anathema.character.trait.collection;
 
+import java.util.List;
+
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.validator.IValidator;
 
 public interface ITraitCollectionContext {
 
@@ -11,7 +14,7 @@ public interface ITraitCollectionContext {
 
   public ITraitGroup[] getTraitGroups();
 
-  public int getMinimumValue(String traitId);
-
   public String getActiveImageId();
+
+  public List<IValidator> getValidators(String traitId);
 }

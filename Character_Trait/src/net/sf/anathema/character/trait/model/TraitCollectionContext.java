@@ -1,5 +1,7 @@
 package net.sf.anathema.character.trait.model;
 
+import java.util.List;
+
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTypeProvider;
 import net.sf.anathema.character.core.character.IModel;
@@ -8,9 +10,12 @@ import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.core.type.CharacterTypeProvider;
+import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.validator.IValidator;
+import net.sf.anathema.character.trait.validator.ValidatorFactory;
 
 public class TraitCollectionContext implements ITraitCollectionContext, IModelContainer {
 
@@ -45,8 +50,9 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
   }
 
   @Override
-  public int getMinimumValue(String traitId) {
-    return templateFactory.getMinimalValue(traitId);
+  public List<IValidator> getValidators(String traitId) {
+    IBasicTrait trait = getCollection().getTrait(traitId);
+    return new ValidatorFactory().create(getModelContainer(), trait, templateFactory);
   }
 
   @Override

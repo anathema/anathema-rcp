@@ -6,16 +6,17 @@ import java.util.List;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.model.IMinimalValueFactory;
 
 public class ValidatorFactory implements IValidatorFactory {
 
   @Override
-  public List<IValidator> create(IModelContainer container, IBasicTrait trait, int minmalValue) {
+  public List<IValidator> create(IModelContainer container, IBasicTrait trait, IMinimalValueFactory minValueFactory) {
     IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
     List<IValidator> validators = new ArrayList<IValidator>();
     validators.add(new RespectCreationValueMinimum(experience, trait));
     validators.add(new RespectFavoredMinimum(trait));
-    validators.add(new RespectTemplateMinimum(minmalValue));
+    validators.add(new RespectTemplateMinimum(trait.getTraitType().getId(), minValueFactory));
     validators.add(new RespectValueMaximum(experience));
     return validators;
   }
