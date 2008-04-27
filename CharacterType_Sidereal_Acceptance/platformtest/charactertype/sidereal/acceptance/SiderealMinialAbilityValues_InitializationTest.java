@@ -13,7 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SiderealAbilityValues_CasteChangeTest {
+public class SiderealMinialAbilityValues_InitializationTest {
 
   private IFolder folder;
 

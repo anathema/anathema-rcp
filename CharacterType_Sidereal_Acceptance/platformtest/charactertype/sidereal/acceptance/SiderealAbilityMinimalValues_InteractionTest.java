@@ -4,6 +4,8 @@ import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -12,7 +14,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SiderealAbilityValues_InitialTest {
+import abilities.integration.AbilitiesInteractionUtilties;
+
+public class SiderealAbilityMinimalValues_InteractionTest {
 
   private IFolder folder;
 
@@ -25,36 +29,42 @@ public class SiderealAbilityValues_InitialTest {
 
   @Test
   public void hasCastelessMinimalAblitiesWithoutCaste() throws Exception {
+    reduceAllValuesByOne();
     SiderealAbilityAsserts.assertCastelessMinimalAbilities(folder);
   }
 
   @Test
   public void hasJourneysMinimalAbilitiesWithJourneysCaste() throws Exception {
     AcceptanceCasteUtilities.setCasteInModel(folder, "Journeys"); //$NON-NLS-1$
+    reduceAllValuesByOne();
     SiderealAbilityAsserts.assertJourneysMinimalAbilities(folder);
   }
 
   @Test
   public void hasSerenityMinimalAbilitiesWithSerenityCaste() throws Exception {
     AcceptanceCasteUtilities.setCasteInModel(folder, "Serenity"); //$NON-NLS-1$
+    reduceAllValuesByOne();
     SiderealAbilityAsserts.assertSerenityMinimalAbilities(folder);
   }
 
   @Test
   public void hasBattlesMinimalAbilitiesWithBattlesCaste() throws Exception {
     AcceptanceCasteUtilities.setCasteInModel(folder, "Battles"); //$NON-NLS-1$
+    reduceAllValuesByOne();
     SiderealAbilityAsserts.assertBattlesMinimalAbilities(folder);
   }
 
   @Test
   public void hasSecretsMinimalAbilitiesWithSecretsCaste() throws Exception {
     AcceptanceCasteUtilities.setCasteInModel(folder, "Secrets"); //$NON-NLS-1$
+    reduceAllValuesByOne();
     SiderealAbilityAsserts.assertSecretsMinimalAbilities(folder);
   }
 
   @Test
   public void hasEndingsMinimalAbilitiesWithEndingsCaste() throws Exception {
     AcceptanceCasteUtilities.setCasteInModel(folder, "Endings"); //$NON-NLS-1$
+    reduceAllValuesByOne();
     SiderealAbilityAsserts.assertEndingsMinimalAbilities(folder);
   }
 
@@ -63,5 +73,13 @@ public class SiderealAbilityValues_InitialTest {
     ModelCache.getInstance().clear();
     folder.delete(true, null);
     folder = null;
+  }
+
+  private void reduceAllValuesByOne() throws Exception {
+    for (IDisplayTraitGroup<IInteractiveTrait> group : AbilitiesInteractionUtilties.createDisplayAttributeGroups(folder)) {
+      for (IInteractiveTrait trait : group.getTraits()) {
+        trait.setValue(trait.getValue() - 1);
+      }
+    }
   }
 }
