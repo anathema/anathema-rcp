@@ -1,13 +1,13 @@
 package net.sf.anathema.character.trait.validator;
 
-import net.sf.anathema.character.trait.model.IMinimalValueFactory;
+import net.sf.anathema.character.trait.model.MinimalValueFactory;
 
 public class RespectTemplateMinimum implements IValidator {
 
-  private final IMinimalValueFactory minValueFactory;
+  private final MinimalValueFactory minValueFactory;
   private final String traitId;
 
-  public RespectTemplateMinimum(String traitId, IMinimalValueFactory minValueFactory) {
+  public RespectTemplateMinimum(String traitId, MinimalValueFactory minValueFactory) {
     this.traitId = traitId;
     this.minValueFactory = minValueFactory;
   }

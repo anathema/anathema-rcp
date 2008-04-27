@@ -5,7 +5,7 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
-public class MinimalValueFactory implements IMinimalValueFactory {
+public class MinimalValueFactory  {
 
   private static final String POINT_ID = "collectionTemplates"; //$NON-NLS-1$
   private final int minimalValue;
@@ -22,7 +22,6 @@ public class MinimalValueFactory implements IMinimalValueFactory {
     this.extensions = extensions;
   }
 
-  @Override
   public int getMinimalValue(String traitId) {
     IExtensionElement traitElement = getExtensionElement(traitId);
     if (traitElement == null) {

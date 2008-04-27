@@ -31,11 +31,6 @@ public class TraitCollectionPersisterTest {
     return new ITraitCollectionTemplate() {
 
       @Override
-      public int getMinimalValue(String traitId) {
-        return 1;
-      }
-
-      @Override
       public TraitGroup[] getGroups() {
         return new TraitGroup[] {new TraitGroup("Gruppe", null, TRAIT1, TRAIT2)}; //$NON-NLS-1$
       }

@@ -4,7 +4,6 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
-import net.sf.anathema.character.trait.model.IMinimalValueFactory;
 import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
@@ -22,15 +21,10 @@ public abstract class TraitCollectionTemplateProvider implements ITraitCollectio
 
   public ITraitCollectionTemplate getTraitTemplate(String characterTemplateId) {
     int favorizationCount = getFavorizationCount(characterTemplateId);
-    return new TraitCollectionTemplate(
-        createGroupConfiguration(characterTemplateId),
-        createTemplateFactory(characterTemplateId),
-        favorizationCount);
+    return new TraitCollectionTemplate(createGroupConfiguration(characterTemplateId), favorizationCount);
   }
 
   protected abstract ITraitGroupTemplate createGroupConfiguration(String characterTemplateId);
-
-  protected abstract IMinimalValueFactory createTemplateFactory(String characterTemplateId);
 
   private int getFavorizationCount(String characterTemplateId) {
     for (IPluginExtension extension : new EclipseExtensionPoint(

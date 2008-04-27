@@ -14,9 +14,4 @@ public class DummyAttributeTemplate extends AttributeGroupTemplate implements IM
   public int getFavorizationCount() {
     return favorizationCount;
   }
-
-  @Override
-  public int getMinimalValue(String traitId) {
-    return 1;
-  }
 }

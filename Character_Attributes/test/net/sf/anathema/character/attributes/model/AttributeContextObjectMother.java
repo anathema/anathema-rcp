@@ -18,7 +18,7 @@ import org.easymock.EasyMock;
 public class AttributeContextObjectMother {
 
   public static ITraitCollectionContext createContext(TraitGroup... traitGroups) {
-    ITraitCollectionModel attributes = TraitCollectionFactory.create(traitGroups, new DummyTemplateFactory());
+    ITraitCollectionModel attributes = TraitCollectionFactory.create(traitGroups);
     DummyExperience experience = new DummyExperience();
     IModelContainer container = ModelContainerObjectMother.create(experience);
     ITraitCollectionContext context = EasyMock.createNiceMock(ITraitCollectionContext.class);
