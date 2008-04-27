@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies.attributes.coverage;
+package net.sf.anathema.character.freebies.coverage;
 
 import net.sf.anathema.character.trait.groupeditor.TraitGroupEditor;
 
@@ -9,10 +9,13 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 public class ToggleSurplusMarkingHandler extends AbstractHandler {
 
+  public static boolean ACTIVE = false;
+
   @Override
   public Object execute(ExecutionEvent event) throws ExecutionException {
+    ACTIVE = !ACTIVE;
     TraitGroupEditor editor = (TraitGroupEditor) HandlerUtil.getActiveEditorChecked(event);
-    editor.getDecoration(SurplusMarkingEditorDecoration.class).toggleMarkBonusPoints();
+    editor.updateDecorations();
     return null;
   }
 }

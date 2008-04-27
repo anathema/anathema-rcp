@@ -12,5 +12,44 @@
             name="%Freebies.View.Title">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="net.sf.anathema.character.freebies.toggle.surplusmarking"
+            name="%toggle.surplusmarking.command.name">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="net.sf.anathema.character.freebies.coverage.ToggleSurplusMarkingHandler"
+            commandId="net.sf.anathema.character.freebies.toggle.surplusmarking">
+         <activeWhen>
+            <reference
+                  definitionId="activeEditor.is.TraitGroupEditor">
+            </reference>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=net.sf.anathema.rcp.toolbar.save">
+         <toolbar
+               id="Character_Freebies.toolbar">
+            <command
+                  commandId="net.sf.anathema.character.freebies.toggle.surplusmarking"
+                  icon="icons/highlight.gif"
+                  style="toggle"
+                  tooltip="%toggle.surplusmarking.command.tooltip">
+               <visibleWhen>
+                  <reference
+                        definitionId="activeEditor.is.TraitGroupEditor">
+                  </reference>
+               </visibleWhen>
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
 
 </plugin>

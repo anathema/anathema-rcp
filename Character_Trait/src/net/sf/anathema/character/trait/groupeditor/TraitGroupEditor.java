@@ -78,7 +78,9 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     };
   }
 
-  public <T extends ITraitGroupEditorDecoration> T getDecoration(Class<T> clazz) {
-    return decorations.get(clazz);
+  public void updateDecorations() {
+    for (ITraitGroupEditorDecoration decoration : decorations) {
+      decoration.update();
+    }
   }
 }

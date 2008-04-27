@@ -34,5 +34,11 @@
             id="net.sf.anathema.character.attributes.count.favored">
       </creditProvider>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.editordecorations">
+      <decoration
+            class="net.sf.anathema.character.freebies.abilities.coverage.SurplusMarkingEditorDecoration">
+      </decoration>
+   </extension>
 
 </plugin>

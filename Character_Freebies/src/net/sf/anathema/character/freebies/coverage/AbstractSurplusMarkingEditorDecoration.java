@@ -24,7 +24,6 @@ import org.eclipse.swt.graphics.Image;
 public abstract class AbstractSurplusMarkingEditorDecoration<G> extends AbstractExecutableExtension implements
     ITraitGroupEditorDecoration {
 
-  private boolean mark;
   private final Map<IIntValueView, SurplusPainter> surplusPainters = new HashMap<IIntValueView, SurplusPainter>();
   private final Map<IIdentificate, IIntValueView> viewsByType = new HashMap<IIdentificate, IIntValueView>();
   private ITraitGroupEditorInput input;
@@ -56,14 +55,6 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Abstract
       ITraitGroupEditorInput editorInput,
       IModelCollection modelCollection);
 
-  private void markBonusPoints(boolean enabled) {
-    this.mark = enabled;
-    calculateCoverage();
-    for (IIntValueView display : viewsByType.values()) {
-      surplusPainters.get(display).setShowSurplus(mark);
-    }
-  }
-
   protected final ITraitGroupEditorInput getInput() {
     return input;
   }
@@ -73,7 +64,7 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Abstract
   }
 
   private void calculateCoverage() {
-    if (mark) {
+    if (ToggleSurplusMarkingHandler.ACTIVE) {
       for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
         int coveredPoints = getPointsCoveredByCredit(entry.getKey());
         surplusPainters.get(entry.getValue()).setSurplusThreshold(coveredPoints);
@@ -83,7 +74,10 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Abstract
 
   protected abstract int getPointsCoveredByCredit(IIdentificate traitType);
 
-  public void toggleMarkBonusPoints() {
-    markBonusPoints(!mark);
+  public void update() {
+    calculateCoverage();
+    for (IIntValueView display : viewsByType.values()) {
+      surplusPainters.get(display).setShowSurplus(ToggleSurplusMarkingHandler.ACTIVE);
+    }
   }
 }

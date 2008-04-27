@@ -8,4 +8,6 @@ import org.eclipse.core.runtime.IExecutableExtension;
 public interface ITraitGroupEditorDecoration extends IExecutableExtension {
 
   public void decorate(final IInteractiveTrait trait, final IExtendableIntValueView view, ITraitGroupEditorInput editorInput);
+
+  public void update();
 }
