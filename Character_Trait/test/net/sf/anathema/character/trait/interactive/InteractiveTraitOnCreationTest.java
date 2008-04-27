@@ -16,6 +16,7 @@ import org.junit.Test;
 
 public class InteractiveTraitOnCreationTest {
 
+  private static final int CREATION_MAX = 5;
   private static final int MAX_VALUE = 4;
   private static final int MIN_VALUE = 2;
   private IExperience experience;
@@ -31,13 +32,13 @@ public class InteractiveTraitOnCreationTest {
     DummyTraitTemplate traitTemplate = new DummyTraitTemplate();
     traitTemplate.setMinimalValue(MIN_VALUE);
     traitTemplate.setMaximalValue(MAX_VALUE);
-    this.experience = new DummyExperience();
-    this.experience.setExperienced(false);
-    this.basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
+    experience = new DummyExperience();
+    experience.setExperienced(false);
+    basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
     DummyTraitPreferences preferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
     IInteractiveFavorization favorization = createNiceMock(IInteractiveFavorization.class);
     replay(favorization);
-    this.interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, traitTemplate, preferences);
+    interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, traitTemplate, preferences);
   }
 
   @Test
@@ -48,9 +49,9 @@ public class InteractiveTraitOnCreationTest {
   }
 
   @Test
-  public void enforcesMaximumValue() throws Exception {
-    interactiveTrait.setValue(MAX_VALUE + 1);
-    assertEquals(MAX_VALUE, basicTrait.getCreationModel().getValue());
+  public void enforcesCreationMaximumValue() throws Exception {
+    interactiveTrait.setValue(CREATION_MAX + 1);
+    assertEquals(CREATION_MAX, basicTrait.getCreationModel().getValue());
     assertNoExperienceValueSet();
   }
 

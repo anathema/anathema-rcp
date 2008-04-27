@@ -14,17 +14,18 @@ import org.junit.Test;
 
 public class InteractiveTraitOnExperienceTest {
 
+  private static final int CURRENT_ESSENCE = 7;
   private static final int MAX_VALUE = 4;
   private static final int MIN_VALUE = 0;
   private static final int CREATION_VALUE = 2;
   private IExperience experience;
   private IBasicTrait basicTrait;
-  private InteractiveTrait ruleTrait;
+  private InteractiveTrait interactiveTrait;
 
   @Test
   public void allowsValueGreaterThanCreationValue() throws Exception {
     int value = CREATION_VALUE + 1;
-    ruleTrait.setValue(value);
+    interactiveTrait.setValue(value);
     assertEquals(value, basicTrait.getExperiencedModel().getValue());
     assertNoCreationValueChange();
   }
@@ -44,26 +45,26 @@ public class InteractiveTraitOnExperienceTest {
     basicTrait.getCreationModel().setValue(CREATION_VALUE);
     IInteractiveFavorization favorization = createNiceMock(IInteractiveFavorization.class);
     replay(favorization);
-    ruleTrait = new InteractiveTrait(basicTrait, experience, favorization, traitTemplate, null);
+    interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, traitTemplate, null);
   }
 
   @Test
   public void enforcesCreationValueMinimum() throws Exception {
-    ruleTrait.setValue(CREATION_VALUE - 1);
+    interactiveTrait.setValue(CREATION_VALUE - 1);
     assertEquals(CREATION_VALUE, basicTrait.getExperiencedModel().getValue());
     assertNoCreationValueChange();
   }
 
 
   @Test
-  public void enforcesMaximumValue() throws Exception {
-    ruleTrait.setValue(MAX_VALUE + 1);
-    assertEquals(MAX_VALUE, basicTrait.getExperiencedModel().getValue());
+  public void enforcesCurrentEssenceAsMaximumValue() throws Exception {
+    interactiveTrait.setValue(CURRENT_ESSENCE + 1);
+    assertEquals(CURRENT_ESSENCE, basicTrait.getExperiencedModel().getValue());
     assertNoCreationValueChange();
   }
 
   @Test
   public void respectsConfiguredMaximumValue() throws Exception {
-    assertEquals(MAX_VALUE, ruleTrait.getMaximalValue());
+    assertEquals(MAX_VALUE, interactiveTrait.getMaximalValue());
   }
 }

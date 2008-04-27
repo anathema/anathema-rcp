@@ -45,8 +45,12 @@ public class DisplayTrait implements IDisplayTrait {
   }
 
   public static int getMaximumValue(IExperience experience, ITraitTemplate traitTemplate) {
-    int currentEssenceValue = experience.isExperienced() ? 7 : 5;
+    int currentEssenceValue = getCurrentEssenceValue(experience);
     return traitTemplate.getMaximalValue(currentEssenceValue);
+  }
+
+  public static int getCurrentEssenceValue(IExperience experience) {
+    return experience.isExperienced() ? 7 : 5;
   }
 
   @Override

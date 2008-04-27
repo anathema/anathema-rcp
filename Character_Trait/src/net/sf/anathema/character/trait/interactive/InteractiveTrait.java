@@ -58,7 +58,7 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
     valueValidators.add(new RespectCreationValueMinimum(experience, basicTrait));
     valueValidators.add(new RespectTemplateMinimum(traitTemplate));
     valueValidators.add(new RespectFavoredMinimum(basicTrait));
-    valueValidators.add(new RespectValueMaximum(experience, traitTemplate));
+    valueValidators.add(new RespectValueMaximum(experience));
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getCreationModel().addChangeListener(experienceTreatmentListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);
