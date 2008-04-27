@@ -9,7 +9,7 @@ public class AbilitiesEditorInputConfiguration implements IEditorInputConfigurat
 
   @Override
   public String getGroupLabel(IDisplayTraitGroup< ? > group) {
-    return group.getId();
+    return group.getLabel();
   }
 
   @Override

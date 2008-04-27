@@ -20,7 +20,7 @@ public abstract class AbstractTraitGroupTransformer<T extends IDisplayTrait> imp
 
   @Override
   public final IDisplayTraitGroup<T> transform(ITraitGroup group) {
-    DisplayTraitGroup<T> displayGroup = new DisplayTraitGroup<T>(group.getId());
+    DisplayTraitGroup<T> displayGroup = new DisplayTraitGroup<T>(group.getId(), group.getLabel());
     for (String traitId : group.getTraitIds()) {
       IBasicTrait trait = context.getCollection().getTrait(traitId);
       IExperience experience = context.getExperience();

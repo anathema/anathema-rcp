@@ -41,7 +41,7 @@ public class TraitCollectionPersisterTest {
 
       @Override
       public TraitGroup[] getGroups() {
-        return new TraitGroup[] {new TraitGroup("Gruppe", TRAIT1, TRAIT2)}; //$NON-NLS-1$
+        return new TraitGroup[] {new TraitGroup("Gruppe", null, TRAIT1, TRAIT2)}; //$NON-NLS-1$
       }
 
       @Override

@@ -13,7 +13,7 @@ public class AttributesEditorInputConfiguration implements IEditorInputConfigura
 
   @Override
   public String getGroupLabel(IDisplayTraitGroup< ? > group) {
-    return AttributeMessages.get(group.getId());
+    return AttributeMessages.get(group.getLabel());
   }
 
   @Override

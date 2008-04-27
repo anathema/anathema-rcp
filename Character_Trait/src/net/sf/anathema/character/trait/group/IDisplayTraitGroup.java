@@ -7,4 +7,6 @@ import org.eclipse.core.commands.common.IIdentifiable;
 public interface IDisplayTraitGroup<T extends IDisplayTrait> extends IIdentifiable {
 
   public Iterable<T> getTraits();
+
+  public String getLabel();
 }

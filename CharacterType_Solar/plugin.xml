@@ -13,7 +13,8 @@
       <groups
             characterType="net.sf.anathema.character.type.solar">
          <traitGroup
-               id="Dawn">
+               id="Dawn"
+               label="Dawn">
             <traitReference
                   traitId="Archery"></traitReference>
             <traitReference
@@ -30,7 +31,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Zenith">
+               id="Zenith"
+               label="Zenith">
             <traitReference
                   traitId="Integrity"></traitReference>
             <traitReference
@@ -45,7 +47,8 @@
                   traitId="Survival"></traitReference>
          </traitGroup>
          <traitGroup
-               id="Twilight">
+               id="Twilight"
+               label="Twilight">
             <traitReference
                   traitId="Craft">
             </traitReference>
@@ -63,7 +66,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Night">
+               id="Night"
+               label="Night">
             <traitReference
                   traitId="Athletics">
             </traitReference>
@@ -81,7 +85,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Eclipse">
+               id="Eclipse"
+               label="Eclipse">
             <traitReference
                   traitId="Bureaucracy">
             </traitReference>

@@ -100,7 +100,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
   }
 
   private void addGroupLabel(PdfContentByte directContent, IDisplayTraitGroup<IDisplayTrait> group, Position position) {
-    String groupLabel = group.getId();
+    String groupLabel = group.getLabel();
     drawVerticalText(directContent, groupLabel, position, PdfContentByte.ALIGN_CENTER);
   }
 

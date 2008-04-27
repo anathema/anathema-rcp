@@ -19,7 +19,7 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   @Before
   public void createCalculator() throws Exception {
     identificate = new Identificate("Strength"); //$NON-NLS-1$
-    traitGroup = new TraitGroup("group", identificate.getId()); //$NON-NLS-1$
+    traitGroup = new TraitGroup("group", null, identificate.getId()); //$NON-NLS-1$
     context = AttributeContextObjectMother.createContext(traitGroup);
     context.getCollection().getTrait(identificate.getId()).getCreationModel().setValue(CREATION_VALUE);
   }

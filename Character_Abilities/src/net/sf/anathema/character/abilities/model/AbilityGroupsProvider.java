@@ -13,6 +13,7 @@ public class AbilityGroupsProvider {
 
   private static final String ATTRIB_TRAIT_ID = "traitId"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
+  private static final String ATTRIB_LABEL = "label"; //$NON-NLS-1$
   private static final String ATTRIB_CHARACTER_TYPE = "characterType"; //$NON-NLS-1$
   private static final String POINT_ID = "groups"; //$NON-NLS-1$
   private final IPluginExtension[] extensions;
@@ -41,7 +42,8 @@ public class AbilityGroupsProvider {
       for (IExtensionElement referenceElement : groupElement.getElements()) {
         traitReferences.add(referenceElement.getAttribute(ATTRIB_TRAIT_ID));
       }
-      traitGroups.add(new TraitGroup(groupId, traitReferences.toArray(new String[traitReferences.size()])));
+      String label = groupElement.getAttribute(ATTRIB_LABEL);
+      traitGroups.add(new TraitGroup(groupId, label, traitReferences.toArray(new String[traitReferences.size()])));
     }
     return traitGroups.toArray(new TraitGroup[traitGroups.size()]);
   }

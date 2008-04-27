@@ -114,7 +114,8 @@
       <groups
             characterType="net.sf.anathema.character.type.sidereal">
          <traitGroup
-               id="Journeys">
+               id="Journeys"
+               label="Journeys">
             <traitReference
                   traitId="Resistance">
             </traitReference>
@@ -132,7 +133,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Serenity">
+               id="Serenity"
+               label="Serenity">
             <traitReference
                   traitId="Craft">
             </traitReference>
@@ -150,7 +152,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Battles">
+               id="Battles"
+               label="Battles">
             <traitReference
                   traitId="Archery">
             </traitReference>
@@ -168,7 +171,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Secrets">
+               id="Secrets"
+               label="Secrets">
             <traitReference
                   traitId="Investigation">
             </traitReference>
@@ -186,7 +190,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Endings">
+               id="Endings"
+               label="Endings">
             <traitReference
                   traitId="Awareness">
             </traitReference>

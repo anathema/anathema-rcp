@@ -10,30 +10,30 @@ public class TraitGroupTest {
 
   @org.junit.Before
   public void createTraitGroup() throws Exception {
-    group = new TraitGroup("id"); //$NON-NLS-1$
+    group = new TraitGroup("id", null); //$NON-NLS-1$
   }
 
   @Test
   public void equalsIfIdIdentical() throws Exception {
-    TraitGroup otherGroup = new TraitGroup("id"); //$NON-NLS-1$
+    TraitGroup otherGroup = new TraitGroup("id", null); //$NON-NLS-1$
     assertTrue(group.equals(otherGroup));
   }
 
   @Test
   public void doesNotEqualIfIdNotIdentical() throws Exception {
-    TraitGroup otherGroup = new TraitGroup("ad"); //$NON-NLS-1$
+    TraitGroup otherGroup = new TraitGroup("ad", null); //$NON-NLS-1$
     assertFalse(group.equals(otherGroup));
   }
 
   @Test
   public void doesNotEqualIfOtherIdNull() throws Exception {
-    TraitGroup otherGroup = new TraitGroup(null);
+    TraitGroup otherGroup = new TraitGroup(null, null);
     assertFalse(group.equals(otherGroup));
   }
 
   @Test
   public void doesNotEqualIfOwnIdNull() throws Exception {
-    TraitGroup otherGroup = new TraitGroup(null);
+    TraitGroup otherGroup = new TraitGroup(null, null);
     assertFalse(otherGroup.equals(group));
   }
 }

@@ -23,7 +23,7 @@ public class PointCoverageCalculatorMultiTraitCreationTest {
   public void createCalculator() throws Exception {
     firstTraitId = new Identificate("First"); //$NON-NLS-1$
     secondTraitId = new Identificate("Second"); //$NON-NLS-1$
-    traitGroup = new TraitGroup("group", firstTraitId.getId(), secondTraitId.getId()); //$NON-NLS-1$
+    traitGroup = new TraitGroup("group", null, firstTraitId.getId(), secondTraitId.getId()); //$NON-NLS-1$
     context = AttributeContextObjectMother.createContext(traitGroup);
     collection = context.getCollection();
     collection.getTrait(firstTraitId.getId()).getCreationModel().setValue(3);

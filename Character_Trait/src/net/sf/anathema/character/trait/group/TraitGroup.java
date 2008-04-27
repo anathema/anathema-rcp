@@ -6,9 +6,11 @@ public class TraitGroup implements ITraitGroup {
 
   private final String[] traitIds;
   private final String id;
+  private final String label;
 
-  public TraitGroup(String id, String... traitIds) {
+  public TraitGroup(String id, String label, String... traitIds) {
     this.id = id;
+    this.label = label;
     this.traitIds = traitIds;
   }
 
@@ -19,6 +21,11 @@ public class TraitGroup implements ITraitGroup {
   @Override
   public String getId() {
     return id;
+  }
+
+  @Override
+  public String getLabel() {
+    return label;
   }
 
   @Override

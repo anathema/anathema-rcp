@@ -9,9 +9,11 @@ public class DisplayTraitGroup<T extends IDisplayTrait> implements IDisplayTrait
 
   private final List<T> traits = new ArrayList<T>();
   private final String id;
+  private final String label;
 
-  public DisplayTraitGroup(String id) {
+  public DisplayTraitGroup(String id, String label) {
     this.id = id;
+    this.label = label;
   }
 
   public void addTrait(T trait) {
@@ -26,5 +28,10 @@ public class DisplayTraitGroup<T extends IDisplayTrait> implements IDisplayTrait
   @Override
   public String getId() {
     return id;
+  }
+
+  @Override
+  public String getLabel() {
+    return label;
   }
 }

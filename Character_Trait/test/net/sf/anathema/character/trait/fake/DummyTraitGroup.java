@@ -25,6 +25,11 @@ public class DummyTraitGroup implements ITraitGroup {
   }
 
   public void addTraitId(String traitId) {
-    this.traitIds.add(traitId);
+    traitIds.add(traitId);
+  }
+
+  @Override
+  public String getLabel() {
+    return null;
   }
 }

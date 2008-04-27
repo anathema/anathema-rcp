@@ -135,7 +135,8 @@
       <groups
             characterType="net.sf.anathema.character.type.db">
          <traitGroup
-               id="Air">
+               id="Air"
+               label="Air">
             <traitReference
                   traitId="Linguistics">
             </traitReference>
@@ -153,7 +154,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Earth">
+               id="Earth"
+               label="Earth">
             <traitReference
                   traitId="Awareness">
             </traitReference>
@@ -171,7 +173,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Fire">
+               id="Fire"
+               label="Fire">
             <traitReference
                   traitId="Athletics">
             </traitReference>
@@ -189,7 +192,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Water">
+               id="Water"
+               label="Water">
             <traitReference
                   traitId="Bureaucracy">
             </traitReference>
@@ -207,7 +211,8 @@
             </traitReference>
          </traitGroup>
          <traitGroup
-               id="Wood">
+               id="Wood"
+               label="Wood">
             <traitReference
                   traitId="Archery">
             </traitReference>
