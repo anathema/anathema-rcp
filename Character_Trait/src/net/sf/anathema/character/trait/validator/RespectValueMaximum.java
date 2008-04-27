@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.interactive.validator;
+package net.sf.anathema.character.trait.validator;
 
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.display.DisplayTrait;

@@ -5,7 +5,7 @@ import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
-import net.sf.anathema.character.trait.display.DisplayTrait;
+import net.sf.anathema.character.trait.interactive.ModelContainerObjectMother;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -23,11 +23,15 @@ public class DisplayTraitToggleExperiencedTest {
   public void createRules() throws Exception {
     this.experience = new DummyExperience();
     this.basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
-    this.displayTrait = new DisplayTrait(null, basicTrait, experience, new DummyTraitTemplate());
+    this.displayTrait = new DisplayTrait(
+        null,
+        basicTrait,
+        ModelContainerObjectMother.create(experience),
+        new DummyTraitTemplate());
     basicTrait.getCreationModel().setValue(LESSER_CREATION_VALUE);
     basicTrait.getExperiencedModel().setValue(EXPERIENCED_VALUE);
   }
-  
+
   @Test
   public void withLesserCreationValueValuesAreToggledOnExperienceChange() throws Exception {
     assertEquals(LESSER_CREATION_VALUE, displayTrait.getValue());

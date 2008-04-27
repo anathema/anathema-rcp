@@ -7,6 +7,7 @@ import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.fake.DummyFavorizationHandler;
+import net.sf.anathema.character.trait.interactive.ModelContainerObjectMother;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -23,7 +24,11 @@ public class DisplayTraitTest {
     basicTrait = new BasicTrait(new Identificate("TestTrait")); //$NON-NLS-1$
     experience = new DummyExperience();
     IDisplayFavorization favorization = new DisplayFavorization(new DummyFavorizationHandler(), basicTrait);
-    displayTrait = new DisplayTrait(favorization, basicTrait, experience, new DummyTraitTemplate());
+    displayTrait = new DisplayTrait(
+        favorization,
+        basicTrait,
+        ModelContainerObjectMother.create(experience),
+        new DummyTraitTemplate());
   }
 
   @Test

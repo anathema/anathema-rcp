@@ -38,7 +38,12 @@ public class InteractiveTraitOnCreationTest {
     DummyTraitPreferences preferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
     IInteractiveFavorization favorization = createNiceMock(IInteractiveFavorization.class);
     replay(favorization);
-    interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, traitTemplate, preferences);
+    interactiveTrait = new InteractiveTrait(
+        basicTrait,
+        ModelContainerObjectMother.create(experience),
+        favorization,
+        traitTemplate,
+        preferences);
   }
 
   @Test

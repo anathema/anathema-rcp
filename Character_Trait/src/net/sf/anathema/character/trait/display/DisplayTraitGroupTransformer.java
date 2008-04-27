@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.display;
 
-import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.AbstractTraitGroupTransformer;
@@ -17,7 +17,7 @@ public class DisplayTraitGroupTransformer extends AbstractTraitGroupTransformer<
   }
 
   @Override
-  protected IDisplayTrait createTrait(IBasicTrait trait, IExperience experience, ITraitTemplate traitTemplate) {
-    return new DisplayTrait(new DisplayFavorization(favorizationHandler, trait), trait, experience, traitTemplate);
+  protected IDisplayTrait createTrait(IBasicTrait trait, IModelContainer container, ITraitTemplate traitTemplate) {
+    return new DisplayTrait(new DisplayFavorization(favorizationHandler, trait), trait, container, traitTemplate);
   }
 }

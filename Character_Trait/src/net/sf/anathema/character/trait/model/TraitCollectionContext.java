@@ -2,18 +2,18 @@ package net.sf.anathema.character.trait.model;
 
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTypeProvider;
+import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.core.type.CharacterTypeProvider;
-import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.template.ITraitTemplate;
 
-public class TraitCollectionContext implements ITraitCollectionContext {
+public class TraitCollectionContext implements ITraitCollectionContext, IModelContainer {
 
   public static TraitCollectionContext create(
       ICharacterId characterId,
@@ -51,11 +51,11 @@ public class TraitCollectionContext implements ITraitCollectionContext {
   }
 
   @Override
-  public IExperience getExperience() {
-    return (IExperience) getModel(IExperience.MODEL_ID);
+  public IModelContainer getModelContainer() {
+    return this;
   }
 
-  private Object getModel(String modelId) {
+  public IModel getModel(String modelId) {
     return modelContainer.getModel(modelId);
   }
 

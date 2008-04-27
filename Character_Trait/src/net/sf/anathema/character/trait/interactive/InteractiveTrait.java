@@ -1,20 +1,17 @@
 package net.sf.anathema.character.trait.interactive;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.display.DisplayTrait;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
-import net.sf.anathema.character.trait.interactive.validator.IValidator;
-import net.sf.anathema.character.trait.interactive.validator.RespectCreationValueMinimum;
-import net.sf.anathema.character.trait.interactive.validator.RespectFavoredMinimum;
-import net.sf.anathema.character.trait.interactive.validator.RespectTemplateMinimum;
-import net.sf.anathema.character.trait.interactive.validator.RespectValueMaximum;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.template.ITraitTemplate;
+import net.sf.anathema.character.trait.validator.IValidator;
+import net.sf.anathema.character.trait.validator.ValidatorFactory;
 import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
@@ -42,23 +39,20 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
   private final IInteractiveFavorization favorization;
   private final ITraitPreferences traitPreferences;
   private final IExperience experience;
-  private final List<IValidator> valueValidators = new ArrayList<IValidator>();
+  private final List<IValidator> valueValidators;
 
   public InteractiveTrait(
       final IBasicTrait basicTrait,
-      final IExperience experience,
+      final IModelContainer container,
       final IInteractiveFavorization favorization,
       ITraitTemplate traitTemplate,
       ITraitPreferences traitPreferences) {
-    this.experience = experience;
+    experience = (IExperience) container.getModel(IExperience.MODEL_ID);
     this.traitPreferences = traitPreferences;
     this.favorization = favorization;
     this.basicTrait = basicTrait;
-    displayTrait = new DisplayTrait(favorization, basicTrait, experience, traitTemplate);
-    valueValidators.add(new RespectCreationValueMinimum(experience, basicTrait));
-    valueValidators.add(new RespectTemplateMinimum(traitTemplate));
-    valueValidators.add(new RespectFavoredMinimum(basicTrait));
-    valueValidators.add(new RespectValueMaximum(experience));
+    displayTrait = new DisplayTrait(favorization, basicTrait, container, traitTemplate);
+    valueValidators = new ValidatorFactory().create(container, basicTrait, traitTemplate);
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getCreationModel().addChangeListener(experienceTreatmentListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);

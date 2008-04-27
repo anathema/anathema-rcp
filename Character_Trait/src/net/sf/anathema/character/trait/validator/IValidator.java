@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.interactive.validator;
+package net.sf.anathema.character.trait.validator;
 
 public interface IValidator {
 

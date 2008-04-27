@@ -45,7 +45,12 @@ public class InteractiveTraitOnExperienceTest {
     basicTrait.getCreationModel().setValue(CREATION_VALUE);
     IInteractiveFavorization favorization = createNiceMock(IInteractiveFavorization.class);
     replay(favorization);
-    interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, traitTemplate, null);
+    interactiveTrait = new InteractiveTrait(
+        basicTrait,
+        ModelContainerObjectMother.create(experience),
+        favorization,
+        traitTemplate,
+        null);
   }
 
   @Test
@@ -54,7 +59,6 @@ public class InteractiveTraitOnExperienceTest {
     assertEquals(CREATION_VALUE, basicTrait.getExperiencedModel().getValue());
     assertNoCreationValueChange();
   }
-
 
   @Test
   public void enforcesCurrentEssenceAsMaximumValue() throws Exception {

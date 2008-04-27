@@ -2,6 +2,7 @@ package net.sf.anathema.character.freebies.attributes.coverage;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.AttributeContextObjectMother;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.util.Identificate;
@@ -26,7 +27,7 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
 
   @Test
   public void indicatesNoOverflowPointsOnExperience() throws Exception {
-    context.getExperience().setExperienced(true);
+    setExperienced();
     context.getCollection().getTrait(identificate.getId()).getExperiencedModel().setValue(CREATION_VALUE + 2);
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
     ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
@@ -56,7 +57,7 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
 
   @Test
   public void indicatesCreationValueCoverageOnExperience() throws Exception {
-    context.getExperience().setExperienced(true);
+    setExperienced();
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 0);
     ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
     assertEquals(CREATION_VALUE, calculation.getPointsCovered(identificate));
@@ -81,5 +82,9 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
     PointCoverageCalculator pointCoverageCalculator = new PointCoverageCalculator(context, 3);
     ICoverageCalculation calculation = pointCoverageCalculator.calculateCoverageFor(traitGroup);
     assertEquals(3, calculation.getPointsCovered(identificate));
+  }
+
+  private void setExperienced() {
+    ((IExperience) context.getModelContainer().getModel(IExperience.MODEL_ID)).setExperienced(true);
   }
 }

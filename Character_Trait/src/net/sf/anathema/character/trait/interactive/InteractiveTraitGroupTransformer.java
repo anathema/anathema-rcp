@@ -1,6 +1,7 @@
 package net.sf.anathema.character.trait.interactive;
 
 import net.disy.commons.core.util.ITransformer;
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
@@ -27,8 +28,9 @@ public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTr
   }
 
   @Override
-  protected InteractiveTrait createTrait(IBasicTrait trait, IExperience experience, ITraitTemplate traitTemplate) {
+  protected InteractiveTrait createTrait(IBasicTrait trait, IModelContainer container, ITraitTemplate traitTemplate) {
+    IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
     InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
-    return new InteractiveTrait(trait, experience, favorization, traitTemplate, traitPreferences);
+    return new InteractiveTrait(trait, container, favorization, traitTemplate, traitPreferences);
   }
 }

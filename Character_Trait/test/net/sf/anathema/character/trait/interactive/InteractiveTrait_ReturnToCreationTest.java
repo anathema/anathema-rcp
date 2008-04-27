@@ -27,7 +27,7 @@ public class InteractiveTrait_ReturnToCreationTest {
     basicTrait.getExperiencedModel().setValue(3);
     interactiveTrait = new InteractiveTrait(
         basicTrait,
-        experience,
+        ModelContainerObjectMother.create(experience),
         EasyMock.createMock(IInteractiveFavorization.class),
         new DummyTraitTemplate(),
         new DummyTraitPreferences(ExperienceTraitTreatment.IncreaseWithCreation));

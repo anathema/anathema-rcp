@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait.display;
 
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.template.ITraitTemplate;
@@ -15,10 +16,10 @@ public class DisplayTrait implements IDisplayTrait {
   public DisplayTrait(
       IDisplayFavorization favorization,
       IBasicTrait basicTrait,
-      IExperience experience,
+      IModelContainer container,
       ITraitTemplate traitTemplate) {
     this.basicTrait = basicTrait;
-    this.experience = experience;
+    experience = (IExperience) container.getModel(IExperience.MODEL_ID);
     this.traitTemplate = traitTemplate;
     this.favorization = favorization;
   }

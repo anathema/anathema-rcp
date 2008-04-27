@@ -27,14 +27,19 @@ public class InteractiveTraitExperiencedTest {
 
   @Before
   public final void createTrait() {
-    IExperience experienced = new DummyExperience();
-    experienced.setExperienced(true);
+    IExperience experience = new DummyExperience();
+    experience.setExperienced(true);
     traitTemplate = new DummyTraitTemplate();
     traitType = new Identificate("test"); //$NON-NLS-1$
     basicTrait = new BasicTrait(traitType);
     favorization = EasyMock.createNiceMock(IInteractiveFavorization.class);
     ITraitPreferences traitPreferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
-    interactiveTrait = new InteractiveTrait(basicTrait, experienced, favorization, traitTemplate, traitPreferences);
+    interactiveTrait = new InteractiveTrait(
+        basicTrait,
+        ModelContainerObjectMother.create(experience),
+        favorization,
+        traitTemplate,
+        traitPreferences);
   }
 
   @Test

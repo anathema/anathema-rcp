@@ -25,9 +25,9 @@ public class InteractiveTraitWithLeaveUnchangedTest {
     basicTrait = new BasicTrait(new Identificate("test")); //$NON-NLS-1$
     basicTrait.getCreationModel().setValue(2);
     basicTrait.getExperiencedModel().setValue(3);
-    this.interactiveTrait = new InteractiveTrait(
+    interactiveTrait = new InteractiveTrait(
         basicTrait,
-        experience,
+        ModelContainerObjectMother.create(experience),
         EasyMock.createMock(IInteractiveFavorization.class),
         new DummyTraitTemplate(),
         new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged));

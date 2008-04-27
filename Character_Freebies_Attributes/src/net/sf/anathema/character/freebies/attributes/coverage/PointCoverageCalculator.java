@@ -3,6 +3,7 @@ package net.sf.anathema.character.freebies.attributes.coverage;
 import java.util.Arrays;
 
 import net.sf.anathema.character.attributes.points.IAttributeConstants;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
@@ -18,7 +19,8 @@ public class PointCoverageCalculator {
   }
 
   public ICoverageCalculation calculateCoverageFor(ITraitGroup traitGroup) {
-    if (context.getExperience().isExperienced()) {
+    IExperience experience = (IExperience) context.getModelContainer().getModel(IExperience.MODEL_ID);
+    if (experience.isExperienced()) {
       return new ExperienceCoverageCalculation(context.getCollection());
     }
     String[] ids = traitGroup.getTraitIds();
