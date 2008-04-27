@@ -16,7 +16,7 @@ import net.sf.anathema.character.trait.interactive.IIntValueModel;
 import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.character.trait.validator.ValidationUtilities;
-import net.sf.anathema.character.trait.validator.ValidatorContainer;
+import net.sf.anathema.character.trait.validator.ValidatorFactory;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
@@ -24,10 +24,10 @@ import org.eclipse.core.runtime.CoreException;
 public abstract class AbstractTraitCollectionFactory extends
     AbstractModelFactory<ITraitCollectionTemplate, ITraitCollectionModel> {
 
-  private final ValidatorContainer validatorFactory;
+  private final ValidatorFactory validatorFactory;
 
   public AbstractTraitCollectionFactory(int defaultMinimumValue) {
-    validatorFactory = new ValidatorContainer(defaultMinimumValue);
+    validatorFactory = new ValidatorFactory(defaultMinimumValue);
   }
 
   @Override

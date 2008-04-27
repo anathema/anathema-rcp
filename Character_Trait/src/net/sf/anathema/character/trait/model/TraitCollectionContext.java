@@ -16,7 +16,7 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.validator.IValidator;
-import net.sf.anathema.character.trait.validator.ValidatorContainer;
+import net.sf.anathema.character.trait.validator.ValidatorFactory;
 
 public class TraitCollectionContext implements ITraitCollectionContext, IModelContainer {
 
@@ -55,7 +55,7 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
     IBasicTrait trait = getCollection().getTrait(traitId);
     // TODO: Case 183: Hack entfernen
     int defaultMinimalValue = collectionModelId.equals("net.sf.anathema.character.attributes.model") ? 1 : 0; //$NON-NLS-1$
-    return new ValidatorContainer(defaultMinimalValue).create(templateId, getModelContainer(), trait);
+    return new ValidatorFactory(defaultMinimalValue).create(templateId, getModelContainer(), trait);
   }
 
   @Override

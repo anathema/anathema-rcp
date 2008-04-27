@@ -5,7 +5,7 @@ import java.util.List;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 
-public interface IValidatorContainer {
+public interface IValidatorFactory {
 
   public List<IValidator> create(String templateId, IModelContainer container, IBasicTrait trait);
 }
