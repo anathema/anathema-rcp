@@ -23,4 +23,6 @@ public interface ITraitGroupEditorInput {
   public IIntViewImageProvider getImageProvider();
 
   public ITraitGroup findTraitGroup(IIdentificate traitType);
+
+  public String getModelId();
 }

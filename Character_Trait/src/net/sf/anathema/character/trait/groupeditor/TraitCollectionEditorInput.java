@@ -65,7 +65,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   }
 
   @Override
-  protected String getModelId() {
+  public String getModelId() {
     return configuration.getModelId();
   }
 

@@ -11,5 +11,6 @@ Require-Bundle: net.sf.anathema.character.core;visibility:=reexport,
  net.sf.anathema.basics.item,
  net.sf.anathema.character.trait;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.character.freebies.configuration,
+ net.sf.anathema.character.freebies.coverage,
  net.sf.anathema.character.freebies.fake
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
