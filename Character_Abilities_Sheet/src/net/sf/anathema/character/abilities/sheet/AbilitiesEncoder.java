@@ -2,7 +2,6 @@ package net.sf.anathema.character.abilities.sheet;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilties;
@@ -16,8 +15,6 @@ import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
-import net.sf.anathema.lib.util.IIdentificate;
-import net.sf.anathema.lib.util.Identificate;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -31,14 +28,13 @@ import com.lowagie.text.pdf.PdfContentByte;
 public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentBoxEncoder, IExecutableExtension {
 
   private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
-  private final List<IIdentificate> markedTraitTypes = new ArrayList<IIdentificate>();
   private final List<ISubSectionEncoder> subsectionEncoders = new ArrayList<ISubSectionEncoder>();
   private final PdfTraitEncoder traitEncoder;
+  private final MarkerEncoder markerEncoder = new MarkerEncoder();
+  private final MarkedTraits markedTraits = new MarkedTraits();
 
   public AbilitiesEncoder() {
     traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
-    Collections.addAll(markedTraitTypes, new Identificate("Athletics"), new Identificate("Dodge"), new Identificate(
-        "Larceny"), new Identificate("Ride"), new Identificate("Stealth"));
     addSubsectionEncoder(new EmptySubsectionEncoder(BASEFONT, traitEncoder, "Crafts", 10, 9));
     addSubsectionEncoder(new EmptySubsectionEncoder(BASEFONT, traitEncoder, "Specialities", 3, 9));
   }
@@ -62,13 +58,11 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
       yPosition -= IVoidStateFormatConstants.LINE_HEIGHT;
       yPosition -= encoder.encode(directContent, character, new Position(position.x, yPosition), width);
     }
-    if (!markedTraitTypes.isEmpty()) {
-      encodeMarkerCommentText(directContent, position, bounds.getMinY() + 4);
-    }
+    encodeMarkerCommentText(directContent, position, bounds.getMinY() + 4);
   }
 
   private float encodeTraitGroups(PdfContentByte directContent, ICharacter character, Position position, float width) {
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = getDisplayTraits(character);
+    List<IDisplayTraitGroup<IDisplayTrait>> groups = AbilitiesDisplayUtilties.getDisplayAttributeGroups(character);
     float yPosition = position.y;
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       Position groupPosition = new Position(position.x, yPosition);
@@ -92,8 +86,8 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
     for (IDisplayTrait trait : group.getTraits()) {
       index++;
       float yPosition = position.y - (index + 1) * traitEncoder.getTraitHeight();
-      if (markedTraitTypes.contains(trait.getTraitType())) {
-        encodeMarker(directContent, new Position(markerX, yPosition + 1));
+      if (markedTraits.isMarked(trait)) {
+        markerEncoder.encode(directContent, new Position(markerX, yPosition + 1));
       }
       // TODO i18n für Abilities
       String label = trait.getTraitType().getId();
@@ -118,27 +112,12 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
       float width) {
     int value = trait.getValue();
     boolean favored = trait.getFavorization().getStatusModel().getStatus().isCheap();
-    return traitEncoder.encodeWithTextAndRectangle(
-        directContent,
-        label,
-        position,
-        width,
-        value,
-        favored,
-        trait.getMaximalValue());
-  }
-
-  private final void encodeMarker(PdfContentByte directContent, Position markerPosition) {
-    directContent.setLineWidth(1.0f);
-    directContent.moveTo(markerPosition.x, markerPosition.y + 2);
-    directContent.lineTo(markerPosition.x + 4, markerPosition.y + 2);
-    directContent.moveTo(markerPosition.x + 2, markerPosition.y);
-    directContent.lineTo(markerPosition.x + 2, markerPosition.y + 4);
-    directContent.stroke();
+    int maximalValue = trait.getMaximalValue();
+    return traitEncoder.encodeWithTextAndRectangle(directContent, label, position, width, value, favored, maximalValue);
   }
 
   private float encodeMarkerCommentText(PdfContentByte directContent, Position position, float yPosition) {
-    encodeMarker(directContent, new Position(position.x, yPosition));
+    markerEncoder.encode(directContent, new Position(position.x, yPosition));
     String mobilityPenaltyText = " : This ability is commonly affected by mobility penalty.";
     Position commentPosition = new Position(position.x + 5, yPosition);
     drawComment(directContent, mobilityPenaltyText, commentPosition, PdfContentByte.ALIGN_LEFT);
@@ -148,10 +127,6 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
   @Override
   public String getHeader(ICharacter character) {
     return "Abilities";
-  }
-
-  protected List<IDisplayTraitGroup<IDisplayTrait>> getDisplayTraits(ICharacter character) {
-    return AbilitiesDisplayUtilties.getDisplayAttributeGroups(character);
   }
 
   @Override
