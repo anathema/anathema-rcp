@@ -10,10 +10,6 @@ import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 
 public class AbilitiesFactory extends AbstractTraitCollectionFactory {
 
-  public AbilitiesFactory() {
-    super(0);
-  }
-
   private final IModelPersister<ITraitCollectionTemplate, ITraitCollectionModel> persister = new TraitCollectionPersister();
 
   @Override

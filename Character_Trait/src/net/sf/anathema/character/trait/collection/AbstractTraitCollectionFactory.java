@@ -24,11 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 public abstract class AbstractTraitCollectionFactory extends
     AbstractModelFactory<ITraitCollectionTemplate, ITraitCollectionModel> {
 
-  private final ValidatorFactory validatorFactory;
-
-  public AbstractTraitCollectionFactory(int defaultMinimumValue) {
-    validatorFactory = new ValidatorFactory(defaultMinimumValue);
-  }
+  private final ValidatorFactory validatorFactory = new ValidatorFactory();
 
   @Override
   public final IModelInitializer createInitializer(
@@ -38,7 +34,7 @@ public abstract class AbstractTraitCollectionFactory extends
     ITraitCollectionModel model = create(contentHandler, template);
     IModelContainer container = new ModelContainer(ModelCache.getInstance(), identifier.getCharacterId());
     for (IBasicTrait trait : model.getTraits()) {
-      List<IValidator> validators = validatorFactory.create(template.getId(), container, trait);
+      List<IValidator> validators = validatorFactory.create(template.getId(), container, identifier.getModelId(), trait);
       IIntValueModel creationModel = trait.getCreationModel();
       int correctedValue = ValidationUtilities.getCorrectedValue(validators, creationModel.getValue());
       creationModel.setValue(correctedValue);

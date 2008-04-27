@@ -7,5 +7,5 @@ import net.sf.anathema.character.trait.IBasicTrait;
 
 public interface IValidatorFactory {
 
-  public List<IValidator> create(String templateId, IModelContainer container, IBasicTrait trait);
+  public List<IValidator> create(String templateId, IModelContainer container, String modelId, IBasicTrait trait);
 }

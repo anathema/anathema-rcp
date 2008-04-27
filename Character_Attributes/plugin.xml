@@ -50,4 +50,14 @@
          </experienceTraitConfiguration>
       </experienceConfigurations>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.validator">
+      <minimum
+            value="1">
+         <where>
+            <modelId
+                  id="net.sf.anathema.character.attributes.model">
+            </modelId></where>
+      </minimum>
+   </extension>
 </plugin>
