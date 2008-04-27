@@ -1,22 +1,20 @@
 package net.sf.anathema.character.attributes.model;
 
-import net.sf.anathema.character.trait.model.ITraitTemplateFactory;
-import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
+import net.sf.anathema.character.trait.model.IMinimalValueFactory;
 
-public final class DummyTemplateFactory implements ITraitTemplateFactory {
-  private final ITraitTemplate traitTemplate;
+public final class DummyTemplateFactory implements IMinimalValueFactory {
+  private final int minimalValue;
 
   public DummyTemplateFactory() {
-    this(new EssenceSensitiveTraitTemplate());
+    this(0);
   }
 
-  public DummyTemplateFactory(ITraitTemplate traitTemplate) {
-    this.traitTemplate = traitTemplate;
+  public DummyTemplateFactory(int minimalValue) {
+    this.minimalValue = minimalValue;
   }
 
   @Override
-  public ITraitTemplate getTraitTemplate(String traitId) {
-    return traitTemplate;
+  public int getMinimalValue(String traitId) {
+    return minimalValue;
   }
 }

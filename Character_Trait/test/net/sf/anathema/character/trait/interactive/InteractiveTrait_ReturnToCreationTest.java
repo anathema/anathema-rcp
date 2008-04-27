@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.fake.DummyTraitPreferences;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 import net.sf.anathema.lib.util.Identificate;
@@ -29,7 +28,7 @@ public class InteractiveTrait_ReturnToCreationTest {
         basicTrait,
         ModelContainerObjectMother.create(experience),
         EasyMock.createMock(IInteractiveFavorization.class),
-        new DummyTraitTemplate(),
+        0,
         new DummyTraitPreferences(ExperienceTraitTreatment.IncreaseWithCreation));
   }
 

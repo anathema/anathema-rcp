@@ -36,11 +36,11 @@ public class TraitTemplateFactoryTest {
 
   @Test
   public void createsTemplateWithGivenDefaultMinimalValue() throws Exception {
-    assertEquals(DEFAULT_MINIMAL_VALUE, factory.getTraitTemplate("ohh duu trait").getMinimalValue()); //$NON-NLS-1$
+    assertEquals(DEFAULT_MINIMAL_VALUE, factory.getMinimalValue("ohh duu trait")); //$NON-NLS-1$
   }
 
   @Test
   public void createsTemplateWithConfiguredMinimalValue() throws Exception {
-    assertEquals(1, factory.getTraitTemplate(MINIMAL_TRAIT).getMinimalValue());
+    assertEquals(1, factory.getMinimalValue(MINIMAL_TRAIT));
   }
 }

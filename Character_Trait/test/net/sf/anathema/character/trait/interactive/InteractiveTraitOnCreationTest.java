@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.fake.DummyTraitPreferences;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
@@ -28,8 +27,6 @@ public class InteractiveTraitOnCreationTest {
 
   @Before
   public void createRules() throws Exception {
-    DummyTraitTemplate traitTemplate = new DummyTraitTemplate();
-    traitTemplate.setMinimalValue(MIN_VALUE);
     experience = new DummyExperience();
     experience.setExperienced(false);
     basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
@@ -40,7 +37,7 @@ public class InteractiveTraitOnCreationTest {
         basicTrait,
         ModelContainerObjectMother.create(experience),
         favorization,
-        traitTemplate,
+        0,
         preferences);
   }
 

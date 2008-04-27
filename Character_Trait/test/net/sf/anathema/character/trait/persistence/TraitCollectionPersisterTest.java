@@ -10,8 +10,6 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.FavoredStatus;
-import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -33,10 +31,8 @@ public class TraitCollectionPersisterTest {
     return new ITraitCollectionTemplate() {
 
       @Override
-      public ITraitTemplate getTraitTemplate(String traitId) {
-        EssenceSensitiveTraitTemplate traitTemplate = new EssenceSensitiveTraitTemplate();
-        traitTemplate.setMiniumalValue(1);
-        return traitTemplate;
+      public int getMinimalValue(String traitId) {
+        return 1;
       }
 
       @Override

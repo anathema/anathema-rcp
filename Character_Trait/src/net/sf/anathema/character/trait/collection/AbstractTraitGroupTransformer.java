@@ -7,7 +7,6 @@ import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.DisplayTraitGroup;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public abstract class AbstractTraitGroupTransformer<T extends IDisplayTrait> implements
     ITransformer<ITraitGroup, IDisplayTraitGroup<T>> {
@@ -24,11 +23,11 @@ public abstract class AbstractTraitGroupTransformer<T extends IDisplayTrait> imp
     for (String traitId : group.getTraitIds()) {
       IBasicTrait trait = context.getCollection().getTrait(traitId);
       IModelContainer experience = context.getModelContainer();
-      ITraitTemplate traitTemplate = context.getTraitTemplate(traitId);
-      displayGroup.addTrait(createTrait(trait, experience, traitTemplate));
+      int minimalValue = context.getMinimumValue(traitId);
+      displayGroup.addTrait(createTrait(trait, experience, minimalValue));
     }
     return displayGroup;
   }
 
-  protected abstract T createTrait(IBasicTrait trait, IModelContainer container, ITraitTemplate traitTemplate);
+  protected abstract T createTrait(IBasicTrait trait, IModelContainer container, int minimalValue);
 }

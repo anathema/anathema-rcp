@@ -9,7 +9,6 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.display.DisplayTrait;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
 import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.character.trait.validator.ValidatorFactory;
 import net.sf.anathema.lib.control.ChangeManagement;
@@ -45,14 +44,14 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
       final IBasicTrait basicTrait,
       final IModelContainer container,
       final IInteractiveFavorization favorization,
-      ITraitTemplate traitTemplate,
+      final int minimalValue,
       ITraitPreferences traitPreferences) {
     experience = (IExperience) container.getModel(IExperience.MODEL_ID);
     this.traitPreferences = traitPreferences;
     this.favorization = favorization;
     this.basicTrait = basicTrait;
     displayTrait = new DisplayTrait(favorization, basicTrait, container, 5);
-    valueValidators = new ValidatorFactory().create(container, basicTrait, traitTemplate);
+    valueValidators = new ValidatorFactory().create(container, basicTrait, minimalValue);
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getCreationModel().addChangeListener(experienceTreatmentListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);

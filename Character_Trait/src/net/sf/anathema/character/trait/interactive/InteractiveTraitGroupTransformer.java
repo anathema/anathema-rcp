@@ -10,7 +10,6 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTransformer<IInteractiveTrait> implements
     ITransformer<ITraitGroup, IDisplayTraitGroup<IInteractiveTrait>> {
@@ -28,9 +27,9 @@ public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTr
   }
 
   @Override
-  protected InteractiveTrait createTrait(IBasicTrait trait, IModelContainer container, ITraitTemplate traitTemplate) {
+  protected InteractiveTrait createTrait(IBasicTrait trait, IModelContainer container, int minimalValue) {
     IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
     InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
-    return new InteractiveTrait(trait, container, favorization, traitTemplate, traitPreferences);
+    return new InteractiveTrait(trait, container, favorization, minimalValue, traitPreferences);
   }
 }

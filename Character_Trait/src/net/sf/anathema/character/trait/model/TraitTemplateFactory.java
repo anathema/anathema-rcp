@@ -4,10 +4,8 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
-import net.sf.anathema.character.trait.template.EssenceSensitiveTraitTemplate;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
 
-public class TraitTemplateFactory implements ITraitTemplateFactory {
+public class TraitTemplateFactory implements IMinimalValueFactory {
 
   private static final String POINT_ID = "collectionTemplates"; //$NON-NLS-1$
   private final int minimalValue;
@@ -25,12 +23,12 @@ public class TraitTemplateFactory implements ITraitTemplateFactory {
   }
 
   @Override
-  public ITraitTemplate getTraitTemplate(String traitId) {
+  public int getMinimalValue(String traitId) {
     IExtensionElement traitElement = getExtensionElement(traitId);
     if (traitElement == null) {
-      return createDefaultTemplate();
+      return minimalValue;
     }
-    return createTemplate(traitElement.getIntegerAttribute("value")); //$NON-NLS-1$
+    return traitElement.getIntegerAttribute("value"); //$NON-NLS-1$
   }
 
   private IExtensionElement getExtensionElement(String traitId) {
@@ -46,15 +44,5 @@ public class TraitTemplateFactory implements ITraitTemplateFactory {
       }
     }
     return null;
-  }
-
-  private ITraitTemplate createDefaultTemplate() {
-    return createTemplate(minimalValue);
-  }
-
-  private ITraitTemplate createTemplate(int minValue) {
-    EssenceSensitiveTraitTemplate traitTemplate = new EssenceSensitiveTraitTemplate();
-    traitTemplate.setMiniumalValue(minValue);
-    return traitTemplate;
   }
 }

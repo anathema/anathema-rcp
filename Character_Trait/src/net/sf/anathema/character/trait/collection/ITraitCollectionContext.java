@@ -2,7 +2,6 @@ package net.sf.anathema.character.trait.collection;
 
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.trait.group.ITraitGroup;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public interface ITraitCollectionContext {
 
@@ -12,7 +11,7 @@ public interface ITraitCollectionContext {
 
   public ITraitGroup[] getTraitGroups();
 
-  public ITraitTemplate getTraitTemplate(String traitId);
+  public int getMinimumValue(String traitId);
 
   public String getActiveImageId();
 }

@@ -11,7 +11,6 @@ import net.sf.anathema.character.core.type.CharacterTypeProvider;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.template.ITraitTemplate;
 
 public class TraitCollectionContext implements ITraitCollectionContext, IModelContainer {
 
@@ -20,7 +19,7 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
       IModelCollection modelProvider,
       String modelId,
       ITraitGroupTemplate groups,
-      ITraitTemplateFactory templateFactory) {
+      IMinimalValueFactory templateFactory) {
     IModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
     ICharacterTypeProvider provider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
     return new TraitCollectionContext(modelContainer, provider, modelId, groups, templateFactory);
@@ -30,14 +29,14 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
   private final IModelContainer modelContainer;
   private final ICharacterTypeProvider characterTypeProvider;
   private final String collectionModelId;
-  private final ITraitTemplateFactory templateFactory;
+  private final IMinimalValueFactory templateFactory;
 
   public TraitCollectionContext(
       IModelContainer modelContainer,
       ICharacterTypeProvider characterTypeProvider,
       String collectionModelId,
       ITraitGroupTemplate groups,
-      ITraitTemplateFactory templateFactory) {
+      IMinimalValueFactory templateFactory) {
     this.modelContainer = modelContainer;
     this.characterTypeProvider = characterTypeProvider;
     this.collectionModelId = collectionModelId;
@@ -46,8 +45,8 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
   }
 
   @Override
-  public ITraitTemplate getTraitTemplate(String traitId) {
-    return templateFactory.getTraitTemplate(traitId);
+  public int getMinimumValue(String traitId) {
+    return templateFactory.getMinimalValue(traitId);
   }
 
   @Override

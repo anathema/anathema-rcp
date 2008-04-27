@@ -6,7 +6,6 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.DummyTraitTemplate;
 import net.sf.anathema.character.trait.fake.DummyTraitPreferences;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
@@ -19,7 +18,6 @@ import org.junit.Test;
 
 public class InteractiveTrait_CreationTest {
   private IIntValueModel model;
-  private DummyTraitTemplate traitTemplate;
   private Identificate traitType;
   private BasicTrait basicTrait;
   private IInteractiveFavorization favorization;
@@ -27,7 +25,6 @@ public class InteractiveTrait_CreationTest {
   @Before
   public final void createTrait() {
     IExperience experience = new DummyExperience();
-    traitTemplate = new DummyTraitTemplate();
     traitType = new Identificate("test"); //$NON-NLS-1$
     basicTrait = new BasicTrait(traitType);
     favorization = EasyMock.createNiceMock(IInteractiveFavorization.class);
@@ -36,7 +33,7 @@ public class InteractiveTrait_CreationTest {
         basicTrait,
         ModelContainerObjectMother.create(experience),
         favorization,
-        traitTemplate,
+        0,
         traitPreferences);
   }
 

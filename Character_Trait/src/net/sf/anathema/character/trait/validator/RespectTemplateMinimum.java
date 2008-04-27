@@ -1,17 +1,15 @@
 package net.sf.anathema.character.trait.validator;
 
-import net.sf.anathema.character.trait.template.ITraitTemplate;
-
 public class RespectTemplateMinimum implements IValidator {
 
-  private final ITraitTemplate traitTemplate;
+  private final int minimalValue;
 
-  public RespectTemplateMinimum(ITraitTemplate traitTemplate) {
-    this.traitTemplate = traitTemplate;
+  public RespectTemplateMinimum(int minimalValue) {
+    this.minimalValue = minimalValue;
   }
 
   @Override
   public int getValidValue(int value) {
-    return Math.max(value, traitTemplate.getMinimalValue());
+    return Math.max(value, minimalValue);
   }
 }
