@@ -17,7 +17,6 @@ import org.junit.Test;
 public class InteractiveTraitOnCreationTest {
 
   private static final int CREATION_MAX = 5;
-  private static final int MAX_VALUE = 4;
   private static final int MIN_VALUE = 2;
   private IExperience experience;
   private IBasicTrait basicTrait;
@@ -31,7 +30,6 @@ public class InteractiveTraitOnCreationTest {
   public void createRules() throws Exception {
     DummyTraitTemplate traitTemplate = new DummyTraitTemplate();
     traitTemplate.setMinimalValue(MIN_VALUE);
-    traitTemplate.setMaximalValue(MAX_VALUE);
     experience = new DummyExperience();
     experience.setExperienced(false);
     basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
@@ -69,7 +67,7 @@ public class InteractiveTraitOnCreationTest {
   }
 
   @Test
-  public void respectsConfiguredMaximumValue() throws Exception {
-    assertEquals(MAX_VALUE, interactiveTrait.getMaximalValue());
+  public void hasStaticMaximumVAlueOf5() throws Exception {
+    assertEquals(5, interactiveTrait.getMaximalValue());
   }
 }

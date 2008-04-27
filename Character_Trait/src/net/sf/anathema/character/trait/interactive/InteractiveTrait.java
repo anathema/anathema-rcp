@@ -51,7 +51,7 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
     this.traitPreferences = traitPreferences;
     this.favorization = favorization;
     this.basicTrait = basicTrait;
-    displayTrait = new DisplayTrait(favorization, basicTrait, container, traitTemplate);
+    displayTrait = new DisplayTrait(favorization, basicTrait, container, 5);
     valueValidators = new ValidatorFactory().create(container, basicTrait, traitTemplate);
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getCreationModel().addChangeListener(experienceTreatmentListener);

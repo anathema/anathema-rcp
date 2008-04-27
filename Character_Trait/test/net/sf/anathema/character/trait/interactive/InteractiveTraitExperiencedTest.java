@@ -135,12 +135,6 @@ public class InteractiveTraitExperiencedTest {
   }
 
   @Test
-  public void respectsMaximalValueFromRules() throws Exception {
-    traitTemplate.setMaximalValue(6);
-    assertEquals(6, getDisplayTrait().getMaximalValue());
-  }
-
-  @Test
   public void storesValue() throws Exception {
     interactiveTrait.setValue(1);
     assertEquals(1, interactiveTrait.getValue());

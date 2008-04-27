@@ -18,6 +18,6 @@ public class DisplayTraitGroupTransformer extends AbstractTraitGroupTransformer<
 
   @Override
   protected IDisplayTrait createTrait(IBasicTrait trait, IModelContainer container, ITraitTemplate traitTemplate) {
-    return new DisplayTrait(new DisplayFavorization(favorizationHandler, trait), trait, container, traitTemplate);
+    return new DisplayTrait(new DisplayFavorization(favorizationHandler, trait), trait, container, 10);
   }
 }

@@ -118,9 +118,8 @@ public class InteractiveTrait_CreationTest {
   }
 
   @Test
-  public void respectsMaximalValueFromRules() throws Exception {
-    traitTemplate.setMaximalValue(6);
-    assertEquals(6, getDisplayTrait().getMaximalValue());
+  public void hasStaticMaximalValue5() throws Exception {
+    assertEquals(5, getDisplayTrait().getMaximalValue());
   }
 
   @Test
