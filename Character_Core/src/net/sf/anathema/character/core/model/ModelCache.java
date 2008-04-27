@@ -38,6 +38,7 @@ public class ModelCache implements IModelCollection {
     }
     return model;
   }
+
   private void loadDependencies(IModelIdentifier identifier) {
     for (String neededId : dependenciesHandler.getNeededIds(identifier)) {
       getModel(new ModelIdentifier(identifier.getCharacterId(), neededId));
@@ -46,9 +47,13 @@ public class ModelCache implements IModelCollection {
 
   public synchronized void revert(IModel item) {
     IModelIdentifier modelIdentifier = identifiersByModel.get(item);
+    removeFromCache(item, modelIdentifier);
+    getModel(modelIdentifier);
+  }
+
+  private void removeFromCache(IModel item, IModelIdentifier modelIdentifier) {
     identifiersByModel.remove(item);
     modelsByIdentifier.remove(modelIdentifier);
-    getModel(modelIdentifier);
   }
 
   @Override

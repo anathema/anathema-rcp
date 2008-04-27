@@ -43,6 +43,7 @@ public class CharacterViewElement implements IViewElement {
   }
 
   private IPageDelible createPageDelible() {
+    // TODO: Case 221: Anhand der CharacterId die Models aus dem Cache entfernen.
     CharacterId characterId = new CharacterId(characterFolder);
     CharacterElementCloseHandler closeHandler = new CharacterElementCloseHandler(characterId);
     return new ResourcePageDelible(closeHandler, characterFolder);
