@@ -8,11 +8,11 @@ import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.model.MinimalValueFactory;
 
-public class ValidatorFactory implements IValidatorFactory {
+public class ValidatorContainer implements IValidatorContainer {
 
   private final int defaultMinimumValue;
 
-  public ValidatorFactory(int defaultMinimumValue) {
+  public ValidatorContainer(int defaultMinimumValue) {
     this.defaultMinimumValue = defaultMinimumValue;
   }
 
