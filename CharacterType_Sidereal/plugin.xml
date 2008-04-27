@@ -363,6 +363,10 @@
                traitId="Medicine"
                value="2">
          </minimum>
+         <minimum
+               traitId="Presence"
+               value="2">
+         </minimum>
       </validator>
       <validator>
          <condition>

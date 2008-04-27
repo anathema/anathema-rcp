@@ -36,7 +36,7 @@ public final class TraitCollectionUpdatable implements IUpdatable {
   public void update() {
     ModelIdentifier experienceIdentifier = new ModelIdentifier(identifier.getCharacterId(), IExperience.MODEL_ID);
     IExperience experience = (IExperience) ModelCache.getInstance().getModel(experienceIdentifier);
-    if (!experience.isExperienced()) {
+    if (experience.isExperienced()) {
       return;
     }
     IModelContainer container = new ModelContainer(ModelCache.getInstance(), identifier.getCharacterId());
