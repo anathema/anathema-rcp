@@ -22,9 +22,14 @@ public abstract class AbstractTraitCollectionFactory extends
       final ICharacterTemplate template,
       final IModelIdentifier identifier) throws PersistenceException, CoreException {
     final ITraitCollectionModel model = create(contentHandler, template);
-    IUpdatable updatable = new TraitCollectionUpdatable(template, identifier, model);
-    updatable.update();
+    final IUpdatable updatable = new TraitCollectionUpdatable(template, identifier, model);
     model.setDependencyUpdatable(updatable);
-    return new ModelInitializer(model, contentHandler, identifier);
+    return new ModelInitializer(model, contentHandler, identifier) {
+      @Override
+      public void initialize() {
+        updatable.update();
+        super.initialize();
+      }
+    };
   }
 }
