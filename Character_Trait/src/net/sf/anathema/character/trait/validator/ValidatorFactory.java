@@ -9,12 +9,11 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.model.MinimalValueFactory;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 import net.sf.anathema.character.trait.validator.where.AllWhere;
 import net.sf.anathema.character.trait.validator.where.ConditionalFactory;
+import net.sf.anathema.character.trait.validator.where.ExtensionWhere;
 import net.sf.anathema.character.trait.validator.where.IWhere;
-import net.sf.anathema.character.trait.validator.where.Where;
 
 public class ValidatorFactory implements IValidatorFactory {
 
@@ -28,8 +27,6 @@ public class ValidatorFactory implements IValidatorFactory {
     List<IValidator> validators = new ArrayList<IValidator>();
     validators.add(new RespectCreationValueMinimum(experience, trait));
     validators.add(new RespectFavoredMinimum(trait));
-    MinimalValueFactory minValueFactory = new MinimalValueFactory(0, templateId);
-    validators.add(new RespectTemplateMinimum(trait.getTraitType().getId(), minValueFactory));
     validators.add(new RespectValueMaximum(experience));
     for (IPluginExtension extension : new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, EXTENSION_POINT).getExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
@@ -54,7 +51,7 @@ public class ValidatorFactory implements IValidatorFactory {
   private AllWhere createWhereClause(IExtensionElement parent) {
     List<IWhere> allWheres = new ArrayList<IWhere>();
     for (IExtensionElement whereElement : parent.getElements(TAG_WHERE)) {
-      allWheres.add(new Where(whereElement));
+      allWheres.add(new ExtensionWhere(whereElement));
     }
     return new AllWhere(allWheres);
   }

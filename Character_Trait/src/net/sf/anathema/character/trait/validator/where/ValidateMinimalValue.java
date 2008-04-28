@@ -2,11 +2,11 @@ package net.sf.anathema.character.trait.validator.where;
 
 import net.sf.anathema.character.trait.validator.IValidator;
 
-public class MinimalValueValidator implements IValidator {
+public class ValidateMinimalValue implements IValidator {
 
   private final int minimalValue;
 
-  public MinimalValueValidator(int minimalValue) {
+  public ValidateMinimalValue(int minimalValue) {
     this.minimalValue = minimalValue;
   }
 

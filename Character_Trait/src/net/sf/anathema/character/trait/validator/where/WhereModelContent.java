@@ -5,12 +5,12 @@ import net.sf.anathema.character.core.model.content.IContentChecker;
 import net.sf.anathema.character.core.model.content.IModelContentCheck;
 import net.sf.anathema.character.trait.IBasicTrait;
 
-public class ModelContentWhere implements IWhere {
+public class WhereModelContent implements IWhere {
 
   private final String definition;
   private final IContentChecker contentChecker;
 
-  public ModelContentWhere(String definition, IContentChecker contentChecker) {
+  public WhereModelContent(String definition, IContentChecker contentChecker) {
     this.definition = definition;
     this.contentChecker = contentChecker;
   }

@@ -61,11 +61,29 @@
       </complexType>
    </element>
 
+   <element name="validator">
+      <complexType>
+         <sequence>
+            <element ref="condition"/>
+            <element ref="minimum" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="condition">
+      <complexType>
+         <sequence>
+            <element ref="where" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
    <element name="where">
       <complexType>
          <choice>
             <element ref="modelContent"/>
             <element ref="modelId"/>
+            <element ref="templateId"/>
          </choice>
       </complexType>
    </element>
@@ -94,20 +112,15 @@
       </complexType>
    </element>
 
-   <element name="condition">
+   <element name="templateId">
       <complexType>
-         <sequence>
-            <element ref="where" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
-      </complexType>
-   </element>
-
-   <element name="validator">
-      <complexType>
-         <sequence>
-            <element ref="condition"/>
-            <element ref="minimum" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

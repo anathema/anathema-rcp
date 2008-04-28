@@ -28,8 +28,8 @@ public class ConditionalFactory implements IValidatorFactory {
     for (IExtensionElement minimumElement : validatorElement.getElements(TAG_MINIMUM)) {
       String traitId = minimumElement.getAttribute(ATTRIB_TRAIT_ID);
       if (traitId == null || trait.getTraitType().getId().equals(traitId)) {
-        IValidator validator = new MinimalValueValidator(minimumElement.getIntegerAttribute(ATTRIB_VALUE));
-        validators.add(new ConditionalValidator(validator, whereClause, modelId, container, modelId, trait));
+        IValidator validator = new ValidateMinimalValue(minimumElement.getIntegerAttribute(ATTRIB_VALUE));
+        validators.add(new ConditionalValidator(validator, whereClause, templateId, container, modelId, trait));
       }
     }
     return validators;
