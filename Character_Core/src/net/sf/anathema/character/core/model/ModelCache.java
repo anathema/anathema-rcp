@@ -2,15 +2,16 @@ package net.sf.anathema.character.core.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModel;
-import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 
-public class ModelCache implements IModelCollection {
+public class ModelCache implements IModelCache {
 
   private static final ModelCache instance = new ModelCache();
   private final Map<IModelIdentifier, IModel> modelsByIdentifier = new HashMap<IModelIdentifier, IModel>();
@@ -31,13 +32,17 @@ public class ModelCache implements IModelCollection {
       IModelInitializer initializer = new ModelExtensionPoint().createModel(identifier);
       model = initializer.getModel();
       if (model != null) {
-        modelsByIdentifier.put(identifier, model);
-        identifiersByModel.put(model, identifier);
+        storeModel(identifier, model);
         initializer.initialize();
         loadDependencies(identifier, model);
       }
     }
     return model;
+  }
+
+  protected void storeModel(IModelIdentifier identifier, IModel model) {
+    modelsByIdentifier.put(identifier, model);
+    identifiersByModel.put(model, identifier);
   }
 
   private void loadDependencies(IModelIdentifier identifier, final IModel dependentModel) {
@@ -71,5 +76,15 @@ public class ModelCache implements IModelCollection {
   public void clear() {
     modelsByIdentifier.clear();
     identifiersByModel.clear();
+  }
+
+  @Override
+  public void clearAllModels(ICharacterId id) {
+    HashMap<IModelIdentifier, IModel> clone = new HashMap<IModelIdentifier, IModel>(modelsByIdentifier);
+    for (Entry<IModelIdentifier, IModel> entry : clone.entrySet()) {
+      if (entry.getKey().getCharacterId().equals(id)) {
+        removeFromCache(entry.getValue(), entry.getKey());
+      }
+    }
   }
 }
