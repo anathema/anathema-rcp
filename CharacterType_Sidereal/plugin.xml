@@ -250,38 +250,6 @@
             characterTemplateId="net.sf.anathema.character.template.defaultsidereal"
             favoredCount="4"
             modelId="net.sf.anathema.character.abilities.model">
-         <minimalValue
-               value="2"
-               traitId="Awareness">
-         </minimalValue>
-         <minimalValue
-               value="2"
-               traitId="Bureaucracy">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="Linguistics">
-         </minimalValue>
-         <minimalValue
-               value="3"
-               traitId="Lore">
-         </minimalValue>
-         <minimalValue
-               value="2"
-               traitId="MartialArts">
-         </minimalValue>
-         <minimalValue
-               value="2"
-               traitId="Occult">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="Socialize">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="Stealth">
-         </minimalValue>
       </collectionTemplate>
    </extension>
    <extension
@@ -476,6 +444,45 @@
                value="2">
          </minimum>
       </validator>
+      <validator>
+         <condition>
+            <where>
+               <templateId
+                     id="net.sf.anathema.character.template.defaultsidereal">
+               </templateId></where>
+         </condition>
+         <minimum
+               value="2"
+               traitId="Awareness">
+         </minimum>
+         <minimum
+               value="2"
+               traitId="Bureaucracy">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Linguistics">
+         </minimum>
+         <minimum
+               value="3"
+               traitId="Lore">
+         </minimum>
+         <minimum
+               value="2"
+               traitId="MartialArts">
+         </minimum>
+         <minimum
+               value="2"
+               traitId="Occult">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Socialize">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Stealth">
+         </minimum>
+      </validator>
    </extension>
-
 </plugin>
