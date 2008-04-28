@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
+import net.sf.anathema.character.trait.validator.extension.StaticWhere;
+
 import org.junit.Test;
 
 public class AllWhere_Test {

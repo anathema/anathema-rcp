@@ -10,9 +10,9 @@ import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
+import net.sf.anathema.character.trait.validator.extension.ConditionalFactory;
+import net.sf.anathema.character.trait.validator.extension.ExtensionWhere;
 import net.sf.anathema.character.trait.validator.where.AllWhere;
-import net.sf.anathema.character.trait.validator.where.ConditionalFactory;
-import net.sf.anathema.character.trait.validator.where.ExtensionWhere;
 import net.sf.anathema.character.trait.validator.where.IWhere;
 
 public class ValidatorFactory implements IValidatorFactory {

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.validator.where;
+package net.sf.anathema.character.trait.validator.extension;
 
 import net.disy.commons.core.predicate.ICheck;
 import net.sf.anathema.character.trait.IBasicTrait;

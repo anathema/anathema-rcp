@@ -1,7 +1,8 @@
-package net.sf.anathema.character.trait.validator.where;
+package net.sf.anathema.character.trait.validator.extension;
 
 import static org.junit.Assert.assertEquals;
 import net.disy.commons.core.predicate.PassAlwaysCheck;
+import net.sf.anathema.character.trait.validator.extension.ValidateAlternateMinimalValue;
 
 import org.junit.Test;
 

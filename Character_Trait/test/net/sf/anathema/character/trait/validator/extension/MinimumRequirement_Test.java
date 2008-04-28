@@ -1,8 +1,9 @@
-package net.sf.anathema.character.trait.validator.where;
+package net.sf.anathema.character.trait.validator.extension;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import net.sf.anathema.character.trait.BasicTrait;
+import net.sf.anathema.character.trait.validator.extension.MinimumRequirement;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;

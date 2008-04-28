@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.validator.where;
+package net.sf.anathema.character.trait.validator.extension;
 
 import java.util.Collection;
 import java.util.HashMap;

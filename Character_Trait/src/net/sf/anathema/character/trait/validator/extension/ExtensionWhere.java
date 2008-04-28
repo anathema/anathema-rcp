@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.validator.where;
+package net.sf.anathema.character.trait.validator.extension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,12 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.content.ModelContentChecker;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.validator.where.AllWhere;
+import net.sf.anathema.character.trait.validator.where.IWhere;
+import net.sf.anathema.character.trait.validator.where.WhereModelContent;
+import net.sf.anathema.character.trait.validator.where.WhereModelId;
+import net.sf.anathema.character.trait.validator.where.WhereTemplateId;
+import net.sf.anathema.character.trait.validator.where.WhereTraitId;
 
 public class ExtensionWhere implements IWhere {
 

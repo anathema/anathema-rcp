@@ -1,8 +1,9 @@
-package net.sf.anathema.character.trait.validator.where;
+package net.sf.anathema.character.trait.validator.extension;
 
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.validator.IValidator;
+import net.sf.anathema.character.trait.validator.where.IWhere;
 
 public class ConditionalValidator implements IValidator {
 
