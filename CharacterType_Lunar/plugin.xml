@@ -162,10 +162,6 @@
             characterTemplateId="net.sf.anathema.character.template.pactlunar"
             favoredCount="2"
             modelId="net.sf.anathema.character.abilities.model">
-         <minimalValue
-               value="2"
-               traitId="Survival">
-         </minimalValue>
       </collectionTemplate>
    </extension>
    <extension
@@ -179,6 +175,22 @@
             id="net.sf.anathema.character.template.pactlunar.newwizard"
             name="%new.wizard.character.template.pactlunar">
       </wizard>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.trait.validator">
+      <validator>
+         <condition>
+            <where>
+               <templateId
+                     id="net.sf.anathema.character.template.pactlunar">
+               </templateId>
+            </where>
+         </condition>
+         <minimum
+               value="2"
+               traitId="Survival">
+         </minimum>
+      </validator>
    </extension>
 
 </plugin>
