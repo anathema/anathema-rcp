@@ -78,7 +78,7 @@ public class SiderealAbilityAsserts {
     assertHasTraitValueOf(folder, "Athletics", 0); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Awareness", 2); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Bureaucracy", 2); //$NON-NLS-1$
-    assertHasTraitValueOf(folder, "Craft", 0); //$NON-NLS-1$
+    assertHasTraitValueOf(folder, "Craft", 2); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Dodge", 0); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Integrity", 0); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Investigation", 0); //$NON-NLS-1$
