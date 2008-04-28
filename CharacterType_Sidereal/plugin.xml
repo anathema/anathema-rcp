@@ -335,6 +335,16 @@
                traitId="Presence"
                value="2">
          </minimum>
+         <alternateMinimum>
+            <traitMinimum
+                  traitId="Performance"
+                  value="2">
+            </traitMinimum>
+            <traitMinimum
+                  traitId="Craft"
+                  value="2">
+            </traitMinimum>
+         </alternateMinimum>
       </validator>
       <validator>
          <condition>
