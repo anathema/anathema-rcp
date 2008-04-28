@@ -248,42 +248,6 @@
             characterTemplateId="net.sf.anathema.character.template.dynastdb"
             favoredCount="3"
             modelId="net.sf.anathema.character.abilities.model">
-         <minimalValue
-               value="1"
-               traitId="Archery">
-         </minimalValue>
-         <minimalValue
-               value="2"
-               traitId="Lore">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="MartialArts">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="Melee">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="Performance">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="Presence">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="Ride">
-         </minimalValue>
-         <minimalValue
-               value="2"
-               traitId="Socialize">
-         </minimalValue>
-         <minimalValue
-               value="1"
-               traitId="War">
-         </minimalValue>
       </collectionTemplate>
    </extension>
    <extension
@@ -345,5 +309,52 @@
          </credit>
       </creditList>
    </extension>
-
+   <extension
+         point="net.sf.anathema.character.trait.validator">
+      <validator>
+         <condition>
+            <where>
+               <templateId
+                     id="net.sf.anathema.character.template.dynastdb">
+               </templateId>
+            </where>
+         </condition>
+         <minimum
+               value="1"
+               traitId="Archery">
+         </minimum>
+         <minimum
+               value="2"
+               traitId="Lore">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="MartialArts">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Melee">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Performance">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Presence">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Ride">
+         </minimum>
+         <minimum
+               value="2"
+               traitId="Socialize">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="War">
+         </minimum>
+      </validator>
+   </extension>
 </plugin>

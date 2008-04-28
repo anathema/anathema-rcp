@@ -10,5 +10,6 @@ Require-Bundle: net.sf.anathema.character.freebies,
  net.sf.anathema.basics.jface,
  net.sf.anathema.character.importwizard,
  net.sf.anathema.character.caste,
- net.sf.anathema.character.abilities
+ net.sf.anathema.character.abilities,
+ net.sf.anathema.character.trait
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
