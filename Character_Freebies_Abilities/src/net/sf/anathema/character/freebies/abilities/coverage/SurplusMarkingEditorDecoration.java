@@ -6,9 +6,10 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.coverage.AbstractSurplusMarkingEditorDecoration;
-import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
@@ -34,10 +35,11 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
   }
 
   @Override
-  protected int getPointsCoveredByCredit(IIdentificate traitType) {
-    // TODO: Case 191: Komplette Behandlung für Bonuspunktausgaben
+  public int getPointsCoveredByCredit(IIdentificate traitType) {
     ITraitCollectionContext traitContext = getContext();
-    IBasicTrait trait = traitContext.getCollection().getTrait(traitType.getId());
-    return Math.min(trait.getCreationModel().getValue(), 3);
+    ITraitGroupEditorInput editorInput = getInput();
+    ITraitCollectionModel collection = traitContext.getCollection();
+    CoverageCalculator calculator = new CoverageCalculator(new CreditManager());
+    return calculator.calculate(collection, editorInput.getCharacterId(), traitType);
   }
 }
