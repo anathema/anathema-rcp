@@ -68,6 +68,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
         addDisposable(new ResourceChangeListenerDisposable(resourceListener));
         container.setSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        getSite().getPage().addPartListener(new DecorationUpdateListener((TraitGroupEditor) getEditor()));
       }
 
       private Label createLabel(Composite parent, GridData data) {
