@@ -17,4 +17,6 @@ public interface ITraitCollectionModel extends IModel {
   public void setStatusFor(ITraitStatus newStatus, List< ? extends IIdentificate> traits);
 
   public void setDependencyUpdatable(IUpdatable updatable);
+
+  public boolean contains(String traitId);
 }

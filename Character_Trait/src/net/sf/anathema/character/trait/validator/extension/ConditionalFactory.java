@@ -46,7 +46,7 @@ public class ConditionalFactory implements IValidatorFactory {
       for (IExtensionElement minimumElement1 : alternateMinimumElement.getElements()) {
         String traitId = minimumElement1.getAttribute(ATTRIB_TRAIT_ID);
         int value = minimumElement1.getIntegerAttribute(ATTRIB_VALUE);
-        if (traitId == null) {
+        if (!collectionModel.contains(traitId)) {
           builder.reset();
           break;
         }

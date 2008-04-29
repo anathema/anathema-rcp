@@ -58,6 +58,16 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
   }
 
   @Override
+  public boolean contains(String traitId) {
+    for (IBasicTrait trait : traits) {
+      if (traitId.equals(trait.getTraitType().getId())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
   public void addChangeListener(IChangeListener listener) {
     changeControl.addChangeListener(listener);
   }

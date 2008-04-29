@@ -51,7 +51,11 @@ public class DummyTraitCollection extends AbstractModel  implements ITraitCollec
 
   @Override
   public void setDependencyUpdatable(IUpdatable updatable) {
-    // TODO Auto-generated method stub
+    // nothing to do
+  }
 
+  @Override
+  public boolean contains(String traitId) {
+    return getTrait(traitId) != null;
   }
 }
