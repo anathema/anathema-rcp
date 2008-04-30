@@ -10,8 +10,8 @@ import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.FavorizationHandler;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -41,7 +41,7 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
         characterId,
         modelProvider,
         modelId,
-        collectionTemplate);
+        collectionTemplate.getGroupTemplate());
     return new TraitCollectionEditorInput(
         modelFile,
         imageUrl,
@@ -56,7 +56,11 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
       ICharacterTemplate template,
       IModelCollection modelProvider,
       String modelId) {
-    return new FavorizationHandler(characterId, createTemplate(template), modelProvider, modelId);
+    return new FavorizationHandler(
+        characterId,
+        createTemplate(template).getFavorizationTemplate(),
+        modelProvider,
+        modelId);
   }
 
   protected abstract ITraitCollectionTemplate createTemplate(ICharacterTemplate template);

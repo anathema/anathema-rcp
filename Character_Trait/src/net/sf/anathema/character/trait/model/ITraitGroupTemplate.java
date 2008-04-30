@@ -5,5 +5,4 @@ import net.sf.anathema.character.trait.group.TraitGroup;
 public interface ITraitGroupTemplate {
 
   public TraitGroup[] getGroups();
-
 }

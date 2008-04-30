@@ -6,25 +6,25 @@ import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
+import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class FavorizationHandler implements IFavorizationHandler {
 
-  private final ITraitCollectionTemplate template;
+  private final IFavorizationTemplate template;
   private final IModelContainer modelContainer;
   private final String modelId;
 
   public FavorizationHandler(
       ICharacterId characterId,
-      ITraitCollectionTemplate template,
+      IFavorizationTemplate template,
       IModelCollection modelProvider,
       String modelId) {
     this(new ModelContainer(modelProvider, characterId), template, modelId);
   }
 
-  public FavorizationHandler(IModelContainer modelContainer, ITraitCollectionTemplate template, String modelId) {
+  public FavorizationHandler(IModelContainer modelContainer, IFavorizationTemplate template, String modelId) {
     this.modelContainer = modelContainer;
     this.template = template;
     this.modelId = modelId;

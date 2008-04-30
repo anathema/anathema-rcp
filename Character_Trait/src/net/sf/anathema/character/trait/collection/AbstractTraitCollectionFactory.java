@@ -7,7 +7,7 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelInitializer;
 import net.sf.anathema.character.core.model.ModelInitializer;
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.ui.IUpdatable;
 

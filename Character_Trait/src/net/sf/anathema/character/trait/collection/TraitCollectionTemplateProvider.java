@@ -3,8 +3,8 @@ package net.sf.anathema.character.trait.collection;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
 public abstract class TraitCollectionTemplateProvider implements ITraitCollectionTemplateProvider {

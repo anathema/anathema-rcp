@@ -1,13 +1,18 @@
 package net.sf.anathema.character.trait.persistence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.FavorizationTemplate;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.model.IFavorizationTemplate;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
+import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -31,13 +36,14 @@ public class TraitCollectionPersisterTest {
     return new ITraitCollectionTemplate() {
 
       @Override
-      public TraitGroup[] getGroups() {
-        return new TraitGroup[] {new TraitGroup("Gruppe", null, TRAIT1, TRAIT2)}; //$NON-NLS-1$
+      public ITraitGroupTemplate getGroupTemplate() {
+        final TraitGroup[] groups = new TraitGroup[] {new TraitGroup("Gruppe", null, TRAIT1, TRAIT2)}; //$NON-NLS-1$
+        return new StaticTraitGroupTemplate(groups);
       }
 
       @Override
-      public int getFavorizationCount() {
-        return 5;
+      public IFavorizationTemplate getFavorizationTemplate() {
+        return new FavorizationTemplate(5);
       }
     };
   }

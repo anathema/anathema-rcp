@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.collection;
 
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 
 public interface ITraitCollectionTemplateProvider {
 
