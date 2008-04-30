@@ -3,6 +3,7 @@ package net.sf.anathema.character.trait.collection;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
@@ -20,13 +21,13 @@ public abstract class TraitCollectionTemplateProvider implements ITraitCollectio
   }
 
   public ITraitCollectionTemplate getTraitTemplate(String characterTemplateId) {
-    int favorizationCount = getFavorizationCount(characterTemplateId);
-    return new TraitCollectionTemplate(createGroupConfiguration(characterTemplateId), favorizationCount);
+    IFavorizationTemplate favoredTemplate = getFavorizationTemplate(characterTemplateId);
+    return new TraitCollectionTemplate(createGroupConfiguration(characterTemplateId), favoredTemplate);
   }
 
   protected abstract ITraitGroupTemplate createGroupConfiguration(String characterTemplateId);
 
-  private int getFavorizationCount(String characterTemplateId) {
+  private IFavorizationTemplate getFavorizationTemplate(String characterTemplateId) {
     for (IPluginExtension extension : new EclipseExtensionPoint(
         CharacterTraitPlugin.PLUGIN_ID,
         TEMPLATES_EXTENSION_POINT).getExtensions()) {
@@ -34,13 +35,17 @@ public abstract class TraitCollectionTemplateProvider implements ITraitCollectio
         String templateId = element.getAttribute(ATTRIB_CHARACTER_TEMPLATE_ID);
         String currentModelId = element.getAttribute(ATTRIB_MODEL_ID);
         if (templateId.equals(characterTemplateId) && currentModelId.equals(modelId)) {
-          if (element.hasAttribute(ATTRIB_FAVORED_COUNT)) {
-            return element.getIntegerAttribute(ATTRIB_FAVORED_COUNT);
-          }
-          return 0;
+          return createTemplate(element);
         }
       }
     }
-    return 0;
+    return new FavorizationTemplate(0);
+  }
+
+  private IFavorizationTemplate createTemplate(IExtensionElement element) {
+    int favoredCount = element.hasAttribute(ATTRIB_FAVORED_COUNT)
+        ? element.getIntegerAttribute(ATTRIB_FAVORED_COUNT)
+        : 0;
+    return new FavorizationTemplate(favoredCount);
   }
 }

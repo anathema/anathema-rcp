@@ -9,9 +9,9 @@ public class TraitCollectionTemplate implements ITraitCollectionTemplate {
   private final ITraitGroupTemplate groupTemplate;
   private final IFavorizationTemplate favoredTemplate;
 
-  public TraitCollectionTemplate(ITraitGroupTemplate groupTemplate, int favoredCount) {
+  public TraitCollectionTemplate(ITraitGroupTemplate groupTemplate, IFavorizationTemplate favoredTemplate) {
     this.groupTemplate = groupTemplate;
-    this.favoredTemplate = new FavorizationTemplate(favoredCount);
+    this.favoredTemplate = favoredTemplate;
   }
   
   @Override
