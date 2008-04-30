@@ -1,5 +1,8 @@
 package net.sf.anathema.character.trait.collection;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
@@ -12,8 +15,9 @@ public abstract class TraitCollectionTemplateProvider implements ITraitCollectio
 
   private static final String FAVORIZATION_EXTENSION_POINT = "favorization"; //$NON-NLS-1$
   private static final String ATTRIB_CHARACTER_TEMPLATE_ID = "characterTemplateId"; //$NON-NLS-1$
-  private static final String ATTRIB_MODEL_ID = "modelId"; //$NON-NLS-1$
   private static final String ATTRIB_FAVORED_COUNT = "favoredCount"; //$NON-NLS-1$
+  private static final String ATTRIB_MODEL_ID = "modelId"; //$NON-NLS-1$
+  private static final String ATTRIB_TRAIT_ID = "traitId"; //$NON-NLS-1$
   private final String modelId;
 
   public TraitCollectionTemplateProvider(String modelId) {
@@ -44,9 +48,13 @@ public abstract class TraitCollectionTemplateProvider implements ITraitCollectio
   }
 
   private IFavorizationTemplate createTemplate(IExtensionElement element) {
+    List<String> requiredFavored = new ArrayList<String>();
     int favoredCount = element.hasAttribute(ATTRIB_FAVORED_COUNT)
         ? element.getIntegerAttribute(ATTRIB_FAVORED_COUNT)
         : 0;
-    return new FavorizationTemplate(favoredCount);
+    for (IExtensionElement traitReference : element.getElements() ) {
+      requiredFavored.add(traitReference.getAttribute(ATTRIB_TRAIT_ID));
+    }
+    return new FavorizationTemplate(favoredCount, requiredFavored);
   }
 }
