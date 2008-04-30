@@ -243,12 +243,12 @@
       </template>
    </extension>
    <extension
-         point="net.sf.anathema.character.trait.collectionTemplates">
-      <collectionTemplate
+         point="net.sf.anathema.character.trait.favorization">
+      <favorization
             characterTemplateId="net.sf.anathema.character.template.dynastdb"
             favoredCount="3"
             modelId="net.sf.anathema.character.abilities.model">
-      </collectionTemplate>
+      </favorization>
    </extension>
    <extension
          point="net.sf.anathema.character.core.resources">
