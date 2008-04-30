@@ -34,7 +34,7 @@ public class SolarAbilitiesDisplayTest {
     new CharacterFactory().createNewCharacter(IIntegrationConstants.DEFAULT_TEMPLATE, "Solar"); //$NON-NLS-1$
     IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
     folder = project.getFolder("Solar"); //$NON-NLS-1$
-    groups = AbilitiesInteractionUtilties.createDisplayAttributeGroups(folder);
+    groups = AbilitiesInteractionUtilties.createDisplayGroups(folder);
   }
 
   @Test

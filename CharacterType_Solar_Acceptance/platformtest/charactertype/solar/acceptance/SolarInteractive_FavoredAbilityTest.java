@@ -30,7 +30,7 @@ public class SolarInteractive_FavoredAbilityTest {
     new CharacterFactory().createNewCharacter(IIntegrationConstants.DEFAULT_TEMPLATE, "Solar"); //$NON-NLS-1$
     IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
     folder = project.getFolder("Solar"); //$NON-NLS-1$
-    List<IDisplayTraitGroup<IInteractiveTrait>> groups = AbilitiesInteractionUtilties.createDisplayAttributeGroups(folder);
+    List<IDisplayTraitGroup<IInteractiveTrait>> groups = AbilitiesInteractionUtilties.createDisplayGroups(folder);
     favoredAbility = groups.get(0).getTraits().iterator().next();
     favoredAbility.getFavorization().getStatusModel().toggleStatus();
   }
