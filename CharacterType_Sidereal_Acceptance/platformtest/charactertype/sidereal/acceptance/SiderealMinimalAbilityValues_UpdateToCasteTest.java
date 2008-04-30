@@ -1,26 +1,24 @@
 package charactertype.sidereal.acceptance;
 
-import net.sf.anathema.basics.repository.access.RepositoryUtilities;
-import net.sf.anathema.character.core.create.CharacterFactory;
-import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
+import net.sf.anathema.character.acceptance.AcceptanceCasteUtilities;
+import net.sf.anathema.character.acceptance.AcceptanceCharacterUtilities;
 import net.sf.anathema.character.core.model.ModelCache;
 
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SiderealMiniamlAbilityValues_UpdateToCasteTest {
+public class SiderealMinimalAbilityValues_UpdateToCasteTest {
 
   private IFolder folder;
 
   @Before
   public void createSiderealFolder() throws Exception {
-    new CharacterFactory().createNewCharacter("net.sf.anathema.character.template.defaultsidereal", "Sidereal"); //$NON-NLS-1$ //$NON-NLS-2$
-    IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
-    folder = project.getFolder("Sidereal"); //$NON-NLS-1$
+    folder = AcceptanceCharacterUtilities.createCharacterFolder(
+        ISiderealAcceptanceConstants.DEFAULT_TEMPLATE_ID,
+        "Sidereal"); //$NON-NLS-1$
   }
 
   @Test
