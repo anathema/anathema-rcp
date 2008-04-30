@@ -277,12 +277,12 @@
       </bonuspoints>
    </extension>
    <extension
-         point="net.sf.anathema.character.trait.collectionTemplates">
-      <collectionTemplate
+         point="net.sf.anathema.character.trait.favorization">
+      <favorization
             characterTemplateId="net.sf.anathema.character.template.defaultsolar"
             favoredCount="5"
             modelId="net.sf.anathema.character.abilities.model">
-      </collectionTemplate>
+      </favorization>
    </extension>
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
