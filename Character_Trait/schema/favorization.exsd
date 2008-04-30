@@ -13,7 +13,7 @@
    <element name="extension">
       <complexType>
          <sequence>
-            <element ref="collectionTemplate" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="favorization" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -42,7 +42,7 @@
       </complexType>
    </element>
 
-   <element name="collectionTemplate">
+   <element name="favorization">
       <complexType>
          <attribute name="characterTemplateId" type="string" use="required">
             <annotation>

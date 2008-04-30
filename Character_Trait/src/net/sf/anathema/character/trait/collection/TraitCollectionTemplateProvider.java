@@ -10,7 +10,7 @@ import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
 public abstract class TraitCollectionTemplateProvider implements ITraitCollectionTemplateProvider {
 
-  private static final String TEMPLATES_EXTENSION_POINT = "collectionTemplates"; //$NON-NLS-1$
+  private static final String FAVORIZATION_EXTENSION_POINT = "favorization"; //$NON-NLS-1$
   private static final String ATTRIB_CHARACTER_TEMPLATE_ID = "characterTemplateId"; //$NON-NLS-1$
   private static final String ATTRIB_MODEL_ID = "modelId"; //$NON-NLS-1$
   private static final String ATTRIB_FAVORED_COUNT = "favoredCount"; //$NON-NLS-1$
@@ -22,15 +22,16 @@ public abstract class TraitCollectionTemplateProvider implements ITraitCollectio
 
   public ITraitCollectionTemplate getTraitTemplate(String characterTemplateId) {
     IFavorizationTemplate favoredTemplate = getFavorizationTemplate(characterTemplateId);
-    return new TraitCollectionTemplate(createGroupConfiguration(characterTemplateId), favoredTemplate);
+    ITraitGroupTemplate groupTemplate = createGroupTemplate(characterTemplateId);
+    return new TraitCollectionTemplate(groupTemplate, favoredTemplate);
   }
 
-  protected abstract ITraitGroupTemplate createGroupConfiguration(String characterTemplateId);
+  protected abstract ITraitGroupTemplate createGroupTemplate(String characterTemplateId);
 
   private IFavorizationTemplate getFavorizationTemplate(String characterTemplateId) {
     for (IPluginExtension extension : new EclipseExtensionPoint(
         CharacterTraitPlugin.PLUGIN_ID,
-        TEMPLATES_EXTENSION_POINT).getExtensions()) {
+        FAVORIZATION_EXTENSION_POINT).getExtensions()) {
       for (IExtensionElement element : extension.getElements()) {
         String templateId = element.getAttribute(ATTRIB_CHARACTER_TEMPLATE_ID);
         String currentModelId = element.getAttribute(ATTRIB_MODEL_ID);
