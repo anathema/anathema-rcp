@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.collection.FavorizationHandler;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;

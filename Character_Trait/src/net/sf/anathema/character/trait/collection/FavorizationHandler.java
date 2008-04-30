@@ -1,15 +1,42 @@
 package net.sf.anathema.character.trait.collection;
 
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.IModelContainer;
+import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public abstract class AbstractTraitCollectionFavorizationHandler implements IFavorizationHandler {
+public class FavorizationHandler implements IFavorizationHandler {
 
-  protected abstract int getFavoredCount();
+  private final ITraitCollectionTemplate template;
+  private final IModelContainer modelContainer;
+  private final String modelId;
 
-  protected abstract ITraitCollectionModel getTraitCollectionModel();
+  public FavorizationHandler(
+      ICharacterId characterId,
+      ITraitCollectionTemplate template,
+      IModelCollection modelProvider,
+      String modelId) {
+    this(new ModelContainer(modelProvider, characterId), template, modelId);
+  }
+
+  public FavorizationHandler(IModelContainer modelContainer, ITraitCollectionTemplate template, String modelId) {
+    this.modelContainer = modelContainer;
+    this.template = template;
+    this.modelId = modelId;
+  }
+
+  private int getFavoredCount() {
+    return template.getFavorizationCount();
+  }
+
+  private ITraitCollectionModel getTraitCollectionModel() {
+    return (ITraitCollectionModel) modelContainer.getModel(modelId);
+  }
 
   @Override
   public boolean isFavorable() {
