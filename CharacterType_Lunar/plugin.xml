@@ -152,17 +152,17 @@
       </dependency>
    </extension>
    <extension
-         point="net.sf.anathema.character.trait.collectionTemplates">
-      <collectionTemplate
+         point="net.sf.anathema.character.trait.favorization">
+      <favorization
             characterTemplateId="net.sf.anathema.character.template.pactlunar"
             favoredCount="1"
             modelId="net.sf.anathema.character.attributes.model">
-      </collectionTemplate>
-      <collectionTemplate
+      </favorization>
+      <favorization
             characterTemplateId="net.sf.anathema.character.template.pactlunar"
             favoredCount="2"
             modelId="net.sf.anathema.character.abilities.model">
-      </collectionTemplate>
+      </favorization>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
