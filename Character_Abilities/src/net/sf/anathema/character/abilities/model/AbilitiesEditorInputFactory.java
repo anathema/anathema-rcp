@@ -3,7 +3,7 @@ package net.sf.anathema.character.abilities.model;
 import net.sf.anathema.character.abilities.template.AbilitiesTemplateProvider;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.trait.groupeditor.AbstractTraitCollectionEditorInputFactory;
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 
 public class AbilitiesEditorInputFactory extends AbstractTraitCollectionEditorInputFactory {
 

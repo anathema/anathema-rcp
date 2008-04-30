@@ -29,7 +29,7 @@ public class AbilitiesDisplayUtilties {
         new AbilitiesGroupTemplate(characterTemplate));
     IFavorizationHandler favorizationHandler = new FavorizationHandler(
         character,
-        new AbilitiesTemplateProvider().getTraitTemplate(character.getTemplateId()),
+        new AbilitiesTemplateProvider().getTraitTemplate(character.getTemplateId()).getFavorizationTemplate(),
         modelId);
     TraitGroup[] traitGroups = context.getTraitGroups();
     return CollectionUtilities.transform(traitGroups, new DisplayTraitGroupTransformer(context, favorizationHandler));

@@ -5,7 +5,7 @@ import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.trait.collection.AbstractTraitCollectionFactory;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 
 public class AbilitiesFactory extends AbstractTraitCollectionFactory {
