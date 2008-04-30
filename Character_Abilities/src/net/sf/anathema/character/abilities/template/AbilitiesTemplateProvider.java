@@ -14,7 +14,7 @@ public class AbilitiesTemplateProvider extends TraitCollectionTemplateProvider {
   }
 
   @Override
-  protected ITraitGroupTemplate createGroupConfiguration(String characterTemplateId) {
+  protected ITraitGroupTemplate createGroupTemplate(String characterTemplateId) {
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterTemplateId);
     return new AbilitiesGroupTemplate(template);
   }
