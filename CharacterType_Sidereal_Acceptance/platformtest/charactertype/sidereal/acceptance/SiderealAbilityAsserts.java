@@ -1,13 +1,24 @@
 package charactertype.sidereal.acceptance;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.runtime.AssertionFailedException;
+import org.eclipse.core.runtime.CoreException;
+
+import abilities.integration.AbilitiesInteractionUtilties;
 
 public class SiderealAbilityAsserts {
 
@@ -64,7 +75,7 @@ public class SiderealAbilityAsserts {
     assertHasTraitValueOf(folder, "Performance", 0); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Presence", 0); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Resistance", 2); //$NON-NLS-1$
-    assertHasTraitValueOf(folder, "Ride", 0); //$NON-NLS-1$
+    assertHasTraitValueOf(folder, "Ride", 2); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Sail", 0); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Socialize", 1); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Stealth", 1); //$NON-NLS-1$
@@ -102,7 +113,7 @@ public class SiderealAbilityAsserts {
   }
 
   public static void assertBattlesMinimalAbilities(IFolder folder) {
-    assertHasTraitValueOf(folder, "Archery", 0); //$NON-NLS-1$
+    assertHasTraitValueOf(folder, "Archery", 3); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Athletics", 2); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Awareness", 2); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Bureaucracy", 2); //$NON-NLS-1$
@@ -183,5 +194,31 @@ public class SiderealAbilityAsserts {
     assertHasTraitValueOf(folder, "Survival", 0); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "Thrown", 0); //$NON-NLS-1$
     assertHasTraitValueOf(folder, "War", 0); //$NON-NLS-1$
+  }
+
+  public static void assertAlternateMinimum(
+      IFolder folder,
+      String defaultMinimum,
+      String alternateMinimum,
+      int value) throws PersistenceException, CoreException, ExtensionException {
+    List<IDisplayTraitGroup<IInteractiveTrait>> abilities = AbilitiesInteractionUtilties.createDisplayAttributeGroups(folder);
+    IInteractiveTrait defaultTrait = extract(abilities, defaultMinimum);
+    IInteractiveTrait alternateTrait = extract(abilities, alternateMinimum);
+    alternateTrait.setValue(value);
+    defaultTrait.setValue(0);
+    assertEquals(0, defaultTrait.getValue());
+    alternateTrait.setValue(0);
+    assertEquals(value, alternateTrait.getValue());
+  }
+
+  public static IInteractiveTrait extract(List<IDisplayTraitGroup<IInteractiveTrait>> abilities, String traitId) {
+    for (IDisplayTraitGroup<IInteractiveTrait> group : abilities) {
+      for (IInteractiveTrait trait : group.getTraits()) {
+        if (trait.getTraitType().getId().equals(traitId)) {
+          return trait;
+        }
+      }
+    }
+    throw new AssertionFailedException("Trait not found " + traitId);
   }
 }

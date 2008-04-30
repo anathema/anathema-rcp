@@ -41,6 +41,12 @@ public class SiderealAbilityMinimalValues_InteractionTest {
   }
 
   @Test
+  public void journeyCastesHaveSailAsAlternateMinimumToRide() throws Exception {
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Journeys"); //$NON-NLS-1$
+    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Ride", "Sail", 2);
+  }
+
+  @Test
   public void hasSerenityMinimalAbilitiesWithSerenityCaste() throws Exception {
     AcceptanceCasteUtilities.setCasteInModel(folder, "Serenity"); //$NON-NLS-1$
     reduceAllValuesByOne();
@@ -48,10 +54,22 @@ public class SiderealAbilityMinimalValues_InteractionTest {
   }
 
   @Test
+  public void serenityCastesHavePerformanceAsAlternateMinimumToCraft() throws Exception {
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Serenity"); //$NON-NLS-1$
+    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Craft", "Performance", 2);
+  }
+
+  @Test
   public void hasBattlesMinimalAbilitiesWithBattlesCaste() throws Exception {
     AcceptanceCasteUtilities.setCasteInModel(folder, "Battles"); //$NON-NLS-1$
     reduceAllValuesByOne();
     SiderealAbilityAsserts.assertBattlesMinimalAbilities(folder);
+  }
+
+  @Test
+  public void battleCastesHaveMeleeAsAlternateMinimumToArchery() throws Exception {
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Battles"); //$NON-NLS-1$
+    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Archery", "Melee", 3);
   }
 
   @Test
