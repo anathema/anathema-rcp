@@ -16,5 +16,6 @@ public class MockStringAttribute implements IMockProp {
 
   public void configure(IExtensionElement element) {
     EasyMock.expect(element.getAttribute(name)).andReturn(value).anyTimes();
+    EasyMock.expect(element.hasAttribute(name)).andReturn(true).anyTimes();
   }
 }

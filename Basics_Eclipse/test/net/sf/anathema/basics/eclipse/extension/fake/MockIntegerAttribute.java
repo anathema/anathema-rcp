@@ -17,5 +17,6 @@ public class MockIntegerAttribute implements IMockProp {
   @Override
   public void configure(IExtensionElement element) {
     EasyMock.expect(element.getIntegerAttribute(name)).andReturn(value).anyTimes();
+    EasyMock.expect(element.hasAttribute(name)).andReturn(true).anyTimes();
   }
 }
