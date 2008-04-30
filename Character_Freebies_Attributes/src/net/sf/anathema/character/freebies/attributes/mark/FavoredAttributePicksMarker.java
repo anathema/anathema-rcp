@@ -6,6 +6,7 @@ import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.freebies.attributes.FavoredAttributeCountHandler;
 import net.sf.anathema.character.freebies.configuration.AbstractFavoredTraitCountHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionTemplateProvider;
+import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -29,7 +30,8 @@ public class FavoredAttributePicksMarker implements IModelMarker {
 
   @Override
   public boolean isActive() {
-    return provider.getTraitTemplate(templateId).getFavorizationCount() > handler.getPoints(characterId, 0);
+    IFavorizationTemplate favorizationTemplate = provider.getTraitTemplate(templateId).getFavorizationTemplate();
+    return favorizationTemplate.getFavorizationCount() > handler.getPoints(characterId, 0);
   }
 
   @Override
