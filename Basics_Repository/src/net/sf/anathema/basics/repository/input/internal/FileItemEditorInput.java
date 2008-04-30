@@ -21,13 +21,11 @@ public final class FileItemEditorInput extends FileEditorInput implements IFileI
   private ITitledText item;
   private final ItemNameProvider provider;
   private final TitledTextPersister persister = new TitledTextPersister();
-  private FileItemEditorInputPersistableElement persistable;
+  private final FileItemEditorInputPersistableElement persistable;
 
-  public FileItemEditorInput(IFile file, String untitledName, URL imageUrl)
-      throws PersistenceException,
-      CoreException {
+  public FileItemEditorInput(IFile file, String untitledName, URL imageUrl) throws PersistenceException, CoreException {
     super(file, imageUrl);
-    this.persistable = new FileItemEditorInputPersistableElement(untitledName, file.getFullPath(), imageUrl); 
+    this.persistable = new FileItemEditorInputPersistableElement(untitledName, file.getFullPath(), imageUrl);
     this.provider = new ItemNameProvider(untitledName);
     this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
   }
@@ -44,7 +42,7 @@ public final class FileItemEditorInput extends FileEditorInput implements IFileI
   }
 
   @Override
-  public IPersistableElement getPersistable() {
+  public IPersistableElement getPersistableInternal() {
     return persistable;
   }
 

@@ -13,7 +13,7 @@ import org.eclipse.ui.IPersistableElement;
 public class FileEditorInput implements IFileEditorInput {
   private final IFile file;
   private final ImageDescriptor imageDescriptor;
-  private DefaultAdaptable adaptable = new DefaultAdaptable();
+  private final DefaultAdaptable adaptable = new DefaultAdaptable();
   private final URL imageUrl;
 
   public FileEditorInput(IFile file, URL imageUrl) {
@@ -25,11 +25,11 @@ public class FileEditorInput implements IFileEditorInput {
     this.file = file;
     initDefaultAdaptable(adaptable);
   }
-  
+
   public final URL getImageUrl() {
     return imageUrl;
   }
-  
+
   protected void initDefaultAdaptable(DefaultAdaptable defaultAdaptable) {
     defaultAdaptable.add(IResource.class, file);
     defaultAdaptable.add(IFileEditorInput.class, this);
@@ -77,7 +77,14 @@ public class FileEditorInput implements IFileEditorInput {
     return file.getName();
   }
 
-  public IPersistableElement getPersistable() {
+  public final IPersistableElement getPersistable() {
+    if (!file.exists()) {
+      return null;
+    }
+    return getPersistableInternal();
+  }
+
+  protected IPersistableElement getPersistableInternal() {
     return null;
   }
 

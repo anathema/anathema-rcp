@@ -40,7 +40,7 @@ public abstract class AbstractCharacterModelEditorInput<M extends IModel> extend
   }
 
   @Override
-  public final IPersistableElement getPersistable() {
+  protected final IPersistableElement getPersistableInternal() {
     return persistable;
   }
 
