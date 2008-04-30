@@ -10,7 +10,7 @@ public class AttributesTemplateProvider extends TraitCollectionTemplateProvider 
   }
 
   @Override
-  protected ITraitGroupTemplate createGroupConfiguration(String characterTemplateId) {
+  protected ITraitGroupTemplate createGroupTemplate(String characterTemplateId) {
     return new AttributeGroupTemplate();
   }
 }
