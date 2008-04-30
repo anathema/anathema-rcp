@@ -42,7 +42,7 @@ public class AbilitiesInteractionUtilties {
     }
   }
 
-  public static List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayAttributeGroups(final IFolder folder)
+  public static List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups(final IFolder folder)
       throws PersistenceException,
       CoreException,
       ExtensionException {
