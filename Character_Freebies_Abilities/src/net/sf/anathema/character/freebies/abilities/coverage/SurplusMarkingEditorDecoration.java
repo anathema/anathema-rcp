@@ -12,8 +12,8 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEditorDecoration<G> implements
@@ -31,7 +31,7 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
         characterId,
         modelCollection,
         IAbilitiesPluginConstants.MODEL_ID,
-        traitTemplate);
+        traitTemplate.getGroupTemplate());
   }
 
   @Override
