@@ -12,6 +12,7 @@ import net.sf.anathema.character.trait.display.DisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
+import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 
@@ -25,10 +26,9 @@ public class AttributeDisplayUtilties {
         character,
         modelId,
         new AttributeGroupTemplate());
-    IFavorizationHandler favorizationHandler = new FavorizationHandler(
-        character,
-        new AttributesTemplateProvider().getTraitTemplate(character.getTemplateId()),
-        modelId);
+    IFavorizationTemplate favorizationTemplate = new AttributesTemplateProvider().getTraitTemplate(
+        character.getTemplateId()).getFavorizationTemplate();
+    IFavorizationHandler favorizationHandler = new FavorizationHandler(character, favorizationTemplate, modelId);
     TraitGroup[] traitGroups = context.getTraitGroups();
     return CollectionUtilities.transform(traitGroups, new DisplayTraitGroupTransformer(context, favorizationHandler));
   }

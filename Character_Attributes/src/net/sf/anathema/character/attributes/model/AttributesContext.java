@@ -5,8 +5,8 @@ import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
-import net.sf.anathema.character.trait.persistence.ITraitCollectionTemplate;
 
 public class AttributesContext {
 
@@ -17,6 +17,6 @@ public class AttributesContext {
         characterId,
         modelCollection,
         IAttributesPluginConstants.MODEL_ID,
-        traitTemplate);
+        traitTemplate.getGroupTemplate());
   }
 }
