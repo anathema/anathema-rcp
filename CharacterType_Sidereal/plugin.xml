@@ -370,6 +370,16 @@
                traitId="Survival"
                value="2">
          </minimum>
+         <alternateMinimum>
+            <traitMinimum
+                  traitId="Ride"
+                  value="2">
+            </traitMinimum>
+            <traitMinimum
+                  traitId="Sail"
+                  value="2">
+            </traitMinimum>
+         </alternateMinimum>
       </validator>
       <validator>
          <condition>
@@ -395,6 +405,16 @@
                traitId="War"
                value="2">
          </minimum>
+         <alternateMinimum>
+            <traitMinimum
+                  traitId="Melee"
+                  value="3">
+            </traitMinimum>
+            <traitMinimum
+                  traitId="Archery"
+                  value="3">
+            </traitMinimum>
+         </alternateMinimum>
       </validator>
       <validator>
          <condition>
