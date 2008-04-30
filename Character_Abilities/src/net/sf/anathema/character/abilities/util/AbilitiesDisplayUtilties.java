@@ -8,11 +8,11 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.collection.FavorizationHandler;
 import net.sf.anathema.character.trait.display.DisplayTraitGroupTransformer;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.groupeditor.FavorizationHandler;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 
