@@ -30,15 +30,17 @@ public class CharacterFactory {
   private static final String TAG_TEMPLATE = "template"; //$NON-NLS-1$
   private static final ILogger logger = new Logger(CharacterCorePlugin.ID);
 
-  public void createNewCharacter(String templateName, String folderName) {
+  public IFolder createNewCharacter(String templateName, String folderName) {
     try {
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
       IFolder characterFolder = FileUtils.createUnusedFolder(project, folderName);
       characterFolder.create(true, true, new NullProgressMonitor());
       saveTemplate(characterFolder, new StaticProvider<String>(templateName));
+      return characterFolder;
     }
     catch (Exception e) {
       logger.error(Messages.NewCharacterActionDelegate_CharacterCreationError, e);
+      return null;
     }
   }
 
