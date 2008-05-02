@@ -3,6 +3,7 @@ package net.sf.anathema.character.freebies.attributes.mark;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
+import net.sf.anathema.character.freebies.mark.ResourceModelMarker;
 
 import org.easymock.EasyMock;
 import org.junit.Before;

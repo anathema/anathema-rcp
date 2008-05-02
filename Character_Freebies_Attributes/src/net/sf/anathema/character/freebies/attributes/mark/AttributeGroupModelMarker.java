@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
+import net.sf.anathema.character.freebies.mark.IModelMarker;
 
 import org.eclipse.osgi.util.NLS;
 

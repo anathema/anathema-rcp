@@ -5,6 +5,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.freebies.attributes.FavoredAttributeCountHandler;
 import net.sf.anathema.character.freebies.configuration.AbstractFavoredTraitCountHandler;
+import net.sf.anathema.character.freebies.mark.IModelMarker;
 import net.sf.anathema.character.trait.collection.ITraitCollectionTemplateProvider;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 

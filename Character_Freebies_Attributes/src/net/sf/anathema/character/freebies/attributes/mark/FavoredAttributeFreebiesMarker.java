@@ -4,6 +4,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.freebies.attributes.FavoredAttributeFreebiesHandler;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
+import net.sf.anathema.character.freebies.mark.IModelMarker;
 
 import org.eclipse.osgi.util.NLS;
 

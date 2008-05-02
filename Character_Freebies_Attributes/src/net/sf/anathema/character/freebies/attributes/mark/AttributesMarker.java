@@ -13,6 +13,7 @@ import net.sf.anathema.character.freebies.attributes.calculation.AttributeCredit
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
+import net.sf.anathema.character.freebies.mark.ResourceModelMarker;
 
 public class AttributesMarker extends AbstractExecutableExtension implements IModelMarker {
 
