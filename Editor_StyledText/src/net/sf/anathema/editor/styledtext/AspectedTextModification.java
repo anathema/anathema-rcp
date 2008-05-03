@@ -1,11 +1,11 @@
 package net.sf.anathema.editor.styledtext;
 
-
 import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
+import net.sf.anathema.lib.textualdescription.ITextAspectToggle;
 import net.sf.anathema.lib.textualdescription.TextAspect;
 
 public class AspectedTextModification implements ITextModification {
-  
+
   private final TextAspect aspect;
 
   public AspectedTextModification(TextAspect aspect) {
@@ -13,7 +13,7 @@ public class AspectedTextModification implements ITextModification {
   }
 
   @Override
-  public void perform(IStyledTextualDescription content, int offset, int length) {
+  public void perform(ITextAspectToggle content, int offset, int length) {
     content.toggleAspect(aspect, offset, length);
   }
 

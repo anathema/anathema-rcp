@@ -1,64 +1,46 @@
 package net.sf.anathema.editor.styledtext.jface;
 
-import java.util.Scanner;
-import java.util.regex.MatchResult;
-
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
+import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.item.text.ITitledText;
+import net.sf.anathema.basics.swt.event.KeyReleasedChangeAdapter;
+import net.sf.anathema.basics.swt.event.MouseUpChangeAdapter;
 import net.sf.anathema.editor.styledtext.IStyledTextEditor;
 import net.sf.anathema.editor.styledtext.ITextModification;
+import net.sf.anathema.editor.styledtext.TextChangeListenerDisposable;
+import net.sf.anathema.lib.control.change.ChangeControl;
+import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
+import net.sf.anathema.lib.textualdescription.IStyledTextualDescription;
+import net.sf.anathema.lib.textualdescription.IStyledTextualDescription2;
+import net.sf.anathema.lib.textualdescription.ITextPart;
+import net.sf.anathema.lib.textualdescription.ITextualDescription;
 
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.DocumentEvent;
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentListener;
-import org.eclipse.jface.text.TextAttribute;
-import org.eclipse.jface.text.presentation.IPresentationReconciler;
-import org.eclipse.jface.text.presentation.PresentationReconciler;
-import org.eclipse.jface.text.projection.ProjectionDocument;
-import org.eclipse.jface.text.projection.ProjectionDocumentManager;
-import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
-import org.eclipse.jface.text.rules.IPredicateRule;
-import org.eclipse.jface.text.rules.MultiLineRule;
-import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
-import org.eclipse.jface.text.rules.Token;
-import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
 
 public class StyledTextEditor2 extends AbstractPersistableItemEditorPart<ITitledText> implements
     IStyledTextEditor,
     IPersistableItemEditor {
 
-  private static final String CONTENT_TYPE_UNDERLINE = "UNDERLINE";
-  private static final Token TOKEN = new Token(CONTENT_TYPE_UNDERLINE);
+  private SourceViewer viewer;
+  private Document document;
+  private STE2Partitioner partitioner;
+  private final ChangeControl changeControl = new ChangeControl();
 
-  private final class DemoViewerConfiguration extends SourceViewerConfiguration {
-    @Override
-    public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
-      // TODO Master-abhängiger Scanner
-      RuleBasedPartitionScanner scanner = new RuleBasedPartitionScanner();
-
-      scanner.setPredicateRules(new IPredicateRule[] { new MultiLineRule("<u>", "</u>", new Token(new TextAttribute(
-          null,
-          null,
-          TextAttribute.UNDERLINE))) });
-      DefaultDamagerRepairer repairer = new DefaultDamagerRepairer(scanner);
-      PresentationReconciler reconciler = new PresentationReconciler();
-      reconciler.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
-      reconciler.setDamager(repairer, IDocument.DEFAULT_CONTENT_TYPE);
-      reconciler.setRepairer(repairer, IDocument.DEFAULT_CONTENT_TYPE);
-      reconciler.setDamager(repairer, CONTENT_TYPE_UNDERLINE);
-      reconciler.setRepairer(repairer, CONTENT_TYPE_UNDERLINE);
-      return reconciler;
-    }
+  private ITitledText getItem() {
+    return getPersistableEditorInput().getItem();
   }
 
   @Override
@@ -66,81 +48,83 @@ public class StyledTextEditor2 extends AbstractPersistableItemEditorPart<ITitled
     return new AbstractItemEditorControl(this) {
 
       @Override
+      public void init(IEditorSite editorSite, IEditorInput input) {
+        super.init(editorSite, input);
+        final IObjectValueChangedListener<String> listener = new UpdatePartNameListener(StyledTextEditor2.this);
+        final ITextualDescription name = getItem().getName();
+        addDisposable(new TextChangeListenerDisposable(name, listener));
+        name.addTextChangedListener(listener);
+      }
+
+      @Override
       public void createPartControl(Composite parent) {
-        final Document document = new Document();
-        ProjectionDocumentManager manager = new ProjectionDocumentManager();
-        final ProjectionDocument displayDocument = (ProjectionDocument) manager.createSlaveDocument(document);
+        document = new Document();
+        partitioner = new STE2Partitioner();
+        document.setDocumentPartitioner(partitioner);
+        partitioner.connect(document);
+        viewer = new SourceViewer(parent, null, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL | SWT.BORDER);
+        StyledText textWidget = viewer.getTextWidget();
+        textWidget.addKeyListener(new KeyReleasedChangeAdapter(changeControl));
+        textWidget.addMouseListener(new MouseUpChangeAdapter(changeControl));
+        getSite().setSelectionProvider(viewer.getSelectionProvider());
+        document.set(createDocumentText());
         document.addDocumentListener(new IDocumentListener() {
           @Override
           public void documentAboutToBeChanged(DocumentEvent event) {
-            // TODO Auto-generated method stub
-
+            // nothing to do
           }
 
           @Override
           public void documentChanged(DocumentEvent event) {
-            try {
-              // TODO Über Event-Daten handlen, falls dort eine XML-Notation drinsteht
-              Scanner scanner = new Scanner(document.get());
-              String string;
-              do {
-                string = scanner.findInLine("(</?.?>)");
-                if (string != null) {
-                  MatchResult match = scanner.match();
-                  displayDocument.removeMasterDocumentRange(match.start(), match.end() - match.start());
-                }
-              }
-              while (string != null);
-            }
-            catch (BadLocationException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-            }
+            // TODO Change Length of Styled TextPart
+            getItem().getContent().replaceText(event.getOffset(), event.getLength(), event.getText());
           }
         });
-        document.set("TEXT<u>line</u>ENDE");
-        SourceViewerConfiguration configuration = new DemoViewerConfiguration();
-        SourceViewer viewer = new SourceViewer(parent, null, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL | SWT.BORDER);
-        viewer.configure(configuration);
-        viewer.setDocument(displayDocument);
+        partitioner.setPartitioning((IStyledTextualDescription2) getItem().getContent());
+        viewer.configure(new STE2ViewerConfiguration(partitioner));
+        viewer.setDocument(document);
+      }
+
+      private String createDocumentText() {
+        StringBuilder builder = new StringBuilder();
+        for (ITextPart part : getItem().getContent().getTextParts()) {
+          builder.append(part.getText());
+        }
+        return builder.toString();
       }
 
       @Override
       public void setFocus() {
-        // TODO Auto-generated method stub
-
+        viewer.getTextWidget().setFocus();
       }
     };
   }
 
   @Override
-  public void addCaretChangeListener(IChangeListener changeListener) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
   public boolean isActiveFor(ITextModification modification) {
-    // TODO Auto-generated method stub
-    return false;
+    Point selectedRange = viewer.getSelectedRange();
+    IStyledTextualDescription styledText = getItem().getContent();
+    return modification.isActive(styledText, selectedRange.x, selectedRange.y);
   }
 
   @Override
   public boolean isSelectionEmpty() {
-    // TODO Auto-generated method stub
-    return false;
+    return viewer.getSelection().isEmpty();
   }
 
   @Override
   public void modifySelection(ITextModification modification) {
-    // TODO Auto-generated method stub
-
+    Point selectedRange = viewer.getSelectedRange();
+    modification.perform(partitioner, selectedRange.x, viewer.getSelectedRange().y);
   }
 
   @Override
-  public void removeCaretChangeListener(IChangeListener caretChangeListener) {
-    // TODO Auto-generated method stub
-
+  public void addCaretChangeListener(IChangeListener changeListener) {
+    changeControl.addChangeListener(changeListener);
   }
 
+  @Override
+  public void removeCaretChangeListener(IChangeListener changeListener) {
+    changeControl.removeChangeListener(changeListener);
+  }
 }

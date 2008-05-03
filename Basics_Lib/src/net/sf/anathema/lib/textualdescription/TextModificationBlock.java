@@ -36,7 +36,7 @@ public class TextModificationBlock {
   }
 
   public int getBlockEndPosition() {
-    return offset + length - 1;
+    return Math.max(offset, offset + length - 1);
   }
 
   public int getTailStartPosition() {

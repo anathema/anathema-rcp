@@ -1,6 +1,6 @@
 package net.sf.anathema.lib.textualdescription;
 
-public interface IStyledTextualDescription extends ITextualDescription {
+public interface IStyledTextualDescription extends ITextualDescription, ITextAspectToggle {
 
   public void setText(ITextPart... textParts);
 
@@ -13,6 +13,4 @@ public interface IStyledTextualDescription extends ITextualDescription {
   public void replaceText(int offset, int length, String newText);
 
   public boolean isDominant(TextAspect aspect, int offset, int length);
-
-  public void toggleAspect(TextAspect aspect, int offset, int length);
 }

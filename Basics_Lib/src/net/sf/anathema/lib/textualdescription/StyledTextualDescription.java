@@ -2,6 +2,7 @@ package net.sf.anathema.lib.textualdescription;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.disy.commons.core.util.IClosure;
@@ -10,7 +11,9 @@ import net.sf.anathema.lib.control.ChangeManagement;
 import net.sf.anathema.lib.control.GenericControl;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
 
-public class StyledTextualDescription extends ChangeManagement implements IStyledTextualDescription {
+public class StyledTextualDescription extends ChangeManagement implements
+    IStyledTextualDescription,
+    IStyledTextualDescription2 {
 
   private final GenericControl<IStyledTextChangeListener> textListeners = new GenericControl<IStyledTextChangeListener>();
   private final TextPartCollection textPartCollection = new TextPartCollection();
@@ -149,7 +152,9 @@ public class StyledTextualDescription extends ChangeManagement implements IStyle
       return false;
     }
     TextModificationBlock block = new TextModificationBlock(textPartCollection, offset, length);
-    for (int index = block.getStartTextPartIndex(); index <= block.getEndTextPartIndex(); index++) {
+    int startTextPartIndex = block.getStartTextPartIndex();
+    int endTextPartIndex = block.getEndTextPartIndex();
+    for (int index = startTextPartIndex; index <= endTextPartIndex; index++) {
       ITextPart currentPart = textPartCollection.get(index);
       if (!aspect.isDominant(currentPart.getFormat())) {
         return false;
@@ -176,5 +181,24 @@ public class StyledTextualDescription extends ChangeManagement implements IStyle
   @Override
   public int hashCode() {
     return Arrays.hashCode(textPartCollection.getTextParts());
+  }
+
+  @Override
+  public ITextPart getPart(int offset) {
+    return textPartCollection.getTextPartByTextPosition(offset);
+  }
+
+  @Override
+  public int getPartOffset(ITextPart part) {
+    return textPartCollection.getStartPosition(part);
+  }
+
+  @Override
+  public List<ITextPart> getParts(int offset, int length) {
+    ITextPart part1 = textPartCollection.getTextPartByTextPosition(offset);
+    int index1 = textPartCollection.indexOf(part1);
+    ITextPart part2 = textPartCollection.getTextPartByTextPosition(offset + length);
+    int index2 = textPartCollection.indexOf(part2);
+    return textPartCollection.subList(index1, index2);
   }
 }
