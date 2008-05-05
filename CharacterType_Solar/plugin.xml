@@ -137,6 +137,26 @@
             referenceId="SolarBall"
             resourceUrl="icons/Ball_Solar_16.png">
       </image>
+      <image
+            referenceId="CharacterType_Solar.image1"
+            resourceUrl="CharacterType_Solar.image1">
+      </image>
+      <image
+            referenceId="Zenith"
+            resourceUrl="icons/Caste_Zenith_16.png">
+      </image>
+      <image
+            referenceId="Twilight"
+            resourceUrl="icons/Caste_Twilight_16.png">
+      </image>
+      <image
+            referenceId="Night"
+            resourceUrl="icons/Caste_Night_16.png">
+      </image>
+      <image
+            referenceId="Eclipse"
+            resourceUrl="icons/Caste_Eclipse_16.png">
+      </image>
    </extension>
    <extension
          point="net.sf.anathema.character.caste.castes">
