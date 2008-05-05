@@ -7,7 +7,6 @@ import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
-import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
@@ -20,14 +19,14 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.ColumnLayout;
+import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Section;
 
 public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
@@ -60,12 +59,14 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         columnLayout.maxNumColumns = displayGroups.size();
         container.setLayout(columnLayout);
         for (IDisplayTraitGroup<IInteractiveTrait> group : displayGroups) {
-          final Composite groupContainer = new Composite(container, SWT.NONE);
+          Section section = toolkit.createSection(container, ExpandableComposite.TITLE_BAR
+              | ExpandableComposite.EXPANDED);
+          section.setText(editorInput.getConfiguration().getGroupLabel(group));
+          Composite groupContainer = new Composite(section, SWT.NONE);
           groupContainer.setLayout(new GridLayout(3, false));
           TraitViewFactory factory = new TraitViewFactory(groupContainer, editorInput.getImageProvider(), characterId);
           groupContainer.setBackground(background);
-          createLabel(groupContainer, background, GridDataFactory.createHorizontalSpanData(3)).setText(
-              editorInput.getConfiguration().getGroupLabel(group));
+          section.setClient(groupContainer);
           for (final IInteractiveTrait trait : group.getTraits()) {
             String label = editorInput.getConfiguration().getTraitLabel(trait.getTraitType());
             final IExtendableIntValueView view = factory.create(label, toolkit, trait);
@@ -83,15 +84,7 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
             display);
         ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
         addDisposable(new ResourceChangeListenerDisposable(resourceListener));
-        container.setSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         getSite().getPage().addPartListener(new DecorationUpdateListener((TraitGroupEditor) getEditor()));
-      }
-
-      private Label createLabel(Composite parent, Color background, GridData data) {
-        Label label = new Label(parent, SWT.NULL);
-        label.setLayoutData(data);
-        label.setBackground(background);
-        return label;
       }
     };
   }
