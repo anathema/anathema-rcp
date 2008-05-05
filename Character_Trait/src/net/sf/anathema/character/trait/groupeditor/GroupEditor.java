@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait.groupeditor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
@@ -51,7 +52,7 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         ICharacterId characterId = editorInput.getCharacterId();
         List<IDisplayTraitGroup<IInteractiveTrait>> displayGroups = editorInput.createDisplayGroups();
         ColumnLayout columnLayout = new ColumnLayout();
-        columnLayout.maxNumColumns = displayGroups.size();
+        columnLayout.maxNumColumns = displayGroups.size() + 1;
         container.setLayout(columnLayout);
         for (IDisplayTraitGroup<IInteractiveTrait> group : displayGroups) {
           String title = editorInput.getConfiguration().getGroupLabel(group);
@@ -67,6 +68,18 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
             addDisposable(trait);
           }
         }
+        Composite sectionContent = sectionFactory.create(container, "Crafts", "Right click to remove");
+        TraitViewFactory factory = new TraitViewFactory(sectionContent, editorInput.getImageProvider(), characterId);
+        sectionContent.setLayout(new GridLayout(3, false));
+        for (final IInteractiveTrait trait : editorInput.createCrafts()) {
+          String label = trait.getTraitType().getId();
+          final IExtendableIntValueView view = factory.create(label, toolkit, trait);
+          for (ITraitGroupEditorDecoration decoration : decorations) {
+            decoration.decorate(trait, view, editorInput);
+          }
+          addDisposable(trait);
+        }
+        
         IFolder characterFolder = editorInput.getCharacterFolder();
         Display display = container.getDisplay();
         final IResourceChangeListener resourceListener = new CharacterPartNameListener(

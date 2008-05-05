@@ -2,12 +2,17 @@ package net.sf.anathema.character.trait.groupeditor;
 
 import java.net.URL;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.BasicTrait;
+import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -15,12 +20,16 @@ import net.sf.anathema.character.trait.display.IntViewImageProvider;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.character.trait.interactive.InteractiveFavorization;
+import net.sf.anathema.character.trait.interactive.InteractiveTrait;
 import net.sf.anathema.character.trait.interactive.InteractiveTraitGroupTransformer;
 import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
+import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 import net.sf.anathema.lib.util.IIdentificate;
+import net.sf.anathema.lib.util.Identificate;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -57,6 +66,31 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
         context,
         favorizationHandler,
         preferences));
+  }
+
+  @Override
+  public List<IInteractiveTrait> createCrafts() {
+    List<IInteractiveTrait> crafts = new ArrayList<IInteractiveTrait>();
+    List<String> traitIds = new ArrayList<String>();
+    traitIds.add("Craft Earth");
+    traitIds.add("Craft Fire");
+    traitIds.add("Craft Wood");
+    traitIds.add("Craft Air");
+    traitIds.add("Craft Fate");
+    traitIds.add("Craft Flesh");
+    traitIds.add("Craft Ambrosia");
+    traitIds.add("Craft Magitech");
+    traitIds.add("Craft Genesis");
+    ITraitPreferences traitPreferences = TraitPreferenceFactory.create();
+    for (String traitId : traitIds) {
+      IBasicTrait trait = new BasicTrait(new Identificate(traitId));
+      List<IValidator> validators = context.getValidators(traitId);
+      IModelContainer container = context.getModelContainer();
+      IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
+      InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
+      crafts.add(new InteractiveTrait(trait, container, favorization, validators, traitPreferences));
+    }
+    return crafts;
   }
 
   @Override

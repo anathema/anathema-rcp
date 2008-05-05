@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -52,6 +53,9 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
 
   @Override
   public List<IValidator> getValidators(String traitId) {
+    if (!getCollection().contains(traitId)) {
+      return new ArrayList<IValidator>();
+    }
     IBasicTrait trait = getCollection().getTrait(traitId);
     return new ValidatorFactory().create(templateId, getModelContainer(), collectionModelId, trait);
   }

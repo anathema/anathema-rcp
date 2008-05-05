@@ -25,4 +25,6 @@ public interface ITraitGroupEditorInput {
   public ITraitGroup findTraitGroup(IIdentificate traitType);
 
   public String getModelId();
+
+  public List<IInteractiveTrait> createCrafts();
 }
