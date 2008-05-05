@@ -11,11 +11,13 @@ import net.sf.anathema.character.trait.interactive.TraitPresenter;
 import net.sf.anathema.character.trait.status.ITraitStatusImageProvider;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class TraitViewFactory {
 
@@ -31,11 +33,16 @@ public class TraitViewFactory {
     this.activeImage = provider.createActiveImage();
   }
 
-  public IExtendableIntValueView create(String text, final IInteractiveTrait trait) {
-    final Button favoredButton = new Button(parent, SWT.TOGGLE);
+  public IExtendableIntValueView create(
+      String text,
+      FormToolkit toolkit,
+      final IInteractiveTrait trait) {
+    final Button favoredButton = toolkit.createButton(parent, null, SWT.TOGGLE);
     initListening(trait, favoredButton);
-    createLabel(GridDataFactory.createIndentData(5)).setText(text);
+    Color background = toolkit.getColors().getBackground();
+    createLabel(background, GridDataFactory.createIndentData(5)).setText(text);
     final CanvasIntValueDisplay view = new CanvasIntValueDisplay(
+        background,
         parent,
         passiveImage,
         activeImage,
@@ -53,15 +60,17 @@ public class TraitViewFactory {
         passiveImage,
         imageProvider,
         characterId);
-    FavorizationModelListener listener = new FavorizationModelListener(favoredButton, trait.getFavorization().getStatusModel(), favorizationImageProvider);
+    FavorizationModelListener listener = new FavorizationModelListener(favoredButton, trait.getFavorization()
+        .getStatusModel(), favorizationImageProvider);
     trait.getFavorization().addFavoredChangeListener(listener);
     trait.getFavorization().addFavorableChangeListener(listener);
     favoredButton.addListener(SWT.MouseUp, new FavorizationButtonChangeListener(favoredButton, trait));
   }
 
-  private Label createLabel(GridData data) {
+  private Label createLabel(Color background, GridData data) {
     Label label = new Label(parent, SWT.NULL);
     label.setLayoutData(data);
+    label.setBackground(background);
     return label;
   }
 }

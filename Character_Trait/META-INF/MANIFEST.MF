@@ -14,7 +14,8 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.jface,
  net.sf.anathema.basics.eclipse,
  org.eclipse.core.expressions,
- net.sf.anathema.basics.repository;bundle-version="1.0.0"
+ net.sf.anathema.basics.repository;bundle-version="1.0.0",
+ org.eclipse.ui.forms;bundle-version="3.3.100"
 Export-Package: net.sf.anathema.character.trait,
  net.sf.anathema.character.trait.collection,
  net.sf.anathema.character.trait.display,

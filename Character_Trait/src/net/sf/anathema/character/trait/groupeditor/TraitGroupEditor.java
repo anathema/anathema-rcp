@@ -17,12 +17,15 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.forms.widgets.Form;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
@@ -39,9 +42,16 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
       @Override
       public void createPartControl(Composite parent) {
-        parent.setLayout(new FillLayout());
-        final ScrolledComposite scroll = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+        FormToolkit toolkit = new FormToolkit(parent.getDisplay());
+        Form form = toolkit.createForm(parent);
+        toolkit.decorateFormHeading(form);
+        form.setText(getEditorInput().getName());
+        Color background = toolkit.getColors().getBackground();
+        form.getBody().setLayout(new FillLayout());
+        final ScrolledComposite scroll = new ScrolledComposite(form.getBody(), SWT.H_SCROLL | SWT.V_SCROLL);
+        scroll.setBackground(background);
         final Composite container = new Composite(scroll, SWT.NONE);
+        container.setBackground(background);
         scroll.setContent(container);
         decorations.addAll(new TraitGroupEditorDecorationFactory().create());
         ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
@@ -49,10 +59,11 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         TraitViewFactory factory = new TraitViewFactory(container, editorInput.getImageProvider(), characterId);
         container.setLayout(new GridLayout(3, false));
         for (IDisplayTraitGroup<IInteractiveTrait> group : editorInput.createDisplayGroups()) {
-          createLabel(container, GridDataFactory.createHorizontalSpanData(3)).setText(editorInput.getGroupLabel(group));
+          createLabel(container, background, GridDataFactory.createHorizontalSpanData(3)).setText(
+              editorInput.getGroupLabel(group));
           for (final IInteractiveTrait trait : group.getTraits()) {
             String label = editorInput.getTraitLabel(trait.getTraitType());
-            final IExtendableIntValueView view = factory.create(label, trait);
+            final IExtendableIntValueView view = factory.create(label, toolkit, trait);
             for (ITraitGroupEditorDecoration decoration : decorations) {
               decoration.decorate(trait, view, editorInput);
             }
@@ -71,9 +82,10 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         getSite().getPage().addPartListener(new DecorationUpdateListener((TraitGroupEditor) getEditor()));
       }
 
-      private Label createLabel(Composite parent, GridData data) {
+      private Label createLabel(Composite parent, Color background, GridData data) {
         Label label = new Label(parent, SWT.NULL);
         label.setLayoutData(data);
+        label.setBackground(background);
         return label;
       }
     };

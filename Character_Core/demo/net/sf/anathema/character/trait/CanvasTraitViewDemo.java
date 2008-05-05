@@ -31,7 +31,7 @@ public class CanvasTraitViewDemo implements IDemo {
     URL url = new File("../CharacterType_Solar/icons/" + "Ball_Solar_16.png").toURI().toURL(); //$NON-NLS-1$ //$NON-NLS-2$
     this.activeImage = ImageDescriptor.createFromURL(url).createImage();
     this.surplusImage = createImage("BorderBonusButton16.png"); //$NON-NLS-1$
-    final CanvasIntValueDisplay intValueDisplay = new CanvasIntValueDisplay(parent, passiveImage, activeImage, 10);
+    final CanvasIntValueDisplay intValueDisplay = new CanvasIntValueDisplay(null, parent, passiveImage, activeImage, 10);
     intValueDisplay.addIntValueChangedListener(new IIntValueChangedListener() {
       @Override
       public void valueChanged(int newValue) {

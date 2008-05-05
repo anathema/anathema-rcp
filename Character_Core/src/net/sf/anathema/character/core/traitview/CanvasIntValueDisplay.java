@@ -14,6 +14,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Rectangle;
@@ -99,9 +100,10 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
   private int value;
   private final IntValuePaintListener paintListener;
 
-  public CanvasIntValueDisplay(Composite parent, Image passiveImage, Image valueImage, int maxValue) {
+  public CanvasIntValueDisplay(Color background, Composite parent, Image passiveImage, Image valueImage, int maxValue) {
     this.paintListener = new IntValuePaintListener(passiveImage, valueImage, maxValue);
     this.composite = createComposite(parent);
+    this.composite.setBackground(background);
   }
 
   private Composite createComposite(Composite parent) {
@@ -136,7 +138,7 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
     this.value = newValue;
     redraw();
   }
-  
+
   public void setMaxValue(int maxValue) {
     if (maxValue == paintListener.area.getMaxValue()) {
       return;
@@ -148,7 +150,7 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
   protected void refreshLayout() {
     composite.getParent().layout();
   }
-  
+
   public void redraw() {
     composite.redraw();
   }
