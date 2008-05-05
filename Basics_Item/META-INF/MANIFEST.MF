@@ -6,7 +6,8 @@ Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Require-Bundle: net.sf.anathema.basics.lib,
  net.sf.anathema.basics.jface,
- net.sf.anathema.basics.eclipse
+ net.sf.anathema.basics.eclipse,
+ org.eclipse.ui.forms;bundle-version="3.3.100"
 Export-Package: net.sf.anathema.basics.item;uses:="net.sf.anathema.lib.util,net.sf.anathema.framework.item.change,net.sf.anathema.lib.control.objectvalue",
  net.sf.anathema.basics.item.editor,
  net.sf.anathema.basics.item.persistence;uses:="net.sf.anathema.framework.item,org.dom4j",

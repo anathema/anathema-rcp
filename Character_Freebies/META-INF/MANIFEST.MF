@@ -10,7 +10,8 @@ Require-Bundle: net.sf.anathema.character.core;visibility:=reexport,
  net.sf.anathema.view.valuelist,
  net.sf.anathema.basics.item,
  net.sf.anathema.character.trait;bundle-version="1.0.0",
- net.sf.anathema.basics.repository;bundle-version="1.0.0"
+ net.sf.anathema.basics.repository;bundle-version="1.0.0",
+ org.eclipse.ui.forms;bundle-version="3.3.100"
 Export-Package: net.sf.anathema.character.freebies.configuration,
  net.sf.anathema.character.freebies.coverage,
  net.sf.anathema.character.freebies.fake,

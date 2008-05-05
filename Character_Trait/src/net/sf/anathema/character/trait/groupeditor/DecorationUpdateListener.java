@@ -3,14 +3,15 @@
  */
 package net.sf.anathema.character.trait.groupeditor;
 
+
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 
 public final class DecorationUpdateListener implements IPartListener {
 
-  private final TraitGroupEditor editor;
+  private final GroupEditor editor;
 
-  public DecorationUpdateListener(TraitGroupEditor editor) {
+  public DecorationUpdateListener(GroupEditor editor) {
     this.editor = editor;
   }
 
