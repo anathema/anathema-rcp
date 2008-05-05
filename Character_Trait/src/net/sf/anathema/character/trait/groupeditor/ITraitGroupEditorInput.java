@@ -1,5 +1,7 @@
 package net.sf.anathema.character.trait.groupeditor;
 
+import java.util.List;
+
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
@@ -10,7 +12,7 @@ import org.eclipse.core.resources.IFolder;
 
 public interface ITraitGroupEditorInput {
 
-  public Iterable<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups();
+  public List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups();
 
   public IFolder getCharacterFolder();
 

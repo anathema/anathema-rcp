@@ -12,9 +12,9 @@ public class GridDataFactory {
   }
 
   public static GridData createHorizontalSpanData(int span) {
-    GridData groupData = new GridData();
-    groupData.horizontalSpan = span;
-    return groupData;
+    GridData data = new GridData();
+    data.horizontalSpan = span;
+    return data;
   }
 
   public static GridData createHorizontalFill() {

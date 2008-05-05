@@ -1,5 +1,7 @@
 package net.sf.anathema.character.trait.groupeditor;
 
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
@@ -16,7 +18,6 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -24,6 +25,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.forms.widgets.ColumnLayout;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
@@ -48,18 +50,21 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         form.setText(getEditorInput().getName());
         Color background = toolkit.getColors().getBackground();
         form.getBody().setLayout(new FillLayout());
-        final ScrolledComposite scroll = new ScrolledComposite(form.getBody(), SWT.H_SCROLL | SWT.V_SCROLL);
-        scroll.setBackground(background);
-        final Composite container = new Composite(scroll, SWT.NONE);
+        final Composite container = new Composite(form.getBody(), SWT.NONE);
         container.setBackground(background);
-        scroll.setContent(container);
         decorations.addAll(new TraitGroupEditorDecorationFactory().create());
         ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
         ICharacterId characterId = editorInput.getCharacterId();
-        TraitViewFactory factory = new TraitViewFactory(container, editorInput.getImageProvider(), characterId);
-        container.setLayout(new GridLayout(3, false));
-        for (IDisplayTraitGroup<IInteractiveTrait> group : editorInput.createDisplayGroups()) {
-          createLabel(container, background, GridDataFactory.createHorizontalSpanData(3)).setText(
+        List<IDisplayTraitGroup<IInteractiveTrait>> displayGroups = editorInput.createDisplayGroups();
+        ColumnLayout columnLayout = new ColumnLayout();
+        columnLayout.maxNumColumns = displayGroups.size();
+        container.setLayout(columnLayout);
+        for (IDisplayTraitGroup<IInteractiveTrait> group : displayGroups) {
+          final Composite groupContainer = new Composite(container, SWT.NONE);
+          groupContainer.setLayout(new GridLayout(3, false));
+          TraitViewFactory factory = new TraitViewFactory(groupContainer, editorInput.getImageProvider(), characterId);
+          groupContainer.setBackground(background);
+          createLabel(groupContainer, background, GridDataFactory.createHorizontalSpanData(3)).setText(
               editorInput.getConfiguration().getGroupLabel(group));
           for (final IInteractiveTrait trait : group.getTraits()) {
             String label = editorInput.getConfiguration().getTraitLabel(trait.getTraitType());

@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.disy.commons.core.util.IClosure;
+import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.traitview.internal.MouseInputAdapter;
 import net.sf.anathema.character.core.traitview.internal.OuterPaintListener;
 import net.sf.anathema.lib.control.GenericControl;
@@ -119,6 +120,7 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
     canvas.addPaintListener(paintListener);
     this.rectanglePainter = new OuterPaintListener(canvas);
     canvas.addPaintListener(rectanglePainter);
+    canvas.setData(GridDataFactory.createRightAlign());
     return canvas;
   }
 

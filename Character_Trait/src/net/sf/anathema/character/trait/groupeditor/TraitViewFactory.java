@@ -40,7 +40,7 @@ public class TraitViewFactory {
     final Button favoredButton = toolkit.createButton(parent, null, SWT.TOGGLE);
     initListening(trait, favoredButton);
     Color background = toolkit.getColors().getBackground();
-    createLabel(background, GridDataFactory.createIndentData(5)).setText(text);
+    createLabel(background, createGridData()).setText(text);
     final CanvasIntValueDisplay view = new CanvasIntValueDisplay(
         background,
         parent,
@@ -49,6 +49,13 @@ public class TraitViewFactory {
         trait.getMaximalValue());
     new TraitPresenter().initPresentation(trait, view);
     return view;
+  }
+
+  private GridData createGridData() {
+    GridData data = new GridData();
+    data.horizontalIndent = 5;
+    data.grabExcessHorizontalSpace = true;
+    return data;
   }
 
   private void initListening(final IInteractiveTrait trait, final Button favoredButton) {
