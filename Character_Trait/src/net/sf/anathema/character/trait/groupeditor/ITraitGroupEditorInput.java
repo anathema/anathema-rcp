@@ -15,10 +15,8 @@ public interface ITraitGroupEditorInput {
   public IFolder getCharacterFolder();
 
   public ICharacterId getCharacterId();
-
-  public String getGroupLabel(IDisplayTraitGroup<?> group);
-
-  public String getTraitLabel(IIdentificate traitType);
+  
+  public IEditorInputConfiguration getConfiguration();
 
   public IIntViewImageProvider getImageProvider();
 

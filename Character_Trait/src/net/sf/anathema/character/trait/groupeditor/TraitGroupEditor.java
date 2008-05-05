@@ -60,9 +60,9 @@ public class TraitGroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         container.setLayout(new GridLayout(3, false));
         for (IDisplayTraitGroup<IInteractiveTrait> group : editorInput.createDisplayGroups()) {
           createLabel(container, background, GridDataFactory.createHorizontalSpanData(3)).setText(
-              editorInput.getGroupLabel(group));
+              editorInput.getConfiguration().getGroupLabel(group));
           for (final IInteractiveTrait trait : group.getTraits()) {
-            String label = editorInput.getTraitLabel(trait.getTraitType());
+            String label = editorInput.getConfiguration().getTraitLabel(trait.getTraitType());
             final IExtendableIntValueView view = factory.create(label, toolkit, trait);
             for (ITraitGroupEditorDecoration decoration : decorations) {
               decoration.decorate(trait, view, editorInput);

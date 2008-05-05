@@ -70,13 +70,8 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   }
 
   @Override
-  public String getGroupLabel(IDisplayTraitGroup< ? > group) {
-    return configuration.getGroupLabel(group);
-  }
-
-  @Override
-  public String getTraitLabel(IIdentificate traitType) {
-    return configuration.getTraitLabel(traitType);
+  public IEditorInputConfiguration getConfiguration() {
+    return configuration;
   }
 
   @Override
@@ -91,7 +86,9 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
       }
     }
     Object[] arguments = new Object[] { traitType.getId() };
-    throw new IllegalArgumentException(MessageFormat.format(Messages.TraitCollectionEditorInput_NotInGroupMessage, arguments));
+    throw new IllegalArgumentException(MessageFormat.format(
+        Messages.TraitCollectionEditorInput_NotInGroupMessage,
+        arguments));
   }
 
   @Override
