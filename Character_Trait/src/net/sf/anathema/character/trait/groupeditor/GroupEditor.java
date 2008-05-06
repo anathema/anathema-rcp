@@ -17,23 +17,28 @@ import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.jface.action.ControlContribution;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.ColumnLayout;
+import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Section;
 
 public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
   private final ClassedProvider<ITraitGroupEditorDecoration> decorations = new ClassedProvider<ITraitGroupEditorDecoration>();
   private Composite sectionContent;
   private Composite layoutContainer;
+
   @Override
   protected IEditorControl createItemEditorControl() {
     return new AbstractItemEditorControl(this) {
-
 
       @Override
       public void setFocus() {
@@ -43,7 +48,7 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
       @Override
       public void createPartControl(Composite parent) {
         ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
-        FormToolkit toolkit = new FormToolkit(parent.getDisplay());
+        final FormToolkit toolkit = new FormToolkit(parent.getDisplay());
         SectionFactory sectionFactory = new SectionFactory(toolkit);
         Form form = toolkit.createForm(parent);
         toolkit.decorateFormHeading(form);
@@ -70,11 +75,28 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
             addDisposable(trait);
           }
         }
-        sectionContent = sectionFactory.create(layoutContainer, "Crafts", "Right click to remove");
+        Section section = toolkit.createSection(layoutContainer, ExpandableComposite.TITLE_BAR);
+        section.setText("Crafts");
+        Composite composite = createCraftComposite(toolkit, section);
+
+        section.setDescriptionControl(composite);
+        sectionContent = toolkit.createComposite(section);
+        section.setClient(sectionContent);
         TraitViewFactory factory = new TraitViewFactory(sectionContent, editorInput.getImageProvider(), characterId);
         sectionContent.setLayout(new GridLayout(3, false));
         SubtraitContainer subtraitContainer = new SubtraitContainer(toolkit, factory, editorInput, GroupEditor.this);
-        form.getToolBarManager().add(new AddCraftAction(editorInput,subtraitContainer));
+        form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.text") {
+          @Override
+          protected Control createControl(Composite parent) {
+            return toolkit.createText(parent, "");
+          }
+        });
+        form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.button") {
+          @Override
+          protected Control createControl(Composite parent) {
+            return toolkit.createButton(parent, "Add Craft", SWT.PUSH);
+          }
+        });
         form.getToolBarManager().update(true);
         for (final IInteractiveTrait trait : editorInput.createCrafts()) {
           subtraitContainer.addSubTrait(trait);
@@ -89,6 +111,14 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         addDisposable(new ResourceChangeListenerDisposable(resourceListener));
         getSite().getPage().addPartListener(new DecorationUpdateListener((GroupEditor) getEditor()));
       }
+
+      private Composite createCraftComposite(final FormToolkit toolkit, Composite parent) {
+        Composite composite = toolkit.createComposite(parent);
+        composite.setLayout(new GridLayout(2, false));
+        toolkit.createText(composite, "");
+        toolkit.createButton(composite, "Add Craft", SWT.PUSH);
+        return composite;
+      }
     };
   }
 
@@ -97,7 +127,7 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
       decoration.update();
     }
   }
-  
+
   public ClassedProvider<ITraitGroupEditorDecoration> getDecorations() {
     return decorations;
   }
