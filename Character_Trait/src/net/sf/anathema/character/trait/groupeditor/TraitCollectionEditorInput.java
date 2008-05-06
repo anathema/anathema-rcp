@@ -40,6 +40,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   private final ITraitCollectionContext context;
   private final IFavorizationHandler favorizationHandler;
   private final IEditorInputConfiguration configuration;
+  private final ITraitPreferences traitPreferences = TraitPreferenceFactory.create();
 
   public TraitCollectionEditorInput(
       final IFile file,
@@ -61,16 +62,15 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
   public List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups() {
-    ITraitPreferences preferences = TraitPreferenceFactory.create();
     return CollectionUtilities.transform(context.getTraitGroups(), new InteractiveTraitGroupTransformer(
         context,
         favorizationHandler,
-        preferences));
+        traitPreferences));
   }
 
   @Override
   public List<IInteractiveTrait> createCrafts() {
-    List<IInteractiveTrait> crafts = new ArrayList<IInteractiveTrait>();
+    final List<IInteractiveTrait> crafts = new ArrayList<IInteractiveTrait>();
     List<String> traitIds = new ArrayList<String>();
     traitIds.add("Craft Earth");
     traitIds.add("Craft Fire");
@@ -81,16 +81,27 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
     traitIds.add("Craft Ambrosia");
     traitIds.add("Craft Magitech");
     traitIds.add("Craft Genesis");
-    ITraitPreferences traitPreferences = TraitPreferenceFactory.create();
     for (String traitId : traitIds) {
       IBasicTrait trait = new BasicTrait(new Identificate(traitId));
-      List<IValidator> validators = context.getValidators(traitId);
-      IModelContainer container = context.getModelContainer();
-      IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
-      InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
-      crafts.add(new InteractiveTrait(trait, container, favorization, validators, traitPreferences));
+      InteractiveTrait interactiveTrait = createInteractiveTrait(trait);
+      crafts.add(interactiveTrait);
     }
     return crafts;
+  }
+
+  private InteractiveTrait createInteractiveTrait(IBasicTrait trait) {
+    List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
+    IModelContainer container = context.getModelContainer();
+    IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
+    InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
+    return new InteractiveTrait(trait, container, favorization, validators, traitPreferences);
+  }
+
+  @Override
+  public IInteractiveTrait addSubTrait(String traitId, String subtraitId) {
+    IBasicTrait trait = new BasicTrait(new Identificate(subtraitId));
+    InteractiveTrait interactiveTrait = createInteractiveTrait(trait);
+    return interactiveTrait;
   }
 
   @Override

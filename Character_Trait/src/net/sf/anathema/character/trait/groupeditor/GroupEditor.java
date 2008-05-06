@@ -1,6 +1,5 @@
 package net.sf.anathema.character.trait.groupeditor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
@@ -12,6 +11,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.groupeditor.subtrait.SubtraitContainer;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.eclipse.core.resources.IFolder;
@@ -28,10 +28,12 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
   private final ClassedProvider<ITraitGroupEditorDecoration> decorations = new ClassedProvider<ITraitGroupEditorDecoration>();
-
+  private Composite sectionContent;
+  private Composite layoutContainer;
   @Override
   protected IEditorControl createItemEditorControl() {
     return new AbstractItemEditorControl(this) {
+
 
       @Override
       public void setFocus() {
@@ -40,23 +42,23 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
 
       @Override
       public void createPartControl(Composite parent) {
+        ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
         FormToolkit toolkit = new FormToolkit(parent.getDisplay());
         SectionFactory sectionFactory = new SectionFactory(toolkit);
         Form form = toolkit.createForm(parent);
         toolkit.decorateFormHeading(form);
         form.setText(getEditorInput().getName());
         form.getBody().setLayout(new FillLayout());
-        final Composite container = toolkit.createComposite(form.getBody());
+        layoutContainer = toolkit.createComposite(form.getBody());
         decorations.addAll(new TraitGroupEditorDecorationFactory().create());
-        ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
         ICharacterId characterId = editorInput.getCharacterId();
         List<IDisplayTraitGroup<IInteractiveTrait>> displayGroups = editorInput.createDisplayGroups();
         ColumnLayout columnLayout = new ColumnLayout();
         columnLayout.maxNumColumns = displayGroups.size() + 1;
-        container.setLayout(columnLayout);
+        layoutContainer.setLayout(columnLayout);
         for (IDisplayTraitGroup<IInteractiveTrait> group : displayGroups) {
           String title = editorInput.getConfiguration().getGroupLabel(group);
-          Composite sectionContent = sectionFactory.create(container, title);
+          Composite sectionContent = sectionFactory.create(layoutContainer, title);
           sectionContent.setLayout(new GridLayout(3, false));
           TraitViewFactory factory = new TraitViewFactory(sectionContent, editorInput.getImageProvider(), characterId);
           for (final IInteractiveTrait trait : group.getTraits()) {
@@ -68,20 +70,17 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
             addDisposable(trait);
           }
         }
-        Composite sectionContent = sectionFactory.create(container, "Crafts", "Right click to remove");
+        sectionContent = sectionFactory.create(layoutContainer, "Crafts", "Right click to remove");
         TraitViewFactory factory = new TraitViewFactory(sectionContent, editorInput.getImageProvider(), characterId);
         sectionContent.setLayout(new GridLayout(3, false));
+        SubtraitContainer subtraitContainer = new SubtraitContainer(toolkit, factory, editorInput, GroupEditor.this);
+        form.getToolBarManager().add(new AddCraftAction(editorInput,subtraitContainer));
+        form.getToolBarManager().update(true);
         for (final IInteractiveTrait trait : editorInput.createCrafts()) {
-          String label = trait.getTraitType().getId();
-          final IExtendableIntValueView view = factory.create(label, toolkit, trait);
-          for (ITraitGroupEditorDecoration decoration : decorations) {
-            decoration.decorate(trait, view, editorInput);
-          }
-          addDisposable(trait);
+          subtraitContainer.addSubTrait(trait);
         }
-        
         IFolder characterFolder = editorInput.getCharacterFolder();
-        Display display = container.getDisplay();
+        Display display = layoutContainer.getDisplay();
         final IResourceChangeListener resourceListener = new CharacterPartNameListener(
             GroupEditor.this,
             characterFolder,
@@ -97,5 +96,14 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
     for (ITraitGroupEditorDecoration decoration : decorations) {
       decoration.update();
     }
+  }
+  
+  public ClassedProvider<ITraitGroupEditorDecoration> getDecorations() {
+    return decorations;
+  }
+
+  public void redraw() {
+    sectionContent.getParent().pack(true);
+    layoutContainer.layout();
   }
 }

@@ -27,4 +27,6 @@ public interface ITraitGroupEditorInput {
   public String getModelId();
 
   public List<IInteractiveTrait> createCrafts();
+
+  public IInteractiveTrait addSubTrait(String traitId, String subTraitId);
 }

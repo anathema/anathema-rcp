@@ -105,7 +105,7 @@ public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends
     super.dispose();
   }
 
-  protected final <T extends IDisposable> T addDisposable(T disposable) {
+  public final <T extends IDisposable> T addDisposable(T disposable) {
     return disposables.addDisposable(disposable);
   }
 
