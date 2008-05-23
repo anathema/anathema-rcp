@@ -19,6 +19,8 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.layout.FillLayout;
@@ -94,7 +96,7 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
       }
 
       private void createCraftSection(
-          ITraitGroupEditorInput editorInput,
+          final ITraitGroupEditorInput editorInput,
           final FormToolkit toolkit,
           final Form form,
           ICharacterId characterId) {
@@ -125,9 +127,21 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
             addCraftButton.addMouseListener(new MouseAdapter() {
               @Override
               public void mouseUp(MouseEvent e) {
-                TraitCollectionEditorInput input = (TraitCollectionEditorInput) getEditorInput();
-                IInteractiveTrait craft = input.addSubTrait("Craft", text[0].getText());
+                IInteractiveTrait craft = editorInput.addSubTrait("Craft", text[0].getText());
                 subtraitContainer.addSubTrait(craft);
+              }
+            });
+            text[0].addModifyListener(new ModifyListener() {
+              @Override
+              public void modifyText(ModifyEvent e) {
+                List<IInteractiveTrait> crafts = editorInput.getSubTraits("Craft");
+                for (IInteractiveTrait craft : crafts) {
+                  if (craft.getTraitType().getId().equals(text[0].getText())) {
+                    addCraftButton.setEnabled(false);
+                    return;
+                  }
+                }
+                addCraftButton.setEnabled(true);
               }
             });
             return addCraftButton;
