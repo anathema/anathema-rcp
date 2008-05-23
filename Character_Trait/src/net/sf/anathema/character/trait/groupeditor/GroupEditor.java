@@ -134,8 +134,7 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
             text[0].addModifyListener(new ModifyListener() {
               @Override
               public void modifyText(ModifyEvent e) {
-                List<IInteractiveTrait> crafts = editorInput.getSubTraits("Craft");
-                for (IInteractiveTrait craft : crafts) {
+                for (IInteractiveTrait craft : getCrafts(editorInput)) {
                   if (craft.getTraitType().getId().equals(text[0].getText())) {
                     addCraftButton.setEnabled(false);
                     return;
@@ -143,16 +142,21 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
                 }
                 addCraftButton.setEnabled(true);
               }
+
             });
             return addCraftButton;
           }
         });
         form.getToolBarManager().update(true);
-        for (final IInteractiveTrait trait : editorInput.getSubTraits("Craft")) {
+        for (final IInteractiveTrait trait : getCrafts(editorInput)) {
           subtraitContainer.addSubTrait(trait);
         }
       }
     };
+  }
+
+  private List<IInteractiveTrait> getCrafts(final ITraitGroupEditorInput editorInput) {
+    return editorInput.getSubTraits("Craft");
   }
 
   public void updateDecorations() {
