@@ -67,9 +67,9 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         layoutContainer.setLayout(columnLayout);
         for (IDisplayTraitGroup<IInteractiveTrait> group : displayGroups) {
           String title = editorInput.getConfiguration().getGroupLabel(group);
-          Composite sectionContent = sectionFactory.create(layoutContainer, title);
-          sectionContent.setLayout(new GridLayout(3, false));
-          TraitViewFactory factory = new TraitViewFactory(sectionContent, editorInput.getImageProvider(), characterId);
+          Composite content = sectionFactory.create(layoutContainer, title);
+          content.setLayout(new GridLayout(3, false));
+          TraitViewFactory factory = new TraitViewFactory(content, editorInput.getImageProvider(), characterId);
           for (final IInteractiveTrait trait : group.getTraits()) {
             String label = editorInput.getConfiguration().getTraitLabel(trait.getTraitType());
             final IExtendableIntValueView view = factory.create(label, toolkit, trait);
@@ -79,6 +79,25 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
             addDisposable(trait);
           }
         }
+        if (editorInput.supportsSubTraits()) {
+          createCraftSection(editorInput, toolkit, form, characterId);
+        }
+        IFolder characterFolder = editorInput.getCharacterFolder();
+        Display display = layoutContainer.getDisplay();
+        final IResourceChangeListener resourceListener = new CharacterPartNameListener(
+            GroupEditor.this,
+            characterFolder,
+            display);
+        ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
+        addDisposable(new ResourceChangeListenerDisposable(resourceListener));
+        getSite().getPage().addPartListener(new DecorationUpdateListener((GroupEditor) getEditor()));
+      }
+
+      private void createCraftSection(
+          ITraitGroupEditorInput editorInput,
+          final FormToolkit toolkit,
+          final Form form,
+          ICharacterId characterId) {
         Section section = toolkit.createSection(layoutContainer, ExpandableComposite.TITLE_BAR);
         section.setText("Crafts");
         sectionContent = toolkit.createComposite(section);
@@ -115,18 +134,9 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
           }
         });
         form.getToolBarManager().update(true);
-        for (final IInteractiveTrait trait : editorInput.createCrafts()) {
+        for (final IInteractiveTrait trait : editorInput.getSubTraits("Craft")) {
           subtraitContainer.addSubTrait(trait);
         }
-        IFolder characterFolder = editorInput.getCharacterFolder();
-        Display display = layoutContainer.getDisplay();
-        final IResourceChangeListener resourceListener = new CharacterPartNameListener(
-            GroupEditor.this,
-            characterFolder,
-            display);
-        ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
-        addDisposable(new ResourceChangeListenerDisposable(resourceListener));
-        getSite().getPage().addPartListener(new DecorationUpdateListener((GroupEditor) getEditor()));
       }
     };
   }

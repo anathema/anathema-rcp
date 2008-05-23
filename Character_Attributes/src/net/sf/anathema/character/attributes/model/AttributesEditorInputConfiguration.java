@@ -20,4 +20,9 @@ public class AttributesEditorInputConfiguration implements IEditorInputConfigura
   public String getTraitLabel(IIdentificate traitType) {
     return AttributeMessages.get(traitType.getId());
   }
+
+  @Override
+  public boolean supportsSubTraits() {
+    return false;
+  }
 }

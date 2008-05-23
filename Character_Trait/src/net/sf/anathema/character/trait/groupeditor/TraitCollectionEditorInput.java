@@ -69,24 +69,17 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   }
 
   @Override
-  public List<IInteractiveTrait> createCrafts() {
-    final List<IInteractiveTrait> crafts = new ArrayList<IInteractiveTrait>();
-    List<String> traitIds = new ArrayList<String>();
-    traitIds.add("Craft Earth");
-    traitIds.add("Craft Fire");
-    traitIds.add("Craft Wood");
-    traitIds.add("Craft Air");
-    traitIds.add("Craft Fate");
-    traitIds.add("Craft Flesh");
-    traitIds.add("Craft Ambrosia");
-    traitIds.add("Craft Magitech");
-    traitIds.add("Craft Genesis");
-    for (String traitId : traitIds) {
-      IBasicTrait trait = new BasicTrait(new Identificate(traitId));
-      InteractiveTrait interactiveTrait = createInteractiveTrait(trait);
-      crafts.add(interactiveTrait);
+  public List<IInteractiveTrait> getSubTraits(String parentTraitId) {
+    List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
+    if (parentTraitId.equals("Craft")) {
+      traits.addAll(context.getCollection().getSubTraits("Craft"));
     }
-    return crafts;
+    List<IInteractiveTrait> interactiveTraits = new ArrayList<IInteractiveTrait>();
+    for (IBasicTrait trait : traits) {
+      InteractiveTrait interactiveTrait = createInteractiveTrait(trait);
+      interactiveTraits.add(interactiveTrait);
+    }
+    return interactiveTraits;
   }
 
   private InteractiveTrait createInteractiveTrait(IBasicTrait trait) {
@@ -100,6 +93,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   @Override
   public IInteractiveTrait addSubTrait(String traitId, String subtraitId) {
     IBasicTrait trait = new BasicTrait(new Identificate(subtraitId));
+    context.getCollection().addSubTrait(traitId, trait);
     InteractiveTrait interactiveTrait = createInteractiveTrait(trait);
     return interactiveTrait;
   }
@@ -139,5 +133,10 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   @Override
   public ICharacterId getCharacterId() {
     return getModelIdentifier().getCharacterId();
+  }
+
+  @Override
+  public boolean supportsSubTraits() {
+    return configuration.supportsSubTraits();
   }
 }

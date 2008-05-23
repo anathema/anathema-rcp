@@ -21,4 +21,9 @@ public class AbilitiesEditorInputConfiguration implements IEditorInputConfigurat
   public String getTraitLabel(IIdentificate traitType) {
     return AbilitiesMessages.get(traitType.getId());
   }
+
+  @Override
+  public boolean supportsSubTraits() {
+    return true;
+  }
 }

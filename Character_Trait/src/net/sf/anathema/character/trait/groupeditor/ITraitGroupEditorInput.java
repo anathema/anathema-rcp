@@ -17,7 +17,7 @@ public interface ITraitGroupEditorInput {
   public IFolder getCharacterFolder();
 
   public ICharacterId getCharacterId();
-  
+
   public IEditorInputConfiguration getConfiguration();
 
   public IIntViewImageProvider getImageProvider();
@@ -26,7 +26,9 @@ public interface ITraitGroupEditorInput {
 
   public String getModelId();
 
-  public List<IInteractiveTrait> createCrafts();
+  public List<IInteractiveTrait> getSubTraits(String traitId);
 
   public IInteractiveTrait addSubTrait(String traitId, String subTraitId);
+
+  public boolean supportsSubTraits();
 }

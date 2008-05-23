@@ -10,4 +10,6 @@ public interface IEditorInputConfiguration {
   public String getGroupLabel(IDisplayTraitGroup< ? > group);
 
   public String getTraitLabel(IIdentificate traitType);
+
+  public boolean supportsSubTraits();
 }
