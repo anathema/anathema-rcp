@@ -19,11 +19,15 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.ColumnLayout;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.Form;
@@ -50,7 +54,7 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
         final FormToolkit toolkit = new FormToolkit(parent.getDisplay());
         SectionFactory sectionFactory = new SectionFactory(toolkit);
-        Form form = toolkit.createForm(parent);
+        final Form form = toolkit.createForm(parent);
         toolkit.decorateFormHeading(form);
         form.setText(getEditorInput().getName());
         form.getBody().setLayout(new FillLayout());
@@ -77,24 +81,37 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         }
         Section section = toolkit.createSection(layoutContainer, ExpandableComposite.TITLE_BAR);
         section.setText("Crafts");
-        Composite composite = createCraftComposite(toolkit, section);
-
-        section.setDescriptionControl(composite);
         sectionContent = toolkit.createComposite(section);
         section.setClient(sectionContent);
         TraitViewFactory factory = new TraitViewFactory(sectionContent, editorInput.getImageProvider(), characterId);
         sectionContent.setLayout(new GridLayout(3, false));
-        SubtraitContainer subtraitContainer = new SubtraitContainer(toolkit, factory, editorInput, GroupEditor.this);
+        final SubtraitContainer subtraitContainer = new SubtraitContainer(
+            toolkit,
+            factory,
+            editorInput,
+            GroupEditor.this);
+        final Text[] text = new Text[1];
         form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.text") {
           @Override
           protected Control createControl(Composite parent) {
-            return toolkit.createText(parent, "");
+            final Text craftTextField = toolkit.createText(parent, "");
+            text[0] = craftTextField;
+            return craftTextField;
           }
         });
         form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.button") {
           @Override
           protected Control createControl(Composite parent) {
-            return toolkit.createButton(parent, "Add Craft", SWT.PUSH);
+            final Button addCraftButton = toolkit.createButton(parent, "Add Craft", SWT.PUSH);
+            addCraftButton.addMouseListener(new MouseAdapter() {
+              @Override
+              public void mouseUp(MouseEvent e) {
+                TraitCollectionEditorInput input = (TraitCollectionEditorInput) getEditorInput();
+                IInteractiveTrait craft = input.addSubTrait("Craft", text[0].getText());
+                subtraitContainer.addSubTrait(craft);
+              }
+            });
+            return addCraftButton;
           }
         });
         form.getToolBarManager().update(true);
@@ -110,14 +127,6 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
         ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
         addDisposable(new ResourceChangeListenerDisposable(resourceListener));
         getSite().getPage().addPartListener(new DecorationUpdateListener((GroupEditor) getEditor()));
-      }
-
-      private Composite createCraftComposite(final FormToolkit toolkit, Composite parent) {
-        Composite composite = toolkit.createComposite(parent);
-        composite.setLayout(new GridLayout(2, false));
-        toolkit.createText(composite, "");
-        toolkit.createButton(composite, "Add Craft", SWT.PUSH);
-        return composite;
       }
     };
   }
