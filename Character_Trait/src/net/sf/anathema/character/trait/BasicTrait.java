@@ -5,6 +5,7 @@ import net.sf.anathema.character.trait.interactive.IntValueModel;
 import net.sf.anathema.character.trait.status.ITraitStatusModel;
 import net.sf.anathema.character.trait.status.TraitStatusModel;
 import net.sf.anathema.lib.util.IIdentificate;
+import net.sf.anathema.lib.util.Identificate;
 
 public class BasicTrait implements IBasicTrait {
 
@@ -12,6 +13,10 @@ public class BasicTrait implements IBasicTrait {
   private final IntValueModel creationModel = new IntValueModel();
   private final IntValueModel experiencedModel = new IntValueModel();
   private final TraitStatusModel statusManager = new TraitStatusModel();
+
+  public BasicTrait(String traitId) {
+    this(new Identificate(traitId));
+  }
 
   public BasicTrait(IIdentificate traitType) {
     this.traitType = traitType;
@@ -33,7 +38,7 @@ public class BasicTrait implements IBasicTrait {
   public IIdentificate getTraitType() {
     return traitType;
   }
-  
+
   @Override
   public ITraitStatusModel getStatusManager() {
     return statusManager;

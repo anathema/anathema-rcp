@@ -36,7 +36,6 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
   public TraitCollection(IBasicTrait... traits) {
     this.traits = traits;
     for (IBasicTrait basicTrait : traits) {
-      // TODO wieder abmelden
       basicTrait.getCreationModel().addChangeListener(changeListener);
       basicTrait.getExperiencedModel().addChangeListener(changeListener);
       basicTrait.getStatusManager().addChangeListener(changeListener);
@@ -100,6 +99,8 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
   @Override
   public void addSubTrait(String trait, IBasicTrait subTrait) {
     subTraits.add(trait, subTrait);
+    subTrait.getCreationModel().addChangeListener(changeListener);
+    subTrait.getExperiencedModel().addChangeListener(changeListener);
     setDirty(true);
   }
 
