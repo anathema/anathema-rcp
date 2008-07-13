@@ -72,17 +72,17 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   public List<IInteractiveTrait> getSubTraits(String parentTraitId) {
     List<IInteractiveTrait> interactiveTraits = new ArrayList<IInteractiveTrait>();
     for (IBasicTrait trait : context.getCollection().getSubTraits(parentTraitId)) {
-      InteractiveTrait interactiveTrait = createInteractiveTrait(trait);
+      InteractiveTrait interactiveTrait = createInteractiveSubTrait(trait);
       interactiveTraits.add(interactiveTrait);
     }
     return interactiveTraits;
   }
 
-  private InteractiveTrait createInteractiveTrait(IBasicTrait trait) {
+  private InteractiveTrait createInteractiveSubTrait(IBasicTrait trait) {
     List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
     IModelContainer container = context.getModelContainer();
     IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
-    InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
+    InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, new NullFavorizationHandler());
     return new InteractiveTrait(trait, container, favorization, validators, traitPreferences);
   }
 
@@ -90,7 +90,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   public IInteractiveTrait addSubTrait(String traitId, String subtraitId) {
     IBasicTrait trait = new BasicTrait(new Identificate(subtraitId));
     context.getCollection().addSubTrait(traitId, trait);
-    InteractiveTrait interactiveTrait = createInteractiveTrait(trait);
+    InteractiveTrait interactiveTrait = createInteractiveSubTrait(trait);
     return interactiveTrait;
   }
 
