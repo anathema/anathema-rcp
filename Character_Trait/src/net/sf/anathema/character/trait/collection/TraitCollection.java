@@ -40,10 +40,6 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
       basicTrait.getCreationModel().addChangeListener(changeListener);
       basicTrait.getExperiencedModel().addChangeListener(changeListener);
       basicTrait.getStatusManager().addChangeListener(changeListener);
-      basicTrait.getCreationModel().addChangeListener(
-          new SubTraitAdaptionListener(this, basicTrait, new CreationModelTransformer()));
-      basicTrait.getExperiencedModel().addChangeListener(
-          new SubTraitAdaptionListener(this, basicTrait, new ExperienceModelTransformer()));
     }
   }
 

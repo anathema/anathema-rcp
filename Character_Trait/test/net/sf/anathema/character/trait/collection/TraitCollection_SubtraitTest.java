@@ -122,18 +122,4 @@ public class TraitCollection_SubtraitTest {
     trait.getExperiencedModel().setValue(2);
     assertEquals(-1, subtrait.getExperiencedModel().getValue());
   }
-
-  @Test
-  public void doesNotAllowParentTraitCreationValueToFallBelowChildren() throws Exception {
-    subtrait.getCreationModel().setValue(2);
-    trait.getCreationModel().setValue(1);
-    assertEquals(2, trait.getCreationModel().getValue());
-  }
-
-  @Test
-  public void doesNotAllowParentTraitExperienceValueToFallBelowChildren() throws Exception {
-    subtrait.getExperiencedModel().setValue(2);
-    trait.getExperiencedModel().setValue(1);
-    assertEquals(2, trait.getExperiencedModel().getValue());
-  }
 }
