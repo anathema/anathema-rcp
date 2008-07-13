@@ -3,7 +3,6 @@ package net.sf.anathema.character.description;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
-import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
 import net.sf.anathema.lib.control.objectvalue.IObjectValueChangedListener;
@@ -19,8 +18,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 
-public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPart<ICharacterDescription> implements
-IPersistableItemEditor {
+public class CharacterDescriptionEditor extends AbstractPersistableItemEditorPart<ICharacterDescription> {
 
   public static final String EDITOR_ID = "net.sf.anathema.character.description.editor"; //$NON-NLS-1$
 

@@ -1,7 +1,5 @@
 package net.sf.anathema.character.trait.groupeditor;
 
-import java.util.logging.Logger;
-
 import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemFormEditorPart;

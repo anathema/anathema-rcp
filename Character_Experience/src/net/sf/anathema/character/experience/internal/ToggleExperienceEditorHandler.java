@@ -13,11 +13,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.commands.IElementUpdater;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.menus.UIElement;
 
-public class ToggleExperienceEditorHandler extends AbstractToggleExperienceHandler implements IElementUpdater {
+public class ToggleExperienceEditorHandler extends AbstractToggleExperienceHandler {
   private final ExperienceListening listening = new ExperienceListening();
 
   @Override

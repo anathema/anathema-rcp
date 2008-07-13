@@ -2,7 +2,6 @@ package net.sf.anathema.character.trait.groupeditor;
 
 import java.util.List;
 
-import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;

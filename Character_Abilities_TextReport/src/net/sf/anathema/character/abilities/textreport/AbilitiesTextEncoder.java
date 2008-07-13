@@ -6,13 +6,12 @@ import net.sf.anathema.character.abilities.model.AbilitiesMessages;
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilties;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.textreport.AbstractTraitCollectionTextEncoder;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder implements ITextReportEncoder {
+public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder {
 
   @Override
   protected String getTraitName(IIdentificate traitType) {

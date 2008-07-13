@@ -15,12 +15,10 @@ import net.sf.anathema.character.freebies.coverage.AbstractSurplusMarkingEditorD
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.ITraitGroup;
-import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEditorDecoration<G> implements
-    ITraitGroupEditorDecoration {
+public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEditorDecoration<G> {
 
 
   @Override

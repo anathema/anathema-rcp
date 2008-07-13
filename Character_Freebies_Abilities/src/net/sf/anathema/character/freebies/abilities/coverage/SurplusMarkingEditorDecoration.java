@@ -10,14 +10,12 @@ import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.coverage.AbstractSurplusMarkingEditorDecoration;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
 import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEditorDecoration<G> implements
-    ITraitGroupEditorDecoration {
+public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEditorDecoration<G> {
 
   @Override
   protected ITraitCollectionContext createContext(ITraitGroupEditorInput editorInput, IModelCollection modelCollection) {

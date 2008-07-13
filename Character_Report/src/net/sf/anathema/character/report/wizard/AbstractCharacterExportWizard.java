@@ -13,10 +13,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 import net.sf.anathema.character.report.internal.wizard.CharacterReportRunner;
 
-import org.eclipse.ui.IExportWizard;
-
-public abstract class AbstractCharacterExportWizard extends AbstractPdfExportWizard<ICharacter> implements
-    IExportWizard {
+public abstract class AbstractCharacterExportWizard extends AbstractPdfExportWizard<ICharacter> {
 
   @Override
   protected IReportRunner<ICharacter> createRunner(IOutputStreamFactory outputStreamFactory) {

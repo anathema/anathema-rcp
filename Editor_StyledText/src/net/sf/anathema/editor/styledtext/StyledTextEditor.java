@@ -4,7 +4,6 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
-import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.basics.item.editor.UpdatePartNameListener;
 import net.sf.anathema.basics.item.text.ITitledText;
 import net.sf.anathema.basics.jface.text.SimpleTextView;
@@ -26,8 +25,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 
 public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledText> implements
-    IStyledTextEditor,
-    IPersistableItemEditor {
+    IStyledTextEditor {
 
   private StyledTextView contentView;
 

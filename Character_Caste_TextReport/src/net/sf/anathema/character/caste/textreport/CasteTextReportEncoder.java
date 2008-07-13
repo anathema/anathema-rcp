@@ -7,13 +7,12 @@ import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.AbstractTextEncoder;
-import net.sf.anathema.character.textreport.encoder.ITextReportEncoder;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Phrase;
 
-public class CasteTextReportEncoder extends AbstractTextEncoder implements ITextReportEncoder {
+public class CasteTextReportEncoder extends AbstractTextEncoder {
 
   @Override
   public Iterable<Element> createParagraphs(ICharacter character) throws DocumentException {

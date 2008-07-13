@@ -2,20 +2,16 @@ package net.sf.anathema.character.trait.interactive;
 
 import java.util.List;
 
-import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.collection.AbstractTraitGroupTransformer;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
-import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.validator.IValidator;
 
-public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTransformer<IInteractiveTrait> implements
-    ITransformer<ITraitGroup, IDisplayTraitGroup<IInteractiveTrait>> {
+public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTransformer<IInteractiveTrait> {
 
   private final ITraitPreferences traitPreferences;
   private final IFavorizationHandler favorizationHandler;
