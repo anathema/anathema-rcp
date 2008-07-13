@@ -1,5 +1,7 @@
 package net.sf.anathema.character.trait.collection;
 
+import java.util.List;
+
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.trait.IBasicTrait;
@@ -21,9 +23,13 @@ public final class SubTraitAdaptionListener implements IChangeListener {
 
   @Override
   public void stateChanged() {
+    List<IBasicTrait> subTraits = collection.getSubTraits(basicTrait.getTraitType().getId());
+    if (subTraits.isEmpty()) {
+      return;
+    }
     IIntValueModel traitValueModel = transformer.transform(basicTrait);
     int maximalSubTrait = 0;
-    for (IBasicTrait aSubTrait : collection.getSubTraits(basicTrait.getTraitType().getId())) {
+    for (IBasicTrait aSubTrait : subTraits) {
       IIntValueModel subTraitValueModel = transformer.transform(aSubTrait);
       maximalSubTrait = Math.max(subTraitValueModel.getValue(), maximalSubTrait);
     }

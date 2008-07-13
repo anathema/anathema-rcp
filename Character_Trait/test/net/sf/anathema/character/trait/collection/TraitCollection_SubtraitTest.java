@@ -18,8 +18,11 @@ public class TraitCollection_SubtraitTest {
 
   @Before
   public void createCollectionAndAddSubTrait() {
-    collection = new TraitCollection(new BasicTrait(TRAIT_ID));
-    subtrait = new BasicTrait("Hugo"); //$NON-NLS-1$
+    BasicTrait basicTrait = new BasicTrait(TRAIT_ID);
+    basicTrait.getCreationModel().setValue(4);
+    basicTrait.getExperiencedModel().setValue(4);
+    collection = new TraitCollection(basicTrait);
+    subtrait = new BasicTrait("Hugo");
     collection.addSubTrait(TRAIT_ID, subtrait);
     trait = collection.getTrait(TRAIT_ID);
   }
@@ -57,7 +60,6 @@ public class TraitCollection_SubtraitTest {
   public void decreasesTraitCreationValueAlongWithSubTrait() throws Exception {
     IIntValueModel subTraitValueModel = subtrait.getCreationModel();
     IIntValueModel traitValueModel = trait.getCreationModel();
-    traitValueModel.setValue(4);
     int decreasedSubtraitValue = traitValueModel.getValue() - 1;
     subTraitValueModel.setValue(decreasedSubtraitValue);
     assertEquals(decreasedSubtraitValue, trait.getCreationModel().getValue());
@@ -107,5 +109,31 @@ public class TraitCollection_SubtraitTest {
   public void marksSubTraitAsFavoredAlongWithParentTrait() throws Exception {
     trait.getStatusManager().setStatus(new FavoredStatus());
     assertTrue(subtrait.getStatusManager().getStatus() instanceof FavoredStatus);
+  }
+
+  @Test
+  public void allowsCreationIncreaseParentTraitWithoutChangeOfSubTrait() throws Exception {
+    trait.getCreationModel().setValue(2);
+    assertEquals(0, subtrait.getCreationModel().getValue());
+  }
+
+  @Test
+  public void allowsExperienceIncreaseParentTraitWithoutChangeOfSubTrait() throws Exception {
+    trait.getExperiencedModel().setValue(2);
+    assertEquals(-1, subtrait.getExperiencedModel().getValue());
+  }
+
+  @Test
+  public void doesNotAllowParentTraitCreationValueToFallBelowChildren() throws Exception {
+    subtrait.getCreationModel().setValue(2);
+    trait.getCreationModel().setValue(1);
+    assertEquals(2, trait.getCreationModel().getValue());
+  }
+
+  @Test
+  public void doesNotAllowParentTraitExperienceValueToFallBelowChildren() throws Exception {
+    subtrait.getExperiencedModel().setValue(2);
+    trait.getExperiencedModel().setValue(1);
+    assertEquals(2, trait.getExperiencedModel().getValue());
   }
 }
