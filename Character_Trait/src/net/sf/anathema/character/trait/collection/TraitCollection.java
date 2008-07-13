@@ -5,6 +5,7 @@ import java.util.List;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.interactive.IIntValueModel;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.character.trait.status.ITraitStatusModel;
@@ -97,10 +98,26 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
   }
 
   @Override
-  public void addSubTrait(String trait, IBasicTrait subTrait) {
+  public void addSubTrait(final String trait, final IBasicTrait subTrait) {
     subTraits.add(trait, subTrait);
-    subTrait.getCreationModel().addChangeListener(changeListener);
-    subTrait.getExperiencedModel().addChangeListener(changeListener);
+    final IIntValueModel subtraitCreationModel = subTrait.getCreationModel();
+    subtraitCreationModel.addChangeListener(changeListener);
+    subtraitCreationModel.addChangeListener(new IChangeListener() {
+      @Override
+      public void stateChanged() {
+        IIntValueModel traitCreationModel = getTrait(trait).getCreationModel();
+        traitCreationModel.setValue(Math.max(traitCreationModel.getValue(), subtraitCreationModel.getValue()));
+      }
+    });
+    final IIntValueModel subtraitExperiencedModel = subTrait.getExperiencedModel();
+    subtraitExperiencedModel.addChangeListener(changeListener);
+    subtraitExperiencedModel.addChangeListener(new IChangeListener() {
+      @Override
+      public void stateChanged() {
+        IIntValueModel traitExperienceModel = getTrait(trait).getExperiencedModel();
+        traitExperienceModel.setValue(Math.max(traitExperienceModel.getValue(), subtraitExperiencedModel.getValue()));
+      }
+    });
     setDirty(true);
   }
 
