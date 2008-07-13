@@ -14,6 +14,10 @@ public interface ITraitCollectionModel extends IModel {
 
   public IBasicTrait getTrait(String id);
 
+  public void addSubTrait(String trait, IBasicTrait subTrait);
+
+  public List<IBasicTrait> getSubTraits(String id);
+
   public void setStatusFor(ITraitStatus newStatus, List< ? extends IIdentificate> traits);
 
   public void setDependencyUpdatable(IUpdatable updatable);

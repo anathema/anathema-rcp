@@ -70,12 +70,8 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
 
   @Override
   public List<IInteractiveTrait> getSubTraits(String parentTraitId) {
-    List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
-    if (parentTraitId.equals("Craft")) {
-      traits.addAll(context.getCollection().getSubTraits("Craft"));
-    }
     List<IInteractiveTrait> interactiveTraits = new ArrayList<IInteractiveTrait>();
-    for (IBasicTrait trait : traits) {
+    for (IBasicTrait trait : context.getCollection().getSubTraits(parentTraitId)) {
       InteractiveTrait interactiveTrait = createInteractiveTrait(trait);
       interactiveTraits.add(interactiveTrait);
     }

@@ -36,22 +36,34 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
   public M load(Document document, T modelTemplate) throws PersistenceException {
     final List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
     for (Element traitElement : ElementUtilities.elements(document.getRootElement(), TAG_TRAIT)) {
-      IIdentificate traitType = new Identificate(ElementUtilities.getRequiredAttrib(traitElement, ATTRIB_ID));
-      IBasicTrait trait = new BasicTrait(traitType);
+      IBasicTrait trait = loadTrait(traitElement);
       traits.add(trait);
-      trait.getCreationModel().setValue(ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_CREATION_VALUE));
-      if (traitElement.attribute(ATTRIB_EXPERIENCED_VALUE) != null) {
-        int experiencedValue = ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE);
-        trait.getExperiencedModel().setValue(experiencedValue);
-      }
       boolean favored = ElementUtilities.getBooleanAttribute(traitElement, ATTRIB_FAVORED, false);
       if (favored) {
         trait.getStatusManager().setStatus(new FavoredStatus());
       }
     }
     M model = createModelFor(traits.toArray(new IBasicTrait[traits.size()]));
+    for (Element traitElement : ElementUtilities.elements(document.getRootElement(), TAG_TRAIT)) {
+      for (Element subTraitElement: ElementUtilities.elements(traitElement, TAG_TRAIT)) {
+        IBasicTrait subTrait = loadTrait(subTraitElement);
+        String traitId = ElementUtilities.getRequiredAttrib(traitElement, ATTRIB_ID);
+        model.addSubTrait(traitId, subTrait);
+      }
+    }
     model.setClean();
     return model;
+  }
+
+  private IBasicTrait loadTrait(Element traitElement) throws PersistenceException {
+    IIdentificate traitType = new Identificate(ElementUtilities.getRequiredAttrib(traitElement, ATTRIB_ID));
+    IBasicTrait trait = new BasicTrait(traitType);
+    trait.getCreationModel().setValue(ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_CREATION_VALUE));
+    if (traitElement.attribute(ATTRIB_EXPERIENCED_VALUE) != null) {
+      int experiencedValue = ElementUtilities.getRequiredIntAttrib(traitElement, ATTRIB_EXPERIENCED_VALUE);
+      trait.getExperiencedModel().setValue(experiencedValue);
+    }
+    return trait;
   }
 
   protected abstract M createModelFor(IBasicTrait[] array);
@@ -63,19 +75,27 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
         CharacterTraitPlugin.PLUGIN_ID);
     Element root = document.getRootElement();
     for (IBasicTrait trait : item.getTraits()) {
-      Element traitElement = root.addElement(TAG_TRAIT);
-      traitElement.addAttribute(ATTRIB_ID, trait.getTraitType().getId());
-      int creationValue = trait.getCreationModel().getValue();
-      ElementUtilities.addAttribute(traitElement, ATTRIB_CREATION_VALUE, creationValue);
-      int experiencedValue = trait.getExperiencedModel().getValue();
-      if (experiencedValue > -1) {
-        ElementUtilities.addAttribute(traitElement, ATTRIB_EXPERIENCED_VALUE, experiencedValue);
-      }
+      Element traitElement = saveTrait(root, trait);
       ElementUtilities.addAttribute(
           traitElement,
           ATTRIB_FAVORED,
           trait.getStatusManager().getStatus() instanceof FavoredStatus);
+      for (IBasicTrait subTrait : item.getSubTraits(trait.getTraitType().getId())) {
+        saveTrait(traitElement, subTrait);
+      }
     }
     DocumentUtilities.save(document, stream);
+  }
+
+  private Element saveTrait(Element root, IBasicTrait trait) {
+    Element traitElement = root.addElement(TAG_TRAIT);
+    traitElement.addAttribute(ATTRIB_ID, trait.getTraitType().getId());
+    int creationValue = trait.getCreationModel().getValue();
+    ElementUtilities.addAttribute(traitElement, ATTRIB_CREATION_VALUE, creationValue);
+    int experiencedValue = trait.getExperiencedModel().getValue();
+    if (experiencedValue > -1) {
+      ElementUtilities.addAttribute(traitElement, ATTRIB_EXPERIENCED_VALUE, experiencedValue);
+    }
+    return traitElement;
   }
 }

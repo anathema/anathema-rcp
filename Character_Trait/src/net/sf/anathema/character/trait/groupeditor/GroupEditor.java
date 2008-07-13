@@ -142,7 +142,6 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
                 }
                 addCraftButton.setEnabled(true);
               }
-
             });
             return addCraftButton;
           }

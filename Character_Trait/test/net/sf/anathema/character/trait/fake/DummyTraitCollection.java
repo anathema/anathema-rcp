@@ -11,7 +11,7 @@ import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class DummyTraitCollection extends AbstractModel  implements ITraitCollectionModel {
+public class DummyTraitCollection extends AbstractModel implements ITraitCollectionModel {
 
   private final List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
 
@@ -57,5 +57,15 @@ public class DummyTraitCollection extends AbstractModel  implements ITraitCollec
   @Override
   public boolean contains(String traitId) {
     return getTrait(traitId) != null;
+  }
+
+  @Override
+  public void addSubTrait(String trait, IBasicTrait subTrait) {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  }
+
+  @Override
+  public List<IBasicTrait> getSubTraits(String id) {
+    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
   }
 }

@@ -8,6 +8,7 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.character.trait.status.ITraitStatusModel;
+import net.sf.anathema.lib.collection.MultiEntryMap;
 import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.lib.util.IIdentificate;
@@ -15,7 +16,7 @@ import net.sf.anathema.lib.util.IIdentificate;
 import org.eclipse.osgi.util.NLS;
 
 public class TraitCollection extends AbstractModel implements ITraitCollectionModel {
-
+  private final MultiEntryMap<String, IBasicTrait> subTraits = new MultiEntryMap<String, IBasicTrait>();
   private final IBasicTrait[] traits;
   private final IChangeListener changeListener = new IChangeListener() {
     @Override
@@ -89,6 +90,17 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
         statusManager.setStatus(newStatus);
       }
     }
+  }
+
+  @Override
+  public List<IBasicTrait> getSubTraits(String id) {
+    return subTraits.get(id);
+  }
+
+  @Override
+  public void addSubTrait(String trait, IBasicTrait subTrait) {
+    subTraits.add(trait, subTrait);
+    setDirty(true);
   }
 
   @Override
