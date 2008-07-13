@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
+import net.sf.anathema.character.trait.status.FavoredStatus;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,12 +13,15 @@ public class TraitCollection_SubtraitTest {
 
   private static final String TRAIT_ID = "Horst"; //$NON-NLS-1$
   private TraitCollection collection;
+  private IBasicTrait trait;
+  private BasicTrait subtrait;
 
   @Before
   public void createCollectionAndAddSubTrait() {
     collection = new TraitCollection(new BasicTrait(TRAIT_ID));
-    BasicTrait subTrait = new BasicTrait("Hugo"); //$NON-NLS-1$
-    collection.addSubTrait(TRAIT_ID, subTrait);
+    subtrait = new BasicTrait("Hugo"); //$NON-NLS-1$
+    collection.addSubTrait(TRAIT_ID, subtrait);
+    trait = collection.getTrait(TRAIT_ID);
   }
 
   @Test
@@ -43,8 +47,6 @@ public class TraitCollection_SubtraitTest {
 
   @Test
   public void changesTraitCreationValueToHighSubTraitValue() throws Exception {
-    IBasicTrait trait = collection.getTrait(TRAIT_ID);
-    IBasicTrait subtrait = collection.getSubTraits(TRAIT_ID).get(0);
     IIntValueModel valueModel = subtrait.getCreationModel();
     int increasedSubtraitValue = trait.getCreationModel().getValue() + 1;
     valueModel.setValue(increasedSubtraitValue);
@@ -52,19 +54,28 @@ public class TraitCollection_SubtraitTest {
   }
 
   @Test
-  public void keepsHighCreationTraitValue() throws Exception {
-    IBasicTrait trait = collection.getTrait(TRAIT_ID);
-    IBasicTrait subtrait = collection.getSubTraits(TRAIT_ID).get(0);
+  public void decreasesTraitCreationValueAlongWithSubTrait() throws Exception {
+    IIntValueModel subTraitValueModel = subtrait.getCreationModel();
+    IIntValueModel traitValueModel = trait.getCreationModel();
+    traitValueModel.setValue(4);
+    int decreasedSubtraitValue = traitValueModel.getValue() - 1;
+    subTraitValueModel.setValue(decreasedSubtraitValue);
+    assertEquals(decreasedSubtraitValue, trait.getCreationModel().getValue());
+  }
+
+  @Test
+  public void keepsHighCreationValueFromSubTrait() throws Exception {
+    BasicTrait highSubtrait = new BasicTrait("Hoch ich bin"); //$NON-NLS-1$
+    collection.addSubTrait(TRAIT_ID, highSubtrait);
+    int highTraitValue = 3;
+    highSubtrait.getCreationModel().setValue(highTraitValue);
     IIntValueModel valueModel = subtrait.getCreationModel();
-    int highTraitValue = trait.getCreationModel().getValue();
     valueModel.setValue(highTraitValue - 1);
     assertEquals(highTraitValue, trait.getCreationModel().getValue());
   }
 
   @Test
-  public void changesTraitExperienceValueToHighSubTraitValue() throws Exception {
-    IBasicTrait trait = collection.getTrait(TRAIT_ID);
-    IBasicTrait subtrait = collection.getSubTraits(TRAIT_ID).get(0);
+  public void increasesTraitExperienceValueAlongWithSubTrait() throws Exception {
     IIntValueModel valueModel = subtrait.getExperiencedModel();
     int increasedSubtraitValue = trait.getExperiencedModel().getValue() + 1;
     valueModel.setValue(increasedSubtraitValue);
@@ -72,12 +83,29 @@ public class TraitCollection_SubtraitTest {
   }
 
   @Test
-  public void keepsHighExperienceTraitValue() throws Exception {
-    IBasicTrait trait = collection.getTrait(TRAIT_ID);
-    IBasicTrait subtrait = collection.getSubTraits(TRAIT_ID).get(0);
+  public void decreasesTraitExperienceValueAlongWithSubTrait() throws Exception {
+    IIntValueModel subTraitValueModel = subtrait.getExperiencedModel();
+    IIntValueModel traitValueModel = trait.getExperiencedModel();
+    traitValueModel.setValue(4);
+    int decreasedSubtraitValue = traitValueModel.getValue() - 1;
+    subTraitValueModel.setValue(decreasedSubtraitValue);
+    assertEquals(decreasedSubtraitValue, trait.getExperiencedModel().getValue());
+  }
+
+  @Test
+  public void keepsHighExperienceValueFromSubTrait() throws Exception {
+    BasicTrait highSubtrait = new BasicTrait("Hoch ich bin"); //$NON-NLS-1$
+    collection.addSubTrait(TRAIT_ID, highSubtrait);
+    int highTraitValue = 3;
+    highSubtrait.getExperiencedModel().setValue(highTraitValue);
     IIntValueModel valueModel = subtrait.getExperiencedModel();
-    int highTraitValue = trait.getExperiencedModel().getValue();
     valueModel.setValue(highTraitValue - 1);
     assertEquals(highTraitValue, trait.getExperiencedModel().getValue());
+  }
+
+  @Test
+  public void marksSubTraitAsFavoredAlongWithParentTrait() throws Exception {
+    trait.getStatusManager().setStatus(new FavoredStatus());
+    assertTrue(subtrait.getStatusManager().getStatus() instanceof FavoredStatus);
   }
 }

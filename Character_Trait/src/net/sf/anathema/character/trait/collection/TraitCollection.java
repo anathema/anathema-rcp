@@ -99,23 +99,24 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
 
   @Override
   public void addSubTrait(final String trait, final IBasicTrait subTrait) {
+    final IBasicTrait basicTrait = getTrait(trait);
     subTraits.add(trait, subTrait);
     final IIntValueModel subtraitCreationModel = subTrait.getCreationModel();
     subtraitCreationModel.addChangeListener(changeListener);
-    subtraitCreationModel.addChangeListener(new IChangeListener() {
-      @Override
-      public void stateChanged() {
-        IIntValueModel traitCreationModel = getTrait(trait).getCreationModel();
-        traitCreationModel.setValue(Math.max(traitCreationModel.getValue(), subtraitCreationModel.getValue()));
-      }
-    });
+    subtraitCreationModel.addChangeListener(new SubTraitAdaptionListener(
+        this,
+        basicTrait,
+        new CreationModelTransformer()));
     final IIntValueModel subtraitExperiencedModel = subTrait.getExperiencedModel();
     subtraitExperiencedModel.addChangeListener(changeListener);
-    subtraitExperiencedModel.addChangeListener(new IChangeListener() {
+    subtraitExperiencedModel.addChangeListener(new SubTraitAdaptionListener(
+        this,
+        basicTrait,
+        new ExperienceModelTransformer()));
+    basicTrait.getStatusManager().addChangeListener(new IChangeListener() {
       @Override
       public void stateChanged() {
-        IIntValueModel traitExperienceModel = getTrait(trait).getExperiencedModel();
-        traitExperienceModel.setValue(Math.max(traitExperienceModel.getValue(), subtraitExperiencedModel.getValue()));
+        subTrait.getStatusManager().setStatus(basicTrait.getStatusManager().getStatus());
       }
     });
     setDirty(true);
