@@ -2,6 +2,7 @@ package net.sf.anathema.character.freebies.abilities;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
+import net.sf.anathema.character.abilities.util.TraitListFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -14,16 +15,16 @@ import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class DefaultFreebiesHandler extends AbstractExecutableExtension implements IFreebiesHandler {
+public class UnrestrictedFreebiesHandler extends AbstractExecutableExtension implements IFreebiesHandler {
 
   private final IModelCollection modelCollection;
   private final ICreditManager creditManager;
 
-  public DefaultFreebiesHandler() {
+  public UnrestrictedFreebiesHandler() {
     this(ModelCache.getInstance(), new CreditManager());
   }
 
-  public DefaultFreebiesHandler(IModelCollection modelCollection, ICreditManager creditManager) {
+  public UnrestrictedFreebiesHandler(IModelCollection modelCollection, ICreditManager creditManager) {
     this.modelCollection = modelCollection;
     this.creditManager = creditManager;
   }
@@ -42,7 +43,8 @@ public class DefaultFreebiesHandler extends AbstractExecutableExtension implemen
 
   public int getPoints(ICharacterId id, int credit, ITraitCollectionModel abilities) {
     int totalSpent = 0;
-    for (IBasicTrait trait : abilities.getTraits()) {
+    TraitListFactory traitListFactory = new TraitListFactory();
+    for (IBasicTrait trait : traitListFactory.create(abilities)) {
       totalSpent += Math.min(trait.getCreationModel().getValue(), 3);
     }
     int favoredCredit = creditManager.getCredit(id, IAbilityFreebiesConstants.FAVORED_CREDIT);

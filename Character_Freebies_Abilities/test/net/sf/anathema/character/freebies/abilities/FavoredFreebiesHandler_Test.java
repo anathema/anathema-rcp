@@ -13,7 +13,7 @@ import net.sf.anathema.lib.util.Identificate;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FavoredFreebiesHandlerTest {
+public class FavoredFreebiesHandler_Test {
 
   private static final String FAVORED2 = "Favored2"; //$NON-NLS-1$
   private static final String FAVORED1 = "Favored1"; //$NON-NLS-1$
@@ -81,5 +81,14 @@ public class FavoredFreebiesHandlerTest {
   public void returnsThreePointsForHighTrait() throws Exception {
     model.getTrait(FAVORED1).getCreationModel().setValue(5);
     assertEquals(3, handler.getPoints(characterId, 5));
+  }
+
+  @Test
+  public void usesFreebiesForSubtraits() throws Exception {
+    model.getTrait(FAVORED1).getCreationModel().setValue(5);
+    BasicTrait subTrait = BasicTraitObjectMother.createFavored("Tum"); //$NON-NLS-1$
+    model.addSubTrait(FAVORED1, subTrait);
+    subTrait.getCreationModel().setValue(2);
+    assertEquals(2, handler.getPoints(characterId, 5));
   }
 }

@@ -17,14 +17,14 @@ import net.sf.anathema.lib.util.Identificate;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DefaultFreebiesHandlerTest {
+public class UnrestrictedFreebiesHandler_Test {
 
   private static final int FAVORED_CREDIT = 3;
   private static final String FAVORED2 = "Favored2"; //$NON-NLS-1$
   private static final String FAVORED1 = "Favored1"; //$NON-NLS-1$
   private static final String NON_FAVORED2 = "NonFavored2"; //$NON-NLS-1$
   private static final String NON_FAVORED1 = "NonFavored1"; //$NON-NLS-1$
-  private DefaultFreebiesHandler handler;
+  private UnrestrictedFreebiesHandler handler;
   private TraitCollection model;
   private ICharacterId characterId;
 
@@ -54,7 +54,7 @@ public class DefaultFreebiesHandlerTest {
         characterId,
         IAbilityFreebiesConstants.FAVORED_CREDIT,
         FAVORED_CREDIT);
-    handler = new DefaultFreebiesHandler(modelCollection, creditManager);
+    handler = new UnrestrictedFreebiesHandler(modelCollection, creditManager);
   }
 
   @Test
@@ -98,5 +98,14 @@ public class DefaultFreebiesHandlerTest {
     model.getTrait(FAVORED1).getCreationModel().setValue(FAVORED_CREDIT);
     model.getTrait(FAVORED2).getCreationModel().setValue(2);
     assertEquals(2, handler.getPoints(characterId, 3));
+  }
+
+  @Test
+  public void usesFreebiesForSubtraits() throws Exception {
+    model.getTrait(NON_FAVORED1).getCreationModel().setValue(1);
+    BasicTrait subTrait = new BasicTrait("Tum"); //$NON-NLS-1$
+    subTrait.getCreationModel().setValue(2);
+    model.addSubTrait(NON_FAVORED1, subTrait);
+    assertEquals(2, handler.getPoints(characterId, 5));
   }
 }

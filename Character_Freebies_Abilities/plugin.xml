@@ -4,7 +4,7 @@
    <extension
          point="net.sf.anathema.character.freebies.configurations">
       <FreebiesConfiguration
-            handlerClass="net.sf.anathema.character.freebies.abilities.UnrestrictedFreebiesBonusPointReducer"
+            handlerClass="net.sf.anathema.character.freebies.abilities.UnrestrictedFreebiesHandler"
             name="%FreebiesConfiguration.UnrestrictedFreeAbilityDots">
       </FreebiesConfiguration>
       <FreebiesConfiguration
