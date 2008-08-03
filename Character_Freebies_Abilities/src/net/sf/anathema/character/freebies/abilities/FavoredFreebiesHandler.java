@@ -1,5 +1,7 @@
 package net.sf.anathema.character.freebies.abilities;
 
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -38,8 +40,14 @@ public class FavoredFreebiesHandler extends AbstractExecutableExtension implemen
   public int getPoints(ITraitCollectionModel abilities, int credit) {
     int dotCount = 0;
     for (IBasicTrait trait : abilities.getTraits()) {
-      if (trait.getStatusManager().getStatus().isCheap()) {
+      List<IBasicTrait> subTraits = abilities.getSubTraits(trait.getTraitType().getId());
+      if (subTraits.isEmpty() && trait.getStatusManager().getStatus().isCheap()) {
         dotCount += Math.min(trait.getCreationModel().getValue(), 3);
+      }
+      for (IBasicTrait subTrait : subTraits) {
+        if (subTrait.getStatusManager().getStatus().isCheap()) {
+          dotCount += Math.min(subTrait.getCreationModel().getValue(), 3);
+        }
       }
     }
     return Math.min(dotCount, credit);

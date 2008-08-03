@@ -22,8 +22,10 @@ public class DummyTraitCollection extends AbstractModel implements ITraitCollect
     return traits.toArray(new IBasicTrait[traits.size()]);
   }
 
-  public void addTrait(IBasicTrait trait) {
-    traits.add(trait);
+  public void addTrait(IBasicTrait... addedTraits) {
+    for (IBasicTrait trait : addedTraits) {
+      traits.add(trait);
+    }
   }
 
   @Override

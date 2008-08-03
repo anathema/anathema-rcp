@@ -1,5 +1,7 @@
 package net.sf.anathema.character.freebies.abilities;
 
+import java.util.List;
+
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -14,15 +16,15 @@ import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class DefaultFreebiesBonusPointReducer extends AbstractPointHandler {
+public class UnrestrictedFreebiesBonusPointReducer extends AbstractPointHandler {
   private static final String HANDLER_TYPE = "unlimitedFreebies"; //$NON-NLS-1$
   private final ICreditManager creditManager;
 
-  public DefaultFreebiesBonusPointReducer() {
+  public UnrestrictedFreebiesBonusPointReducer() {
     this(ModelCache.getInstance(), new ModelResourceHandler(), new CreditManager());
   }
 
-  public DefaultFreebiesBonusPointReducer(
+  public UnrestrictedFreebiesBonusPointReducer(
       IModelCollection modelCollection,
       IModelResourceHandler resourceHandler,
       ICreditManager creditManager) {
@@ -31,11 +33,11 @@ public class DefaultFreebiesBonusPointReducer extends AbstractPointHandler {
   }
 
   @Override
-  public int calculatePoints(ITraitCollectionModel attributes, ICharacterId characterId) {
+  public int calculatePoints(ITraitCollectionModel abilities, ICharacterId characterId) {
     int cheapCredit = creditManager.getCredit(characterId, IAbilityFreebiesConstants.FAVORED_CREDIT);
-    int unlimitedCredit = creditManager.getCredit(characterId, IAbilityFreebiesConstants.UNLIMITED_CREDIT);
-    int availableCheapDots = Math.max(getDotCount(attributes, new CheapPredicate()) - cheapCredit, 0);
-    int availableExpensiveDots = getDotCount(attributes, new ExpensivePredicate());
+    int unlimitedCredit = creditManager.getCredit(characterId, IAbilityFreebiesConstants.UNRESTRICTED_CREDIT);
+    int availableCheapDots = Math.max(getDotCount(abilities, new CheapPredicate()) - cheapCredit, 0);
+    int availableExpensiveDots = getDotCount(abilities, new ExpensivePredicate());
     int expensiveDotsToHandle = Math.min(availableExpensiveDots, unlimitedCredit);
     int cheapDotsToHandle = Math.max(0, Math.min(availableCheapDots, unlimitedCredit - expensiveDotsToHandle));
     return -(expensiveDotsToHandle * 2) - (cheapDotsToHandle * 1);
@@ -44,8 +46,18 @@ public class DefaultFreebiesBonusPointReducer extends AbstractPointHandler {
   private int getDotCount(ITraitCollectionModel traits, IPredicate<IBasicTrait> predicate) {
     int dotCount = 0;
     for (IBasicTrait trait : traits.getTraits()) {
-      if (predicate.evaluate(trait)) {
-        dotCount += Math.min(trait.getCreationModel().getValue(), 3);
+      List<IBasicTrait> subTraitList = traits.getSubTraits(trait.getTraitType().getId());
+      if (subTraitList.isEmpty()) {
+        if (predicate.evaluate(trait)) {
+          dotCount += Math.min(trait.getCreationModel().getValue(), 3);
+        }
+      }
+      else {
+        for (IBasicTrait subTrait : subTraitList) {
+          if (predicate.evaluate(subTrait)) {
+            dotCount += Math.min(subTrait.getCreationModel().getValue(), 3);
+          }
+        }
       }
     }
     return dotCount;

@@ -71,7 +71,7 @@ public class CoverageCalculator_Test {
   private ICreditManager createCreditManager(int favored, int unlimited) {
     ICreditManager creditManager = createMock(ICreditManager.class);
     expect(creditManager.getCredit(null, IAbilityFreebiesConstants.FAVORED_CREDIT)).andReturn(favored);
-    expect(creditManager.getCredit(null, IAbilityFreebiesConstants.UNLIMITED_CREDIT)).andReturn(unlimited);
+    expect(creditManager.getCredit(null, IAbilityFreebiesConstants.UNRESTRICTED_CREDIT)).andReturn(unlimited);
     replay(creditManager);
     return creditManager;
   }

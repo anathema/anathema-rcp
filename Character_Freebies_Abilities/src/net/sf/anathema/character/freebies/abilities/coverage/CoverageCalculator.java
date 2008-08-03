@@ -19,7 +19,7 @@ public class CoverageCalculator {
 
   public int calculate(ITraitCollectionModel collection, ICharacterId characterId, IIdentificate traitType) {
     int remainingCheapFreebies = creditManager.getCredit(characterId, IAbilityFreebiesConstants.FAVORED_CREDIT);
-    int remainingExpensiveFreebies = creditManager.getCredit(characterId, IAbilityFreebiesConstants.UNLIMITED_CREDIT);
+    int remainingExpensiveFreebies = creditManager.getCredit(characterId, IAbilityFreebiesConstants.UNRESTRICTED_CREDIT);
     for (IBasicTrait trait : collection.getTraits()) {
       int possiblyCovered = Math.min(trait.getCreationModel().getValue(), 3);
       int cheapFreebiesSpent = 0;

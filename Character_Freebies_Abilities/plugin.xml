@@ -4,8 +4,8 @@
    <extension
          point="net.sf.anathema.character.freebies.configurations">
       <FreebiesConfiguration
-            handlerClass="net.sf.anathema.character.freebies.abilities.DefaultFreebiesHandler"
-            name="%FreebiesConfiguration.UnlimitedFreeAbilityDots">
+            handlerClass="net.sf.anathema.character.freebies.abilities.UnrestrictedFreebiesBonusPointReducer"
+            name="%FreebiesConfiguration.UnrestrictedFreeAbilityDots">
       </FreebiesConfiguration>
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.character.freebies.abilities.FavoredFreebiesHandler"
@@ -20,7 +20,7 @@
          point="net.sf.anathema.character.points.configurations">
       <bonusPointCalculator
             groupReference="abilitypoints"
-            handlerClass="net.sf.anathema.character.freebies.abilities.DefaultFreebiesBonusPointReducer">
+            handlerClass="net.sf.anathema.character.freebies.abilities.UnrestrictedFreebiesBonusPointReducer">
       </bonusPointCalculator>
       <bonusPointCalculator
             groupReference="abilitypoints"

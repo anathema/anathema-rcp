@@ -269,7 +269,7 @@
                value="4">
          </credit>
          <credit
-               id="net.sf.anathema.character.abilties.freebies.default"
+               id="net.sf.anathema.character.abilties.freebies.unrestricted"
                value="20">
          </credit>
          <credit

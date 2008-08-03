@@ -38,7 +38,7 @@ public class SolarAbilityFreebiesTest {
 
   @Test
   public void hasUnlimitedCredit18() throws Exception {
-    assertEquals(18, creditManager.getCredit(characterId, IAbilityFreebiesConstants.UNLIMITED_CREDIT));
+    assertEquals(18, creditManager.getCredit(characterId, IAbilityFreebiesConstants.UNRESTRICTED_CREDIT));
   }
 
   @Test

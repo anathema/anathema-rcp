@@ -30,7 +30,7 @@ public class DefaultFreebiesHandler extends AbstractExecutableExtension implemen
 
   @Override
   public String getCreditId() {
-    return IAbilityFreebiesConstants.UNLIMITED_CREDIT;
+    return IAbilityFreebiesConstants.UNRESTRICTED_CREDIT;
   }
 
   @Override

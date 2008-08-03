@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %net.sf.anathema.thirdparty.testing.BundleName
 Bundle-SymbolicName: net.sf.anathema.thirdparty.testing
 Bundle-Version: 1.0.0
-Export-Package: net.sf.anathema.test.matcher,
+Export-Package: net.sf.anathema.test.behaviour,
+ net.sf.anathema.test.matcher,
  org.easymock
 Bundle-ClassPath: lib/easymock.jar,
  .

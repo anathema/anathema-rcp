@@ -35,6 +35,6 @@ public class FavoredFreebiesBonusPointReducer extends AbstractPointHandler {
     FavoredFreebiesHandler handler = new FavoredFreebiesHandler(modelCollection);
     int credit = creditManager.getCredit(characterId, IAbilityFreebiesConstants.FAVORED_CREDIT);
     int points = handler.getPoints(abilities, credit);
-    return -(points);
+    return -points;
   }
 }
