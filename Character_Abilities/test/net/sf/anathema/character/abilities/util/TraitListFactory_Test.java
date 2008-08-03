@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import net.sf.anathema.character.abilities.util.TraitListFactory;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.fake.DummyTraitCollection;
