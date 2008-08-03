@@ -8,12 +8,14 @@ import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.status.ITraitStatus;
+import net.sf.anathema.lib.collection.MultiEntryMap;
 import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class DummyTraitCollection extends AbstractModel implements ITraitCollectionModel {
 
   private final List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
+  private final MultiEntryMap<String, IBasicTrait> subTraits = new MultiEntryMap<String, IBasicTrait>();
 
   @Override
   public IBasicTrait[] getTraits() {
@@ -60,12 +62,12 @@ public class DummyTraitCollection extends AbstractModel implements ITraitCollect
   }
 
   @Override
-  public void addSubTrait(String trait, IBasicTrait subTrait) {
-    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  public void addSubTrait(String traitId, IBasicTrait subTrait) {
+    subTraits.add(traitId, subTrait);
   }
 
   @Override
-  public List<IBasicTrait> getSubTraits(String id) {
-    throw new UnsupportedOperationException("Dummy"); //$NON-NLS-1$
+  public List<IBasicTrait> getSubTraits(String traitId) {
+    return subTraits.get(traitId);
   }
 }

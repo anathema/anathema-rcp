@@ -1,5 +1,7 @@
 package net.sf.anathema.character.abilities.points;
 
+import java.util.List;
+
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -11,6 +13,24 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 public class AbilitiesBonusPointHandler extends AbstractPointHandler {
   private static final String HANDLER_TYPE = "abilities"; //$NON-NLS-1$
 
+  private static class PointCalculation {
+    int cheapCount = 0;
+    int expensiveCount = 0;
+
+    public void addTrait(IBasicTrait trait) {
+      if (trait.getStatusManager().getStatus().isCheap()) {
+        cheapCount += trait.getCreationModel().getValue();
+      }
+      else {
+        expensiveCount += trait.getCreationModel().getValue();
+      }
+    }
+
+    public int getTotal() {
+      return cheapCount + expensiveCount * 2;
+    }
+  }
+
   public AbilitiesBonusPointHandler() {
     super(HANDLER_TYPE, IAbilitiesPluginConstants.MODEL_ID);
   }
@@ -21,16 +41,18 @@ public class AbilitiesBonusPointHandler extends AbstractPointHandler {
 
   @Override
   public int calculatePoints(ITraitCollectionModel abilities, ICharacterId characterId) {
-    int cheapCount = 0;
-    int expensiveCount = 0;
+    PointCalculation calculation = new PointCalculation();
     for (IBasicTrait trait : abilities.getTraits()) {
-      if (trait.getStatusManager().getStatus().isCheap()) {
-        cheapCount += trait.getCreationModel().getValue();
+      List<IBasicTrait> subTraits = abilities.getSubTraits(trait.getTraitType().getId());
+      if (subTraits.isEmpty()) {
+        calculation.addTrait(trait);
       }
-      else {
-        expensiveCount += trait.getCreationModel().getValue();
+      for (IBasicTrait subTrait : subTraits) {
+        calculation.addTrait(subTrait);
       }
     }
-    return cheapCount + expensiveCount * 2;
+    int total = calculation.getTotal();
+    System.err.println(total);
+    return total;
   }
 }
