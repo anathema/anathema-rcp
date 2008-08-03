@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
-import net.sf.anathema.character.abilities.util.TraitListBuilder;
+import net.sf.anathema.character.abilities.util.TraitListFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
@@ -40,7 +40,7 @@ public class FavoredFreebiesHandler extends AbstractExecutableExtension implemen
 
   public int getPoints(ITraitCollectionModel abilities, int credit) {
     int dotCount = 0;
-    for (IBasicTrait trait : new TraitListBuilder().buildList(abilities)) {
+    for (IBasicTrait trait : new TraitListFactory().create(abilities)) {
       if (trait.getStatusManager().getStatus().isCheap()) {
         dotCount += Math.min(trait.getCreationModel().getValue(), 3);
       }

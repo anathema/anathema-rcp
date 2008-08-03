@@ -6,9 +6,9 @@ import java.util.List;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class TraitListBuilder {
+public class TraitListFactory {
 
-  public List<IBasicTrait> buildList(ITraitCollectionModel model) {
+  public List<IBasicTrait> create(ITraitCollectionModel model) {
     ArrayList<IBasicTrait> list = new ArrayList<IBasicTrait>();
     for (IBasicTrait trait : model.getTraits()) {
       if (model.getSubTraits(trait.getTraitType().getId()).isEmpty()) {
