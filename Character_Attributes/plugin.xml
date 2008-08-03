@@ -42,6 +42,11 @@
                modelId="net.sf.anathema.character.attributes.model">
          </experienceTraitConfiguration>
       </experienceConfigurations>
+      <pointGroup
+            groupId="attributepoints"
+            modelId="net.sf.anathema.character.attributes.model"
+            name="Attributes">
+      </pointGroup>
    </extension>
    <extension
          point="net.sf.anathema.character.trait.validator">

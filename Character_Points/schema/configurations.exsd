@@ -16,6 +16,7 @@
             <element ref="experiencePointCalculator" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="bonusPointCalculator" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="experienceConfigurations" minOccurs="0" maxOccurs="1"/>
+            <element ref="pointGroup" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -39,6 +40,40 @@
                <appinfo>
                   <meta.attribute translatable="true"/>
                </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="pointGroup">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="name"/>
+         </appinfo>
+      </annotation>
+      <complexType>
+         <attribute name="groupId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="modelId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
             </annotation>
          </attribute>
       </complexType>
@@ -90,7 +125,7 @@
 
    <element name="experienceTraitConfiguration">
       <complexType>
-        <attribute name="id" type="string" use="required">
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -118,7 +153,7 @@
                </documentation>
             </annotation>
          </attribute>
-       </complexType>
+      </complexType>
    </element>
 
    <element name="experienceConfigurations">

@@ -43,6 +43,11 @@
                newCost="3">
          </experienceTraitConfiguration>
       </experienceConfigurations>
+      <pointGroup
+            groupId="abilitypoints"
+            modelId="net.sf.anathema.character.abilities.model"
+            name="Abilities">
+      </pointGroup>
    </extension>
 
 </plugin>
