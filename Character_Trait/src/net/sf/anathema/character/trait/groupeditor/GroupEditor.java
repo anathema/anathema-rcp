@@ -129,6 +129,7 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
               public void mouseUp(MouseEvent e) {
                 IInteractiveTrait craft = editorInput.addSubTrait("Craft", text[0].getText());
                 subtraitContainer.addSubTrait(craft);
+                addCraftButton.setEnabled(false);
               }
             });
             text[0].addModifyListener(new ModifyListener() {
@@ -143,6 +144,7 @@ public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
                 addCraftButton.setEnabled(true);
               }
             });
+            addCraftButton.setEnabled(false);
             return addCraftButton;
           }
         });
