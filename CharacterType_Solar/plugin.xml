@@ -138,10 +138,6 @@
             resourceUrl="icons/Ball_Solar_16.png">
       </image>
       <image
-            referenceId="CharacterType_Solar.image1"
-            resourceUrl="CharacterType_Solar.image1">
-      </image>
-      <image
             referenceId="Zenith"
             resourceUrl="icons/Caste_Zenith_16.png">
       </image>
@@ -156,6 +152,10 @@
       <image
             referenceId="Eclipse"
             resourceUrl="icons/Caste_Eclipse_16.png">
+      </image>
+      <image
+            referenceId="Dawn"
+            resourceUrl="icons/Caste_Dawn_16.png">
       </image>
    </extension>
    <extension
