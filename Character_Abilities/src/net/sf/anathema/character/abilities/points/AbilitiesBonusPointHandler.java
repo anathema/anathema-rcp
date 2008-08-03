@@ -1,8 +1,7 @@
 package net.sf.anathema.character.abilities.points;
 
-import java.util.List;
-
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
+import net.sf.anathema.character.abilities.util.TraitListBuilder;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.IModelResourceHandler;
@@ -42,17 +41,9 @@ public class AbilitiesBonusPointHandler extends AbstractPointHandler {
   @Override
   public int calculatePoints(ITraitCollectionModel abilities, ICharacterId characterId) {
     PointCalculation calculation = new PointCalculation();
-    for (IBasicTrait trait : abilities.getTraits()) {
-      List<IBasicTrait> subTraits = abilities.getSubTraits(trait.getTraitType().getId());
-      if (subTraits.isEmpty()) {
-        calculation.addTrait(trait);
-      }
-      for (IBasicTrait subTrait : subTraits) {
-        calculation.addTrait(subTrait);
-      }
+    for (IBasicTrait trait : new TraitListBuilder().buildList(abilities)) {
+      calculation.addTrait(trait);
     }
-    int total = calculation.getTotal();
-    System.err.println(total);
-    return total;
+    return calculation.getTotal();
   }
 }

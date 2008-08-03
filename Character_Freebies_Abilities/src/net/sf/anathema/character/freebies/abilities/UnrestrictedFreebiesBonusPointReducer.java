@@ -1,9 +1,8 @@
 package net.sf.anathema.character.freebies.abilities;
 
-import java.util.List;
-
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
+import net.sf.anathema.character.abilities.util.TraitListBuilder;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.IModelResourceHandler;
@@ -45,19 +44,9 @@ public class UnrestrictedFreebiesBonusPointReducer extends AbstractPointHandler 
 
   private int getDotCount(ITraitCollectionModel traits, IPredicate<IBasicTrait> predicate) {
     int dotCount = 0;
-    for (IBasicTrait trait : traits.getTraits()) {
-      List<IBasicTrait> subTraitList = traits.getSubTraits(trait.getTraitType().getId());
-      if (subTraitList.isEmpty()) {
-        if (predicate.evaluate(trait)) {
-          dotCount += Math.min(trait.getCreationModel().getValue(), 3);
-        }
-      }
-      else {
-        for (IBasicTrait subTrait : subTraitList) {
-          if (predicate.evaluate(subTrait)) {
-            dotCount += Math.min(subTrait.getCreationModel().getValue(), 3);
-          }
-        }
+    for (IBasicTrait trait : new TraitListBuilder().buildList(traits)) {
+      if (predicate.evaluate(trait)) {
+        dotCount += Math.min(trait.getCreationModel().getValue(), 3);
       }
     }
     return dotCount;
