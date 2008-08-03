@@ -73,11 +73,6 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
     changeControl.addChangeListener(listener);
   }
 
-  private void addPriorityChangeListener(IChangeListener listener) {
-    changeControl.addChangeListener(listener);
-  }
-
-
   @Override
   public void removeChangeListener(IChangeListener listener) {
     changeControl.removeChangeListener(listener);
