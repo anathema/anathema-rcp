@@ -29,6 +29,10 @@ public class ChangeControl implements IChangeableModel, IDisposable {
     listeners.remove(listener);
   }
 
+  public void addPriorityChangeListener(IChangeListener listener) {
+    listeners.add(0, listener);
+  }
+
   public void clear() {
     listeners.clear();
   }
@@ -39,6 +43,6 @@ public class ChangeControl implements IChangeableModel, IDisposable {
 
   @Override
   public void dispose() {
-    clear();    
+    clear();
   }
 }

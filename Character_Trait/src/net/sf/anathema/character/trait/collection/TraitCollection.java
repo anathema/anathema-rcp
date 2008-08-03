@@ -73,6 +73,11 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
     changeControl.addChangeListener(listener);
   }
 
+  private void addPriorityChangeListener(IChangeListener listener) {
+    changeControl.addChangeListener(listener);
+  }
+
+
   @Override
   public void removeChangeListener(IChangeListener listener) {
     changeControl.removeChangeListener(listener);
@@ -113,12 +118,9 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
         this,
         basicTrait,
         new ExperienceModelTransformer()));
-    basicTrait.getStatusManager().addChangeListener(new IChangeListener() {
-      @Override
-      public void stateChanged() {
-        subTrait.getStatusManager().setStatus(basicTrait.getStatusManager().getStatus());
-      }
-    });
+    StatusUpdater statusUpdater = new StatusUpdater(subTrait, basicTrait);
+    basicTrait.getStatusManager().addPriorityChangeListener(statusUpdater);
+    statusUpdater.stateChanged();
     setDirty(true);
   }
 

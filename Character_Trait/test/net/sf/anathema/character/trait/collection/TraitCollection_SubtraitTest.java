@@ -1,10 +1,12 @@
 package net.sf.anathema.character.trait.collection;
 
 import static org.junit.Assert.*;
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
 import net.sf.anathema.character.trait.status.FavoredStatus;
+import net.sf.anathema.character.trait.status.ITraitStatusModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +24,7 @@ public class TraitCollection_SubtraitTest {
     basicTrait.getCreationModel().setValue(4);
     basicTrait.getExperiencedModel().setValue(4);
     collection = new TraitCollection(basicTrait);
-    subtrait = new BasicTrait("Hugo");
+    subtrait = new BasicTrait("Hugo"); //$NON-NLS-1$
     collection.addSubTrait(TRAIT_ID, subtrait);
     trait = collection.getTrait(TRAIT_ID);
   }
@@ -121,5 +123,28 @@ public class TraitCollection_SubtraitTest {
   public void allowsExperienceIncreaseParentTraitWithoutChangeOfSubTrait() throws Exception {
     trait.getExperiencedModel().setValue(2);
     assertEquals(-1, subtrait.getExperiencedModel().getValue());
+  }
+
+  @Test
+  public void initializesStatusAccordingToTraitStatus() throws Exception {
+    trait.getStatusManager().setStatus(new FavoredStatus());
+    BasicTrait subTrait = new BasicTrait("Subi"); //$NON-NLS-1$
+    collection.addSubTrait(trait.getTraitType().getId(), subTrait);
+    assertTrue(subTrait.getStatusManager().getStatus() instanceof FavoredStatus);
+  }
+
+  @Test
+  public void favoredStatusIsUpdatedForSubtraitsBeforeNotification() throws Exception {
+    final BasicTrait subTrait = new BasicTrait("Subi"); //$NON-NLS-1$
+    final ITraitStatusModel superStatusManager = trait.getStatusManager();
+    final ITraitStatusModel subStatusManager = subTrait.getStatusManager();
+    superStatusManager.addChangeListener(new IChangeListener() {
+      @Override
+      public void stateChanged() {
+        assertTrue(subStatusManager.getStatus() instanceof FavoredStatus);
+      }
+    });
+    collection.addSubTrait(trait.getTraitType().getId(), subTrait);
+    superStatusManager.setStatus(new FavoredStatus());
   }
 }
