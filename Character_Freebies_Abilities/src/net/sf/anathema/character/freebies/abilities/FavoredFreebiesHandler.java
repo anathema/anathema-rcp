@@ -1,7 +1,5 @@
 package net.sf.anathema.character.freebies.abilities;
 
-import java.util.List;
-
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.abilities.util.TraitListFactory;
