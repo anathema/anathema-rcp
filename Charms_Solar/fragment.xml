@@ -66,6 +66,18 @@
                   charmId="Solar: Any Thrown Excellency">
             </charmPrerequisite>
          </charm>
+         <charm
+               id="Solar: Any Thrown Excellency">
+            <charmPrerequisite
+                  charmId="Solar: 1st Thrown Excellency">
+            </charmPrerequisite>
+            <charmPrerequisite
+                  charmId="Solar: 2nd Thrown Excellency">
+            </charmPrerequisite>
+            <charmPrerequisite
+                  charmId="Solar: 3rd Thrown Excellency">
+            </charmPrerequisite>
+         </charm>
       </treepart>
    </extension>
 

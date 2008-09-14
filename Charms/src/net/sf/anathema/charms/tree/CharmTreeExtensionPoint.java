@@ -1,7 +1,10 @@
 package net.sf.anathema.charms.tree;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
@@ -28,35 +31,33 @@ public class CharmTreeExtensionPoint implements ICharmTreeProvider {
 
   @Override
   public CharmPrerequisite[] getTree(String id) {
+    Set<CharmPrerequisite> prerequisites = new HashSet<CharmPrerequisite>();
+    List<String> explicitCharms = new ArrayList<String>();
+    List<String> implicitCharms = new ArrayList<String>();
     for (IPluginExtension extension : extensionProvider.getExtensions()) {
       for (IExtensionElement treeElement : extension.getElements()) {
         if (treeElement.getAttribute(ATTRIB_TREE_REFERENCE).equals(id)) {
-          List<CharmPrerequisite> prerequisites = new ArrayList<CharmPrerequisite>();
-          List<String> explicitCharms = new ArrayList<String>();
-          List<String> implicitCharms = new ArrayList<String>();
           for (IExtensionElement charmElement : treeElement.getElements()) {
             addCharm(charmElement, prerequisites, explicitCharms, implicitCharms);
           }
-          implicitCharms.removeAll(explicitCharms);
-          for (String implicit : implicitCharms) {
-            prerequisites.add(new CharmPrerequisite(null, implicit));
-          }
-          return prerequisites.toArray(new CharmPrerequisite[prerequisites.size()]);
         }
       }
     }
-    return new CharmPrerequisite[0];
+    implicitCharms.removeAll(explicitCharms);
+    for (String implicit : implicitCharms) {
+      prerequisites.add(new CharmPrerequisite(null, implicit));
+    }
+    return prerequisites.toArray(new CharmPrerequisite[prerequisites.size()]);
   }
 
   private void addCharm(
       IExtensionElement charmElement,
-      List<CharmPrerequisite> prerequisites,
-      List<String> explicitCharms,
-      List<String> implicitCharms) {
+      Collection<CharmPrerequisite> prerequisites,
+      Collection<String> explicitCharms,
+      Collection<String> implicitCharms) {
     String currentCharmId = charmElement.getAttribute(ATTRIB_ID);
     for (IExtensionElement prerequisiteElement : charmElement.getElements()) {
       String prerequisiteId = prerequisiteElement.getAttribute(ATTRIB_CHARM_ID);
-      // do not add, when already exists
       prerequisites.add(new CharmPrerequisite(prerequisiteId, currentCharmId));
       explicitCharms.add(currentCharmId);
       implicitCharms.add(prerequisiteId);

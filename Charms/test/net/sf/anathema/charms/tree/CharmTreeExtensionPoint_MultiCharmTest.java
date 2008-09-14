@@ -18,7 +18,7 @@ public class CharmTreeExtensionPoint_MultiCharmTest {
   private CharmTreeExtensionPoint point;
 
   @Before
-  public void createExtensionPointWithOneCharm() throws Exception {
+  public void createExtensionPointTwoSingleCharms() throws Exception {
     IPluginExtension tree = createPluginExtension(createTreeElement(TREE_ID, CHARM_ID, OTHER_CHARM_ID));
     point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree));
   }

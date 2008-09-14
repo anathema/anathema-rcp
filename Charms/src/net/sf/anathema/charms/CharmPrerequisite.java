@@ -1,5 +1,8 @@
 package net.sf.anathema.charms;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 public class CharmPrerequisite {
 
   private final String source;
@@ -16,5 +19,15 @@ public class CharmPrerequisite {
 
   public String getDestination() {
     return destination;
+  }
+  
+  @Override
+  public boolean equals(Object obj) {
+    return EqualsBuilder.reflectionEquals(obj, this);
+  }
+  
+  @Override
+  public int hashCode() {
+    return HashCodeBuilder.reflectionHashCode(this);
   }
 }
