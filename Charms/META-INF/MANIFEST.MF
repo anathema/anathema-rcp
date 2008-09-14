@@ -7,4 +7,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.zest.core;bundle-version="1.0.0",
  org.eclipse.zest.layouts;bundle-version="1.0.0",
  org.eclipse.ui;bundle-version="3.4.0",
- net.sf.anathema.basics.jface;bundle-version="1.0.0"
+ net.sf.anathema.basics.jface;bundle-version="1.0.0",
+ net.sf.anathema.basics.eclipse;bundle-version="1.0.0",
+ org.junit4
