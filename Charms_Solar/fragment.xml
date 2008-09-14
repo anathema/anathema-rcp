@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<fragment>
+   <extension
+         point="net.sf.anathema.charms.charmtree">
+      <treepart
+            treeReference="Solar: Thrown">
+         <charm
+               id="Solar: Joint Wounding Attack">
+            <charmPrerequisite
+                  charmId="Solar: Any Thrown Excellency"></charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Cascade of Cutting Terror">
+            <charmPrerequisite
+                  charmId="Solar: Triple-Distance Attack Technique"></charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Falling Icicle Strike">
+            <charmPrerequisite
+                  charmId="Solar: Observer Deceiving Attack">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Observer Deceiving Attack">
+            <charmPrerequisite
+                  charmId="Solar: Any Thrown Excellency">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Mist on Water Attack">
+            <charmPrerequisite
+                  charmId="Solar: Observer Deceiving Attack">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Spirit Weapons">
+            <charmPrerequisite
+                  charmId="Solar: Returning Weapon Concentration">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Call The Blade">
+            <charmPrerequisite
+                  charmId="Solar: Returning Weapon Concentration">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: 1st Thrown Excellency">
+         </charm>
+         <charm
+               id="Solar: 2nd Thrown Excellency">
+         </charm>
+         <charm
+               id="Solar: 3rd Thrown Excellency">
+         </charm>
+         <charm
+               id="Solar: Infinite Thrown Mastery">
+            <charmPrerequisite
+                  charmId="Solar: Any Thrown Excellency">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Thrown Essence Flow">
+            <charmPrerequisite
+                  charmId="Solar: Any Thrown Excellency">
+            </charmPrerequisite>
+         </charm>
+      </treepart>
+   </extension>
+
+</fragment>
