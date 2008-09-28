@@ -1,16 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="net.sf.anathema.character.core">
+<schema targetNamespace="net.sf.anathema.character.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
+      <appinfo>
          <meta.schema plugin="net.sf.anathema.character.core" id="templates" name="Character Templates"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Defines a character template, an instantiable definition of a character type.
       </documentation>
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="template" minOccurs="1" maxOccurs="unbounded"/>
@@ -34,15 +39,20 @@
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
    <element name="template">
+      <annotation>
+         <documentation>
+            A character template
+         </documentation>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="modelList" minOccurs="1" maxOccurs="unbounded"/>
@@ -50,24 +60,24 @@
          <attribute name="templateId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The template id, required for persistence.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The templates internationalized name.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="characterTypeId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  References the Character Type this template instantiates.
                </documentation>
             </annotation>
          </attribute>
@@ -75,11 +85,16 @@
    </element>
 
    <element name="modelList">
+      <annotation>
+         <documentation>
+            References a modellist this template uses.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="modelListId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  References a modellist.
                </documentation>
             </annotation>
          </attribute>
@@ -87,48 +102,40 @@
    </element>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter the first release in which this extension point appears.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="examples"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter extension point usage example here.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="apiInfo"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter API information here.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="implementation"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter information about supplied implementation of this extension point.]
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>

@@ -6,7 +6,7 @@
          <meta.schema plugin="net.sf.anathema.charms" id="charmtree" name="Charm Tree"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Adds parts/subtrees to charm graphs. Lower-tier Charms are defined implicitly, as long as they don&apos;t have any further prerequisites.
       </documentation>
    </annotation>
 
@@ -48,6 +48,11 @@
    </element>
 
    <element name="charm">
+      <annotation>
+         <documentation>
+            A charm.
+         </documentation>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="charmPrerequisite" minOccurs="0" maxOccurs="unbounded"/>
@@ -55,7 +60,7 @@
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The Charms ID. The default format is &quot;[Charactertype]:[Charm Name]&quot;, but it is by no means required.
                </documentation>
             </annotation>
          </attribute>
@@ -63,11 +68,16 @@
    </element>
 
    <element name="charmPrerequisite">
+      <annotation>
+         <documentation>
+            Defines a prerequisite charm for the parent element.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="charmId" type="string">
             <annotation>
                <documentation>
-                  
+                  References a charm. If the charm is not explicitly defined, it is treated as a root charm.
                </documentation>
             </annotation>
          </attribute>
@@ -75,6 +85,11 @@
    </element>
 
    <element name="treepart">
+      <annotation>
+         <documentation>
+            A list of Charms.
+         </documentation>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="charm" minOccurs="1" maxOccurs="unbounded"/>
@@ -82,21 +97,13 @@
          <attribute name="treeReference" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  References the tree this part is part of. Trees need not be explicitly defined elsewhere, but are constructed from the registered parts.
                </documentation>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="since"/>
-      </appinfo>
-      <documentation>
-         [Enter the first release in which this extension point appears.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>

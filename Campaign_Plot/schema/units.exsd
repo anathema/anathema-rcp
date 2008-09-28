@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="net.sf.anathema.campaign.plot">
+<schema targetNamespace="net.sf.anathema.campaign.plot" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
+      <appinfo>
          <meta.schema plugin="net.sf.anathema.campaign.plot" id="units" name="Plot Unit"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          Used to register plot units.
 Plot units are a generic abstraction of the time units introduced in the Exalted Second Edition Core rules. They form a hierarchy of names upon which a stories flow can be based.
@@ -12,6 +12,11 @@ Plot units are a generic abstraction of the time units introduced in the Exalted
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
             <element ref="unit"/>
@@ -35,9 +40,9 @@ Plot units are a generic abstraction of the time units introduced in the Exalted
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -45,9 +50,12 @@ Plot units are a generic abstraction of the time units introduced in the Exalted
 
    <element name="unit">
       <annotation>
-         <appInfo>
+         <appinfo>
             <meta.element icon="icon"/>
-         </appInfo>
+         </appinfo>
+         <documentation>
+            The plot unit.
+         </documentation>
       </annotation>
       <complexType>
          <attribute name="id" type="string" use="required">
@@ -62,9 +70,9 @@ Plot units are a generic abstraction of the time units introduced in the Exalted
                <documentation>
                   A human-readable name, displayed to the user.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="icon" type="string">
@@ -72,9 +80,9 @@ Plot units are a generic abstraction of the time units introduced in the Exalted
                <documentation>
                   The unit&apos;s icon, used in editors and resource views.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="resource"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="parentId" type="string">
@@ -95,18 +103,18 @@ Plot units are a generic abstraction of the time units introduced in the Exalted
    </element>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          2.0.0
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="examples"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          Registers the &quot;Story&quot; unit with the platform.
 After icon, id and name are defined, the unit is connected to its parent unit (&quot;Plot&quot;) and at the same time marked as non-recursive, meaning that it will have children that differ from itself.
@@ -123,31 +131,15 @@ After icon, id and name are defined, the unit is connected to its parent unit (&
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="apiInfo"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="implementation"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          Class net.sf.anathema.campaign.plot.repository.PlotUnitProvider provides access to the hierarchy of units via its public getRootUnit() method.
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>

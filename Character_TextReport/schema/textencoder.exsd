@@ -6,11 +6,16 @@
          <meta.schema plugin="net.sf.anathema.character.textreport" id="textencoder" name="Character Text Report Encoder"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Defines report encoders to be used in the text report.
       </documentation>
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence minOccurs="0" maxOccurs="unbounded">
             <element ref="textencoder" minOccurs="1" maxOccurs="unbounded"/>
@@ -43,6 +48,11 @@
    </element>
 
    <element name="textencoder">
+      <annotation>
+         <documentation>
+            An encoder.
+         </documentation>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="after" minOccurs="0" maxOccurs="unbounded"/>
@@ -50,7 +60,7 @@
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The encoder class, extending net.sf.anathema.character.textreport.encoder.ITextReportEncoder.
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":net.sf.anathema.character.textreport.encoder.ITextReportEncoder"/>
@@ -68,11 +78,16 @@
    </element>
 
    <element name="after">
+      <annotation>
+         <documentation>
+            Defines an order for the encoders by putting this encoder after the named encoder.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="referenceId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  References an encoder.
                </documentation>
             </annotation>
          </attribute>
@@ -105,7 +120,6 @@
          [Enter API information here.]
       </documentation>
    </annotation>
-
 
    <annotation>
       <appinfo>
