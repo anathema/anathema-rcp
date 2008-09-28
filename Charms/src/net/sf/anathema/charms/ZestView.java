@@ -43,7 +43,6 @@ public class ZestView extends ViewPart {
     viewer.setContentProvider(new CharmContentProvider());
     viewer.setLabelProvider(new MyLabelProvider());
     viewer.setLayoutAlgorithm(new TreeLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING));
-    viewer.setLayoutAlgorithm(new TreeLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING));
     viewer.setInput(new Object());
   }
 

@@ -30,6 +30,12 @@ public class CharmTreeExtensionPoint implements ICharmTreeProvider {
   }
 
   @Override
+  public String[] getTreeList() {
+    // TODO Hier auslesen
+    return new String[] { "Solar: Stealth", "Solar: Thrown" };
+  }
+
+  @Override
   public CharmPrerequisite[] getTree(String id) {
     Set<CharmPrerequisite> prerequisites = new HashSet<CharmPrerequisite>();
     List<String> explicitCharms = new ArrayList<String>();
