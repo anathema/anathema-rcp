@@ -1,7 +1,8 @@
-package net.sf.anathema.charms;
+package net.sf.anathema.charms.view;
 
-import java.util.ArrayList;
-import java.util.List;
+import net.sf.anathema.charms.CharmContentProvider;
+import net.sf.anathema.charms.CharmPrerequisite;
+import net.sf.anathema.lib.ui.AggregatedDisposable;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
@@ -9,17 +10,15 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.part.ViewPart;
-import org.eclipse.ui.services.IDisposable;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.layouts.LayoutStyles;
 import org.eclipse.zest.layouts.algorithms.TreeLayoutAlgorithm;
 
-public class ZestView extends ViewPart {
+public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDisposable {
   public static final String ID = "net.sf.anathema.charms.charmview"; //$NON-NLS-1$
+  private final AggregatedDisposable disposables = new AggregatedDisposable();
 
-  private final List<IDisposable> disposables = new ArrayList<IDisposable>();
-
-  static class MyLabelProvider extends LabelProvider {
+  static class CharmsLabelProvider extends LabelProvider {
     final Image image = Display.getDefault().getSystemImage(SWT.ICON_WARNING);
 
     @Override
@@ -41,7 +40,7 @@ public class ZestView extends ViewPart {
   public void createPartControl(Composite parent) {
     final GraphViewer viewer = new GraphViewer(parent, SWT.NONE);
     viewer.setContentProvider(new CharmContentProvider());
-    viewer.setLabelProvider(new MyLabelProvider());
+    viewer.setLabelProvider(new CharmsLabelProvider());
     viewer.setLayoutAlgorithm(new TreeLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING));
     viewer.setInput(new Object());
   }
@@ -53,9 +52,7 @@ public class ZestView extends ViewPart {
 
   @Override
   public void dispose() {
-    for (IDisposable disposable : disposables) {
-      disposable.dispose();
-    }
+    disposables.dispose();
     super.dispose();
   }
 }

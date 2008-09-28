@@ -6,7 +6,7 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
-            class="net.sf.anathema.charms.ZestView"
+            class="net.sf.anathema.charms.view.ZestView"
             id="net.sf.anathema.charms.charmview"
             name="CharmView"
             restorable="true">
