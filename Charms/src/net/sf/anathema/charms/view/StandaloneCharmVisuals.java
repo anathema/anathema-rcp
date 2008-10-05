@@ -12,11 +12,28 @@ public class StandaloneCharmVisuals implements ICharmVisuals {
   private Color learnedColor;
   private Color defaultColor;
   private final List<String> learnedCharms = new ArrayList<String>();
+  private ICharmIdExtractor charmIdExtractor;
+
+  @Override
+  public void connect(CharmSelectionControl selectionControl, ICharmIdExtractor idExtractor) {
+    charmIdExtractor = idExtractor;
+    selectionControl.addSelectionListener(new ICharmSelectionListener() {
+      @Override
+      public void charmSelected(String charmId) {
+        if (learnedCharms.contains(charmId)) {
+          learnedCharms.remove(charmId);
+        }
+        else {
+          learnedCharms.add(charmId);
+        }
+      }
+    });
+  }
 
   @Override
   public synchronized void update(GraphNode node) {
     Display display = node.getDisplay();
-    String charmId = new CharmIdExtractor().getCharmId(node);
+    String charmId = charmIdExtractor.getCharmId(node.getData());
     Color color = isLearned(charmId) ? getLearnedColor(display) : getDefaultColor(display);
     node.setHighlightColor(color);
     node.setBackgroundColor(color);
@@ -49,20 +66,5 @@ public class StandaloneCharmVisuals implements ICharmVisuals {
     if (defaultColor != null) {
       defaultColor.dispose();
     }
-  }
-
-  @Override
-  public void connect(ZestView zestView) {
-    zestView.addSelectionListener(new ICharmSelectionListener() {
-      @Override
-      public void charmSelected(String charmId) {
-        if (learnedCharms.contains(charmId)) {
-          learnedCharms.remove(charmId);
-        }
-        else {
-          learnedCharms.add(charmId);
-        }
-      }
-    });
   }
 }

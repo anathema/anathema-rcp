@@ -60,7 +60,8 @@ public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
       Map<IdentifiedRegularNode, InternalNode> zestNodesByNodes) {
     Map<InternalNode, IdentifiedRegularNode> nodesByZestNode = new HashMap<InternalNode, IdentifiedRegularNode>();
     for (InternalNode entity : entitiesToLayout) {
-      String charmId = idExtractor.getCharmId((GraphNode) entity.getLayoutEntity().getGraphData());
+      GraphNode graphData = (GraphNode) entity.getLayoutEntity().getGraphData();
+      String charmId = idExtractor.getCharmId(graphData.getData());
       IdentifiedRegularNode regularNode = new IdentifiedRegularNode(charmId);
       nodesByZestNode.put(entity, regularNode);
       zestNodesByNodes.put(regularNode, entity);

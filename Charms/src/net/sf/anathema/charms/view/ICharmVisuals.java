@@ -8,5 +8,5 @@ public interface ICharmVisuals extends IDisposable {
 
   public void update(GraphNode node);
 
-  public void connect(ZestView zestView);
+  public void connect(CharmSelectionControl selectionControl, ICharmIdExtractor idExtractor);
 }
