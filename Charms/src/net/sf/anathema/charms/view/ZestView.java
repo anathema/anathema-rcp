@@ -33,7 +33,6 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
       }
       return element.toString();
     }
-
   }
 
   @Override
