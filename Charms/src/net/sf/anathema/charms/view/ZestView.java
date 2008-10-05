@@ -38,7 +38,7 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
     final GraphViewer viewer = new GraphViewer(parent, SWT.NONE);
     viewer.setContentProvider(new CharmContentProvider());
     viewer.setLabelProvider(new CharmsLabelProvider());
-    viewer.setLayoutAlgorithm(new CharmLayoutAlgorithm());
+    viewer.setLayoutAlgorithm(new SugiyamaLayoutAlgorithm());
     viewer.setInput(new Object());
   }
 

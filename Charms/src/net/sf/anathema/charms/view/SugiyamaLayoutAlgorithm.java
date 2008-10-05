@@ -16,9 +16,12 @@ import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
 import org.eclipse.zest.layouts.dataStructures.InternalNode;
 import org.eclipse.zest.layouts.dataStructures.InternalRelationship;
 
-public class CharmLayoutAlgorithm extends AbstractLayoutAlgorithm {
+public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
 
-  public CharmLayoutAlgorithm() {
+  private static final int LAYER_HEIGHT = 70;
+  private static final int INITIAL_OFFSET = 20;
+
+  public SugiyamaLayoutAlgorithm() {
     super(LayoutStyles.NO_LAYOUT_NODE_RESIZING);
   }
 
@@ -42,15 +45,25 @@ public class CharmLayoutAlgorithm extends AbstractLayoutAlgorithm {
       double boundsY,
       double boundsWidth,
       double boundsHeight) {
-    Map<InternalNode, IdentifiedRegularNode> nodesByZestNode = new HashMap<InternalNode, IdentifiedRegularNode>();
-    Map<IdentifiedRegularNode, InternalNode> zestNodesByZest = new HashMap<IdentifiedRegularNode, InternalNode>();
     List<IdentifiedRegularNode> nodes = new ArrayList<IdentifiedRegularNode>();
+    Map<IdentifiedRegularNode, InternalNode> zestNodesByNode = new HashMap<IdentifiedRegularNode, InternalNode>();
+    prepareNodes(entitiesToLayout, relationshipsToConsider, nodes, zestNodesByNode);
+    IdentifiedRegularNode[] allNodes = nodes.toArray(new IdentifiedRegularNode[nodes.size()]);
+    computePositions(zestNodesByNode, new SugiyamaLayout().createProperHierarchicalGraphs(allNodes));
+  }
+
+  private void prepareNodes(
+      InternalNode[] entitiesToLayout,
+      InternalRelationship[] relationshipsToConsider,
+      List<IdentifiedRegularNode> nodes,
+      Map<IdentifiedRegularNode, InternalNode> zestNodesByNodes) {
+    Map<InternalNode, IdentifiedRegularNode> nodesByZestNode = new HashMap<InternalNode, IdentifiedRegularNode>();
     for (InternalNode entity : entitiesToLayout) {
       GraphNode graphNode = (GraphNode) entity.getLayoutEntity().getGraphData();
       String charmId = (String) graphNode.getData();
       IdentifiedRegularNode regularNode = new IdentifiedRegularNode(charmId);
       nodesByZestNode.put(entity, regularNode);
-      zestNodesByZest.put(regularNode, entity);
+      zestNodesByNodes.put(regularNode, entity);
       nodes.add(regularNode);
     }
     for (InternalRelationship relationship : relationshipsToConsider) {
@@ -63,21 +76,27 @@ public class CharmLayoutAlgorithm extends AbstractLayoutAlgorithm {
         destinationNode.addParent(sourceNode);
       }
     }
-    IProperHierarchicalGraph[] graphs = new SugiyamaLayout().createProperHierarchicalGraphs(nodes.toArray(new IdentifiedRegularNode[nodes.size()]));
-    double x = 20;
+  }
+
+  private void computePositions(
+      Map<IdentifiedRegularNode, InternalNode> zestNodesByZest,
+      IProperHierarchicalGraph[] graphs) {
+    double x = INITIAL_OFFSET;
     for (IProperHierarchicalGraph graph : graphs) {
-      double layerY = 20;
+      double layerY = INITIAL_OFFSET;
+      double maxLayerWidth = 0;
       for (int layerIndex = 1; layerIndex <= graph.getDeepestLayer(); layerIndex++) {
         double nodeX = x;
         ISimpleNode[] layerNodes = graph.getNodesByLayer(layerIndex);
         for (ISimpleNode node : layerNodes) {
           InternalNode zestNode = zestNodesByZest.get(node);
           zestNode.setInternalLocation(nodeX, layerY);
-          nodeX += 30;
+          nodeX += zestNode.getWidthInLayout() + 5;
+          maxLayerWidth = Math.max(maxLayerWidth, nodeX - x);
         }
-        layerY += 70;
+        layerY += LAYER_HEIGHT;
       }
-      x += 250;
+      x += maxLayerWidth + INITIAL_OFFSET;
     }
   }
 
