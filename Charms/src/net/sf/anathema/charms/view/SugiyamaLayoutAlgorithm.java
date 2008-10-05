@@ -20,9 +20,11 @@ public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
 
   private static final int LAYER_HEIGHT = 70;
   private static final int INITIAL_OFFSET = 20;
+  private final ICharmIdExtractor idExtractor;
 
-  public SugiyamaLayoutAlgorithm() {
+  public SugiyamaLayoutAlgorithm(ICharmIdExtractor idExtractor) {
     super(LayoutStyles.NO_LAYOUT_NODE_RESIZING);
+    this.idExtractor = idExtractor;
   }
 
   @Override
@@ -33,8 +35,7 @@ public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
       double y,
       double width,
       double height) {
-    // hier doll initialisieren
-    // TODO Auto-generated method stub
+    // nothing to do
   }
 
   @Override
@@ -59,8 +60,7 @@ public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
       Map<IdentifiedRegularNode, InternalNode> zestNodesByNodes) {
     Map<InternalNode, IdentifiedRegularNode> nodesByZestNode = new HashMap<InternalNode, IdentifiedRegularNode>();
     for (InternalNode entity : entitiesToLayout) {
-      GraphNode graphNode = (GraphNode) entity.getLayoutEntity().getGraphData();
-      String charmId = (String) graphNode.getData();
+      String charmId = idExtractor.getCharmId((GraphNode) entity.getLayoutEntity().getGraphData());
       IdentifiedRegularNode regularNode = new IdentifiedRegularNode(charmId);
       nodesByZestNode.put(entity, regularNode);
       zestNodesByNodes.put(regularNode, entity);
