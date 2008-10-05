@@ -11,8 +11,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.zest.core.viewers.GraphViewer;
-import org.eclipse.zest.layouts.LayoutStyles;
-import org.eclipse.zest.layouts.algorithms.TreeLayoutAlgorithm;
 
 public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDisposable {
   public static final String ID = "net.sf.anathema.charms.charmview"; //$NON-NLS-1$
@@ -40,7 +38,7 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
     final GraphViewer viewer = new GraphViewer(parent, SWT.NONE);
     viewer.setContentProvider(new CharmContentProvider());
     viewer.setLabelProvider(new CharmsLabelProvider());
-    viewer.setLayoutAlgorithm(new TreeLayoutAlgorithm(LayoutStyles.NO_LAYOUT_NODE_RESIZING));
+    viewer.setLayoutAlgorithm(new CharmLayoutAlgorithm());
     viewer.setInput(new Object());
   }
 
