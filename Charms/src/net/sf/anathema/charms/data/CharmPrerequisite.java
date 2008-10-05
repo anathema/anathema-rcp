@@ -1,4 +1,4 @@
-package net.sf.anathema.charms;
+package net.sf.anathema.charms.data;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;

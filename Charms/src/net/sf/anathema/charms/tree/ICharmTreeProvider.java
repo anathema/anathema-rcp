@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.tree;
 
-import net.sf.anathema.charms.CharmPrerequisite;
+import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public interface ICharmTreeProvider {
   

@@ -5,7 +5,7 @@ package net.sf.anathema.charms.tree;
 
 import net.disy.commons.core.predicate.IPredicate;
 import net.disy.commons.core.util.ObjectUtilities;
-import net.sf.anathema.charms.CharmPrerequisite;
+import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public final class CharmPrerequisitePredicate implements IPredicate<CharmPrerequisite> {
   private final String destination;

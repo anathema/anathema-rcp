@@ -10,8 +10,8 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.charms.CharmPrerequisite;
 import net.sf.anathema.charms.IPluginConstants;
+import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public class CharmTreeExtensionPoint implements ICharmTreeProvider {
 
