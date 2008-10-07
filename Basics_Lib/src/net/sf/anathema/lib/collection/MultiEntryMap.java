@@ -11,7 +11,7 @@ public class MultiEntryMap<K, V> {
 
   private final Map<K, List<V>> map = new HashMap<K, List<V>>();
 
-  public void add(K key, V value) {
+  public void add(K key, V... value) {
     List<V> list;
     if (!containsKey(key)) {
       list = new ArrayList<V>();
@@ -20,7 +20,7 @@ public class MultiEntryMap<K, V> {
     else {
       list = getList(key);
     }
-    list.add(value);
+    Collections.addAll(list, value);
   }
 
   public void replace(K key, V oldValue, V newValue) {

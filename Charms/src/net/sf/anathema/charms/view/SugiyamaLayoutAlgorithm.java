@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.anathema.charms.graph.SugiyamaLayout;
-import net.sf.anathema.charms.graph.graph.IProperHierarchicalGraph;
-import net.sf.anathema.charms.graph.nodes.ISimpleNode;
-import net.sf.anathema.charms.graph.nodes.IdentifiedRegularNode;
+import net.sf.anathema.graph.SugiyamaLayout;
+import net.sf.anathema.graph.graph.IProperHierarchicalGraph;
+import net.sf.anathema.graph.nodes.ISimpleNode;
+import net.sf.anathema.graph.nodes.IdentifiedRegularNode;
 
 import org.eclipse.zest.core.widgets.GraphNode;
 import org.eclipse.zest.layouts.LayoutStyles;

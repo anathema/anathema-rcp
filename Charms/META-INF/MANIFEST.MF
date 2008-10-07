@@ -12,3 +12,5 @@ Require-Bundle: org.eclipse.zest.core;bundle-version="1.0.0",
  net.sf.anathema.basics.eclipse;bundle-version="1.0.0",
  net.sf.anathema.basics.lib;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.charms.view
+Bundle-ClassPath: lib/graphlayout.jar,
+ .
