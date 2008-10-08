@@ -13,6 +13,8 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.character.IModelIdentifier;
+import net.sf.anathema.character.core.model.display.DisplayAdditionProvider;
+import net.sf.anathema.character.core.model.display.IDisplayAddition;
 import net.sf.anathema.character.core.model.internal.ModelDescriptor;
 import net.sf.anathema.character.core.model.internal.NullModelDescriptor;
 import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
@@ -83,7 +85,11 @@ public class ModelExtensionPoint {
     for (IExtensionElement modelElement : getDisplayModelElements(new CharacterId(characterFolder), templateProvider)) {
       IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
       IModelDisplayConfiguration configuration = createModelDisplayConfiguration(modelElement, configurationElement);
-      viewElements.add(new CharacterModelViewElement(parent, characterFolder, configuration));
+      CharacterModelViewElement modelViewElement = new CharacterModelViewElement(parent, characterFolder, configuration);
+      viewElements.add(modelViewElement);
+      for (IDisplayAddition addition : new DisplayAdditionProvider().getFor(modelElement.getAttribute(ATTRIB_ID))) {
+        addition.configure(modelViewElement);
+      }
     }
     return viewElements.toArray(new IViewElement[viewElements.size()]);
   }

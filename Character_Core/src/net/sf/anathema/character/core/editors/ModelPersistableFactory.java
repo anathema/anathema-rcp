@@ -1,11 +1,14 @@
 package net.sf.anathema.character.core.editors;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.item.editor.ErrorMessageEditorInput;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
+import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
+import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 
 import org.eclipse.core.resources.IContainer;
@@ -40,6 +43,8 @@ public class ModelPersistableFactory extends AbstractExecutableExtension impleme
       return new ErrorMessageEditorInput(Messages.ModelPersistableFactory_NoTemplateAvailableMessage, characterFolder);
     }
     IModelDisplayConfiguration displayConfiguration = new ModelExtensionPoint().getDisplayConfiguration(file);
-    return new EditorInputFactory().create(characterFolder, displayConfiguration);
+    return new EditorInputFactory(new Logger(CharacterCorePlugin.ID), new CharacterDisplayNameProvider(characterFolder)).create(
+        characterFolder,
+        displayConfiguration);
   }
 }
