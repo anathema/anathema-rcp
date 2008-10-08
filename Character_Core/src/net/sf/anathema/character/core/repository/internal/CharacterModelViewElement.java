@@ -7,7 +7,7 @@ import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
-import net.sf.anathema.character.core.model.display.IConfigurableViewElement;
+import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
 import net.sf.anathema.character.core.resource.CharacterModelEditorOpener;
 import net.sf.anathema.lib.exception.PersistenceException;

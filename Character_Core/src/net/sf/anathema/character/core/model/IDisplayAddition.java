@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.model.display;
+package net.sf.anathema.character.core.model;
 
 import org.eclipse.core.runtime.IExecutableExtension;
 

@@ -9,14 +9,16 @@ import org.eclipse.core.runtime.IConfigurationElement;
 
 public class CharmModel extends AbstractModel implements ICharmModel {
 
+  public static final String ID = "net.sf.anathema.charms.character.modelId";
+  
   @Override
-  public void addChangeListener(IChangeListener arg0) {
+  public void addChangeListener(IChangeListener listener) {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void removeChangeListener(IChangeListener arg0) {
+  public void removeChangeListener(IChangeListener listener) {
     // TODO Auto-generated method stub
   }
 }

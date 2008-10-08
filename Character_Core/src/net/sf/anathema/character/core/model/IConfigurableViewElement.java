@@ -1,4 +1,4 @@
-package net.sf.anathema.character.core.model.display;
+package net.sf.anathema.character.core.model;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.sf.anathema.character.core.model.display;
 
 import net.disy.commons.core.predicate.IPredicate;

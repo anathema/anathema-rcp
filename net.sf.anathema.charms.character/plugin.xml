@@ -25,5 +25,12 @@
             name="Charms Editor">
       </editor>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.displayaddition">
+      <addition
+            class="net.sf.anathema.charms.character.TreeSelectionDisplayAddition"
+            modelId="net.sf.anathema.charms.character.modelId">
+      </addition>
+   </extension>
 
 </plugin>
