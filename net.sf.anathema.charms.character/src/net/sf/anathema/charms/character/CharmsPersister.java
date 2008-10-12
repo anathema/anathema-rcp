@@ -3,9 +3,11 @@ package net.sf.anathema.charms.character;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;
+import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
 
@@ -23,6 +25,7 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
 
   @Override
   public void save(OutputStream stream, ICharmModel item) throws IOException, PersistenceException {
-    // nothing to do
+    Document document = new BundlePersistenceUtilities().createVersionedDocument("charms", IPluginConstants.PLUGIN_ID);
+    DocumentUtilities.save(document, stream);
   }
 }
