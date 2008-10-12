@@ -26,9 +26,9 @@
       </editor>
    </extension>
    <extension
-         point="net.sf.anathema.character.core.displayaddition">
+         point="net.sf.anathema.character.core.viewelementconfigurator">
       <addition
-            class="net.sf.anathema.charms.character.TreeSelectionDisplayAddition"
+            class="net.sf.anathema.charms.character.TreeSelectionConfigurator"
             modelId="net.sf.anathema.charms.character.modelId">
       </addition>
    </extension>
