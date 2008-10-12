@@ -38,7 +38,10 @@ public class CharmsEditorInput extends AbstractCharacterModelEditorInput<ICharmM
 
   @Override
   public String getName() {
-    return treeId + " - " + super.getName(); //$NON-NLS-1$
+    if (treeId != null) {
+      return treeId + " - " + super.getName(); //$NON-NLS-1$
+    }
+    return super.getName();
   }
 
   @Override
