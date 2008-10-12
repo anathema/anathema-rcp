@@ -52,9 +52,7 @@ public class CharmTreeViewElement implements IViewElement {
       return new IEditorInputProvider() {
         @Override
         public IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
-          CharmsEditorInput editorInput = (CharmsEditorInput) parent.createEditorInput();
-          editorInput.setTreeId(treeId);
-          return editorInput;
+          return createEditorInput();
         }
       };
     }
@@ -66,12 +64,17 @@ public class CharmTreeViewElement implements IViewElement {
     return treeId;
   }
 
+  private IEditorInput createEditorInput() throws PersistenceException, CoreException, ExtensionException {
+    CharmsEditorInput editorInput = (CharmsEditorInput) parent.createEditorInput();
+    editorInput.setTreeId(treeId);
+    return editorInput;
+  }
+
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
-    IEditorInputProvider factory = (IEditorInputProvider) getAdapter(IEditorInputProvider.class);
     IEditorInput editorInput = null;
     try {
-      editorInput = factory.getEditorInput();
+      editorInput = createEditorInput();
     }
     catch (Exception e) {
       throw new PartInitException(new Status(
