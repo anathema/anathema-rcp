@@ -111,4 +111,9 @@ public class CharacterModelViewElement implements IConfigurableViewElement {
   public void openEditor(IWorkbenchPage page) throws PartInitException {
     editorOpener.openEditor(page, characterFolder, configuration);
   }
+
+  @Override
+  public void openEditorForChild(IWorkbenchPage page, IEditorInput editorInput) throws PartInitException {
+    editorOpener.openEditor(page, configuration, editorInput);
+  }
 }

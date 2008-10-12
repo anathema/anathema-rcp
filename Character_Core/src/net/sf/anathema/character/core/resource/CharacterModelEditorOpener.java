@@ -33,11 +33,9 @@ public class CharacterModelEditorOpener extends AbstractExecutableExtension impl
 
   public void openEditor(IWorkbenchPage page, final IContainer characterFolder, IModelDisplayConfiguration configuration)
       throws PartInitException {
+    IEditorInput input = null;
     try {
-      IEditorInput input = createEditorInput(characterFolder, configuration);
-      String editorId = configuration.getEditorId();
-      IEditorPart openEditor = page.openEditor(input, editorId);
-      ensureResourceExists(input, openEditor);
+      input = createEditorInput(characterFolder, configuration);
     }
     catch (Exception e) {
       throw new PartInitException(new Status(
@@ -46,6 +44,14 @@ public class CharacterModelEditorOpener extends AbstractExecutableExtension impl
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }
+    openEditor(page, configuration, input);
+  }
+
+  public void openEditor(IWorkbenchPage page, IModelDisplayConfiguration configuration, IEditorInput input)
+      throws PartInitException {
+    String editorId = configuration.getEditorId();
+    IEditorPart openEditor = page.openEditor(input, editorId);
+    ensureResourceExists(input, openEditor);
   }
 
   public IEditorInput createEditorInput(final IContainer characterFolder, IModelDisplayConfiguration configuration)

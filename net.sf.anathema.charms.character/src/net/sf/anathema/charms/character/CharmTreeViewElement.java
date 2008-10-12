@@ -4,11 +4,14 @@ import java.net.URL;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
+import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -66,6 +69,18 @@ public class CharmTreeViewElement implements IViewElement {
 
   @Override
   public void openEditor(IWorkbenchPage page) throws PartInitException {
-    parent.openEditor(page);
+    IEditorInputProvider factory = (IEditorInputProvider) getAdapter(IEditorInputProvider.class);
+    IEditorInput editorInput = null;
+    try {
+      editorInput = factory.getEditorInput();
+    }
+    catch (Exception e) {
+      throw new PartInitException(new Status(
+          IStatus.ERROR,
+          IPluginConstants.PLUGIN_ID,
+          BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
+          e));
+    }
+    parent.openEditorForChild(page, editorInput);
   }
 }
