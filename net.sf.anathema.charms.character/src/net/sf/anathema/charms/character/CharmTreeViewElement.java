@@ -49,11 +49,10 @@ public class CharmTreeViewElement implements IViewElement {
   @Override
   public Object getAdapter(Class adapter) {
     if (adapter == IEditorInputProvider.class) {
-      final IEditorInputProvider inputProvider = (IEditorInputProvider) parent.getAdapter(adapter);
       return new IEditorInputProvider() {
         @Override
         public IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
-          CharmsEditorInput editorInput = (CharmsEditorInput) inputProvider.getEditorInput();
+          CharmsEditorInput editorInput = (CharmsEditorInput) parent.createEditorInput();
           editorInput.setTreeId(treeId);
           return editorInput;
         }

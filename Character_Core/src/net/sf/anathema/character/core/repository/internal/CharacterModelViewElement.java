@@ -55,11 +55,15 @@ public class CharacterModelViewElement implements IConfigurableViewElement {
         return new IEditorInputProvider() {
           @Override
           public IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
-            return editorOpener.createEditorInput(characterFolder, configuration);
+            return createEditorInput();
           }
         };
       }
     });
+  }
+
+  public IEditorInput createEditorInput() throws PersistenceException, CoreException, ExtensionException {
+    return editorOpener.createEditorInput(characterFolder, configuration);
   }
 
   @Override
