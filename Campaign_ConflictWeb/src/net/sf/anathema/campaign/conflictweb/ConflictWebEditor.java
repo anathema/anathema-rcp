@@ -7,7 +7,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
+import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
 
 public class ConflictWebEditor extends GraphicalEditor {
@@ -22,7 +22,7 @@ public class ConflictWebEditor extends GraphicalEditor {
     super.configureGraphicalViewer();
     GraphicalViewer viewer = getGraphicalViewer();
     viewer.setEditPartFactory(new ConflictWebEditpartFactory());
-    viewer.setRootEditPart(new ScalableFreeformRootEditPart());
+    viewer.setRootEditPart(new ScalableRootEditPart());
     ContextMenuProvider cmProvider = new ConflictWebContextMenuProvider(viewer, getActionRegistry());
     viewer.setContextMenu(cmProvider);
     getSite().registerContextMenu(cmProvider, viewer);
