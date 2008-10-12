@@ -1,6 +1,8 @@
 package net.sf.anathema.character.core.repository.internal;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
@@ -27,13 +29,14 @@ public class CharacterModelViewElement implements IConfigurableViewElement {
   private final IModelDisplayConfiguration configuration;
   private final DefaultAdaptable adaptable = new DefaultAdaptable();
   private final CharacterModelEditorOpener editorOpener = new CharacterModelEditorOpener();
+  private final List<IViewElement> children = new ArrayList<IViewElement>();
 
   public CharacterModelViewElement(
       IViewElement parent,
       IFolder characterFolder,
       IModelDisplayConfiguration configuration) {
     this.parent = parent;
-    this.folder = characterFolder;
+    folder = characterFolder;
     this.characterFolder = characterFolder;
     this.configuration = configuration;
     initAdaptable();
@@ -60,8 +63,13 @@ public class CharacterModelViewElement implements IConfigurableViewElement {
   }
 
   @Override
+  public void addChild(IViewElement child) {
+    children.add(child);
+  }
+
+  @Override
   public final IViewElement[] getChildren() {
-    return new IViewElement[0];
+    return children.toArray(new IViewElement[children.size()]);
   }
 
   @Override
@@ -76,7 +84,7 @@ public class CharacterModelViewElement implements IConfigurableViewElement {
 
   @Override
   public final boolean hasChildren() {
-    return false;
+    return !children.isEmpty();
   }
 
   @Override

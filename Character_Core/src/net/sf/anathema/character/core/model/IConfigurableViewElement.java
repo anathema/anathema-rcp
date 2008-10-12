@@ -4,4 +4,5 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 
 public interface IConfigurableViewElement extends IViewElement {
 
+  public void addChild(IViewElement child);
 }
