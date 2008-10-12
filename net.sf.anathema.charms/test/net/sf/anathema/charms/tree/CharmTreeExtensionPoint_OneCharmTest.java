@@ -8,6 +8,7 @@ import net.sf.anathema.charms.StaticExtensionProvider;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.matchers.JUnitMatchers;
 
 public class CharmTreeExtensionPoint_OneCharmTest {
 
@@ -26,6 +27,11 @@ public class CharmTreeExtensionPoint_OneCharmTest {
         OTHER_CHARM_ID));
     IPluginExtension otherTree = createPluginExtension(createTreeElement(THIRD_TREE_ID, THIRD_CHARM_ID));
     point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree, otherTree));
+  }
+
+  @Test
+  public void providesRegisteredTrees() throws Exception {
+    assertThat(point.getTreeList(), JUnitMatchers.hasItems(TREE_ID, OTHER_TREE_ID, THIRD_TREE_ID));
   }
 
   @Test

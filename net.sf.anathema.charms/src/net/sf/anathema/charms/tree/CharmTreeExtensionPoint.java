@@ -30,9 +30,14 @@ public class CharmTreeExtensionPoint implements ICharmTreeProvider {
   }
 
   @Override
-  public String[] getTreeList() {
-    // TODO Hier auslesen
-    return new String[] { "Solar: Stealth", "Solar: Thrown" };
+  public List<String> getTreeList() {
+    Set<String> set = new HashSet<String>();
+    for (IPluginExtension extension : extensionProvider.getExtensions()) {
+      for (IExtensionElement treeElement : extension.getElements()) {
+        set.add(treeElement.getAttribute(ATTRIB_TREE_REFERENCE));
+      }
+    }
+    return new ArrayList<String>(set);
   }
 
   @Override

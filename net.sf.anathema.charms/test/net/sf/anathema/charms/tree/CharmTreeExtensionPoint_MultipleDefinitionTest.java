@@ -2,12 +2,17 @@ package net.sf.anathema.charms.tree;
 
 import static net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother.*;
 import static net.sf.anathema.charms.tree.CharmTreeExtensionPointObjectMother.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+
+import java.util.Iterator;
+
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.charms.StaticExtensionProvider;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.matchers.JUnitMatchers;
 
 public class CharmTreeExtensionPoint_MultipleDefinitionTest {
 
@@ -27,6 +32,20 @@ public class CharmTreeExtensionPoint_MultipleDefinitionTest {
         createCharm(OTHER_CHARM, ROOT)));
     point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree, treeAgain));
   }
+
+  @Test
+  public void providesRegisteredTrees() throws Exception {
+    assertThat(point.getTreeList(), JUnitMatchers.hasItems(TREE_ID));
+  }
+
+
+  @Test
+  public void providesRegisteredTreesOnly() throws Exception {
+    Iterator<String> iterator = point.getTreeList().iterator();
+    iterator.next();
+    assertThat(iterator.hasNext(), is(false));
+  }
+
 
   @Test
   public void joinsSeperateTreePartDefinitions() throws Exception {

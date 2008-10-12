@@ -1,5 +1,8 @@
 package net.sf.anathema.charms.character;
 
+import java.util.Collections;
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.character.core.model.IViewElementConfigurator;
@@ -20,7 +23,9 @@ public class TreeSelectionConfigurator extends AbstractExecutableExtension imple
 
   @Override
   public void configure(IConfigurableViewElement viewElement) {
-    for (String treeId : charmTrees.getTreeList()) {
+    List<String> treeList = charmTrees.getTreeList();
+    Collections.sort(treeList);
+    for (String treeId : treeList) {
       viewElement.addChild(new CharmTreeViewElement(viewElement, treeId));
     }
   }
