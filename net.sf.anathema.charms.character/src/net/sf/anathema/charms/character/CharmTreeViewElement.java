@@ -2,9 +2,14 @@ package net.sf.anathema.charms.character;
 
 import java.net.URL;
 
+import net.sf.anathema.basics.eclipse.extension.ExtensionException;
+import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
+import net.sf.anathema.lib.exception.PersistenceException;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
@@ -40,6 +45,17 @@ public class CharmTreeViewElement implements IViewElement {
 
   @Override
   public Object getAdapter(Class adapter) {
+    if (adapter == IEditorInputProvider.class) {
+      final IEditorInputProvider inputProvider = (IEditorInputProvider) parent.getAdapter(adapter);
+      return new IEditorInputProvider() {
+        @Override
+        public IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {
+          CharmsEditorInput editorInput = (CharmsEditorInput) inputProvider.getEditorInput();
+          editorInput.setTreeId(treeId);
+          return editorInput;
+        }
+      };
+    }
     return parent.getAdapter(adapter);
   }
 

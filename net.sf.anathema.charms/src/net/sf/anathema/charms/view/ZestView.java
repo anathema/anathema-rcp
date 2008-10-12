@@ -11,12 +11,14 @@ import org.eclipse.zest.core.viewers.GraphViewer;
 public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDisposable {
   public static final String ID = "net.sf.anathema.charms.charmview"; //$NON-NLS-1$
   private final CharmSelectionControl selectionControl;
+  private final String treeId;
 
   public ZestView() {
-    this(new StandaloneCharmVisuals());
+    this(new StandaloneCharmVisuals(), "Solar: Stealth");
   }
 
-  public ZestView(ICharmVisuals charmVisuals) {
+  public ZestView(ICharmVisuals charmVisuals, String treeId) {
+    this.treeId = treeId;
     selectionControl = new CharmSelectionControl(charmVisuals);
   }
 
@@ -27,7 +29,7 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
     viewer.setLabelProvider(new CharmLabelProvider(new CharmDataProvider()));
     viewer.setContentProvider(contentProvider);
     viewer.setLayoutAlgorithm(new SugiyamaLayoutAlgorithm(contentProvider));
-    viewer.setInput(new Object());
+    viewer.setInput(treeId);
     selectionControl.connect(viewer, contentProvider);
   }
 

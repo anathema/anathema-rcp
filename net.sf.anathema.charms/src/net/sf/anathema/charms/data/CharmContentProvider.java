@@ -13,7 +13,8 @@ public class CharmContentProvider implements IGraphContentProvider, ICharmIdExtr
   }
 
   public Object[] getElements(Object input) {
-    return new CharmTreeExtensionPoint().getTree("Solar: Thrown");
+    String treeId = (String) input;
+    return new CharmTreeExtensionPoint().getTree(treeId);
   }
 
   public String getDestination(Object rel) {
