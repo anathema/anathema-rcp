@@ -1,5 +1,6 @@
 package net.sf.anathema.character.freebies.attributes;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.DummyAttributeTemplate;
 import net.sf.anathema.character.trait.collection.ITraitCollectionTemplateProvider;
@@ -23,11 +24,11 @@ public class FavoredCountCreditProviderTest {
 
   @Test
   public void returnsNumberOfFavoredAttributePicksAsCreditForDefinedTemplate() throws Exception {
-    assertEquals(2, favoredCountCreditProvider.getCredit("myTemplate")); //$NON-NLS-1$
+    assertThat(favoredCountCreditProvider.getCredit("myTemplate"), is(2)); //$NON-NLS-1$
   }
 
   @Test
   public void returnsNullAsCreditForUndefinedTemplate() throws Exception {
-    assertNull(favoredCountCreditProvider.getCredit("yourTemplate")); //$NON-NLS-1$
+    assertThat(favoredCountCreditProvider.getCredit("yourTemplate"), is(nullValue())); //$NON-NLS-1$
   }
 }
