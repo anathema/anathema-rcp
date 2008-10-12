@@ -13,11 +13,7 @@ public class CharmsEditorInput extends AbstractCharacterModelEditorInput<ICharmM
   private final ICharmModel charms;
   private String treeId;
 
-  public CharmsEditorInput(
-      IFile file,
-      URL imageUrl,
-      ICharmModel charms,
-      IDisplayNameProvider displayNameProvider) {
+  public CharmsEditorInput(IFile file, URL imageUrl, ICharmModel charms, IDisplayNameProvider displayNameProvider) {
     super(file, imageUrl, displayNameProvider, new CharmsPersister());
     this.charms = charms;
   }
@@ -38,6 +34,11 @@ public class CharmsEditorInput extends AbstractCharacterModelEditorInput<ICharmM
 
   public String getTreeId() {
     return treeId;
+  }
+
+  @Override
+  public String getName() {
+    return treeId + " - " + super.getName(); //$NON-NLS-1$
   }
 
   @Override
