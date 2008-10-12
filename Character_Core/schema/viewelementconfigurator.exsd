@@ -3,10 +3,10 @@
 <schema targetNamespace="net.sf.anathema.character.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="net.sf.anathema.character.core" id="displayaddition" name="%extension-point.name.displayaddition"/>
+         <meta.schema plugin="net.sf.anathema.character.core" id="viewelementconfigurator" name="%extension-point.name.viewelementconfigurator"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         A configurator to add children to a character model view element.
       </documentation>
    </annotation>
 
@@ -52,17 +52,17 @@
          <attribute name="modelId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  id of the model whose view element this configurator applies to
                </documentation>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  implementation of the view element configurator
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.core.model.display.IDisplayAddition"/>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.core.model.IViewElementConfigurator"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -74,7 +74,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         Anathema RCP 1.0
       </documentation>
    </annotation>
 
