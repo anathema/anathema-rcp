@@ -2,8 +2,11 @@ package net.sf.anathema.charms.character;
 
 import java.net.URL;
 
+import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
+import net.sf.anathema.basics.eclipse.runtime.StaticProvider;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
+import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
@@ -56,6 +59,9 @@ public class CharmTreeViewElement implements IViewElement {
         }
       };
     }
+    if (adapter == ILink.class) {
+      return new StringLinkDecorator((ILink) parent.getAdapter(ILink.class), new StaticProvider<String>(treeId));
+    }
     return parent.getAdapter(adapter);
   }
 
@@ -84,5 +90,19 @@ public class CharmTreeViewElement implements IViewElement {
           e));
     }
     parent.openEditorForChild(page, editorInput);
+  }
+  
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof CharmTreeViewElement)) {
+      return false;
+    }
+    CharmTreeViewElement other = (CharmTreeViewElement) obj;
+    return ObjectUtilities.equals(other.parent, parent) && ObjectUtilities.equals(other.treeId, treeId);
+  }
+  
+  @Override
+  public int hashCode() {
+    return parent.hashCode();
   }
 }

@@ -12,7 +12,7 @@ public class ResourceMarkerHandle extends DefaultAdaptable implements IMarkerHan
 
   public ResourceMarkerHandle(IResource resource) {
     this.resource = resource;
-    add(IResource.class, resource);
+    set(IResource.class, resource);
   }
 
   @Override

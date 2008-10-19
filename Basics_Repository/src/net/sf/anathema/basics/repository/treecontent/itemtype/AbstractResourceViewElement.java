@@ -4,7 +4,11 @@ import java.net.URL;
 
 import net.disy.commons.core.util.ObjectUtilities;
 import net.disy.commons.core.util.StringUtilities;
+import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
+import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
+import net.sf.anathema.basics.repository.linkage.util.ILink;
+import net.sf.anathema.basics.repository.linkage.util.ResourceLinkProvider;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -15,7 +19,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public abstract class AbstractResourceViewElement implements IViewElement {
+public abstract class AbstractResourceViewElement extends DefaultAdaptable implements IViewElement {
 
   private final String untitledName;
   private final IViewElement parent;
@@ -25,6 +29,30 @@ public abstract class AbstractResourceViewElement implements IViewElement {
     this.untitledName = untitledName;
     this.parent = parent;
     this.printNameProvider = printNameProvider;
+    set(IResource.class, new IProvider<IResource>() {
+      @Override
+      public IResource get() {
+        return getEditFile();
+      }
+    });
+    set(IPageDelible.class, new IProvider<IPageDelible>() {
+      @Override
+      public IPageDelible get() {
+        return createDelible();
+      }
+    });
+    set(IEditorInputProvider.class, new IProvider<IEditorInputProvider>() {
+      @Override
+      public IEditorInputProvider get() {
+        return new IEditorInputProvider() {
+          @Override
+          public IEditorInput getEditorInput() throws PersistenceException, CoreException {
+            return AbstractResourceViewElement.this.createEditorInput();
+          }
+        };
+      }
+    });
+    set(ILink.class, new ResourceLinkProvider(this));
   }
 
   @Override
@@ -48,7 +76,7 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   private ResourceEditorOpener createEditorOpener() {
     return new ResourceEditorOpener(getEditFile(), untitledName, getEditorImageUrl());
   }
-  
+
   protected URL getEditorImageUrl() {
     return getImageUrl();
   }
@@ -78,26 +106,6 @@ public abstract class AbstractResourceViewElement implements IViewElement {
   @Override
   public int hashCode() {
     return getEditFile().hashCode();
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public Object getAdapter(Class adapter) {
-    if (adapter == IResource.class) {
-      return getEditFile();
-    }
-    if (adapter == IPageDelible.class) {
-      return createDelible();
-    }
-    if (adapter == IEditorInputProvider.class) {
-      return new IEditorInputProvider() {
-        @Override
-        public IEditorInput getEditorInput() throws PersistenceException, CoreException {
-          return AbstractResourceViewElement.this.createEditorInput();
-        }
-      };
-    }
-    return null;
   }
 
   protected abstract IPageDelible createDelible();

@@ -8,6 +8,8 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
+import net.sf.anathema.basics.repository.linkage.util.ILink;
+import net.sf.anathema.basics.repository.linkage.util.ResourceLinkProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
@@ -43,13 +45,14 @@ public class CharacterModelViewElement implements IConfigurableViewElement {
   }
 
   private void initAdaptable() {
-    adaptable.add(IResource.class, new IProvider<IResource>() {
+    adaptable.set(IResource.class, new IProvider<IResource>() {
       @Override
       public IResource get() {
         return configuration.getModelFile(characterFolder);
       }
     });
-    adaptable.add(IEditorInputProvider.class, new IProvider<IEditorInputProvider>() {
+    adaptable.set(ILink.class, new ResourceLinkProvider(adaptable));
+    adaptable.set(IEditorInputProvider.class, new IProvider<IEditorInputProvider>() {
       @Override
       public IEditorInputProvider get() {
         return new IEditorInputProvider() {

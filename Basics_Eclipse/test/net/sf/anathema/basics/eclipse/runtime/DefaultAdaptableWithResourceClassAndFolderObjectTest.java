@@ -18,7 +18,7 @@ public class DefaultAdaptableWithResourceClassAndFolderObjectTest {
   public void createEmptyAdaptable() {
     this.folder = EasyMock.createMock(IFolder.class);
     this.adaptable = new DefaultAdaptable();
-    this.adaptable.add(IResource.class, new IProvider<IResource>() {
+    this.adaptable.set(IResource.class, new IProvider<IResource>() {
       @Override
       public IResource get() {
         return folder;
@@ -49,7 +49,7 @@ public class DefaultAdaptableWithResourceClassAndFolderObjectTest {
   @Test
   public void firstFittingAdaptableIsUsed() throws Exception {
     final IFile file = EasyMock.createMock(IFile.class);
-    adaptable.add(IFile.class, new IProvider<IFile>() {
+    adaptable.set(IFile.class, new IProvider<IFile>() {
       @Override
       public IFile get() {
         return file;
@@ -61,7 +61,7 @@ public class DefaultAdaptableWithResourceClassAndFolderObjectTest {
   @Test
   public void specificClassIsPreferred() throws Exception {
     final IFolder otherFolder = EasyMock.createMock(IFolder.class);
-    adaptable.add(IFolder.class, new IProvider<IFolder>() {
+    adaptable.set(IFolder.class, new IProvider<IFolder>() {
       @Override
       public IFolder get() {
         return otherFolder;

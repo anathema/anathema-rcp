@@ -3,6 +3,8 @@ package net.sf.anathema.character.core.repository;
 import java.net.URL;
 
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
+import net.sf.anathema.basics.repository.linkage.util.ILink;
+import net.sf.anathema.basics.repository.linkage.util.ResourceLinkProvider;
 import net.sf.anathema.basics.repository.treecontent.deletion.IPageDelible;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.character.CharacterId;
@@ -36,8 +38,9 @@ public class CharacterViewElement implements IViewElement {
   }
 
   private void initAdaptable() {
-    adaptable.add(IResource.class, characterFolder);
-    adaptable.add(IPageDelible.class, createPageDelible());
+    adaptable.set(IResource.class, characterFolder);
+    adaptable.set(ILink.class, new ResourceLinkProvider(adaptable));
+    adaptable.set(IPageDelible.class, createPageDelible());
   }
 
   private IPageDelible createPageDelible() {

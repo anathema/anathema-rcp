@@ -3,11 +3,12 @@ package net.sf.anathema.character.core.model;
 import java.io.IOException;
 import java.net.URL;
 
-import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
+import net.sf.anathema.basics.repository.linkage.util.ILink;
+import net.sf.anathema.basics.repository.linkage.util.ResourceLinkProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -37,6 +38,13 @@ public abstract class AbstractCharacterModelEditorInput<M extends IModel> extend
     this.displayNameProvider = displayNameProvider;
     this.persistable = new ModelPersistable(file.getFullPath());
     this.persister = persister;
+    set(ILink.class, new ResourceLinkProvider(this));
+    set(IModelIdentifier.class, new IProvider<IModelIdentifier>() {
+      @Override
+      public IModelIdentifier get() {
+        return getModelIdentifier();
+      }
+    });
   }
 
   @Override
@@ -49,17 +57,6 @@ public abstract class AbstractCharacterModelEditorInput<M extends IModel> extend
     M model = getItem();
     new ItemFileWriter().saveToFile(getFile(), persister, model, monitor);
     return model;
-  }
-
-  @Override
-  protected void initDefaultAdaptable(DefaultAdaptable defaultAdaptable) {
-    super.initDefaultAdaptable(defaultAdaptable);
-    defaultAdaptable.add(IModelIdentifier.class, new IProvider<IModelIdentifier>() {
-      @Override
-      public IModelIdentifier get() {
-        return getModelIdentifier();
-      }
-    });
   }
 
   protected IFolder getCharacterFolder() {

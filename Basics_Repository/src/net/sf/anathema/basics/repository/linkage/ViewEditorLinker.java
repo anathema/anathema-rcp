@@ -3,21 +3,21 @@ package net.sf.anathema.basics.repository.linkage;
 import net.sf.anathema.basics.eclipse.ui.PartContainer;
 import net.sf.anathema.basics.eclipse.ui.PartListening;
 import net.sf.anathema.basics.eclipse.ui.TopPartListener;
+import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.IDisposable;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchWindow;
 
 public final class ViewEditorLinker implements IDisposable, Runnable, ILinker {
-  private final IResourceSelector selector;
+  private final ILinkageSelector selector;
   private final TopPartListener topPartListener;
   private boolean enabled;
   private final AggregatedDisposable disposables = new AggregatedDisposable();
   private final PartContainer partContainer;
 
-  public ViewEditorLinker(IWorkbenchWindow workbenchWindow, IResourceSelector selector) {
+  public ViewEditorLinker(IWorkbenchWindow workbenchWindow, ILinkageSelector selector) {
     this.selector = selector;
     topPartListener = new TopPartListener(this);
     partContainer = new PartContainer(workbenchWindow);
@@ -46,8 +46,8 @@ public final class ViewEditorLinker implements IDisposable, Runnable, ILinker {
       selector.setSelection(null);
     }
     else {
-      IResource resource = (IResource) editorInput.getAdapter(IResource.class);
-      selector.setSelection(resource);
+      ILink link = (ILink) editorInput.getAdapter(ILink.class);
+      selector.setSelection(link);
     }
   }
 

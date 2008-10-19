@@ -14,7 +14,7 @@ public class CharacterId extends DefaultAdaptable implements ICharacterId {
 
   public CharacterId(IContainer folder) {
     this.folder = folder;
-    add(IContainer.class, folder);
+    set(IContainer.class, folder);
   }
 
   @Override

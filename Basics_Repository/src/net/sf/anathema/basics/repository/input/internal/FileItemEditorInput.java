@@ -28,6 +28,7 @@ public final class FileItemEditorInput extends FileEditorInput implements IFileI
     this.persistable = new FileItemEditorInputPersistableElement(untitledName, file.getFullPath(), imageUrl);
     this.provider = new ItemNameProvider(untitledName);
     this.item = persister.load(DocumentUtilities.read(getFile().getContents()));
+    
   }
 
   @Override

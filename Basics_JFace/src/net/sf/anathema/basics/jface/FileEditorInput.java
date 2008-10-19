@@ -10,10 +10,9 @@ import org.eclipse.core.resources.IStorage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
-public class FileEditorInput implements IFileEditorInput {
+public class FileEditorInput extends DefaultAdaptable implements IFileEditorInput {
   private final IFile file;
   private final ImageDescriptor imageDescriptor;
-  private final DefaultAdaptable adaptable = new DefaultAdaptable();
   private final URL imageUrl;
 
   public FileEditorInput(IFile file, URL imageUrl) {
@@ -23,16 +22,12 @@ public class FileEditorInput implements IFileEditorInput {
       throw new IllegalArgumentException();
     }
     this.file = file;
-    initDefaultAdaptable(adaptable);
+    set(IResource.class, file);
+    set(IFileEditorInput.class, this);
   }
 
   public final URL getImageUrl() {
     return imageUrl;
-  }
-
-  protected void initDefaultAdaptable(DefaultAdaptable defaultAdaptable) {
-    defaultAdaptable.add(IResource.class, file);
-    defaultAdaptable.add(IFileEditorInput.class, this);
   }
 
   @Override
@@ -56,9 +51,10 @@ public class FileEditorInput implements IFileEditorInput {
     return file.exists();
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public final Object getAdapter(Class adapter) {
-    Object adaptedObject = adaptable.getAdapter(adapter);
+    Object adaptedObject = super.getAdapter(adapter);
     if (adaptedObject != null) {
       return adaptedObject;
     }

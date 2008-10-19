@@ -6,10 +6,10 @@ import java.util.List;
 
 import net.sf.anathema.basics.repository.itemtype.IItemType;
 import net.sf.anathema.basics.repository.itemtype.ItemTypeProvider;
+import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.treecontent.itemtype.ItemTypeViewElement;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
@@ -57,24 +57,24 @@ public class TypedTreeContentProvider implements ITreeContentProvider, IViewElem
   }
 
   @Override
-  public IViewElement getViewElement(IResource resource) {
-    if (resource == null) {
+  public IViewElement getViewElement(ILink linkageId) {
+    if (linkageId == null) {
       return null;
     }
-    return getViewElement(resource, elementList);
+    return getViewElement(linkageId, elementList);
   }
 
-  private IViewElement getViewElement(IResource resource, IViewElement element) {
-    IResource elementResource = (IResource) element.getAdapter(IResource.class);
-    if (resource.equals(elementResource)) {
+  private IViewElement getViewElement(ILink linkageId, IViewElement element) {
+    ILink elementResource = (ILink) element.getAdapter(ILink.class);
+    if (linkageId.equals(elementResource)) {
       return element;
     }
-    return getViewElement(resource, Arrays.asList(element.getChildren()));
+    return getViewElement(linkageId, Arrays.asList(element.getChildren()));
   }
 
-  private IViewElement getViewElement(IResource resource, Iterable<IViewElement> elements) {
+  private IViewElement getViewElement(ILink linkageId, Iterable<IViewElement> elements) {
     for (IViewElement element : elements) {
-      IViewElement foundElement = getViewElement(resource, element);
+      IViewElement foundElement = getViewElement(linkageId, element);
       if (foundElement != null) {
         return foundElement;
       }

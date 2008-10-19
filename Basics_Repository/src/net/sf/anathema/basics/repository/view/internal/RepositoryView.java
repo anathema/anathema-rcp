@@ -8,9 +8,10 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.jface.context.ContextMenuManager;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.linkage.EditorViewLinker;
+import net.sf.anathema.basics.repository.linkage.ILinkageSelector;
 import net.sf.anathema.basics.repository.linkage.ILinker;
-import net.sf.anathema.basics.repository.linkage.IResourceSelector;
 import net.sf.anathema.basics.repository.linkage.ViewEditorLinker;
+import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.refresh.ResourceChangeJobScheduler;
 import net.sf.anathema.basics.repository.refresh.TreeViewRefresher;
 import net.sf.anathema.basics.repository.treecontent.RepositoryLabelProvider;
@@ -19,7 +20,6 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.basics.repository.view.IRepositoryDND;
 import net.sf.anathema.lib.ui.IDisposable;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.IOpenListener;
@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
-public class RepositoryView extends ViewPart implements IResourceSelector, ILinker, ICollapsableTree, IExpandableTree {
+public class RepositoryView extends ViewPart implements ILinkageSelector, ILinker, ICollapsableTree, IExpandableTree {
   private static final String DRAG_AND_DROP_EXTENSION_POINT = "dnd"; //$NON-NLS-1$
 
   public static final String ID = "net.sf.anathema.basics.repositoryview"; //$NON-NLS-1$
@@ -94,8 +94,11 @@ public class RepositoryView extends ViewPart implements IResourceSelector, ILink
   }
 
   @Override
-  public void setSelection(IResource resource) {
-    new RepositoryResourceSelector(contentProvider, new RevealingSelector(viewer)).setSelection(resource);
+  public void setSelection(ILink linkageId) {
+    RepositoryResourceSelector resourceSelector = new RepositoryResourceSelector(
+        contentProvider,
+        new RevealingSelector(viewer));
+    resourceSelector.setSelection(linkageId);
   }
 
   @Override

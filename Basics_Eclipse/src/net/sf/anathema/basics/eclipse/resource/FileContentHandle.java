@@ -15,8 +15,8 @@ public class FileContentHandle extends DefaultAdaptable implements IContentHandl
 
   public FileContentHandle(IFile file) {
     this.file = file;
-    add(IMarkerHandle.class, new ResourceMarkerHandle(file));
-    add(IResource.class, file);
+    set(IMarkerHandle.class, new ResourceMarkerHandle(file));
+    set(IResource.class, file);
   }
 
   @Override
