@@ -6,5 +6,5 @@ public interface ICharmVisuals extends IDisposable {
 
   public void update(ICharmNode node);
 
-  public void connect(CharmSelectionControl selectionControl);
+  public void connect(ICharmSelectionControl selectionControl);
 }

@@ -13,7 +13,7 @@ public class StandaloneCharmVisuals implements ICharmVisuals {
   private final List<String> learnedCharms = new ArrayList<String>();
 
   @Override
-  public void connect(CharmSelectionControl selectionControl) {
+  public void connect(ICharmSelectionControl selectionControl) {
     selectionControl.addSelectionListener(new ICharmSelectionListener() {
       @Override
       public void charmSelected(String charmId) {

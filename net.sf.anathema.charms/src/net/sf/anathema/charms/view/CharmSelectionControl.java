@@ -10,7 +10,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.widgets.GraphNode;
 
-public class CharmSelectionControl extends AggregatedDisposable {
+public class CharmSelectionControl extends AggregatedDisposable implements ICharmSelectionControl {
   private final ICharmVisuals charmVisuals;
   private final ListenerList<ICharmSelectionListener> selectionListeners = new ListenerList<ICharmSelectionListener>();
 
@@ -40,7 +40,6 @@ public class CharmSelectionControl extends AggregatedDisposable {
     addDisposable(new SelectionListenerDisposable(selectionListener, viewer));
   }
 
-
   private void updateVisuals(final GraphViewer viewer, ICharmIdExtractor idExtractor) {
     for (Object node : viewer.getGraphControl().getNodes()) {
       charmVisuals.update(new ZestCharmNode((GraphNode) node, idExtractor));
@@ -49,5 +48,10 @@ public class CharmSelectionControl extends AggregatedDisposable {
 
   public void addSelectionListener(ICharmSelectionListener listener) {
     selectionListeners.add(listener);
+  }
+
+  @Override
+  public void removeSelectionListener(ICharmSelectionListener selectionListener) {
+    selectionListeners.remove(selectionListener);
   }
 }

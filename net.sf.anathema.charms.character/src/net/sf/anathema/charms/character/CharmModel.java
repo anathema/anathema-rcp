@@ -36,7 +36,7 @@ public class CharmModel extends AbstractModel implements ICharmModel {
     else {
       learnedCharms.add(charmId);
     }
-    fireDirtyChanged();
+    setDirty(true);
     changeControl.fireChangedEvent();
   }
 }
