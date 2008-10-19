@@ -39,4 +39,8 @@ public class CharmModel extends AbstractModel implements ICharmModel {
     setDirty(true);
     changeControl.fireChangedEvent();
   }
+  
+  public Iterable<String> getLearnedCharms() {
+    return learnedCharms;
+  }
 }

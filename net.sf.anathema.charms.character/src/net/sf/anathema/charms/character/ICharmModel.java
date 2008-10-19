@@ -9,4 +9,6 @@ public interface ICharmModel extends IModel {
   public boolean isLearned(String charmId);
 
   public void toggleLearned(String charmId);
+  
+  public Iterable<String> getLearnedCharms();
 }
