@@ -1,8 +1,5 @@
 package net.sf.anathema.charms.character;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.sf.anathema.charms.view.CharmSelectionControl;
 import net.sf.anathema.charms.view.ICharmNode;
 import net.sf.anathema.charms.view.ICharmSelectionListener;
@@ -15,19 +12,18 @@ public class CharacterCharmVisuals implements ICharmVisuals {
 
   private Color learnedColor;
   private Color defaultColor;
-  private final List<String> learnedCharms = new ArrayList<String>();
+  private final ICharmModel charmModel;
+
+  public CharacterCharmVisuals(ICharmModel charmModel) {
+    this.charmModel = charmModel;
+  }
 
   @Override
   public void connect(CharmSelectionControl selectionControl) {
     selectionControl.addSelectionListener(new ICharmSelectionListener() {
       @Override
       public void charmSelected(String charmId) {
-        if (learnedCharms.contains(charmId)) {
-          learnedCharms.remove(charmId);
-        }
-        else {
-          learnedCharms.add(charmId);
-        }
+        charmModel.toggleLearned(charmId);
       }
     });
   }
@@ -40,7 +36,7 @@ public class CharacterCharmVisuals implements ICharmVisuals {
   }
 
   private boolean isLearned(String charmId) {
-    return learnedCharms.contains(charmId);
+    return charmModel.isLearned(charmId);
   }
 
   private synchronized Color getLearnedColor(Display display) {

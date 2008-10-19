@@ -14,7 +14,7 @@ public class CharmsEditorControl extends AbstractItemEditorControl {
   @Override
   public void createPartControl(Composite parent) {
     CharmsEditorInput editorInput = getEditorInput();
-    ZestView zestView = new ZestView(new CharacterCharmVisuals(), editorInput.getTreeId());
+    ZestView zestView = new ZestView(new CharacterCharmVisuals(editorInput.getItem()), editorInput.getTreeId());
     zestView.createPartControl(parent);
     addDisposable(zestView);
   }
