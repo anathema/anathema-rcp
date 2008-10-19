@@ -7,9 +7,12 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvid
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.ui.IPersistableElement;
 
 public class CharmsEditorInput extends AbstractCharacterModelEditorInput<ICharmModel> {
 
+  public static final String PERSISTABLE_FACTORY_ID = "net.sf.anathema.charms.character.model.persistablefactory"; //$NON-NLS-1$
+  public static final String MEMENTO_TREE_ID = "treeId"; //$NON-NLS-1$
   private final ICharmModel charms;
   private String treeId;
 
@@ -42,6 +45,11 @@ public class CharmsEditorInput extends AbstractCharacterModelEditorInput<ICharmM
       return treeId + " - " + super.getName(); //$NON-NLS-1$
     }
     return super.getName();
+  }
+
+  @Override
+  public final IPersistableElement getPersistable() {
+    return new TreeIdPersistableDecoration(super.getPersistable(), getTreeId());
   }
 
   @Override

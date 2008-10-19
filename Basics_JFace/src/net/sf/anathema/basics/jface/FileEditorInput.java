@@ -77,7 +77,7 @@ public class FileEditorInput implements IFileEditorInput {
     return file.getName();
   }
 
-  public final IPersistableElement getPersistable() {
+  public IPersistableElement getPersistable() {
     if (!file.exists()) {
       return null;
     }

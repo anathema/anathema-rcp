@@ -32,5 +32,12 @@
             modelId="net.sf.anathema.charms.character.modelId">
       </addition>
    </extension>
+   <extension
+         point="org.eclipse.ui.elementFactories">
+      <factory
+            class="net.sf.anathema.charms.character.CharmModelPersistableFactory"
+            id="net.sf.anathema.charms.character.model.persistablefactory">
+      </factory>
+   </extension>
 
 </plugin>
