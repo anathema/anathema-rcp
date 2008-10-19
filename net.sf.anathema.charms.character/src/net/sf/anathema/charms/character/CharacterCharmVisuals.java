@@ -1,12 +1,17 @@
-package net.sf.anathema.charms.view;
+package net.sf.anathema.charms.character;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.charms.view.CharmSelectionControl;
+import net.sf.anathema.charms.view.ICharmNode;
+import net.sf.anathema.charms.view.ICharmSelectionListener;
+import net.sf.anathema.charms.view.ICharmVisuals;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
-public class StandaloneCharmVisuals implements ICharmVisuals {
+public class CharacterCharmVisuals implements ICharmVisuals {
 
   private Color learnedColor;
   private Color defaultColor;
