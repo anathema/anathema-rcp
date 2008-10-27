@@ -10,7 +10,7 @@ import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.fake.DummyTraitPreferences;
-import net.sf.anathema.character.trait.interactive.InteractiveTraitOnExperienceTest.IncreasingValidator;
+import net.sf.anathema.character.trait.interactive.InteractiveTraitOnExperience_Test.TestIncreasingValidator;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
 import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.lib.util.Identificate;
@@ -44,15 +44,15 @@ public class InteractiveTraitOnCreationTest {
 
   @Test
   public void setValidatedValue() throws Exception {
-    valueValidators.add(new IncreasingValidator(1));
+    valueValidators.add(new TestIncreasingValidator(1));
     interactiveTrait.setValue(2);
     assertEquals(3, basicTrait.getCreationModel().getValue());
   }
 
   @Test
   public void concatenatesValidatorChanges() throws Exception {
-    valueValidators.add(new IncreasingValidator(1));
-    valueValidators.add(new IncreasingValidator(1));
+    valueValidators.add(new TestIncreasingValidator(1));
+    valueValidators.add(new TestIncreasingValidator(1));
     interactiveTrait.setValue(2);
     assertEquals(4, basicTrait.getCreationModel().getValue());
   }

@@ -15,13 +15,13 @@ import net.sf.anathema.lib.util.Identificate;
 import org.junit.Before;
 import org.junit.Test;
 
-public class InteractiveTraitOnExperienceTest {
+public class InteractiveTraitOnExperience_Test {
 
-  public static final class IncreasingValidator implements IValidator {
+  public static final class TestIncreasingValidator implements IValidator {
 
     private final int increment;
 
-    public IncreasingValidator(int increment) {
+    public TestIncreasingValidator(int increment) {
       this.increment = increment;
     }
 
@@ -68,7 +68,7 @@ public class InteractiveTraitOnExperienceTest {
 
   @Test
   public void setValidatedValue() throws Exception {
-    valueValidators.add(new IncreasingValidator(1));
+    valueValidators.add(new TestIncreasingValidator(1));
     interactiveTrait.setValue(2);
     assertEquals(3, basicTrait.getExperiencedModel().getValue());
     assertNoCreationValueChange();
@@ -76,8 +76,8 @@ public class InteractiveTraitOnExperienceTest {
 
   @Test
   public void concatenatesValidatorChanges() throws Exception {
-    valueValidators.add(new IncreasingValidator(1));
-    valueValidators.add(new IncreasingValidator(1));
+    valueValidators.add(new TestIncreasingValidator(1));
+    valueValidators.add(new TestIncreasingValidator(1));
     interactiveTrait.setValue(2);
     assertEquals(4, basicTrait.getExperiencedModel().getValue());
     assertNoCreationValueChange();
