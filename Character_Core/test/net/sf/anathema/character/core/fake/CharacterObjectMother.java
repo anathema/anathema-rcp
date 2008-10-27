@@ -9,7 +9,6 @@ import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
-import net.sf.anathema.character.core.model.IModelResourceHandler;
 
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;
@@ -49,21 +48,6 @@ public class CharacterObjectMother {
     EasyMock.expect(modelProvider.contains(identifier)).andStubReturn(true);
     EasyMock.replay(modelProvider);
     return modelProvider;
-  }
-
-  public static IModelResourceHandler createEmptyResourceHandler() {
-    return createStaticResourceHandler(ResourceObjectMother.createNonExistingFile());
-  }
-
-  public static IModelResourceHandler createFriendlyResourceHandler() throws Exception {
-    return createStaticResourceHandler(ResourceObjectMother.createExistingResource());
-  }
-
-  private static IModelResourceHandler createStaticResourceHandler(IResource resource) {
-    IModelResourceHandler resourceHandler = EasyMock.createNiceMock(IModelResourceHandler.class);
-    EasyMock.expect(resourceHandler.getResource(EasyMock.isA(IModelIdentifier.class))).andStubReturn(resource);
-    EasyMock.replay(resourceHandler);
-    return resourceHandler;
   }
 
   public static IModelCollection createNonLoadingEmptyModelProvider() {

@@ -23,7 +23,7 @@ public class AblitiesBonusPointHandler_Test {
 
   @Before
   public void createPointHandler() {
-    pointHandler = new AbilitiesBonusPointHandler(null, null);
+    pointHandler = new AbilitiesBonusPointHandler(null);
   }
 
   @Test

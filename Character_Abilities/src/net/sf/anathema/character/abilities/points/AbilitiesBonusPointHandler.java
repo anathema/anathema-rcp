@@ -4,7 +4,6 @@ import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.abilities.util.TraitListFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -33,7 +32,7 @@ public class AbilitiesBonusPointHandler extends AbstractPointHandler {
     super(IAbilitiesPluginConstants.MODEL_ID);
   }
 
-  public AbilitiesBonusPointHandler(IModelCollection modelCollection, IModelResourceHandler resourceHandler) {
+  public AbilitiesBonusPointHandler(IModelCollection modelCollection) {
     super(modelCollection, IAbilitiesPluginConstants.MODEL_ID);
   }
 
