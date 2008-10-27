@@ -10,7 +10,6 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class AbilitiesBonusPointHandler extends AbstractPointHandler {
-  private static final String HANDLER_TYPE = "abilities"; //$NON-NLS-1$
 
   private static class PointCalculation {
     int cheapCount = 0;
@@ -31,11 +30,11 @@ public class AbilitiesBonusPointHandler extends AbstractPointHandler {
   }
 
   public AbilitiesBonusPointHandler() {
-    super(HANDLER_TYPE, IAbilitiesPluginConstants.MODEL_ID);
+    super(IAbilitiesPluginConstants.MODEL_ID);
   }
 
   public AbilitiesBonusPointHandler(IModelCollection modelCollection, IModelResourceHandler resourceHandler) {
-    super(modelCollection, resourceHandler, HANDLER_TYPE, IAbilitiesPluginConstants.MODEL_ID);
+    super(modelCollection, IAbilitiesPluginConstants.MODEL_ID);
   }
 
   @Override

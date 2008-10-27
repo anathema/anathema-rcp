@@ -6,7 +6,6 @@ import net.sf.anathema.character.freebies.attributes.calculation.AttributePointC
 import net.sf.anathema.character.freebies.mark.ResourceModelMarker;
 
 import org.easymock.EasyMock;
-import org.eclipse.core.resources.IMarker;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,38 +43,6 @@ public class AttributeResourceMarkerWithCreditTest {
   public void noMarkerManipulationIfHandleDoesNotExist() throws Exception {
     EasyMock.expect(markerHandle.exists()).andReturn(false).anyTimes();
     EasyMock.replay(markerHandle);
-    attributeResourceMarker.mark();
-    EasyMock.verify(markerHandle);
-  }
-
-  @Test
-  public void markerDeletedIfCreditIsDepleted() throws Exception {
-    EasyMock.expect(markerHandle.exists()).andReturn(true).anyTimes();
-    markerHandle.deleteMarkers(MARKER_ID, true, 0);
-    EasyMock.expect(dotsSpent.get(PRIORITY)).andReturn(CREDIT).anyTimes();
-    EasyMock.replay(markerHandle, dotsSpent);
-    attributeResourceMarker.mark();
-    EasyMock.verify(markerHandle);
-  }
-
-  @Test
-  public void markerIsCreatedIfCreditPointsAreStillAvailableAndNoMarkerIsSet() throws Exception {
-    EasyMock.expect(markerHandle.exists()).andReturn(true).anyTimes();
-    EasyMock.expect(markerHandle.findMarkers(MARKER_ID, true, 0)).andReturn(new IMarker[0]);
-    EasyMock.expect(markerHandle.createMarker(MARKER_ID)).andReturn(null);
-    EasyMock.expect(dotsSpent.get(PRIORITY)).andReturn(CREDIT - 1).anyTimes();
-    EasyMock.replay(markerHandle, dotsSpent);
-    attributeResourceMarker.mark();
-    EasyMock.verify(markerHandle);
-  }
-
-  @Test
-  public void noDuplicatedMarkersAreCreated() throws Exception {
-    EasyMock.expect(markerHandle.exists()).andReturn(true).anyTimes();
-    EasyMock.expect(markerHandle.findMarkers(MARKER_ID, true, 0)).andReturn(
-        new IMarker[] { EasyMock.createMock(IMarker.class) });
-    EasyMock.expect(dotsSpent.get(PRIORITY)).andReturn(CREDIT - 1).anyTimes();
-    EasyMock.replay(markerHandle, dotsSpent);
     attributeResourceMarker.mark();
     EasyMock.verify(markerHandle);
   }

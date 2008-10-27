@@ -36,7 +36,7 @@ public class FavoredFreebiesBonusPointReducer_Test {
     ICreditManager creditManager = EasyMock.createMock(ICreditManager.class);
     new FavoredCreditBehaviour(characterId, FAVORED_CREDIT).configure(creditManager);
     replay(creditManager);
-    reducer = new FavoredFreebiesBonusPointReducer(null, null, creditManager);
+    reducer = new FavoredFreebiesBonusPointReducer(null, creditManager);
   }
 
   @Test

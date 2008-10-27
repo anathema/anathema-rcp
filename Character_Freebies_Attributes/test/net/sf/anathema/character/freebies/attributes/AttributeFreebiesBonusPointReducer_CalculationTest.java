@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.AttributeGroupTemplate;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.fake.CharacterObjectMother;
-import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -42,8 +40,7 @@ public class AttributeFreebiesBonusPointReducer_CalculationTest {
         new AttributeGroupTemplate().getGroups());
     characterId = EasyMock.createMock(ICharacterId.class);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
-    IModelResourceHandler resourceHandler = CharacterObjectMother.createFriendlyResourceHandler();
-    reducer = new AttributeFreebiesBonusPointReducer(modelProvider, resourceHandler, new DummyCreditManager());
+    reducer = new AttributeFreebiesBonusPointReducer(modelProvider, new DummyCreditManager());
   }
 
   @Test

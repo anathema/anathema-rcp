@@ -6,9 +6,7 @@ import net.sf.anathema.character.attributes.model.AttributeGroupTemplate;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.core.repository.ModelResourceHandler;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
@@ -19,18 +17,16 @@ import net.sf.anathema.character.trait.group.TraitGroup;
 
 public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler {
 
-  private static final String HANDLER_TYPE = "attributeFreebies"; //$NON-NLS-1$
   private final ICreditManager creditManager;
 
   public AttributeFreebiesBonusPointReducer() {
-    this(ModelCache.getInstance(), new ModelResourceHandler(), new CreditManager());
+    this(ModelCache.getInstance(), new CreditManager());
   }
 
   public AttributeFreebiesBonusPointReducer(
       IModelCollection modelProvider,
-      IModelResourceHandler modelResourceHandler,
       ICreditManager creditManager) {
-    super(modelProvider, modelResourceHandler, HANDLER_TYPE, IAttributesPluginConstants.MODEL_ID);
+    super(modelProvider, IAttributesPluginConstants.MODEL_ID);
     this.creditManager = creditManager;
   }
 

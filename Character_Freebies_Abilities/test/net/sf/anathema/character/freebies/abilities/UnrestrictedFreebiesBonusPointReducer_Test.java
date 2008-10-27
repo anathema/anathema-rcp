@@ -52,7 +52,7 @@ public class UnrestrictedFreebiesBonusPointReducer_Test {
         createNonFavoredTrait(NON_FAVORED2));
     modelCollection.addModel(IAbilitiesPluginConstants.MODEL_ID, model);
     ICreditManager creditManager = CreditManagerObjectMother.create(FAVORED_CREDIT, UNRESTRICTED_CREDIT, characterId);
-    reducer = new UnrestrictedFreebiesBonusPointReducer(modelCollection, null, creditManager);
+    reducer = new UnrestrictedFreebiesBonusPointReducer(modelCollection, creditManager);
   }
 
   @Test

@@ -1,12 +1,10 @@
 package net.sf.anathema.character.freebies.attributes;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.core.model.IModelResourceHandler;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.freebies.fake.CreditManagerObjectMother;
@@ -32,8 +30,7 @@ public class FavoredAttributeBonusPointReducer_CalculationTest {
     IModelCollection modelCollection = EasyMock.createNiceMock(IModelCollection.class);
     EasyMock.expect(modelCollection.contains(EasyMock.isA(IModelIdentifier.class))).andStubReturn(true);
     EasyMock.replay(modelCollection);
-    IModelResourceHandler resourceHandler = CharacterObjectMother.createFriendlyResourceHandler();
-    reducer = new FavoredAttributeBonusPointReducer(modelCollection, resourceHandler, creditManager) {
+    reducer = new FavoredAttributeBonusPointReducer(modelCollection, creditManager) {
       @Override
       protected IFreebiesHandler createFreebiesHandler() {
         return handler;

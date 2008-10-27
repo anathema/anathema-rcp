@@ -9,14 +9,12 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class AttributeBonusPointHandler extends AbstractPointHandler {
 
-  private static final String HANDLER_TYPE = "attributes"; //$NON-NLS-1$
-
   public AttributeBonusPointHandler() {
-    super(HANDLER_TYPE, IAttributesPluginConstants.MODEL_ID);
+    super(IAttributesPluginConstants.MODEL_ID);
   }
 
   public AttributeBonusPointHandler(IModelCollection modelCollection, IModelResourceHandler resourceHandler) {
-    super(modelCollection, resourceHandler, HANDLER_TYPE, IAttributesPluginConstants.MODEL_ID);
+    super(modelCollection, IAttributesPluginConstants.MODEL_ID);
   }
 
   @Override
