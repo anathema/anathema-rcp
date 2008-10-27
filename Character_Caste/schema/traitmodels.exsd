@@ -3,14 +3,19 @@
 <schema targetNamespace="net.sf.anathema.character.caste" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="net.sf.anathema.character.caste" id="casteTraitModels" name="Caste Trait Models"/>
+         <meta.schema plugin="net.sf.anathema.character.caste" id="traitmodels" name="Caste Trait Models"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Specifies the traitcollection for a character type where its caste traits are found.
       </documentation>
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="traitmodel" minOccurs="1" maxOccurs="unbounded"/>
