@@ -11,4 +11,9 @@ public class DefaultStatus implements ITraitStatus {
   public boolean isModifiable() {
     return true;
   }
+  
+  @Override
+  public String toString() {
+    return "Default"; //$NON-NLS-1$
+  }
 }

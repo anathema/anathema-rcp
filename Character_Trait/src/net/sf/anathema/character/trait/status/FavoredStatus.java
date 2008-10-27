@@ -11,4 +11,9 @@ public class FavoredStatus implements ITraitStatus {
   public boolean isModifiable() {
     return true;
   }
+  
+  @Override
+  public String toString() {
+    return "Favored"; //$NON-NLS-1$
+  }
 }

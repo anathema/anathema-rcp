@@ -18,4 +18,9 @@ public class CasteStatus implements ITraitStatus {
   public boolean equals(Object obj) {
     return obj instanceof CasteStatus;
   }
+  
+  @Override
+  public String toString() {
+    return "Caste"; //$NON-NLS-1$
+  }
 }

@@ -1,5 +1,7 @@
 package net.sf.anathema.character.trait;
 
+import java.text.MessageFormat;
+
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
 import net.sf.anathema.character.trait.interactive.IntValueModel;
 import net.sf.anathema.character.trait.status.ITraitStatusModel;
@@ -51,5 +53,15 @@ public class BasicTrait implements IBasicTrait {
   @Override
   public boolean isExperiencedValueSet() {
     return getExperiencedModel().getValue() > 0;
+  }
+
+  @Override
+  public String toString() {
+    return MessageFormat.format(
+        "{0}[{1},{2},{3}]", //$NON-NLS-1$
+        getTraitType().getId(),
+        getCreationModel().getValue(),
+        getExperiencedModel().getValue(),
+        getStatusManager().getStatus());
   }
 }

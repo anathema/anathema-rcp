@@ -7,7 +7,6 @@ import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationHandler;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
-import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.util.IIdentificate;
 
@@ -29,12 +28,6 @@ public class FavorizationHandler implements IFavorizationHandler {
     this.modelContainer = modelContainer;
     this.template = template;
     this.modelId = modelId;
-    for (IBasicTrait trait : getTraitCollectionModel().getTraits()) {
-      if (trait.getStatusManager().getStatus() instanceof DefaultStatus
-          && template.isRequiredFavored(trait.getTraitType())) {
-        trait.getStatusManager().setStatus(new FavoredStatus());
-      }
-    }
   }
 
   private int getFavoredCount() {
