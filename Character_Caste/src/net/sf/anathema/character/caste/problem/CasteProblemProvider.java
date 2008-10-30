@@ -6,8 +6,8 @@ import net.sf.anathema.basics.repository.problems.IProblem;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.character.core.model.change.ModelResourceHandler;
 import net.sf.anathema.character.core.problem.AbstractCharacterProblemProvider;
-import net.sf.anathema.character.core.repository.ModelResourceHandler;
 
 import org.eclipse.core.resources.IResource;
 
