@@ -17,30 +17,10 @@ import net.sf.anathema.lib.ui.IDisposable;
 
 public class ModelCache implements IModelCache {
 
-  public static final class ModelChangeDelegate implements IChangeListener {
-    private final IModel newModel;
-    private final IModelIdentifier identifier;
-    private final IModelChangeProcessor changeProcessor;
-
-    public ModelChangeDelegate(IModelChangeProcessor changeProcessor, IModel model, IModelIdentifier identifier) {
-      this.changeProcessor = changeProcessor;
-      this.newModel = model;
-      this.identifier = identifier;
-      model.addChangeListener(this);
-    }
-
-    @Override
-    public void stateChanged() {
-      changeProcessor.modelChanged(newModel, identifier);
-    }
-  }
-
   private static final ModelCache instance = new ModelCache();
   private final Map<IModelIdentifier, IModel> modelsByIdentifier = new HashMap<IModelIdentifier, IModel>();
   private final Map<IModel, IModelIdentifier> identifiersByModel = new HashMap<IModel, IModelIdentifier>();
-  private final Map<IModelIdentifier, IDisposable> disposableByIdentifer = new HashMap<IModelIdentifier, IDisposable>();
   private final DependenciesHandler dependenciesHandler = new DependenciesHandler(new CharacterTemplateProvider());
-  private final IModelChangeProcessor changeProcessor = new AggregatedModelChangeProcessor();
 
   private ModelCache() {
     // nothing to do
@@ -57,9 +37,6 @@ public class ModelCache implements IModelCache {
       final IModel newModel = initializer.getModel();
       model = newModel;
       if (model != null) {
-        dispose(identifier);
-        IChangeListener changeListener = new ModelChangeDelegate(changeProcessor, newModel, identifier);
-        disposableByIdentifer.put(identifier, new ChangeableModelDisposable(newModel, changeListener));
         storeModel(identifier, model);
         initializer.initialize();
         loadDependencies(identifier, model);
@@ -94,15 +71,6 @@ public class ModelCache implements IModelCache {
   private void removeFromCache(IModel item, IModelIdentifier modelIdentifier) {
     identifiersByModel.remove(item);
     modelsByIdentifier.remove(modelIdentifier);
-    dispose(modelIdentifier);
-  }
-
-  private void dispose(IModelIdentifier modelIdentifier) {
-    IDisposable disposable = disposableByIdentifer.get(modelIdentifier);
-    if (disposable != null) {
-      disposable.dispose();
-    }
-    disposableByIdentifer.remove(modelIdentifier);
   }
 
   @Override
