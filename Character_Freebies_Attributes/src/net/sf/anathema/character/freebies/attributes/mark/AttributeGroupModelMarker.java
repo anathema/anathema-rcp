@@ -3,10 +3,11 @@ package net.sf.anathema.character.freebies.attributes.mark;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.sf.anathema.character.core.resource.IModelMarker;
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
-import net.sf.anathema.character.freebies.mark.IModelMarker;
 
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.osgi.util.NLS;
 
 public class AttributeGroupModelMarker implements IModelMarker {
@@ -40,7 +41,7 @@ public class AttributeGroupModelMarker implements IModelMarker {
   }
 
   @Override
-  public boolean isActive() {
+  public boolean isActive(IMarker[] markers) {
     return creditCollection.getCredit(priorityGroup) > dotsSpent.get(priorityGroup);
   }
 

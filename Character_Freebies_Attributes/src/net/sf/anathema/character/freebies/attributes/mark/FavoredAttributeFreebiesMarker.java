@@ -2,10 +2,11 @@ package net.sf.anathema.character.freebies.attributes.mark;
 
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.resource.IModelMarker;
 import net.sf.anathema.character.freebies.attributes.FavoredAttributeFreebiesHandler;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
-import net.sf.anathema.character.freebies.mark.IModelMarker;
 
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.osgi.util.NLS;
 
 public class FavoredAttributeFreebiesMarker implements IModelMarker {
@@ -30,7 +31,7 @@ public class FavoredAttributeFreebiesMarker implements IModelMarker {
   }
 
   @Override
-  public boolean isActive() {
+  public boolean isActive(IMarker[] markers) {
     int credit = manager.getCredit(characterId, handler.getCreditId());
     return credit > handler.getPoints(characterId, credit);
   }

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.freebies.mark;
+package net.sf.anathema.character.core.resource;
 
 import net.disy.commons.core.model.IChangeableModel;
 import net.disy.commons.core.model.listener.IChangeListener;
@@ -6,10 +6,8 @@ import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.eclipse.resource.IMarkerHandle;
 import net.sf.anathema.basics.repository.problems.MarkerProblem;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
+import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
-import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
-import net.sf.anathema.character.core.resource.CharacterModelEditorOpener;
-import net.sf.anathema.character.freebies.plugin.ICharacterFreebiesPluginConstants;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.core.resources.IContainer;
@@ -43,16 +41,18 @@ public class ResourceModelMarker implements IDisposable {
     if (!markerHandle.exists()) {
       return;
     }
-    boolean warning = modelMarker.isActive();
     try {
-      if (warning) {
-        IMarker[] markers = markerHandle.findMarkers(modelMarker.getMarkerId(), true, IResource.DEPTH_ZERO);
+      IMarker[] markers = markerHandle.findMarkers(modelMarker.getMarkerId(), true, IResource.DEPTH_ZERO);
+      if (modelMarker.isActive(markers)) {
         if (markers.length == 0) {
           IMarker marker = markerHandle.createMarker(modelMarker.getMarkerId());
-          marker.setAttributes(new String[] {
-              MarkerProblem.ATTRIB_DESCRIPTION,
-              MarkerProblem.ATTRIB_PATH,
-              MarkerProblem.ATTRIB_SOURCE_OPENER }, getMarkerAttributes());
+          IResource resource = (IResource) markerHandle.getAdapter(IResource.class);
+          marker.setAttributes(
+              new String[] {
+                  MarkerProblem.ATTRIB_DESCRIPTION,
+                  MarkerProblem.ATTRIB_PATH,
+                  MarkerProblem.ATTRIB_SOURCE_OPENER },
+              getMarkerAttributes(resource));
         }
       }
       else {
@@ -60,12 +60,11 @@ public class ResourceModelMarker implements IDisposable {
       }
     }
     catch (CoreException e) {
-      new Logger(ICharacterFreebiesPluginConstants.PLUGIN_ID).error(Messages.ResourceModelMarker_ErrorWhileMarking, e);
+      new Logger(CharacterCorePlugin.ID).error(Messages.ResourceModelMarker_ErrorWhileMarking, e);
     }
   }
 
-  private Object[] getMarkerAttributes() {
-    IResource resource = (IResource) markerHandle.getAdapter(IResource.class);
+  private Object[] getMarkerAttributes(IResource resource) {
     IContainer container = resource.getParent();
     String displayName = new ModelExtensionPoint().getDisplayConfiguration(resource).getDisplayName();
     CharacterDisplayNameProvider characterNameProvider = new CharacterDisplayNameProvider(container);

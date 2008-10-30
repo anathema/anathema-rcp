@@ -9,11 +9,11 @@ import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.mark.IModelMarker;
+import net.sf.anathema.character.core.resource.ResourceModelMarker;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.IAttributeCreditCollection;
 import net.sf.anathema.character.freebies.attributes.calculation.AttributePointCalculator.Priority;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
-import net.sf.anathema.character.freebies.mark.ResourceModelMarker;
 
 public class AttributesMarker extends AbstractExecutableExtension implements IModelMarker {
 
