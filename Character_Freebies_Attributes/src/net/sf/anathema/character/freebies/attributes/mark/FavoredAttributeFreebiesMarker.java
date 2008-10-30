@@ -37,7 +37,7 @@ public class FavoredAttributeFreebiesMarker implements IModelMarker {
   }
 
   @Override
-  public String getDescription(String characterName) {
+  public String getDescription(String modelName, String characterName) {
     return NLS.bind(Messages.FavoredAttributeFreebiesMarker_UnspentFreebies, characterName);
   }
 

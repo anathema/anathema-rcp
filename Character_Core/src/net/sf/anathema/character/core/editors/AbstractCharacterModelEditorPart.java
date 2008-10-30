@@ -1,8 +1,9 @@
 package net.sf.anathema.character.core.editors;
 
+import net.sf.anathema.basics.eclipse.resource.ResourceMarkerHandle;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.character.core.character.IModel;
-import net.sf.anathema.character.core.problem.UneditedModelMarker;
+import net.sf.anathema.character.core.resource.ResourceModelMarker;
 
 import org.eclipse.core.resources.IResource;
 
@@ -16,7 +17,7 @@ public abstract class AbstractCharacterModelEditorPart<M extends IModel> extends
       @Override
       public void run() {
         runnable.run();
-        new UneditedModelMarker(modelResource).update();
+        new ResourceModelMarker(null, new ResourceMarkerHandle(modelResource), new UneditedModelMarker()).markFile();
       }
     };
   }

@@ -37,7 +37,7 @@ public class FavoredAttributePicksMarker implements IModelMarker {
   }
 
   @Override
-  public String getDescription(String characterName) {
+  public String getDescription(String modelName, String characterName) {
     return NLS.bind(Messages.FavoredAttributePicksMarker_UnspentPicks, characterName);
   }
 }

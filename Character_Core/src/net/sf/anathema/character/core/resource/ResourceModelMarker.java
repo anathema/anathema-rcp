@@ -37,7 +37,7 @@ public class ResourceModelMarker implements IDisposable {
     markFile();
   }
 
-  private void markFile() {
+  public void markFile() {
     if (!markerHandle.exists()) {
       return;
     }
@@ -70,7 +70,7 @@ public class ResourceModelMarker implements IDisposable {
     CharacterDisplayNameProvider characterNameProvider = new CharacterDisplayNameProvider(container);
     String modelName = new ModelDisplayNameProvider(displayName, characterNameProvider).getDisplayName();
     return new Object[] {
-        modelMarker.getDescription(characterNameProvider.getDisplayName()),
+        modelMarker.getDescription(displayName, characterNameProvider.getDisplayName()),
         modelName,
         CharacterModelEditorOpener.ID };
   }

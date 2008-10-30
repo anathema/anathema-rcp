@@ -46,7 +46,7 @@ public class AttributeGroupModelMarker implements IModelMarker {
   }
 
   @Override
-  public String getDescription(String characterName) {
+  public String getDescription(String modelName, String characterName) {
     return NLS.bind(messageFormatByGroup.get(priorityGroup), characterName);
   }
 }

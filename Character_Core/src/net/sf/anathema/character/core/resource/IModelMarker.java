@@ -8,5 +8,5 @@ public interface IModelMarker {
 
   public boolean isActive(IMarker[] markers);
 
-  public String getDescription(String characterName);
+  public String getDescription(String modelName, String characterName);
 }
