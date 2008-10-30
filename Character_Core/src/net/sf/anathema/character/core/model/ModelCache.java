@@ -57,8 +57,9 @@ public class ModelCache implements IModelCache {
       final IModel newModel = initializer.getModel();
       model = newModel;
       if (model != null) {
-        //IChangeListener changeListener = new ModelChangeDelegate(changeProcessor, newModel, identifier);
-        //disposableByIdentifer.put(identifier, new ChangeableModelDisposable(newModel, changeListener));
+        dispose(identifier);
+        IChangeListener changeListener = new ModelChangeDelegate(changeProcessor, newModel, identifier);
+        disposableByIdentifer.put(identifier, new ChangeableModelDisposable(newModel, changeListener));
         storeModel(identifier, model);
         initializer.initialize();
         loadDependencies(identifier, model);
@@ -93,6 +94,15 @@ public class ModelCache implements IModelCache {
   private void removeFromCache(IModel item, IModelIdentifier modelIdentifier) {
     identifiersByModel.remove(item);
     modelsByIdentifier.remove(modelIdentifier);
+    dispose(modelIdentifier);
+  }
+
+  private void dispose(IModelIdentifier modelIdentifier) {
+    IDisposable disposable = disposableByIdentifer.get(modelIdentifier);
+    if (disposable != null) {
+      disposable.dispose();
+    }
+    disposableByIdentifer.remove(modelIdentifier);
   }
 
   @Override
