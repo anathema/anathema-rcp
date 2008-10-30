@@ -74,5 +74,15 @@
                modelId="net.sf.anathema.character.abilities.model">
          </modelReference></modelList>
    </extension>
+   <extension
+         id="net.sf.anathema.character.uneditedmodel.marker"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="net.sf.anathema.markers.view.element">
+      </super>
+   </extension>
 
 </plugin>

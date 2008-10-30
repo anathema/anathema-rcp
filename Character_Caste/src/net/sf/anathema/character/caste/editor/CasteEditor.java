@@ -2,10 +2,10 @@ package net.sf.anathema.character.caste.editor;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
-import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
+import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
 
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IContentProvider;
@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class CasteEditor extends AbstractPersistableItemEditorPart<ICasteModel> {
+public class CasteEditor extends AbstractCharacterModelEditorPart<ICasteModel> {
 
   private static final class CasteLabelProvider extends LabelProvider {
     @Override

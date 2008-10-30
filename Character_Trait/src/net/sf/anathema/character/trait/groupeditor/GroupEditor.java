@@ -3,13 +3,13 @@ package net.sf.anathema.character.trait.groupeditor;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.resource.ResourceChangeListenerDisposable;
-import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
-import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
 import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
 import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.groupeditor.subtrait.SubtraitContainer;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
@@ -36,7 +36,7 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 
-public class GroupEditor extends AbstractPersistableItemEditorPart<IItem> {
+public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollectionModel> {
 
   private final ClassedProvider<ITraitGroupEditorDecoration> decorations = new ClassedProvider<ITraitGroupEditorDecoration>();
   private Composite sectionContent;
