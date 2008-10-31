@@ -8,7 +8,7 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CharmModel_Test {
+public class CharmModel_EmptyTest {
 
   private static final String CHARM_ID = "heaven"; //$NON-NLS-1$
   private CharmModel charmModel;
@@ -24,27 +24,20 @@ public class CharmModel_Test {
   }
 
   @Test
-  public void charmIsNotLearned() throws Exception {
-    assertThat(charmModel.isLearned(CHARM_ID), is(false));
+  public void hasNotLearnedCharmOnCreation() throws Exception {
+    assertThat(charmModel.isCreationLearned(CHARM_ID), is(false));
   }
 
   @Test
   public void learnsUnknownCharmOnToggleLearned() throws Exception {
-    charmModel.toggleLearned(CHARM_ID);
-    assertThat(charmModel.isLearned(CHARM_ID), is(true));
-  }
-
-  @Test
-  public void forgetsKnownCharmOnToggleLearned() throws Exception {
-    charmModel.toggleLearned(CHARM_ID);
-    charmModel.toggleLearned(CHARM_ID);
-    assertThat(charmModel.isLearned(CHARM_ID), is(false));
+    charmModel.toggleCreationLearned(CHARM_ID);
+    assertThat(charmModel.isCreationLearned(CHARM_ID), is(true));
   }
 
   @Test
   public void dirtiesOnLearningCharm() throws Exception {
     charmModel.setClean();
-    charmModel.toggleLearned(CHARM_ID);
+    charmModel.toggleCreationLearned(CHARM_ID);
     assertThat(charmModel.isDirty(), is(true));
   }
 
@@ -54,7 +47,7 @@ public class CharmModel_Test {
     listener.stateChanged();
     replay(listener);
     charmModel.addChangeListener(listener);
-    charmModel.toggleLearned(CHARM_ID);
+    charmModel.toggleCreationLearned(CHARM_ID);
     verify(listener);
   }
 
@@ -64,7 +57,7 @@ public class CharmModel_Test {
     replay(listener);
     charmModel.addChangeListener(listener);
     charmModel.removeChangeListener(listener);
-    charmModel.toggleLearned(CHARM_ID);
+    charmModel.toggleCreationLearned(CHARM_ID);
     verify(listener);
   }
 }

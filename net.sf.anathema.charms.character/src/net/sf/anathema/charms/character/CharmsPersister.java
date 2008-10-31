@@ -43,7 +43,7 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
   public ICharmModel load(Document document, NullModelTemplate template) throws PersistenceException {
     CharmModel charmModel = new CharmModel();
     for (Element charmElement : ElementUtilities.elements(document.getRootElement())) {
-      charmModel.toggleLearned(charmElement.element(TAG_ID).getText());
+      charmModel.toggleCreationLearned(charmElement.element(TAG_ID).getText());
     }
     return charmModel;
   }
@@ -52,7 +52,7 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
   public void save(OutputStream stream, ICharmModel item) throws IOException, PersistenceException {
     Document document = documentFactory.createInstance();
     Element rootElement = document.getRootElement();
-    for (String charmId : item.getLearnedCharms()) {
+    for (String charmId : item.getCreationLearnedCharms()) {
       Element charmElement = rootElement.addElement(TAG_CHARM);
       charmElement.addElement(TAG_ID).addText(charmId);
     }

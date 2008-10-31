@@ -10,7 +10,8 @@ import net.sf.anathema.lib.control.change.ChangeControl;
 public class CharmModel extends AbstractModel implements ICharmModel {
 
   public static final String ID = "net.sf.anathema.charms.character.modelId"; //$NON-NLS-1$
-  private final List<String> learnedCharms = new ArrayList<String>();
+  private final List<String> creationLearnedCharms = new ArrayList<String>();
+  private final List<String> experienceLearnedCharms = new ArrayList<String>();
   private final ChangeControl changeControl = new ChangeControl();
 
   @Override
@@ -25,22 +26,47 @@ public class CharmModel extends AbstractModel implements ICharmModel {
 
   @Override
   public boolean isLearned(String charmId) {
-    return learnedCharms.contains(charmId);
+    return creationLearnedCharms.contains(charmId) || experienceLearnedCharms.contains(charmId);
   }
 
   @Override
-  public void toggleLearned(String charmId) {
-    if (learnedCharms.contains(charmId)) {
-      learnedCharms.remove(charmId);
+  public boolean isCreationLearned(String charmId) {
+    return creationLearnedCharms.contains(charmId);
+  }
+
+  @Override
+  public boolean isExperienceLearned(String charmId) {
+    return isLearned(charmId)&& !isCreationLearned(charmId);
+  }
+
+  @Override
+  public Iterable<String> getCreationLearnedCharms() {
+    return creationLearnedCharms;
+  }
+
+  @Override
+  public Iterable<String> getExperienceLearnedCharms() {
+    return creationLearnedCharms;
+  }
+
+  @Override
+  public void toggleCreationLearned(String charmId) {
+    toggleLearned(charmId, creationLearnedCharms);
+  }
+
+  @Override
+  public void toggleExperiencedLearned(String charmId) {
+    toggleLearned(charmId, experienceLearnedCharms);
+  }
+
+  private void toggleLearned(String charmId, List<String> charmList) {
+    if (charmList.contains(charmId)) {
+      charmList.remove(charmId);
     }
     else {
-      learnedCharms.add(charmId);
+      charmList.add(charmId);
     }
     setDirty(true);
     changeControl.fireChangedEvent();
-  }
-  
-  public Iterable<String> getLearnedCharms() {
-    return learnedCharms;
   }
 }

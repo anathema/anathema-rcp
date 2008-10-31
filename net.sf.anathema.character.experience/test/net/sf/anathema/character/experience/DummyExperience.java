@@ -6,7 +6,15 @@ import net.sf.anathema.lib.control.change.ChangeControl;
 
 public class DummyExperience extends AbstractModel implements IExperience {
   private boolean experienced;
-  private ChangeControl control = new ChangeControl();
+  private final ChangeControl control = new ChangeControl();
+
+  public DummyExperience() {
+    this(false);
+  }
+
+  public DummyExperience(boolean experience) {
+    experienced = experience;
+  }
 
   @Override
   public boolean isExperienced() {
@@ -19,7 +27,7 @@ public class DummyExperience extends AbstractModel implements IExperience {
       return;
     }
     this.experienced = experienced;
-    this.control.fireChangedEvent();
+    control.fireChangedEvent();
   }
 
   @Override

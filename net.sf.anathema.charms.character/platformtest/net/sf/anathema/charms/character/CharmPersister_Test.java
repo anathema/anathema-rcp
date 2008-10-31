@@ -29,15 +29,15 @@ public class CharmPersister_Test {
   public void reloadsEmptyModel() throws Exception {
     ICharmModel model = new CharmModel();
     ICharmModel loadedModel = saveAndLoad(model);
-    assertThat(loadedModel.getLearnedCharms().iterator().hasNext(), is(false));
+    assertThat(loadedModel.getCreationLearnedCharms().iterator().hasNext(), is(false));
   }
 
   @Test
   public void reloadsModelWithOneLearnedCharm() throws Exception {
     ICharmModel model = new CharmModel();
-    model.toggleLearned("myCharm"); //$NON-NLS-1$
+    model.toggleCreationLearned("myCharm"); //$NON-NLS-1$
     ICharmModel loadedModel = saveAndLoad(model);
-    assertThat(loadedModel.getLearnedCharms(), JUnitMatchers.hasItem("myCharm")); //$NON-NLS-1$
+    assertThat(loadedModel.getCreationLearnedCharms(), JUnitMatchers.hasItem("myCharm")); //$NON-NLS-1$
   }
 
   private ICharmModel saveAndLoad(ICharmModel model) throws IOException, PersistenceException {
