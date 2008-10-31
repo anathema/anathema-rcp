@@ -42,9 +42,14 @@
    <extension
          point="net.sf.anathema.character.points.configurations">
       <experiencePointCalculator
-            configurationId="charmExperienceCosts"
+            groupReference="charmCosts"
             handlerClass="net.sf.anathema.charms.character.points.ExperienceHandler">
       </experiencePointCalculator>
+      <pointGroup
+            groupId="charmCosts"
+            modelId="net.sf.anathema.charms.character.modelId"
+            name="Charms">
+      </pointGroup>
    </extension>
 
 </plugin>

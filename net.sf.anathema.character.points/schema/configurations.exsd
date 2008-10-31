@@ -11,6 +11,11 @@
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
             <element ref="experiencePointCalculator" minOccurs="0" maxOccurs="unbounded"/>
@@ -92,6 +97,13 @@
             </annotation>
          </attribute>
          <attribute name="configurationId" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="groupReference" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -190,7 +202,6 @@
          [Enter API information here.]
       </documentation>
    </annotation>
-
 
    <annotation>
       <appinfo>
