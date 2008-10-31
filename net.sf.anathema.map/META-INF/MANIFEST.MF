@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name.Map
-Bundle-SymbolicName: Map;singleton:=true
+Bundle-SymbolicName: net.sf.anathema.map;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.lib
