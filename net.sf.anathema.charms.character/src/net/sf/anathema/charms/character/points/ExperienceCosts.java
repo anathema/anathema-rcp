@@ -10,7 +10,7 @@ public class ExperienceCosts implements IExperienceCosts {
     this.characterId = characterId;
   }
 
-  public int getCosts(boolean favored) {
-    return 2;
+  public int getCosts(boolean cheap) {
+    return cheap ? 8 : 10;
   }
 }

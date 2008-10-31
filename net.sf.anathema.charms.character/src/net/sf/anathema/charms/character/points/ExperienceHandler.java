@@ -1,5 +1,6 @@
 package net.sf.anathema.charms.character.points;
 
+import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -26,10 +27,11 @@ public class ExperienceHandler extends AbstractExecutableExtension implements IP
     ICharmModel charmModel = (ICharmModel) modelCollection.getModel(charmIdentifier);
     int experiencePoints = 0;
     IExperienceCosts costs = new ExperienceCosts(characterId);
-    IFavorizationProvider favorizationProvider = new FavorizationProvider(characterId, modelCollection);
+    IPredicate<String> cheapPredicate = CheapCharmPredicate.create(characterId, modelCollection);
     for (String charmId : charmModel.getExperienceLearnedCharms()) {
       if (!charmModel.isCreationLearned(charmId)) {
-        experiencePoints += costs.getCosts(favorizationProvider.isFavored(charmId));
+        boolean cheap = cheapPredicate.evaluate(charmId);
+        experiencePoints += costs.getCosts(cheap);
       }
     }
     return experiencePoints;

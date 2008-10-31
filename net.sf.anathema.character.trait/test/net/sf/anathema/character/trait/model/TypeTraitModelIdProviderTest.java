@@ -5,23 +5,23 @@ import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
-import net.sf.anathema.character.trait.model.CasteTraitModelIdProvider;
+import net.sf.anathema.character.trait.model.TypeTraitModelIdProvider;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class CasteTraitModelIdProviderTest {
+public class TypeTraitModelIdProviderTest {
 
   private static final String MODEL_ID = "trait.model.id"; //$NON-NLS-1$
   private static final String CHARACTER_TYPE = "character.type"; //$NON-NLS-1$
-  private CasteTraitModelIdProvider provider;
+  private TypeTraitModelIdProvider provider;
 
   @Before
   public void createProvider() throws ExtensionException {
     IExtensionElement element = createExtensionElementWithAttributes(
         new MockStringAttribute("characterType", CHARACTER_TYPE), //$NON-NLS-1$
         new MockStringAttribute("modelId", MODEL_ID)); //$NON-NLS-1$
-    provider = new CasteTraitModelIdProvider(createPluginExtension(element));
+    provider = new TypeTraitModelIdProvider(createPluginExtension(element));
   }
 
   @Test

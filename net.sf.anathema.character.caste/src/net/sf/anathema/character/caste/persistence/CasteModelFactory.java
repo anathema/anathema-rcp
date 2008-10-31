@@ -9,7 +9,7 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelInitializer;
 import net.sf.anathema.character.core.model.IModelPersister;
-import net.sf.anathema.character.trait.model.CasteTraitModelIdProvider;
+import net.sf.anathema.character.trait.model.TypeTraitModelIdProvider;
 import net.sf.anathema.character.trait.model.ITraitModelIdProvider;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -21,7 +21,7 @@ public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICast
   private final ITraitModelIdProvider traitModelIdProvider;
 
   public CasteModelFactory() {
-    this(new CasteCollection(), new CasteTraitModelIdProvider());
+    this(new CasteCollection(), new TypeTraitModelIdProvider());
   }
 
   public CasteModelFactory(ICasteCollection provider, ITraitModelIdProvider traitModelIdProvider) {

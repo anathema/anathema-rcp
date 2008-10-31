@@ -5,18 +5,18 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
-public class CasteTraitModelIdProvider implements ITraitModelIdProvider {
+public class TypeTraitModelIdProvider implements ITraitModelIdProvider {
 
   private static final String ATTRIB_MODEL_ID = "modelId"; //$NON-NLS-1$
   private static final String ATTRIB_CHARACTER_TYPE = "characterType"; //$NON-NLS-1$
   private static final String POINT_ID = "traitmodels"; //$NON-NLS-1$
   private final IPluginExtension[] pluginExtensions;
 
-  public CasteTraitModelIdProvider() {
+  public TypeTraitModelIdProvider() {
     this(new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, POINT_ID).getExtensions());
   }
 
-  public CasteTraitModelIdProvider(IPluginExtension ... pluginExtensions) {
+  public TypeTraitModelIdProvider(IPluginExtension ... pluginExtensions) {
     this.pluginExtensions = pluginExtensions;
   }
 
