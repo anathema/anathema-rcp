@@ -9,4 +9,5 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.repository;bundle-version="1.0.0",
  net.sf.anathema.charms;bundle-version="1.0.0",
  net.sf.anathema.basics.jface;bundle-version="1.0.0",
- net.sf.anathema.character.experience;bundle-version="1.0.0"
+ net.sf.anathema.character.experience;bundle-version="1.0.0",
+ net.sf.anathema.character.points

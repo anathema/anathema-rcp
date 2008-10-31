@@ -39,5 +39,12 @@
             id="net.sf.anathema.charms.character.model.persistablefactory">
       </factory>
    </extension>
+   <extension
+         point="net.sf.anathema.character.points.configurations">
+      <experiencePointCalculator
+            configurationId="charmExperienceCosts"
+            handlerClass="net.sf.anathema.charms.character.points.ExperienceHandler">
+      </experiencePointCalculator>
+   </extension>
 
 </plugin>
