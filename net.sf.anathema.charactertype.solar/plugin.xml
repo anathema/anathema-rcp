@@ -119,9 +119,6 @@
             templateId="net.sf.anathema.character.template.defaultsolar"
             name="%template.defaultsolar.name">
          <modelList
-               modelListId="net.sf.anathema.character.basic.modelList">
-         </modelList>
-         <modelList
                modelListId="net.sf.anathema.character.essenceUser.modelList">
          </modelList>
       </template>
@@ -326,15 +323,6 @@
             id="net.sf.anathema.character.template.defaultsolar.newwizard"
             name="%new.wizard.character.template.defaultsolar">
       </wizard>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.modellists">
-      <modelList
-            id="net.sf.anathema.character.essenceUser.modelList">
-         <modelReference
-               modelId="net.sf.anathema.charms.character.modelId">
-         </modelReference>
-      </modelList>
    </extension>
 
 </plugin>
