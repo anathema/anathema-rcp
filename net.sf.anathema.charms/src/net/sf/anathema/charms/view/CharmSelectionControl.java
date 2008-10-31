@@ -1,8 +1,11 @@
 package net.sf.anathema.charms.view;
 
+import net.disy.commons.core.model.IChangeableModel;
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.model.listener.ListenerList;
 import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
+import net.sf.anathema.lib.ui.ChangeableModelDisposable;
 
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -13,9 +16,11 @@ import org.eclipse.zest.core.widgets.GraphNode;
 public class CharmSelectionControl extends AggregatedDisposable implements ICharmSelectionControl {
   private final ICharmVisuals charmVisuals;
   private final ListenerList<ICharmSelectionListener> selectionListeners = new ListenerList<ICharmSelectionListener>();
+  private final IChangeableModel[] models;
 
-  public CharmSelectionControl(ICharmVisuals charmVisuals) {
+  public CharmSelectionControl(ICharmVisuals charmVisuals, IChangeableModel[] models) {
     this.charmVisuals = charmVisuals;
+    this.models = models;
     addDisposable(charmVisuals);
   }
 
@@ -35,8 +40,18 @@ public class CharmSelectionControl extends AggregatedDisposable implements IChar
         updateVisuals(viewer, idExtractor);
       }
     };
+    final IChangeListener changeListener = new IChangeListener() {
+      @Override
+      public void stateChanged() {
+        updateVisuals(viewer, idExtractor);
+      }
+    };
     updateVisuals(viewer, idExtractor);
     viewer.addSelectionChangedListener(selectionListener);
+    for (IChangeableModel model : models) {
+      model.addChangeListener(changeListener);
+      addDisposable(new ChangeableModelDisposable(model, changeListener));
+    }
     addDisposable(new SelectionListenerDisposable(selectionListener, viewer));
   }
 

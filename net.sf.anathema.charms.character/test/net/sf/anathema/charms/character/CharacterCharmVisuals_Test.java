@@ -23,14 +23,14 @@ public class CharacterCharmVisuals_Test {
 
   @Test
   public void learnesCharmOnSelection() throws Exception {
-    charmSelectionControl.control.forAllDo(new CharmSelectionNotificationClosure("selectedCharm"));
-    assertThat(charmModel.isCreationLearned("selectedCharm"), is(true));
+    charmSelectionControl.control.forAllDo(new CharmSelectionNotificationClosure("selectedCharm")); //$NON-NLS-1$
+    assertThat(charmModel.isCreationLearned("selectedCharm"), is(true)); //$NON-NLS-1$
   }
 
   @Test
   public void removesListenerOnDispose() throws Exception {
     visuals.dispose();
-    charmSelectionControl.control.forAllDo(new CharmSelectionNotificationClosure("selectedCharm"));
-    assertThat(charmModel.isCreationLearned("selectedCharm"), is(false));
+    charmSelectionControl.control.forAllDo(new CharmSelectionNotificationClosure("selectedCharm")); //$NON-NLS-1$
+    assertThat(charmModel.isCreationLearned("selectedCharm"), is(false)); //$NON-NLS-1$
   }
 }

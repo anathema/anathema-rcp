@@ -1,5 +1,6 @@
 package net.sf.anathema.charms.view;
 
+import net.disy.commons.core.model.IChangeableModel;
 import net.sf.anathema.charms.data.CharmContentProvider;
 import net.sf.anathema.charms.data.CharmDataProvider;
 
@@ -17,9 +18,9 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
     this(new StandaloneCharmVisuals(), "Solar: Stealth");
   }
 
-  public ZestView(ICharmVisuals charmVisuals, String treeId) {
+  public ZestView(ICharmVisuals charmVisuals, String treeId, IChangeableModel... models) {
     this.treeId = treeId;
-    selectionControl = new CharmSelectionControl(charmVisuals);
+    selectionControl = new CharmSelectionControl(charmVisuals, models);
   }
 
   @Override

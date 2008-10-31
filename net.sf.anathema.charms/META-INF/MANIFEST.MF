@@ -10,7 +10,10 @@ Require-Bundle: org.eclipse.zest.core;bundle-version="1.0.0",
  org.junit4,
  net.sf.anathema.basics.jface;bundle-version="1.0.0",
  net.sf.anathema.basics.eclipse;bundle-version="1.0.0",
- net.sf.anathema.basics.lib;bundle-version="1.0.0"
+ net.sf.anathema.basics.lib;bundle-version="1.0.0",
+ net.sf.anathema.character.experience;bundle-version="1.0.0",
+ net.sf.anathema.character.core;bundle-version="1.0.0",
+ net.sf.anathema.basics.item;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.charms.tree,
  net.sf.anathema.charms.view
 Bundle-ClassPath: lib/graphlayout.jar,

@@ -44,7 +44,7 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
   }
 
   private boolean isLearned(String charmId) {
-    return charmModel.isLearned(charmId);
+    return experience.isExperienced() ? charmModel.isLearned(charmId) : charmModel.isCreationLearned(charmId);
   }
 
   private synchronized Color getLearnedColor(Display display) {
