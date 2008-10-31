@@ -1,4 +1,6 @@
-package net.sf.anathema.character.caste.persistence;
+package net.sf.anathema.character.trait.model;
+
+import net.sf.anathema.character.trait.model.ITraitModelIdProvider;
 
 public class NullTraitModelIdProvider implements ITraitModelIdProvider {
 

@@ -6,6 +6,7 @@ import net.sf.anathema.character.caste.fake.DummyCaste;
 import net.sf.anathema.character.caste.model.CasteModel;
 import net.sf.anathema.character.caste.model.CasteTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.trait.model.NullTraitModelIdProvider;
 
 import org.easymock.EasyMock;
 import org.junit.Test;

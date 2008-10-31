@@ -8,6 +8,7 @@ import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.model.ITraitCollectionProvider;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public final class CasteStatusUpdater implements IChangeListener {

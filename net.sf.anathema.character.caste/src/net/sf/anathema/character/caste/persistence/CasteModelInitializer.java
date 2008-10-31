@@ -3,11 +3,12 @@ package net.sf.anathema.character.caste.persistence;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.trait.CasteStatusUpdater;
-import net.sf.anathema.character.caste.trait.ITraitCollectionProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.model.ModelInitializer;
+import net.sf.anathema.character.trait.model.ITraitCollectionProvider;
+import net.sf.anathema.character.trait.model.TraitCollectionProvider;
 
 public final class CasteModelInitializer extends ModelInitializer {
 

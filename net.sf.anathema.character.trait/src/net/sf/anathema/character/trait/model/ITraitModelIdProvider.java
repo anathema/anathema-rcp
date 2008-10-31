@@ -1,4 +1,4 @@
-package net.sf.anathema.character.caste.persistence;
+package net.sf.anathema.character.trait.model;
 
 public interface ITraitModelIdProvider {
 

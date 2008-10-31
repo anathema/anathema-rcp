@@ -2,7 +2,6 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension-point id="castes" name="%extension-point.name.castes" schema="schema/castes.exsd"/>
-   <extension-point id="traitmodels" name="%extension-point.name.traitmodels" schema="schema/traitmodels.exsd"/>
    <extension
          point="net.sf.anathema.character.core.models">
       <model

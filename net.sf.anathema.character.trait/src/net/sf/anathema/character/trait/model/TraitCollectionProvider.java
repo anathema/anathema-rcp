@@ -1,6 +1,5 @@
-package net.sf.anathema.character.caste.persistence;
+package net.sf.anathema.character.trait.model;
 
-import net.sf.anathema.character.caste.trait.ITraitCollectionProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;

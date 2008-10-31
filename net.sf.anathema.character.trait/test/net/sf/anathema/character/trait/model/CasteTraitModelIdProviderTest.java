@@ -1,10 +1,11 @@
-package net.sf.anathema.character.caste.persistence;
+package net.sf.anathema.character.trait.model;
 
 import static net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
+import net.sf.anathema.character.trait.model.CasteTraitModelIdProvider;
 
 import org.junit.Before;
 import org.junit.Test;

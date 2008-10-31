@@ -1,9 +1,9 @@
-package net.sf.anathema.character.caste.persistence;
+package net.sf.anathema.character.trait.model;
 
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.caste.plugin.ICastePluginConstants;
+import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 
 public class CasteTraitModelIdProvider implements ITraitModelIdProvider {
 
@@ -13,7 +13,7 @@ public class CasteTraitModelIdProvider implements ITraitModelIdProvider {
   private final IPluginExtension[] pluginExtensions;
 
   public CasteTraitModelIdProvider() {
-    this(new EclipseExtensionPoint(ICastePluginConstants.PLUGIN_ID, POINT_ID).getExtensions());
+    this(new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, POINT_ID).getExtensions());
   }
 
   public CasteTraitModelIdProvider(IPluginExtension ... pluginExtensions) {

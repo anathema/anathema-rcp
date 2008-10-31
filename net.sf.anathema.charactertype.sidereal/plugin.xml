@@ -103,7 +103,7 @@
       </casteList>
    </extension>
    <extension
-         point="net.sf.anathema.character.caste.traitmodels">
+         point="net.sf.anathema.character.trait.traitmodels">
       <traitmodel
             characterType="net.sf.anathema.character.type.sidereal"
             modelId="net.sf.anathema.character.abilities.model">

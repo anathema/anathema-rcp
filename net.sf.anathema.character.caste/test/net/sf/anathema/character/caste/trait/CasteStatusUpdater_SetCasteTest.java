@@ -11,6 +11,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollection;
+import net.sf.anathema.character.trait.model.ITraitCollectionProvider;
 import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
 

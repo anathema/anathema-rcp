@@ -1,4 +1,4 @@
-package net.sf.anathema.character.caste.persistence;
+package net.sf.anathema.character.trait.model;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
@@ -7,6 +7,7 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.TraitCollection;
+import net.sf.anathema.character.trait.model.TraitCollectionProvider;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Test;

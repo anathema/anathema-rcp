@@ -9,6 +9,8 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelInitializer;
 import net.sf.anathema.character.core.model.IModelPersister;
+import net.sf.anathema.character.trait.model.CasteTraitModelIdProvider;
+import net.sf.anathema.character.trait.model.ITraitModelIdProvider;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
