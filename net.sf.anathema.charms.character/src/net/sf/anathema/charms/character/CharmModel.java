@@ -46,7 +46,7 @@ public class CharmModel extends AbstractModel implements ICharmModel {
 
   @Override
   public Iterable<String> getExperienceLearnedCharms() {
-    return creationLearnedCharms;
+    return experienceLearnedCharms;
   }
 
   @Override
