@@ -1,5 +1,6 @@
 package net.sf.anathema.map.view.gisterm;
 
+import gis.gisterm.gcore.display.DefaultDisplayConfiguration;
 import gis.gisterm.gcore.display.algorithm.MapRasterDisplayContext;
 import gis.gisterm.map.DisplayToolbar;
 import gis.gisterm.map.GisView;
@@ -16,8 +17,6 @@ import java.text.NumberFormat;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import de.disy.cadenza.core.extensions.IExtensionProvider;
-import de.disy.cadenza.core.extensions.NullExtensionProvider;
 import de.disy.gis.gisterm.customization.GisTermCustomizations;
 import de.disy.gis.gisterm.file.open.IMapModelThemeAddContext;
 import de.disy.gis.gisterm.file.open.NullMapModelThemeAddContext;
@@ -34,24 +33,23 @@ public class AnathemaGisView implements IAnathemaGisView {
 
   public IGisView initGisView(IMapModel mapModel) {
     final IMapPersistence persistenceFacade = MapPersistenceFacade.createPlatformlessFacade();
-    final LocatorDataManager locatorDataManager = new LocatorDataManager(
-        null,
-        persistenceFacade,
-        new PlatformlessFeatureLayerBuilderFactory());
+    PlatformlessFeatureLayerBuilderFactory layerBuilderFactory = new PlatformlessFeatureLayerBuilderFactory();
+    final LocatorDataManager locatorDataManager = new LocatorDataManager(null, persistenceFacade, layerBuilderFactory);
     final IMapModelThemeAddContext layerInitializationHandlerRegistry = new NullMapModelThemeAddContext();
     final DisplayToolbar displayToolbar = createDisplayToolbar();
+    final IDisplayContextFactory displayContextFactory = new IDisplayContextFactory() {
+      @Override
+      public IMapDisplayContext create(IMapRasterDisplay display) {
+        return new MapRasterDisplayContext(display, displayToolbar);
+      }
+    };
     gisView = new GisView(
         mapModel,
-        new NullMapViewConfiguration(),
+        new DefaultDisplayConfiguration(),
         locatorDataManager,
         layerInitializationHandlerRegistry,
-        new IDisplayContextFactory() {
-          @Override
-          public IMapDisplayContext create(IMapRasterDisplay display) {
-            return new MapRasterDisplayContext(display, displayToolbar);
-          }
-        },
-        new PlatformlessFeatureLayerBuilderFactory(),
+        displayContextFactory,
+        layerBuilderFactory,
         persistenceFacade);
     displayToolbar.connectWith(gisView);
     content.add(displayToolbar, BorderLayout.NORTH);
