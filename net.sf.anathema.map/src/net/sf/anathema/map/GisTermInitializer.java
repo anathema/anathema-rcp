@@ -14,7 +14,12 @@ import net.sf.anathema.map.view.gisterm.AnathemaLayerPopupFactory;
 
 public class GisTermInitializer {
 
-  public void initialize() {
+  public static boolean initialized = false;
+
+  public synchronized void initialize() {
+    if (initialized) {
+      return;
+    }
     LayerPanel.popupFactory = new AnathemaLayerPopupFactory();
     SmartFileChooser.getInstance().setFileChooserProvider(new DefaultFileChooserProvider());
     ClientQueryHandler.init(20, new IWorkQueueListener() {
@@ -30,5 +35,6 @@ public class GisTermInitializer {
     });
     LayerGraphicsEditStrategyFactoryRegistry.getInstance().addFactory(
         new SketchLayerEditStrategyFactory());
+    initialized = true;
   }
 }

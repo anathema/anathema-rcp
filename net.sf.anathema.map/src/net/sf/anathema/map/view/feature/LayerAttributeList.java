@@ -9,17 +9,17 @@ import de.disy.lib.attribute.AttributeType;
 // NOT_PUBLISHED
 public class LayerAttributeList implements ILayerAttributeList {
 
-  private IColumnAttribute[] columnAttributes;
+  private final IColumnAttribute[] columnAttributes;
 
   public LayerAttributeList() {
-    columnAttributes = new IColumnAttribute[] {
+    columnAttributes = new IColumnAttribute[]{
         new ColumnAttribute("id", "id", AttributeType.INT),
         new ColumnAttribute("name", "name", AttributeType.STRING),
-        new ColumnAttribute("comment", "comment", AttributeType.STRING)};
+        new ColumnAttribute("comment", "comment", AttributeType.STRING) };
   }
 
   public IColumnAttribute[] getAllColumnAttributes() {
-    return new IColumnAttribute[0];
+    return columnAttributes;
   }
 
   public String[] getAdditionalHiddenAttributeNames() {
