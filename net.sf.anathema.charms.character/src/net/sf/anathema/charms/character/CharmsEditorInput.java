@@ -2,8 +2,8 @@ package net.sf.anathema.charms.character;
 
 import java.net.URL;
 
+import net.disy.commons.core.provider.IProvider;
 import net.disy.commons.core.util.ObjectUtilities;
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
@@ -24,11 +24,11 @@ public class CharmsEditorInput extends AbstractCharacterModelEditorInput<ICharmM
     final ILink originalLink = (ILink) getAdapter(ILink.class);
     set(ILink.class, new IProvider<ILink>() {
       @Override
-      public ILink get() {
+      public ILink getObject() {
         return new StringLinkDecorator(originalLink, new IProvider<String>() {
 
           @Override
-          public String get() {
+          public String getObject() {
             return getTreeId();
           }
         });

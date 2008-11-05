@@ -1,9 +1,9 @@
 package net.sf.anathema.character.importwizard.internal;
 
+import net.disy.commons.core.provider.IProvider;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -24,7 +24,7 @@ public class TemplateConverter implements IProvider<String> {
   }
 
   @Override
-  public String get() {
+  public String getObject() {
     Element typeElement = document.getRootElement().element(TAG_STATISTICS).element(TAG_CHARACTER_TYPE);
     String characterType = typeElement.getText();
     String template = typeElement.attributeValue(ATTRIB_SUBTYPE);

@@ -1,7 +1,7 @@
 package net.sf.anathema.charms.character;
 
+import net.disy.commons.core.provider.IProvider;
 import net.disy.commons.core.util.ObjectUtilities;
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.repository.linkage.util.ILink;
 
 public class StringLinkDecorator implements ILink {
@@ -21,7 +21,7 @@ public class StringLinkDecorator implements ILink {
     }
     StringLinkDecorator other = (StringLinkDecorator) obj;
     return ObjectUtilities.equals(original, other.original)
-        && ObjectUtilities.equals(treeIdProvider.get(), other.treeIdProvider.get());
+        && ObjectUtilities.equals(treeIdProvider.getObject(), other.treeIdProvider.getObject());
   }
 
   @Override

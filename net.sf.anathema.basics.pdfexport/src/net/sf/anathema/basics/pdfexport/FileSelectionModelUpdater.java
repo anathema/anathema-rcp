@@ -3,7 +3,7 @@ package net.sf.anathema.basics.pdfexport;
 import java.io.File;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
+import net.disy.commons.core.provider.IProvider;
 import net.sf.anathema.basics.importexport.IFileSelectionModel;
 import net.sf.anathema.basics.swt.file.IDirectoryPreference;
 
@@ -23,7 +23,7 @@ public final class FileSelectionModelUpdater<I> implements IChangeListener {
 
   @Override
   public void stateChanged() {
-    String fileName = fileNameProvider.get();
+    String fileName = fileNameProvider.getObject();
     if (fileName == null) {
       fileSelectionModel.setFile((File) null);
     }

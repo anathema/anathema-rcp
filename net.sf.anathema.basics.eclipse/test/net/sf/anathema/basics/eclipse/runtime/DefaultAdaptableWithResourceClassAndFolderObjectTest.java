@@ -2,6 +2,8 @@ package net.sf.anathema.basics.eclipse.runtime;
 
 import static org.junit.Assert.*;
 
+import net.disy.commons.core.provider.IProvider;
+
 import org.easymock.EasyMock;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -20,7 +22,7 @@ public class DefaultAdaptableWithResourceClassAndFolderObjectTest {
     this.adaptable = new DefaultAdaptable();
     this.adaptable.set(IResource.class, new IProvider<IResource>() {
       @Override
-      public IResource get() {
+      public IResource getObject() {
         return folder;
       }
     });
@@ -51,7 +53,7 @@ public class DefaultAdaptableWithResourceClassAndFolderObjectTest {
     final IFile file = EasyMock.createMock(IFile.class);
     adaptable.set(IFile.class, new IProvider<IFile>() {
       @Override
-      public IFile get() {
+      public IFile getObject() {
         return file;
       }
     });
@@ -63,7 +65,7 @@ public class DefaultAdaptableWithResourceClassAndFolderObjectTest {
     final IFolder otherFolder = EasyMock.createMock(IFolder.class);
     adaptable.set(IFolder.class, new IProvider<IFolder>() {
       @Override
-      public IFolder get() {
+      public IFolder getObject() {
         return otherFolder;
       }
     });

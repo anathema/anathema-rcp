@@ -3,7 +3,7 @@
  */
 package net.sf.anathema.basics.repository.linkage.util;
 
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
+import net.disy.commons.core.provider.IProvider;
 
 import org.eclipse.core.runtime.IAdaptable;
 
@@ -15,7 +15,7 @@ public final class ResourceLinkProvider implements IProvider<ILink> {
   }
 
   @Override
-  public ILink get() {
+  public ILink getObject() {
     return new ResourceLink(adaptable);
   }
 }

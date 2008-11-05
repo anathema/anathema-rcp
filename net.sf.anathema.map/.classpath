@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="lib" path="lib/disy-commons-animated.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/disy-commons-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/disy-commons-animated.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/icons.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/collections-generic.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-collections.jar"/>

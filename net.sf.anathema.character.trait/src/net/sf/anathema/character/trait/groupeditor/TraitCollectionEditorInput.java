@@ -5,6 +5,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.predicate.IPredicate;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -36,6 +37,18 @@ import org.eclipse.core.resources.IFolder;
 
 public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInput<ITraitCollectionModel> implements
     ITraitGroupEditorInput {
+
+  public static final class TraitIdPredicate implements IPredicate<String> {
+    private final IIdentificate traitType;
+
+    public TraitIdPredicate(IIdentificate traitType) {
+      this.traitType = traitType;
+    }
+
+    public boolean evaluate(String arg0) {
+      return traitType.getId().equals(arg0);
+    }
+  }
 
   private final ITraitCollectionContext context;
   private final IFavorizationHandler favorizationHandler;
@@ -116,7 +129,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
 
   public ITraitGroup findTraitGroup(IIdentificate traitType) {
     for (ITraitGroup group : context.getTraitGroups()) {
-      if (ArrayUtilities.contains(group.getTraitIds(), traitType.getId())) {
+      if (ArrayUtilities.contains(group.getTraitIds(), new TraitIdPredicate(traitType))) {
         return group;
       }
     }

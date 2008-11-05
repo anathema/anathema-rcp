@@ -3,7 +3,7 @@ package net.sf.anathema.character.core.model;
 import java.io.IOException;
 import java.net.URL;
 
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
+import net.disy.commons.core.provider.IProvider;
 import net.sf.anathema.basics.jface.FileEditorInput;
 import net.sf.anathema.basics.repository.input.IFileItemEditorInput;
 import net.sf.anathema.basics.repository.input.ItemFileWriter;
@@ -41,7 +41,7 @@ public abstract class AbstractCharacterModelEditorInput<M extends IModel> extend
     set(ILink.class, new ResourceLinkProvider(this));
     set(IModelIdentifier.class, new IProvider<IModelIdentifier>() {
       @Override
-      public IModelIdentifier get() {
+      public IModelIdentifier getObject() {
         return getModelIdentifier();
       }
     });

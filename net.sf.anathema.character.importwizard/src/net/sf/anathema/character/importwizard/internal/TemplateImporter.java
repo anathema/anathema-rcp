@@ -2,8 +2,8 @@ package net.sf.anathema.character.importwizard.internal;
 
 import java.io.IOException;
 
+import net.disy.commons.core.provider.IProvider;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.importwizard.IModelImporter;
 import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPluginConstants;
@@ -18,7 +18,7 @@ public class TemplateImporter extends AbstractExecutableExtension implements IMo
 
   public IStatus runImport(IContainer container, Document document) throws IOException, CoreException {
     IProvider<String> provider = new TemplateConverter(document);
-    if (provider.get() == null) {
+    if (provider.getObject() == null) {
       return new Status(
           IStatus.WARNING,
           CharacterImportWizardPluginConstants.PLUGIN_ID,

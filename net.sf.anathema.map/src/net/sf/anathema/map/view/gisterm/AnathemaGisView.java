@@ -25,6 +25,7 @@ import de.disy.gis.gisterm.map.IMapModel;
 import de.disy.gis.gisterm.persistence.IMapPersistence;
 import de.disy.gis.gisterm.persistence.MapPersistenceFacade;
 import de.disy.gis.gisterm.pro.map.layermanagement.IMapRasterDisplay;
+import de.disy.gisterm.pro.map.popupmenu.IMenuItemFactoryRegistry;
 
 public class AnathemaGisView implements IAnathemaGisView {
 
@@ -45,7 +46,12 @@ public class AnathemaGisView implements IAnathemaGisView {
     };
     gisView = new GisView(
         mapModel,
-        new DefaultDisplayConfiguration(),
+        new DefaultDisplayConfiguration() {
+          @Override
+          public IMenuItemFactoryRegistry getContextMenuItemFactoryRegistry() {
+            return ContextMenuItemFactoryRegistry.create();
+          }
+        },
         locatorDataManager,
         layerInitializationHandlerRegistry,
         displayContextFactory,

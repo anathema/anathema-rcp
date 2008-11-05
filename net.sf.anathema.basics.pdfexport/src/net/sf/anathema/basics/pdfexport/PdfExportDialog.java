@@ -2,8 +2,8 @@ package net.sf.anathema.basics.pdfexport;
 
 import java.io.File;
 
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
-import net.sf.anathema.basics.eclipse.runtime.StaticProvider;
+import net.disy.commons.core.provider.IProvider;
+import net.disy.commons.core.provider.StaticProvider;
 import net.sf.anathema.basics.importexport.IFileDialog;
 import net.sf.anathema.basics.swt.file.FileChoosing;
 
@@ -23,6 +23,6 @@ public class PdfExportDialog implements IFileDialog {
 
   @Override
   public File open(Shell shell) {
-    return FileChoosing.savePdfFile(null, shell, fileNameProvider.get());
+    return FileChoosing.savePdfFile(null, shell, fileNameProvider.getObject());
   }
 }

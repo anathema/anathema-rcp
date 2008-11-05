@@ -2,9 +2,9 @@ package net.sf.anathema.charms.character;
 
 import java.net.URL;
 
+import net.disy.commons.core.provider.StaticProvider;
 import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
-import net.sf.anathema.basics.eclipse.runtime.StaticProvider;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;

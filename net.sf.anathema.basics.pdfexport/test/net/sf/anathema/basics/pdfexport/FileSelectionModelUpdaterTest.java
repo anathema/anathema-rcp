@@ -4,7 +4,7 @@ import static org.easymock.EasyMock.*;
 
 import java.io.File;
 
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
+import net.disy.commons.core.provider.IProvider;
 import net.sf.anathema.basics.importexport.IFileSelectionModel;
 import net.sf.anathema.basics.swt.file.IDirectoryPreference;
 
@@ -29,7 +29,7 @@ public class FileSelectionModelUpdaterTest {
 
   @Test
   public void deselectsFileOnStateChangeForUnknownFileName() throws Exception {
-    expect(nameProvider.get()).andReturn(null).anyTimes();
+    expect(nameProvider.getObject()).andReturn(null).anyTimes();
     replay(nameProvider);
     selectionModel.setFile((File) null);
     replay(selectionModel);
@@ -39,7 +39,7 @@ public class FileSelectionModelUpdaterTest {
 
   @Test
   public void selectsDirectoryCorrectlyNamedChildOnStateChangeForKnownFileName() throws Exception {
-    expect(nameProvider.get()).andReturn("filename").anyTimes(); //$NON-NLS-1$
+    expect(nameProvider.getObject()).andReturn("filename").anyTimes(); //$NON-NLS-1$
     replay(nameProvider);
     selectionModel.setFile(new File(DIRECTORY, "filename.pdf")); //$NON-NLS-1$
     replay(selectionModel);

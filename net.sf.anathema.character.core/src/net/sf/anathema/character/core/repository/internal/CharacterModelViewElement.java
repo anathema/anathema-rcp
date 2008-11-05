@@ -4,9 +4,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.disy.commons.core.provider.IProvider;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
 import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.linkage.util.ResourceLinkProvider;
@@ -47,14 +47,14 @@ public class CharacterModelViewElement implements IConfigurableViewElement {
   private void initAdaptable() {
     adaptable.set(IResource.class, new IProvider<IResource>() {
       @Override
-      public IResource get() {
+      public IResource getObject() {
         return configuration.getModelFile(characterFolder);
       }
     });
     adaptable.set(ILink.class, new ResourceLinkProvider(adaptable));
     adaptable.set(IEditorInputProvider.class, new IProvider<IEditorInputProvider>() {
       @Override
-      public IEditorInputProvider get() {
+      public IEditorInputProvider getObject() {
         return new IEditorInputProvider() {
           @Override
           public IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException {

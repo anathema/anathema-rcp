@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.pdfexport;
 
 import static org.junit.Assert.*;
+
 import net.disy.commons.core.model.ObjectModel;
 import net.sf.anathema.basics.pdfexport.item.DummyExportItem;
 import net.sf.anathema.basics.pdfexport.writer.IExportItem;
@@ -21,12 +22,12 @@ public class ExportPrintNameProviderTest {
 
   @Test
   public void returnsNullForNoSetExportItem() throws Exception {
-    assertNull(provider.get());
+    assertNull(provider.getObject());
   }
 
   @Test
   public void returnsPrintNameOfSetExportItem() throws Exception {
     selectionModel.setValue(new DummyExportItem<Object>("PrintName", new Object())); //$NON-NLS-1$
-    assertEquals("PrintName", provider.get()); //$NON-NLS-1$
+    assertEquals("PrintName", provider.getObject()); //$NON-NLS-1$
   }
 }

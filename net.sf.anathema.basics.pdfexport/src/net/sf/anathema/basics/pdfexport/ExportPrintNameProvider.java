@@ -1,7 +1,7 @@
 package net.sf.anathema.basics.pdfexport;
 
 import net.disy.commons.core.model.ObjectModel;
-import net.sf.anathema.basics.eclipse.runtime.IProvider;
+import net.disy.commons.core.provider.IProvider;
 import net.sf.anathema.basics.pdfexport.writer.IExportItem;
 
 public final class ExportPrintNameProvider<T> implements IProvider<String> {
@@ -12,7 +12,7 @@ public final class ExportPrintNameProvider<T> implements IProvider<String> {
   }
 
   @Override
-  public String get() {
+  public String getObject() {
     IExportItem<T> value = selectedItem.getValue();
     return value == null ? null : value.getPrintName();
   }
