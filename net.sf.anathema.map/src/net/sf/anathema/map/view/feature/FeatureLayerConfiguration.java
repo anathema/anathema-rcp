@@ -3,6 +3,8 @@
  */
 package net.sf.anathema.map.view.feature;
 
+import java.util.HashMap;
+
 import gis.gisterm.map.featurelayer.configuration.IFeatureLayerConfiguration;
 
 public final class FeatureLayerConfiguration implements IFeatureLayerConfiguration {
@@ -12,5 +14,10 @@ public final class FeatureLayerConfiguration implements IFeatureLayerConfigurati
 
   public boolean isScaleLabelsByDefaultEnabled() {
     return false;
+  }
+
+  @Override
+  public HashMap<String, String> getDefaultAttributePrintnames() {
+    return new HashMap<String, String>();
   }
 }

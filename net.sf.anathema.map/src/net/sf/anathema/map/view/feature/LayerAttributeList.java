@@ -1,8 +1,8 @@
 // Copyright (c) 2006 by disy Informationssysteme GmbH
 package net.sf.anathema.map.view.feature;
 
+import de.disy.cadenza.api.result.IColumnAttribute;
 import de.disy.cadenza.core.result.ColumnAttribute;
-import de.disy.cadenza.core.result.IColumnAttribute;
 import de.disy.gis.gisterm.map.layer.feature.attribute.ILayerAttributeList;
 import de.disy.lib.attribute.AttributeType;
 

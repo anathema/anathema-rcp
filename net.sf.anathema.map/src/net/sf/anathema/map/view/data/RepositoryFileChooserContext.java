@@ -1,6 +1,6 @@
 package net.sf.anathema.map.view.data;
 
-import de.disy.cadenza.core.model.ICadenzaModel;
+import de.disy.cadenza.core.model.ISession;
 import de.disy.cadenza.core.navigator.IRawNavigatorTree;
 import de.disy.cadenza.navigator.module.NavigatorNodeInfoFactoryRegistry;
 import de.disy.cadenza.pro.repository.filechooser.IRepositoryFileChooserContext;
@@ -9,7 +9,7 @@ public class RepositoryFileChooserContext implements
 		IRepositoryFileChooserContext {
 
 	@Override
-	public ICadenzaModel getCadenzaModel() {
+	public ISession getCadenzaModel() {
 		return null;
 	}
 

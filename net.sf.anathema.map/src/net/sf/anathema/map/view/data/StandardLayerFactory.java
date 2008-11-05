@@ -7,11 +7,12 @@ import java.io.File;
 
 import net.disy.commons.core.progress.NullProgressMonitor;
 import net.sf.anathema.map.view.feature.AnathemaFeatureLayer;
+
 import de.disy.gis.gisterm.imagecatalog.ImageCatalogQuery;
 import de.disy.gis.gisterm.imagecatalog.layer.IImageCatalogLayerCreationStrategy;
 import de.disy.gis.gisterm.imagecatalog.layer.IImageCatalogProperties;
 import de.disy.gis.gisterm.imagecatalog.layer.ImageCatalogLayerCreationStrategy;
-import de.disy.gis.gisterm.mapdesigner.pro.print.NullCancelable;
+import de.disy.gis.mapdesigner.print.report.NullCancelable;
 import de.disy.tools.imaging.provider.IImageRepresentationReader;
 import de.disy.tools.imaging.provider.SoftCachingImageRepresentationReader;
 
@@ -48,7 +49,7 @@ public class StandardLayerFactory implements IStandardLayerFactory {
     IImageCatalogProperties properties = new XeriarCreationProperties(dbfFile);
     IImageCatalogLayerCreationStrategy layerCreationStrategy = new ImageCatalogLayerCreationStrategy(properties);
     layerCreationStrategy.initialize(new NullProgressMonitor(), new NullCancelable(), imagePresentationReader);
-    ImageCatalogQuery query = new ImageCatalogQuery(layerCreationStrategy);
+    ImageCatalogQuery query = new ImageCatalogQuery(layerCreationStrategy, null);
     catalogLayer.getRasterCatalogLayerDataProvider().setQuery(query);
     catalogLayer.setName(properties.getCatalogName());
     return catalogLayer;

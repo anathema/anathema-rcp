@@ -1,11 +1,14 @@
 package net.sf.anathema.map.view.gisterm;
 
+import gis.gisterm.gcore.display.algorithm.MapRasterDisplayContext;
 import gis.gisterm.map.DisplayToolbar;
 import gis.gisterm.map.GisView;
 import gis.gisterm.map.IGisView;
+import gis.gisterm.map.display.IDisplayContextFactory;
 import gis.gisterm.map.locator.LocatorDataManager;
 import gis.gisterm.moduleobject.DisplayToolbarActionFactoryRegistry;
 import gis.gisterm.moduleobject.IDisplayToolbarActionFactoryProvider;
+import gis.services.debug.modules.PlatformlessFeatureLayerBuilderFactory;
 
 import java.awt.BorderLayout;
 import java.text.NumberFormat;
@@ -18,9 +21,11 @@ import de.disy.cadenza.core.extensions.NullExtensionProvider;
 import de.disy.gis.gisterm.customization.GisTermCustomizations;
 import de.disy.gis.gisterm.file.open.IMapModelThemeAddContext;
 import de.disy.gis.gisterm.file.open.NullMapModelThemeAddContext;
+import de.disy.gis.gisterm.gfx.display.IMapDisplayContext;
 import de.disy.gis.gisterm.map.IMapModel;
 import de.disy.gis.gisterm.persistence.IMapPersistence;
 import de.disy.gis.gisterm.persistence.MapPersistenceFacade;
+import de.disy.gis.gisterm.pro.map.layermanagement.IMapRasterDisplay;
 
 public class AnathemaGisView implements IAnathemaGisView {
 
@@ -29,25 +34,34 @@ public class AnathemaGisView implements IAnathemaGisView {
 
   public IGisView initGisView(IMapModel mapModel) {
     final IMapPersistence persistenceFacade = MapPersistenceFacade.createPlatformlessFacade();
-    final IExtensionProvider extensionProvider = new NullExtensionProvider();
-    final LocatorDataManager locatorDataManager = new LocatorDataManager(null, persistenceFacade);
+    final LocatorDataManager locatorDataManager = new LocatorDataManager(
+        null,
+        persistenceFacade,
+        new PlatformlessFeatureLayerBuilderFactory());
     final IMapModelThemeAddContext layerInitializationHandlerRegistry = new NullMapModelThemeAddContext();
+    final DisplayToolbar displayToolbar = createDisplayToolbar();
     gisView = new GisView(
         mapModel,
         new NullMapViewConfiguration(),
         locatorDataManager,
-        extensionProvider,
-        layerInitializationHandlerRegistry);
-    content.add(createDisplayToolbar(), BorderLayout.NORTH);
+        layerInitializationHandlerRegistry,
+        new IDisplayContextFactory() {
+          @Override
+          public IMapDisplayContext create(IMapRasterDisplay display) {
+            return new MapRasterDisplayContext(display, displayToolbar);
+          }
+        },
+        new PlatformlessFeatureLayerBuilderFactory(),
+        persistenceFacade);
+    displayToolbar.connectWith(gisView);
+    content.add(displayToolbar, BorderLayout.NORTH);
     content.add(gisView.getContent(), BorderLayout.CENTER);
     return gisView;
   }
 
   private DisplayToolbar createDisplayToolbar() {
     IDisplayToolbarActionFactoryProvider actionFactoryProvider = new DisplayToolbarActionFactoryRegistry();
-    DisplayToolbar displayToolbar = new DisplayToolbar(new GisTermCustomizations(), actionFactoryProvider );
-    displayToolbar.connectWith(gisView);
-    return displayToolbar;
+    return new DisplayToolbar(new GisTermCustomizations(), actionFactoryProvider);
   }
 
   public JComponent getComponent() {

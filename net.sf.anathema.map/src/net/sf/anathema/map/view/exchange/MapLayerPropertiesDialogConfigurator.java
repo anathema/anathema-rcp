@@ -1,29 +1,10 @@
 // Copyright (c) 2004 by disy Informationssysteme GmbH
 package net.sf.anathema.map.view.exchange;
 
-import de.disy.cadenza.pro.repository.filechooser.IRepositoryFileChooserContext;
-import de.disy.gis.gisterm.map.layer.raster.IRasterManagerProvider;
-import de.disy.gis.gisterm.map.scale.IScaleRange;
-import de.disy.gis.gisterm.pro.customization.GisTermProCustomizations;
-import de.disy.gis.gisterm.pro.facade.map.layer.properties.ILayerPropertiesPanelFactory;
-import de.disy.gis.gisterm.pro.facade.map.layer.properties.ILayerPropertiesPanelFactoryProvider;
-import de.disy.gisterm.pro.featurelayer.label.FeatureLabelPropertiesPanel;
-import de.disy.gisterm.pro.featurelayer.legend.LegendPropertiesPanel;
-import de.disy.gisterm.pro.layer.dialog.StatisticsComponent;
-import de.disy.gisterm.pro.layer.dialog.panels.PresentationDialogConfiguration;
-import de.disy.gisterm.pro.layer.dialog.panels.PresentationPanel;
-import de.disy.gisterm.pro.layer.dialog.panels.classification.pointsignature.DefaultImagedSignatureEditConfiguration;
-import de.disy.gisterm.pro.layer.dialog.panels.display.FeatureLayerDisplayPropertiesPanel;
-import de.disy.gisterm.pro.layer.dialog.panels.theme.ThemePanel;
-import de.disy.gisterm.pro.layer.dialog.raster.ColorPalettePropertiesPanel;
-
-import net.disy.commons.core.provider.IProvider;
-import net.disy.commons.core.util.Ensure;
-
 import gis.gisterm.GisTerm;
-import gis.gisterm.dialog.IPropertiesPanel;
 import gis.gisterm.dialog.maplayer.IMapLayerPropertiesDialog;
 import gis.gisterm.dialog.maplayer.IMapLayerPropertiesDialogConfigurator;
+import gis.gisterm.dialog.maplayer.IMapPropertiesDialogPage;
 import gis.gisterm.dialog.maplayer.IScaleEditable;
 import gis.gisterm.dialog.maplayer.LayerScalePropertiesPanel;
 import gis.gisterm.gcore.GenericLayer;
@@ -33,11 +14,32 @@ import gis.gisterm.map.IOnlyPropertiesPanelFactoryUsingLayer;
 import gis.gisterm.map.LegendLayer;
 import gis.gisterm.map.RasterCatalogLayer;
 import gis.gisterm.map.RasterLayer;
+import gis.gisterm.map.featurelayer.IFeatureLayerBuilderFactory;
 import gis.gisterm.map.layer.EmptyLayer;
 import gis.gisterm.map.layer.GenericFeatureLayer;
 import gis.gisterm.map.layer.GenericRasterLayer;
 import gis.gisterm.map.layer.IMapLayer;
+import gis.services.debug.modules.PlatformlessFeatureLayerBuilderFactory;
 import gis.services.persistence.layer.xml.load.special.DefectiveLoadedSpecialLayer;
+
+import net.disy.commons.core.provider.IProvider;
+import net.disy.commons.core.util.Ensure;
+
+import de.disy.cadenza.pro.repository.filechooser.IRepositoryFileChooserContext;
+import de.disy.gis.gisterm.map.layer.raster.IRasterManagerProvider;
+import de.disy.gis.gisterm.map.scale.IScaleRange;
+import de.disy.gis.gisterm.pro.customization.GisTermProCustomizations;
+import de.disy.gis.gisterm.pro.facade.map.layer.properties.ILayerPropertiesPanelFactoryProvider;
+import de.disy.gis.gisterm.pro.facade.map.layer.properties.IMapPropertiesDialogPageFactory;
+import de.disy.gisterm.pro.featurelayer.label.FeatureLabelPropertiesPanel;
+import de.disy.gisterm.pro.featurelayer.legend.LegendPropertiesPanel;
+import de.disy.gisterm.pro.layer.dialog.panels.PresentationDialogConfiguration;
+import de.disy.gisterm.pro.layer.dialog.panels.PresentationPanel;
+import de.disy.gisterm.pro.layer.dialog.panels.classification.pointsignature.DefaultImagedSignatureEditConfiguration;
+import de.disy.gisterm.pro.layer.dialog.panels.classification.pointsignature.IImagedSignatureEditConfiguration;
+import de.disy.gisterm.pro.layer.dialog.panels.display.FeatureLayerDisplayPropertiesPanel;
+import de.disy.gisterm.pro.layer.dialog.panels.theme.ThemePanel;
+import de.disy.gisterm.pro.layer.dialog.raster.ColorPalettePropertiesPanel;
 
 // NOT_PUBLISHED
 public class MapLayerPropertiesDialogConfigurator implements IMapLayerPropertiesDialogConfigurator {
@@ -60,80 +62,69 @@ public class MapLayerPropertiesDialogConfigurator implements IMapLayerProperties
     this.customizations = customizations;
   }
 
-  public void customizePropertiesDialog(
-      final IMapLayerPropertiesDialog dialog,
-      final GenericLayer layer) {
+  public void customizePropertiesDialog(final IMapLayerPropertiesDialog dialog, final GenericLayer layer) {
     final IRepositoryFileChooserContext fileChooserContext = fileChooserContextProvider.getObject();
     if (layer instanceof IOnlyPropertiesPanelFactoryUsingLayer) {
-      //nothing to do      
+      // nothing to do
     }
     else if (layer instanceof GenericFeatureLayer) {
       final GenericFeatureLayer featureLayer = (GenericFeatureLayer) layer;
       addThemePanelIfAllowed(dialog, fileChooserContext, featureLayer);
-      dialog.addPropertiesPanel(new LegendPropertiesPanel(featureLayer, customizations));
-      dialog.addPropertiesPanel(new LayerScalePropertiesPanel(new LayerScaleEditable(
-          featureLayer,
-          isUserEditableScaleRange)));
+      dialog.addDialogPage(new LegendPropertiesPanel(featureLayer, customizations));
+      dialog.addDialogPage(new LayerScalePropertiesPanel(new LayerScaleEditable(featureLayer, isUserEditableScaleRange)));
     }
     else if (layer instanceof GenericRasterLayer) {
       final GenericRasterLayer rasterLayer = (GenericRasterLayer) layer;
       addThemePanelIfAllowed(dialog, fileChooserContext, rasterLayer);
-      dialog.addPropertiesPanel(new LegendPropertiesPanel(rasterLayer, customizations));
-      dialog.addPropertiesPanel(new LayerScalePropertiesPanel(new LayerScaleEditable(
-          rasterLayer,
-          isUserEditableScaleRange)));
+      dialog.addDialogPage(new LegendPropertiesPanel(rasterLayer, customizations));
+      dialog.addDialogPage(new LayerScalePropertiesPanel(new LayerScaleEditable(rasterLayer, isUserEditableScaleRange)));
     }
     else if (layer instanceof FeatureLayer) {
       final FeatureLayer featureLayer = (FeatureLayer) layer;
       addThemePanelIfAllowed(dialog, fileChooserContext, featureLayer);
-      final PresentationDialogConfiguration configuration = new PresentationDialogConfiguration();
-      final PresentationPanel presentationPanel = new PresentationPanel(featureLayer
-          .getPresentationEditable(), configuration);
+      final PresentationDialogConfiguration configuration = new PresentationDialogConfiguration(false);
+      final PresentationPanel presentationPanel = new PresentationPanel(
+          featureLayer.getPresentationEditable(),
+          configuration);
       dialog.addPropertiesPanel(presentationPanel);
-      dialog.addPropertiesPanel(new FeatureLayerDisplayPropertiesPanel(featureLayer));
-      dialog.addPropertiesPanel(new FeatureLabelPropertiesPanel(
-          featureLayer,
-          new DefaultImagedSignatureEditConfiguration(GisTerm.getModel().getCadenzaModel())));
-      dialog.addPropertiesPanel(new LegendPropertiesPanel(featureLayer, customizations));
-      dialog.addPropertiesPanel(new LayerScalePropertiesPanel(new LayerScaleEditable(
-          featureLayer,
-          isUserEditableScaleRange)));
-      dialog.addPropertiesPanel(new StatisticsComponent(featureLayer));
-
+      dialog.addDialogPage(new FeatureLayerDisplayPropertiesPanel(featureLayer));
+      IImagedSignatureEditConfiguration signatureConfiguration = new DefaultImagedSignatureEditConfiguration(
+          GisTerm.getModel().getCadenzaModel());
+      IFeatureLayerBuilderFactory layerBuilderFactory = new PlatformlessFeatureLayerBuilderFactory();
+      dialog.addDialogPage(new FeatureLabelPropertiesPanel(featureLayer, signatureConfiguration, layerBuilderFactory));
+      dialog.addDialogPage(new LegendPropertiesPanel(featureLayer, customizations));
+      dialog.addDialogPage(new LayerScalePropertiesPanel(new LayerScaleEditable(featureLayer, isUserEditableScaleRange)));
       dialog.setDefaultPanel(presentationPanel);
     }
     else if (layer instanceof RasterCatalogLayer || layer instanceof RasterLayer) {
       final LegendLayer rasterCatalogLayer = (LegendLayer) layer;
       addThemePanelIfAllowed(dialog, fileChooserContext, rasterCatalogLayer);
-      dialog.addPropertiesPanel(new LegendPropertiesPanel(rasterCatalogLayer, customizations));
-      dialog.addPropertiesPanel(new ColorPalettePropertiesPanel(
+      dialog.addDialogPage(new LegendPropertiesPanel(rasterCatalogLayer, customizations));
+      dialog.addDialogPage(new ColorPalettePropertiesPanel(
           ((IRasterManagerProvider) rasterCatalogLayer).getRasterManager()));
-      dialog.addPropertiesPanel(new LayerScalePropertiesPanel(new LayerScaleEditable(
+      dialog.addDialogPage(new LayerScalePropertiesPanel(new LayerScaleEditable(
           rasterCatalogLayer,
           isUserEditableScaleRange)));
     }
     else if (layer instanceof EmptyLayer) {
-      //nothing to do
+      // nothing to do
     }
     else if (layer instanceof DefectiveLoadedSpecialLayer) {
-      //nothing to do
+      // nothing to do
     }
     else if (layer instanceof LegendLayer) {
       final LegendLayer notesLayer = (LegendLayer) layer;
-      dialog.addPropertiesPanel(new LegendPropertiesPanel(notesLayer, customizations));
-      dialog.addPropertiesPanel(new LayerScalePropertiesPanel(new LayerScaleEditable(
-          notesLayer,
-          isUserEditableScaleRange)));
+      dialog.addDialogPage(new LegendPropertiesPanel(notesLayer, customizations));
+      dialog.addDialogPage(new LayerScalePropertiesPanel(new LayerScaleEditable(notesLayer, isUserEditableScaleRange)));
     }
     else {
-      //TODO 23.01.2008 (bartels): prüfen ob eine factory die layer instance unterstützt
-      throw new UnsupportedOperationException("Unsupported layer instance: "
-          + layer.getClass().getName());
+      // TODO 23.01.2008 (bartels): prüfen ob eine factory die layer instance unterstützt
+      throw new UnsupportedOperationException("Unsupported layer instance: " + layer.getClass().getName());
     }
-    final ILayerPropertiesPanelFactory[] panelFactories = propertiesPanelFactoryProvider.getAll();
-    for (final ILayerPropertiesPanelFactory panelFactorie : panelFactories) {
-      for (final IPropertiesPanel panel : panelFactorie.createPropertiesPanel(layer)) {
-        dialog.addPropertiesPanel(panel);
+    final IMapPropertiesDialogPageFactory[] panelFactories = propertiesPanelFactoryProvider.getAllFactories();
+    for (final IMapPropertiesDialogPageFactory panelFactory : panelFactories) {
+      for (final IMapPropertiesDialogPage page : panelFactory.createDialogPages(layer)) {
+        dialog.addDialogPage(page);
       }
     }
   }
@@ -143,7 +134,7 @@ public class MapLayerPropertiesDialogConfigurator implements IMapLayerProperties
       final IRepositoryFileChooserContext fileChooserContext,
       final IMapLayer layer) {
     if (customizations.isThemePanelVisible()) {
-      dialog.addPropertiesPanel(new ThemePanel(layer, fileChooserContext));
+      dialog.addDialogPage(new ThemePanel(layer, fileChooserContext));
     }
   }
 
