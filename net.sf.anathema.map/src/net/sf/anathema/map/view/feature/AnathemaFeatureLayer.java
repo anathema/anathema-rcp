@@ -5,7 +5,10 @@ import gis.gisterm.map.FeatureLayer;
 import gis.gisterm.map.FeatureProxySet;
 import gis.gisterm.map.layer.datasource.FeatureLayerDataProvider;
 import gis.gisterm.map.legend.StandardLegendFactory;
+
 import net.sf.anathema.map.view.data.AnathemaLayerCustomizer;
+
+import de.disy.gis.core.geometry.GeometryType;
 
 public class AnathemaFeatureLayer extends FeatureLayer {
 
@@ -17,6 +20,7 @@ public class AnathemaFeatureLayer extends FeatureLayer {
         new FeatureLayerDataProvider(),
         new FeatureLayerConfiguration(),
         new LayerAttributeList());
+    setGeometryType(GeometryType.POLYGON);
   }
 
   @Override
