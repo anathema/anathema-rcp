@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Platform_GraphLayout
+Bundle-SymbolicName: net.sf.anathema.graphlayout
+Bundle-Version: 1.0.0
+Bundle-ClassPath: Platform_GraphLayout.jar
+Export-Package: net.sf.anathema.graph,
+ net.sf.anathema.graph.graph,
+ net.sf.anathema.graph.hierarchy,
+ net.sf.anathema.graph.layering,
+ net.sf.anathema.graph.nodes,
+ net.sf.anathema.graph.ordering,
+ net.sf.anathema.graph.util
+Require-Bundle: net.sf.anathema.basics.lib;bundle-version="1.0.0"
