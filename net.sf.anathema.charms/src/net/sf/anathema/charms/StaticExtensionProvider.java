@@ -1,9 +1,9 @@
 package net.sf.anathema.charms;
 
-import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
+import net.sf.anathema.basics.eclipse.extension.AbstractExtensionProvider;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 
-public class StaticExtensionProvider implements IExtensionProvider {
+public class StaticExtensionProvider extends AbstractExtensionProvider {
 
   private final IPluginExtension[] extensions;
 

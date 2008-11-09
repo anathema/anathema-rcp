@@ -13,7 +13,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 
-public class CharmTreeExtensionPoint implements ICharmTreeProvider {
+public class CharmTreeExtensionPoint implements ICharmTreeProvider, ICharmTreeLookup {
 
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
@@ -77,5 +77,16 @@ public class CharmTreeExtensionPoint implements ICharmTreeProvider {
       prerequisites.add(new CharmPrerequisite(null, currentCharmId));
       explicitCharms.add(currentCharmId);
     }
+  }
+
+  public String getTreeId(String charmId) {
+    for (String treeId : getTreeList()) {
+      for (CharmPrerequisite prerequisite : getTree(treeId)) {
+        if (charmId.equals(prerequisite.getDestination()) || charmId.equals(prerequisite.getSource())) {
+          return treeId;
+        }
+      }
+    }
+    return null;
   }
 }

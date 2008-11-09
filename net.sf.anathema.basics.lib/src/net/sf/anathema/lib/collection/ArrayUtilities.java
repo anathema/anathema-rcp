@@ -124,4 +124,12 @@ public class ArrayUtilities {
     }
     return primitiveArray;
   }
+
+  public static int[] toPrimitive(Integer[] objectArray) {
+    int[] primitiveArray = new int[objectArray.length];
+    for (int index = 0; index < primitiveArray.length; index++) {
+      primitiveArray[index] = objectArray[index];
+    }
+    return primitiveArray;
+  }
 }

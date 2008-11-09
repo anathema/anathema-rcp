@@ -125,5 +125,16 @@
          </charm>
       </treepart>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.character.treetraits">
+      <tree
+            id="Solar: Thrown"
+            primaryTrait="Thrown">
+      </tree>
+      <tree
+            id="Solar: Stealth"
+            primaryTrait="Stealth">
+      </tree>
+   </extension>
 
 </fragment>

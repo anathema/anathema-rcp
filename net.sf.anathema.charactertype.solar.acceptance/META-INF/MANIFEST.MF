@@ -20,3 +20,5 @@ Require-Bundle: net.sf.anathema.charactertype.solar;bundle-version="1.0.0",
  net.sf.anathema.character.freebies;bundle-version="1.0.0",
  net.sf.anathema.character.freebies.abilities;bundle-version="1.0.0"
 Bundle-Localization: plugin
+Export-Package: charactertype.solar.acceptance,
+ charactertype.solar.acceptance.util

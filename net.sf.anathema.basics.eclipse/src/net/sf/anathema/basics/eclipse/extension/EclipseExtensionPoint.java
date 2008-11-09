@@ -11,7 +11,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.osgi.util.NLS;
 
-public class EclipseExtensionPoint implements IExtensionProvider {
+public class EclipseExtensionPoint extends AbstractExtensionProvider  {
 
   private final String pluginId;
   private final String pointId;
@@ -20,7 +20,7 @@ public class EclipseExtensionPoint implements IExtensionProvider {
     this.pluginId = pluginId;
     this.pointId = pointId;
   }
-  
+
   public String getPluginId() {
     return pluginId;
   }

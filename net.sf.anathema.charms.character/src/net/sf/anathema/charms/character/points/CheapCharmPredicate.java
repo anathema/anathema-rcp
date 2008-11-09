@@ -9,6 +9,8 @@ import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.model.TypeTraitModelIdProvider;
+import net.sf.anathema.charms.character.tree.CharmTraitLookup;
+import net.sf.anathema.charms.character.tree.ITraitIdLookup;
 
 public class CheapCharmPredicate implements IPredicate<String> {
 
@@ -17,14 +19,14 @@ public class CheapCharmPredicate implements IPredicate<String> {
     String traitModelId = new TypeTraitModelIdProvider().getTraitModelId(characterType.getId());
     ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, traitModelId);
     ITraitCollectionModel model = (ITraitCollectionModel) modelCollection.getModel(modelIdentifier);
-    ITraitIdProvider idProvider = new CharmTraitProvider();
+    ITraitIdLookup idProvider = new CharmTraitLookup();
     return new CheapCharmPredicate(model, idProvider);
   }
 
   private final ITraitCollectionModel traits;
-  private final ITraitIdProvider idProvider;
+  private final ITraitIdLookup idProvider;
 
-  public CheapCharmPredicate(ITraitCollectionModel traits, ITraitIdProvider idProvider) {
+  public CheapCharmPredicate(ITraitCollectionModel traits, ITraitIdLookup idProvider) {
     this.traits = traits;
     this.idProvider = idProvider;
   }
