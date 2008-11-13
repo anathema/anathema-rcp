@@ -1,10 +1,12 @@
-package net.sf.anathema.character.trait.collection;
+package net.sf.anathema.character.trait.collection.internal;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelInitializer;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.collection.TraitCollectionUpdatable;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.status.DefaultStatus;

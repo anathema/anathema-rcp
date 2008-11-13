@@ -27,12 +27,12 @@ public class FavorizationTemplateExtensionPoint_NoRequiredTest {
   @Test
   public void providesNoFavoredCountIfNoConfigurationIsFoundForTemplateId() throws Exception {
     IFavorizationTemplate template = provider.readTemplate("otherTemplateId"); //$NON-NLS-1$
-    assertEquals(0, template.getFavorizationCount());
+    assertEquals(0, template.getAllowedFavored());
   }
 
   @Test
   public void readsFavoredCountCorrectly() throws Exception {
     IFavorizationTemplate template = provider.readTemplate(TEMPLATE_ID);
-    assertEquals(CONFIGURED_FAVORED_COUNT, template.getFavorizationCount());
+    assertEquals(CONFIGURED_FAVORED_COUNT, template.getAllowedFavored());
   }
 }

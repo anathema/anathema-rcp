@@ -5,6 +5,7 @@ import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelInitializer;
+import net.sf.anathema.character.trait.collection.internal.TraitCollectionModelInitializer;
 import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.lib.exception.PersistenceException;
 

@@ -13,7 +13,7 @@ public class FavoredTraitCountCreditProvider extends AbstractExecutableExtension
 
   @Override
   public Integer getCredit(String templateId) {
-    int favorizationCount = provider.getTraitTemplate(templateId).getFavorizationTemplate().getFavorizationCount();
+    int favorizationCount = provider.getTraitTemplate(templateId).getFavorizationTemplate().getAllowedFavored();
     if (favorizationCount == 0) {
       return null;
     }

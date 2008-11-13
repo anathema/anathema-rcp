@@ -6,6 +6,7 @@ import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
+import net.sf.anathema.character.trait.collection.internal.FavoredCount;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.status.FavoredStatus;
 import net.sf.anathema.lib.util.IIdentificate;
@@ -30,17 +31,13 @@ public class FavorizationInteraction implements IFavorizationInteraction {
     this.modelId = modelId;
   }
 
-  private int getFavoredCount() {
-    return template.getFavorizationCount();
-  }
-
   private ITraitCollectionModel getTraitCollectionModel() {
     return (ITraitCollectionModel) modelContainer.getModel(modelId);
   }
 
   @Override
   public boolean isFavorable() {
-    return getFavoredCount() > 0;
+    return template.getAllowedFavored() > 0;
   }
 
   @Override
@@ -56,22 +53,9 @@ public class FavorizationInteraction implements IFavorizationInteraction {
   }
 
   private boolean isToggleFavoredAllowed(ITraitCollectionModel traitCollection, IBasicTrait trait) {
-    if (isFavored(trait) && template.isRequiredFavored(trait.getTraitType())) {
-      return false;
+    if (FavoredStatus.isFavored(trait)) {
+      return !template.isRequiredFavored(trait.getTraitType());
     }
-    if (isFavored(trait)) {
-      return true;
-    }
-    int favoredCount = 0;
-    for (IBasicTrait collectionTrait : traitCollection.getTraits()) {
-      if (isFavored(collectionTrait)) {
-        favoredCount++;
-      }
-    }
-    return favoredCount < getFavoredCount();
-  }
-
-  private boolean isFavored(IBasicTrait trait) {
-    return trait.getStatusManager().getStatus() instanceof FavoredStatus;
+    return new FavoredCount(traitCollection).get() < template.getAllowedFavored();
   }
 }

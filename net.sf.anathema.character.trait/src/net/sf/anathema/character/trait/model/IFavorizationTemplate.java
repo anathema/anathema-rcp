@@ -4,7 +4,7 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 public interface IFavorizationTemplate {
 
-  public int getFavorizationCount();
+  public int getAllowedFavored();
 
   public boolean isRequiredFavored(IIdentificate traitType);
 }

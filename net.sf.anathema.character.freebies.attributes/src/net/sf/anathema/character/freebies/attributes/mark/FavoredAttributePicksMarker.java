@@ -33,7 +33,7 @@ public class FavoredAttributePicksMarker implements IModelMarker {
   @Override
   public boolean isActive(IMarker[] markers) {
     IFavorizationTemplate favorizationTemplate = provider.getTraitTemplate(templateId).getFavorizationTemplate();
-    return favorizationTemplate.getFavorizationCount() > handler.getPoints(characterId, 0);
+    return favorizationTemplate.getAllowedFavored() > handler.getPoints(characterId, 0);
   }
 
   @Override

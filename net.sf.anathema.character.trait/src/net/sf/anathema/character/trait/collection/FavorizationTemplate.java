@@ -21,7 +21,7 @@ public class FavorizationTemplate implements IFavorizationTemplate {
   }
   
   @Override
-  public int getFavorizationCount() {
+  public int getAllowedFavored() {
     return favoredCount;
   }
 
