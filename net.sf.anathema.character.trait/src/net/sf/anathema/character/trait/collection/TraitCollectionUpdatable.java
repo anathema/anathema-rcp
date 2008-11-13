@@ -22,6 +22,7 @@ public final class TraitCollectionUpdatable implements IUpdatable {
   private final ICharacterTemplate template;
   private final IModelIdentifier identifier;
   private final ITraitCollectionModel model;
+  private final IModelContainer container;
 
   public TraitCollectionUpdatable(
       ICharacterTemplate template,
@@ -30,6 +31,7 @@ public final class TraitCollectionUpdatable implements IUpdatable {
     this.template = template;
     this.identifier = identifier;
     this.model = model;
+    container = new ModelContainer(ModelCache.getInstance(), identifier.getCharacterId());
   }
 
   @Override
@@ -39,13 +41,20 @@ public final class TraitCollectionUpdatable implements IUpdatable {
     if (experience.isExperienced()) {
       return;
     }
-    IModelContainer container = new ModelContainer(ModelCache.getInstance(), identifier.getCharacterId());
     for (IBasicTrait trait : model.getTraits()) {
-      String modelId = identifier.getModelId();
-      List<IValidator> validators = validatorFactory.create(template.getId(), container, modelId, trait);
-      IIntValueModel creationModel = trait.getCreationModel();
-      int correctedValue = ValidationUtilities.getCorrectedValue(validators, creationModel.getValue());
-      creationModel.setValue(correctedValue);
+      validateCreationValue(trait);
     }
+  }
+
+  private void validateCreationValue(IBasicTrait trait) {
+    IIntValueModel creationModel = trait.getCreationModel();
+    int value = creationModel.getValue();
+    creationModel.setValue(calculateCorrectedValue(trait, value));
+  }
+
+  private int calculateCorrectedValue(IBasicTrait trait, int value) {
+    String modelId = identifier.getModelId();
+    List<IValidator> validators = validatorFactory.create(template.getId(), container, modelId, trait);
+    return ValidationUtilities.getCorrectedValue(validators, value);
   }
 }
