@@ -3,11 +3,12 @@ package net.sf.anathema.character.trait.groupeditor;
 import java.net.URL;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.core.character.Character;
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelContainer;
-import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
@@ -38,12 +39,11 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     IEditorInputConfiguration inputConfiguration = createEditorInputConfiguration();
     String modelId = inputConfiguration.getModelId();
-    ModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
-    IFavorizationInteraction favorizationHandler = createFavorizationInteraction(modelContainer, template, modelId);
+    ICharacter character = Character.From(characterId, modelProvider);
+    IFavorizationInteraction favorizationHandler = createFavorizationInteraction(character, template, modelId);
     ITraitCollectionTemplate collectionTemplate = createTraitCollectionTemplate(template);
     TraitCollectionContext context = TraitCollectionContext.create(
-        characterId,
-        modelProvider,
+        character,
         modelId,
         collectionTemplate.getGroupTemplate());
     return new TraitCollectionEditorInput(

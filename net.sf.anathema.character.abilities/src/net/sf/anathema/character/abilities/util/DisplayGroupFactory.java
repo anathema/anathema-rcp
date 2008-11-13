@@ -5,8 +5,6 @@ import java.util.List;
 import net.sf.anathema.character.abilities.model.AbilitiesGroupTemplate;
 import net.sf.anathema.character.abilities.template.AbilitiesTemplateProvider;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.core.character.ICharacterTemplate;
-import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.FavorizationInteraction;
 import net.sf.anathema.character.trait.display.DisplayTraitGroupTransformer;
@@ -41,15 +39,14 @@ public class DisplayGroupFactory {
   }
 
   private IFavorizationInteraction createFavorizationInteraction() {
-    ITraitCollectionTemplate traitTemplate = new AbilitiesTemplateProvider().getTraitTemplate(character.getTemplateId());
+    String templateId = character.getTemplate().getId();
+    ITraitCollectionTemplate traitTemplate = new AbilitiesTemplateProvider().getTraitTemplate(templateId);
     IFavorizationTemplate favorizationTemplate = traitTemplate.getFavorizationTemplate();
     return new FavorizationInteraction(character, favorizationTemplate, modelId);
   }
 
   private TraitCollectionContext createCollectionContext() {
-    ICharacterTemplate characterTemplate = new CharacterTemplateProvider().getTemplate(character.getTemplateId());
-    String templateId = characterTemplate.getId();
-    AbilitiesGroupTemplate groupTemplate = new AbilitiesGroupTemplate(characterTemplate);
-    return new TraitCollectionContext(templateId, character, character, modelId, groupTemplate);
+    AbilitiesGroupTemplate groupTemplate = new AbilitiesGroupTemplate(character.getTemplate());
+    return new TraitCollectionContext(character, modelId, groupTemplate);
   }
 }

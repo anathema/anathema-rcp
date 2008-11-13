@@ -1,5 +1,6 @@
 package net.sf.anathema.character.attributes.model;
 
+import net.sf.anathema.character.core.character.Character;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -14,8 +15,7 @@ public class AttributesContext {
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     ITraitCollectionTemplate traitTemplate = new AttributesTemplateProvider().getTraitTemplate(template.getId());
     return TraitCollectionContext.create(
-        characterId,
-        modelCollection,
+        Character.From(characterId, modelCollection),
         IAttributesPluginConstants.MODEL_ID,
         traitTemplate.getGroupTemplate());
   }

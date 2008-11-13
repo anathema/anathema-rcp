@@ -3,7 +3,6 @@ package net.sf.anathema.character.description.sheet;
 import static net.sf.anathema.character.sheet.page.IVoidStateFormatConstants.*;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.description.ICharacterDescription;
 import net.sf.anathema.character.report.text.CharacterTextContainer;
 import net.sf.anathema.character.report.text.ICharacterText;
@@ -47,7 +46,7 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
     drawLabelledContent(
         directContent,
         Messages.PersonalInfoEncoder_TemplateLabel,
-        new CharacterTemplateProvider().getTemplate(character.getTemplateId()).getName(),
+        character.getTemplate().getName(),
         new Position(firstColumnX, firstRowY),
         entryWidth);
     String playerName = description.getPlayer().getText();

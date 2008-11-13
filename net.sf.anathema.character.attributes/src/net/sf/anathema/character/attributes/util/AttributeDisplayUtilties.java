@@ -13,6 +13,7 @@ import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
+import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 
@@ -20,14 +21,10 @@ public class AttributeDisplayUtilties {
 
   public static List<IDisplayTraitGroup<IDisplayTrait>> getDisplayAttributeGroups(ICharacter character) {
     String modelId = IAttributesPluginConstants.MODEL_ID;
-    TraitCollectionContext context = new TraitCollectionContext(
-        character.getTemplateId(),
-        character,
-        character,
-        modelId,
-        new AttributeGroupTemplate());
-    IFavorizationTemplate favorizationTemplate = new AttributesTemplateProvider().getTraitTemplate(
-        character.getTemplateId()).getFavorizationTemplate();
+    TraitCollectionContext context = new TraitCollectionContext(character, modelId, new AttributeGroupTemplate());
+    String templateId = character.getTemplate().getId();
+    ITraitCollectionTemplate attributesTemplate = new AttributesTemplateProvider().getTraitTemplate(templateId);
+    IFavorizationTemplate favorizationTemplate = attributesTemplate.getFavorizationTemplate();
     IFavorizationInteraction favorizationHandler = new FavorizationInteraction(character, favorizationTemplate, modelId);
     TraitGroup[] traitGroups = context.getTraitGroups();
     return CollectionUtilities.transform(traitGroups, new DisplayTraitGroupTransformer(context, favorizationHandler));

@@ -1,6 +1,5 @@
 package net.sf.anathema.character.core.character;
 
-
 import org.eclipse.core.resources.IFolder;
 
 public class ModelIdentifier implements IModelIdentifier {
@@ -16,7 +15,7 @@ public class ModelIdentifier implements IModelIdentifier {
     this.characterId = characterId;
     this.modelId = modelId;
   }
-  
+
   @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof ModelIdentifier)) {
@@ -30,7 +29,7 @@ public class ModelIdentifier implements IModelIdentifier {
   public int hashCode() {
     return characterId.hashCode() + 7 * modelId.hashCode();
   }
-  
+
   @Override
   public String toString() {
     return characterId.toString() + ", " + modelId; //$NON-NLS-1$

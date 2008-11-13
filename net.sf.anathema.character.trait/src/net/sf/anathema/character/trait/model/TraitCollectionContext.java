@@ -3,15 +3,7 @@ package net.sf.anathema.character.trait.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.ICharacterTypeProvider;
-import net.sf.anathema.character.core.character.IModel;
-import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.character.IModelContainer;
-import net.sf.anathema.character.core.model.ModelContainer;
-import net.sf.anathema.character.core.template.CharacterTemplateProvider;
-import net.sf.anathema.character.core.type.CharacterTypeFinder;
-import net.sf.anathema.character.core.type.CharacterTypeProvider;
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
@@ -20,36 +12,20 @@ import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.character.trait.validator.ValidatorFactory;
 
-public class TraitCollectionContext implements ITraitCollectionContext, IModelContainer {
+public class TraitCollectionContext implements ITraitCollectionContext {
 
-  public static TraitCollectionContext create(
-      ICharacterId characterId,
-      IModelCollection modelProvider,
-      String modelId,
-      ITraitGroupTemplate groups) {
-    IModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
-    ICharacterTypeProvider provider = new CharacterTypeProvider(characterId, new CharacterTypeFinder());
-    String templateId = new CharacterTemplateProvider().getTemplate(characterId).getId();
-    return new TraitCollectionContext(templateId, modelContainer, provider, modelId, groups);
+  public static TraitCollectionContext create(ICharacter character, String modelId, ITraitGroupTemplate groups) {
+    return new TraitCollectionContext(character, modelId, groups);
   }
 
-  private final ITraitGroupTemplate groups;
-  private final IModelContainer modelContainer;
-  private final ICharacterTypeProvider characterTypeProvider;
-  private final String collectionModelId;
-  private final String templateId;
+  private final ITraitGroupTemplate groupTemplate;
+  private final ICharacter character;
+  private final String modelId;
 
-  public TraitCollectionContext(
-      String templateId,
-      IModelContainer modelContainer,
-      ICharacterTypeProvider characterTypeProvider,
-      String collectionModelId,
-      ITraitGroupTemplate groups) {
-    this.templateId = templateId;
-    this.modelContainer = modelContainer;
-    this.characterTypeProvider = characterTypeProvider;
-    this.collectionModelId = collectionModelId;
-    this.groups = groups;
+  public TraitCollectionContext(ICharacter character, String modelId, ITraitGroupTemplate groupTemplate) {
+    this.character = character;
+    this.modelId = modelId;
+    this.groupTemplate = groupTemplate;
   }
 
   @Override
@@ -58,30 +34,27 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
       return new ArrayList<IValidator>();
     }
     IBasicTrait trait = getCollection().getTrait(traitId);
-    return new ValidatorFactory().create(templateId, modelContainer, collectionModelId, trait);
+    String templateId = character.getTemplate().getId();
+    return new ValidatorFactory().create(templateId, character, modelId, trait);
   }
 
   @Override
   public IExperience getExperience() {
-    return (IExperience) modelContainer.getModel(IExperience.MODEL_ID);
-  }
-
-  public IModel getModel(String modelId) {
-    return modelContainer.getModel(modelId);
+    return (IExperience) character.getModel(IExperience.MODEL_ID);
   }
 
   @Override
   public ITraitCollectionModel getCollection() {
-    return (ITraitCollectionModel) getModel(collectionModelId);
+    return (ITraitCollectionModel) character.getModel(modelId);
   }
 
   @Override
   public TraitGroup[] getTraitGroups() {
-    return groups.getGroups();
+    return groupTemplate.getGroups();
   }
 
   @Override
   public String getActiveImageId() {
-    return characterTypeProvider.getCharacterType().getTraitImageId();
+    return character.getCharacterType().getTraitImageId();
   }
 }

@@ -2,6 +2,7 @@ package net.sf.anathema.character.freebies.abilities.coverage;
 
 import net.sf.anathema.character.abilities.template.AbilitiesTemplateProvider;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
+import net.sf.anathema.character.core.character.Character;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -26,8 +27,7 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     ITraitCollectionTemplate traitTemplate = new AbilitiesTemplateProvider().getTraitTemplate(template.getId());
     return TraitCollectionContext.create(
-        characterId,
-        modelCollection,
+        Character.From(characterId, modelCollection),
         IAbilitiesPluginConstants.MODEL_ID,
         traitTemplate.getGroupTemplate());
   }

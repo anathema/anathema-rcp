@@ -1,18 +1,18 @@
-package net.sf.anathema.character.report.internal.wizard;
+package net.sf.anathema.character.core.character;
 
-import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
-import net.sf.anathema.character.core.character.ICharacterType;
-import net.sf.anathema.character.core.character.ICharacterTypeFinder;
-import net.sf.anathema.character.core.character.IModel;
-import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+import net.sf.anathema.character.core.type.CharacterTypeFinder;
 
 import org.eclipse.core.resources.IContainer;
 
 public class Character implements ICharacter {
+
+  public static ICharacter From(ICharacterId characterId, IModelCollection modelCollection) {
+    ICharacterTemplateProvider templateProvider = new CharacterTemplateProvider();
+    ICharacterTypeFinder characterTypeFinder = new CharacterTypeFinder();
+    return new Character(characterId, modelCollection, templateProvider, characterTypeFinder);
+  }
 
   private final ICharacterId characterId;
   private final IModelCollection modelProvider;
@@ -35,8 +35,8 @@ public class Character implements ICharacter {
   }
 
   @Override
-  public String getTemplateId() {
-    return templateProvider.getTemplate(characterId).getId();
+  public ICharacterTemplate getTemplate() {
+    return templateProvider.getTemplate(characterId);
   }
 
   @Override
