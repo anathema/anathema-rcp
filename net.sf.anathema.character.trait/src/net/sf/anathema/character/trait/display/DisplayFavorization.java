@@ -1,16 +1,16 @@
 package net.sf.anathema.character.trait.display;
 
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.status.FavoredStatus;
-import net.sf.anathema.character.trait.status.ITraitStatusModel;
+import net.sf.anathema.character.trait.status.ITraitStatus;
 
 public class DisplayFavorization implements IDisplayFavorization {
 
-  private final IFavorizationHandler favorizationHandler;
+  private final IFavorizationInteraction favorizationHandler;
   private final IBasicTrait basicTrait;
 
-  public DisplayFavorization(IFavorizationHandler favorizationHandler, IBasicTrait basicTrait) {
+  public DisplayFavorization(IFavorizationInteraction favorizationHandler, IBasicTrait basicTrait) {
     this.favorizationHandler = favorizationHandler;
     this.basicTrait = basicTrait;
   }
@@ -22,19 +22,19 @@ public class DisplayFavorization implements IDisplayFavorization {
 
   @Override
   public boolean isFavored() {
-    return basicTrait.getStatusManager().getStatus() instanceof FavoredStatus;
+    return getStatus() instanceof FavoredStatus;
   }
 
   @Override
-  public ITraitStatusModel getStatusModel() {
-    return basicTrait.getStatusManager();
+  public ITraitStatus getStatus() {
+     return basicTrait.getStatusManager().getStatus();
   }
 
   protected final IBasicTrait getBasicTrait() {
     return basicTrait;
   }
 
-  protected final IFavorizationHandler getFavorizationHandler() {
+  protected final IFavorizationInteraction getFavorizationInteraction() {
     return favorizationHandler;
   }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.AbstractTraitGroupTransformer;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
@@ -14,11 +14,11 @@ import net.sf.anathema.character.trait.validator.IValidator;
 public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTransformer<IInteractiveTrait> {
 
   private final ITraitPreferences traitPreferences;
-  private final IFavorizationHandler favorizationHandler;
+  private final IFavorizationInteraction favorizationHandler;
 
   public InteractiveTraitGroupTransformer(
       ITraitCollectionContext context,
-      IFavorizationHandler favorizationHandler,
+      IFavorizationInteraction favorizationHandler,
       ITraitPreferences traitPreferences) {
     super(context);
     this.favorizationHandler = favorizationHandler;

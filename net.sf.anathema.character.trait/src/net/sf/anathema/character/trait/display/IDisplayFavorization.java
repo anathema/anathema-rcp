@@ -1,12 +1,9 @@
 package net.sf.anathema.character.trait.display;
 
-import net.sf.anathema.character.trait.status.ITraitStatusModel;
 
-public interface IDisplayFavorization {
+public interface IDisplayFavorization extends ITraitStatusProvider {
 
   public boolean isFavorable();
 
   public boolean isFavored();
-  
-  public ITraitStatusModel getStatusModel();
 }

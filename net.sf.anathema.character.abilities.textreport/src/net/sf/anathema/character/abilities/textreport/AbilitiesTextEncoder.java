@@ -20,7 +20,7 @@ public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder {
 
   @Override
   protected List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups(ICharacter character) {
-    return AbilitiesDisplayUtilties.getDisplayAttributeGroups(character);
+    return AbilitiesDisplayUtilties.createDisplayAttributeGroups(character);
   }
 
   @Override

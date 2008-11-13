@@ -10,24 +10,6 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class AbilitiesBonusPointHandler extends AbstractPointHandler {
 
-  private static class PointCalculation {
-    int cheapCount = 0;
-    int expensiveCount = 0;
-
-    public void addTrait(IBasicTrait trait) {
-      if (trait.getStatusManager().getStatus().isCheap()) {
-        cheapCount += trait.getCreationModel().getValue();
-      }
-      else {
-        expensiveCount += trait.getCreationModel().getValue();
-      }
-    }
-
-    public int getTotal() {
-      return cheapCount + expensiveCount * 2;
-    }
-  }
-
   public AbilitiesBonusPointHandler() {
     super(IAbilitiesPluginConstants.MODEL_ID);
   }
@@ -38,10 +20,10 @@ public class AbilitiesBonusPointHandler extends AbstractPointHandler {
 
   @Override
   public int calculatePoints(ITraitCollectionModel abilities, ICharacterId characterId) {
-    PointCalculation calculation = new PointCalculation();
-    for (IBasicTrait trait : new TraitListFactory().create(abilities)) {
+    AbilityBonusPointExpenditureBuilder calculation = new AbilityBonusPointExpenditureBuilder();
+    for (IBasicTrait trait : new TraitListFactory().createFrom(abilities)) {
       calculation.addTrait(trait);
     }
-    return calculation.getTotal();
+    return calculation.getCost();
   }
 }

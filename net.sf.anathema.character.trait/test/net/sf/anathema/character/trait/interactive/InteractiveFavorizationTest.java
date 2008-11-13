@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.easymock.EasyMock;
@@ -15,7 +15,7 @@ public class InteractiveFavorizationTest {
 
   private Identificate traitType;
   private BasicTrait basicTrait;
-  private IFavorizationHandler favorizationHandler;
+  private IFavorizationInteraction favorizationHandler;
   private InteractiveFavorization favorization;
   private DummyExperience experience;
 
@@ -24,7 +24,7 @@ public class InteractiveFavorizationTest {
     this.experience = new DummyExperience();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
-    this.favorizationHandler = EasyMock.createNiceMock(IFavorizationHandler.class);
+    this.favorizationHandler = EasyMock.createNiceMock(IFavorizationInteraction.class);
     this.favorization = new InteractiveFavorization(basicTrait, experience, favorizationHandler);
   }
 

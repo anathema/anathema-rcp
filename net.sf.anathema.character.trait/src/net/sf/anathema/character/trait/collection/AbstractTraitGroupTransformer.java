@@ -11,8 +11,8 @@ import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.validator.IValidator;
 
-public abstract class AbstractTraitGroupTransformer<T extends IDisplayTrait> implements
-    ITransformer<ITraitGroup, IDisplayTraitGroup<T>> {
+public abstract class AbstractTraitGroupTransformer<D extends IDisplayTrait> implements
+    ITransformer<ITraitGroup, IDisplayTraitGroup<D>> {
 
   private final ITraitCollectionContext context;
 
@@ -21,16 +21,17 @@ public abstract class AbstractTraitGroupTransformer<T extends IDisplayTrait> imp
   }
 
   @Override
-  public final IDisplayTraitGroup<T> transform(ITraitGroup group) {
-    DisplayTraitGroup<T> displayGroup = new DisplayTraitGroup<T>(group.getId(), group.getLabel());
+  public final IDisplayTraitGroup<D> transform(ITraitGroup group) {
+    DisplayTraitGroup<D> displayGroup = new DisplayTraitGroup<D>(group.getId(), group.getLabel());
     for (String traitId : group.getTraitIds()) {
-      IBasicTrait trait = context.getCollection().getTrait(traitId);
-      IModelContainer experience = context.getModelContainer();
+      IBasicTrait basicTrait = context.getCollection().getTrait(traitId);
+      IModelContainer modelCollection = context.getModelContainer();
       List<IValidator> validators = context.getValidators(traitId);
-      displayGroup.addTrait(createTrait(trait, experience, validators));
+      D displayTrait = createTrait(basicTrait, modelCollection, validators);
+      displayGroup.addTrait(displayTrait);
     }
     return displayGroup;
   }
 
-  protected abstract T createTrait(IBasicTrait trait, IModelContainer container, List<IValidator> validators);
+  protected abstract D createTrait(IBasicTrait trait, IModelContainer container, List<IValidator> validators);
 }

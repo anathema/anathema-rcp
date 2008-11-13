@@ -29,7 +29,7 @@ public abstract class AbstractTraitCollectionTextEncoder extends AbstractTextEnc
           traitPhrase.add(createTextChunk(", ")); //$NON-NLS-1$
         }
         firstPrinted = false;
-        if (trait.getFavorization().getStatusModel().getStatus().isCheap()) {
+        if (trait.getFavorization().getStatus().isCheap()) {
           traitPhrase.add(createTextChunk("*")); //$NON-NLS-1$
         }
         traitPhrase.add(createTextChunk(getTraitName(trait.getTraitType())));

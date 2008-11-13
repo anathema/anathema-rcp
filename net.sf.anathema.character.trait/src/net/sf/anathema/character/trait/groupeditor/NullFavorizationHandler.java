@@ -1,9 +1,9 @@
 package net.sf.anathema.character.trait.groupeditor;
 
-import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class NullFavorizationHandler implements IFavorizationHandler {
+public class NullFavorizationHandler implements IFavorizationInteraction {
 
   @Override
   public boolean isFavorable() {

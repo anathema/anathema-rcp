@@ -3,7 +3,7 @@ package net.sf.anathema.character.trait.interactive;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.display.DisplayFavorization;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.ChangeableModelDisposable;
@@ -16,7 +16,7 @@ public class InteractiveFavorization extends DisplayFavorization implements IInt
   public InteractiveFavorization(
       IBasicTrait basicTrait,
       IExperience experience,
-      IFavorizationHandler favorizationHandler) {
+      IFavorizationInteraction favorizationHandler) {
     super(favorizationHandler, basicTrait);
     this.experience = experience;
   }
@@ -33,7 +33,7 @@ public class InteractiveFavorization extends DisplayFavorization implements IInt
 
   @Override
   public void toggleFavored() {
-    getFavorizationHandler().toggleFavored(getBasicTrait().getTraitType());
+    getFavorizationInteraction().toggleFavored(getBasicTrait().getTraitType());
   }
 
   @Override

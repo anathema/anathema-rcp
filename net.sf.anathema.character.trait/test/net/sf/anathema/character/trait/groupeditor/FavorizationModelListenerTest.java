@@ -5,7 +5,6 @@ import net.sf.anathema.character.trait.interactive.IInteractiveFavorization;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.FavoredStatus;
-import net.sf.anathema.character.trait.status.ITraitStatusModel;
 
 import org.easymock.EasyMock;
 import org.eclipse.swt.SWT;
@@ -25,14 +24,12 @@ public class FavorizationModelListenerTest {
   @Test
   public void initializesButton() throws Exception {
     IInteractiveTrait trait = EasyMock.createMock(IInteractiveTrait.class);
-    ITraitStatusModel statusModel = EasyMock.createMock(ITraitStatusModel.class);
     IInteractiveFavorization favorization = EasyMock.createMock(IInteractiveFavorization.class);
     EasyMock.expect(trait.getFavorization()).andReturn(favorization).times(1);
-    EasyMock.expect(favorization.getStatusModel()).andReturn(statusModel);
-    EasyMock.expect(statusModel.getStatus()).andReturn(new DefaultStatus());
-    EasyMock.replay(trait, favorization, statusModel);
+    EasyMock.expect(favorization.getStatus()).andReturn(new DefaultStatus());
+    EasyMock.replay(trait, favorization);
     Button button = new Button(new Shell(), SWT.TOGGLE);
-    new FavorizationModelListener(button, trait.getFavorization().getStatusModel(), new NullImageProvider());
+    new FavorizationModelListener(button, trait.getFavorization(), new NullImageProvider());
     assertFalse(button.getSelection());
     // can't test image set, Image is not an interface
     EasyMock.verify(favorization);
@@ -41,17 +38,15 @@ public class FavorizationModelListenerTest {
   @Test
   public void changesButtonState() throws Exception {
     IInteractiveTrait trait = EasyMock.createMock(IInteractiveTrait.class);
-    ITraitStatusModel statusModel = EasyMock.createMock(ITraitStatusModel.class);
     IInteractiveFavorization favorization = EasyMock.createMock(IInteractiveFavorization.class);
     EasyMock.expect(trait.getFavorization()).andReturn(favorization).times(1);
-    EasyMock.expect(favorization.getStatusModel()).andReturn(statusModel);
-    EasyMock.expect(statusModel.getStatus()).andReturn(new DefaultStatus());
-    EasyMock.expect(statusModel.getStatus()).andReturn(new FavoredStatus());
-    EasyMock.replay(trait, favorization, statusModel);
+    EasyMock.expect(favorization.getStatus()).andReturn(new DefaultStatus());
+    EasyMock.expect(favorization.getStatus()).andReturn(new FavoredStatus());
+    EasyMock.replay(trait, favorization);
     Button button = new Button(new Shell(), SWT.TOGGLE);
     FavorizationModelListener listener = new FavorizationModelListener(
         button,
-        trait.getFavorization().getStatusModel(),
+        trait.getFavorization(),
         new NullImageProvider());
     listener.stateChanged();
     assertTrue(button.getSelection());

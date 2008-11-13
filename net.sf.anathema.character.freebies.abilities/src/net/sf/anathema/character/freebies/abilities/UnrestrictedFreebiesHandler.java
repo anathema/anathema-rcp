@@ -44,7 +44,7 @@ public class UnrestrictedFreebiesHandler extends AbstractExecutableExtension imp
   public int getPoints(ICharacterId id, int credit, ITraitCollectionModel abilities) {
     int totalSpent = 0;
     TraitListFactory traitListFactory = new TraitListFactory();
-    for (IBasicTrait trait : traitListFactory.create(abilities)) {
+    for (IBasicTrait trait : traitListFactory.createFrom(abilities)) {
       totalSpent += Math.min(trait.getCreationModel().getValue(), 3);
     }
     int favoredCredit = creditManager.getCredit(id, IAbilityFreebiesConstants.FAVORED_CREDIT);

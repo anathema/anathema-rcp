@@ -8,7 +8,7 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
 public class TraitListFactory {
 
-  public List<IBasicTrait> create(ITraitCollectionModel model) {
+  public List<IBasicTrait> createFrom(ITraitCollectionModel model) {
     ArrayList<IBasicTrait> list = new ArrayList<IBasicTrait>();
     for (IBasicTrait trait : model.getTraits()) {
       if (model.getSubTraits(trait.getTraitType().getId()).isEmpty()) {

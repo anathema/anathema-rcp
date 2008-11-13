@@ -8,8 +8,8 @@ import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
-import net.sf.anathema.character.trait.IFavorizationHandler;
-import net.sf.anathema.character.trait.collection.FavorizationHandler;
+import net.sf.anathema.character.trait.IFavorizationInteraction;
+import net.sf.anathema.character.trait.collection.FavorizationInteraction;
 import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -35,7 +35,7 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     IEditorInputConfiguration inputConfiguration = createEditorInputConfiguration();
     String modelId = inputConfiguration.getModelId();
-    IFavorizationHandler favorizationHandler = createFavorizationHandler(characterId, template, modelProvider, modelId);
+    IFavorizationInteraction favorizationHandler = createFavorizationHandler(characterId, template, modelProvider, modelId);
     ITraitCollectionTemplate collectionTemplate = createTemplate(template);
     TraitCollectionContext context = TraitCollectionContext.create(
         characterId,
@@ -51,12 +51,12 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
         inputConfiguration);
   }
 
-  private IFavorizationHandler createFavorizationHandler(
+  private IFavorizationInteraction createFavorizationHandler(
       ICharacterId characterId,
       ICharacterTemplate template,
       IModelCollection modelProvider,
       String modelId) {
-    return new FavorizationHandler(
+    return new FavorizationInteraction(
         characterId,
         createTemplate(template).getFavorizationTemplate(),
         modelProvider,

@@ -14,7 +14,7 @@ import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.display.IntViewImageProvider;
@@ -51,7 +51,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   }
 
   private final ITraitCollectionContext context;
-  private final IFavorizationHandler favorizationHandler;
+  private final IFavorizationInteraction favorizationHandler;
   private final IEditorInputConfiguration configuration;
   private final ITraitPreferences traitPreferences = TraitPreferenceFactory.create();
 
@@ -60,7 +60,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
       URL imageUrl,
       IDisplayNameProvider displayNameProvider,
       final ITraitCollectionContext context,
-      final IFavorizationHandler favorizationHandler,
+      final IFavorizationInteraction favorizationHandler,
       final IEditorInputConfiguration configuration) {
     super(file, imageUrl, displayNameProvider, new TraitCollectionPersister());
     this.context = context;

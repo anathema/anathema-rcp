@@ -40,7 +40,7 @@ public class UnrestrictedFreebiesBonusPointReducer extends AbstractPointHandler 
 
   private int getDotCount(ITraitCollectionModel traits, IPredicate<IBasicTrait> predicate) {
     int dotCount = 0;
-    for (IBasicTrait trait : new TraitListFactory().create(traits)) {
+    for (IBasicTrait trait : new TraitListFactory().createFrom(traits)) {
       if (predicate.evaluate(trait)) {
         dotCount += Math.min(trait.getCreationModel().getValue(), 3);
       }

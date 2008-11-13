@@ -6,9 +6,9 @@ import net.sf.anathema.lib.ui.IDisposable;
 
 public interface IInteractiveFavorization extends IDisposable, IDisplayFavorization {
 
+  public void addFavorableChangeListener(IChangeListener listener);
+
   public void addFavoredChangeListener(IChangeListener listener);
 
   public void toggleFavored();
-
-  public void addFavorableChangeListener(IChangeListener listener);
 }

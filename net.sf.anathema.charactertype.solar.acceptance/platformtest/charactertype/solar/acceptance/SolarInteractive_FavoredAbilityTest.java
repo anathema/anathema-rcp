@@ -1,13 +1,18 @@
 package charactertype.solar.acceptance;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.util.List;
 
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
+import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
+import net.sf.anathema.character.core.character.CharacterId;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
@@ -32,7 +37,10 @@ public class SolarInteractive_FavoredAbilityTest {
     folder = project.getFolder("Solar"); //$NON-NLS-1$
     List<IDisplayTraitGroup<IInteractiveTrait>> groups = AbilitiesInteractionUtilties.createDisplayGroups(folder);
     favoredAbility = groups.get(0).getTraits().iterator().next();
-    favoredAbility.getFavorization().getStatusModel().toggleStatus();
+    ModelIdentifier abilitiesIdentifier = new ModelIdentifier(new CharacterId(folder), IAbilitiesPluginConstants.MODEL_ID);
+    ITraitCollectionModel abilities = (ITraitCollectionModel) ModelCache.getInstance().getModel(abilitiesIdentifier);
+    abilities.getTrait(favoredAbility.getTraitType().getId()).getStatusManager().toggleStatus();
+    assertThat(favoredAbility.getFavorization().isFavored(), is(true));
   }
 
   @Test

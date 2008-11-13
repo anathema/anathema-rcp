@@ -38,7 +38,7 @@ public class FavoredFreebiesHandler extends AbstractExecutableExtension implemen
 
   public int getPoints(ITraitCollectionModel abilities, int credit) {
     int dotCount = 0;
-    for (IBasicTrait trait : new TraitListFactory().create(abilities)) {
+    for (IBasicTrait trait : new TraitListFactory().createFrom(abilities)) {
       if (trait.getStatusManager().getStatus().isCheap()) {
         dotCount += Math.min(trait.getCreationModel().getValue(), 3);
       }

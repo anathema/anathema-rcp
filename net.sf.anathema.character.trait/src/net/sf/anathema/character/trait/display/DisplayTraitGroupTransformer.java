@@ -4,16 +4,16 @@ import java.util.List;
 
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.IFavorizationHandler;
+import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.AbstractTraitGroupTransformer;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.validator.IValidator;
 
 public class DisplayTraitGroupTransformer extends AbstractTraitGroupTransformer<IDisplayTrait> {
 
-  private final IFavorizationHandler favorizationHandler;
+  private final IFavorizationInteraction favorizationHandler;
 
-  public DisplayTraitGroupTransformer(ITraitCollectionContext context, IFavorizationHandler favorizationHandler) {
+  public DisplayTraitGroupTransformer(ITraitCollectionContext context, IFavorizationInteraction favorizationHandler) {
     super(context);
     this.favorizationHandler = favorizationHandler;
   }

@@ -73,7 +73,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
   }
 
   private float encodeTraitGroups(PdfContentByte directContent, ICharacter character, Position position, float width) {
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = AbilitiesDisplayUtilties.getDisplayAttributeGroups(character);
+    List<IDisplayTraitGroup<IDisplayTrait>> groups = AbilitiesDisplayUtilties.createDisplayAttributeGroups(character);
     float yPosition = position.y;
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       Position groupPosition = new Position(position.x, yPosition);
@@ -121,7 +121,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
       Position position,
       float width) {
     int value = trait.getValue();
-    boolean favored = trait.getFavorization().getStatusModel().getStatus().isCheap();
+    boolean favored = trait.getFavorization().getStatus().isCheap();
     int maximalValue = trait.getMaximalValue();
     return traitEncoder.encodeWithTextAndRectangle(directContent, label, position, width, value, favored, maximalValue);
   }

@@ -18,7 +18,7 @@ public class CasteTraitImageProvider extends AbstractExecutableExtension impleme
 
   @Override
   public Image getImage(IDisplayTrait trait, ICharacterId characterId) {
-    ITraitStatus status = trait.getFavorization().getStatusModel().getStatus();
+    ITraitStatus status = trait.getFavorization().getStatus();
     if (!(status instanceof CasteStatus)) {
       return null;
     }

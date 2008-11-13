@@ -28,8 +28,8 @@ public class TraitViewFactory {
   public TraitViewFactory(Composite parent, IIntViewImageProvider provider, ICharacterId characterId) {
     this.parent = parent;
     this.characterId = characterId;
-    this.passiveImage = provider.createPassiveImage();
-    this.activeImage = provider.createActiveImage();
+    passiveImage = provider.createPassiveImage();
+    activeImage = provider.createActiveImage();
   }
 
   public IExtendableIntValueView create(
@@ -66,8 +66,7 @@ public class TraitViewFactory {
         passiveImage,
         imageProvider,
         characterId);
-    FavorizationModelListener listener = new FavorizationModelListener(favoredButton, trait.getFavorization()
-        .getStatusModel(), favorizationImageProvider);
+    FavorizationModelListener listener = new FavorizationModelListener(favoredButton, trait.getFavorization(), favorizationImageProvider);
     trait.getFavorization().addFavoredChangeListener(listener);
     trait.getFavorization().addFavorableChangeListener(listener);
     favoredButton.addListener(SWT.MouseUp, new FavorizationButtonChangeListener(favoredButton, trait));

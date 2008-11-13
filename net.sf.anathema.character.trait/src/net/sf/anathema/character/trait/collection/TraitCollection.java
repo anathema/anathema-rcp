@@ -112,7 +112,7 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
     subtraitExperiencedModel.addChangeListener(new SubTraitAdaptionListener(
         this,
         basicTrait,
-        new ExperienceModelTransformer()));
+        new ExperiencedModelTransformer()));
     StatusUpdater statusUpdater = new StatusUpdater(subTrait, basicTrait);
     basicTrait.getStatusManager().addPriorityChangeListener(statusUpdater);
     statusUpdater.stateChanged();

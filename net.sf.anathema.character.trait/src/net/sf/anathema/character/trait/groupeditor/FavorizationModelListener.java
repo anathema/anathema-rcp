@@ -1,28 +1,28 @@
 package net.sf.anathema.character.trait.groupeditor;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.trait.status.ITraitStatusModel;
+import net.sf.anathema.character.trait.display.ITraitStatusProvider;
 
 import org.eclipse.swt.widgets.Button;
 
 public final class FavorizationModelListener implements IChangeListener {
   private final Button favoredButton;
   private final IImageProvider buttonImageProvider;
-  private final ITraitStatusModel statusModel;
+  private final ITraitStatusProvider statusProvider;
 
   public FavorizationModelListener(
       Button favoredButton,
-      ITraitStatusModel statusModel,
+      ITraitStatusProvider statusProvider,
       IImageProvider buttonImageProvider) {
     this.favoredButton = favoredButton;
-    this.statusModel = statusModel;
+    this.statusProvider = statusProvider;
     this.buttonImageProvider = buttonImageProvider;
     stateChanged();
   }
 
   @Override
   public void stateChanged() {
-    boolean favored = statusModel.getStatus().isCheap();
+    boolean favored = statusProvider.getStatus().isCheap();
     favoredButton.setSelection(favored);
     favoredButton.setImage(buttonImageProvider.getImage());
   }

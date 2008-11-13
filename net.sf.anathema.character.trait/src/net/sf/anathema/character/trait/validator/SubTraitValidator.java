@@ -6,7 +6,7 @@ import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.CreationModelTransformer;
-import net.sf.anathema.character.trait.collection.ExperienceModelTransformer;
+import net.sf.anathema.character.trait.collection.ExperiencedModelTransformer;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
 
@@ -15,7 +15,7 @@ public class SubTraitValidator implements IValidator {
   private final ITraitCollectionModel traitCollection;
   private final IBasicTrait trait;
   private final IExperience experience;
-  private final ExperienceModelTransformer experienceTransformer = new ExperienceModelTransformer();
+  private final ExperiencedModelTransformer experienceTransformer = new ExperiencedModelTransformer();
   private final CreationModelTransformer creationTransformer = new CreationModelTransformer();
 
   public SubTraitValidator(IExperience experience, ITraitCollectionModel traitCollection, IBasicTrait trait) {
