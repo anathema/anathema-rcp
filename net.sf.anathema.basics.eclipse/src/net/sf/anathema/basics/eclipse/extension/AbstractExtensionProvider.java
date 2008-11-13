@@ -2,7 +2,7 @@ package net.sf.anathema.basics.eclipse.extension;
 
 import net.disy.commons.core.predicate.IPredicate;
 
-public abstract class AbstractExtensionProvider implements IExtensionProvider{
+public abstract class AbstractExtensionProvider implements IExtensionPoint {
 
   public AbstractExtensionProvider() {
     super();

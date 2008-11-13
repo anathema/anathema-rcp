@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
+import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.FakeExtensionElement;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -51,7 +51,7 @@ public class CreditManagerTest {
   @Before
   public void createManager() throws Exception {
     this.characterId = TemplateProviderObjectMother.createCharacterId(TEMPLATE_ID);
-    IExtensionProvider provider = EasyMock.createMock(IExtensionProvider.class);
+    IExtensionPoint provider = EasyMock.createMock(IExtensionPoint.class);
     FakeExtensionElement element = createCreditsElement();
     createExtension(element, provider);
     this.manager = new CreditManager(provider, TemplateProviderObjectMother.createTemplateProvider(
@@ -69,7 +69,7 @@ public class CreditManagerTest {
     assertEquals(expectedCredit, manager.getCredit(characterId, CREDIT_ID));
   }
 
-  private void createExtension(FakeExtensionElement element, IExtensionProvider provider) {
+  private void createExtension(FakeExtensionElement element, IExtensionPoint provider) {
     IExtensionElement[] elements = new IExtensionElement[] { element };
     IPluginExtension extension = EasyMock.createMock(IPluginExtension.class);
     EasyMock.expect(extension.getElements()).andReturn(elements).anyTimes();

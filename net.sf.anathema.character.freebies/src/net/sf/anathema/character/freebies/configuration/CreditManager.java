@@ -5,7 +5,7 @@ import org.eclipse.osgi.util.NLS;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
+import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -31,7 +31,7 @@ public final class CreditManager implements ICreditManager {
         new CharacterTemplateProvider());
   }
 
-  public CreditManager(IExtensionProvider extensionProvider, ICharacterTemplateProvider templateProvider) {
+  public CreditManager(IExtensionPoint extensionProvider, ICharacterTemplateProvider templateProvider) {
     this(templateProvider, extensionProvider.getExtensions());
   }
 

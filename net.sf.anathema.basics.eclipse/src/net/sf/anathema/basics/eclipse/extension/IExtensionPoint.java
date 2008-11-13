@@ -2,7 +2,7 @@ package net.sf.anathema.basics.eclipse.extension;
 
 import net.disy.commons.core.predicate.IPredicate;
 
-public interface IExtensionProvider {
+public interface IExtensionPoint {
 
   public IPluginExtension[] getExtensions();
 

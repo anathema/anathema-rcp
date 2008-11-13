@@ -3,16 +3,21 @@ package net.sf.anathema.basics.eclipse.extension;
 import net.disy.commons.core.predicate.IPredicate;
 
 public final class AttributePredicate implements IPredicate<IExtensionElement> {
-  private final String treeId;
-  private final String attributeName;
 
-  public AttributePredicate(String attributeName, String treeId) {
-    this.attributeName = attributeName;
-    this.treeId = treeId;
+  public static AttributePredicate FromNameAndValue(String name, String value) {
+    return new AttributePredicate(name, value);
+  }
+
+  private final String value;
+  private final String name;
+
+  private AttributePredicate(String name, String value) {
+    this.name = name;
+    this.value = value;
   }
 
   @Override
   public boolean evaluate(IExtensionElement element) {
-    return element.getAttribute(attributeName).equals(treeId);
+    return element.getAttribute(name).equals(value);
   }
 }

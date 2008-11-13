@@ -1,7 +1,7 @@
 package net.sf.anathema.character.freebies.configuration;
 
 import static org.junit.Assert.assertFalse;
-import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
+import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
 
@@ -13,11 +13,11 @@ public class CreditManagerTemplateIdTest {
   private static final String CREDIT_ID = "creditId"; //$NON-NLS-1$
   private static final String TEMPLATE_ID = "template"; //$NON-NLS-1$
   private CreditManager manager;
-  private IExtensionProvider provider;
+  private IExtensionPoint provider;
 
   @Before
   public void createManager() throws Exception {
-    this.provider = EasyMock.createMock(IExtensionProvider.class);
+    this.provider = EasyMock.createMock(IExtensionPoint.class);
     EasyMock.expect(provider.getExtensions()).andReturn(new IPluginExtension[0]);
     EasyMock.replay(provider);
     this.manager = new CreditManager(provider, TemplateProviderObjectMother.createTemplateProvider(

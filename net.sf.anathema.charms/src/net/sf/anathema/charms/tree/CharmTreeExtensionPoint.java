@@ -8,7 +8,7 @@ import java.util.Set;
 
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
+import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
@@ -19,13 +19,13 @@ public class CharmTreeExtensionPoint implements ICharmTreeProvider, ICharmTreeLo
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   private static final String ATTRIB_TREE_REFERENCE = "treeReference"; //$NON-NLS-1$
-  private final IExtensionProvider extensionProvider;
+  private final IExtensionPoint extensionProvider;
 
   public CharmTreeExtensionPoint() {
     this(new EclipseExtensionPoint(IPluginConstants.PLUGIN_ID, EXTENSION_NAME));
   }
 
-  public CharmTreeExtensionPoint(IExtensionProvider extensionProvider) {
+  public CharmTreeExtensionPoint(IExtensionPoint extensionProvider) {
     this.extensionProvider = extensionProvider;
   }
 

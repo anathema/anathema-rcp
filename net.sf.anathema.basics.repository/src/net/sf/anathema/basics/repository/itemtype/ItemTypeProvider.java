@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.basics.eclipse.extension.IExtensionProvider;
+import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 import net.sf.anathema.basics.repository.itemtype.internal.ItemType;
@@ -13,7 +13,7 @@ import net.sf.anathema.basics.repository.itemtype.internal.ItemType;
 public class ItemTypeProvider {
 
   private static final String ITEMTYPES_EXTENSION_POINT = "itemtypes"; //$NON-NLS-1$
-  private final IExtensionProvider configurationProvider;
+  private final IExtensionPoint configurationProvider;
 
   public ItemTypeProvider() {
     this.configurationProvider = new EclipseExtensionPoint(RepositoryPlugin.ID, ITEMTYPES_EXTENSION_POINT);

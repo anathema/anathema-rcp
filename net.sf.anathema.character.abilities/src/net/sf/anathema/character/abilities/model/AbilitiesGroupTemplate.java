@@ -13,6 +13,6 @@ public class AbilitiesGroupTemplate implements ITraitGroupTemplate {
   }
 
   public TraitGroup[] getGroups() {
-    return new AbilityGroupsProvider().getTraitGroups(characterTemplate.getCharacterTypeId());
+    return new AbilityGroupsExtensionPoint().getTraitGroups(characterTemplate.getCharacterTypeId());
   }
 }
