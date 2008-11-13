@@ -2,7 +2,9 @@ package net.sf.anathema.character.core.editors;
 
 import net.sf.anathema.basics.eclipse.resource.ResourceMarkerHandle;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModel;
+import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.resource.ResourceModelMarker;
 
 import org.eclipse.core.resources.IResource;
@@ -20,5 +22,13 @@ public abstract class AbstractCharacterModelEditorPart<M extends IModel> extends
         new ResourceModelMarker(null, new ResourceMarkerHandle(modelResource), new UneditedModelMarker()).markFile();
       }
     };
+  }
+
+  protected final ICharacterId getCharacterId() {
+    return getModelIdentifier().getCharacterId();
+  }
+
+  protected final IModelIdentifier getModelIdentifier() {
+    return (IModelIdentifier) getEditorInput().getAdapter(IModelIdentifier.class);
   }
 }

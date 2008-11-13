@@ -51,15 +51,15 @@ public class CharmModel extends AbstractModel implements ICharmModel {
 
   @Override
   public void toggleCreationLearned(String charmId) {
-    toggleLearned(charmId, creationLearnedCharms);
+    toggleLearnedInList(charmId, creationLearnedCharms);
   }
 
   @Override
   public void toggleExperiencedLearned(String charmId) {
-    toggleLearned(charmId, experienceLearnedCharms);
+    toggleLearnedInList(charmId, experienceLearnedCharms);
   }
 
-  private void toggleLearned(String charmId, List<String> charmList) {
+  private void toggleLearnedInList(String charmId, List<String> charmList) {
     if (charmList.contains(charmId)) {
       charmList.remove(charmId);
     }

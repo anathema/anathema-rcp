@@ -13,8 +13,7 @@ public class CharmsEditor extends AbstractCharacterModelEditorPart<ICharmModel> 
 
   @Override
   protected IEditorControl createItemEditorControl() {
-    IModelIdentifier modelIdentifier = (IModelIdentifier) getEditorInput().getAdapter(IModelIdentifier.class);
-    IModelIdentifier experienceIdentifier = new ModelIdentifier(modelIdentifier.getCharacterId(), IExperience.MODEL_ID);
+    IModelIdentifier experienceIdentifier = new ModelIdentifier(getCharacterId(), IExperience.MODEL_ID);
     IExperience experience = (IExperience) ModelCache.getInstance().getModel(experienceIdentifier);
     return new CharmsEditorControl(this, experience);
   }

@@ -24,15 +24,15 @@ public class CheapCharmPredicate implements IPredicate<String> {
   }
 
   private final ITraitCollectionModel traits;
-  private final ITraitIdLookup idProvider;
+  private final ITraitIdLookup idLookup;
 
-  public CheapCharmPredicate(ITraitCollectionModel traits, ITraitIdLookup idProvider) {
+  public CheapCharmPredicate(ITraitCollectionModel traits, ITraitIdLookup idLookup) {
     this.traits = traits;
-    this.idProvider = idProvider;
+    this.idLookup = idLookup;
   }
 
   public boolean evaluate(String charmId) {
-    String traitId = idProvider.getTraitId(charmId);
+    String traitId = idLookup.getTraitId(charmId);
     IBasicTrait trait = traits.getTrait(traitId);
     return trait.getStatusManager().getStatus().isCheap();
   }
