@@ -48,11 +48,11 @@ public final class TraitCollectionUpdatable implements IUpdatable {
 
   private void validateCreationValue(IBasicTrait trait) {
     IIntValueModel creationModel = trait.getCreationModel();
-    int value = creationModel.getValue();
-    creationModel.setValue(calculateCorrectedValue(trait, value));
+    int validatedValue = calculateValidatedValue(trait, creationModel.getValue());
+    creationModel.setValue(validatedValue);
   }
 
-  private int calculateCorrectedValue(IBasicTrait trait, int value) {
+  private int calculateValidatedValue(IBasicTrait trait, int value) {
     String modelId = identifier.getModelId();
     List<IValidator> validators = validatorFactory.create(template.getId(), container, modelId, trait);
     return ValidationUtilities.getCorrectedValue(validators, value);

@@ -1,9 +1,6 @@
 package net.sf.anathema.character.trait.collection;
 
-import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelContainer;
-import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.internal.FavoredCount;
@@ -16,14 +13,6 @@ public class FavorizationInteraction implements IFavorizationInteraction {
   private final IFavorizationTemplate template;
   private final IModelContainer modelContainer;
   private final String modelId;
-
-  public FavorizationInteraction(
-      ICharacterId characterId,
-      IFavorizationTemplate template,
-      IModelCollection modelProvider,
-      String modelId) {
-    this(new ModelContainer(modelProvider, characterId), template, modelId);
-  }
 
   public FavorizationInteraction(IModelContainer modelContainer, IFavorizationTemplate template, String modelId) {
     this.modelContainer = modelContainer;

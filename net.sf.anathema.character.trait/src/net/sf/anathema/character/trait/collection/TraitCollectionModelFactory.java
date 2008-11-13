@@ -10,7 +10,6 @@ import net.sf.anathema.lib.util.Identificate;
 
 public class TraitCollectionModelFactory {
 
-
   public static ITraitCollectionModel create(ITraitGroup[] groups) {
     List<IBasicTrait> basicTraits = new ArrayList<IBasicTrait>();
     for (ITraitGroup group : groups) {

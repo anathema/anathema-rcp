@@ -13,7 +13,7 @@ public class AbilitiesEditorInputFactory extends AbstractTraitCollectionEditorIn
   }
 
   @Override
-  protected ITraitCollectionTemplate createTemplate(ICharacterTemplate template) {
+  protected ITraitCollectionTemplate createTraitCollectionTemplate(ICharacterTemplate template) {
     return new AbilitiesTemplateProvider().getTraitTemplate(template.getId());
   }
 }

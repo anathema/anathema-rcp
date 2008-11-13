@@ -31,8 +31,7 @@ public class DisplayTrait implements IDisplayTrait {
   public int getValue() {
     int experiencedValue = basicTrait.getExperiencedModel().getValue();
     int creationValue = basicTrait.getCreationModel().getValue();
-    boolean isExperienced = experience.isExperienced();
-    if (isExperienced && experiencedValue >= creationValue) {
+    if (experience.isExperienced() && experiencedValue >= creationValue) {
       return experiencedValue;
     }
     return creationValue;

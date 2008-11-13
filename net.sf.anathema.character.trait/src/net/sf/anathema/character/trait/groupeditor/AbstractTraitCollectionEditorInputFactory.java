@@ -6,10 +6,13 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvid
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.IModelContainer;
+import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.FavorizationInteraction;
+import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.exception.PersistenceException;
@@ -35,8 +38,9 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     IEditorInputConfiguration inputConfiguration = createEditorInputConfiguration();
     String modelId = inputConfiguration.getModelId();
-    IFavorizationInteraction favorizationHandler = createFavorizationHandler(characterId, template, modelProvider, modelId);
-    ITraitCollectionTemplate collectionTemplate = createTemplate(template);
+    ModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
+    IFavorizationInteraction favorizationHandler = createFavorizationInteraction(modelContainer, template, modelId);
+    ITraitCollectionTemplate collectionTemplate = createTraitCollectionTemplate(template);
     TraitCollectionContext context = TraitCollectionContext.create(
         characterId,
         modelProvider,
@@ -51,19 +55,15 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
         inputConfiguration);
   }
 
-  private IFavorizationInteraction createFavorizationHandler(
-      ICharacterId characterId,
+  private IFavorizationInteraction createFavorizationInteraction(
+      IModelContainer modelContainer,
       ICharacterTemplate template,
-      IModelCollection modelProvider,
       String modelId) {
-    return new FavorizationInteraction(
-        characterId,
-        createTemplate(template).getFavorizationTemplate(),
-        modelProvider,
-        modelId);
+    IFavorizationTemplate favorizationTemplate = createTraitCollectionTemplate(template).getFavorizationTemplate();
+    return new FavorizationInteraction(modelContainer, favorizationTemplate, modelId);
   }
 
-  protected abstract ITraitCollectionTemplate createTemplate(ICharacterTemplate template);
+  protected abstract ITraitCollectionTemplate createTraitCollectionTemplate(ICharacterTemplate template);
 
   protected abstract IEditorInputConfiguration createEditorInputConfiguration();
 
