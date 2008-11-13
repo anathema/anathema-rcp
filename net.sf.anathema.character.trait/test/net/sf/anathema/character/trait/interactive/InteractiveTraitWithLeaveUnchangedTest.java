@@ -30,7 +30,7 @@ public class InteractiveTraitWithLeaveUnchangedTest {
     basicTrait.getExperiencedModel().setValue(3);
     interactiveTrait = new InteractiveTrait(
         basicTrait,
-        ModelContainerObjectMother.create(experience),
+        experience,
         EasyMock.createMock(IInteractiveFavorization.class),
         new ArrayList<IValidator>(),
         new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged));

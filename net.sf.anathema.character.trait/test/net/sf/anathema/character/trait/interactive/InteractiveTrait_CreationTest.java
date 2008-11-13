@@ -33,12 +33,7 @@ public class InteractiveTrait_CreationTest {
     basicTrait = new BasicTrait(traitType);
     favorization = EasyMock.createNiceMock(IInteractiveFavorization.class);
     ITraitPreferences traitPreferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
-    model = new InteractiveTrait(
-        basicTrait,
-        ModelContainerObjectMother.create(experience),
-        favorization,
-        new ArrayList<IValidator>(),
-        traitPreferences);
+    model = new InteractiveTrait(basicTrait, experience, favorization, new ArrayList<IValidator>(), traitPreferences);
   }
 
   @Test

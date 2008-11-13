@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait.display;
 
 import java.util.List;
 
-import net.sf.anathema.character.core.character.IModelContainer;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.AbstractTraitGroupTransformer;
@@ -19,7 +19,7 @@ public class DisplayTraitGroupTransformer extends AbstractTraitGroupTransformer<
   }
 
   @Override
-  protected IDisplayTrait createTrait(IBasicTrait trait, IModelContainer container, List<IValidator> validators) {
-    return new DisplayTrait(new DisplayFavorization(favorizationHandler, trait), trait, container, 10);
+  protected IDisplayTrait createTrait(IBasicTrait trait, IExperience experience, List<IValidator> validators) {
+    return new DisplayTrait(new DisplayFavorization(favorizationHandler, trait), trait, experience, 10);
   }
 }

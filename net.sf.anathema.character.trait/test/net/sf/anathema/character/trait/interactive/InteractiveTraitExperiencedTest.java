@@ -37,7 +37,7 @@ public class InteractiveTraitExperiencedTest {
     ITraitPreferences traitPreferences = new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged);
     interactiveTrait = new InteractiveTrait(
         basicTrait,
-        ModelContainerObjectMother.create(experience),
+        experience,
         favorization,
         new ArrayList<IValidator>(),
         traitPreferences);

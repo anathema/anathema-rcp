@@ -2,7 +2,6 @@ package net.sf.anathema.character.freebies.attributes.coverage;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.attributes.model.AttributeContextObjectMother;
-import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.lib.util.Identificate;
@@ -85,6 +84,6 @@ public class PointCoverageCalculatorSingleTraitCreationTest {
   }
 
   private void setExperienced() {
-    ((IExperience) context.getModelContainer().getModel(IExperience.MODEL_ID)).setExperienced(true);
+    context.getExperience().setExperienced(true);
   }
 }

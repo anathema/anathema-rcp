@@ -2,13 +2,13 @@ package net.sf.anathema.character.trait.collection;
 
 import java.util.List;
 
-import net.sf.anathema.character.core.character.IModelContainer;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.validator.IValidator;
 
 public interface ITraitCollectionContext {
 
-  public IModelContainer getModelContainer();
+  public IExperience getExperience();
 
   public ITraitCollectionModel getCollection();
 

@@ -3,7 +3,6 @@ package net.sf.anathema.character.trait.interactive;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.display.DisplayTrait;
@@ -42,16 +41,16 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
 
   public InteractiveTrait(
       final IBasicTrait basicTrait,
-      final IModelContainer container,
+      final IExperience experience,
       final IInteractiveFavorization favorization,
       List<IValidator> valueValidators,
       ITraitPreferences traitPreferences) {
-    experience = (IExperience) container.getModel(IExperience.MODEL_ID);
+    this.experience = experience;
     this.traitPreferences = traitPreferences;
     this.favorization = favorization;
     this.valueValidators = valueValidators;
     this.basicTrait = basicTrait;
-    displayTrait = new DisplayTrait(favorization, basicTrait, container, 5);
+    displayTrait = new DisplayTrait(favorization, basicTrait, experience, 5);
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getCreationModel().addChangeListener(experienceTreatmentListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);

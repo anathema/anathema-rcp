@@ -3,7 +3,7 @@ package net.sf.anathema.character.trait.collection;
 import java.util.List;
 
 import net.disy.commons.core.util.ITransformer;
-import net.sf.anathema.character.core.character.IModelContainer;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.DisplayTraitGroup;
@@ -25,13 +25,13 @@ public abstract class AbstractTraitGroupTransformer<D extends IDisplayTrait> imp
     DisplayTraitGroup<D> displayGroup = new DisplayTraitGroup<D>(group.getId(), group.getLabel());
     for (String traitId : group.getTraitIds()) {
       IBasicTrait basicTrait = context.getCollection().getTrait(traitId);
-      IModelContainer modelCollection = context.getModelContainer();
+      IExperience experience = context.getExperience();
       List<IValidator> validators = context.getValidators(traitId);
-      D displayTrait = createTrait(basicTrait, modelCollection, validators);
+      D displayTrait = createTrait(basicTrait, experience, validators);
       displayGroup.addTrait(displayTrait);
     }
     return displayGroup;
   }
 
-  protected abstract D createTrait(IBasicTrait trait, IModelContainer container, List<IValidator> validators);
+  protected abstract D createTrait(IBasicTrait trait, IExperience experience, List<IValidator> validators);
 }

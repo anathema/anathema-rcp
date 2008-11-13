@@ -12,6 +12,7 @@ import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.core.type.CharacterTypeProvider;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -57,12 +58,12 @@ public class TraitCollectionContext implements ITraitCollectionContext, IModelCo
       return new ArrayList<IValidator>();
     }
     IBasicTrait trait = getCollection().getTrait(traitId);
-    return new ValidatorFactory().create(templateId, getModelContainer(), collectionModelId, trait);
+    return new ValidatorFactory().create(templateId, modelContainer, collectionModelId, trait);
   }
 
   @Override
-  public IModelContainer getModelContainer() {
-    return this;
+  public IExperience getExperience() {
+    return (IExperience) modelContainer.getModel(IExperience.MODEL_ID);
   }
 
   public IModel getModel(String modelId) {

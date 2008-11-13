@@ -9,7 +9,6 @@ import net.disy.commons.core.predicate.IPredicate;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
@@ -93,10 +92,9 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
 
   private InteractiveTrait createInteractiveSubTrait(IBasicTrait trait) {
     List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
-    IModelContainer container = context.getModelContainer();
-    IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
+    IExperience experience = context.getExperience();
     InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, new NullFavorizationHandler());
-    return new InteractiveTrait(trait, container, favorization, validators, traitPreferences);
+    return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences);
   }
 
   @Override

@@ -58,12 +58,7 @@ public class InteractiveTraitOnExperience_Test {
     IInteractiveFavorization favorization = createNiceMock(IInteractiveFavorization.class);
     replay(favorization);
     valueValidators = new ArrayList<IValidator>();
-    interactiveTrait = new InteractiveTrait(
-        basicTrait,
-        ModelContainerObjectMother.create(experience),
-        favorization,
-        valueValidators,
-        null);
+    interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, valueValidators, null);
   }
 
   @Test

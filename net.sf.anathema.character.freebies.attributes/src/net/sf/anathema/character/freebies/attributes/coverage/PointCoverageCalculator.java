@@ -19,7 +19,7 @@ public class PointCoverageCalculator {
   }
 
   public ICoverageCalculation calculateCoverageFor(ITraitGroup traitGroup) {
-    IExperience experience = (IExperience) context.getModelContainer().getModel(IExperience.MODEL_ID);
+    IExperience experience = context.getExperience();
     if (experience.isExperienced()) {
       return new ExperienceCoverageCalculation(context.getCollection());
     }

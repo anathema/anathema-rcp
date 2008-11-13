@@ -2,7 +2,6 @@ package net.sf.anathema.character.trait.interactive;
 
 import java.util.List;
 
-import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
@@ -26,9 +25,8 @@ public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTr
   }
 
   @Override
-  protected InteractiveTrait createTrait(IBasicTrait trait, IModelContainer container, List<IValidator> validators) {
-    IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
+  protected InteractiveTrait createTrait(IBasicTrait trait, IExperience experience, List<IValidator> validators) {
     InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
-    return new InteractiveTrait(trait, container, favorization, validators, traitPreferences);
+    return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences);
   }
 }
