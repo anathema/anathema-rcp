@@ -16,7 +16,7 @@ import org.dom4j.Element;
 
 public class CharmsPersister implements IModelPersister<NullModelTemplate, ICharmModel> {
 
-  private static final String ATTRIB_EXPERIENCED = "experienced";
+  private static final String ATTRIB_EXPERIENCED = "experienced"; //$NON-NLS-1$
   private static final String TAG_ID = "id"; //$NON-NLS-1$
   private static final String TAG_CHARM = "charm"; //$NON-NLS-1$
   private static final String TAG_CHARMS = "charms"; //$NON-NLS-1$
@@ -57,6 +57,7 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
 
   @Override
   public void save(OutputStream stream, ICharmModel item) throws IOException, PersistenceException {
+//    TODO vernünftiger Umgang mit der Fall, dass etwas sowohl experienced als auch creation learned sein kann?
     Document document = documentFactory.createInstance();
     Element rootElement = document.getRootElement();
     for (String charmId : item.getCreationLearnedCharms()) {
