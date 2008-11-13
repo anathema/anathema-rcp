@@ -3,6 +3,7 @@ package net.sf.anathema.character.trait.collection;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
@@ -99,24 +100,27 @@ public class TraitCollection extends AbstractModel implements ITraitCollectionMo
 
   @Override
   public void addSubTrait(final String trait, final IBasicTrait subTrait) {
-    final IBasicTrait basicTrait = getTrait(trait);
+    final IBasicTrait parentTrait = getTrait(trait);
     subTraits.add(trait, subTrait);
-    final IIntValueModel subtraitCreationModel = subTrait.getCreationModel();
-    subtraitCreationModel.addChangeListener(changeListener);
-    subtraitCreationModel.addChangeListener(new SubTraitAdaptionListener(
-        this,
-        basicTrait,
-        new CreationModelTransformer()));
-    final IIntValueModel subtraitExperiencedModel = subTrait.getExperiencedModel();
-    subtraitExperiencedModel.addChangeListener(changeListener);
-    subtraitExperiencedModel.addChangeListener(new SubTraitAdaptionListener(
-        this,
-        basicTrait,
-        new ExperiencedModelTransformer()));
-    StatusUpdater statusUpdater = new StatusUpdater(subTrait, basicTrait);
-    basicTrait.getStatusManager().addPriorityChangeListener(statusUpdater);
-    statusUpdater.stateChanged();
+    addSubtraitListeners(parentTrait, subTrait, new CreationModelTransformer());
+    addSubtraitListeners(parentTrait, subTrait, new ExperiencedModelTransformer());
+    addStatusUpdateForSubtraits(subTrait, parentTrait);
     setDirty(true);
+  }
+
+  private void addSubtraitListeners(
+      final IBasicTrait parentTrait,
+      final IBasicTrait subTrait,
+      ITransformer<IBasicTrait, IIntValueModel> transformer) {
+    final IIntValueModel valueModel = transformer.transform(subTrait);
+    valueModel.addChangeListener(changeListener);
+    valueModel.addChangeListener(new SubTraitAdaptionListener(this, parentTrait, transformer));
+  }
+
+  private void addStatusUpdateForSubtraits(final IBasicTrait subTrait, final IBasicTrait parentTrait) {
+    StatusUpdater statusUpdater = new StatusUpdater(subTrait, parentTrait);
+    parentTrait.getStatusManager().addPriorityChangeListener(statusUpdater);
+    statusUpdater.stateChanged();
   }
 
   @Override
