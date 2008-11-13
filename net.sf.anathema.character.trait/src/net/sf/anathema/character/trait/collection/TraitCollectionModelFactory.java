@@ -15,8 +15,7 @@ public class TraitCollectionModelFactory {
     List<IBasicTrait> basicTraits = new ArrayList<IBasicTrait>();
     for (ITraitGroup group : groups) {
       for (String traitId : group.getTraitIds()) {
-        BasicTrait basicTrait = new BasicTrait(new Identificate(traitId));
-        basicTraits.add(basicTrait);
+        basicTraits.add(new BasicTrait(new Identificate(traitId)));
       }
     }
     return new TraitCollection(basicTraits.toArray(new BasicTrait[basicTraits.size()]));

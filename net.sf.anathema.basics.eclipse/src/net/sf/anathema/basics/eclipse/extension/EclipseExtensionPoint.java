@@ -11,7 +11,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.osgi.util.NLS;
 
-public class EclipseExtensionPoint extends AbstractExtensionProvider  {
+public class EclipseExtensionPoint extends AbstractExtensionPoint  {
 
   private final String pluginId;
   private final String pointId;

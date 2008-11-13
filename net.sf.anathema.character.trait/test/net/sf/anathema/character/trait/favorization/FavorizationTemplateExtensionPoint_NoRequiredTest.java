@@ -1,35 +1,38 @@
-package net.sf.anathema.character.trait.collection;
+package net.sf.anathema.character.trait.favorization;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
+import net.sf.anathema.character.trait.template.FavorizationTemplateExtensionPoint;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class FavorizationTemplateProvider_NoRequiredTest {
+public class FavorizationTemplateExtensionPoint_NoRequiredTest {
 
   private static final int CONFIGURED_FAVORED_COUNT = 2;
   private static final String TEMPLATE_ID = "testTemplateId"; //$NON-NLS-1$
   private static final String MODEL_ID = "testModelId"; //$NON-NLS-1$
-  private FavorizationTemplateProvider provider;
+  private FavorizationTemplateExtensionPoint provider;
 
   @Before
   public void createProvider() throws Exception {
     IExtensionElement element = FavorizationElementObjectMother.create(TEMPLATE_ID, MODEL_ID, CONFIGURED_FAVORED_COUNT);
-    provider = new FavorizationTemplateProvider(MODEL_ID, ExtensionObjectMother.createPluginExtension(element));
+    IPluginExtension pluginExtension = ExtensionObjectMother.createPluginExtension(element);
+    provider = new FavorizationTemplateExtensionPoint(MODEL_ID, ExtensionObjectMother.createExtensionPoint(pluginExtension));
   }
 
   @Test
   public void providesNoFavoredCountIfNoConfigurationIsFoundForTemplateId() throws Exception {
-    IFavorizationTemplate template = provider.getFavorizationTemplate("otherTemplateId"); //$NON-NLS-1$
+    IFavorizationTemplate template = provider.readTemplate("otherTemplateId"); //$NON-NLS-1$
     assertEquals(0, template.getFavorizationCount());
   }
 
   @Test
   public void readsFavoredCountCorrectly() throws Exception {
-    IFavorizationTemplate template = provider.getFavorizationTemplate(TEMPLATE_ID);
+    IFavorizationTemplate template = provider.readTemplate(TEMPLATE_ID);
     assertEquals(CONFIGURED_FAVORED_COUNT, template.getFavorizationCount());
   }
 }

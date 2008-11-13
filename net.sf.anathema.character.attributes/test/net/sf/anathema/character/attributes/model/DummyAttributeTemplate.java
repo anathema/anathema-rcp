@@ -8,11 +8,11 @@ import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 
 public class DummyAttributeTemplate implements IModelTemplate, ITraitCollectionTemplate {
 
-  private final AttributeGroupTemplate groupTemplate = new AttributeGroupTemplate();
+   private final AttributeGroupTemplate groupTemplate = new AttributeGroupTemplate();
   private final IFavorizationTemplate favorizationTemplate;
 
   public DummyAttributeTemplate(int favorizationCount) {
-    this.favorizationTemplate = new FavorizationTemplate(favorizationCount);
+    favorizationTemplate = new FavorizationTemplate(favorizationCount);
   }
 
   @Override

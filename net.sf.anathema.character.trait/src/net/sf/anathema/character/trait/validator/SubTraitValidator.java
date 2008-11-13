@@ -5,9 +5,9 @@ import java.util.List;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.collection.CreationModelTransformer;
-import net.sf.anathema.character.trait.collection.ExperiencedModelTransformer;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.collection.internal.CreationModelTransformer;
+import net.sf.anathema.character.trait.collection.internal.ExperiencedModelTransformer;
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
 
 public class SubTraitValidator implements IValidator {

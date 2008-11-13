@@ -2,11 +2,16 @@ package net.sf.anathema.basics.eclipse.extension.fake;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 
 import org.easymock.EasyMock;
 
 public class ExtensionObjectMother {
+
+  public static IExtensionPoint createExtensionPoint(IPluginExtension... pluginExtensions) {
+    return new DummyExtensionPointExtension(pluginExtensions);
+  }
 
   public static IPluginExtension createPluginExtension(IExtensionElement... elements) {
     IPluginExtension pluginExtension = EasyMock.createMock(IPluginExtension.class);

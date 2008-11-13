@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.collection;
+package net.sf.anathema.character.trait.collection.internal;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.trait.IBasicTrait;

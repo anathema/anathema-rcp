@@ -9,7 +9,9 @@ import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.FavoredStatus;
+import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.lib.ui.IUpdatable;
+import net.sf.anathema.lib.util.IIdentificate;
 
 public class TraitCollectionModelInitializer extends ModelInitializer {
 
@@ -29,17 +31,21 @@ public class TraitCollectionModelInitializer extends ModelInitializer {
     updatable = new TraitCollectionUpdatable(template, identifier, traitCollection);
     traitCollection.setDependencyUpdatable(updatable);
   }
-  
+
   @Override
   public void initialize() {
     super.initialize();
-    final IFavorizationTemplate favorizationTemplate = modelTemplate.getFavorizationTemplate();
+    initializeRequiredFavored(modelTemplate.getFavorizationTemplate());
+    updatable.update();
+  }
+
+  private void initializeRequiredFavored(final IFavorizationTemplate template) {
     for (IBasicTrait trait : traitCollection.getTraits()) {
-      if (trait.getStatusManager().getStatus() instanceof DefaultStatus
-          && favorizationTemplate.isRequiredFavored(trait.getTraitType())) {
+      ITraitStatus status = trait.getStatusManager().getStatus();
+      IIdentificate traitType = trait.getTraitType();
+      if (status instanceof DefaultStatus && template.isRequiredFavored(traitType)) {
         trait.getStatusManager().setStatus(new FavoredStatus());
       }
     }
-    updatable.update();
   }
 }

@@ -1,10 +1,11 @@
-package net.sf.anathema.character.trait.collection;
+package net.sf.anathema.character.trait.collection.internal;
 
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
 
 public final class SubTraitAdaptionListener implements IChangeListener {

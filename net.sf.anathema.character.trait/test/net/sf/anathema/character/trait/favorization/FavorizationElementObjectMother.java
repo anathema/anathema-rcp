@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.collection;
+package net.sf.anathema.character.trait.favorization;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.ITransformer;
