@@ -12,7 +12,7 @@ public class CharmExperienceCosts implements ICharmExperienceCosts {
   private final ICharmModel charmModel;
 
   public CharmExperienceCosts(ICharacterId characterId, IModelCollection modelCollection) {
-    cheapPredicate = CheapCharmPredicate.create(characterId, modelCollection);
+    cheapPredicate = CheapCharmPredicate.createFrom(modelCollection, characterId);
     charmModel = CharmModelUtilities.getModelFor(characterId, modelCollection);
   }
 

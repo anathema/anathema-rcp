@@ -51,6 +51,10 @@
             modelId="net.sf.anathema.charms.character.modelId"
             name="Charms">
       </pointGroup>
+      <bonusPointCalculator
+            groupReference="charmCosts"
+            handlerClass="net.sf.anathema.charms.character.points.CharmBonusPointHandler">
+      </bonusPointCalculator>
    </extension>
 
 </plugin>

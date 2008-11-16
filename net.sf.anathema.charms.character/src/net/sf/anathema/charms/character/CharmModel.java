@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.lib.control.change.ChangeControl;
 
@@ -68,5 +71,10 @@ public class CharmModel extends AbstractModel implements ICharmModel {
     }
     setDirty(true);
     changeControl.fireChangedEvent();
+  }
+
+  public static ICharmModel getFrom(IModelCollection modelCollection, ICharacterId characterId) {
+    ModelIdentifier identifier = new ModelIdentifier(characterId, ICharmModel.MODEL_ID);
+    return (ICharmModel) modelCollection.getModel(identifier);
   }
 }
