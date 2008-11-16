@@ -1,6 +1,5 @@
 package net.sf.anathema.charms.character.points;
 
-import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.charms.character.CharmModelUtilities;
@@ -8,11 +7,11 @@ import net.sf.anathema.charms.character.ICharmModel;
 
 public class CharmExperienceCosts implements ICharmExperienceCosts {
 
-  private final IPredicate<String> cheapPredicate;
+  private final ICharmCost charmCost;
   private final ICharmModel charmModel;
 
   public CharmExperienceCosts(ICharacterId characterId, IModelCollection modelCollection) {
-    cheapPredicate = CheapCharmPredicate.From(modelCollection, characterId);
+    charmCost = CharmCosts.From(characterId, modelCollection);
     charmModel = CharmModelUtilities.getModelFor(characterId, modelCollection);
   }
 
@@ -20,7 +19,7 @@ public class CharmExperienceCosts implements ICharmExperienceCosts {
     if (charmModel.isCreationLearned(charmId)) {
       return 0;
     }
-    return cheapPredicate.evaluate(charmId) ? getCheapCost() : getExpensiveCost();
+    return charmCost.getExperienceCost(charmId);
   }
 
   private int getExpensiveCost() {
