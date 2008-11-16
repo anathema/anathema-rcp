@@ -14,7 +14,7 @@ import net.sf.anathema.charms.character.tree.ITraitIdLookup;
 
 public class CheapCharmPredicate implements IPredicate<String> {
 
-  public static IPredicate<String> createFrom(IModelCollection modelCollection, ICharacterId characterId) {
+  public static IPredicate<String> From(IModelCollection modelCollection, ICharacterId characterId) {
     ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
     String traitModelId = new TypeTraitModelIdProvider().getTraitModelId(characterType.getId());
     ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, traitModelId);

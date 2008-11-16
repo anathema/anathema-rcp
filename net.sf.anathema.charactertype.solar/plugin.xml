@@ -324,5 +324,23 @@
             name="%new.wizard.character.template.defaultsolar">
       </wizard>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.character.charmcosts">
+      <charmCosts
+            characterType="net.sf.anathema.character.type.solar">
+         <experience>
+            <costs
+                  cheap="8"
+                  expensive="10">
+            </costs>
+         </experience>
+         <bonus>
+            <costs
+                  cheap="4"
+                  expensive="5">
+            </costs>
+         </bonus>
+      </charmCosts>
+   </extension>
 
 </plugin>

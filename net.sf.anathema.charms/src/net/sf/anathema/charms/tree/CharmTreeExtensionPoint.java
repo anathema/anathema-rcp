@@ -81,7 +81,8 @@ public class CharmTreeExtensionPoint implements ICharmTreeProvider, ICharmTreeLo
 
   public String getTreeId(String charmId) {
     for (String treeId : getTreeList()) {
-      for (CharmPrerequisite prerequisite : getTree(treeId)) {
+      CharmPrerequisite[] tree = getTree(treeId);
+      for (CharmPrerequisite prerequisite : tree) {
         if (charmId.equals(prerequisite.getDestination()) || charmId.equals(prerequisite.getSource())) {
           return treeId;
         }

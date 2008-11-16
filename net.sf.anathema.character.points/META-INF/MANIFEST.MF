@@ -13,6 +13,7 @@ Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.view.valuelist,
  net.sf.anathema.basics.repository
 Export-Package: net.sf.anathema.character.points.configuration,
+ net.sf.anathema.character.points.cost,
  net.sf.anathema.character.points.trait
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy

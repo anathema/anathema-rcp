@@ -3,12 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name.f0
 Bundle-SymbolicName: net.sf.anathema.character.caste.test;singleton:=true
 Bundle-Version: 1.0.0
-Require-Bundle: net.sf.anathema.charactertype.solar;resolution:=optional,
- net.sf.anathema.charactertype.lunar;resolution:=optional,
- net.sf.anathema.charactertype.mortal;resolution:=optional,
- net.sf.anathema.charactertype.sidereal;resolution:=optional,
- net.sf.anathema.charactertype.db;resolution:=optional,
- net.sf.anathema.character.caste;bundle-version="1.0.0",
+Require-Bundle: net.sf.anathema.character.caste;bundle-version="1.0.0",
  net.sf.anathema.thirdparty.testing;bundle-version="1.0.0",
  net.sf.anathema.character.core;bundle-version="1.0.0",
  net.sf.anathema.basics.eclipse;bundle-version="1.0.0",

@@ -3,7 +3,6 @@ package net.sf.anathema.charms.character.points;
 import static org.easymock.EasyMock.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.fake.DummyModelCollection;
 import net.sf.anathema.charms.character.CharmModel;
@@ -14,7 +13,7 @@ import org.junit.Test;
 
 public class CharmBonusPointHandler_Test {
 
-  private static final String CHEAP_CHARM = "cheapCharm";
+  private static final String CHEAP_CHARM = "cheapCharm"; //$NON-NLS-1$
   private CharmBonusPointHandler pointHandler;
   private ICharacterId characterId;
   private CharmModel charmModel;
@@ -26,23 +25,20 @@ public class CharmBonusPointHandler_Test {
     DummyModelCollection modelCollection = new DummyModelCollection();
     charmModel = new CharmModel();
     modelCollection.addModel(ICharmModel.MODEL_ID, charmModel);
-    IPredicate<String> cheapPredicate = createCheapPredicate(CHEAP_CHARM);
-    pointHandler = new CharmBonusPointHandler(modelCollection, createPredicateFactory(cheapPredicate));
+    pointHandler = new CharmBonusPointHandler(modelCollection, createPredicateFactory());
   }
 
-  @SuppressWarnings("unchecked")
-  private IPredicate<String> createCheapPredicate(String cheapCharm) {
-    IPredicate<String> cheapPredicate = createNiceMock(IPredicate.class);
-    expect(cheapPredicate.evaluate(cheapCharm)).andStubReturn(true);
-    replay(cheapPredicate);
-    return cheapPredicate;
-  }
-
-  private ICheapCharmPredicateFactory createPredicateFactory(IPredicate<String> cheapPredicate) {
-    ICheapCharmPredicateFactory factory = createMock(ICheapCharmPredicateFactory.class);
-    expect(factory.create(characterId)).andReturn(cheapPredicate);
+  private ICharmCostFactory createPredicateFactory() {
+    ICharmCostFactory factory = createMock(ICharmCostFactory.class);
+    expect(factory.create(characterId)).andReturn(createCharmCost());
     replay(factory);
     return factory;
+  }
+
+  private ICharmCost createCharmCost() {
+    DummyCharmCost charmCost = new DummyCharmCost(5, 100);
+    charmCost.setBonusCost(CHEAP_CHARM, 4);
+    return charmCost;
   }
 
   @Test
