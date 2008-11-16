@@ -195,5 +195,23 @@
          </minimum>
       </validator>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.character.charmcosts">
+      <charmCosts
+            characterType="net.sf.anathema.character.type.lunar">
+         <experience>
+            <costs
+                  cheap="10"
+                  expensive="12">
+            </costs>
+         </experience>
+         <bonus>
+            <costs
+                  cheap="5"
+                  expensive="7">
+            </costs>
+         </bonus>
+      </charmCosts>
+   </extension>
 
 </plugin>

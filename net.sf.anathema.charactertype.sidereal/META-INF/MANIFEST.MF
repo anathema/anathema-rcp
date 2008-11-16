@@ -11,5 +11,6 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.character.importwizard,
  net.sf.anathema.character.caste,
  net.sf.anathema.character.abilities;bundle-version="1.0.0",
- net.sf.anathema.character.trait
+ net.sf.anathema.character.trait,
+ net.sf.anathema.charms.character
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
