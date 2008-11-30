@@ -5,7 +5,11 @@
          point="net.sf.anathema.character.freebies.configurations">
       <FreebiesConfiguration
             handlerClass="net.sf.anathema.charms.character.freebies.CheapCharmFreebiesHandler"
-            name="Cheap Charms">
+            name="%FreebiesConfiguration.cheapCharms.name">
+      </FreebiesConfiguration>
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.charms.character.freebies.UnrestrictedCharmHandler"
+            name="%FreebiesConfiguration.unrestrictedCharms.name">
       </FreebiesConfiguration>
    </extension>
 

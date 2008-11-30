@@ -17,6 +17,11 @@ public class CharmModel extends AbstractModel implements ICharmModel {
   private final List<String> experienceLearnedCharms = new ArrayList<String>();
   private final ChangeControl changeControl = new ChangeControl();
 
+  public static ICharmModel getFrom(IModelCollection modelCollection, ICharacterId characterId) {
+    ModelIdentifier identifier = new ModelIdentifier(characterId, ICharmModel.MODEL_ID);
+    return (ICharmModel) modelCollection.getModel(identifier);
+  }
+
   @Override
   public void addChangeListener(IChangeListener listener) {
     changeControl.addChangeListener(listener);
@@ -39,7 +44,7 @@ public class CharmModel extends AbstractModel implements ICharmModel {
 
   @Override
   public boolean isExperienceLearned(String charmId) {
-    return isLearned(charmId)&& !isCreationLearned(charmId);
+    return isLearned(charmId) && !isCreationLearned(charmId);
   }
 
   @Override
@@ -71,10 +76,5 @@ public class CharmModel extends AbstractModel implements ICharmModel {
     }
     setDirty(true);
     changeControl.fireChangedEvent();
-  }
-
-  public static ICharmModel getFrom(IModelCollection modelCollection, ICharacterId characterId) {
-    ModelIdentifier identifier = new ModelIdentifier(characterId, ICharmModel.MODEL_ID);
-    return (ICharmModel) modelCollection.getModel(identifier);
   }
 }

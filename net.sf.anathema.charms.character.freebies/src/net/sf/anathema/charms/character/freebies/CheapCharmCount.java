@@ -3,8 +3,7 @@ package net.sf.anathema.charms.character.freebies;
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.character.points.CheapCharmPredicate;
 
@@ -15,8 +14,7 @@ public class CheapCharmCount implements ICount {
 
   public static ICount From(IModelCollection modelCollection, ICharacterId id) {
     IPredicate<String> cheapPredicate = CheapCharmPredicate.From(modelCollection, id);
-    IModelIdentifier charmIdentifier = new ModelIdentifier(id, ICharmModel.MODEL_ID);
-    ICharmModel charmModel = (ICharmModel) modelCollection.getModel(charmIdentifier);
+    ICharmModel charmModel = CharmModel.getFrom(modelCollection, id);
     return new CheapCharmCount(charmModel, cheapPredicate);
   }
 

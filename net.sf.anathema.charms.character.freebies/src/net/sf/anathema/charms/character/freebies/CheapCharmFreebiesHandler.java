@@ -8,6 +8,7 @@ import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 
 public class CheapCharmFreebiesHandler extends AbstractExecutableExtension implements IFreebiesHandler {
 
+  private static final String CREDIT_ID = "net.sf.anathema.charms.character.credit.favored"; //$NON-NLS-1$
   private final IModelCollection modelProvider;
 
   public CheapCharmFreebiesHandler() {
@@ -20,7 +21,7 @@ public class CheapCharmFreebiesHandler extends AbstractExecutableExtension imple
 
   @Override
   public String getCreditId() {
-    return "net.sf.anathema.charms.character.credit.favored"; //$NON-NLS-1$
+    return CREDIT_ID;
   }
 
   @Override

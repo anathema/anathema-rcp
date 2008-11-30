@@ -307,6 +307,14 @@
                id="net.sf.anathema.character.abilities.count.favored"
                value="3">
          </credit>
+         <credit
+               id="net.sf.anathema.charms.character.credit.favored"
+               value="4">
+         </credit>
+         <credit
+               id="net.sf.anathema.charms.character.credit.unrestricted"
+               value="3">
+         </credit>
       </creditList>
    </extension>
    <extension

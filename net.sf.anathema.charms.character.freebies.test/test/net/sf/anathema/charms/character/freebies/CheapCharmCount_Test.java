@@ -13,6 +13,7 @@ public class CheapCharmCount_Test {
 
   private static final String FIRST_CHARM = "firstCharm"; //$NON-NLS-1$
   private static final String SECOND_CHARM = "secondCharm"; //$NON-NLS-1$
+  private static final String EXPERIENCE_CHARM = "experienceCharm"; //$NON-NLS-1$
   private ICharmModel charms;
 
   @Before
@@ -20,6 +21,7 @@ public class CheapCharmCount_Test {
     charms = new CharmModel();
     charms.toggleCreationLearned(FIRST_CHARM);
     charms.toggleCreationLearned(SECOND_CHARM);
+    charms.toggleExperiencedLearned(EXPERIENCE_CHARM);
   }
 
   @Test
@@ -41,5 +43,12 @@ public class CheapCharmCount_Test {
     IPredicate<String> cheapPredicate = PredicateObjectMother.create(FIRST_CHARM, SECOND_CHARM);
     ICount charmCount = new CheapCharmCount(charms, cheapPredicate);
     assertThat(charmCount.count(), is(2));
+  }
+
+  @Test
+  public void doesNotCountCharmsLearnedByExperience() throws Exception {
+    IPredicate<String> cheapPredicate = PredicateObjectMother.create(EXPERIENCE_CHARM);
+    ICount charmCount = new CheapCharmCount(charms, cheapPredicate);
+    assertThat(charmCount.count(), is(0));
   }
 }
