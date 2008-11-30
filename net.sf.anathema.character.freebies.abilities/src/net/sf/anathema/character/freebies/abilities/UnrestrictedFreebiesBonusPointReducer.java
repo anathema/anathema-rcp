@@ -13,16 +13,14 @@ import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class UnrestrictedFreebiesBonusPointReducer extends AbstractPointHandler {
+public class UnrestrictedFreebiesBonusPointReducer extends AbstractPointHandler<ITraitCollectionModel> {
   private final ICreditManager creditManager;
 
   public UnrestrictedFreebiesBonusPointReducer() {
     this(ModelCache.getInstance(), new CreditManager());
   }
 
-  public UnrestrictedFreebiesBonusPointReducer(
-      IModelCollection modelCollection,
-      ICreditManager creditManager) {
+  public UnrestrictedFreebiesBonusPointReducer(IModelCollection modelCollection, ICreditManager creditManager) {
     super(modelCollection, IAbilitiesPluginConstants.MODEL_ID);
     this.creditManager = creditManager;
   }

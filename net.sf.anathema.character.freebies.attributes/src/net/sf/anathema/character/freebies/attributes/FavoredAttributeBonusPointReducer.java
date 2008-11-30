@@ -11,7 +11,7 @@ import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class FavoredAttributeBonusPointReducer extends AbstractPointHandler {
+public class FavoredAttributeBonusPointReducer extends AbstractPointHandler<ITraitCollectionModel> {
 
   private final static String CREDIT_ID = "net.sf.anthema.character.attributes.freebies.favored"; //$NON-NLS-1$
   private final ICreditManager creditManager;

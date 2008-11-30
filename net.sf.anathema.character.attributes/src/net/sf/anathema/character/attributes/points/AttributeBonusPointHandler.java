@@ -6,7 +6,7 @@ import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class AttributeBonusPointHandler extends AbstractPointHandler {
+public class AttributeBonusPointHandler extends AbstractPointHandler<ITraitCollectionModel> {
 
   public AttributeBonusPointHandler() {
     super(IAttributesPluginConstants.MODEL_ID);

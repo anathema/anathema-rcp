@@ -15,7 +15,7 @@ import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 
-public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler {
+public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler<ITraitCollectionModel> {
 
   private final ICreditManager creditManager;
 
@@ -23,9 +23,7 @@ public class AttributeFreebiesBonusPointReducer extends AbstractPointHandler {
     this(ModelCache.getInstance(), new CreditManager());
   }
 
-  public AttributeFreebiesBonusPointReducer(
-      IModelCollection modelProvider,
-      ICreditManager creditManager) {
+  public AttributeFreebiesBonusPointReducer(IModelCollection modelProvider, ICreditManager creditManager) {
     super(modelProvider, IAttributesPluginConstants.MODEL_ID);
     this.creditManager = creditManager;
   }

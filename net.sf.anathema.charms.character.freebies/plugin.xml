@@ -12,5 +12,16 @@
             name="%FreebiesConfiguration.unrestrictedCharms.name">
       </FreebiesConfiguration>
    </extension>
+   <extension
+         point="net.sf.anathema.character.points.configurations">
+      <bonusPointCalculator
+            groupReference="charmCosts"
+            handlerClass="net.sf.anathema.charms.character.freebies.bonus.CheapCharmFreebiesBonusPointReducer">
+      </bonusPointCalculator>
+      <bonusPointCalculator
+            groupReference="charmCosts"
+            handlerClass="net.sf.anathema.charms.character.freebies.bonus.UnrestrictedCharmFreebiesBonusPointReducer">
+      </bonusPointCalculator>
+   </extension>
 
 </plugin>

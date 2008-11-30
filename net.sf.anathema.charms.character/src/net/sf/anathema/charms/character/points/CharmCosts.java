@@ -2,9 +2,7 @@ package net.sf.anathema.charms.character.points;
 
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.points.cost.CostDto;
 import net.sf.anathema.character.points.cost.CostTagDto;
 
@@ -14,8 +12,7 @@ public class CharmCosts implements ICharmCost {
   private final CostDto costs;
 
   public static CharmCosts From(ICharacterId characterId, IModelCollection modelCollection) {
-    ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
-    CostDto cost = new CharmCostExtensionPoint().getCost(characterType);
+    CostDto cost = CharmCostExtensionPoint.getCost(characterId);
     IPredicate<String> cheapPredicate = CheapCharmPredicate.From(modelCollection, characterId);
     return new CharmCosts(cheapPredicate, cost);
   }

@@ -6,7 +6,9 @@ import net.sf.anathema.basics.eclipse.extension.AttributePredicate;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterType;
+import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.points.cost.CostDto;
 import net.sf.anathema.character.points.cost.CostTagDto;
 import net.sf.anathema.charms.character.IPluginConstants;
@@ -21,6 +23,11 @@ public class CharmCostExtensionPoint {
   private static final String ATTRIB_CHEAP = "cheap"; //$NON-NLS-1$
   private static final String TAG_COSTS = "costs"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
+
+  public static CostDto getCost(ICharacterId characterId) {
+    ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
+    return new CharmCostExtensionPoint().getCost(characterType);
+  }
 
   public CharmCostExtensionPoint() {
     this(new EclipseExtensionPoint(IPluginConstants.PLUGIN_ID, EXTENSION_POINT_ID));

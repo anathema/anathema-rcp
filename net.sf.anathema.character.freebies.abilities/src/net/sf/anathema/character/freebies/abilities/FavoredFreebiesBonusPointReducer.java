@@ -10,7 +10,7 @@ import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class FavoredFreebiesBonusPointReducer extends AbstractPointHandler {
+public class FavoredFreebiesBonusPointReducer extends AbstractPointHandler<ITraitCollectionModel> {
   private final ICreditManager creditManager;
   private final IModelCollection modelCollection;
 
@@ -18,9 +18,7 @@ public class FavoredFreebiesBonusPointReducer extends AbstractPointHandler {
     this(ModelCache.getInstance(), new CreditManager());
   }
 
-  public FavoredFreebiesBonusPointReducer(
-      IModelCollection modelCollection,
-      ICreditManager creditManager) {
+  public FavoredFreebiesBonusPointReducer(IModelCollection modelCollection, ICreditManager creditManager) {
     super(modelCollection, IAbilitiesPluginConstants.MODEL_ID);
     this.modelCollection = modelCollection;
     this.creditManager = creditManager;

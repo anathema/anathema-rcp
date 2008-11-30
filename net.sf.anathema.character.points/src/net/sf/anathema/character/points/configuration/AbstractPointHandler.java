@@ -2,12 +2,13 @@ package net.sf.anathema.character.points.configuration;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
+import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public abstract class AbstractPointHandler extends AbstractExecutableExtension implements IPointHandler {
+public abstract class AbstractPointHandler<M extends IModel> extends AbstractExecutableExtension implements
+    IPointHandler {
 
   private final IModelCollection modelCollection;
   private final String modelId;
@@ -29,10 +30,11 @@ public abstract class AbstractPointHandler extends AbstractExecutableExtension i
     return calculatePoints(new ModelIdentifier(characterId, modelId));
   }
 
+  @SuppressWarnings("unchecked")
   private int calculatePoints(ModelIdentifier identifier) {
-    ITraitCollectionModel attributes = (ITraitCollectionModel) modelCollection.getModel(identifier);
-    return calculatePoints(attributes, identifier.getCharacterId());
+    M model = (M) modelCollection.getModel(identifier);
+    return calculatePoints(model, identifier.getCharacterId());
   }
 
-  protected abstract int calculatePoints(ITraitCollectionModel attributes, ICharacterId characterId);
+  protected abstract int calculatePoints(M model, ICharacterId characterId);
 }
