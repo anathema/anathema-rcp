@@ -4,6 +4,7 @@ import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
+import net.sf.anathema.charms.character.model.ICharmModel;
 
 public class CharmModelFactory extends AbstractModelFactory<NullModelTemplate, ICharmModel> {
 

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Charm Freebies Test Fragment
+Bundle-SymbolicName: net.sf.anathema.charms.character.freebies.test
+Bundle-Version: 1.0.0
+Fragment-Host: net.sf.anathema.charms.character.freebies;bundle-version="[1.0.0,1.0.0]"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -2,6 +2,7 @@ package net.sf.anathema.charms.character;
 
 import net.sf.anathema.basics.swt.dispose.ColorDisposable;
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.view.ICharmNode;
 import net.sf.anathema.charms.view.ICharmSelectionControl;
 import net.sf.anathema.charms.view.ICharmSelectionListener;

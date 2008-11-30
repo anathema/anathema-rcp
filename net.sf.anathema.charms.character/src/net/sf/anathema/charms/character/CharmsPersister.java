@@ -7,6 +7,8 @@ import net.disy.commons.core.creation.IFactory;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
+import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 import net.sf.anathema.lib.xml.ElementUtilities;

@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character;
+package net.sf.anathema.charms.character.model;
 
 import java.util.ArrayList;
 import java.util.List;

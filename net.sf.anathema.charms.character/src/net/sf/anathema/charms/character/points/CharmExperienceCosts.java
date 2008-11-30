@@ -3,7 +3,7 @@ package net.sf.anathema.charms.character.points;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.charms.character.CharmModelUtilities;
-import net.sf.anathema.charms.character.ICharmModel;
+import net.sf.anathema.charms.character.model.ICharmModel;
 
 public class CharmExperienceCosts implements ICharmExperienceCosts {
 

@@ -3,6 +3,7 @@ package net.sf.anathema.charms.character;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.charms.character.model.ICharmModel;
 
 public class CharmModelUtilities {
 

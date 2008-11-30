@@ -5,8 +5,8 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.points.configuration.IPointHandler;
-import net.sf.anathema.charms.character.CharmModel;
-import net.sf.anathema.charms.character.ICharmModel;
+import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.character.model.ICharmModel;
 
 public class CharmBonusPointHandler extends AbstractExecutableExtension implements IPointHandler {
 

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Charms Freebies Plug-in
-Bundle-SymbolicName: net.sf.anathema.charms.character.freebies
+Bundle-SymbolicName: net.sf.anathema.charms.character.freebies;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: net.sf.anathema.character.freebies;bundle-version="1.0.0",

@@ -3,6 +3,8 @@ package net.sf.anathema.charms.character;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.character.model.ICharmModel;
 
 import org.junit.Before;
 import org.junit.Test;

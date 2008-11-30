@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 

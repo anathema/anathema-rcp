@@ -4,6 +4,7 @@ import static org.easymock.EasyMock.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.charms.character.model.CharmModel;
 
 import org.junit.Before;
 import org.junit.Test;

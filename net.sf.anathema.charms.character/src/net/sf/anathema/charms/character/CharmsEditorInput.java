@@ -7,6 +7,7 @@ import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.charms.character.model.ICharmModel;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.ui.IPersistableElement;

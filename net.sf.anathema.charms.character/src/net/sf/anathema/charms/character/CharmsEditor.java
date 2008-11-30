@@ -6,6 +6,7 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.charms.character.model.ICharmModel;
 
 public class CharmsEditor extends AbstractCharacterModelEditorPart<ICharmModel> {
 
