@@ -2,10 +2,12 @@ package net.sf.anathema.charms.tree;
 
 import static net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother.*;
 import static net.sf.anathema.charms.tree.CharmTreeExtensionPointObjectMother.*;
+import static net.sf.anathema.test.hamcrest.AnathemaMatchers.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.charms.StaticExtensionProvider;
+import net.sf.anathema.charms.data.CharmPrerequisite;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,16 +27,16 @@ public class CharmTreeExtensionPoint_MultiCharmTest {
 
   @Test
   public void providesTwoPrerequisites() throws Exception {
-    assertEquals(2, point.getTree(TREE_ID).length);
+    assertThat(point.getTree(TREE_ID).length, is(2));
   }
 
   @Test
   public void providesNullSourcePrerequisiteForCharm() throws Exception {
-    assertTrue(ArrayUtilities.contains(point.getTree(TREE_ID), new CharmPrerequisitePredicate(null, CHARM_ID)));
+    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, CHARM_ID)));
   }
 
   @Test
   public void providesNullSourcePrerequisiteForOtherCharm() throws Exception {
-    assertTrue(ArrayUtilities.contains(point.getTree(TREE_ID), new CharmPrerequisitePredicate(null, OTHER_CHARM_ID)));
+    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, OTHER_CHARM_ID)));
   }
 }

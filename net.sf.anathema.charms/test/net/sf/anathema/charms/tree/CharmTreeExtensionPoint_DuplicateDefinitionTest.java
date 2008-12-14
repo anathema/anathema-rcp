@@ -2,6 +2,7 @@ package net.sf.anathema.charms.tree;
 
 import static net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother.*;
 import static net.sf.anathema.charms.tree.CharmTreeExtensionPointObjectMother.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.charms.StaticExtensionProvider;
@@ -27,6 +28,6 @@ public class CharmTreeExtensionPoint_DuplicateDefinitionTest {
 
   @Test
   public void doesNotDuplicateCharmPrerequisites() throws Exception {
-    assertEquals(2, point.getTree(TREE_ID).length);
+    assertThat(point.getTree(TREE_ID).length, is(2));
   }
 }

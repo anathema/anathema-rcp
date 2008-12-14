@@ -2,6 +2,7 @@ package net.sf.anathema.charms.tree;
 
 import static net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother.*;
 import static net.sf.anathema.charms.tree.CharmTreeExtensionPointObjectMother.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.charms.StaticExtensionProvider;
@@ -36,31 +37,31 @@ public class CharmTreeExtensionPoint_OneCharmTest {
 
   @Test
   public void providesNoPrerequisistesForUnknownTree() throws Exception {
-    assertEquals(0, point.getTree("unknownTree").length); //$NON-NLS-1$
+    assertThat(point.getTree("unknownTree").length, is(0)); //$NON-NLS-1$
   }
 
   @Test
   public void providesOneCharmPrerequisite() throws Exception {
-    assertEquals(1, point.getTree(TREE_ID).length);
+    assertThat(point.getTree(TREE_ID).length, is(1));
   }
 
   @Test
   public void prerequisiteHasNoSource() throws Exception {
-    assertNull(point.getTree(TREE_ID)[0].getSource());
+    assertThat(point.getTree(TREE_ID)[0].getSource(), is(nullValue()));
   }
 
   @Test
   public void charmIsDestinationOfPrerequisiste() throws Exception {
-    assertEquals(CHARM_ID, point.getTree(TREE_ID)[0].getDestination());
+    assertThat(point.getTree(TREE_ID)[0].getDestination(), is(CHARM_ID));
   }
 
   @Test
   public void looksForTreepartsInLaterExtensionElements() throws Exception {
-    assertEquals(OTHER_CHARM_ID, point.getTree(OTHER_TREE_ID)[0].getDestination());
+    assertThat(point.getTree(OTHER_TREE_ID)[0].getDestination(), is(OTHER_CHARM_ID));
   }
 
   @Test
   public void looksForTreepartsInLaterPluginElements() throws Exception {
-    assertEquals(THIRD_CHARM_ID, point.getTree(THIRD_TREE_ID)[0].getDestination());
+    assertThat(point.getTree(THIRD_TREE_ID)[0].getDestination(), is(THIRD_CHARM_ID));
   }
 }

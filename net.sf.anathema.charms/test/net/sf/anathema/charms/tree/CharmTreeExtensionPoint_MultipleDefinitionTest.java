@@ -49,6 +49,6 @@ public class CharmTreeExtensionPoint_MultipleDefinitionTest {
 
   @Test
   public void joinsSeperateTreePartDefinitions() throws Exception {
-    assertEquals(3, point.getTree(TREE_ID).length);
+    assertThat(point.getTree(TREE_ID).length, is(3));
   }
 }
