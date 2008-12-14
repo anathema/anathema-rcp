@@ -19,17 +19,15 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
 
   public static final class AddGenericCharmClosure implements IClosure<IExtensionElement> {
     private final CharmBuilder charmBuilder;
-    private final String id;
 
-    public AddGenericCharmClosure(String id, CharmBuilder charmBuilder) {
-      this.id = id;
+    public AddGenericCharmClosure(CharmBuilder charmBuilder) {
       this.charmBuilder = charmBuilder;
     }
 
     @Override
     public void execute(IExtensionElement element) throws RuntimeException {
       if (element.getName().equals(TAG_GENERIC_CHARM)) {
-        charmBuilder.addGenericCharm(id, element);
+        charmBuilder.addGenericCharm(element);
       }
     }
   }
@@ -47,7 +45,7 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
     public void execute(IExtensionElement element) throws RuntimeException {
       if (element.getName().equals(TAG_TREEPART) && element.getAttribute(ATTRIB_TREE_REFERENCE).equals(id)) {
         for (IExtensionElement charmElement : element.getElements()) {
-          charmBuilder.addCharm(id, charmElement);
+          charmBuilder.addCharm(charmElement);
         }
       }
     }
@@ -82,8 +80,8 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
 
   @Override
   public CharmPrerequisite[] getTree(final String id) {
-    final CharmBuilder charmBuilder = new CharmBuilder();
-    extensionProvider.forAllDo(new AddGenericCharmClosure(id, charmBuilder));
+    final CharmBuilder charmBuilder = new CharmBuilder(id);
+    extensionProvider.forAllDo(new AddGenericCharmClosure(charmBuilder));
     extensionProvider.forAllDo(new AddCharmClosure(id, charmBuilder));
     return charmBuilder.create();
   }

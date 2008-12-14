@@ -16,34 +16,39 @@ public class CharmBuilder {
   private final List<String> implicitCharms = new ArrayList<String>();
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
+  private final String treeId;
 
-  public void addCharm(String treeId, IExtensionElement charmElement) {
-    addCharm(treeId, charmElement, ATTRIB_ID);
+  public CharmBuilder(String treeId) {
+    this.treeId = treeId;
   }
 
-  public void addGenericCharm(String id, IExtensionElement element) {
-    addCharm(id, element, ATTRIB_ID_PATTERN);
+  public void addCharm(IExtensionElement charmElement) {
+    addCharm(charmElement, ATTRIB_ID);
   }
 
-  private void addCharm(String treeId, IExtensionElement charmElement, String idAttributeName) {
-    String charmId = getCharmId(charmElement, treeId, idAttributeName);
+  public void addGenericCharm(IExtensionElement element) {
+    addCharm(element, ATTRIB_ID_PATTERN);
+  }
+
+  private void addCharm(IExtensionElement charmElement, String idAttributeName) {
+    String charmId = getCharmId(charmElement, idAttributeName);
     IExtensionElement[] prerequisiteElements = charmElement.getElements();
     if (prerequisiteElements.length == 0) {
       addRootCharm(charmId);
     }
     else {
-      addCharmWithPrerequisites(treeId, charmId, prerequisiteElements);
+      addCharmWithPrerequisites(charmId, prerequisiteElements);
     }
   }
 
-  private String getCharmId(IExtensionElement element, String treeId, String idAttributeName) {
+  private String getCharmId(IExtensionElement element, String idAttributeName) {
     String idPattern = element.getAttribute(idAttributeName);
     return MessageFormat.format(idPattern, treeId);
   }
 
-  private void addCharmWithPrerequisites(String treeId, String charmId, IExtensionElement[] prerequisiteElements) {
+  private void addCharmWithPrerequisites(String charmId, IExtensionElement[] prerequisiteElements) {
     for (IExtensionElement prerequisiteElement : prerequisiteElements) {
-      String prerequisiteId = getCharmId(prerequisiteElement, treeId, ATTRIB_CHARM_ID);
+      String prerequisiteId = getCharmId(prerequisiteElement, ATTRIB_CHARM_ID);
       prerequisites.add(new CharmPrerequisite(prerequisiteId, charmId));
       explicitCharms.add(charmId);
       implicitCharms.add(prerequisiteId);
