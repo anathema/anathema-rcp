@@ -35,4 +35,8 @@ public class CharmPrerequisite {
   public String toString() {
     return source + "->" + destination; //$NON-NLS-1$
   }
+
+  public boolean connects(String charmId) {
+    return charmId.equals(getDestination()) || charmId.equals(getSource());
+  }
 }

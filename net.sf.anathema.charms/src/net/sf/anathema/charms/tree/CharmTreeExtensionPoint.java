@@ -12,15 +12,16 @@ import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 import net.sf.anathema.charms.tree.operations.AddCharms;
 import net.sf.anathema.charms.tree.operations.CollectTreeIds;
+import net.sf.anathema.charms.tree.operations.ContainsCharm;
 import net.sf.anathema.charms.tree.operations.ForGenerics;
 import net.sf.anathema.charms.tree.operations.ForTreePart;
 
 public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDataMap {
 
+  private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   public static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
   public static final String ATTRIB_TREE_REFERENCE = "treeReference"; //$NON-NLS-1$
   private static final String ATTRIB_NAME = "name"; //$NON-NLS-1$
-  private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   private final IExtensionPoint extensionProvider;
 
   public CharmTreeExtensionPoint() {
@@ -49,10 +50,8 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
   public String getTreeId(String charmId) {
     for (String treeId : getTreeList()) {
       CharmPrerequisite[] tree = getTree(treeId);
-      for (CharmPrerequisite prerequisite : tree) {
-        if (charmId.equals(prerequisite.getDestination()) || charmId.equals(prerequisite.getSource())) {
-          return treeId;
-        }
+      if (new ContainsCharm(tree, charmId).isConfirmed()) {
+        return treeId;
       }
     }
     return null;
@@ -61,9 +60,7 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
   @Override
   public TreeDto getData(final String id) {
     IExtensionElement treeElement = extensionProvider.getFirst(new TreeWithId(id));
-    TreeDto dto = new TreeDto();
-    dto.id = id;
-    dto.name = treeElement == null ? id : treeElement.getAttribute(ATTRIB_NAME);
-    return dto;
+    String name = treeElement == null ? id : treeElement.getAttribute(ATTRIB_NAME);
+    return TreeDto.FromIdAndName(id, name);
   }
 }
