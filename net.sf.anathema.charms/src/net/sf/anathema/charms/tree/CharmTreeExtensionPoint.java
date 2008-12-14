@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
@@ -14,6 +15,7 @@ import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDataMap {
 
+  private static final String ATTRIB_NAME = "name";
   private static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   private static final String ATTRIB_TREE_REFERENCE = "treeReference"; //$NON-NLS-1$
@@ -41,18 +43,18 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
   }
 
   @Override
-  public CharmPrerequisite[] getTree(String id) {
-    IPluginExtension[] extensions = extensionProvider.getExtensions();
-    CharmBuilder charmBuilder = new CharmBuilder();
-    for (IPluginExtension extension : extensions) {
-      for (IExtensionElement treeElement : extension.getElements()) {
-        if (treeElement.getAttribute(ATTRIB_TREE_REFERENCE).equals(id)) {
-          for (IExtensionElement charmElement : treeElement.getElements()) {
+  public CharmPrerequisite[] getTree(final String id) {
+    final CharmBuilder charmBuilder = new CharmBuilder();
+    extensionProvider.forAllDo(new IClosure<IExtensionElement>() {
+      @Override
+      public void execute(IExtensionElement element) throws RuntimeException {
+        if (element.getName().equals(TAG_TREEPART) && element.getAttribute(ATTRIB_TREE_REFERENCE).equals(id)) {
+          for (IExtensionElement charmElement : element.getElements()) {
             charmBuilder.addCharm(charmElement);
           }
         }
       }
-    }
+    });
     return charmBuilder.create();
   }
 
@@ -73,7 +75,7 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
     IExtensionElement treeElement = extensionProvider.getFirst(new TreeWithId(id));
     TreeDto dto = new TreeDto();
     dto.id = id;
-    dto.name = treeElement == null ? id : treeElement.getAttribute("name");
+    dto.name = treeElement == null ? id : treeElement.getAttribute(ATTRIB_NAME);
     return dto;
   }
 }
