@@ -8,7 +8,7 @@ import org.eclipse.ui.IMemento;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TreeIdPersistableDecoration_Test {
+public class CharmTreeDtoIdPersistableDecoration_Test {
 
   private static final String TREE_ID = "japaneseFluffyTree"; //$NON-NLS-1$
   private DummyPersistable original;

@@ -1,32 +1,28 @@
 package net.sf.anathema.charms.character;
 
-import java.util.Collections;
-import java.util.List;
-
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.character.core.model.IViewElementConfigurator;
+import net.sf.anathema.charms.character.tree.SortedTreeDataCollection;
 import net.sf.anathema.charms.tree.CharmTreeExtensionPoint;
-import net.sf.anathema.charms.tree.ICharmTreeProvider;
+import net.sf.anathema.charms.tree.TreeDto;
 
 public class TreeSelectionConfigurator extends AbstractExecutableExtension implements IViewElementConfigurator {
 
-  private final ICharmTreeProvider charmTrees;
+  private final Iterable<TreeDto> trees;
 
   public TreeSelectionConfigurator() {
-    this(new CharmTreeExtensionPoint());
+    this(SortedTreeDataCollection.From(new CharmTreeExtensionPoint()));
   }
 
-  public TreeSelectionConfigurator(ICharmTreeProvider charmTrees) {
-    this.charmTrees = charmTrees;
+  public TreeSelectionConfigurator(Iterable<TreeDto> trees) {
+    this.trees = trees;
   }
 
   @Override
   public void configure(IConfigurableViewElement viewElement) {
-    List<String> treeList = charmTrees.getTreeList();
-    Collections.sort(treeList);
-    for (String treeId : treeList) {
-      viewElement.addChild(new CharmTreeViewElement(viewElement, treeId));
+    for (TreeDto treeData : trees) {
+      viewElement.addChild(new CharmTreeViewElement(viewElement, treeData));
     }
   }
 }

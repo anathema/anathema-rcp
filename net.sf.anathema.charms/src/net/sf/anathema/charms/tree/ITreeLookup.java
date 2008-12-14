@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.tree;
 
-public interface ICharmTreeLookup {
+public interface ITreeLookup {
 
   public String getTreeId(String charmId);
 }

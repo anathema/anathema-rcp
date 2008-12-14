@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.sf.anathema.charms.data.CharmPrerequisite;
 
-public interface ICharmTreeProvider {
+public interface ITreeProvider {
 
   public List<String> getTreeList();
 

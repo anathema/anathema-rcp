@@ -6,21 +6,21 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.charms.character.IPluginConstants;
 import net.sf.anathema.charms.tree.CharmTreeExtensionPoint;
-import net.sf.anathema.charms.tree.ICharmTreeLookup;
+import net.sf.anathema.charms.tree.ITreeLookup;
 
 public class CharmTraitLookup implements ITraitIdLookup {
 
   private static final String EXTENSION_POINT = "treetraits"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String ATTRIB_PRIMARY_TRAIT = "primaryTrait"; //$NON-NLS-1$
-  private final ICharmTreeLookup treeLookup;
+  private final ITreeLookup treeLookup;
   private final IExtensionPoint extensionPoint;
 
   public CharmTraitLookup() {
     this(new CharmTreeExtensionPoint(), new EclipseExtensionPoint(IPluginConstants.PLUGIN_ID, EXTENSION_POINT));
   }
 
-  public CharmTraitLookup(ICharmTreeLookup treeLookup, IExtensionPoint extensionPoint) {
+  public CharmTraitLookup(ITreeLookup treeLookup, IExtensionPoint extensionPoint) {
     this.treeLookup = treeLookup;
     this.extensionPoint = extensionPoint;
   }

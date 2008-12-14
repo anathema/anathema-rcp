@@ -1,7 +1,6 @@
 package net.sf.anathema.basics.eclipse.extension.internal;
 
 import net.disy.commons.core.util.ArrayUtilities;
-import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 
@@ -18,15 +17,12 @@ public class ExtensionFacade implements IPluginExtension {
 
   @Override
   public IExtensionElement[] getElements() {
-    return ArrayUtilities.transform(
-        eclipseExtension.getConfigurationElements(),
-        IExtensionElement.class,
-        new ITransformer<IConfigurationElement, IExtensionElement>() {
-          @Override
-          public IExtensionElement transform(IConfigurationElement input) {
-            return new ExtensionElement(input);
-          }
-        });
+    IConfigurationElement[] elements = eclipseExtension.getConfigurationElements();
+    return transform(elements);
+  }
+
+  private IExtensionElement[] transform(IConfigurationElement[] elements) {
+    return ArrayUtilities.transform(elements, IExtensionElement.class, new ExtensionElementTransformer());
   }
 
   @Override

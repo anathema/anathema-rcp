@@ -10,6 +10,7 @@ import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
+import net.sf.anathema.charms.tree.TreeDto;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
@@ -22,11 +23,11 @@ import org.eclipse.ui.PartInitException;
 public class CharmTreeViewElement implements IViewElement {
 
   private final IConfigurableViewElement parent;
-  private final String treeId;
+  private final TreeDto tree;
 
-  public CharmTreeViewElement(IConfigurableViewElement parent, String treeId) {
+  public CharmTreeViewElement(IConfigurableViewElement parent, TreeDto tree) {
     this.parent = parent;
-    this.treeId = treeId;
+    this.tree = tree;
   }
 
   @Override
@@ -60,19 +61,19 @@ public class CharmTreeViewElement implements IViewElement {
       };
     }
     if (adapter == ILink.class) {
-      return new StringLinkDecorator((ILink) parent.getAdapter(ILink.class), new StaticProvider<String>(treeId));
+      return new StringLinkDecorator((ILink) parent.getAdapter(ILink.class), new StaticProvider<String>(tree.id));
     }
     return parent.getAdapter(adapter);
   }
 
   @Override
   public String getDisplayName() {
-    return treeId;
+    return tree.name;
   }
 
   private IEditorInput createEditorInput() throws PersistenceException, CoreException, ExtensionException {
     CharmsEditorInput editorInput = (CharmsEditorInput) parent.createEditorInput();
-    editorInput.setTreeId(treeId);
+    editorInput.setTreeId(tree.id);
     return editorInput;
   }
 
@@ -91,16 +92,16 @@ public class CharmTreeViewElement implements IViewElement {
     }
     parent.openEditorForChild(page, editorInput);
   }
-  
+
   @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof CharmTreeViewElement)) {
       return false;
     }
     CharmTreeViewElement other = (CharmTreeViewElement) obj;
-    return ObjectUtilities.equals(other.parent, parent) && ObjectUtilities.equals(other.treeId, treeId);
+    return ObjectUtilities.equals(other.parent, parent) && ObjectUtilities.equals(other.tree.id, tree.id);
   }
-  
+
   @Override
   public int hashCode() {
     return parent.hashCode();

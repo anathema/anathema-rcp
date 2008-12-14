@@ -13,8 +13,9 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 
-public class CharmTreeExtensionPoint implements ICharmTreeProvider, ICharmTreeLookup {
+public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDataMap {
 
+  private static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
@@ -33,8 +34,10 @@ public class CharmTreeExtensionPoint implements ICharmTreeProvider, ICharmTreeLo
   public List<String> getTreeList() {
     Set<String> set = new HashSet<String>();
     for (IPluginExtension extension : extensionProvider.getExtensions()) {
-      for (IExtensionElement treeElement : extension.getElements()) {
-        set.add(treeElement.getAttribute(ATTRIB_TREE_REFERENCE));
+      for (IExtensionElement element : extension.getElements()) {
+        if (element.getName().equals(TAG_TREEPART)) {
+          set.add(element.getAttribute(ATTRIB_TREE_REFERENCE));
+        }
       }
     }
     return new ArrayList<String>(set);
@@ -89,5 +92,14 @@ public class CharmTreeExtensionPoint implements ICharmTreeProvider, ICharmTreeLo
       }
     }
     return null;
+  }
+
+  @Override
+  public TreeDto getData(final String id) {
+    IExtensionElement treeElement = extensionProvider.getFirst(new TreeWithId(id));
+    TreeDto dto = new TreeDto();
+    dto.id = id;
+    dto.name = treeElement == null ? id : treeElement.getAttribute("name");
+    return dto;
   }
 }

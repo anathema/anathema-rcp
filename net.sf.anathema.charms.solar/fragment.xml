@@ -3,8 +3,61 @@
 <fragment>
    <extension
          point="net.sf.anathema.charms.charmtree">
+      <tree
+            id="solar.stealth"
+            name="Stealth">
+      </tree>
       <treepart
-            treeReference="Solar: Thrown">
+            treeReference="solar.stealth">
+         <charm
+               id="Solar: Any Stealth Excellency">
+            <charmPrerequisite
+                  charmId="Solar: 1st Stealth Excellency">
+            </charmPrerequisite>
+            <charmPrerequisite
+                  charmId="Solar: 2nd Stealth Excellency">
+            </charmPrerequisite>
+            <charmPrerequisite
+                  charmId="Solar: 3rd Stealth Excellency">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Stealth Essence Flow">
+            <charmPrerequisite
+                  charmId="Solar: Any Stealth Excellency">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Infinite Stealth Mastery">
+            <charmPrerequisite
+                  charmId="Solar: Any Stealth Excellency">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Invisible Statue Spirit">
+            <charmPrerequisite
+                  charmId="Solar: Easily Overlooked Presence Method">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Vanishing From Mind&apos;s Eye Method">
+            <charmPrerequisite
+                  charmId="Solar: Mental Invisibility Technique">
+            </charmPrerequisite>
+         </charm>
+         <charm
+               id="Solar: Mental Invisibility Technique">
+            <charmPrerequisite
+                  charmId="Solar: Easily Overlooked Presence Method">
+            </charmPrerequisite>
+         </charm>
+      </treepart>
+      <tree
+            id="solar.thrown"
+            name="Thrown">
+      </tree>
+      <treepart
+            treeReference="solar.thrown">
          <charm
                id="Solar: Joint Wounding Attack">
             <charmPrerequisite
@@ -79,61 +132,16 @@
             </charmPrerequisite>
          </charm>
       </treepart>
-      <treepart
-            treeReference="Solar: Stealth">
-         <charm
-               id="Solar: Any Stealth Excellency">
-            <charmPrerequisite
-                  charmId="Solar: 1st Stealth Excellency">
-            </charmPrerequisite>
-            <charmPrerequisite
-                  charmId="Solar: 2nd Stealth Excellency">
-            </charmPrerequisite>
-            <charmPrerequisite
-                  charmId="Solar: 3rd Stealth Excellency">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Stealth Essence Flow">
-            <charmPrerequisite
-                  charmId="Solar: Any Stealth Excellency">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Infinite Stealth Mastery">
-            <charmPrerequisite
-                  charmId="Solar: Any Stealth Excellency">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Invisible Statue Spirit">
-            <charmPrerequisite
-                  charmId="Solar: Easily Overlooked Presence Method">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Vanishing From Mind&apos;s Eye Method">
-            <charmPrerequisite
-                  charmId="Solar: Mental Invisibility Technique">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Mental Invisibility Technique">
-            <charmPrerequisite
-                  charmId="Solar: Easily Overlooked Presence Method">
-            </charmPrerequisite>
-         </charm>
-      </treepart>
    </extension>
    <extension
          point="net.sf.anathema.charms.character.treetraits">
       <tree
-            id="Solar: Thrown"
-            primaryTrait="Thrown">
-      </tree>
-      <tree
             id="Solar: Stealth"
             primaryTrait="Stealth">
+      </tree>
+      <tree
+            id="Solar: Thrown"
+            primaryTrait="Thrown">
       </tree>
    </extension>
 
