@@ -11,10 +11,10 @@ import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 public class CharmTreeExtensionPointObjectMother {
 
   public static IExtensionElement createTreeElement(String treeId, String... charmIds) throws ExtensionException {
-    return createTree(treeId, ArrayUtilities.transform(charmIds, IExtensionElement.class, new CharmTransformer()));
+    return createTreePart(treeId, ArrayUtilities.transform(charmIds, IExtensionElement.class, new CharmTransformer()));
   }
 
-  public static IExtensionElement createTree(String treeId, IExtensionElement... charms) throws ExtensionException {
+  public static IExtensionElement createTreePart(String treeId, IExtensionElement... charms) throws ExtensionException {
     return createExtensionElementWithAttributes(new MockName("treepart"), //$NON-NLS-1$
         new MockStringAttribute("treeReference", treeId), //$NON-NLS-1$
         new MockChildren(charms));
@@ -31,11 +31,8 @@ public class CharmTreeExtensionPointObjectMother {
     return ArrayUtilities.transform(prerequisites, IExtensionElement.class, new CharmPrerequisiteTransformer());
   }
 
-  public static IExtensionElement createGenericCharm(String idPattern, String... prerequisites)
-      throws ExtensionException {
-    IExtensionElement[] children = createPrerequisiteElements(prerequisites);
-    return createExtensionElementWithAttributes(new MockName("genericCharm"), //$NON-NLS-1$
-        new MockStringAttribute("idPattern", idPattern), //$NON-NLS-1$
-        new MockChildren(children));
+  public static IExtensionElement createGenericCharms(IExtensionElement... charms) throws ExtensionException {
+    return createExtensionElementWithAttributes(new MockName("genericCharms"), //$NON-NLS-1$
+        new MockChildren(charms));
   }
 }

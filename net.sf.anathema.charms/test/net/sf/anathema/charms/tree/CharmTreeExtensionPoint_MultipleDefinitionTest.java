@@ -24,10 +24,10 @@ public class CharmTreeExtensionPoint_MultipleDefinitionTest {
 
   @Before
   public void createExtensionPointWithOneCharm() throws Exception {
-    IPluginExtension tree = createPluginExtension(createTree(TREE_ID, createCharm(ROOT)), createTree(
+    IPluginExtension tree = createPluginExtension(createTreePart(TREE_ID, createCharm(ROOT)), createTreePart(
         TREE_ID,
         createCharm(CHARM_ID, OTHER_CHARM)));
-    IPluginExtension treeAgain = createPluginExtension(createTree(TREE_ID, createCharm(ROOT)), createTree(
+    IPluginExtension treeAgain = createPluginExtension(createTreePart(TREE_ID, createCharm(ROOT)), createTreePart(
         TREE_ID,
         createCharm(OTHER_CHARM, ROOT)));
     point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree, treeAgain));

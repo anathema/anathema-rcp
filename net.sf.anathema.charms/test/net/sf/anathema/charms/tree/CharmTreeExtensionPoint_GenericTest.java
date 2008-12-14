@@ -23,9 +23,9 @@ public class CharmTreeExtensionPoint_GenericTest {
 
   @Before
   public void createExtensionWithGenericCharms() throws Exception {
-    IExtensionElement explicitGenericRoot = createGenericCharm(EXPLICIT_ROOT_ID);
-    IExtensionElement implicitePrerequisite = createGenericCharm(CHILD_ID, EXPLICIT_ROOT_ID, IMPLICIT_ROOT_ID);
-    IPluginExtension tree = createPluginExtension(explicitGenericRoot, implicitePrerequisite);
+    IExtensionElement explicitGenericRoot = createCharm(EXPLICIT_ROOT_ID);
+    IExtensionElement implicitePrerequisite = createCharm(CHILD_ID, EXPLICIT_ROOT_ID, IMPLICIT_ROOT_ID);
+    IPluginExtension tree = createPluginExtension(createGenericCharms(explicitGenericRoot, implicitePrerequisite));
     point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree));
   }
 

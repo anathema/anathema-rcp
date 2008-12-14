@@ -18,7 +18,7 @@ public class CharmTreeExtensionPoint_DuplicateDefinitionTest {
 
   @Before
   public void createExtensionPointWithOneCharm() throws Exception {
-    IPluginExtension tree = createPluginExtension(createTree(
+    IPluginExtension tree = createPluginExtension(createTreePart(
         TREE_ID,
         createCharm(OTHER_CHARM_ID, ROOT_ID),
         createCharm(OTHER_CHARM_ID, ROOT_ID)));

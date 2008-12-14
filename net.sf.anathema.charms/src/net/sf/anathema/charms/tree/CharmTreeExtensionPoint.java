@@ -15,7 +15,7 @@ import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDataMap {
 
-  private static final String TAG_GENERIC_CHARM = "genericCharm"; //$NON-NLS-1$
+  private static final String TAG_GENERIC_CHARMS = "genericCharms"; //$NON-NLS-1$
 
   public static final class AddGenericCharmClosure implements IClosure<IExtensionElement> {
     private final CharmBuilder charmBuilder;
@@ -26,8 +26,10 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
 
     @Override
     public void execute(IExtensionElement element) throws RuntimeException {
-      if (element.getName().equals(TAG_GENERIC_CHARM)) {
-        charmBuilder.addGenericCharm(element);
+      if (element.getName().equals(TAG_GENERIC_CHARMS)) {
+        for (IExtensionElement charmElement : element.getElements()) {
+          charmBuilder.addCharm(charmElement);
+        }
       }
     }
   }

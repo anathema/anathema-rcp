@@ -10,7 +10,6 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public class CharmBuilder {
-  private static final String ATTRIB_ID_PATTERN = "idPattern"; //$NON-NLS-1$
   private final Set<CharmPrerequisite> prerequisites = new HashSet<CharmPrerequisite>();
   private final List<String> explicitCharms = new ArrayList<String>();
   private final List<String> implicitCharms = new ArrayList<String>();
@@ -23,15 +22,7 @@ public class CharmBuilder {
   }
 
   public void addCharm(IExtensionElement charmElement) {
-    addCharm(charmElement, ATTRIB_ID);
-  }
-
-  public void addGenericCharm(IExtensionElement element) {
-    addCharm(element, ATTRIB_ID_PATTERN);
-  }
-
-  private void addCharm(IExtensionElement charmElement, String idAttributeName) {
-    String charmId = getCharmId(charmElement, idAttributeName);
+    String charmId = getCharmId(charmElement, ATTRIB_ID);
     IExtensionElement[] prerequisiteElements = charmElement.getElements();
     if (prerequisiteElements.length == 0) {
       addRootCharm(charmId);

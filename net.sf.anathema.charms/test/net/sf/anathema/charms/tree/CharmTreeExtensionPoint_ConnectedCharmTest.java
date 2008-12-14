@@ -21,8 +21,8 @@ public class CharmTreeExtensionPoint_ConnectedCharmTest {
   @Before
   public void createExtensionWithConnectedCharms() throws Exception {
     IPluginExtension tree = createPluginExtension(
-        createTree(TREE_ID, createCharm(OTHER_CHARM_ID, ROOT_ID)),
-        createTree(OTHER_TREE, createCharm(OTHER_CHARM_ID, ROOT_ID), createCharm(ROOT_ID)));
+        createTreePart(TREE_ID, createCharm(OTHER_CHARM_ID, ROOT_ID)),
+        createTreePart(OTHER_TREE, createCharm(OTHER_CHARM_ID, ROOT_ID), createCharm(ROOT_ID)));
     point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree));
   }
 

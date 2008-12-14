@@ -75,30 +75,32 @@
             </charmPrerequisite>
          </charm>
       </treepart>
-      <genericCharm
-            idPattern="solar.any.{0}.excellency">
-         <charmPrerequisite
-               charmId="solar.first.{0}.excellency">
-         </charmPrerequisite>
-         <charmPrerequisite
-               charmId="solar.second.{0}.excellency">
-         </charmPrerequisite>
-         <charmPrerequisite
-               charmId="solar.third.{0}.excellency">
-         </charmPrerequisite>
-      </genericCharm>
-      <genericCharm
-            idPattern="solar.{0}.essence.flow">
-         <charmPrerequisite
-               charmId="solar.any.{0}.excellency">
-         </charmPrerequisite>
-      </genericCharm>
-      <genericCharm
-            idPattern="solar.infinite.{0}.mastery">
-         <charmPrerequisite
-               charmId="solar.any.{0}.excellency">
-         </charmPrerequisite>
-      </genericCharm>
+      <genericCharms>
+	      <charm
+	            id="solar.any.{0}.excellency">
+	         <charmPrerequisite
+	               charmId="solar.first.{0}.excellency">
+	         </charmPrerequisite>
+	         <charmPrerequisite
+	               charmId="solar.second.{0}.excellency">
+	         </charmPrerequisite>
+	         <charmPrerequisite
+	               charmId="solar.third.{0}.excellency">
+	         </charmPrerequisite>
+	      </charm>
+	      <charm
+	            id="solar.{0}.essence.flow">
+	         <charmPrerequisite
+	               charmId="solar.any.{0}.excellency">
+	         </charmPrerequisite>
+	      </charm>
+	      <charm
+	            id="solar.infinite.{0}.mastery">
+	         <charmPrerequisite
+	               charmId="solar.any.{0}.excellency">
+	         </charmPrerequisite>
+	      </charm>
+      </genericCharms>
    </extension>
    <extension
          point="net.sf.anathema.charms.character.treetraits">

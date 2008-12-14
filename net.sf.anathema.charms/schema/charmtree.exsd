@@ -20,7 +20,7 @@
          <sequence>
             <element ref="tree" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="treepart" minOccurs="0" maxOccurs="unbounded"/>
-            <element ref="genericCharm" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="genericCharms" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -37,6 +37,28 @@
             </annotation>
          </attribute>
          <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="tree">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -66,6 +88,14 @@
                </documentation>
             </annotation>
          </attribute>
+      </complexType>
+   </element>
+
+   <element name="genericCharms">
+      <complexType>
+         <sequence>
+            <element ref="charm" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
       </complexType>
    </element>
 
@@ -100,43 +130,6 @@
             <annotation>
                <documentation>
                   References a charm. If the charm is not explicitly defined, it is treated as a root charm.
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="tree">
-      <complexType>
-         <attribute name="id" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="name" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appinfo>
-                  <meta.attribute translatable="true"/>
-               </appinfo>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="genericCharm">
-      <complexType>
-         <sequence>
-            <element ref="charmPrerequisite" minOccurs="0" maxOccurs="unbounded"/>
-         </sequence>
-         <attribute name="idPattern" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
                </documentation>
             </annotation>
          </attribute>
