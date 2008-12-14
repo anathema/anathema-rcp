@@ -1,7 +1,6 @@
 package net.sf.anathema.charms.tree;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,8 +15,6 @@ import net.sf.anathema.charms.data.CharmPrerequisite;
 public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDataMap {
 
   private static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
-  private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
-  private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   private static final String ATTRIB_TREE_REFERENCE = "treeReference"; //$NON-NLS-1$
   private final IExtensionPoint extensionProvider;
@@ -45,41 +42,18 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
 
   @Override
   public CharmPrerequisite[] getTree(String id) {
-    Set<CharmPrerequisite> prerequisites = new HashSet<CharmPrerequisite>();
-    List<String> explicitCharms = new ArrayList<String>();
-    List<String> implicitCharms = new ArrayList<String>();
-    for (IPluginExtension extension : extensionProvider.getExtensions()) {
+    IPluginExtension[] extensions = extensionProvider.getExtensions();
+    CharmBuilder charmBuilder = new CharmBuilder();
+    for (IPluginExtension extension : extensions) {
       for (IExtensionElement treeElement : extension.getElements()) {
         if (treeElement.getAttribute(ATTRIB_TREE_REFERENCE).equals(id)) {
           for (IExtensionElement charmElement : treeElement.getElements()) {
-            addCharm(charmElement, prerequisites, explicitCharms, implicitCharms);
+            charmBuilder.addCharm(charmElement);
           }
         }
       }
     }
-    implicitCharms.removeAll(explicitCharms);
-    for (String implicit : implicitCharms) {
-      prerequisites.add(new CharmPrerequisite(null, implicit));
-    }
-    return prerequisites.toArray(new CharmPrerequisite[prerequisites.size()]);
-  }
-
-  private void addCharm(
-      IExtensionElement charmElement,
-      Collection<CharmPrerequisite> prerequisites,
-      Collection<String> explicitCharms,
-      Collection<String> implicitCharms) {
-    String currentCharmId = charmElement.getAttribute(ATTRIB_ID);
-    for (IExtensionElement prerequisiteElement : charmElement.getElements()) {
-      String prerequisiteId = prerequisiteElement.getAttribute(ATTRIB_CHARM_ID);
-      prerequisites.add(new CharmPrerequisite(prerequisiteId, currentCharmId));
-      explicitCharms.add(currentCharmId);
-      implicitCharms.add(prerequisiteId);
-    }
-    if (!explicitCharms.contains(currentCharmId)) {
-      prerequisites.add(new CharmPrerequisite(null, currentCharmId));
-      explicitCharms.add(currentCharmId);
-    }
+    return charmBuilder.create();
   }
 
   public String getTreeId(String charmId) {
