@@ -15,7 +15,45 @@ import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDataMap {
 
-  private static final String ATTRIB_NAME = "name";
+  private static final String TAG_GENERIC_CHARM = "genericCharm"; //$NON-NLS-1$
+
+  public static final class AddGenericCharmClosure implements IClosure<IExtensionElement> {
+    private final CharmBuilder charmBuilder;
+    private final String id;
+
+    public AddGenericCharmClosure(String id, CharmBuilder charmBuilder) {
+      this.id = id;
+      this.charmBuilder = charmBuilder;
+    }
+
+    @Override
+    public void execute(IExtensionElement element) throws RuntimeException {
+      if (element.getName().equals(TAG_GENERIC_CHARM)) {
+        charmBuilder.addGenericCharm(id, element);
+      }
+    }
+  }
+
+  public static final class AddCharmClosure implements IClosure<IExtensionElement> {
+    private final String id;
+    private final CharmBuilder charmBuilder;
+
+    public AddCharmClosure(String id, CharmBuilder charmBuilder) {
+      this.id = id;
+      this.charmBuilder = charmBuilder;
+    }
+
+    @Override
+    public void execute(IExtensionElement element) throws RuntimeException {
+      if (element.getName().equals(TAG_TREEPART) && element.getAttribute(ATTRIB_TREE_REFERENCE).equals(id)) {
+        for (IExtensionElement charmElement : element.getElements()) {
+          charmBuilder.addCharm(id, charmElement);
+        }
+      }
+    }
+  }
+
+  private static final String ATTRIB_NAME = "name"; //$NON-NLS-1$
   private static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   private static final String ATTRIB_TREE_REFERENCE = "treeReference"; //$NON-NLS-1$
@@ -45,16 +83,8 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
   @Override
   public CharmPrerequisite[] getTree(final String id) {
     final CharmBuilder charmBuilder = new CharmBuilder();
-    extensionProvider.forAllDo(new IClosure<IExtensionElement>() {
-      @Override
-      public void execute(IExtensionElement element) throws RuntimeException {
-        if (element.getName().equals(TAG_TREEPART) && element.getAttribute(ATTRIB_TREE_REFERENCE).equals(id)) {
-          for (IExtensionElement charmElement : element.getElements()) {
-            charmBuilder.addCharm(charmElement);
-          }
-        }
-      }
-    });
+    extensionProvider.forAllDo(new AddGenericCharmClosure(id, charmBuilder));
+    extensionProvider.forAllDo(new AddCharmClosure(id, charmBuilder));
     return charmBuilder.create();
   }
 

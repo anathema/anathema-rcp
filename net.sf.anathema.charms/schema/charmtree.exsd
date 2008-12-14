@@ -20,6 +20,7 @@
          <sequence>
             <element ref="tree" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="treepart" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="genericCharm" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -122,6 +123,21 @@
                <appinfo>
                   <meta.attribute translatable="true"/>
                </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="genericCharm">
+      <complexType>
+         <sequence>
+            <element ref="charmPrerequisite" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="idPattern" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

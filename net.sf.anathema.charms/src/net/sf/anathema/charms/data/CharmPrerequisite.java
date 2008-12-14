@@ -20,14 +20,19 @@ public class CharmPrerequisite {
   public String getDestination() {
     return destination;
   }
-  
+
   @Override
   public boolean equals(Object obj) {
     return EqualsBuilder.reflectionEquals(obj, this);
   }
-  
+
   @Override
   public int hashCode() {
     return HashCodeBuilder.reflectionHashCode(this);
+  }
+
+  @Override
+  public String toString() {
+    return source + "->" + destination; //$NON-NLS-1$
   }
 }

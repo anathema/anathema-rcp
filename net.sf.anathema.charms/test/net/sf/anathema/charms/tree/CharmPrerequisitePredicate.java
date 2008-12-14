@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.sf.anathema.charms.tree;
 
 import net.disy.commons.core.predicate.IPredicate;
@@ -11,7 +8,7 @@ public final class CharmPrerequisitePredicate implements IPredicate<CharmPrerequ
   private final String destination;
   private final String source;
 
-  public CharmPrerequisitePredicate(String destination, String source) {
+  public CharmPrerequisitePredicate(String source, String destination) {
     this.destination = destination;
     this.source = source;
   }

@@ -7,32 +7,12 @@
             id="solar.stealth"
             name="Stealth">
       </tree>
+      <tree
+            id="solar.thrown"
+            name="Thrown">
+      </tree>
       <treepart
             treeReference="solar.stealth">
-         <charm
-               id="Solar: Any Stealth Excellency">
-            <charmPrerequisite
-                  charmId="Solar: 1st Stealth Excellency">
-            </charmPrerequisite>
-            <charmPrerequisite
-                  charmId="Solar: 2nd Stealth Excellency">
-            </charmPrerequisite>
-            <charmPrerequisite
-                  charmId="Solar: 3rd Stealth Excellency">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Stealth Essence Flow">
-            <charmPrerequisite
-                  charmId="Solar: Any Stealth Excellency">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Infinite Stealth Mastery">
-            <charmPrerequisite
-                  charmId="Solar: Any Stealth Excellency">
-            </charmPrerequisite>
-         </charm>
          <charm
                id="Solar: Invisible Statue Spirit">
             <charmPrerequisite
@@ -52,16 +32,12 @@
             </charmPrerequisite>
          </charm>
       </treepart>
-      <tree
-            id="solar.thrown"
-            name="Thrown">
-      </tree>
       <treepart
             treeReference="solar.thrown">
          <charm
                id="Solar: Joint Wounding Attack">
             <charmPrerequisite
-                  charmId="Solar: Any Thrown Excellency"></charmPrerequisite>
+                  charmId="solar.any.Thrown.excellency"></charmPrerequisite>
          </charm>
          <charm
                id="Solar: Cascade of Cutting Terror">
@@ -77,7 +53,7 @@
          <charm
                id="Solar: Observer Deceiving Attack">
             <charmPrerequisite
-                  charmId="Solar: Any Thrown Excellency">
+                  charmId="solar.any.Thrown.excellency">
             </charmPrerequisite>
          </charm>
          <charm
@@ -98,40 +74,31 @@
                   charmId="Solar: Returning Weapon Concentration">
             </charmPrerequisite>
          </charm>
-         <charm
-               id="Solar: 1st Thrown Excellency">
-         </charm>
-         <charm
-               id="Solar: 2nd Thrown Excellency">
-         </charm>
-         <charm
-               id="Solar: 3rd Thrown Excellency">
-         </charm>
-         <charm
-               id="Solar: Infinite Thrown Mastery">
-            <charmPrerequisite
-                  charmId="Solar: Any Thrown Excellency">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Thrown Essence Flow">
-            <charmPrerequisite
-                  charmId="Solar: Any Thrown Excellency">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Any Thrown Excellency">
-            <charmPrerequisite
-                  charmId="Solar: 1st Thrown Excellency">
-            </charmPrerequisite>
-            <charmPrerequisite
-                  charmId="Solar: 2nd Thrown Excellency">
-            </charmPrerequisite>
-            <charmPrerequisite
-                  charmId="Solar: 3rd Thrown Excellency">
-            </charmPrerequisite>
-         </charm>
       </treepart>
+      <genericCharm
+            idPattern="solar.any.{0}.excellency">
+         <charmPrerequisite
+               charmId="solar.first.{0}.excellency">
+         </charmPrerequisite>
+         <charmPrerequisite
+               charmId="solar.second.{0}.excellency">
+         </charmPrerequisite>
+         <charmPrerequisite
+               charmId="solar.third.{0}.excellency">
+         </charmPrerequisite>
+      </genericCharm>
+      <genericCharm
+            idPattern="solar.{0}.essence.flow">
+         <charmPrerequisite
+               charmId="solar.any.{0}.excellency">
+         </charmPrerequisite>
+      </genericCharm>
+      <genericCharm
+            idPattern="solar.infinite.{0}.mastery">
+         <charmPrerequisite
+               charmId="solar.any.{0}.excellency">
+         </charmPrerequisite>
+      </genericCharm>
    </extension>
    <extension
          point="net.sf.anathema.charms.character.treetraits">

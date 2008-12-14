@@ -21,12 +21,21 @@ public class CharmTreeExtensionPointObjectMother {
   }
 
   public static IExtensionElement createCharm(String charmId, String... prerequisites) throws ExtensionException {
-    IExtensionElement[] children = ArrayUtilities.transform(
-        prerequisites,
-        IExtensionElement.class,
-        new CharmPrerequisiteTransformer());
+    IExtensionElement[] children = createPrerequisiteElements(prerequisites);
     return createExtensionElementWithAttributes(new MockName("charm"), //$NON-NLS-1$
         new MockStringAttribute("id", charmId),
+        new MockChildren(children));
+  }
+
+  private static IExtensionElement[] createPrerequisiteElements(String... prerequisites) {
+    return ArrayUtilities.transform(prerequisites, IExtensionElement.class, new CharmPrerequisiteTransformer());
+  }
+
+  public static IExtensionElement createGenericCharm(String idPattern, String... prerequisites)
+      throws ExtensionException {
+    IExtensionElement[] children = createPrerequisiteElements(prerequisites);
+    return createExtensionElementWithAttributes(new MockName("genericCharm"), //$NON-NLS-1$
+        new MockStringAttribute("idPattern", idPattern), //$NON-NLS-1$
         new MockChildren(children));
   }
 }

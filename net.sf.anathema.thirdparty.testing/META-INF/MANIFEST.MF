@@ -4,10 +4,12 @@ Bundle-Name: %net.sf.anathema.thirdparty.testing.BundleName
 Bundle-SymbolicName: net.sf.anathema.thirdparty.testing
 Bundle-Version: 1.0.0
 Export-Package: net.sf.anathema.test.behaviour,
+ net.sf.anathema.test.hamcrest,
  net.sf.anathema.test.matcher,
  org.easymock
 Bundle-ClassPath: lib/easymock.jar,
  .
-Require-Bundle: org.junit4;visibility:=reexport
+Require-Bundle: org.junit4;visibility:=reexport,
+ net.disy.commons;bundle-version="1.0.0"
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

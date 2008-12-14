@@ -30,11 +30,11 @@ public class CharmTreeExtensionPoint_MultiCharmTest {
 
   @Test
   public void providesNullSourcePrerequisiteForCharm() throws Exception {
-    assertTrue(ArrayUtilities.contains(point.getTree(TREE_ID), new CharmPrerequisitePredicate(CHARM_ID, null)));
+    assertTrue(ArrayUtilities.contains(point.getTree(TREE_ID), new CharmPrerequisitePredicate(null, CHARM_ID)));
   }
 
   @Test
   public void providesNullSourcePrerequisiteForOtherCharm() throws Exception {
-    assertTrue(ArrayUtilities.contains(point.getTree(TREE_ID), new CharmPrerequisitePredicate(OTHER_CHARM_ID, null)));
+    assertTrue(ArrayUtilities.contains(point.getTree(TREE_ID), new CharmPrerequisitePredicate(null, OTHER_CHARM_ID)));
   }
 }

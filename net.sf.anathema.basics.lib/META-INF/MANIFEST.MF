@@ -3,33 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %net.sf.anathema.basics.lib.BundleName
 Bundle-SymbolicName: net.sf.anathema.basics.lib
 Bundle-Version: 1.0.0
-Bundle-ClassPath: lib/disy-commons-core.jar,
- .,
+Bundle-ClassPath: .,
  lib/dom4j-1.6.1.jar
-Export-Package: net.disy.commons.core.adaptable,
- net.disy.commons.core.asynchronous,
- net.disy.commons.core.collection,
- net.disy.commons.core.creation,
- net.disy.commons.core.date,
- net.disy.commons.core.exception,
- net.disy.commons.core.grouped,
- net.disy.commons.core.io,
- net.disy.commons.core.list,
- net.disy.commons.core.logging,
- net.disy.commons.core.message,
- net.disy.commons.core.model,
- net.disy.commons.core.model.listener,
- net.disy.commons.core.number,
- net.disy.commons.core.predicate,
- net.disy.commons.core.progress,
- net.disy.commons.core.provider,
- net.disy.commons.core.string,
- net.disy.commons.core.text,
- net.disy.commons.core.text.font,
- net.disy.commons.core.thread,
- net.disy.commons.core.transformer,
- net.disy.commons.core.util,
- net.sf.anathema.lib.collection,
+Export-Package: net.sf.anathema.lib.collection,
  net.sf.anathema.lib.control,
  net.sf.anathema.lib.control.change,
  net.sf.anathema.lib.control.intvalue,
@@ -56,6 +32,7 @@ Export-Package: net.disy.commons.core.adaptable,
  org.dom4j.xpath,
  org.dom4j.xpp
 Bundle-Localization: plugin
-Require-Bundle: net.sf.anathema.thirdparty.testing;resolution:=optional;visibility:=reexport
+Require-Bundle: net.sf.anathema.thirdparty.testing;resolution:=optional;visibility:=reexport,
+ net.disy.commons;bundle-version="1.0.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
