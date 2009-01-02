@@ -30,12 +30,13 @@ public class CharmTreeExtensionPoint_ConnectedCharmTest {
 
   @Test
   public void providesNullSourcePrerequisiteForRootCharm() throws Exception {
-    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, ROOT_ID)));
+    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, new DummyCharmId(ROOT_ID))));
   }
 
   @Test
   public void providesRootCharmSourcePrerequisiteForOtherCharm() throws Exception {
-    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(ROOT_ID, OTHER_CHARM_ID)));
+    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(new DummyCharmId(ROOT_ID), new DummyCharmId(
+        OTHER_CHARM_ID))));
   }
 
   @Test

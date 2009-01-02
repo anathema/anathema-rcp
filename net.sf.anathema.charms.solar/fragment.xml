@@ -148,6 +148,22 @@
             id="Solar: Call The Blade"
             name="Call The Blade">
       </charmName>
+      <charmName
+            id="solar.any.{0}.excellency"
+            name="Any {0} Excellency">
+      </charmName>
+      <charmName
+            id="solar.first.{0}.excellency"
+            name="First {0} Excellency">
+      </charmName>
+      <charmName
+            id="solar.second.{0}.excellency"
+            name="Second {0} Excellency">
+      </charmName>
+      <charmName
+            id="solar.third.{0}.excellency"
+            name="Third {0} Excellency">
+      </charmName>
    </extension>
 
 </fragment>

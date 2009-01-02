@@ -2,6 +2,8 @@ package net.sf.anathema.charms.data;
 
 import static org.junit.Assert.*;
 
+import net.sf.anathema.charms.tree.DummyCharmId;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,12 +21,12 @@ public class CharmDataProvider_Test {
   @Test
   public void looksupNameForIdInMap() throws Exception {
     map.put("Solar: Doofmann", "Doofmann"); //$NON-NLS-1$ //$NON-NLS-2$
-    assertEquals("Doofmann", provider.getDisplayName("Solar: Doofmann")); //$NON-NLS-1$ //$NON-NLS-2$
+    assertEquals("Doofmann", provider.getDisplayName(new DummyCharmId("Solar: Doofmann"))); //$NON-NLS-1$ //$NON-NLS-2$
   }
 
   @Test
   public void looksupNameForIdInMapForOtherUnkownCharm() throws Exception {
     map.put("Abyssal: Selber", "Selber"); //$NON-NLS-1$ //$NON-NLS-2$
-    assertEquals("Selber", provider.getDisplayName("Abyssal: Selber")); //$NON-NLS-1$ //$NON-NLS-2$
+    assertEquals("Selber", provider.getDisplayName(new DummyCharmId("Abyssal: Selber"))); //$NON-NLS-1$ //$NON-NLS-2$
   }
 }

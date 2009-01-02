@@ -1,6 +1,7 @@
 package net.sf.anathema.charms.view;
 
 import net.disy.commons.core.util.IClosure;
+import net.sf.anathema.charms.tree.ICharmId;
 
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -17,7 +18,7 @@ public final class GraphSelectionClosure implements IClosure<ICharmSelectionList
   @Override
   public void execute(ICharmSelectionListener listener) throws RuntimeException {
     StructuredSelection selection = (StructuredSelection) event.getSelection();
-    listener.charmSelected((String) selection.getFirstElement());
+    listener.charmSelected(((ICharmId) selection.getFirstElement()).getId());
     selectable.clearSelection();
   }
 }

@@ -1,6 +1,7 @@
 package net.sf.anathema.charms.data;
 
 import net.sf.anathema.charms.tree.CharmTreeExtensionPoint;
+import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.view.ICharmIdExtractor;
 
 import org.eclipse.jface.viewers.Viewer;
@@ -8,7 +9,7 @@ import org.eclipse.zest.core.viewers.IGraphContentProvider;
 
 public class CharmContentProvider implements IGraphContentProvider, ICharmIdExtractor {
 
-  public String getSource(Object rel) {
+  public ICharmId getSource(Object rel) {
     return ((CharmPrerequisite) rel).getSource();
   }
 
@@ -17,7 +18,7 @@ public class CharmContentProvider implements IGraphContentProvider, ICharmIdExtr
     return new CharmTreeExtensionPoint().getTree(treeId);
   }
 
-  public String getDestination(Object rel) {
+  public ICharmId getDestination(Object rel) {
     return ((CharmPrerequisite) rel).getDestination();
   }
 
@@ -30,6 +31,6 @@ public class CharmContentProvider implements IGraphContentProvider, ICharmIdExtr
   }
 
   public String getCharmId(Object nodeData) {
-    return (String) nodeData;
+    return ((ICharmId) nodeData).getId();
   }
 }

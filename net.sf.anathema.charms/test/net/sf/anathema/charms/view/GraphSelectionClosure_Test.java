@@ -1,6 +1,7 @@
 package net.sf.anathema.charms.view;
 
 import static org.easymock.EasyMock.*;
+import net.sf.anathema.charms.tree.DummyCharmId;
 
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -15,7 +16,8 @@ public class GraphSelectionClosure_Test {
   @Before
   public void createEvent() {
     ISelectionProvider source = GenericObjectMother.createDummy(ISelectionProvider.class);
-    StructuredSelection selection = new StructuredSelection(new Object[] { "first", "second" }); //$NON-NLS-1$ //$NON-NLS-2$
+    StructuredSelection selection = new StructuredSelection(new Object[] {
+        new DummyCharmId("first"), new DummyCharmId("second") }); //$NON-NLS-1$ //$NON-NLS-2$
     event = new SelectionChangedEvent(source, selection);
   }
 

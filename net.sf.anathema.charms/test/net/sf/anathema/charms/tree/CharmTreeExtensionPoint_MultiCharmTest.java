@@ -32,11 +32,11 @@ public class CharmTreeExtensionPoint_MultiCharmTest {
 
   @Test
   public void providesNullSourcePrerequisiteForCharm() throws Exception {
-    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, CHARM_ID)));
+    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, new DummyCharmId(CHARM_ID))));
   }
 
   @Test
   public void providesNullSourcePrerequisiteForOtherCharm() throws Exception {
-    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, OTHER_CHARM_ID)));
+    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null,new DummyCharmId( OTHER_CHARM_ID))));
   }
 }

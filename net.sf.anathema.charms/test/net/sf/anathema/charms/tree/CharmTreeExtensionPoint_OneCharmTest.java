@@ -52,16 +52,16 @@ public class CharmTreeExtensionPoint_OneCharmTest {
 
   @Test
   public void charmIsDestinationOfPrerequisiste() throws Exception {
-    assertThat(point.getTree(TREE_ID)[0].getDestination(), is(CHARM_ID));
+    assertThat(point.getTree(TREE_ID)[0].getDestination().getId(), is(CHARM_ID));
   }
 
   @Test
   public void looksForTreepartsInLaterExtensionElements() throws Exception {
-    assertThat(point.getTree(OTHER_TREE_ID)[0].getDestination(), is(OTHER_CHARM_ID));
+    assertThat(point.getTree(OTHER_TREE_ID)[0].getDestination().getId(), is(OTHER_CHARM_ID));
   }
 
   @Test
   public void looksForTreepartsInLaterPluginElements() throws Exception {
-    assertThat(point.getTree(THIRD_TREE_ID)[0].getDestination(), is(THIRD_CHARM_ID));
+    assertThat(point.getTree(THIRD_TREE_ID)[0].getDestination().getId(), is(THIRD_CHARM_ID));
   }
 }

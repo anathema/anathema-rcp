@@ -18,9 +18,7 @@ public class CharmTreeExtensionPoint_GenericTest {
   private static final String TREE_ID = "tree"; //$NON-NLS-1$
   private static final String TRAIT_ID = "trait"; //$NON-NLS-1$
   private static final String EXPLICIT_ROOT_ID = "first.{0}"; //$NON-NLS-1$
-  private static final String EXPLICIT_ROOT = "first.trait"; //$NON-NLS-1$
   private static final String IMPLICIT_ROOT_ID = "second.{0}"; //$NON-NLS-1$
-  private static final String IMPLICIT_ROOT = "second.trait"; //$NON-NLS-1$
   private static final String CHILD_ID = "any.{0}"; //$NON-NLS-1$
   private CharmTreeExtensionPoint point;
 
@@ -35,18 +33,18 @@ public class CharmTreeExtensionPoint_GenericTest {
 
   private IExtensionElement createDataElement() throws Exception {
     return createExtensionElementWithAttributes(
-        new MockName("tree"),
-        new MockStringAttribute("id", TREE_ID),
-        new MockStringAttribute("primaryTrait", TRAIT_ID));
+        new MockName("tree"), //$NON-NLS-1$
+        new MockStringAttribute("id", TREE_ID), //$NON-NLS-1$
+        new MockStringAttribute("primaryTrait", TRAIT_ID)); //$NON-NLS-1$
   }
 
   @Test
-  public void containsExpliciteGenericCharm() throws Exception {
-    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, EXPLICIT_ROOT)));
+  public void containsExplicitGenericCharm() throws Exception {
+    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, new CharmId(EXPLICIT_ROOT_ID, TRAIT_ID))));
   }
 
   @Test
   public void containsImplicitGenericCharm() throws Exception {
-    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, IMPLICIT_ROOT)));
+    assertThat(point.getTree(TREE_ID), contains(new CharmPrerequisite(null, new CharmId(IMPLICIT_ROOT_ID, TRAIT_ID))));
   }
 }

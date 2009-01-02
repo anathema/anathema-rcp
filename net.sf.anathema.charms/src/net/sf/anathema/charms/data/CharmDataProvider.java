@@ -1,6 +1,7 @@
 package net.sf.anathema.charms.data;
 
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
+import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataProvider implements ICharmDataProvider {
 
@@ -15,7 +16,7 @@ public class CharmDataProvider implements ICharmDataProvider {
   }
 
   @Override
-  public String getDisplayName(String charmId) {
+  public String getDisplayName(ICharmId charmId) {
     return names.getNameFor(charmId);
   }
 }

@@ -1,6 +1,5 @@
 package net.sf.anathema.charms.tree;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,8 +10,8 @@ import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public class CharmBuilder {
   private final Set<CharmPrerequisite> prerequisites = new HashSet<CharmPrerequisite>();
-  private final List<String> explicitCharms = new ArrayList<String>();
-  private final List<String> implicitCharms = new ArrayList<String>();
+  private final List<ICharmId> explicitCharms = new ArrayList<ICharmId>();
+  private final List<ICharmId> implicitCharms = new ArrayList<ICharmId>();
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private final String primaryTrait;
@@ -22,7 +21,7 @@ public class CharmBuilder {
   }
 
   public void addCharm(IExtensionElement charmElement) {
-    String charmId = getCharmId(charmElement, ATTRIB_ID);
+    ICharmId charmId = getCharmId(charmElement, ATTRIB_ID);
     IExtensionElement[] prerequisiteElements = charmElement.getElements();
     if (prerequisiteElements.length == 0) {
       addRootCharm(charmId);
@@ -32,29 +31,47 @@ public class CharmBuilder {
     }
   }
 
-  private String getCharmId(IExtensionElement element, String idAttributeName) {
+  private ICharmId getCharmId(IExtensionElement element, String idAttributeName) {
     String idPattern = element.getAttribute(idAttributeName);
-    return MessageFormat.format(idPattern, primaryTrait);
+    return new CharmId(idPattern, primaryTrait);
   }
 
-  private void addCharmWithPrerequisites(String charmId, IExtensionElement[] prerequisiteElements) {
+  private void addCharmWithPrerequisites(ICharmId charmId, IExtensionElement[] prerequisiteElements) {
     for (IExtensionElement prerequisiteElement : prerequisiteElements) {
-      String prerequisiteId = getCharmId(prerequisiteElement, ATTRIB_CHARM_ID);
-      prerequisites.add(new CharmPrerequisite(prerequisiteId, charmId));
+      ICharmId prerequisiteId = getCharmId(prerequisiteElement, ATTRIB_CHARM_ID);
+      prerequisites.add(createPrerequisite(prerequisiteId, charmId));
       explicitCharms.add(charmId);
       implicitCharms.add(prerequisiteId);
     }
   }
 
-  private void addRootCharm(String charmId) {
-    prerequisites.add(new CharmPrerequisite(null, charmId));
+  private void addRootCharm(ICharmId charmId) {
+    prerequisites.add(createRoot(charmId));
     explicitCharms.add(charmId);
+  }
+
+  private CharmPrerequisite createRoot(ICharmId charmId) {
+    return createPrerequisite(null, charmId);
+  }
+
+  private CharmPrerequisite createPrerequisite(final ICharmId source, ICharmId destination) {
+    return new CharmPrerequisite(getKnownId(source), getKnownId(destination));
+  }
+
+  private ICharmId getKnownId(final ICharmId id) {
+    if (explicitCharms.contains(id)) {
+      return explicitCharms.get(explicitCharms.indexOf(id));
+    }
+    if (implicitCharms.contains(id)) {
+      return implicitCharms.get(implicitCharms.indexOf(id));
+    }
+    return id;
   }
 
   public CharmPrerequisite[] create() {
     implicitCharms.removeAll(explicitCharms);
-    for (String implicit : implicitCharms) {
-      prerequisites.add(new CharmPrerequisite(null, implicit));
+    for (ICharmId charmId : implicitCharms) {
+      prerequisites.add(createRoot(charmId));
     }
     return prerequisites.toArray(new CharmPrerequisite[prerequisites.size()]);
   }

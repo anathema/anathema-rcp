@@ -1,10 +1,13 @@
 package net.sf.anathema.charms.data.lookup;
 
+import java.text.MessageFormat;
+
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmWithId;
 import net.sf.anathema.charms.data.INameMap;
+import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmNamesExtensionPoint implements INameMap {
   private static final String EXTENSION_NAME = "charmname"; //$NON-NLS-1$
@@ -19,11 +22,12 @@ public class CharmNamesExtensionPoint implements INameMap {
     this.extensionPoint = eclipseExtensionPoint;
   }
 
-  public String getNameFor(String charmId) {
-    IExtensionElement charm = extensionPoint.getFirst(new CharmWithId(charmId));
-    if (charm==null) {
-      return charmId;
+  public String getNameFor(ICharmId charmId) {
+    IExtensionElement charm = extensionPoint.getFirst(new CharmWithId(charmId.getIdPattern()));
+    if (charm == null) {
+      return charmId.getId();
     }
-    return charm.getAttribute(ATTRIB_NAME);
+    String trait = TraitMessages.getNameFor(charmId.getPrimaryTrait());
+    return MessageFormat.format(charm.getAttribute(ATTRIB_NAME), trait);
   }
 }
