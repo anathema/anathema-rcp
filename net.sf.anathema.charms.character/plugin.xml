@@ -33,6 +33,10 @@
             class="net.sf.anathema.charms.character.selection.TreeSelectionConfigurator"
             modelId="net.sf.anathema.charms.character.modelId">
       </addition>
+      <configurator
+            class="net.sf.anathema.charms.character.TreeSelectionConfigurator"
+            modelId="net.sf.anathema.charms.character.modelId">
+      </configurator>
    </extension>
    <extension
          point="org.eclipse.ui.elementFactories">

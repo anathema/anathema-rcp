@@ -115,5 +115,48 @@
             primaryTrait="Thrown">
       </tree>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.charmname">
+      <charmName
+            id="Solar: Invisible Statue Spirit"
+            name="Invisible Statue Spirit">
+      </charmName>
+      <charmName
+            id="Solar: Vanishing From Mind&apos;s Eye Method"
+            name="Vanishing From Mind&apos;s Eye Method">
+      </charmName>
+      <charmName
+            id="Solar: Mental Invisibility Technique"
+            name="Mental Invisibility Technique">
+      </charmName>
+      <charmName
+            id="Solar: Joint Wounding Attack"
+            name="Joint Wounding Attack">
+      </charmName>
+      <charmName
+            id="Solar: Cascade of Cutting Terror"
+            name="Cascade of Cutting Terror">
+      </charmName>
+      <charmName
+            id="Solar: Falling Icicle Strike"
+            name="Falling Icicle Strike">
+      </charmName>
+      <charmName
+            id="Solar: Observer Deceiving Attack"
+            name="Observer Deceiving Attack">
+      </charmName>
+      <charmName
+            id="Solar: Mist on Water Attack"
+            name="Mist on Water Attack">
+      </charmName>
+      <charmName
+            id="Solar: Spirit Weapons"
+            name="Spirit Weapons">
+      </charmName>
+      <charmName
+            id="Solar: Call The Blade"
+            name="Call The Blade">
+      </charmName>
+   </extension>
 
 </fragment>
