@@ -103,13 +103,15 @@
       </genericCharms>
    </extension>
    <extension
-         point="net.sf.anathema.charms.character.treetraits">
+         point="net.sf.anathema.charms.character.charmtrees">
       <tree
-            id="Solar: Stealth"
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.stealth"
             primaryTrait="Stealth">
       </tree>
       <tree
-            id="Solar: Thrown"
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.thrown"
             primaryTrait="Thrown">
       </tree>
    </extension>

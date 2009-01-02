@@ -6,7 +6,7 @@
          <meta.schema plugin="net.sf.anathema.charms.character" id="treetraits" name="Charm Tree Traits"/>
       </appinfo>
       <documentation>
-         Defines the trait ids for a charm tree.
+         Defines the trait ids and character types for a charm tree.
       </documentation>
    </annotation>
 
@@ -57,6 +57,13 @@
             </annotation>
          </attribute>
          <attribute name="primaryTrait" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="characterType" type="string" use="required">
             <annotation>
                <documentation>
                   

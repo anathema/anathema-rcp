@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="treetraits" name="Charm Tree Traits" schema="schema/treetraits.exsd"/>
+   <extension-point id="charmtrees" name="Character Charm Trees" schema="schema/charmtrees.exsd"/>
    <extension-point id="charmcosts" name="Charm costs" schema="schema/charmcosts.exsd"/>
    <extension
          point="net.sf.anathema.character.core.models">

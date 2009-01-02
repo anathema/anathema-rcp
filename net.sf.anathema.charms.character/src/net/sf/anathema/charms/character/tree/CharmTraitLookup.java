@@ -10,7 +10,7 @@ import net.sf.anathema.charms.tree.ITreeLookup;
 
 public class CharmTraitLookup implements ITraitIdLookup {
 
-  private static final String EXTENSION_POINT = "treetraits"; //$NON-NLS-1$
+  private static final String EXTENSION_POINT = "charmtrees"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
   private static final String ATTRIB_PRIMARY_TRAIT = "primaryTrait"; //$NON-NLS-1$
   private final ITreeLookup treeLookup;
