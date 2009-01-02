@@ -63,4 +63,10 @@
          </minimum>
       </validator>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.traitname">
+      <messages
+            class="net.sf.anathema.character.attributes.model.AttributeMessages">
+      </messages>
+   </extension>
 </plugin>

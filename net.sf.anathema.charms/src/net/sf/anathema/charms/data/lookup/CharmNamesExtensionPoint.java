@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.character.trait.resources.TraitMessages;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmWithId;
 import net.sf.anathema.charms.data.INameMap;
@@ -27,7 +28,7 @@ public class CharmNamesExtensionPoint implements INameMap {
     if (charm == null) {
       return charmId.getId();
     }
-    String trait = TraitMessages.getNameFor(charmId.getPrimaryTrait());
+    String trait = new TraitMessages().getNameFor(charmId.getPrimaryTrait());
     return MessageFormat.format(charm.getAttribute(ATTRIB_NAME), trait);
   }
 }

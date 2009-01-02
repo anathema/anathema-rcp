@@ -2,11 +2,14 @@ package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.attributes.AttributesPlugin;
+import net.sf.anathema.character.trait.resources.INameCollection;
 import net.sf.anathema.character.trait.resources.ReflectionMessages;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.osgi.util.NLS;
 
-public class AttributeMessages extends NLS {
+public class AttributeMessages extends NLS implements INameCollection {
   private static final String BUNDLE_NAME = "net.sf.anathema.character.attributes.model.attributemessages"; //$NON-NLS-1$
   public static String Strength;
   public static String Dexterity;
@@ -25,11 +28,18 @@ public class AttributeMessages extends NLS {
     NLS.initializeMessages(BUNDLE_NAME, AttributeMessages.class);
   }
 
-  private AttributeMessages() {
-    // nothing to do
+  @Override
+  public String getName(String id) {
+    return get(id);
   }
-
-  public static String get(String attributeId) {
-    return MESSAGES.get(attributeId);
+  
+  public static String get(String id) {
+    return MESSAGES.get(id);
+  }
+  
+  @Override
+  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
+      throws CoreException {
+    //nothing to do
   }
 }
