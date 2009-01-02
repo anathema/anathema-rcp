@@ -21,4 +21,5 @@ Require-Bundle: net.sf.anathema.charactertype.sidereal;bundle-version="1.0.0",
  net.sf.anathema.character.freebies.abilities;bundle-version="1.0.0",
  net.sf.anathema.character.freebies.attributes;bundle-version="1.0.0",
  net.sf.anathema.basics.repository;bundle-version="1.0.0",
- net.sf.anathema.character.acceptance;bundle-version="1.0.0"
+ net.sf.anathema.character.acceptance;bundle-version="1.0.0",
+ net.sf.anathema.charms.character.freebies;bundle-version="1.0.0"
