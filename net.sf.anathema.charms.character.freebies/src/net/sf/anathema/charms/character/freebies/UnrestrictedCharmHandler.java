@@ -7,12 +7,12 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
+import net.sf.anathema.charms.character.freebies.plugin.ICharmFreebiesConstants;
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
 
 public class UnrestrictedCharmHandler extends AbstractExecutableExtension implements IFreebiesHandler {
 
-  public static final String CREDIT_ID = "net.sf.anathema.charms.character.credit.unrestricted"; //$NON-NLS-1$
   private final IModelCollection modelCollection;
   private final ICreditManager creditManager;
 
@@ -23,7 +23,7 @@ public class UnrestrictedCharmHandler extends AbstractExecutableExtension implem
 
   @Override
   public String getCreditId() {
-    return CREDIT_ID;
+    return ICharmFreebiesConstants.UNRESTRICTED_CREDIT_ID;
   }
 
   @Override

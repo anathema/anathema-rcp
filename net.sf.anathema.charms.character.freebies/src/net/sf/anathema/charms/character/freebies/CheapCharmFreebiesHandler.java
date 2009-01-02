@@ -5,10 +5,10 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
+import net.sf.anathema.charms.character.freebies.plugin.ICharmFreebiesConstants;
 
 public class CheapCharmFreebiesHandler extends AbstractExecutableExtension implements IFreebiesHandler {
 
-  private static final String CREDIT_ID = "net.sf.anathema.charms.character.credit.favored"; //$NON-NLS-1$
   private final IModelCollection modelProvider;
 
   public CheapCharmFreebiesHandler() {
@@ -21,7 +21,7 @@ public class CheapCharmFreebiesHandler extends AbstractExecutableExtension imple
 
   @Override
   public String getCreditId() {
-    return CREDIT_ID;
+    return ICharmFreebiesConstants.CHEAP_CREDIT_ID;
   }
 
   @Override

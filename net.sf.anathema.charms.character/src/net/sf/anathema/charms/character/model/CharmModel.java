@@ -12,7 +12,6 @@ import net.sf.anathema.lib.control.change.ChangeControl;
 
 public class CharmModel extends AbstractModel implements ICharmModel {
 
-  public static final String ID = "net.sf.anathema.charms.character.modelId"; //$NON-NLS-1$
   private final List<String> creationLearnedCharms = new ArrayList<String>();
   private final List<String> experienceLearnedCharms = new ArrayList<String>();
   private final ChangeControl changeControl = new ChangeControl();

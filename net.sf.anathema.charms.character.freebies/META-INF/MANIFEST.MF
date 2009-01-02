@@ -9,3 +9,4 @@ Require-Bundle: net.sf.anathema.character.freebies;bundle-version="1.0.0",
  net.sf.anathema.charms.character;bundle-version="1.0.0",
  net.sf.anathema.character.points;bundle-version="1.0.0"
 Bundle-Localization: plugin
+Export-Package: net.sf.anathema.charms.character.freebies.plugin
