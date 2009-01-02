@@ -43,7 +43,8 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
 
   @Override
   public CharmPrerequisite[] getTree(final String id) {
-    final CharmBuilder charmBuilder = new CharmBuilder(id);
+    String primaryTrait = getData(id).primaryTrait;
+    final CharmBuilder charmBuilder = new CharmBuilder(primaryTrait);
     extensionProvider.forAllDo(new AddCharms(new ForGenerics(), charmBuilder));
     extensionProvider.forAllDo(new AddCharms(new ForTreePart(id), charmBuilder));
     return charmBuilder.create();

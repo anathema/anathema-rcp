@@ -15,10 +15,10 @@ public class CharmBuilder {
   private final List<String> implicitCharms = new ArrayList<String>();
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$
-  private final String treeId;
+  private final String primaryTrait;
 
-  public CharmBuilder(String treeId) {
-    this.treeId = treeId;
+  public CharmBuilder(String primaryTrait) {
+    this.primaryTrait = primaryTrait;
   }
 
   public void addCharm(IExtensionElement charmElement) {
@@ -34,7 +34,7 @@ public class CharmBuilder {
 
   private String getCharmId(IExtensionElement element, String idAttributeName) {
     String idPattern = element.getAttribute(idAttributeName);
-    return MessageFormat.format(idPattern, treeId);
+    return MessageFormat.format(idPattern, primaryTrait);
   }
 
   private void addCharmWithPrerequisites(String charmId, IExtensionElement[] prerequisiteElements) {
