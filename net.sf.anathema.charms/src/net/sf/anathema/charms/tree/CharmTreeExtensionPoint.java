@@ -16,7 +16,7 @@ import net.sf.anathema.charms.tree.operations.ContainsCharm;
 import net.sf.anathema.charms.tree.operations.ForGenerics;
 import net.sf.anathema.charms.tree.operations.ForTreePart;
 
-public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDtoMap {
+public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDataMap {
 
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   public static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
