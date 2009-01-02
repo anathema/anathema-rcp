@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="charmtree" name="Charm Tree" schema="schema/charmtree.exsd"/>
    <extension-point id="charmname" name="Charm Name" schema="schema/charmname.exsd"/>
+   <extension-point id="charmdata" name="Charm Data" schema="schema/charmdata.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
