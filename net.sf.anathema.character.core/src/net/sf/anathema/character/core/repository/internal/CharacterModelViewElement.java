@@ -11,6 +11,8 @@ import net.sf.anathema.basics.eclipse.ui.IEditorInputProvider;
 import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.linkage.util.ResourceLinkProvider;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
+import net.sf.anathema.character.core.character.CharacterId;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.character.core.repository.IModelDisplayConfiguration;
 import net.sf.anathema.character.core.resource.CharacterModelEditorOpener;
@@ -51,6 +53,7 @@ public class CharacterModelViewElement implements IConfigurableViewElement {
         return configuration.getModelFile(characterFolder);
       }
     });
+    adaptable.set(ICharacterId.class, new CharacterId(folder));
     adaptable.set(ILink.class, new ResourceLinkProvider(adaptable));
     adaptable.set(IEditorInputProvider.class, new IProvider<IEditorInputProvider>() {
       @Override

@@ -6,20 +6,20 @@ import java.util.List;
 
 import net.disy.commons.core.util.CollectionUtilities;
 import net.sf.anathema.charms.tree.CharmTreeExtensionPoint;
-import net.sf.anathema.charms.tree.ITreeDataMap;
+import net.sf.anathema.charms.tree.ITreeDtoMap;
 import net.sf.anathema.charms.tree.ITreeProvider;
 import net.sf.anathema.charms.tree.TreeDto;
 
 public class SortedTreeDataCollection implements Iterable<TreeDto> {
 
   private final ITreeProvider trees;
-  private final ITreeDataMap dataMap;
+  private final ITreeDtoMap dataMap;
 
   public static SortedTreeDataCollection From(CharmTreeExtensionPoint extensionPoint) {
     return new SortedTreeDataCollection(extensionPoint, extensionPoint);
   }
 
-  public SortedTreeDataCollection(ITreeProvider trees, ITreeDataMap dataMap) {
+  public SortedTreeDataCollection(ITreeProvider trees, ITreeDtoMap dataMap) {
     this.trees = trees;
     this.dataMap = dataMap;
   }

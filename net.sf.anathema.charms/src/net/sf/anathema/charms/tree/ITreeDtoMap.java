@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.tree;
 
-public interface ITreeDataMap {
+public interface ITreeDtoMap {
 
   public TreeDto getData(String id);
 }

@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character;
+package net.sf.anathema.charms.character.selection;
 
 import java.net.URL;
 
@@ -10,6 +10,9 @@ import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
+import net.sf.anathema.charms.character.CharmsEditorInput;
+import net.sf.anathema.charms.character.IPluginConstants;
+import net.sf.anathema.charms.character.StringLinkDecorator;
 import net.sf.anathema.charms.tree.TreeDto;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -20,12 +23,12 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class CharmTreeViewElement implements IViewElement {
+public class TreeViewElement implements IViewElement {
 
   private final IConfigurableViewElement parent;
   private final TreeDto tree;
 
-  public CharmTreeViewElement(IConfigurableViewElement parent, TreeDto tree) {
+  public TreeViewElement(IConfigurableViewElement parent, TreeDto tree) {
     this.parent = parent;
     this.tree = tree;
   }
@@ -95,10 +98,10 @@ public class CharmTreeViewElement implements IViewElement {
 
   @Override
   public boolean equals(Object obj) {
-    if (!(obj instanceof CharmTreeViewElement)) {
+    if (!(obj instanceof TreeViewElement)) {
       return false;
     }
-    CharmTreeViewElement other = (CharmTreeViewElement) obj;
+    TreeViewElement other = (TreeViewElement) obj;
     return ObjectUtilities.equals(other.parent, parent) && ObjectUtilities.equals(other.tree.id, tree.id);
   }
 

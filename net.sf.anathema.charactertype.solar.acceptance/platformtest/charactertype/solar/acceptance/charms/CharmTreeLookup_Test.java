@@ -12,13 +12,13 @@ public class CharmTreeLookup_Test {
   public void providesSolarStealthAsTreeForSolarStealthCharm() throws Exception {
     CharmTreeExtensionPoint traitProvider = new CharmTreeExtensionPoint();
     String treeId = traitProvider.getTreeId("Solar: Invisible Statue Spirit"); //$NON-NLS-1$
-    assertThat(treeId, is("Solar: Stealth")); //$NON-NLS-1$
+    assertThat(treeId, is("solar.stealth")); //$NON-NLS-1$
   }
 
   @Test
   public void providesSolarThrownAsTreeForSolarThrownCharm() throws Exception {
     CharmTreeExtensionPoint traitProvider = new CharmTreeExtensionPoint();
     String treeId = traitProvider.getTreeId("Solar: Cascade of Cutting Terror"); //$NON-NLS-1$
-    assertThat(treeId, is("Solar: Thrown")); //$NON-NLS-1$
+    assertThat(treeId, is("solar.thrown")); //$NON-NLS-1$
   }
 }

@@ -30,7 +30,7 @@
    <extension
          point="net.sf.anathema.character.core.viewelementconfigurator">
       <addition
-            class="net.sf.anathema.charms.character.TreeSelectionConfigurator"
+            class="net.sf.anathema.charms.character.selection.TreeSelectionConfigurator"
             modelId="net.sf.anathema.charms.character.modelId">
       </addition>
    </extension>
