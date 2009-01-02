@@ -4,12 +4,16 @@
    <extension
          point="net.sf.anathema.charms.charmtree">
       <tree
+            characterType="net.sf.anathema.character.type.solar"
             id="solar.stealth"
-            name="Stealth">
+            name="Stealth"
+            primaryTrait="Stealth">
       </tree>
       <tree
+            characterType="net.sf.anathema.character.type.solar"
             id="solar.thrown"
-            name="Thrown">
+            name="Thrown"
+            primaryTrait="Thrown">
       </tree>
       <treepart
             treeReference="solar.stealth">
@@ -101,19 +105,6 @@
 	         </charmPrerequisite>
 	      </charm>
       </genericCharms>
-   </extension>
-   <extension
-         point="net.sf.anathema.charms.character.charmtrees">
-      <tree
-            characterType="net.sf.anathema.character.type.solar"
-            id="solar.stealth"
-            primaryTrait="Stealth">
-      </tree>
-      <tree
-            characterType="net.sf.anathema.character.type.solar"
-            id="solar.thrown"
-            primaryTrait="Thrown">
-      </tree>
    </extension>
    <extension
          point="net.sf.anathema.charms.charmname">

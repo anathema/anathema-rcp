@@ -22,6 +22,8 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
   public static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
   public static final String ATTRIB_TREE_REFERENCE = "treeReference"; //$NON-NLS-1$
   private static final String ATTRIB_NAME = "name"; //$NON-NLS-1$
+  private static final String ATTRIB_PRIMARY_TRAIT = "primaryTrait"; //$NON-NLS-1$
+  private static final String ATTRIB_CHARACTER_TYPE = "characterType"; //$NON-NLS-1$
   private final IExtensionPoint extensionProvider;
 
   public CharmTreeExtensionPoint() {
@@ -60,7 +62,15 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
   @Override
   public TreeDto getData(final String id) {
     IExtensionElement treeElement = extensionProvider.getFirst(new TreeWithId(id));
-    String name = treeElement == null ? id : treeElement.getAttribute(ATTRIB_NAME);
-    return TreeDto.FromIdAndName(id, name);
+    TreeDto dto = new TreeDto();
+    dto.id = id;
+    if (treeElement == null) {
+      dto.name = id;
+      return dto;
+    }
+    dto.name = treeElement.getAttribute(ATTRIB_NAME);
+    dto.primaryTrait = treeElement.getAttribute(ATTRIB_PRIMARY_TRAIT);
+    dto.characterType = treeElement.getAttribute(ATTRIB_CHARACTER_TYPE);
+    return dto;
   }
 }
