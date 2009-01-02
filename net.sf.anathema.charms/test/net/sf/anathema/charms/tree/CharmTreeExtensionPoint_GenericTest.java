@@ -6,6 +6,8 @@ import static net.sf.anathema.test.hamcrest.AnathemaMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
+import net.sf.anathema.basics.eclipse.extension.fake.MockName;
+import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.charms.StaticExtensionProvider;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 
@@ -14,10 +16,11 @@ import org.junit.Test;
 
 public class CharmTreeExtensionPoint_GenericTest {
   private static final String TREE_ID = "tree"; //$NON-NLS-1$
+  private static final String TRAIT_ID = "trait"; //$NON-NLS-1$
   private static final String EXPLICIT_ROOT_ID = "first.{0}"; //$NON-NLS-1$
-  private static final String EXPLICIT_ROOT = "first.tree"; //$NON-NLS-1$
+  private static final String EXPLICIT_ROOT = "first.trait"; //$NON-NLS-1$
   private static final String IMPLICIT_ROOT_ID = "second.{0}"; //$NON-NLS-1$
-  private static final String IMPLICIT_ROOT = "second.tree"; //$NON-NLS-1$
+  private static final String IMPLICIT_ROOT = "second.trait"; //$NON-NLS-1$
   private static final String CHILD_ID = "any.{0}"; //$NON-NLS-1$
   private CharmTreeExtensionPoint point;
 
@@ -26,7 +29,15 @@ public class CharmTreeExtensionPoint_GenericTest {
     IExtensionElement explicitGenericRoot = createCharm(EXPLICIT_ROOT_ID);
     IExtensionElement implicitePrerequisite = createCharm(CHILD_ID, EXPLICIT_ROOT_ID, IMPLICIT_ROOT_ID);
     IPluginExtension tree = createPluginExtension(createGenericCharms(explicitGenericRoot, implicitePrerequisite));
-    point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree));
+    IPluginExtension data = createPluginExtension(createDataElement());
+    point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree, data));
+  }
+
+  private IExtensionElement createDataElement() throws Exception {
+    return createExtensionElementWithAttributes(
+        new MockName("tree"),
+        new MockStringAttribute("id", TREE_ID),
+        new MockStringAttribute("primaryTrait", TRAIT_ID));
   }
 
   @Test
