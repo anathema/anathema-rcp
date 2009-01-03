@@ -19,4 +19,8 @@ public class StringBuilder {
   public String create(String fallback) {
     return result.isEmpty() ? fallback : result;
   }
+
+  public String create() {
+    return result;
+  }
 }

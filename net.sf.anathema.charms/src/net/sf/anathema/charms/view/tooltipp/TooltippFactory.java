@@ -20,7 +20,8 @@ public class TooltippFactory implements ITooltippFactory {
     CharmDto data = dataMap.getData(charmId);
     DisplayCharm displayData = new DisplayCharm(data);
     String text = "Type: " + displayData.getType() + "\n";
-    text += "Keywords: " + displayData.getKeywords();
+    text += "Keywords: " + displayData.getKeywords() + "\n";
+    text += "Sources: " + displayData.getAllSources();
     return new Label(text);
   }
 }

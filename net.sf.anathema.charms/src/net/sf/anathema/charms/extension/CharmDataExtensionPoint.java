@@ -7,13 +7,17 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
+import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataExtensionPoint implements ICharmDataMap {
 
-  private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
-  private static final String TAG_KEYWORD = "keyword"; //$NON-NLS-1$
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
+  private static final String TAG_KEYWORD = "keyword"; //$NON-NLS-1$
+  private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
+  private static final String TAG_SOURCE = "source"; //$NON-NLS-1$
+  private static final String ATTRIB_SOURCE = "source"; //$NON-NLS-1$
+  private static final String ATTRIB_ADDITION = "addition"; //$NON-NLS-1$
   private static final String EXTENSION_POINT_ID = "charmdata"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
 
@@ -49,6 +53,7 @@ public class CharmDataExtensionPoint implements ICharmDataMap {
     IExtensionElement typeElement = extensionElement.getElements()[0];
     charmDto.type = typeElement.getName();
     fillInKeywords(extensionElement, charmDto);
+    fillInSources(extensionElement, charmDto);
   }
 
   private void fillInKeywords(IExtensionElement extensionElement, CharmDto charmDto) {
@@ -56,5 +61,18 @@ public class CharmDataExtensionPoint implements ICharmDataMap {
       String keyWord = keywordElement.getAttribute(ATTRIB_VALUE);
       charmDto.keywords.add(keyWord);
     }
+  }
+
+  private void fillInSources(IExtensionElement extensionElement, CharmDto charmDto) {
+    for (IExtensionElement sourceElement : extensionElement.getElements(TAG_SOURCE)) {
+      charmDto.sources.add(createSource(sourceElement));
+    }
+  }
+
+  private SourceDto createSource(IExtensionElement sourceElement) {
+    SourceDto sourceDto = new SourceDto();
+    sourceDto.source = sourceElement.getAttribute(ATTRIB_SOURCE);
+    sourceDto.addition = sourceElement.getAttribute(ATTRIB_ADDITION);
+    return sourceDto;
   }
 }
