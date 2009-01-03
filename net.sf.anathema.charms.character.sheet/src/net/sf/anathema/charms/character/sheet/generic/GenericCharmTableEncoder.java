@@ -2,9 +2,9 @@ package net.sf.anathema.charms.character.sheet.generic;
 
 import java.awt.Color;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
+import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilities;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
@@ -15,6 +15,7 @@ import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.character.sheet.AbstractTableEncoder;
 import net.sf.anathema.charms.character.sheet.TableCell;
 import net.sf.anathema.charms.character.sheet.TableEncodingUtilities;
+import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 import net.sf.anathema.charms.tree.CharmId;
 
 import com.lowagie.text.DocumentException;
@@ -32,35 +33,45 @@ import com.lowagie.text.pdf.PdfTemplate;
 public class GenericCharmTableEncoder extends AbstractTableEncoder {
   private final TraitMessages traitMessages = new TraitMessages();
   private final BaseFont baseFont;
-  private final Collection<String> genericIdPatterns;
+  private final Iterable<String> genericIdPatterns;
   private final ICharacter character;
 
-  public GenericCharmTableEncoder(BaseFont baseFont, Collection<String> genericIdPatterns, ICharacter character) {
+  public GenericCharmTableEncoder(BaseFont baseFont, Iterable<String> genericIdPatterns, ICharacter character) {
     this.baseFont = baseFont;
     this.genericIdPatterns = genericIdPatterns;
     this.character = character;
   }
 
   @Override
-  protected PdfPTable createTable(PdfContentByte directContent, Bounds bounds)
-      throws DocumentException {
+  protected PdfPTable createTable(PdfContentByte directContent, Bounds bounds) throws DocumentException {
     Font font = TableEncodingUtilities.createFont(baseFont);
     PdfTemplate learnedTemplate = createCharmDotTemplate(directContent, Color.BLACK);
     PdfTemplate notLearnedTemplate = createCharmDotTemplate(directContent, Color.WHITE);
     PdfPTable table = new PdfPTable(createColumnWidths());
     table.setWidthPercentage(100);
     table.addCell(new TableCell(new Phrase(), Rectangle.NO_BORDER));
-    //TODO Case 349: Hier muss die richtige Menge an TraitGroups erzeugt werden 
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = AbilitiesDisplayUtilities.createDisplayTraitGroups(character);
+
+    // TODO Case 349: Hier muss die richtige Entscheidung (Att/Abi) hin.
+    boolean worksOnAbilities = true;
+    List<IDisplayTraitGroup<IDisplayTrait>> groups = null;
+    String phraseCompletion;
+    if (worksOnAbilities) {
+      groups = AbilitiesDisplayUtilities.createDisplayTraitGroups(character);
+      phraseCompletion = CategoryNames.ABILITY;
+    }
+    else {
+      // groups = AttributeDisplayUtilities.createDisplayTraitGroups(character);
+      phraseCompletion = CategoryNames.ATTRIBUTE;
+    }
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       for (IDisplayTrait trait : group.getTraits()) {
         table.addCell(createHeaderCell(directContent, trait));
       }
     }
     ICharmModel model = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
+    CharmNamesExtensionPoint names = new CharmNamesExtensionPoint();
     for (String pattern : genericIdPatterns) {
-      //TODO Case 349: Hier muss das Pattern mit "Ability/Attribute" aufgefüllt werden
-      Phrase charmPhrase = new Phrase(pattern, font);
+      Phrase charmPhrase = new Phrase(names.getNameFor(new CharmId(pattern, phraseCompletion)), font);
       table.addCell(new TableCell(charmPhrase, Rectangle.NO_BORDER));
       for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
         for (IDisplayTrait trait : group.getTraits()) {

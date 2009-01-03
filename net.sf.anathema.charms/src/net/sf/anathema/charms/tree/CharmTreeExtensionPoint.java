@@ -11,6 +11,10 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
+import net.sf.anathema.charms.tree.entries.CharmPrerequisiteFactory;
+import net.sf.anathema.charms.tree.entries.CharmListBuilder;
+import net.sf.anathema.charms.tree.entries.GenericIdFactory;
+import net.sf.anathema.charms.tree.entries.ICharmListBuilder;
 import net.sf.anathema.charms.tree.operations.AddCharms;
 import net.sf.anathema.charms.tree.operations.CollectTreeIds;
 import net.sf.anathema.charms.tree.operations.ForGenerics;
@@ -44,10 +48,10 @@ public class CharmTreeExtensionPoint extends AbstractExecutableExtension impleme
   @Override
   public CharmPrerequisite[] getTree(final String id) {
     TreeDto data = getData(id);
-    final CharmBuilder charmBuilder = new CharmBuilder(data.primaryTrait);
+    final ICharmListBuilder<CharmPrerequisite> charmBuilder = new CharmListBuilder<CharmPrerequisite>(new CharmPrerequisiteFactory(data.primaryTrait));
     extensionProvider.forAllDo(new AddCharms(new ForGenerics(data.characterType), charmBuilder));
     extensionProvider.forAllDo(new AddCharms(new ForTreePart(id), charmBuilder));
-    return charmBuilder.create();
+    return charmBuilder.create().toArray(new CharmPrerequisite[0]);
   }
 
   @Override
@@ -63,5 +67,12 @@ public class CharmTreeExtensionPoint extends AbstractExecutableExtension impleme
     dto.primaryTrait = treeElement.getAttribute(ATTRIB_PRIMARY_TRAIT);
     dto.characterType = treeElement.getAttribute(ATTRIB_CHARACTER_TYPE);
     return dto;
+  }
+
+  @Override
+  public List<String> getGenericCharms(String typeId) {
+    ICharmListBuilder<String> builder = new CharmListBuilder<String>(new GenericIdFactory());
+    extensionProvider.forAllDo(new AddCharms(new ForGenerics(typeId), builder));
+    return builder.create();
   }
 }

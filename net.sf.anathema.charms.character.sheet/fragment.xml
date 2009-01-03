@@ -7,6 +7,16 @@
             class="net.sf.anathema.charms.character.sheet.CharmEncoder"
             fieldId="encoder.magic">
       </encoder>
+      <encoder
+            class="net.sf.anathema.charms.character.sheet.generic.GenericCharmEncoder"
+            fieldId="encoder.genericcharms">
+      </encoder>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.trait.traitname">
+      <messages
+            class="net.sf.anathema.charms.character.sheet.generic.CategoryNames">
+      </messages>
    </extension>
 
 </fragment>

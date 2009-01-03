@@ -18,9 +18,9 @@ import net.sf.anathema.charms.character.sheet.stats.IMagicStats;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.display.DisplayCharm;
 import net.sf.anathema.charms.extension.CharmDataExtensionPoint;
+import net.sf.anathema.charms.tree.CharmIdLookup;
 import net.sf.anathema.charms.tree.CharmTreeProvider;
 import net.sf.anathema.charms.tree.ICharmId;
-import net.sf.anathema.charms.tree.TreeLookup;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
@@ -49,9 +49,9 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
   private List<IMagicStats> collectPrintMagic(Collection<String> learnedCharms) {
     final List<IMagicStats> printStats = new ArrayList<IMagicStats>();
     CharmDataExtensionPoint extensionPoint = new CharmDataExtensionPoint();
-    TreeLookup treeExtensionPoint = new TreeLookup(CharmTreeProvider.Create());
+    CharmIdLookup lookup = new CharmIdLookup(CharmTreeProvider.Create());
     for (String charmId : learnedCharms) {
-      ICharmId id = treeExtensionPoint.getCharmId(charmId);
+      ICharmId id = lookup.getCharmId(charmId);
       CharmDto data = extensionPoint.getData(id);
       DisplayCharm charm = new DisplayCharm(data);
       printStats.add(new CharmStats(id, charm));

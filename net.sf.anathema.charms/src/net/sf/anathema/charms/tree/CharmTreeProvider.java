@@ -59,4 +59,13 @@ public class CharmTreeProvider extends AbstractExecutableExtension implements IT
     }
     return null;
   }
+
+  @Override
+  public List<String> getGenericCharms(String typeId) {
+    Set<String> allGenerics = new LinkedHashSet<String>();
+    for (ITreeProvider provider : allProviders) {
+      allGenerics.addAll(provider.getGenericCharms(typeId));
+    }
+    return new ArrayList<String>(allGenerics);
+  }
 }

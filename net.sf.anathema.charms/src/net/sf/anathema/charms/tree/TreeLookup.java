@@ -21,10 +21,4 @@ public class TreeLookup implements ITreeLookup {
     }
     return null;
   }
-
-  public ICharmId getCharmId(String completeId) {
-    String treeId = getTreeId(completeId);
-    TreeDto dto = treeProvider.getData(treeId);
-    return new CharmId(completeId.replaceAll(dto.primaryTrait, "{0}"), dto.primaryTrait); //$NON-NLS-1$
-  }
 }

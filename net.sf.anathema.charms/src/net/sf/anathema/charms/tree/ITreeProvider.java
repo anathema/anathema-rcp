@@ -11,4 +11,6 @@ public interface ITreeProvider extends ITreeDataMap, IExecutableExtension {
   public List<String> getTreeList();
 
   public CharmPrerequisite[] getTree(String id);
+
+  public List<String> getGenericCharms(String typeId);
 }
