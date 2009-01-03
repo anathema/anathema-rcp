@@ -55,4 +55,10 @@ public class XmlTreeProvider implements ITreeProvider {
   protected void setCharmCollection(IXmlCharmCollection newCollection) {
     this.charmCollection = newCollection;
   }
+
+  @Override
+  public List<String> getGenericCharms(String typeId) {
+    // TODO: Generic Charms
+    return new ArrayList<String>();
+  }
 }
