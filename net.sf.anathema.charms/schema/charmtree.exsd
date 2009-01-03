@@ -110,6 +110,13 @@
          <sequence>
             <element ref="charm" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
+         <attribute name="characterType" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
