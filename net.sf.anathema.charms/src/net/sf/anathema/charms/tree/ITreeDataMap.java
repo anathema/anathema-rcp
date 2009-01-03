@@ -1,6 +1,8 @@
 package net.sf.anathema.charms.tree;
 
-public interface ITreeDataMap {
+import org.eclipse.core.runtime.IExecutableExtension;
+
+public interface ITreeDataMap extends IExecutableExtension {
 
   public TreeDto getData(String id);
 }

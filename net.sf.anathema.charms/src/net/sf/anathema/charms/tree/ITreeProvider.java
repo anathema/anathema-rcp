@@ -4,7 +4,9 @@ import java.util.List;
 
 import net.sf.anathema.charms.data.CharmPrerequisite;
 
-public interface ITreeProvider extends ITreeDataMap {
+import org.eclipse.core.runtime.IExecutableExtension;
+
+public interface ITreeProvider extends ITreeDataMap, IExecutableExtension {
 
   public List<String> getTreeList();
 
