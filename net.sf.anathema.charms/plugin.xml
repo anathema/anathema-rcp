@@ -15,5 +15,11 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.charmproviding">
+      <treeProvider
+            class="net.sf.anathema.charms.tree.CharmTreeExtensionPoint">
+      </treeProvider>
+   </extension>
 
 </plugin>
