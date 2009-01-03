@@ -19,6 +19,8 @@ public class TooltippFactory implements ITooltippFactory {
   public IFigure createFor(ICharmId charmId) {
     CharmDto data = dataMap.getData(charmId);
     DisplayCharm displayData = new DisplayCharm(data);
-    return new Label("Type: " + displayData.getType());
+    String text = "Type: " + displayData.getType() + "\n";
+    text += "Keywords: " + displayData.getKeywords();
+    return new Label(text);
   }
 }

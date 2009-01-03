@@ -11,7 +11,9 @@ import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataExtensionPoint implements ICharmDataMap {
 
-  private static final String ATTRIB_CHARM_ID = "charmId";
+  private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
+  private static final String TAG_KEYWORD = "keyword"; //$NON-NLS-1$
+  private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String EXTENSION_POINT_ID = "charmdata"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
 
@@ -40,12 +42,19 @@ public class CharmDataExtensionPoint implements ICharmDataMap {
   }
 
   private CharmDto createEmptyCharmData() {
-    CharmDto charmDto = new CharmDto();
-    return charmDto;
+    return new CharmDto();
   }
 
   private void fillCharmData(IExtensionElement extensionElement, CharmDto charmDto) {
     IExtensionElement typeElement = extensionElement.getElements()[0];
     charmDto.type = typeElement.getName();
+    fillInKeywords(extensionElement, charmDto);
+  }
+
+  private void fillInKeywords(IExtensionElement extensionElement, CharmDto charmDto) {
+    for (IExtensionElement keywordElement : extensionElement.getElements(TAG_KEYWORD)) {
+      String keyWord = keywordElement.getAttribute(ATTRIB_VALUE);
+      charmDto.keywords.add(keyWord);
+    }
   }
 }
