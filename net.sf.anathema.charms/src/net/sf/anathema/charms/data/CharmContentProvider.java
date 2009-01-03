@@ -14,6 +14,9 @@ public class CharmContentProvider implements IGraphContentProvider, ICharmIdExtr
   }
 
   public Object[] getElements(Object input) {
+    if (input ==null) {
+      return null;
+    }
     String treeId = (String) input;
     return new CharmTreeExtensionPoint().getTree(treeId);
   }
