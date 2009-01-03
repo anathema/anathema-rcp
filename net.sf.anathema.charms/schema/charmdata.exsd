@@ -268,7 +268,7 @@ If no cost is given, the charm use is for free.
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="orMore" type="string" use="default" value="false">
+         <attribute name="orMore" type="boolean" use="default" value="false">
             <annotation>
                <documentation>
                   
