@@ -1,6 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Charms Plug-in
-Bundle-SymbolicName: net.sf.anathema.charactertype.db.charms
+Bundle-Name: Db Charms Plug-in
+Bundle-SymbolicName: net.sf.anathema.charactertype.db.charms;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: net.sf.anathema.charms;bundle-version="1.0.0",
+ net.sf.anathema.charms.character;bundle-version="1.0.0",
+ net.sf.anathema.basics.eclipse;bundle-version="1.0.0"
