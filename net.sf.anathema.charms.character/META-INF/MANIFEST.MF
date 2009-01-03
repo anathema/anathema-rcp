@@ -16,3 +16,5 @@ Require-Bundle: net.sf.anathema.character.core,
 Export-Package: net.sf.anathema.charms.character.model,
  net.sf.anathema.charms.character.points,
  net.sf.anathema.charms.character.tree
+Bundle-Activator: net.sf.anathema.charms.character.plugin.CharmCharacterPlugin
+Bundle-ActivationPolicy: lazy

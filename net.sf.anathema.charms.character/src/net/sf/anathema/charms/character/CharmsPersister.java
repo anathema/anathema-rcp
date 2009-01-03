@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.character.plugin.CharmCharacterPlugin;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 import net.sf.anathema.lib.xml.ElementUtilities;
@@ -28,7 +29,7 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
     this(new IFactory<Document, RuntimeException>() {
       @Override
       public Document createInstance() {
-        return new BundlePersistenceUtilities().createVersionedDocument(TAG_CHARMS, IPluginConstants.PLUGIN_ID);
+        return new BundlePersistenceUtilities().createVersionedDocument(TAG_CHARMS, CharmCharacterPlugin.PLUGIN_ID);
       }
     });
   }

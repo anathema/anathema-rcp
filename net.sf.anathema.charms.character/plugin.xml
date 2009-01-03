@@ -57,5 +57,20 @@
             handlerClass="net.sf.anathema.charms.character.points.CharmBonusPointHandler">
       </bonusPointCalculator>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="character.preferences"
+            class="net.sf.anathema.charms.character.preference.CharmPreferencePage"
+            id="character.charms"
+            name="Charms">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="net.sf.anathema.charms.character.preference.CharmPreferenceInitializer">
+      </initializer>
+   </extension>
 
 </plugin>

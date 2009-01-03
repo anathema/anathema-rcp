@@ -11,8 +11,8 @@ import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.charms.character.CharmsEditorInput;
-import net.sf.anathema.charms.character.IPluginConstants;
 import net.sf.anathema.charms.character.StringLinkDecorator;
+import net.sf.anathema.charms.character.plugin.CharmCharacterPlugin;
 import net.sf.anathema.charms.tree.TreeDto;
 import net.sf.anathema.lib.exception.PersistenceException;
 
@@ -89,7 +89,7 @@ public class TreeViewElement implements IViewElement {
     catch (Exception e) {
       throw new PartInitException(new Status(
           IStatus.ERROR,
-          IPluginConstants.PLUGIN_ID,
+          CharmCharacterPlugin.PLUGIN_ID,
           BasicRepositoryMessages.RepositoryBasics_CreateEditorInputFailedMessage,
           e));
     }

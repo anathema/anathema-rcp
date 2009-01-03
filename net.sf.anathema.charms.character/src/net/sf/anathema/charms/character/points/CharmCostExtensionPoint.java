@@ -11,7 +11,7 @@ import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.points.cost.CostDto;
 import net.sf.anathema.character.points.cost.CostTagDto;
-import net.sf.anathema.charms.character.IPluginConstants;
+import net.sf.anathema.charms.character.plugin.CharmCharacterPlugin;
 
 public class CharmCostExtensionPoint {
 
@@ -30,7 +30,7 @@ public class CharmCostExtensionPoint {
   }
 
   public CharmCostExtensionPoint() {
-    this(new EclipseExtensionPoint(IPluginConstants.PLUGIN_ID, EXTENSION_POINT_ID));
+    this(new EclipseExtensionPoint(CharmCharacterPlugin.PLUGIN_ID, EXTENSION_POINT_ID));
   }
 
   public CharmCostExtensionPoint(IExtensionPoint extensionPoint) {
