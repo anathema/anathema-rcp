@@ -13,11 +13,14 @@ public class ConcatenateString {
     return new ConcatenateString("\n   "); //$NON-NLS-1$
   }
 
-  private ConcatenateString(String separator) {
+  public ConcatenateString(String separator) {
     this.separator = separator;
   }
 
   public void concatenate(String value) {
+    if (value == null || value.isEmpty()) {
+      return;
+    }
     if (!result.isEmpty()) {
       result += separator;
     }

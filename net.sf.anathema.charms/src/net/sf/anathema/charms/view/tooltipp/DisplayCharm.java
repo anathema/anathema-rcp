@@ -2,6 +2,9 @@ package net.sf.anathema.charms.view.tooltipp;
 
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.SourceDto;
+import net.sf.anathema.charms.data.cost.CostDto;
+import net.sf.anathema.charms.data.cost.ResourceDto;
+import net.sf.anathema.charms.display.DisplayResource;
 
 public class DisplayCharm {
 
@@ -43,5 +46,25 @@ public class DisplayCharm {
       sourceBuilder.concatenate(source.addition);
     }
     return sourceBuilder.create();
+  }
+
+  public String getCost() {
+    ConcatenateString alternativeCosts = new ConcatenateString(" or ");
+    for (CostDto cost : data.costs) {
+      alternativeCosts.concatenate(getSingleCost(cost));
+    }
+    return alternativeCosts.create(none);
+  }
+
+  private String getSingleCost(CostDto cost) {
+    ConcatenateString costBuilder = ConcatenateString.CommaSeparated();
+    for (ResourceDto resource : cost.resources) {
+      costBuilder.concatenate(getResource(resource));
+    }
+    return costBuilder.create(none);
+  }
+
+  private String getResource(ResourceDto resource) {
+    return new DisplayResource(resource).get();
   }
 }

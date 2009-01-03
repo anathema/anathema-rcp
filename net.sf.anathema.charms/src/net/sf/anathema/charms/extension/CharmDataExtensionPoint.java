@@ -18,6 +18,7 @@ public class CharmDataExtensionPoint implements ICharmDataMap {
   private static final String TAG_SOURCE = "source"; //$NON-NLS-1$
   private static final String ATTRIB_SOURCE = "source"; //$NON-NLS-1$
   private static final String ATTRIB_ADDITION = "addition"; //$NON-NLS-1$
+  private static final String TAG_COST = "cost"; //$NON-NLS-1$
   private static final String EXTENSION_POINT_ID = "charmdata"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
 
@@ -52,8 +53,20 @@ public class CharmDataExtensionPoint implements ICharmDataMap {
   private void fillCharmData(IExtensionElement extensionElement, CharmDto charmDto) {
     IExtensionElement typeElement = extensionElement.getElements()[0];
     charmDto.type = typeElement.getName();
+    fillInCosts(typeElement, charmDto);
     fillInKeywords(extensionElement, charmDto);
     fillInSources(extensionElement, charmDto);
+  }
+
+  private void fillInCosts(IExtensionElement typeElement, CharmDto charmDto) {
+    IExtensionElement additionalDataElement = typeElement.getElement("additionalData");
+    if (additionalDataElement == null) {
+      return;
+    }
+    CostReader costReader = new CostReader();
+    for (IExtensionElement costElement : additionalDataElement.getElements(TAG_COST)) {
+      charmDto.costs.add(costReader.read(costElement));
+    }
   }
 
   private void fillInKeywords(IExtensionElement extensionElement, CharmDto charmDto) {

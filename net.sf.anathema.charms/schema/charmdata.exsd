@@ -157,23 +157,22 @@
    </element>
 
    <element name="additionalData">
+      <annotation>
+         <documentation>
+            If there is more than one cost given, they are interpreted as alternative cost options.
+
+If no cost is given, the charm use is for free.
+         </documentation>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="duration"/>
-            <element ref="cost"/>
+            <element ref="cost" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
       </complexType>
    </element>
 
    <element name="duration" type="string">
-   </element>
-
-   <element name="cost">
-      <complexType>
-         <sequence>
-            <element ref="motes" minOccurs="0" maxOccurs="1"/>
-         </sequence>
-      </complexType>
    </element>
 
    <element name="keyword">
@@ -207,9 +206,93 @@
       </complexType>
    </element>
 
-   <element name="motes">
+   <element name="cost">
+      <annotation>
+         <documentation>
+            There should only be one resource of any given type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="resource" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="resource">
+      <complexType>
+         <sequence>
+            <element ref="base" minOccurs="0" maxOccurs="1"/>
+            <element ref="linear" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="type" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier"/>
+               </appinfo>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="motes">
+                  </enumeration>
+                  <enumeration value="willpower">
+                  </enumeration>
+                  <enumeration value="experience">
+                  </enumeration>
+                  <enumeration value="bashing hl">
+                  </enumeration>
+                  <enumeration value="lethal hl">
+                  </enumeration>
+                  <enumeration value="aggrevated hl">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="base">
+      <annotation>
+         <documentation>
+            Describes costs with the pattern 3 motes or more / 3+ motes.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="amount" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="orMore" type="string" use="default" value="false">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="linear">
+      <annotation>
+         <documentation>
+            Describes costs with the pattern 3 motes per die.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="amount" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="unit" type="string" use="required">
             <annotation>
                <documentation>
                   

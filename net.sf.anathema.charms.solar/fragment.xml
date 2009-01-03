@@ -177,10 +177,13 @@
                   duration body text
                </duration>
                <cost>
-                  <motes
-                        amount="5">
-                  </motes>
-                  cost body text
+                  <resource
+                        type="motes">
+                     <base
+                           amount="5"
+                           orMore="false">
+                     </base>
+                  </resource>
                </cost>
             </additionalData>
          </simple>
