@@ -21,35 +21,27 @@ public class DisplayCharm {
   }
 
   public String getKeywords() {
-    StringBuilder keywordsBuilder = createDefaultStringBuilder();
+    ConcatenateString keywordsBuilder = ConcatenateString.CommaSeparated();
     for (String keyword : data.keywords) {
-      keywordsBuilder.add(keyword);
+      keywordsBuilder.concatenate(keyword);
     }
     return keywordsBuilder.create(none);
   }
 
   public String getAllSources() {
-    StringBuilder sourcesBuilder = createLineWrappingStringBuilder();
+    ConcatenateString sourcesBuilder = ConcatenateString.LineWrapping();
     for (SourceDto source : data.sources) {
-      sourcesBuilder.add(getSingleSource(source));
+      sourcesBuilder.concatenate(getSingleSource(source));
     }
     return sourcesBuilder.create(none);
   }
 
   private String getSingleSource(SourceDto source) {
-    StringBuilder sourceBuilder = createDefaultStringBuilder();
-    sourceBuilder.add(source.source);
+    ConcatenateString sourceBuilder = ConcatenateString.CommaSeparated();
+    sourceBuilder.concatenate(source.source);
     if (source.addition != null) {
-      sourceBuilder.add(source.addition);
+      sourceBuilder.concatenate(source.addition);
     }
     return sourceBuilder.create();
-  }
-
-  private StringBuilder createDefaultStringBuilder() {
-    return new StringBuilder(", ");
-  }
-
-  private StringBuilder createLineWrappingStringBuilder() {
-    return new StringBuilder("\n   ");
   }
 }

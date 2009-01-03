@@ -1,15 +1,23 @@
 package net.sf.anathema.charms.view.tooltipp;
 
-public class StringBuilder {
+public class ConcatenateString {
 
   private final String separator;
   private String result = ""; //$NON-NLS-1$
 
-  public StringBuilder(String separator) {
+  public static ConcatenateString CommaSeparated() {
+    return new ConcatenateString(", "); //$NON-NLS-1$
+  }
+
+  public static ConcatenateString LineWrapping() {
+    return new ConcatenateString("\n   "); //$NON-NLS-1$
+  }
+
+  private ConcatenateString(String separator) {
     this.separator = separator;
   }
 
-  public void add(String value) {
+  public void concatenate(String value) {
     if (!result.isEmpty()) {
       result += separator;
     }
