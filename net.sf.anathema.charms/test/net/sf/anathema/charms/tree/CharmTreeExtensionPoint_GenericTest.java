@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CharmTreeExtensionPoint_GenericTest {
+  private static final String CHARACTER_TYPE = "type"; //$NON-NLS-1$
   private static final String TREE_ID = "tree"; //$NON-NLS-1$
   private static final String TRAIT_ID = "trait"; //$NON-NLS-1$
   private static final String EXPLICIT_ROOT_ID = "first.{0}"; //$NON-NLS-1$
@@ -26,15 +27,18 @@ public class CharmTreeExtensionPoint_GenericTest {
   public void createExtensionWithGenericCharms() throws Exception {
     IExtensionElement explicitGenericRoot = createCharm(EXPLICIT_ROOT_ID);
     IExtensionElement implicitePrerequisite = createCharm(CHILD_ID, EXPLICIT_ROOT_ID, IMPLICIT_ROOT_ID);
-    IPluginExtension tree = createPluginExtension(createGenericCharms(explicitGenericRoot, implicitePrerequisite));
+    IPluginExtension tree = createPluginExtension(createGenericCharms(
+        CHARACTER_TYPE,
+        explicitGenericRoot,
+        implicitePrerequisite));
     IPluginExtension data = createPluginExtension(createDataElement());
     point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree, data));
   }
 
   private IExtensionElement createDataElement() throws Exception {
-    return createExtensionElementWithAttributes(
-        new MockName("tree"), //$NON-NLS-1$
+    return createExtensionElementWithAttributes(new MockName("tree"), //$NON-NLS-1$
         new MockStringAttribute("id", TREE_ID), //$NON-NLS-1$
+        new MockStringAttribute("characterType", CHARACTER_TYPE), //$NON-NLS-1$
         new MockStringAttribute("primaryTrait", TRAIT_ID)); //$NON-NLS-1$
   }
 

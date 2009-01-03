@@ -43,9 +43,9 @@ public class CharmTreeExtensionPoint extends AbstractExecutableExtension impleme
 
   @Override
   public CharmPrerequisite[] getTree(final String id) {
-    String primaryTrait = getData(id).primaryTrait;
-    final CharmBuilder charmBuilder = new CharmBuilder(primaryTrait);
-    extensionProvider.forAllDo(new AddCharms(new ForGenerics(), charmBuilder));
+    TreeDto data = getData(id);
+    final CharmBuilder charmBuilder = new CharmBuilder(data.primaryTrait);
+    extensionProvider.forAllDo(new AddCharms(new ForGenerics(data.characterType), charmBuilder));
     extensionProvider.forAllDo(new AddCharms(new ForTreePart(id), charmBuilder));
     return charmBuilder.create();
   }

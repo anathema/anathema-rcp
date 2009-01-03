@@ -31,8 +31,10 @@ public class CharmTreeExtensionPointObjectMother {
     return ArrayUtilities.transform(prerequisites, IExtensionElement.class, new CharmPrerequisiteTransformer());
   }
 
-  public static IExtensionElement createGenericCharms(IExtensionElement... charms) throws ExtensionException {
+  public static IExtensionElement createGenericCharms(String characterType, IExtensionElement... charms)
+      throws ExtensionException {
     return createExtensionElementWithAttributes(new MockName("genericCharms"), //$NON-NLS-1$
+        new MockStringAttribute("characterType", characterType),
         new MockChildren(charms));
   }
 }
