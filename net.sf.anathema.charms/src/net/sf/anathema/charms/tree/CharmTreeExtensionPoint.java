@@ -60,6 +60,12 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
     return null;
   }
 
+  public ICharmId getCharmId(String completeId) {
+    String treeId = getTreeId(completeId);
+    TreeDto dto = getData(treeId);
+    return new CharmId(completeId.replaceAll(dto.primaryTrait, "{0}"), dto.primaryTrait); //$NON-NLS-1$
+  }
+
   @Override
   public TreeDto getData(final String id) {
     IExtensionElement treeElement = extensionProvider.getFirst(new TreeWithId(id));

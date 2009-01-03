@@ -120,7 +120,7 @@ public class PdfSecondPageEncoder implements IPdfPageEncoder {
       throws DocumentException {
     Bounds bounds = configuration.getFirstColumnRectangle(distanceFromTop, height, 3);
     IPdfContentBoxEncoder encoder = contentEncoderProvider.getContentEncoder(ENCODER_MAGIC, character);
-    boxEncoder.encodeBox(directContent, context, encoder, null, bounds);
+    boxEncoder.encodeBox(directContent, context, encoder, character, bounds);
     return height;
   }
 }

@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?pde version="3.1"?>
+<?pde version="3.4"?>
 
 <product name="%net.sf.anathema.rcp.ProductName" id="net.sf.anathema.rcp.product" application="net.sf.anathema.rcp.application" useFeatures="false">
 
    <aboutInfo>
-      <image path="/Anathema_RCP/icons/SunGear_128.gif"/>
+      <image path="/net.sf.anathema.rcp/icons/SunGear_128.gif"/>
       <text>
-         Hallo Du
+         Anathema RCP
+
+v1.0.0
+
+Created by Urs Reupke and Sandra Sieroux
+Visit http://anathema.sf.net
+
+This product includes software developed by the
+Apache Software Foundation http://www.apache.org/
+
+Exalted is (c)2009 by CCP/White Wolf. 
+Used without permission.
       </text>
    </aboutInfo>
 
-   <configIni use="default"/>
+   <configIni use="default">
+   </configIni>
 
    <launcherArgs>
    </launcherArgs>
 
-   <windowImages i16="/Anathema_RCP/icons/SunGear_16.gif" i32="/Anathema_RCP/icons/SunGear_32.gif" i48="/Anathema_RCP/icons/SunGear_48.gif" i64="/Anathema_RCP/icons/SunGear_64.gif" i128="/Anathema_RCP/icons/SunGear_128.gif"/>
+   <windowImages i16="/net.sf.anathema.rcp/icons/SunGear_16.gif" i32="/net.sf.anathema.rcp/icons/SunGear_32.gif" i48="/net.sf.anathema.rcp/icons/SunGear_48.gif" i64="/net.sf.anathema.rcp/icons/SunGear_64.gif" i128="/net.sf.anathema.rcp/icons/SunGear_128.gif"/>
+
 
    <launcher name="anathema">
       <solaris/>
@@ -25,11 +38,13 @@
       </win>
    </launcher>
 
+
    <vm>
    </vm>
 
    <plugins>
       <plugin id="com.ibm.icu"/>
+      <plugin id="net.disy.commons"/>
       <plugin id="net.sf.anathema.basics.eclipse"/>
       <plugin id="net.sf.anathema.basics.importexport"/>
       <plugin id="net.sf.anathema.basics.item"/>
@@ -46,6 +61,7 @@
       <plugin id="net.sf.anathema.campaign.plot.report" fragment="true"/>
       <plugin id="net.sf.anathema.caste.import" fragment="true"/>
       <plugin id="net.sf.anathema.character.abilities"/>
+      <plugin id="net.sf.anathema.character.abilities.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.character.abilities.sheet" fragment="true"/>
       <plugin id="net.sf.anathema.character.abilities.textreport" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes"/>
@@ -79,7 +95,13 @@
       <plugin id="net.sf.anathema.charactertype.mortal"/>
       <plugin id="net.sf.anathema.charactertype.sidereal"/>
       <plugin id="net.sf.anathema.charactertype.solar"/>
+      <plugin id="net.sf.anathema.charactertype.solar.charms" fragment="true"/>
+      <plugin id="net.sf.anathema.charms"/>
+      <plugin id="net.sf.anathema.charms.character"/>
+      <plugin id="net.sf.anathema.charms.character.sheet" fragment="true"/>
+      <plugin id="net.sf.anathema.charms.character.solartest" fragment="true"/>
       <plugin id="net.sf.anathema.editor.styledtext"/>
+      <plugin id="net.sf.anathema.graphlayout"/>
       <plugin id="net.sf.anathema.rcp"/>
       <plugin id="net.sf.anathema.view.valuelist"/>
       <plugin id="org.eclipse.ant.core"/>
@@ -88,16 +110,17 @@
       <plugin id="org.eclipse.core.databinding"/>
       <plugin id="org.eclipse.core.expressions"/>
       <plugin id="org.eclipse.core.filesystem"/>
-      <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.filesystem.win32.x86"/>
       <plugin id="org.eclipse.core.jobs"/>
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.resources.compatibility" fragment="true"/>
-      <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.resources.win32.x86"/>
       <plugin id="org.eclipse.core.runtime"/>
       <plugin id="org.eclipse.core.runtime.compatibility"/>
       <plugin id="org.eclipse.core.runtime.compatibility.auth"/>
       <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
       <plugin id="org.eclipse.core.variables"/>
+      <plugin id="org.eclipse.draw2d"/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.preferences"/>
@@ -108,11 +131,16 @@
       <plugin id="org.eclipse.jface.text"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.swt"/>
-      <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.swt.win32.win32.x86"/>
+      <plugin id="org.eclipse.swt.win32.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.text"/>
       <plugin id="org.eclipse.ui"/>
+      <plugin id="org.eclipse.ui.forms"/>
       <plugin id="org.eclipse.ui.workbench"/>
       <plugin id="org.eclipse.update.configurator"/>
+      <plugin id="org.eclipse.zest.core"/>
+      <plugin id="org.eclipse.zest.layouts"/>
+      <plugin id="org.junit4"/>
    </plugins>
 
 </product>
