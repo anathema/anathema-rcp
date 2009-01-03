@@ -1,10 +1,10 @@
-package net.sf.anathema.charms.view.tooltipp;
+package net.sf.anathema.charms.display;
 
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.data.cost.CostDto;
 import net.sf.anathema.charms.data.cost.ResourceDto;
-import net.sf.anathema.charms.display.DisplayResource;
+import net.sf.anathema.charms.view.tooltipp.ConcatenateString;
 
 public class DisplayCharm {
 

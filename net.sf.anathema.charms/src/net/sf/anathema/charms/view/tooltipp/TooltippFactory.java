@@ -2,6 +2,7 @@ package net.sf.anathema.charms.view.tooltipp;
 
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
+import net.sf.anathema.charms.display.DisplayCharm;
 import net.sf.anathema.charms.extension.CharmDataExtensionPoint;
 import net.sf.anathema.charms.tree.ICharmId;
 
