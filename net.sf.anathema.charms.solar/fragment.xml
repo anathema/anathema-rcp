@@ -165,5 +165,33 @@
             name="Third {0} Excellency">
       </charmName>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.charmdata">
+      <charmdata
+            charmId="Solar: Invisible Statue Spirit">
+         <simple
+               defensemodifier="-1"
+               speed="6">
+            <additionalData>
+               <duration>
+                  duration body text
+               </duration>
+               <cost>
+                  <motes
+                        amount="5">
+                  </motes>
+                  cost body text
+               </cost>
+            </additionalData>
+         </simple>
+         <keyword
+               value="Combo-OK">
+         </keyword>
+         <source
+               addition="230"
+               source="Ex2">
+         </source>
+      </charmdata>
+   </extension>
 
 </fragment>

@@ -13,17 +13,17 @@ public class ZestCharmNode implements ICharmNode {
     this.zestNode = zestNode;
     this.charmIdExtractor = charmIdExtractor;
   }
-  
+
   @Override
   public String getCharmId() {
     return charmIdExtractor.getCharmId(zestNode.getData());
   }
-  
+
   @Override
   public Display getDisplay() {
     return zestNode.getDisplay();
   }
-  
+
   @Override
   public void setColor(Color color) {
     zestNode.setHighlightColor(color);

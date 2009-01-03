@@ -58,6 +58,12 @@
       </bonusPointCalculator>
    </extension>
    <extension
+         point="net.sf.anathema.charms.charmdata">
+      <charmdata
+            charmId="net.sf.anathema.charms.character.charmdata1">
+      </charmdata>
+   </extension>
+   <extension
          point="org.eclipse.ui.preferencePages">
       <page
             category="character.preferences"
@@ -72,5 +78,6 @@
             class="net.sf.anathema.charms.character.preference.CharmPreferenceInitializer">
       </initializer>
    </extension>
+
 
 </plugin>

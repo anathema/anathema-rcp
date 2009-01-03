@@ -8,6 +8,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.zest.core.viewers.GraphViewer;
+import org.eclipse.zest.core.widgets.Graph;
 
 public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDisposable {
   public static final String ID = "net.sf.anathema.charms.charmview"; //$NON-NLS-1$
@@ -27,6 +28,8 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
   public void createPartControl(Composite parent) {
     CharmContentProvider contentProvider = new CharmContentProvider();
     final GraphViewer viewer = new GraphViewer(parent, SWT.NONE);
+    final Graph graphControl = viewer.getGraphControl();
+    graphControl.addMouseMoveListener(new TooltippMouseListener(viewer));
     viewer.setLabelProvider(new CharmLabelProvider(new CharmDataProvider()));
     viewer.setContentProvider(contentProvider);
     viewer.setLayoutAlgorithm(new SugiyamaLayoutAlgorithm(contentProvider));
