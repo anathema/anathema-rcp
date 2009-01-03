@@ -5,7 +5,7 @@ import net.sf.anathema.character.sheet.elements.Bounds;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public interface IPdfTableEncoder {
+public interface ITableEncoder {
 
-  public float encodeTable(PdfContentByte directContent, Bounds bounds) throws DocumentException;
+  float encodeTable(PdfContentByte directContent, Bounds bounds) throws DocumentException;
 }

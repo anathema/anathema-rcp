@@ -43,7 +43,7 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
       addCharms(learnedCharms, model.getExperienceLearnedCharms());
     }
     List<IMagicStats> magic = collectPrintMagic(learnedCharms);
-    new PdfMagicTableEncoder(context.getBaseFont(), magic).encodeTable(directContent, bounds);
+    new MagicTableEncoder(context.getBaseFont(), magic).encodeTable(directContent, bounds);
   }
 
   private List<IMagicStats> collectPrintMagic(Collection<String> learnedCharms) {

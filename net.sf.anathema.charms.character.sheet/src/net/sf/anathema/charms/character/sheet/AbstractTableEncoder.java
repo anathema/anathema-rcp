@@ -7,7 +7,7 @@ import com.lowagie.text.pdf.ColumnText;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfPTable;
 
-public abstract class AbstractTableEncoder implements IPdfTableEncoder {
+public abstract class AbstractTableEncoder implements ITableEncoder {
 
   protected abstract PdfPTable createTable(PdfContentByte directContent, Bounds bounds) throws DocumentException;
 

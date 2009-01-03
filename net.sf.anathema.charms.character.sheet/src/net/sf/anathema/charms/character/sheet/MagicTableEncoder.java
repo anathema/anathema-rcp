@@ -17,11 +17,11 @@ import net.sf.anathema.charms.character.sheet.stats.MagicTypeStatsGroup;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfPTable;
 
-public class PdfMagicTableEncoder extends AbstractStatsTableEncoder<IMagicStats> {
+public class MagicTableEncoder extends AbstractStatsTableEncoder<IMagicStats> {
 
   private List<IMagicStats> printStats = new ArrayList<IMagicStats>();
 
-  public PdfMagicTableEncoder(BaseFont baseFont, List<IMagicStats> printStats) {
+  public MagicTableEncoder(BaseFont baseFont, List<IMagicStats> printStats) {
     super(baseFont);
     this.printStats = printStats;
   }
