@@ -20,16 +20,10 @@ public class DisplayCharm {
   }
 
   public String getKeywords() {
-    String keywords = "";
+    StringBuilder keywordsBuilder = new StringBuilder(", ");
     for (String keyword : data.keywords) {
-      if (!keywords.isEmpty()) {
-        keywords += ", ";
-      }
-      keywords += keyword;
+      keywordsBuilder.add(keyword);
     }
-    if (keywords.isEmpty()) {
-      return none;
-    }
-    return keywords;
+    return keywordsBuilder.create(none);
   }
 }
