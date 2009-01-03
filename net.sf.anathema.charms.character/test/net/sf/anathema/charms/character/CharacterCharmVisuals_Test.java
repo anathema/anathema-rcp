@@ -18,13 +18,13 @@ public class CharacterCharmVisuals_Test {
   @Before
   public void createConnnectedVisuals() throws Exception {
     charmModel = new CharmModel();
-    visuals = new CharacterCharmVisuals(charmModel, new DummyExperience());
+    visuals = new CharacterCharmVisuals(charmModel, new DummyExperience(), new DummyCharmPreferences());
     charmSelectionControl = new DummyCharmSelectionControl();
     visuals.connect(charmSelectionControl);
   }
 
   @Test
-  public void learnesCharmOnSelection() throws Exception {
+  public void learnsCharmOnSelection() throws Exception {
     charmSelectionControl.control.forAllDo(new CharmSelectionNotificationClosure("selectedCharm")); //$NON-NLS-1$
     assertThat(charmModel.isCreationLearned("selectedCharm"), is(true)); //$NON-NLS-1$
   }

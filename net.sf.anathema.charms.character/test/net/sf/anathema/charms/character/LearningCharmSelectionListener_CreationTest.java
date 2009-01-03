@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.character.preference.ExperienceCharmTreatment;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,11 +14,13 @@ public class LearningCharmSelectionListener_CreationTest {
   public static final String CHARM_ID = "charmId"; //$NON-NLS-1$
   private CharmModel charmModel;
   private LearningCharmSelectionListener listener;
+  private DummyCharmPreferences preferences;
 
   @Before
   public void createsCharmModel() {
     charmModel = new CharmModel();
-    listener = new LearningCharmSelectionListener(charmModel, new DummyExperience(false));
+    preferences = new DummyCharmPreferences();
+    listener = new LearningCharmSelectionListener(charmModel, new DummyExperience(false), preferences);
   }
 
   @Test
@@ -34,10 +37,33 @@ public class LearningCharmSelectionListener_CreationTest {
   }
 
   @Test
-  public void doesNotForgetExperienceLearnedCharmOnSelection() throws Exception {
+  public void learnsCharmOnCreationEvenIfItIsExperienceLearned() throws Exception {
+    preferences.setTreatment(ExperienceCharmTreatment.Forget);
     charmModel.toggleExperiencedLearned(CHARM_ID);
     listener.charmSelected(CHARM_ID);
+    assertThat(charmModel.isCreationLearned(CHARM_ID), is(true));
+    assertThat(charmModel.isLearned(CHARM_ID), is(true));
+  }
+  
+  @Test
+  public void forgetsExperienceLearnedCharmOnSelectionIfTreatmentForgets() throws Exception {
+    preferences.setTreatment(ExperienceCharmTreatment.Forget);
+    charmModel.toggleExperiencedLearned(CHARM_ID);
+    listener.charmSelected(CHARM_ID);
+    listener.charmSelected(CHARM_ID);
     assertThat(charmModel.isCreationLearned(CHARM_ID), is(false));
+    assertThat(charmModel.isExperienceLearned(CHARM_ID), is(false));
+    assertThat(charmModel.isLearned(CHARM_ID), is(false));
+  }
+
+  @Test
+  public void doesNotForgetExperienceLearnedCharmOnSelectionIfTreatmentRemembers() throws Exception {
+    preferences.setTreatment(ExperienceCharmTreatment.Remember);
+    charmModel.toggleExperiencedLearned(CHARM_ID);
+    listener.charmSelected(CHARM_ID);
+    listener.charmSelected(CHARM_ID);
+    assertThat(charmModel.isCreationLearned(CHARM_ID), is(false));
+    assertThat(charmModel.isExperienceLearned(CHARM_ID), is(true));
     assertThat(charmModel.isLearned(CHARM_ID), is(true));
   }
 }

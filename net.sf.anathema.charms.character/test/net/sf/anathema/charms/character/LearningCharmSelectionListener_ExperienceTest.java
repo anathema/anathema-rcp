@@ -17,7 +17,7 @@ public class LearningCharmSelectionListener_ExperienceTest {
   @Before
   public void createsCharmModel() {
     charmModel = new CharmModel();
-    listener = new LearningCharmSelectionListener(charmModel, new DummyExperience(true));
+    listener = new LearningCharmSelectionListener(charmModel, new DummyExperience(true), new DummyCharmPreferences());
   }
 
   @Test
