@@ -20,5 +20,6 @@ Export-Package: net.sf.anathema.charms.data,
  net.sf.anathema.charms.display,
  net.sf.anathema.charms.extension,
  net.sf.anathema.charms.tree,
- net.sf.anathema.charms.view
+ net.sf.anathema.charms.view,
+ net.sf.anathema.charms.xml
 Bundle-ClassPath: .

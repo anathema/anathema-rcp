@@ -10,6 +10,14 @@ public class CharmPrerequisite {
   private final ICharmId source;
   private final ICharmId destination;
 
+  public static CharmPrerequisite ForRoot(ICharmId id) {
+    return new CharmPrerequisite(null, id);
+  }
+
+  public static CharmPrerequisite FromSourceAndDestination(ICharmId source, ICharmId destination) {
+    return new CharmPrerequisite(source, destination);
+  }
+
   public CharmPrerequisite(ICharmId source, ICharmId destination) {
     this.source = source;
     this.destination = destination;

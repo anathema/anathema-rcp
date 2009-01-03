@@ -12,6 +12,7 @@ Require-Bundle: net.sf.anathema.basics.repository,
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Export-Package: net.sf.anathema.character.core.character,
+ net.sf.anathema.character.core.conversion,
  net.sf.anathema.character.core.create,
  net.sf.anathema.character.core.editors,
  net.sf.anathema.character.core.fake,

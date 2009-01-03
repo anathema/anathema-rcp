@@ -106,59 +106,6 @@
       </groups>
    </extension>
    <extension
-         point="net.sf.anathema.character.core.modeldependencies">
-      <dependency
-            characterType="net.sf.anathema.character.type.solar"
-            dependentModelId="net.sf.anathema.character.abilities.model"
-            neededModelId="net.sf.anathema.character.caste.model"></dependency>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.templates">
-      <template
-            characterTypeId="net.sf.anathema.character.type.solar"
-            templateId="net.sf.anathema.character.template.defaultsolar"
-            name="%template.defaultsolar.name">
-         <modelList
-               modelListId="net.sf.anathema.character.essenceUser.modelList">
-         </modelList>
-      </template>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.types">
-      <characterType
-            id="net.sf.anathema.character.type.solar"
-            image="icons/SolarIcon_16.png"
-            traitImageId="SolarBall">
-      </characterType>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.resources">
-      <image
-            referenceId="SolarBall"
-            resourceUrl="icons/Ball_Solar_16.png">
-      </image>
-      <image
-            referenceId="Zenith"
-            resourceUrl="icons/Caste_Zenith_16.png">
-      </image>
-      <image
-            referenceId="Twilight"
-            resourceUrl="icons/Caste_Twilight_16.png">
-      </image>
-      <image
-            referenceId="Night"
-            resourceUrl="icons/Caste_Night_16.png">
-      </image>
-      <image
-            referenceId="Eclipse"
-            resourceUrl="icons/Caste_Eclipse_16.png">
-      </image>
-      <image
-            referenceId="Dawn"
-            resourceUrl="icons/Caste_Dawn_16.png">
-      </image>
-   </extension>
-   <extension
          point="net.sf.anathema.character.caste.castes">
       <casteList
             characterType="net.sf.anathema.character.type.solar">
@@ -260,6 +207,59 @@
       </casteList>
    </extension>
    <extension
+         point="net.sf.anathema.character.core.modeldependencies">
+      <dependency
+            characterType="net.sf.anathema.character.type.solar"
+            dependentModelId="net.sf.anathema.character.abilities.model"
+            neededModelId="net.sf.anathema.character.caste.model"></dependency>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.templates">
+      <template
+            characterTypeId="net.sf.anathema.character.type.solar"
+            templateId="net.sf.anathema.character.template.defaultsolar"
+            name="%template.defaultsolar.name">
+         <modelList
+               modelListId="net.sf.anathema.character.essenceUser.modelList">
+         </modelList>
+      </template>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.types">
+      <characterType
+            id="net.sf.anathema.character.type.solar"
+            image="icons/SolarIcon_16.png"
+            traitImageId="SolarBall">
+      </characterType>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.resources">
+      <image
+            referenceId="SolarBall"
+            resourceUrl="icons/Ball_Solar_16.png">
+      </image>
+      <image
+            referenceId="Zenith"
+            resourceUrl="icons/Caste_Zenith_16.png">
+      </image>
+      <image
+            referenceId="Twilight"
+            resourceUrl="icons/Caste_Twilight_16.png">
+      </image>
+      <image
+            referenceId="Night"
+            resourceUrl="icons/Caste_Night_16.png">
+      </image>
+      <image
+            referenceId="Eclipse"
+            resourceUrl="icons/Caste_Eclipse_16.png">
+      </image>
+      <image
+            referenceId="Dawn"
+            resourceUrl="icons/Caste_Dawn_16.png">
+      </image>
+   </extension>
+   <extension
          point="net.sf.anathema.character.freebies.credits">
       <creditList
             templateId="net.sf.anathema.character.template.defaultsolar">
@@ -321,18 +321,6 @@
       </converter>
    </extension>
    <extension
-         point="org.eclipse.ui.newWizards">
-      <wizard
-            canFinishEarly="true"
-            category="net.sf.anathema.category.character"
-            class="net.sf.anathema.charactertype.solar.NewDefaultSolarWizard"
-            hasPages="false"
-            icon="icons/SolarIcon_16.png"
-            id="net.sf.anathema.character.template.defaultsolar.newwizard"
-            name="%new.wizard.character.template.defaultsolar">
-      </wizard>
-   </extension>
-   <extension
          point="net.sf.anathema.charms.character.charmcosts">
       <charmCosts
             characterType="net.sf.anathema.character.type.solar">
@@ -349,6 +337,18 @@
             </costs>
          </bonus>
       </charmCosts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.charactertype.solar.NewDefaultSolarWizard"
+            hasPages="false"
+            icon="icons/SolarIcon_16.png"
+            id="net.sf.anathema.character.template.defaultsolar.newwizard"
+            name="%new.wizard.character.template.defaultsolar">
+      </wizard>
    </extension>
 
 </plugin>

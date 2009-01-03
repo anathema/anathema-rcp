@@ -13,11 +13,34 @@
       </template>
    </extension>
    <extension
-         point="net.sf.anathema.character.points.bonuspoints">
-      <bonuspoints
-            amount="15"
-            templateId="net.sf.anathema.character.template.pactlunar">
-      </bonuspoints>
+         point="net.sf.anathema.character.core.resources">
+      <image
+            referenceId="LunarBall"
+            resourceUrl="icons/Ball_Lunar_16.png">
+      </image>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.resources">
+      <image
+            referenceId="FullMoon"
+            resourceUrl="icons/Caste_FullMoon_16.png">
+      </image>
+      <image
+            referenceId="NoMoon"
+            resourceUrl="icons/Caste_NoMoon_16.png">
+      </image>
+      <image
+            referenceId="ChangingMoon"
+            resourceUrl="icons/Caste_ChangingMoon_16.png">
+      </image>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.modeldependencies">
+      <dependency
+            characterType="net.sf.anathema.character.type.lunar"
+            dependentModelId="net.sf.anathema.character.attributes.model"
+            neededModelId="net.sf.anathema.character.caste.model">
+      </dependency>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.credits">
@@ -54,6 +77,13 @@
       </creditList>
    </extension>
    <extension
+         point="net.sf.anathema.character.points.bonuspoints">
+      <bonuspoints
+            amount="15"
+            templateId="net.sf.anathema.character.template.pactlunar">
+      </bonuspoints>
+   </extension>
+   <extension
          point="net.sf.anathema.character.trait.traitmodels">
       <traitmodel
             characterType="net.sf.anathema.character.type.lunar"
@@ -69,11 +99,32 @@
       </characterType>
    </extension>
    <extension
-         point="net.sf.anathema.character.core.resources">
-      <image
-            referenceId="LunarBall"
-            resourceUrl="icons/Ball_Lunar_16.png">
-      </image>
+         point="net.sf.anathema.character.trait.favorization">
+      <favorization
+            characterTemplateId="net.sf.anathema.character.template.pactlunar"
+            favoredCount="1"
+            modelId="net.sf.anathema.character.attributes.model">
+      </favorization>
+      <favorization
+            characterTemplateId="net.sf.anathema.character.template.pactlunar"
+            favoredCount="2"
+            modelId="net.sf.anathema.character.abilities.model">
+         <requiredFavored
+               traitId="Survival">
+         </requiredFavored>
+      </favorization>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.charactertype.lunar.NewPactLunarWizard"
+            hasPages="false"
+            icon="icons/LunarIcon_16.png"
+            id="net.sf.anathema.character.template.pactlunar.newwizard"
+            name="%new.wizard.character.template.pactlunar">
+      </wizard>
    </extension>
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
@@ -82,6 +133,40 @@
             oldCharacterType="Lunar"
             oldTemplateId="TemplateType.Default">
       </converter>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.trait.validator">
+      <validator>
+         <condition>
+            <where>
+               <templateId
+                     id="net.sf.anathema.character.template.pactlunar">
+               </templateId>
+            </where>
+         </condition>
+         <minimum
+               value="2"
+               traitId="Survival">
+         </minimum>
+      </validator>
+   </extension>
+   <extension
+         point="net.sf.anathema.charms.character.charmcosts">
+      <charmCosts
+            characterType="net.sf.anathema.character.type.lunar">
+         <experience>
+            <costs
+                  cheap="10"
+                  expensive="12">
+            </costs>
+         </experience>
+         <bonus>
+            <costs
+                  cheap="5"
+                  expensive="7">
+            </costs>
+         </bonus>
+      </charmCosts>
    </extension>
    <extension
          point="net.sf.anathema.character.caste.castes">
@@ -127,91 +212,6 @@
             </trait>
          </caste>
       </casteList>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.resources">
-      <image
-            referenceId="FullMoon"
-            resourceUrl="icons/Caste_FullMoon_16.png">
-      </image>
-      <image
-            referenceId="NoMoon"
-            resourceUrl="icons/Caste_NoMoon_16.png">
-      </image>
-      <image
-            referenceId="ChangingMoon"
-            resourceUrl="icons/Caste_ChangingMoon_16.png">
-      </image>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.modeldependencies">
-      <dependency
-            characterType="net.sf.anathema.character.type.lunar"
-            dependentModelId="net.sf.anathema.character.attributes.model"
-            neededModelId="net.sf.anathema.character.caste.model">
-      </dependency>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.trait.favorization">
-      <favorization
-            characterTemplateId="net.sf.anathema.character.template.pactlunar"
-            favoredCount="1"
-            modelId="net.sf.anathema.character.attributes.model">
-      </favorization>
-      <favorization
-            characterTemplateId="net.sf.anathema.character.template.pactlunar"
-            favoredCount="2"
-            modelId="net.sf.anathema.character.abilities.model">
-         <requiredFavored
-               traitId="Survival">
-         </requiredFavored>
-      </favorization>
-   </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <wizard
-            canFinishEarly="true"
-            category="net.sf.anathema.category.character"
-            class="net.sf.anathema.charactertype.lunar.NewPactLunarWizard"
-            hasPages="false"
-            icon="icons/LunarIcon_16.png"
-            id="net.sf.anathema.character.template.pactlunar.newwizard"
-            name="%new.wizard.character.template.pactlunar">
-      </wizard>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.trait.validator">
-      <validator>
-         <condition>
-            <where>
-               <templateId
-                     id="net.sf.anathema.character.template.pactlunar">
-               </templateId>
-            </where>
-         </condition>
-         <minimum
-               value="2"
-               traitId="Survival">
-         </minimum>
-      </validator>
-   </extension>
-   <extension
-         point="net.sf.anathema.charms.character.charmcosts">
-      <charmCosts
-            characterType="net.sf.anathema.character.type.lunar">
-         <experience>
-            <costs
-                  cheap="10"
-                  expensive="12">
-            </costs>
-         </experience>
-         <bonus>
-            <costs
-                  cheap="5"
-                  expensive="7">
-            </costs>
-         </bonus>
-      </charmCosts>
    </extension>
 
 </plugin>
