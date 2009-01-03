@@ -49,10 +49,10 @@ public class CharmPreferencePage extends PreferencePage implements IWorkbenchPre
     charmPreferences = createPreferences();
     Composite composite = new Composite(parent, SWT.NONE);
     composite.setLayout(new GridLayout());
-    new Label(composite, SWT.NONE).setText("If a charm learned with XP is also learned with bonus points");
-    createButton(composite, ExperienceCharmTreatment.Remember, "Remember it was learned with XP");
-    createButton(composite, ExperienceCharmTreatment.Forget, "Forget it was learned with XP");
-    new Label(composite, SWT.NONE).setText("You will not note this setting's effect until you chose to un-learn the Charm later on.");
+    new Label(composite, SWT.NONE).setText(Messages.CharmPreferencePage_Intro);
+    createButton(composite, ExperienceCharmTreatment.Remember, Messages.CharmPreferencePage_Remember);
+    createButton(composite, ExperienceCharmTreatment.Forget, Messages.CharmPreferencePage_Forget);
+    new Label(composite, SWT.NONE).setText(Messages.CharmPreferencePage_Explanation);
     return composite;
   }
 
