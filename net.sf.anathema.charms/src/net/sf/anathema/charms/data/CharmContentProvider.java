@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.data;
 
-import net.sf.anathema.charms.tree.CharmTreeExtensionPoint;
+import net.sf.anathema.charms.tree.CharmTreeProvider;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.view.ICharmIdExtractor;
 
@@ -14,11 +14,11 @@ public class CharmContentProvider implements IGraphContentProvider, ICharmIdExtr
   }
 
   public Object[] getElements(Object input) {
-    if (input ==null) {
+    if (input == null) {
       return null;
     }
     String treeId = (String) input;
-    return new CharmTreeExtensionPoint().getTree(treeId);
+    return CharmTreeProvider.Create().getTree(treeId);
   }
 
   public ICharmId getDestination(Object rel) {

@@ -12,11 +12,10 @@ import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 import net.sf.anathema.charms.tree.operations.AddCharms;
 import net.sf.anathema.charms.tree.operations.CollectTreeIds;
-import net.sf.anathema.charms.tree.operations.ContainsCharm;
 import net.sf.anathema.charms.tree.operations.ForGenerics;
 import net.sf.anathema.charms.tree.operations.ForTreePart;
 
-public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITreeDataMap {
+public class CharmTreeExtensionPoint implements ITreeProvider {
 
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   public static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
@@ -48,22 +47,6 @@ public class CharmTreeExtensionPoint implements ITreeProvider, ITreeLookup, ITre
     extensionProvider.forAllDo(new AddCharms(new ForGenerics(), charmBuilder));
     extensionProvider.forAllDo(new AddCharms(new ForTreePart(id), charmBuilder));
     return charmBuilder.create();
-  }
-
-  public String getTreeId(String charmId) {
-    for (String treeId : getTreeList()) {
-      CharmPrerequisite[] tree = getTree(treeId);
-      if (new ContainsCharm(tree, charmId).isConfirmed()) {
-        return treeId;
-      }
-    }
-    return null;
-  }
-
-  public ICharmId getCharmId(String completeId) {
-    String treeId = getTreeId(completeId);
-    TreeDto dto = getData(treeId);
-    return new CharmId(completeId.replaceAll(dto.primaryTrait, "{0}"), dto.primaryTrait); //$NON-NLS-1$
   }
 
   @Override

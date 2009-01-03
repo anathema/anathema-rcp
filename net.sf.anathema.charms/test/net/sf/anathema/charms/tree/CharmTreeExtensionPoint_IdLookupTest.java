@@ -21,7 +21,7 @@ public class CharmTreeExtensionPoint_IdLookupTest {
   private static final String TRAIT_ID = "trait"; //$NON-NLS-1$
   private static final String OTHER_TRAIT_ID = "trait2"; //$NON-NLS-1$
   private static final String GENERIC_CHARM_ID = "a.{0}.charm"; //$NON-NLS-1$
-  private CharmTreeExtensionPoint point;
+  private TreeLookup point;
 
   @Before
   public void createExtensionPointTwoSingleCharms() throws Exception {
@@ -29,7 +29,7 @@ public class CharmTreeExtensionPoint_IdLookupTest {
     IPluginExtension data = createPluginExtension(createDataElement(TREE_ID, TRAIT_ID));
     IPluginExtension tree2 = createPluginExtension(createTreeElement(OTHER_TREE_ID, GENERIC_CHARM_ID));
     IPluginExtension data2 = createPluginExtension(createDataElement(OTHER_TREE_ID, OTHER_TRAIT_ID));
-    point = new CharmTreeExtensionPoint(new StaticExtensionProvider(tree, tree2, data, data2));
+    point = new TreeLookup(new CharmTreeExtensionPoint(new StaticExtensionProvider(tree, tree2, data, data2)));
   }
 
   private IExtensionElement createDataElement(String treeId, String traitId) throws Exception {
@@ -55,8 +55,7 @@ public class CharmTreeExtensionPoint_IdLookupTest {
 
   @Test
   public void returnsRequestedGenericCharmWithPattern() throws Exception {
-    assertThat(
-        point.getCharmId("a.trait2.charm").getIdPattern(), //$NON-NLS-1$
+    assertThat(point.getCharmId("a.trait2.charm").getIdPattern(), //$NON-NLS-1$
         is(new CharmId(GENERIC_CHARM_ID, OTHER_TRAIT_ID).getIdPattern()));
   }
 }
