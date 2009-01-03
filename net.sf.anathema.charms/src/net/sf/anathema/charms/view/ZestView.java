@@ -3,6 +3,7 @@ package net.sf.anathema.charms.view;
 import net.disy.commons.core.model.IChangeableModel;
 import net.sf.anathema.charms.data.CharmContentProvider;
 import net.sf.anathema.charms.data.CharmDataProvider;
+import net.sf.anathema.charms.view.tooltipp.TooltippMouseListener;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
