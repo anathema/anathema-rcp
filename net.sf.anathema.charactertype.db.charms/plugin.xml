@@ -100,5 +100,152 @@
             resource="data/Charms_DB_2nd_War.xml">
       </treeProvider>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.charmtree">
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.archery"
+            name="Dragon-Blooded Archery"
+            primaryTrait="Archery">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.athletics"
+            name="Dragon-Blooded Athletics"
+            primaryTrait="Athletics">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.awareness"
+            name="Dragon-Blooded Awareness"
+            primaryTrait="Awareness">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.bureaucracy"
+            name="Dragon-Blooded Bureaucracy"
+            primaryTrait="Bureaucracy">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.craft"
+            name="Dragon-Blooded Craft"
+            primaryTrait="Craft">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.dodge"
+            name="Dragon-Blooded Dodge"
+            primaryTrait="Dodge">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.integrity"
+            name="Dragon-Blooded Integrity"
+            primaryTrait="Integrity">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.investigation"
+            name="Dragon-Blooded Investigation"
+            primaryTrait="Investigation">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.larceny"
+            name="Dragon-Blooded Larceny"
+            primaryTrait="Larceny">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.linguistics"
+            name="Dragon-Blooded Linguistics"
+            primaryTrait="Linguistics">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.lore"
+            name="Dragon-Blooded Lore"
+            primaryTrait="Lore">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.medicine"
+            name="Dragon-Blooded Medicine"
+            primaryTrait="Medicine">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.melee"
+            name="Dragon-Blooded Melee"
+            primaryTrait="Melee">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.occult"
+            name="Dragon-Blooded Occult"
+            primaryTrait="Occult">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.performance"
+            name="Dragon-Blooded Performance"
+            primaryTrait="Performance">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.presence"
+            name="Dragon-Blooded Presence"
+            primaryTrait="Presence">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.resistance"
+            name="Dragon-Blooded Resistance"
+            primaryTrait="Resistance">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.ride"
+            name="Dragon-Blooded Ride"
+            primaryTrait="Ride">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.sail"
+            name="Dragon-Blooded Sail"
+            primaryTrait="Sail">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.socialize"
+            name="Dragon-Blooded Socialize"
+            primaryTrait="Socialize">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.stealth"
+            name="Dragon-Blooded Stealth"
+            primaryTrait="Stealth">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.survival"
+            name="Dragon-Blooded Survival"
+            primaryTrait="Survival">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.thrown"
+            name="Dragon-Blooded Thrown"
+            primaryTrait="Thrown">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.war"
+            name="Dragon-Blooded War"
+            primaryTrait="War">
+      </tree>
+   </extension>
 
 </plugin>

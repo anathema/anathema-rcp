@@ -30,20 +30,12 @@ public class XmlTreeProvider implements ITreeProvider {
 
   @Override
   public List<String> getTreeList() {
-    Set<String> treeIds = new LinkedHashSet<String>();
-    for (IXmlCharm charm : charmCollection) {
-      treeIds.add(charm.getTreePart());
-    }
-    return new ArrayList<String>(treeIds);
+    return new ArrayList<String>();
   }
 
   @Override
   public TreeDto getData(String treeId) {
-    IXmlCharm charm = charmCollection.getCharmForTreeId(treeId);
-    if (charm == null) {
-      return null;
-    }
-    return charm.getTreeDto();
+    return null;
   }
 
   @Override

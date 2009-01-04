@@ -33,26 +33,6 @@ public class XmlCharm_DbRootCharmTest {
   }
 
   @Test
-  public void usesTreePartAsIdForTreeDto() throws Exception {
-    assertThat(xmlCharm.getTreeDto().id, is(xmlCharm.getTreePart()));
-  }
-
-  @Test
-  public void usesTreePartAsNameForTreeDto() throws Exception {
-    assertThat(xmlCharm.getTreeDto().name, is(xmlCharm.getTreePart()));
-  }
-
-  @Test
-  public void usesDbCharacterTypeForTreeDto() throws Exception {
-    assertThat(xmlCharm.getTreeDto().characterType, is("net.sf.anathema.character.type.db")); //$NON-NLS-1$
-  }
-
-  @Test
-  public void usesGroupAsPrimaryTrait() throws Exception {
-    assertThat(xmlCharm.getTreeDto().primaryTrait, is("Archery")); //$NON-NLS-1$
-  }
-
-  @Test
   public void addsOneRootPrerequisteWithPrimaryTrait() throws Exception {
     Set<CharmPrerequisite> set = new HashSet<CharmPrerequisite>();
     xmlCharm.addPrerequisites(set);

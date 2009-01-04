@@ -18,5 +18,8 @@ public final class CollectTreeIds implements IClosure<IExtensionElement> {
     if (element.getName().equals(CharmTreeExtensionPoint.TAG_TREEPART)) {
       set.add(element.getAttribute(CharmTreeExtensionPoint.ATTRIB_TREE_REFERENCE));
     }
+    if (element.getName().equals("tree")) {
+      set.add(element.getAttribute("id"));
+    }
   }
 }
