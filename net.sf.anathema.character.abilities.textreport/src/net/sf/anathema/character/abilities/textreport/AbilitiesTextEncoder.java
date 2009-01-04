@@ -1,13 +1,8 @@
 package net.sf.anathema.character.abilities.textreport;
 
-import java.util.List;
-
 import net.sf.anathema.character.abilities.model.AbilitiesMessages;
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayGroupFactory;
-import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
-import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.trait.display.IDisplayTrait;
-import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
 import net.sf.anathema.character.trait.textreport.AbstractTraitCollectionTextEncoder;
 import net.sf.anathema.lib.util.IIdentificate;
 
@@ -19,17 +14,12 @@ public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder {
   }
 
   @Override
-  protected List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups(ICharacter character) {
-    return  new AbilitiesDisplayGroupFactory().createDisplayTraitGroups(character);
+  protected IDisplayGroupFactory getFactory() {
+    return new AbilitiesDisplayGroupFactory();
   }
 
   @Override
   protected String getTitle() {
     return Messages.AbilitiesTextEncoder_Title;
-  }
-
-  @Override
-  public String getModelId() {
-    return IAbilitiesPluginConstants.MODEL_ID;
   }
 }

@@ -17,7 +17,7 @@ public class CasteTextReportEncoder extends AbstractTextEncoder {
   @Override
   public Iterable<Element> createParagraphs(ICharacter character) throws DocumentException {
     List<Element> paragraphics = new ArrayList<Element>();
-    ICasteModel model = (ICasteModel) character.getModel(getModelId());
+    ICasteModel model = (ICasteModel) character.getModel(ICasteModel.ID);
     if (model != null) {
       ICaste caste = model.getCaste();
       if (caste != null) {
@@ -27,10 +27,5 @@ public class CasteTextReportEncoder extends AbstractTextEncoder {
       }
     }
     return paragraphics;
-  }
-
-  @Override
-  public String getModelId() {
-    return ICasteModel.ID;
   }
 }

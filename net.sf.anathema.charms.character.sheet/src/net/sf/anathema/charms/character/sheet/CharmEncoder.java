@@ -34,6 +34,12 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
+    Set<ICharmId> learnedCharms = collectLearnedCharms(character);
+    List<IMagicStats> stats = createPrintStats(learnedCharms, character);
+    new MagicTableEncoder(context.getBaseFont(), stats).encodeTable(directContent, bounds);
+  }
+
+  private Set<ICharmId> collectLearnedCharms(ICharacter character) {
     ICharmModel model = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
     IExperience experience = (IExperience) character.getModel(IExperience.MODEL_ID);
     Set<ICharmId> learnedCharms = new HashSet<ICharmId>();
@@ -41,11 +47,10 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
     if (experience.isExperienced()) {
       addCharms(learnedCharms, model.getExperienceLearnedCharms());
     }
-    List<IMagicStats> magic = collectPrintMagic(learnedCharms, character);
-    new MagicTableEncoder(context.getBaseFont(), magic).encodeTable(directContent, bounds);
+    return learnedCharms;
   }
 
-  private List<IMagicStats> collectPrintMagic(Collection<ICharmId> learnedCharms, ICharacter character) {
+  private List<IMagicStats> createPrintStats(Collection<ICharmId> learnedCharms, ICharacter character) {
     final List<IMagicStats> printStats = new ArrayList<IMagicStats>();
     ICharmDataMap extensionPoint = CharmProvidingExtensionPoint.CreateCharmDataMap();
     // Case 357: Generics sollen nur einmal auftauchen

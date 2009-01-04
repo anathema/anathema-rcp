@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.AbstractTextEncoder;
+import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.lib.util.IIdentificate;
@@ -18,7 +19,7 @@ public abstract class AbstractTraitCollectionTextEncoder extends AbstractTextEnc
   public final Iterable<Element> createParagraphs(ICharacter character) throws DocumentException {
     Phrase traitPhrase = createTextParagraph(createBoldTitle(getTitle()));
     traitPhrase.add(createBoldTitle(" ")); //$NON-NLS-1$
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = getDisplayGroups(character);
+    List<IDisplayTraitGroup<IDisplayTrait>> groups = getFactory().createDisplayTraitGroups(character);
     boolean firstPrinted = true;
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       for (IDisplayTrait trait : group.getTraits()) {
@@ -41,7 +42,7 @@ public abstract class AbstractTraitCollectionTextEncoder extends AbstractTextEnc
 
   protected abstract String getTitle();
 
-  protected abstract List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups(ICharacter character);
+  protected abstract IDisplayGroupFactory getFactory();
 
   protected abstract String getTraitName(IIdentificate traitType);
 }

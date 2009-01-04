@@ -20,7 +20,7 @@ public class CharacterDescriptionTextEncoder extends AbstractTextEncoder {
   @Override
   public Iterable<Element> createParagraphs(ICharacter character) throws DocumentException {
     List<Element> allPhrases = new ArrayList<Element>();
-    ICharacterDescription description = (ICharacterDescription) character.getModel(getModelId());
+    ICharacterDescription description = (ICharacterDescription) character.getModel(ICharacterDescription.MODEL_ID);
     allPhrases.add(createNameParagraph(description.getName().getText()));
     if (!StringUtilities.isNullOrEmpty(description.getPeriphrasis().getText())) {
       Paragraph periphrasis = new Paragraph(description.getPeriphrasis().getText(), getUtils().createDefaultFont(
@@ -71,10 +71,5 @@ public class CharacterDescriptionTextEncoder extends AbstractTextEncoder {
       descriptionParagraph.setFirstLineIndent(5f);
       allPhrases.add(descriptionParagraph);
     }
-  }
-
-  @Override
-  public String getModelId() {
-    return "net.sf.anathema.character.description.model"; //$NON-NLS-1$
   }
 }
