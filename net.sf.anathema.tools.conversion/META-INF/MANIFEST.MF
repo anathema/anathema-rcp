@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Conversion
+Bundle-SymbolicName: net.sf.anathema.tools.conversion
+Bundle-Version: 1.0.0
+Export-Package: net.sf.anathema.tools.conversion
+Require-Bundle: net.sf.anathema.basics.importexport;bundle-version="1.0.0",
+ net.sf.anathema.basics.eclipse;bundle-version="1.0.0",
+ net.sf.anathema.basics.lib;bundle-version="1.0.0"
