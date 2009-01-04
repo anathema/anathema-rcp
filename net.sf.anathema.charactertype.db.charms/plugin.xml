@@ -170,6 +170,12 @@
       </tree>
       <tree
             characterType="net.sf.anathema.character.type.db"
+            id="dragon-blooded.martialarts"
+            name="Dragon-Blooded Martial Arts"
+            primaryTrait="MartialArts">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.db"
             id="dragon-blooded.medicine"
             name="Dragon-Blooded Medicine"
             primaryTrait="Medicine">
@@ -246,6 +252,21 @@
             name="Dragon-Blooded War"
             primaryTrait="War">
       </tree>
+      <genericCharms
+            characterType="net.sf.anathema.character.type.db">
+         <charm
+               id="dragon-blooded.any.{0}.excellency">
+            <charmPrerequisite
+                  charmId="dragon-blooded.first.{0}.excellency">
+            </charmPrerequisite>
+            <charmPrerequisite
+                  charmId="dragon-blooded.second.{0}.excellency">
+            </charmPrerequisite>
+            <charmPrerequisite
+                  charmId="dragon-blooded.third.{0}.excellency">
+            </charmPrerequisite>
+         </charm>
+      </genericCharms>
    </extension>
 
 </plugin>
