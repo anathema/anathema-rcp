@@ -230,38 +230,6 @@
       </template>
    </extension>
    <extension
-         point="net.sf.anathema.character.trait.traitmodels">
-      <traitmodel
-            characterType="net.sf.anathema.character.type.db"
-            modelId="net.sf.anathema.character.abilities.model">
-      </traitmodel>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.points.bonuspoints">
-      <bonuspoints
-            amount="15"
-            templateId="net.sf.anathema.character.template.dynastdb">
-      </bonuspoints>
-   </extension>
-   <extension
-         point="net.sf.anathema.charms.character.charmcosts">
-      <charmCosts
-            characterType="net.sf.anathema.character.type.db">
-         <experience>
-            <costs
-                  cheap="10"
-                  expensive="12">
-            </costs>
-         </experience>
-         <bonus>
-            <costs
-                  cheap="5"
-                  expensive="7">
-            </costs>
-         </bonus>
-      </charmCosts>
-   </extension>
-   <extension
          point="net.sf.anathema.character.core.types">
       <characterType
             id="net.sf.anathema.character.type.db"
@@ -278,24 +246,59 @@
       </favorization>
    </extension>
    <extension
-         point="net.sf.anathema.character.importwizard.templateconverters">
-      <converter
-            newTemplateId="net.sf.anathema.character.template.dynastdb"
-            oldCharacterType="Dragon-Blooded"
-            oldTemplateId="TemplateType.Default">
-      </converter>
+         point="net.sf.anathema.character.trait.traitmodels">
+      <traitmodel
+            characterType="net.sf.anathema.character.type.db"
+            modelId="net.sf.anathema.character.abilities.model">
+      </traitmodel>
    </extension>
    <extension
-         point="org.eclipse.ui.newWizards">
-      <wizard
-            canFinishEarly="true"
-            category="net.sf.anathema.category.character"
-            class="net.sf.anathema.charactertype.db.NewDynastDbWizard"
-            hasPages="false"
-            icon="icons/DbIcon_16.png"
-            id="net.sf.anathema.character.template.dynastdb.newwizard"
-            name="%new.wizard.character.template.dynastdb">
-      </wizard>
+         point="net.sf.anathema.character.trait.validator">
+      <validator>
+         <condition>
+            <where>
+               <templateId
+                     id="net.sf.anathema.character.template.dynastdb">
+               </templateId>
+            </where>
+         </condition>
+         <minimum
+               traitId="Archery"
+               value="1">
+         </minimum>
+         <minimum
+               traitId="Lore"
+               value="2">
+         </minimum>
+         <minimum
+               traitId="MartialArts"
+               value="1">
+         </minimum>
+         <minimum
+               traitId="Melee"
+               value="1">
+         </minimum>
+         <minimum
+               traitId="Performance"
+               value="1">
+         </minimum>
+         <minimum
+               traitId="Presence"
+               value="1">
+         </minimum>
+         <minimum
+               traitId="Ride"
+               value="1">
+         </minimum>
+         <minimum
+               traitId="Socialize"
+               value="2">
+         </minimum>
+         <minimum
+               traitId="War"
+               value="1">
+         </minimum>
+      </validator>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.credits">
@@ -336,51 +339,48 @@
       </creditList>
    </extension>
    <extension
-         point="net.sf.anathema.character.trait.validator">
-      <validator>
-         <condition>
-            <where>
-               <templateId
-                     id="net.sf.anathema.character.template.dynastdb">
-               </templateId>
-            </where>
-         </condition>
-         <minimum
-               value="1"
-               traitId="Archery">
-         </minimum>
-         <minimum
-               value="2"
-               traitId="Lore">
-         </minimum>
-         <minimum
-               value="1"
-               traitId="MartialArts">
-         </minimum>
-         <minimum
-               value="1"
-               traitId="Melee">
-         </minimum>
-         <minimum
-               value="1"
-               traitId="Performance">
-         </minimum>
-         <minimum
-               value="1"
-               traitId="Presence">
-         </minimum>
-         <minimum
-               value="1"
-               traitId="Ride">
-         </minimum>
-         <minimum
-               value="2"
-               traitId="Socialize">
-         </minimum>
-         <minimum
-               value="1"
-               traitId="War">
-         </minimum>
-      </validator>
+         point="net.sf.anathema.character.points.bonuspoints">
+      <bonuspoints
+            amount="15"
+            templateId="net.sf.anathema.character.template.dynastdb">
+      </bonuspoints>
+   </extension>
+   <extension
+         point="net.sf.anathema.charms.character.charmcosts">
+      <charmCosts
+            characterType="net.sf.anathema.character.type.db">
+         <experience>
+            <costs
+                  cheap="10"
+                  expensive="12">
+            </costs>
+         </experience>
+         <bonus>
+            <costs
+                  cheap="5"
+                  expensive="7">
+            </costs>
+         </bonus>
+      </charmCosts>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.importwizard.templateconverters">
+      <converter
+            newTemplateId="net.sf.anathema.character.template.dynastdb"
+            oldCharacterType="Dragon-Blooded"
+            oldTemplateId="TemplateType.Default">
+      </converter>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.charactertype.db.NewDynastDbWizard"
+            hasPages="false"
+            icon="icons/DbIcon_16.png"
+            id="net.sf.anathema.character.template.dynastdb.newwizard"
+            name="%new.wizard.character.template.dynastdb">
+      </wizard>
    </extension>
 </plugin>
