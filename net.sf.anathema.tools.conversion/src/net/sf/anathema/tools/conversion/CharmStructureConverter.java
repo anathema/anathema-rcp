@@ -21,6 +21,7 @@ public class CharmStructureConverter {
     IFactory<InputStream, IOException> streamFactory = new StructureSheetStreamFactory();
     XSLDocumentConverter converter = new XSLDocumentConverter(streamFactory, parameters);
     File[] allFiles = sourceFolder.listFiles();
+    System.err.print(sourceFolder.getCanonicalPath());
     for (File charmFile : allFiles) {
       if (!charmFile.getName().endsWith("xml")) {
         continue;

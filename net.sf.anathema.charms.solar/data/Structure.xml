@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Solar.ThereIsNoWind" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.AccuracyWithoutDistance" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.ThereIsNoWind"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ForcefulArrow" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.ThereIsNoWind"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.TranceUnhesitatingSpeed" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ArrowStormTechnique" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.TranceUnhesitatingSpeed"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FlashingVengeanceDraw" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.TranceUnhesitatingSpeed"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.EssenceArrowAttack" exalt="Solar" group="Archery">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.PhantomArrowTechnique" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.EssenceArrowAttack"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SummoningLoyalBow" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.PhantomArrowTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ImmaculateGoldenBow" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.PhantomArrowTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.InexhaustibleBoltsSolarFire" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.PhantomArrowTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SolarFlareMethodology" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.InexhaustibleBoltsSolarFire"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.RainFeatheredDeath" exalt="Solar" group="Archery">
+    <prerequisite> 
+      <charmReference id="Solar.PhantomArrowTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.HungryTigerTechnique" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FireandStonesStrike" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.HungryTigerTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.OneWeapon,TwoBlows" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.PeonyBlossomAttack" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.OneWeapon,TwoBlows"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IronWhirlwindAttack" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.PeonyBlossomAttack"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.InvincibleFuryDawn" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.IronWhirlwindAttack"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.CallBlade" exalt="Solar" group="Melee">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.SummoningLoyalSteel" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.CallBlade"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.GloriousSolarSaber" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.CallBlade"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IronRaptorTechnique" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.CallBlade"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.BlazingSolarBolt" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.IronRaptorTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.DippingSwallowDefense" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.BulwarkStance" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.DippingSwallowDefense"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.HeavenlyGuardianDefense" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.BulwarkStance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FivefoldBulwarkStance" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.BulwarkStance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SolarCounterattack" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.DippingSwallowDefense"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ReadyinEightDirectionsStance" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.SolarCounterattack"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ProtectionCelestialBliss" exalt="Solar" group="Melee">
+    <prerequisite> 
+      <charmReference id="Solar.HeavenlyGuardianDefense"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Joint-WoundingAttack" exalt="Solar" group="Thrown">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Observer-DeceivingAttack" exalt="Solar" group="Thrown">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.MistonWaterAttack" exalt="Solar" group="Thrown">
+    <prerequisite> 
+      <charmReference id="Solar.Observer-DeceivingAttack"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FallingIcicleStrike" exalt="Solar" group="Thrown">
+    <prerequisite> 
+      <charmReference id="Solar.Observer-DeceivingAttack"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Triple-DistanceAttackTechnique" exalt="Solar" group="Thrown">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.CascadeCuttingTerror" exalt="Solar" group="Thrown">
+    <prerequisite> 
+      <charmReference id="Solar.Triple-DistanceAttackTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ReturningWeaponConcentration" exalt="Solar" group="Thrown">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.CallBladeThrown" exalt="Solar" group="Thrown">
+    <prerequisite> 
+      <charmReference id="Solar.ReturningWeaponConcentration"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SpiritWeapons" exalt="Solar" group="Thrown">
+    <prerequisite> 
+      <charmReference id="Solar.ReturningWeaponConcentration"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Rout-StemmingGesture" exalt="Solar" group="War">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.CommandingIdealCelestialArmy" exalt="Solar" group="War">
+    <prerequisite> 
+      <charmReference id="Solar.Rout-StemmingGesture"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Mob-DispersingRebuke" exalt="Solar" group="War">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.FuryIncitingPresence" exalt="Solar" group="War">
+    <prerequisite> 
+      <charmReference id="Solar.Mob-DispersingRebuke"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.GeneralAll-SeeingSun" exalt="Solar" group="War">
+    <prerequisite> 
+      <charmReference id="Solar.FuryIncitingPresence"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Heroism-EncouragingPresence" exalt="Solar" group="War">
+    <prerequisite> 
+      <charmReference id="Solar.Rout-StemmingGesture"/>  
+      <charmReference id="Solar.FuryIncitingPresence"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.TigerWarriorTrainingTechnique" exalt="Solar" group="War">
+    <prerequisite> 
+      <charmReference id="Solar.Heroism-EncouragingPresence"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.LegendaryWarriorCurriculum" exalt="Solar" group="War">
+    <prerequisite> 
+      <charmReference id="Solar.TigerWarriorTrainingTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IdealBattleKnowledgePrana" exalt="Solar" group="War">
+    <prerequisite> 
+      <charmReference id="Solar.GeneralAll-SeeingSun"/>  
+      <charmReference id="Solar.CommandingIdealCelestialArmy"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Integrity-PotectingPrana" exalt="Solar" group="Integrity">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Destiny-ManifestingMethod" exalt="Solar" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Solar.Integrity-PotectingPrana"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.RighteousLionDefense" exalt="Solar" group="Integrity">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.StubbornBoarDefense" exalt="Solar" group="Integrity">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.PhoenixRenewalTactic" exalt="Solar" group="Integrity">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Temptation-ResistingStance" exalt="Solar" group="Integrity">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ElusiveDreamDefense" exalt="Solar" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Solar.Temptation-ResistingStance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.TranscendentHero'sMeditation" exalt="Solar" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Solar.ElusiveDreamDefense"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SunKingRadiance" exalt="Solar" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Solar.ElusiveDreamDefense"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Spirit-MaintainingManeuver" exalt="Solar" group="Integrity">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.UnhesitatingDedication" exalt="Solar" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Solar.RighteousLionDefense"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.RespectCommandingAttitude" exalt="Solar" group="Performance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Phantom-ConjuringPerformance" exalt="Solar" group="Performance">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Heart-CompellingMethod" exalt="Solar" group="Performance">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Memory-ReweavingDiscipline" exalt="Solar" group="Performance">
+    <prerequisite> 
+      <charmReference id="Solar.Phantom-ConjuringPerformance"/>  
+      <charmReference id="Solar.Heart-CompellingMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Husband-SeducingDemonDance" exalt="Solar" group="Performance">
+    <prerequisite> 
+      <charmReference id="Solar.Heart-CompellingMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.HypnoticTongueTechnique" exalt="Solar" group="Presence">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.MajesticRadiantPresence" exalt="Solar" group="Presence">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.TerrifyingApparitionGlory" exalt="Solar" group="Presence">
+    <prerequisite> 
+      <charmReference id="Solar.MajesticRadiantPresence"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.UnderlingPromotingTouch" exalt="Solar" group="Presence">
+    <prerequisite> 
+      <charmReference id="Solar.MajesticRadiantPresence"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Authority-RadiatingStance" exalt="Solar" group="Presence">
+    <prerequisite> 
+      <charmReference id="Solar.MajesticRadiantPresence"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IrresistibleSalesmanSpirit" exalt="Solar" group="Presence">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.WorshipfulLackeyAcquisition" exalt="Solar" group="Presence">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Enemy-CastigatingSolarJudgement" exalt="Solar" group="Presence">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.WhirlwindArmor-DonningPrana" exalt="Solar" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Hauberk-LighteningGesture" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.WhirlwindArmor-DonningPrana"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.GloriousSolarPlate" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.Hauberk-LighteningGesture"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ArmoredScout'sInvigoration" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.Hauberk-LighteningGesture"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.DurabilityOakMeditation" exalt="Solar" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.SpiritStrengthensSkin" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.DurabilityOakMeditation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IronSkinConcentration" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.DurabilityOakMeditation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IronKettleBody" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.IronSkinConcentration"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.AdamantSkinTechnique" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.SpiritStrengthensSkin"/>  
+      <charmReference id="Solar.IronSkinConcentration"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Essence-GatheringTemper" exalt="Solar" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Willpower-EnhancingSpirit" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.Essence-GatheringTemper"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.BattleFuryFocus" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.BloodthirstySword-DancerSpirit" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.BattleFuryFocus"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Ox-BodyTechnique" exalt="Solar" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.UnbreakableWarrior'sMastery" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.Ox-BodyTechnique"/>  
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ImmunitytoEverythingTechnique" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Body-MendingMeditation" exalt="Solar" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.FriendshipwithAnimalsApproach" exalt="Solar" group="Survival">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Spirit-TiedPet" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="Solar.FriendshipwithAnimalsApproach"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.BestialTraitsTechnique" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="Solar.FriendshipwithAnimalsApproach"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Hardship-SurvivingMendicantSpirit" exalt="Solar" group="Survival">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Element-ResistingPrana" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="Solar.Hardship-SurvivingMendicantSpirit"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.EternalElementalHarmony" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="Solar.Hardship-SurvivingMendicantSpirit"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Food-GatheringExcercise" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.TracklessRegionNavigation" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.UnshakeableBloodhoundTechnique" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="Solar.TracklessRegionNavigation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.TracelessPassage" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="Solar.UnshakeableBloodhoundTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Eye-DeceivingCamouflage" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="Solar.TracklessRegionNavigation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.City-MovingSecrets" exalt="Solar" group="Survival">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Object-StrengtheningTouch" exalt="Solar" group="Craft">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Durability-EnhancingTechnique" exalt="Solar" group="Craft">
+    <prerequisite> 
+      <charmReference id="Solar.Object-StrengtheningTouch"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Chaos-ResistancePreparation" exalt="Solar" group="Craft">
+    <prerequisite> 
+      <charmReference id="Solar.Object-StrengtheningTouch"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Crack-MendingTechnique" exalt="Solar" group="Craft">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ShatteringGrasp" exalt="Solar" group="Craft">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.CraftsmanNeedsNoTools" exalt="Solar" group="Craft">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.CraftyObservationMethod" exalt="Solar" group="Investigation">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Evidence-DiscerningMethod" exalt="Solar" group="Investigation">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Judge'sEarTechnique" exalt="Solar" group="Investigation">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IrresistibleQuestioningTechnique" exalt="Solar" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Solar.Judge'sEarTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Courtier'sEyeTechnique" exalt="Solar" group="Investigation">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Consumer-EvaluatingGlance" exalt="Solar" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Solar.Courtier'sEyeTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.KnowSoul'sPrice" exalt="Solar" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Solar.Judge'sEarTechnique"/>  
+      <charmReference id="Solar.Courtier'sEyeTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.HarmoniousAcademicMethodology" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.LegendaryScholarCurriculum" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="Solar.HarmoniousAcademicMethodology"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Chaos-RepellingPattern" exalt="Solar" group="Lore">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Wyld-ShapingTechnique" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="Solar.Chaos-RepellingPattern"/>  
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.WyldCauldronTechnique" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="Solar.Wyld-ShapingTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Essence-LendingMethod" exalt="Solar" group="Lore">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Will-BolsteringMethod" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="Solar.Essence-LendingMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Power-AwardingPrana" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="Solar.Essence-LendingMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Soul-EnlighteningBeneficence" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="Solar.Essence-LendingMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Order-AffirmingBlow" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="Solar.Wyld-ShapingTechnique"/>  
+      <charmReference id="Solar.Will-BolsteringMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ImmanentSolarGlory" exalt="Solar" group="Lore">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.TouchBlissfulRelease" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Contagion-CuringTouch" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Wound-MendingCareTechnique" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.AnointmentMiraculousHealth" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Solar.Wound-MendingCareTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Wound-CleansingMeditation" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Solar.Contagion-CuringTouch"/>  
+      <charmReference id="Solar.Wound-MendingCareTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FlawlessDiagnosisTechnique" exalt="Solar" group="Medicine">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Ailment-RectifyingMethod" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Solar.FlawlessDiagnosisTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Body-PurifyingAdmonitions" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Solar.FlawlessDiagnosisTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Wholeness-RestoringMeditation" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Solar.FlawlessDiagnosisTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.InstantTreatmentMethodology" exalt="Solar" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Solar.FlawlessDiagnosisTechnique"/>  
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Wonder-ForgingGenius" exalt="Solar" group="Craft">
+    <prerequisite> 
+      <charmReference id="Solar.InfiniteMastery.Craft"/>  
+      <charmReference id="Solar.Crack-MendingTechnique"/>  
+      <charmReference id="Solar.CraftsmanNeedsNoTools"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Words-as-WorkshopMethod" exalt="Solar" group="Craft">
+    <prerequisite> 
+      <charmReference id="Solar.CraftsmanNeedsNoTools"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.InvincibleArmorInvocation" exalt="Solar" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Solar.Hauberk-LighteningGesture"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.GracefulCraneStance" exalt="Solar" group="Athletics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.MonkeyLeapTechnique" exalt="Solar" group="Athletics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.SoaringCraneLeap" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Solar.MonkeyLeapTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Mountain-CrossingLeapTechnique" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Solar.SoaringCraneLeap"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Foe-VaultingMethod" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Solar.MonkeyLeapTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ThunderboltAttackPrana" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.LightningSpeed" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.RacingHareMethod" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Solar.LightningSpeed"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Spider-FootStyle" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Solar.GracefulCraneStance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Feather-FootStyle" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Solar.GracefulCraneStance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Eagle-WingStyle" exalt="Solar" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Solar.Spider-FootStyle"/>  
+      <charmReference id="Solar.Feather-FootStyle"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IncreasingStrengthExercise" exalt="Solar" group="Athletics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.KeenSightTechnique" exalt="Solar" group="Awareness">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.KeenHearingandTouchTechnique" exalt="Solar" group="Awareness">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.KeenSmellandTasteTechnique" exalt="Solar" group="Awareness">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.UnsurpassedSightDiscipline" exalt="Solar" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Solar.KeenSightTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.UnsurpassedHearingandTouchDiscipline" exalt="Solar" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Solar.KeenHearingandTouchTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.UnsurpassedSmellandTasteDiscipline" exalt="Solar" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Solar.KeenSmellandTasteTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SurpriseAnticipationMethod" exalt="Solar" group="Awareness">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.EyeUnconqueredSun" exalt="Solar" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Solar.UnsurpassedSightDiscipline"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ShadowOverWater" exalt="Solar" group="Dodge">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.SevenShadowEvasion" exalt="Solar" group="Dodge">
+    <prerequisite> 
+      <charmReference id="Solar.ShadowOverWater"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ReflexSidestepTechnique" exalt="Solar" group="Dodge">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.FlowLikeBlood" exalt="Solar" group="Dodge">
+    <prerequisite> 
+      <charmReference id="Solar.SevenShadowEvasion"/>  
+      <charmReference id="Solar.ReflexSidestepTechnique"/>  
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.LeapingDodgeMethod" exalt="Solar" group="Dodge">
+    <prerequisite> 
+      <charmReference id="Solar.ShadowOverWater"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FlawlesslyImpenetrableDisguise" exalt="Solar" group="Larceny">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.PerfectMirror" exalt="Solar" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Solar.FlawlesslyImpenetrableDisguise"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FlawlessPickpocketingTechnique" exalt="Solar" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.StealingfromPlainSightSpirit" exalt="Solar" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Solar.FlawlessPickpocketingTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Lock-OpeningTouch" exalt="Solar" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Door-EvadingTechnique" exalt="Solar" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Solar.Lock-OpeningTouch"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.EasilyOverlookedPresenceMethod" exalt="Solar" group="Stealth">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.MentalInvisibilityTechnique" exalt="Solar" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Solar.EasilyOverlookedPresenceMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.VanishingfromMind'sEyeMethod" exalt="Solar" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Solar.MentalInvisibilityTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.InvisibleStatueSpirit" exalt="Solar" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Solar.EasilyOverlookedPresenceMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FrugalMerchantMethod" exalt="Solar" group="Bureaucracy">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.InsightfulBuyerTechnique" exalt="Solar" group="Bureaucracy">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.SpeedWheels" exalt="Solar" group="Bureaucracy">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Bureau-RectifyingMethod" exalt="Solar" group="Bureaucracy">
+    <prerequisite> 
+      <charmReference id="Solar.SpeedWheels"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.IndolentOfficialCharm" exalt="Solar" group="Bureaucracy">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FoulAirArgumentTechnique" exalt="Solar" group="Bureaucracy">
+    <prerequisite> 
+      <charmReference id="Solar.IndolentOfficialCharm"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.WhirlingBrushMethod" exalt="Solar" group="Linguistics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.FlawlessBrushDiscipline" exalt="Solar" group="Linguistics">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Letter-Within-a-LetterTechnique" exalt="Solar" group="Linguistics">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.DiscerningSavant'sEye" exalt="Solar" group="Linguistics">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SagaciousReadingIntent" exalt="Solar" group="Linguistics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.PoeticExpressionStyle" exalt="Solar" group="Linguistics">
+    <prerequisite> 
+      <charmReference id="Solar.SagaciousReadingIntent"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ExcellentEmissary'sTongue" exalt="Solar" group="Linguistics">
+    <prerequisite> 
+      <charmReference id="Solar.PoeticExpressionStyle"/>  
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.TwistedWordsTechnique" exalt="Solar" group="Linguistics">
+    <prerequisite> 
+      <charmReference id="Solar.Letter-Within-a-LetterTechnique"/>  
+      <charmReference id="Solar.SagaciousReadingIntent"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.UnbreakableFascinationMethod" exalt="Solar" group="Linguistics">
+    <prerequisite> 
+      <charmReference id="Solar.PoeticExpressionStyle"/>  
+      <charmReference id="Solar.TwistedWordsTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.MasterHorseman'sTechniques" exalt="Solar" group="Ride">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.WorthyMountTechnique" exalt="Solar" group="Ride">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SingleSpiritMethod" exalt="Solar" group="Ride">
+    <prerequisite> 
+      <charmReference id="Solar.WorthyMountTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.PhantomSteed" exalt="Solar" group="Ride">
+    <prerequisite> 
+      <charmReference id="Solar.MasterHorseman'sTechniques"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.FlashingThunderboltSteed" exalt="Solar" group="Ride">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Wind-RacingEssenceInfusion" exalt="Solar" group="Ride">
+    <prerequisite> 
+      <charmReference id="Solar.FlashingThunderboltSteed"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SometimesHorsesFlyApproach" exalt="Solar" group="Ride">
+    <prerequisite> 
+      <charmReference id="Solar.SingleSpiritMethod"/>  
+      <charmReference id="Solar.FlashingThunderboltSteed"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SaltyDogMethod" exalt="Solar" group="Sail">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.InvincibleAdmiralMethod" exalt="Solar" group="Sail">
+    <prerequisite> 
+      <charmReference id="Solar.SaltyDogMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Ship-ClaimingStance" exalt="Solar" group="Sail">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Hull-PreservingTechnique" exalt="Solar" group="Sail">
+    <prerequisite> 
+      <charmReference id="Solar.Ship-ClaimingStance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Shipwreck-SurvivingStamina" exalt="Solar" group="Sail">
+    <prerequisite> 
+      <charmReference id="Solar.Hull-PreservingTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.PerfectReckoningTechnique" exalt="Solar" group="Sail">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Storm-WeatheringEssenceInfusion" exalt="Solar" group="Sail">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SeaAmbushTechnique" exalt="Solar" group="Sail">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Wise-EyedCourtierMethod" exalt="Solar" group="Socialize">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Wild-RevelryApproach" exalt="Solar" group="Socialize">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.TabooInflictingDiatribe" exalt="Solar" group="Socialize">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.VenomousWhispersTechnique" exalt="Solar" group="Socialize">
+    <prerequisite> 
+      <charmReference id="Solar.TabooInflictingDiatribe"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.UnderstandingCourt" exalt="Solar" group="Socialize">
+    <prerequisite> 
+      <charmReference id="solar.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.MasterySmallManners" exalt="Solar" group="Socialize">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.GatheringCongregation" exalt="Solar" group="Socialize">
+    <prerequisite></prerequisite>
+  </charm> 
+</charmlist>

@@ -5,9 +5,141 @@
          point="net.sf.anathema.charms.charmtree">
       <tree
             characterType="net.sf.anathema.character.type.solar"
+            id="solar.archery"
+            name="Archery"
+            primaryTrait="Archery">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.athletics"
+            name="Athletics"
+            primaryTrait="Athletics">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.awareness"
+            name="Awareness"
+            primaryTrait="Awareness">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.bureaucracy"
+            name="Bureaucracy"
+            primaryTrait="Bureaucracy">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.craft"
+            name="Craft"
+            primaryTrait="Craft">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.dodge"
+            name="Dodge"
+            primaryTrait="Dodge">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.integrity"
+            name="Integrity"
+            primaryTrait="Integrity">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.investigation"
+            name="Investigation"
+            primaryTrait="Investigation">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.larceny"
+            name="Larceny"
+            primaryTrait="Larceny">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.linguistics"
+            name="Linguistics"
+            primaryTrait="Linguistics">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.lore"
+            name="Lore"
+            primaryTrait="Lore">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.martialarts"
+            name="Martial Arts"
+            primaryTrait="MartialArts">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.medicine"
+            name="Medicine"
+            primaryTrait="Medicine">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.melee"
+            name="Melee"
+            primaryTrait="Melee">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.occult"
+            name="Occult"
+            primaryTrait="Occult">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.performance"
+            name="Performance"
+            primaryTrait="Performance">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.presence"
+            name="Presence"
+            primaryTrait="Presence">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.resistance"
+            name="Resistance"
+            primaryTrait="Resistance">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.ride"
+            name="Ride"
+            primaryTrait="Ride">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.sail"
+            name="Sail"
+            primaryTrait="Sail">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.socialize"
+            name="Socialize"
+            primaryTrait="Socialize">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
             id="solar.stealth"
             name="Stealth"
             primaryTrait="Stealth">
+      </tree>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.survival"
+            name="Survival"
+            primaryTrait="Survival">
       </tree>
       <tree
             characterType="net.sf.anathema.character.type.solar"
@@ -15,70 +147,12 @@
             name="Thrown"
             primaryTrait="Thrown">
       </tree>
-      <treepart
-            treeReference="solar.stealth">
-         <charm
-               id="Solar: Invisible Statue Spirit">
-            <charmPrerequisite
-                  charmId="Solar: Easily Overlooked Presence Method">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Vanishing From Mind&apos;s Eye Method">
-            <charmPrerequisite
-                  charmId="Solar: Mental Invisibility Technique">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Mental Invisibility Technique">
-            <charmPrerequisite
-                  charmId="Solar: Easily Overlooked Presence Method">
-            </charmPrerequisite>
-         </charm>
-      </treepart>
-      <treepart
-            treeReference="solar.thrown">
-         <charm
-               id="Solar: Joint Wounding Attack">
-            <charmPrerequisite
-                  charmId="solar.any.Thrown.excellency"></charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Cascade of Cutting Terror">
-            <charmPrerequisite
-                  charmId="Solar: Triple-Distance Attack Technique"></charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Falling Icicle Strike">
-            <charmPrerequisite
-                  charmId="Solar: Observer Deceiving Attack">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Observer Deceiving Attack">
-            <charmPrerequisite
-                  charmId="solar.any.Thrown.excellency">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Mist on Water Attack">
-            <charmPrerequisite
-                  charmId="Solar: Observer Deceiving Attack">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Spirit Weapons">
-            <charmPrerequisite
-                  charmId="Solar: Returning Weapon Concentration">
-            </charmPrerequisite>
-         </charm>
-         <charm
-               id="Solar: Call The Blade">
-            <charmPrerequisite
-                  charmId="Solar: Returning Weapon Concentration">
-            </charmPrerequisite>
-         </charm>
-      </treepart>
+      <tree
+            characterType="net.sf.anathema.character.type.solar"
+            id="solar.war"
+            name="War"
+            primaryTrait="War">
+      </tree>
       <genericCharms
             characterType="net.sf.anathema.character.type.solar">
 	      <charm
@@ -110,44 +184,12 @@
    <extension
          point="net.sf.anathema.charms.charmname">
       <charmName
-            id="Solar: Invisible Statue Spirit"
+            id="Solar.InvisibleStatueSpirit"
             name="Invisible Statue Spirit">
       </charmName>
       <charmName
-            id="Solar: Vanishing From Mind&apos;s Eye Method"
+            id="Solar.VanishingFromMindsEyeMethod"
             name="Vanishing From Mind&apos;s Eye Method">
-      </charmName>
-      <charmName
-            id="Solar: Mental Invisibility Technique"
-            name="Mental Invisibility Technique">
-      </charmName>
-      <charmName
-            id="Solar: Joint Wounding Attack"
-            name="Joint Wounding Attack">
-      </charmName>
-      <charmName
-            id="Solar: Cascade of Cutting Terror"
-            name="Cascade of Cutting Terror">
-      </charmName>
-      <charmName
-            id="Solar: Falling Icicle Strike"
-            name="Falling Icicle Strike">
-      </charmName>
-      <charmName
-            id="Solar: Observer Deceiving Attack"
-            name="Observer Deceiving Attack">
-      </charmName>
-      <charmName
-            id="Solar: Mist on Water Attack"
-            name="Mist on Water Attack">
-      </charmName>
-      <charmName
-            id="Solar: Spirit Weapons"
-            name="Spirit Weapons">
-      </charmName>
-      <charmName
-            id="Solar: Call The Blade"
-            name="Call The Blade">
       </charmName>
       <charmName
             id="solar.any.{0}.excellency"
@@ -169,7 +211,7 @@
    <extension
          point="net.sf.anathema.charms.charmdata">
       <charmdata
-            charmId="Solar: Invisible Statue Spirit">
+            charmId="Solar.InvisibleStatueSpirit">
          <simple
                defensemodifier="-1"
                speed="6">
@@ -196,6 +238,13 @@
                source="Ex2">
          </source>
       </charmdata>
+   </extension>
+   <extension
+         point="net.sf.anathema.charms.charmproviding">
+      <treeProvider
+            class="net.sf.anathema.charms.xml.XmlTreeProvider"
+            resource="data/Structure.xml">
+      </treeProvider>
    </extension>
 
 </fragment>
