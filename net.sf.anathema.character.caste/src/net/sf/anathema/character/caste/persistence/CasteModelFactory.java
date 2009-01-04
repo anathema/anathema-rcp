@@ -9,8 +9,8 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelInitializer;
 import net.sf.anathema.character.core.model.IModelPersister;
-import net.sf.anathema.character.trait.model.TypeTraitModelIdProvider;
-import net.sf.anathema.character.trait.model.ITraitModelIdProvider;
+import net.sf.anathema.character.trait.model.MainTraitModelProvider;
+import net.sf.anathema.character.trait.model.IMainTraitModelProvider;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.runtime.CoreException;
@@ -18,13 +18,13 @@ import org.eclipse.core.runtime.CoreException;
 public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICasteModel> {
   private final CasteModelPersister persister = new CasteModelPersister();
   private final ICasteCollection provider;
-  private final ITraitModelIdProvider traitModelIdProvider;
+  private final IMainTraitModelProvider traitModelIdProvider;
 
   public CasteModelFactory() {
-    this(new CasteCollection(), new TypeTraitModelIdProvider());
+    this(new CasteCollection(), new MainTraitModelProvider());
   }
 
-  public CasteModelFactory(ICasteCollection provider, ITraitModelIdProvider traitModelIdProvider) {
+  public CasteModelFactory(ICasteCollection provider, IMainTraitModelProvider traitModelIdProvider) {
     this.provider = provider;
     this.traitModelIdProvider = traitModelIdProvider;
   }
@@ -32,7 +32,7 @@ public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICast
   @Override
   public CasteTemplate createModelTemplate(ICharacterTemplate template) {
     String characterTypeId = template.getCharacterTypeId();
-    String traitModelId = traitModelIdProvider.getTraitModelId(characterTypeId);
+    String traitModelId = traitModelIdProvider.getFor(characterTypeId);
     return new CasteTemplate(traitModelId , provider.getCastes(characterTypeId));
   }
 

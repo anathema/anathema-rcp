@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.character.abilities.model.AbilitiesMessages;
-import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilities;
+import net.sf.anathema.character.abilities.util.AbilitiesDisplayGroupFactory;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
@@ -73,7 +73,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
   }
 
   private float encodeTraitGroups(PdfContentByte directContent, ICharacter character, Position position, float width) {
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = AbilitiesDisplayUtilities.createDisplayTraitGroups(character);
+    List<IDisplayTraitGroup<IDisplayTrait>> groups = new AbilitiesDisplayGroupFactory().createDisplayTraitGroups(character);
     float yPosition = position.y;
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       Position groupPosition = new Position(position.x, yPosition);

@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
-import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilities;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
+import net.sf.anathema.character.trait.display.DisplayFactoryLookup;
+import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.model.MainTraitModelProvider;
 import net.sf.anathema.character.trait.resources.TraitMessages;
 import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.character.sheet.AbstractTableEncoder;
@@ -51,18 +53,18 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     table.setWidthPercentage(100);
     table.addCell(new TableCell(new Phrase(), Rectangle.NO_BORDER));
 
+    String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
+    IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
     // TODO Case 349: Hier muss die richtige Entscheidung (Att/Abi) hin.
     boolean worksOnAbilities = true;
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = null;
     String phraseCompletion;
     if (worksOnAbilities) {
-      groups = AbilitiesDisplayUtilities.createDisplayTraitGroups(character);
       phraseCompletion = CategoryNames.ABILITY;
     }
     else {
-      // groups = AttributeDisplayUtilities.createDisplayTraitGroups(character);
       phraseCompletion = CategoryNames.ATTRIBUTE;
     }
+    List<IDisplayTraitGroup<IDisplayTrait>> groups = factory.createDisplayTraitGroups(character);
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       for (IDisplayTrait trait : group.getTraits()) {
         table.addCell(createHeaderCell(directContent, trait));

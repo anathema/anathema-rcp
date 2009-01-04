@@ -2,105 +2,24 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="net.sf.anathema.character.abilities.groups">
-      <groups
-            characterType="net.sf.anathema.character.type.db">
-         <traitGroup
-               id="Air"
-               label="%caste.printName.Air">
-            <traitReference
-                  traitId="Linguistics">
-            </traitReference>
-            <traitReference
-                  traitId="Lore">
-            </traitReference>
-            <traitReference
-                  traitId="Occult">
-            </traitReference>
-            <traitReference
-                  traitId="Stealth">
-            </traitReference>
-            <traitReference
-                  traitId="Thrown">
-            </traitReference>
-         </traitGroup>
-         <traitGroup
-               id="Earth"
-               label="%caste.printName.Earth">
-            <traitReference
-                  traitId="Awareness">
-            </traitReference>
-            <traitReference
-                  traitId="Craft">
-            </traitReference>
-            <traitReference
-                  traitId="Integrity">
-            </traitReference>
-            <traitReference
-                  traitId="Resistance">
-            </traitReference>
-            <traitReference
-                  traitId="War">
-            </traitReference>
-         </traitGroup>
-         <traitGroup
-               id="Fire"
-               label="%caste.printName.Fire">
-            <traitReference
-                  traitId="Athletics">
-            </traitReference>
-            <traitReference
-                  traitId="Dodge">
-            </traitReference>
-            <traitReference
-                  traitId="Melee">
-            </traitReference>
-            <traitReference
-                  traitId="Presence">
-            </traitReference>
-            <traitReference
-                  traitId="Socialize">
-            </traitReference>
-         </traitGroup>
-         <traitGroup
-               id="Water"
-               label="%caste.printName.Water">
-            <traitReference
-                  traitId="Bureaucracy">
-            </traitReference>
-            <traitReference
-                  traitId="Investigation">
-            </traitReference>
-            <traitReference
-                  traitId="Larceny">
-            </traitReference>
-            <traitReference
-                  traitId="MartialArts">
-            </traitReference>
-            <traitReference
-                  traitId="Sail">
-            </traitReference>
-         </traitGroup>
-         <traitGroup
-               id="Wood"
-               label="%caste.printName.Wood">
-            <traitReference
-                  traitId="Archery">
-            </traitReference>
-            <traitReference
-                  traitId="Medicine">
-            </traitReference>
-            <traitReference
-                  traitId="Performance">
-            </traitReference>
-            <traitReference
-                  traitId="Ride">
-            </traitReference>
-            <traitReference
-                  traitId="Survival">
-            </traitReference>
-         </traitGroup>
-      </groups>
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            category="net.sf.anathema.category.character"
+            class="net.sf.anathema.charactertype.db.NewDynastDbWizard"
+            hasPages="false"
+            icon="icons/DbIcon_16.png"
+            id="net.sf.anathema.character.template.dynastdb.newwizard"
+            name="%new.wizard.character.template.dynastdb">
+      </wizard>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.types">
+      <characterType
+            id="net.sf.anathema.character.type.db"
+            image="icons/DbIcon_16.png"
+            traitImageId="DbBall">
+      </characterType>
    </extension>
    <extension
          point="net.sf.anathema.character.caste.castes">
@@ -204,19 +123,105 @@
       </casteList>
    </extension>
    <extension
-         point="net.sf.anathema.character.core.modeldependencies">
-      <dependency
-            characterType="net.sf.anathema.character.type.db"
-            dependentModelId="net.sf.anathema.character.abilities.model"
-            neededModelId="net.sf.anathema.character.caste.model">
-      </dependency>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.resources">
-      <image
-            referenceId="DbBall"
-            resourceUrl="icons/Ball_Db_16.png">
-      </image>
+         point="net.sf.anathema.character.abilities.groups">
+      <groups
+            characterType="net.sf.anathema.character.type.db">
+         <traitGroup
+               id="Air"
+               label="%caste.printName.Air">
+            <traitReference
+                  traitId="Linguistics">
+            </traitReference>
+            <traitReference
+                  traitId="Lore">
+            </traitReference>
+            <traitReference
+                  traitId="Occult">
+            </traitReference>
+            <traitReference
+                  traitId="Stealth">
+            </traitReference>
+            <traitReference
+                  traitId="Thrown">
+            </traitReference>
+         </traitGroup>
+         <traitGroup
+               id="Earth"
+               label="%caste.printName.Earth">
+            <traitReference
+                  traitId="Awareness">
+            </traitReference>
+            <traitReference
+                  traitId="Craft">
+            </traitReference>
+            <traitReference
+                  traitId="Integrity">
+            </traitReference>
+            <traitReference
+                  traitId="Resistance">
+            </traitReference>
+            <traitReference
+                  traitId="War">
+            </traitReference>
+         </traitGroup>
+         <traitGroup
+               id="Fire"
+               label="%caste.printName.Fire">
+            <traitReference
+                  traitId="Athletics">
+            </traitReference>
+            <traitReference
+                  traitId="Dodge">
+            </traitReference>
+            <traitReference
+                  traitId="Melee">
+            </traitReference>
+            <traitReference
+                  traitId="Presence">
+            </traitReference>
+            <traitReference
+                  traitId="Socialize">
+            </traitReference>
+         </traitGroup>
+         <traitGroup
+               id="Water"
+               label="%caste.printName.Water">
+            <traitReference
+                  traitId="Bureaucracy">
+            </traitReference>
+            <traitReference
+                  traitId="Investigation">
+            </traitReference>
+            <traitReference
+                  traitId="Larceny">
+            </traitReference>
+            <traitReference
+                  traitId="MartialArts">
+            </traitReference>
+            <traitReference
+                  traitId="Sail">
+            </traitReference>
+         </traitGroup>
+         <traitGroup
+               id="Wood"
+               label="%caste.printName.Wood">
+            <traitReference
+                  traitId="Archery">
+            </traitReference>
+            <traitReference
+                  traitId="Medicine">
+            </traitReference>
+            <traitReference
+                  traitId="Performance">
+            </traitReference>
+            <traitReference
+                  traitId="Ride">
+            </traitReference>
+            <traitReference
+                  traitId="Survival">
+            </traitReference>
+         </traitGroup>
+      </groups>
    </extension>
    <extension
          point="net.sf.anathema.character.core.templates">
@@ -225,17 +230,9 @@
             templateId="net.sf.anathema.character.template.dynastdb"
             name="%template.dynastdb.name">
          <modelList
-               modelListId="net.sf.anathema.character.essenceUser.modelList">
+               modelListId="net.sf.anathema.character.basic.modelList">
          </modelList>
       </template>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.types">
-      <characterType
-            id="net.sf.anathema.character.type.db"
-            image="icons/DbIcon_16.png"
-            traitImageId="DbBall">
-      </characterType>
    </extension>
    <extension
          point="net.sf.anathema.character.trait.favorization">
@@ -246,59 +243,33 @@
       </favorization>
    </extension>
    <extension
-         point="net.sf.anathema.character.trait.traitmodels">
+         point="net.sf.anathema.character.core.resources">
+      <image
+            referenceId="DbBall"
+            resourceUrl="icons/Ball_Db_16.png">
+      </image>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.importwizard.templateconverters">
+      <converter
+            newTemplateId="net.sf.anathema.character.template.dynastdb"
+            oldCharacterType="Dragon-Blooded"
+            oldTemplateId="TemplateType.Default">
+      </converter>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.trait.maintraits">
       <traitmodel
             characterType="net.sf.anathema.character.type.db"
             modelId="net.sf.anathema.character.abilities.model">
       </traitmodel>
    </extension>
    <extension
-         point="net.sf.anathema.character.trait.validator">
-      <validator>
-         <condition>
-            <where>
-               <templateId
-                     id="net.sf.anathema.character.template.dynastdb">
-               </templateId>
-            </where>
-         </condition>
-         <minimum
-               traitId="Archery"
-               value="1">
-         </minimum>
-         <minimum
-               traitId="Lore"
-               value="2">
-         </minimum>
-         <minimum
-               traitId="MartialArts"
-               value="1">
-         </minimum>
-         <minimum
-               traitId="Melee"
-               value="1">
-         </minimum>
-         <minimum
-               traitId="Performance"
-               value="1">
-         </minimum>
-         <minimum
-               traitId="Presence"
-               value="1">
-         </minimum>
-         <minimum
-               traitId="Ride"
-               value="1">
-         </minimum>
-         <minimum
-               traitId="Socialize"
-               value="2">
-         </minimum>
-         <minimum
-               traitId="War"
-               value="1">
-         </minimum>
-      </validator>
+         point="net.sf.anathema.character.points.bonuspoints">
+      <bonuspoints
+            amount="15"
+            templateId="net.sf.anathema.character.template.dynastdb">
+      </bonuspoints>
    </extension>
    <extension
          point="net.sf.anathema.character.freebies.credits">
@@ -339,11 +310,52 @@
       </creditList>
    </extension>
    <extension
-         point="net.sf.anathema.character.points.bonuspoints">
-      <bonuspoints
-            amount="15"
-            templateId="net.sf.anathema.character.template.dynastdb">
-      </bonuspoints>
+         point="net.sf.anathema.character.trait.validator">
+      <validator>
+         <condition>
+            <where>
+               <templateId
+                     id="net.sf.anathema.character.template.dynastdb">
+               </templateId>
+            </where>
+         </condition>
+         <minimum
+               value="1"
+               traitId="Archery">
+         </minimum>
+         <minimum
+               value="2"
+               traitId="Lore">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="MartialArts">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Melee">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Performance">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Presence">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="Ride">
+         </minimum>
+         <minimum
+               value="2"
+               traitId="Socialize">
+         </minimum>
+         <minimum
+               value="1"
+               traitId="War">
+         </minimum>
+      </validator>
    </extension>
    <extension
          point="net.sf.anathema.charms.character.charmcosts">
@@ -362,25 +374,5 @@
             </costs>
          </bonus>
       </charmCosts>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.importwizard.templateconverters">
-      <converter
-            newTemplateId="net.sf.anathema.character.template.dynastdb"
-            oldCharacterType="Dragon-Blooded"
-            oldTemplateId="TemplateType.Default">
-      </converter>
-   </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <wizard
-            canFinishEarly="true"
-            category="net.sf.anathema.category.character"
-            class="net.sf.anathema.charactertype.db.NewDynastDbWizard"
-            hasPages="false"
-            icon="icons/DbIcon_16.png"
-            id="net.sf.anathema.character.template.dynastdb.newwizard"
-            name="%new.wizard.character.template.dynastdb">
-      </wizard>
    </extension>
 </plugin>

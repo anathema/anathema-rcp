@@ -69,4 +69,11 @@
             class="net.sf.anathema.character.attributes.model.AttributeMessages">
       </messages>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.displaygroupfactory">
+      <factory
+            class="net.sf.anathema.character.attributes.util.AttributeDisplayGroupFactory"
+            modelId="net.sf.anathema.character.attributes.model">
+      </factory>
+   </extension>
 </plugin>

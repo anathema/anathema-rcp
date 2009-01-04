@@ -5,8 +5,9 @@
    <extension-point id="traitstatus" name="%traitStatus.extension-point.name" schema="schema/traitstatus.exsd"/>
    <extension-point id="favorization" name="%favorization.extension-point.name" schema="schema/favorization.exsd"/>
    <extension-point id="validator" name="%traitValidator.extension-point.name" schema="schema/validator.exsd"/>
-   <extension-point id="traitmodels" name="%extension-point.name.traitmodels" schema="schema/traitmodels.exsd"/>
+   <extension-point id="maintraits" name="%extension-point.name.traitmodels" schema="schema/maintraits.exsd"/>
    <extension-point id="traitname" name="Trait Name" schema="schema/traitname.exsd"/>
+   <extension-point id="displaygroupfactory" name="Display Group Factory" schema="schema/displaygroupfactory.exsd"/>
    <extension
          point="net.sf.anathema.character.core.resources">
       <image

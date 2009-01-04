@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="net.sf.anathema.character.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="net.sf.anathema.character.trait" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="net.sf.anathema.character.core" id="modeldependencies" name="Character Model dependencies"/>
+         <meta.schema plugin="net.sf.anathema.character.trait" id="displaygroupfactory" name="Display Group Factory"/>
       </appinfo>
       <documentation>
-         Model dependencies tell the system about models that need to be updated (dependent model) when another model changes (required model).
+         Registers a factory to create a model&apos;s display groups for a given character.
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="provider" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="factory" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,15 +47,27 @@
       </complexType>
    </element>
 
-   <element name="provider">
+   <element name="factory">
+      <annotation>
+         <documentation>
+            Registers a factory for a model
+         </documentation>
+      </annotation>
       <complexType>
+         <attribute name="modelId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The model&apos;s id
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  A class that provides a list of model ids that are required for the specified model and a given character type to work properly.
+                  The factory class
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.core.model.IDependencyProvider"/>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.trait.display.IDisplayGroupFactory"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -76,17 +88,25 @@
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         A Solar&apos;s ability cost is bound to change when his caste changes.
+         [Enter extension point usage example here.]
       </documentation>
    </annotation>
 
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
 
    <annotation>
       <appinfo>
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         net.sf.anathema.character.core.model.DependenciesHandler
+         [Enter information about supplied implementation of this extension point.]
       </documentation>
    </annotation>
 

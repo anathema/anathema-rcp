@@ -55,5 +55,12 @@
             class="net.sf.anathema.character.abilities.model.AbilitiesMessages">
       </messages>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.displaygroupfactory">
+      <factory
+            class="net.sf.anathema.character.abilities.util.AbilitiesDisplayGroupFactory"
+            modelId="net.sf.anathema.character.abilities.model">
+      </factory>
+   </extension>
 
 </plugin>

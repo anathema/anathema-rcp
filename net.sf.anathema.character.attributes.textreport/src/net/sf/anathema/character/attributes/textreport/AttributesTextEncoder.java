@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.sf.anathema.character.attributes.model.AttributeMessages;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
-import net.sf.anathema.character.attributes.util.AttributeDisplayUtilties;
+import net.sf.anathema.character.attributes.util.AttributeDisplayGroupFactory;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
@@ -21,7 +21,7 @@ public class AttributesTextEncoder extends AbstractTraitCollectionTextEncoder {
 
   @Override
   protected List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups(ICharacter character) {
-    return AttributeDisplayUtilties.getDisplayAttributeGroups(character);
+    return new AttributeDisplayGroupFactory().createDisplayTraitGroups(character);
   }
 
   @Override

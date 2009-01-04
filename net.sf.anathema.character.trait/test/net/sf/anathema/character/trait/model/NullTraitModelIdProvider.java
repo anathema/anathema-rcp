@@ -1,11 +1,11 @@
 package net.sf.anathema.character.trait.model;
 
-import net.sf.anathema.character.trait.model.ITraitModelIdProvider;
+import net.sf.anathema.character.trait.model.IMainTraitModelProvider;
 
-public class NullTraitModelIdProvider implements ITraitModelIdProvider {
+public class NullTraitModelIdProvider implements IMainTraitModelProvider {
 
   @Override
-  public String getTraitModelId(String characterTypeId) {
+  public String getFor(String characterTypeId) {
     return null;
   }
 }

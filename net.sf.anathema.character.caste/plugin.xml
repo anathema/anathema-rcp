@@ -39,5 +39,11 @@
             contentId="caste.is">
       </contentCheck>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modeldependencies">
+      <provider
+            class="net.sf.anathema.character.caste.dependency.MainModelDependencyProvider">
+      </provider>
+   </extension>
 
 </plugin>

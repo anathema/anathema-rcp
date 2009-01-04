@@ -12,37 +12,7 @@
          </modelList>
       </template>
    </extension>
-   <extension
-         point="net.sf.anathema.character.core.resources">
-      <image
-            referenceId="LunarBall"
-            resourceUrl="icons/Ball_Lunar_16.png">
-      </image>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.resources">
-      <image
-            referenceId="FullMoon"
-            resourceUrl="icons/Caste_FullMoon_16.png">
-      </image>
-      <image
-            referenceId="NoMoon"
-            resourceUrl="icons/Caste_NoMoon_16.png">
-      </image>
-      <image
-            referenceId="ChangingMoon"
-            resourceUrl="icons/Caste_ChangingMoon_16.png">
-      </image>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.modeldependencies">
-      <dependency
-            characterType="net.sf.anathema.character.type.lunar"
-            dependentModelId="net.sf.anathema.character.attributes.model"
-            neededModelId="net.sf.anathema.character.caste.model">
-      </dependency>
-   </extension>
-   <extension
+    <extension
          point="net.sf.anathema.character.freebies.credits">
       <creditList
             templateId="net.sf.anathema.character.template.pactlunar">
@@ -77,14 +47,7 @@
       </creditList>
    </extension>
    <extension
-         point="net.sf.anathema.character.points.bonuspoints">
-      <bonuspoints
-            amount="15"
-            templateId="net.sf.anathema.character.template.pactlunar">
-      </bonuspoints>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.trait.traitmodels">
+         point="net.sf.anathema.character.trait.maintraits">
       <traitmodel
             characterType="net.sf.anathema.character.type.lunar"
             modelId="net.sf.anathema.character.attributes.model">
@@ -97,6 +60,28 @@
             image="icons/LunarIcon_16.png"
             traitImageId="LunarBall">
       </characterType>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.resources">
+      <image
+            referenceId="LunarBall"
+            resourceUrl="icons/Ball_Lunar_16.png">
+      </image>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.resources">
+      <image
+            referenceId="FullMoon"
+            resourceUrl="icons/Caste_FullMoon_16.png">
+      </image>
+      <image
+            referenceId="NoMoon"
+            resourceUrl="icons/Caste_NoMoon_16.png">
+      </image>
+      <image
+            referenceId="ChangingMoon"
+            resourceUrl="icons/Caste_ChangingMoon_16.png">
+      </image>
    </extension>
    <extension
          point="net.sf.anathema.character.trait.favorization">

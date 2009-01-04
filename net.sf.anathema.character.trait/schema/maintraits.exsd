@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="net.sf.anathema.character.caste" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="net.sf.anathema.character.trait" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="net.sf.anathema.character.caste" id="traitmodels" name="Caste Trait Models"/>
+         <meta.schema plugin="net.sf.anathema.character.trait" id="maintraits" name="Main Trait Model"/>
       </appinfo>
       <documentation>
-         Specifies the traitcollection for a character type where its caste traits are found.
+         Specifies the main trait model for a character type. Main traits in this sense are the traits that can be caste traits, that are used for generic Charms etc..
       </documentation>
    </annotation>
 
@@ -71,7 +71,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         v1.0
       </documentation>
    </annotation>
 
@@ -80,25 +80,17 @@
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         [Enter extension point usage example here.]
+         For most character types, the main traits are Abilities. For Lunars, it&apos;s Attributes.
       </documentation>
    </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="apiinfo"/>
-      </appinfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         net.sf.anathema.character.trait.model.MainTraitModelProvider
       </documentation>
    </annotation>
 

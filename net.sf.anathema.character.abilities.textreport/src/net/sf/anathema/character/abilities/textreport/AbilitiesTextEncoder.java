@@ -3,7 +3,7 @@ package net.sf.anathema.character.abilities.textreport;
 import java.util.List;
 
 import net.sf.anathema.character.abilities.model.AbilitiesMessages;
-import net.sf.anathema.character.abilities.util.AbilitiesDisplayUtilities;
+import net.sf.anathema.character.abilities.util.AbilitiesDisplayGroupFactory;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
@@ -20,7 +20,7 @@ public class AbilitiesTextEncoder extends AbstractTraitCollectionTextEncoder {
 
   @Override
   protected List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups(ICharacter character) {
-    return AbilitiesDisplayUtilities.createDisplayTraitGroups(character);
+    return  new AbilitiesDisplayGroupFactory().createDisplayTraitGroups(character);
   }
 
   @Override

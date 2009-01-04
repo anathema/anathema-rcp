@@ -8,7 +8,7 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.model.TypeTraitModelIdProvider;
+import net.sf.anathema.character.trait.model.MainTraitModelProvider;
 import net.sf.anathema.charms.character.tree.CharmTraitLookup;
 import net.sf.anathema.charms.character.tree.ITraitIdLookup;
 
@@ -16,7 +16,7 @@ public class CheapCharmPredicate implements IPredicate<String> {
 
   public static IPredicate<String> From(IModelCollection modelCollection, ICharacterId characterId) {
     ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
-    String traitModelId = new TypeTraitModelIdProvider().getTraitModelId(characterType.getId());
+    String traitModelId = new MainTraitModelProvider().getFor(characterType.getId());
     ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, traitModelId);
     ITraitCollectionModel model = (ITraitCollectionModel) modelCollection.getModel(modelIdentifier);
     ITraitIdLookup idProvider = new CharmTraitLookup();

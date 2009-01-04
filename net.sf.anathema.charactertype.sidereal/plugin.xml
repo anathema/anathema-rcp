@@ -103,7 +103,7 @@
       </casteList>
    </extension>
    <extension
-         point="net.sf.anathema.character.trait.traitmodels">
+         point="net.sf.anathema.character.trait.maintraits">
       <traitmodel
             characterType="net.sf.anathema.character.type.sidereal"
             modelId="net.sf.anathema.character.abilities.model">
@@ -209,14 +209,6 @@
             </traitReference>
          </traitGroup>
       </groups>
-   </extension>
-   <extension
-         point="net.sf.anathema.character.core.modeldependencies">
-      <dependency
-            characterType="net.sf.anathema.character.type.sidereal"
-            dependentModelId="net.sf.anathema.character.abilities.model"
-            neededModelId="net.sf.anathema.character.caste.model">
-      </dependency>
    </extension>
    <extension
          point="net.sf.anathema.character.core.resources">

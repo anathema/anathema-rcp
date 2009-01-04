@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeMessages;
-import net.sf.anathema.character.attributes.util.AttributeDisplayUtilties;
+import net.sf.anathema.character.attributes.util.AttributeDisplayGroupFactory;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
@@ -21,7 +21,7 @@ import com.lowagie.text.Font;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class PdfAttributesEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
+public class AttributesEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
 
   private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
   private final PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
@@ -34,7 +34,7 @@ public class PdfAttributesEncoder extends AbstractExecutableExtension implements
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    List<IDisplayTraitGroup<IDisplayTrait>> displayGroups = AttributeDisplayUtilties.getDisplayAttributeGroups(character);
+    List<IDisplayTraitGroup<IDisplayTrait>> displayGroups = new AttributeDisplayGroupFactory().createDisplayTraitGroups(character);
     encodeAttributes(directContent, bounds, displayGroups);
   }
 
