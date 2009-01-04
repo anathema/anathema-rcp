@@ -3,14 +3,19 @@
 <schema targetNamespace="net.sf.anathema.character.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="net.sf.anathema.character.core" id="modeldependencies" name="Charactre Model dependencies"/>
+         <meta.schema plugin="net.sf.anathema.character.core" id="modeldependencies" name="Character Model dependencies"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Model dependencies tell the system about models that need to be updated (dependent model) when another model changes (needed model).
       </documentation>
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="dependency" minOccurs="1" maxOccurs="unbounded"/>
@@ -47,21 +52,21 @@
          <attribute name="characterType" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The id of the charactertype this dependency applies for.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="dependentModelId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The id of the dependent (i.e. to be updated) model.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="neededModelId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The id of the model to trigger updates.
                </documentation>
             </annotation>
          </attribute>
@@ -73,7 +78,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         v1.0
       </documentation>
    </annotation>
 
@@ -82,25 +87,17 @@
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         [Enter extension point usage example here.]
+         A Solar&apos;s ability cost is bound to change when his caste changes.
       </documentation>
    </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="apiinfo"/>
-      </appinfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         net.sf.anathema.character.core.model.DependenciesHandler
       </documentation>
    </annotation>
 
