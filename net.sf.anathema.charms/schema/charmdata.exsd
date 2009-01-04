@@ -242,11 +242,11 @@ If no cost is given, the charm use is for free.
                   </enumeration>
                   <enumeration value="experience">
                   </enumeration>
-                  <enumeration value="bashing hl">
+                  <enumeration value="bashing_hl">
                   </enumeration>
-                  <enumeration value="lethal hl">
+                  <enumeration value="lethal_hl">
                   </enumeration>
-                  <enumeration value="aggrevated hl">
+                  <enumeration value="aggravated_hl">
                   </enumeration>
                </restriction>
             </simpleType>

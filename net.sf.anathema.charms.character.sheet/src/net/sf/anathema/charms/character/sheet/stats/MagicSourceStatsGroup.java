@@ -18,6 +18,6 @@ public class MagicSourceStatsGroup extends AbstractTextStatsGroup<IMagicStats> {
   }
 
   public String getTitle() {
-    return "Source";
+    return Messages.MagicSourceStatsGroup_Title;
   }
 }

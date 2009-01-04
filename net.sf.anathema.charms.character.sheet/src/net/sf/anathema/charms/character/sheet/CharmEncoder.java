@@ -27,7 +27,7 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
 
   @Override
   public String getHeader(ICharacter character) {
-    return "Charms";
+    return Messages.CharmEncoder_Title;
   }
 
   @Override
@@ -47,11 +47,11 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
   private List<IMagicStats> collectPrintMagic(Collection<ICharmId> learnedCharms, ICharacter character) {
     final List<IMagicStats> printStats = new ArrayList<IMagicStats>();
     CharmDataExtensionPoint extensionPoint = new CharmDataExtensionPoint();
-    // Case 349: Generics sollen nur einmal auftauchen
-    for (ICharmId charmId : learnedCharms) {
-      CharmDto data = extensionPoint.getData(charmId);
+    //Case 357: Generics sollen nur einmal auftauchen
+    for (ICharmId id : learnedCharms) {
+      CharmDto data = extensionPoint.getData(id);
       DisplayCharm charm = new DisplayCharm(data);
-      printStats.add(new CharmStats(charmId, charm));
+      printStats.add(new CharmStats(id, charm));
     }
     return printStats;
   }

@@ -54,7 +54,7 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     table.addCell(new TableCell(new Phrase(), Rectangle.NO_BORDER));
     String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
     IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
-    String phraseCompletion = mainModel + ".forgenerics";
+    String phraseCompletion = mainModel + ".forgenerics"; //$NON-NLS-1$
     List<IDisplayTraitGroup<IDisplayTrait>> groups = factory.createDisplayTraitGroups(character);
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       for (IDisplayTrait trait : group.getTraits()) {

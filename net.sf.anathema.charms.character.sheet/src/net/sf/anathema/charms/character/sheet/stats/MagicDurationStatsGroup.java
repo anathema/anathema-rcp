@@ -18,6 +18,6 @@ public class MagicDurationStatsGroup extends AbstractTextStatsGroup<IMagicStats>
   }
 
   public String getTitle() {
-    return "Duration";
+    return Messages.MagicDurationStatsGroup_Title;
   }
 }

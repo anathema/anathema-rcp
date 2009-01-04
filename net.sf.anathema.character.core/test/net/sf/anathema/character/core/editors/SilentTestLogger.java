@@ -10,14 +10,14 @@ public class SilentTestLogger implements ILogger {
   private Throwable throwable;
   
   @Override
-  public IStatus createErrorStatus(String message, Throwable throwable) {
-    this.throwable = throwable;
+  public IStatus createErrorStatus(String message, Throwable newThrowable) {
+    this.throwable = newThrowable;
     return null;
   }
 
   @Override
-  public void error(String message, Throwable throwable) {
-    this.throwable = throwable;
+  public void error(String message, Throwable newThrowable) {
+    this.throwable = newThrowable;
   }
 
   @Override

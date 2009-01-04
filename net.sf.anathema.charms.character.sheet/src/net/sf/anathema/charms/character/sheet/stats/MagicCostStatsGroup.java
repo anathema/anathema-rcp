@@ -17,6 +17,6 @@ public class MagicCostStatsGroup extends AbstractTextStatsGroup<IMagicStats> {
   }
 
   public String getTitle() {
-    return "Cost";
+    return Messages.MagicCostStatsGroup_Title;
   }
 }

@@ -22,12 +22,4 @@ public class CharmExperienceCosts implements ICharmExperienceCosts {
     }
     return charmCost.getExperienceCost(charmId);
   }
-
-  private int getExpensiveCost() {
-    return 10;
-  }
-
-  private int getCheapCost() {
-    return 8;
-  }
 }

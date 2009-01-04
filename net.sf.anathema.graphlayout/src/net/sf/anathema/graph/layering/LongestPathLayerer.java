@@ -22,7 +22,8 @@ public class LongestPathLayerer implements ILayerer {
     return deepestLayer;
   }
 
-  private int setChildLayers(int deepestLayer, IRegularNode node) {
+  private int setChildLayers(int layer, IRegularNode node) {
+    int deepestLayer = layer;
     for (ISimpleNode child : node.getChildren()) {
       IRegularNode regularChild = (IRegularNode) child;
       regularChild.setLayer(Math.max(regularChild.getLayer(), node.getLayer() + 1));
@@ -31,7 +32,8 @@ public class LongestPathLayerer implements ILayerer {
     return deepestLayer;
   }
 
-  private int optimizeLayers(IRegularNode[] topologicallySortedNodes, int deepestLayer) {
+  private int optimizeLayers(IRegularNode[] topologicallySortedNodes, int layer) {
+    int deepestLayer = layer;
     MultiEntryMap<Integer, IRegularNode> nodesByLayer = new MultiEntryMap<Integer, IRegularNode>();
     for (IRegularNode node : topologicallySortedNodes) {
       nodesByLayer.add(node.getLayer(), node);

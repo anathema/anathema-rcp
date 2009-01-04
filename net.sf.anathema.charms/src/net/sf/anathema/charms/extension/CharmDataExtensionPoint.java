@@ -13,6 +13,7 @@ import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataExtensionPoint extends AbstractExecutableExtension implements ICharmDataMap {
 
+  private static final String TAG_ADDITIONALDATA = "additionalData"; //$NON-NLS-1$
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String TAG_KEYWORD = "keyword"; //$NON-NLS-1$
   private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
@@ -60,7 +61,7 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   }
 
   private void fillInCosts(IExtensionElement typeElement, CharmDto charmDto) {
-    IExtensionElement additionalDataElement = typeElement.getElement("additionalData");
+    IExtensionElement additionalDataElement = typeElement.getElement(TAG_ADDITIONALDATA);
     if (additionalDataElement == null) {
       return;
     }

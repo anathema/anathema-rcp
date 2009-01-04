@@ -6,19 +6,18 @@ import net.sf.anathema.charms.data.cost.BaseDto;
 import net.sf.anathema.charms.data.cost.LinearDto;
 import net.sf.anathema.charms.data.cost.ResourceDto;
 import net.sf.anathema.charms.view.tooltipp.ConcatenateString;
-import net.sf.anathema.charms.view.tooltipp.DisplayResourceType;
+import net.sf.anathema.charms.view.tooltipp.ResourceMessages;
 
 public class DisplayResource {
 
   private final ResourceDto resource;
-  private final DisplayResourceType resourceType = new DisplayResourceType();
 
   public DisplayResource(ResourceDto resource) {
     this.resource = resource;
   }
 
   public String get() {
-    String shortType = resourceType.getShortName(resource.type);
+    String shortType = ResourceMessages.get(resource.type);
     ConcatenateString resourceBuilder = new ConcatenateString("+");
     resourceBuilder.concatenate(getBaseAmount(shortType));
     resourceBuilder.concatenate(getLinearAmount(shortType));
@@ -30,8 +29,11 @@ public class DisplayResource {
     if (dto == null) {
       return null;
     }
-    String message = dto.orMore ? "{0}{1}+" : "{0}{1}";
-    return MessageFormat.format(message, dto.amount, shortType);
+    StringBuilder builder = new StringBuilder(Messages.DisplayResource_BaseAmountPattern);
+    if (dto.orMore) {
+      builder.append("+");
+    }
+    return MessageFormat.format(builder.toString(), dto.amount, shortType);
   }
 
   private String getLinearAmount(String shortType) {
@@ -39,6 +41,6 @@ public class DisplayResource {
     if (dto == null) {
       return null;
     }
-    return MessageFormat.format("{0}{1}/{2}", dto.amount, shortType, dto.unit);
+    return MessageFormat.format(Messages.DisplayResource_LinearAmountPattern, dto.amount, shortType, dto.unit);
   }
 }

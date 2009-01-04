@@ -33,14 +33,16 @@ public class LayerCrossingMinimizer {
     crossingCount = tryIndexSwapping(changeableLayerIndex, crossingCount, originalIndices);
   }
 
-  private int tryIndexSwapping(int changeableLayerIndex, int crossingCount, int[] originalIndices) {
+  private int tryIndexSwapping(int changeableLayerIndex, int crossings, int[] originalIndices) {
+    int crossingCount = crossings;
     for (int index = 0; index < originalIndices.length - 1; index++) {
       crossingCount = tryAllWithoutIndex(changeableLayerIndex, crossingCount, originalIndices, index);
     }
     return crossingCount;
   }
 
-  private int tryAllWithoutIndex(int changeableLayerIndex, int crossingCount, int[] originalIndices, int fixedIndex) {
+  private int tryAllWithoutIndex(int changeableLayerIndex, int crossings, int[] originalIndices, int fixedIndex) {
+    int crossingCount = crossings;
     int[] remainingIndices = new int[originalIndices.length - 1];
     for (int index = 0; index < fixedIndex; index++) {
       remainingIndices[index] = originalIndices[index];

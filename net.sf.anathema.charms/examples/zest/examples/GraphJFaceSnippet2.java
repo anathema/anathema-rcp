@@ -63,9 +63,11 @@ public class GraphJFaceSnippet2 {
 		}
 
 		public void dispose() {
+		  //nothing to do
 		}
 
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		public void inputChanged(@SuppressWarnings("hiding") Viewer viewer, Object oldInput, Object newInput) {
+		  //nothing to do
 		}
 
 	}

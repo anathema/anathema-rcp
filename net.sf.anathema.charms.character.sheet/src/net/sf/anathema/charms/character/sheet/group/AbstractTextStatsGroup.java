@@ -18,10 +18,12 @@ public abstract class AbstractTextStatsGroup<T extends IStats> implements IStats
   }
 
   protected final PdfPCell createTextCell(Font font, String text) {
-    int border = StringUtilities.isNullOrTrimmedEmpty(text) ? Rectangle.BOTTOM : Rectangle.NO_BORDER;
-    if (StringUtilities.isNullOrTrimmedEmpty(text)) {
-      text = " "; //$NON-NLS-1$
+    boolean nullOrTrimmedEmpty = StringUtilities.isNullOrTrimmedEmpty(text);
+    int border = nullOrTrimmedEmpty ? Rectangle.BOTTOM : Rectangle.NO_BORDER;
+    String finalText = text;
+    if (nullOrTrimmedEmpty) {
+      finalText = " "; //$NON-NLS-1$
     }
-    return TableEncodingUtilities.createContentCellTable(Color.BLACK, text, font, 0.5f, border, Element.ALIGN_LEFT);
+    return TableEncodingUtilities.createContentCellTable(Color.BLACK, finalText, font, 0.5f, border, Element.ALIGN_LEFT);
   }
 }

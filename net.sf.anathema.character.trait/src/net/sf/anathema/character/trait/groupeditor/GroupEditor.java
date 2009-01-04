@@ -38,6 +38,7 @@ import org.eclipse.ui.forms.widgets.Section;
 
 public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollectionModel> {
 
+  private static final String TRAIT_ID_CRAFT = "Craft"; //$NON-NLS-1$
   private final ClassedProvider<ITraitGroupEditorDecoration> decorations = new ClassedProvider<ITraitGroupEditorDecoration>();
   private Composite sectionContent;
   private Composite layoutContainer;
@@ -101,7 +102,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
           final Form form,
           ICharacterId characterId) {
         Section section = toolkit.createSection(layoutContainer, ExpandableComposite.TITLE_BAR);
-        section.setText("Crafts");
+        section.setText(Messages.GroupEditor_Crafts);
         sectionContent = toolkit.createComposite(section);
         section.setClient(sectionContent);
         TraitViewFactory factory = new TraitViewFactory(sectionContent, editorInput.getImageProvider(), characterId);
@@ -112,22 +113,22 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
             editorInput,
             GroupEditor.this);
         final Text[] text = new Text[1];
-        form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.text") {
+        form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.text") { //$NON-NLS-1$
           @Override
           protected Control createControl(Composite parent) {
-            final Text craftTextField = toolkit.createText(parent, "");
+            final Text craftTextField = toolkit.createText(parent, ""); //$NON-NLS-1$
             text[0] = craftTextField;
             return craftTextField;
           }
         });
-        form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.button") {
+        form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.button") { //$NON-NLS-1$
           @Override
           protected Control createControl(Composite parent) {
-            final Button addCraftButton = toolkit.createButton(parent, "Add Craft", SWT.PUSH);
+            final Button addCraftButton = toolkit.createButton(parent, Messages.GroupEditor_AddButtonText, SWT.PUSH);
             addCraftButton.addMouseListener(new MouseAdapter() {
               @Override
               public void mouseUp(MouseEvent e) {
-                IInteractiveTrait craft = editorInput.addSubTrait("Craft", text[0].getText());
+                IInteractiveTrait craft = editorInput.addSubTrait(TRAIT_ID_CRAFT, text[0].getText());
                 subtraitContainer.addSubTrait(craft);
                 addCraftButton.setEnabled(false);
               }
@@ -157,7 +158,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
   }
 
   private List<IInteractiveTrait> getCrafts(final ITraitGroupEditorInput editorInput) {
-    return editorInput.getSubTraits("Craft");
+    return editorInput.getSubTraits(TRAIT_ID_CRAFT);
   }
 
   public void updateDecorations() {

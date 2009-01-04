@@ -16,10 +16,6 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
   private final CharmSelectionControl selectionControl;
   private final String treeId;
 
-  public ZestView() {
-    this(new StandaloneCharmVisuals(), "Solar: Stealth");
-  }
-
   public ZestView(ICharmVisuals charmVisuals, String treeId, IChangeableModel... models) {
     this.treeId = treeId;
     selectionControl = new CharmSelectionControl(charmVisuals, models);

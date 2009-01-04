@@ -15,7 +15,7 @@ import com.lowagie.text.pdf.PdfContentByte;
 public class GenericCharmEncoder extends AbstractExecutableExtension implements IDynamicPdfContentBoxEncoder {
   @Override
   public String getHeader(ICharacter character) {
-    return "Generic Charms";
+    return Messages.GenericCharmEncoder_Header;
   }
 
   @Override

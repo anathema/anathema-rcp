@@ -21,7 +21,8 @@ import org.eclipse.zest.layouts.dataStructures.InternalRelationship;
  */
 public class CustomLayout {
 	
-	public static void main(String[] args) {
+	@SuppressWarnings("nls")
+  public static void main(String[] args) {
 		Display d = new Display();
 		Shell shell = new Shell(d);
 		shell.setText("Custom Layout Example");

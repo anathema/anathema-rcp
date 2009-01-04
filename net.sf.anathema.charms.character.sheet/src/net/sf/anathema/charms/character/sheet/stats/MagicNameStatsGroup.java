@@ -22,6 +22,6 @@ public class MagicNameStatsGroup extends AbstractTextStatsGroup<IMagicStats> {
   }
 
   public String getTitle() {
-    return "Name";
+    return Messages.MagicNameStatsGroup_Title;
   }
 }

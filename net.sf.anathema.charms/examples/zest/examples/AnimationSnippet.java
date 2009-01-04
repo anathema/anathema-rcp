@@ -41,6 +41,7 @@ public class AnimationSnippet {
 		
 		b.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
+			  //nothing to do
 			}
 
 			public void widgetSelected(SelectionEvent e) {

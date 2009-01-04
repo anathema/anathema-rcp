@@ -1,9 +1,7 @@
 package net.sf.anathema.character.trait.validator.extension;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.*;
 import net.sf.anathema.character.trait.BasicTrait;
-import net.sf.anathema.character.trait.validator.extension.MinimumRequirement;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -15,7 +13,7 @@ public class MinimumRequirement_Test {
 
   @Before
   public void createTrait() throws Exception {
-    this.trait = new BasicTrait(new Identificate("Hallo"));
+    this.trait = new BasicTrait(new Identificate("Hallo")); //$NON-NLS-1$
   }
   
   @Test

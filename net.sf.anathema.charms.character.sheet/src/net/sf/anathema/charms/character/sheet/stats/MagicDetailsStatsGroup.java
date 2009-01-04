@@ -15,7 +15,7 @@ public class MagicDetailsStatsGroup extends AbstractTextStatsGroup<IMagicStats> 
     else {
       String details = stats.getDetails();
       if (StringUtilities.isNullOrEmpty(details)) {
-        details = "-";
+        details = Messages.MagicDetailsStatsGroup_Empty;
       }
       table.addCell(createTextCell(font, details));
     }
@@ -26,6 +26,6 @@ public class MagicDetailsStatsGroup extends AbstractTextStatsGroup<IMagicStats> 
   }
 
   public String getTitle() {
-    return "Details";
+    return Messages.MagicDetailsStatsGroup_Title;
   }
 }
