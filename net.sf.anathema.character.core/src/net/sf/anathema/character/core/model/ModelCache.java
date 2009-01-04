@@ -9,11 +9,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
-import net.sf.anathema.character.core.model.change.AggregatedModelChangeProcessor;
-import net.sf.anathema.character.core.model.change.IModelChangeProcessor;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
-import net.sf.anathema.lib.ui.ChangeableModelDisposable;
-import net.sf.anathema.lib.ui.IDisposable;
 
 public class ModelCache implements IModelCache {
 
