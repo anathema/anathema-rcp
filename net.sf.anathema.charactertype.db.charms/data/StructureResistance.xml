@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.Ox-BodyTechnique" exalt="Dragon-Blooded" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.StrengthStoneTechnique" exalt="Dragon-Blooded" group="Resistance">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.MountainTopplingMethod" exalt="Dragon-Blooded" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.StrengthStoneTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ImperviousSkinStoneMeditation" exalt="Dragon-Blooded" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.StrengthStoneTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ElementProtectionForm" exalt="Dragon-Blooded" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ImperviousSkinStoneMeditation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.UneatingEarthMeditation" exalt="Dragon-Blooded" group="Resistance">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.UnbreathingEarthMeditation" exalt="Dragon-Blooded" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.UneatingEarthMeditation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.UnfeelingEarthMeditation" exalt="Dragon-Blooded" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.UnbreathingEarthMeditation"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

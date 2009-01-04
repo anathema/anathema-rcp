@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.ShapingHandStyle" exalt="Dragon-Blooded" group="Craft">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Stone-CarvingFingersForm" exalt="Dragon-Blooded" group="Craft">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ShapingHandStyle"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.PerfectClimbingAttitude" exalt="Dragon-Blooded" group="Craft">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Stone-CarvingFingersForm"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Flaw-FindingExamination" exalt="Dragon-Blooded" group="Craft">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.CharmLesserUnmaking" exalt="Dragon-Blooded" group="Craft">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Flaw-FindingExamination"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.CharmGreaterUnmaking" exalt="Dragon-Blooded" group="Craft">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.CharmLesserUnmaking"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

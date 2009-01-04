@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.GlowingCoalRadiance" exalt="Dragon-Blooded" group="Presence">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.UnbearableTauntTechnique" exalt="Dragon-Blooded" group="Presence">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.GlowingCoalRadiance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.MothToCandle" exalt="Dragon-Blooded" group="Presence">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.UnbearableTauntTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.AuraInvulnerability" exalt="Dragon-Blooded" group="Presence">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.GlowingCoalRadiance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.TerrifyingElementDragonRoar" exalt="Dragon-Blooded" group="Presence">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.AuraInvulnerability"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.WarlordsConvocation" exalt="Dragon-Blooded" group="Presence">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/>  
+      <charmReference id="Dragon-Blooded.AuraInvulnerability"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.AuspiciousFirstMeetingAttitude" exalt="Dragon-Blooded" group="Presence">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.PassionTransmutingNuance" exalt="Dragon-Blooded" group="Presence">
+    <prerequisite></prerequisite>
+  </charm> 
+</charmlist>

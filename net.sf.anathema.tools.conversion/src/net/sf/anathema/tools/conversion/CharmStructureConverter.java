@@ -20,7 +20,11 @@ public class CharmStructureConverter {
     Map<String, String> parameters = new HashMap<String, String>();
     IFactory<InputStream, IOException> streamFactory = new StructureSheetStreamFactory();
     XSLDocumentConverter converter = new XSLDocumentConverter(streamFactory, parameters);
-    for (File charmFile : sourceFolder.listFiles()) {
+    File[] allFiles = sourceFolder.listFiles();
+    for (File charmFile : allFiles) {
+      if (!charmFile.getName().endsWith("xml")) {
+        continue;
+      }
       Document sourceDocument = DocumentUtilities.read(charmFile);
       Document targetDocument = converter.run(sourceDocument);
       File targetFile = createTargetFile(targetFolder, charmFile);

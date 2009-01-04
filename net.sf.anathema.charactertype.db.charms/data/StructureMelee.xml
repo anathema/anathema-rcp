@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.Dragon-GracedWeapon" exalt="Dragon-Blooded" group="Melee">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.BlindingSparkDistraction" exalt="Dragon-Blooded" group="Melee">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Dragon-GracedWeapon"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Ghost-FireBlade" exalt="Dragon-Blooded" group="Melee">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Dragon-GracedWeapon"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.RefiningInnerBlade" exalt="Dragon-Blooded" group="Melee">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Dragon-GracedWeapon"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.PortentousCometDeflectingMethod" exalt="Dragon-Blooded" group="Melee">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ThreshingFloorTechnique" exalt="Dragon-Blooded" group="Melee">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.TerrestrialReinforcement.Melee"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.RingingAnvilOnslaught" exalt="Dragon-Blooded" group="Melee">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ThreshingFloorTechnique"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

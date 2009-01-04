@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.ElementalConcentrationTrance" exalt="Dragon-Blooded" group="Lore">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.EternalMindMeditation" exalt="Dragon-Blooded" group="Lore">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ElementalConcentrationTrance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ElementalEmpowermentMeditation" exalt="Dragon-Blooded" group="Lore">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ElementalConcentrationTrance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ElementalSuccorMethod" exalt="Dragon-Blooded" group="Lore">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ElementalEmpowermentMeditation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ElementalBoltAttack" exalt="Dragon-Blooded" group="Lore">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ElementalBurstTechnique" exalt="Dragon-Blooded" group="Lore">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ElementalBoltAttack"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

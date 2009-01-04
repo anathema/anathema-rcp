@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.All-EncompassingEarthSense" exalt="Dragon-Blooded" group="Awareness">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.FeelingDragon'sBones" exalt="Dragon-Blooded" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.All-EncompassingEarthSense"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.EntombedMindTechnique" exalt="Dragon-Blooded" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.FeelingDragon'sBones"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Sense-RidingTechnique" exalt="Dragon-Blooded" group="Awareness">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Sense-DestroyingMethod" exalt="Dragon-Blooded" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Sense-RidingTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.EssenceDisruptionAttack" exalt="Dragon-Blooded" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Sense-DestroyingMethod"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

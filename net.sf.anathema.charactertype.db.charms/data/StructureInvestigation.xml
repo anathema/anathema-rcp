@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.ScentCrimeMethod" exalt="Dragon-Blooded" group="Investigation">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.FalsehoodUnearthingAttitude" exalt="Dragon-Blooded" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ScentCrimeMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.TamperingDetectionTechnique" exalt="Dragon-Blooded" group="Investigation">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.BloodhoundsNoseTechnique" exalt="Dragon-Blooded" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ScentCrimeMethod"/>  
+      <charmReference id="Dragon-Blooded.TamperingDetectionTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ClearWaterPrana" exalt="Dragon-Blooded" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.TamperingDetectionTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.RevelationAssociatesHunch" exalt="Dragon-Blooded" group="Investigation">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.HomewardTrailDiscoveryMethod" exalt="Dragon-Blooded" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.RevelationAssociatesHunch"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

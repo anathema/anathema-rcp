@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.TerrestrialCircleSorcery" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ShadowlandsCircleNecromancy" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Spirit-DetectingMirrorTechnique" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.HarmoniousWind-LuringSong" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Spirit-DetectingMirrorTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Spirit-GroundingShout" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Spirit-DetectingMirrorTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Spirit-ChainingStrike" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Spirit-GroundingShout"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Spirit-ShreddingAttack" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Spirit-GroundingShout"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.FivefoldResonanceSense" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.SeeingMakersHand" exalt="Dragon-Blooded" group="Occult">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.FivefoldResonanceSense"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

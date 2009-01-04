@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.Feeling-the-AirTechnique" exalt="Dragon-Blooded" group="Stealth">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.SoundlessActionPrana" exalt="Dragon-Blooded" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Feeling-the-AirTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.ZoneSilenceStance" exalt="Dragon-Blooded" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.SoundlessActionPrana"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.DistractingBreezeMeditation" exalt="Dragon-Blooded" group="Stealth">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.TracklessPassageStyle" exalt="Dragon-Blooded" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.DistractingBreezeMeditation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Wind-WalkingTechnique" exalt="Dragon-Blooded" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.TracklessPassageStyle"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.DragonShroudTechnique" exalt="Dragon-Blooded" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.Wind-WalkingTechnique"/>  
+      <charmReference id="Dragon-Blooded.SoundlessActionPrana"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>
