@@ -1,22 +1,23 @@
 package net.sf.anathema.charms.character.model;
 
 import net.sf.anathema.character.core.character.IModel;
+import net.sf.anathema.charms.tree.ICharmId;
 
 public interface ICharmModel extends IModel {
 
   public static final String MODEL_ID = "net.sf.anathema.charms.character.modelId"; //$NON-NLS-1$
 
-  public boolean isCreationLearned(String charmId);
+  public boolean isCreationLearned(ICharmId charmId);
 
-  public boolean isExperienceLearned(String charmId);
+  public boolean isExperienceLearned(ICharmId charmId);
 
-  public boolean isLearned(String charmId);
+  public boolean isLearned(ICharmId charmId);
 
-  public void toggleCreationLearned(String charmId);
+  public void toggleCreationLearned(ICharmId charmId);
 
-  public void toggleExperiencedLearned(String charmId);
+  public void toggleExperiencedLearned(ICharmId charmId);
 
-  public Iterable<String> getExperienceLearnedCharms();
+  public Iterable<ICharmId> getExperienceLearnedCharms();
 
-  public Iterable<String> getCreationLearnedCharms();
+  public Iterable<ICharmId> getCreationLearnedCharms();
 }

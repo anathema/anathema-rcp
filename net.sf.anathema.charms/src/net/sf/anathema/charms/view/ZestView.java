@@ -33,9 +33,9 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
     graphControl.addMouseMoveListener(new TooltippMouseListener(viewer));
     viewer.setLabelProvider(new CharmLabelProvider(new CharmDataProvider()));
     viewer.setContentProvider(contentProvider);
-    viewer.setLayoutAlgorithm(new SugiyamaLayoutAlgorithm(contentProvider));
+    viewer.setLayoutAlgorithm(new SugiyamaLayoutAlgorithm());
     viewer.setInput(treeId);
-    selectionControl.connect(viewer, contentProvider);
+    selectionControl.connect(viewer);
   }
 
   public void addSelectionListener(ICharmSelectionListener listener) {

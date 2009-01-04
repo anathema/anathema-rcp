@@ -8,12 +8,13 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModel;
+import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.lib.control.change.ChangeControl;
 
 public class CharmModel extends AbstractModel implements ICharmModel {
 
-  private final List<String> creationLearnedCharms = new ArrayList<String>();
-  private final List<String> experienceLearnedCharms = new ArrayList<String>();
+  private final List<ICharmId> creationLearnedCharms = new ArrayList<ICharmId>();
+  private final List<ICharmId> experienceLearnedCharms = new ArrayList<ICharmId>();
   private final ChangeControl changeControl = new ChangeControl();
 
   public static ICharmModel getFrom(IModelCollection modelCollection, ICharacterId characterId) {
@@ -32,41 +33,41 @@ public class CharmModel extends AbstractModel implements ICharmModel {
   }
 
   @Override
-  public boolean isLearned(String charmId) {
+  public boolean isLearned(ICharmId charmId) {
     return creationLearnedCharms.contains(charmId) || experienceLearnedCharms.contains(charmId);
   }
 
   @Override
-  public boolean isCreationLearned(String charmId) {
+  public boolean isCreationLearned(ICharmId charmId) {
     return creationLearnedCharms.contains(charmId);
   }
 
   @Override
-  public boolean isExperienceLearned(String charmId) {
+  public boolean isExperienceLearned(ICharmId charmId) {
     return isLearned(charmId) && !isCreationLearned(charmId);
   }
 
   @Override
-  public Iterable<String> getCreationLearnedCharms() {
+  public Iterable<ICharmId> getCreationLearnedCharms() {
     return creationLearnedCharms;
   }
 
   @Override
-  public Iterable<String> getExperienceLearnedCharms() {
+  public Iterable<ICharmId> getExperienceLearnedCharms() {
     return experienceLearnedCharms;
   }
 
   @Override
-  public void toggleCreationLearned(String charmId) {
+  public void toggleCreationLearned(ICharmId charmId) {
     toggleLearnedInList(charmId, creationLearnedCharms);
   }
 
   @Override
-  public void toggleExperiencedLearned(String charmId) {
+  public void toggleExperiencedLearned(ICharmId charmId) {
     toggleLearnedInList(charmId, experienceLearnedCharms);
   }
 
-  private void toggleLearnedInList(String charmId, List<String> charmList) {
+  private void toggleLearnedInList(ICharmId charmId, List<ICharmId> charmList) {
     if (charmList.contains(charmId)) {
       charmList.remove(charmId);
     }

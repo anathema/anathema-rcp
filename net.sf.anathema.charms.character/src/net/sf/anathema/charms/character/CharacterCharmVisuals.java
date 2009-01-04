@@ -4,6 +4,7 @@ import net.sf.anathema.basics.swt.dispose.ColorDisposable;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.character.preference.ICharmPreferences;
+import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.view.ICharmNode;
 import net.sf.anathema.charms.view.ICharmSelectionControl;
 import net.sf.anathema.charms.view.ICharmSelectionListener;
@@ -30,7 +31,10 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
 
   @Override
   public void connect(final ICharmSelectionControl selectionControl) {
-    final ICharmSelectionListener selectionListener = new LearningCharmSelectionListener(charmModel, experience,preferences);
+    final ICharmSelectionListener selectionListener = new LearningCharmSelectionListener(
+        charmModel,
+        experience,
+        preferences);
     addDisposable(new IDisposable() {
       @Override
       public void dispose() {
@@ -43,11 +47,11 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
   @Override
   public synchronized void update(ICharmNode node) {
     Display display = node.getDisplay();
-    String charmId = node.getCharmId();
+    ICharmId charmId = node.getCharmId();
     node.setColor(isLearned(charmId) ? getLearnedColor(display) : getDefaultColor(display));
   }
 
-  private boolean isLearned(String charmId) {
+  private boolean isLearned(ICharmId charmId) {
     return experience.isExperienced() ? charmModel.isLearned(charmId) : charmModel.isCreationLearned(charmId);
   }
 

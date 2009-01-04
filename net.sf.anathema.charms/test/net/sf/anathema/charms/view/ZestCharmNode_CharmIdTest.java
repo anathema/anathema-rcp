@@ -1,8 +1,8 @@
 package net.sf.anathema.charms.view;
 
-import static org.easymock.EasyMock.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import net.sf.anathema.charms.tree.CharmId;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
@@ -26,12 +26,9 @@ public class ZestCharmNode_CharmIdTest {
 
   @Test
   public void extractsCharmIdFromGraphNode() throws Exception {
-    ICharmIdExtractor extractor = createMock(ICharmIdExtractor.class);
-    expect(extractor.getCharmId("MyNeatLittleCharm")).andReturn("BunnyMeadowGreen"); //$NON-NLS-1$ //$NON-NLS-2$
-    replay(extractor);
-    graphNode.setData("MyNeatLittleCharm"); //$NON-NLS-1$
-    ZestCharmNode charmNode = new ZestCharmNode(graphNode, extractor);
-    assertThat(charmNode.getCharmId(), is("BunnyMeadowGreen")); //$NON-NLS-1$
+    graphNode.setData(new CharmId("BunnyMeadowGreen", null)); //$NON-NLS-1$
+    ZestCharmNode charmNode = new ZestCharmNode(graphNode);
+    assertThat(charmNode.getCharmId().getId(), is("BunnyMeadowGreen")); //$NON-NLS-1$
   }
 
   public void disposeParent() throws Exception {

@@ -4,6 +4,7 @@ import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.character.preference.ExperienceCharmTreatment;
 import net.sf.anathema.charms.character.preference.ICharmPreferences;
+import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.view.ICharmSelectionListener;
 
 public final class LearningCharmSelectionListener implements ICharmSelectionListener {
@@ -18,7 +19,7 @@ public final class LearningCharmSelectionListener implements ICharmSelectionList
   }
 
   @Override
-  public void charmSelected(String charmId) {
+  public void charmSelected(ICharmId charmId) {
     ExperienceCharmTreatment treatment = preferences.getExperienceTreatment();
     if (!experience.isExperienced()) {
       if (treatment == ExperienceCharmTreatment.Forget && charmModel.isExperienceLearned(charmId)) {

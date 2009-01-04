@@ -4,6 +4,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.charms.character.CharmModelUtilities;
 import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmExperienceExpenditure {
 
@@ -17,7 +18,7 @@ public class CharmExperienceExpenditure {
 
   public int getPoints() {
     int experiencePoints = 0;
-    for (String charmId : charmModel.getExperienceLearnedCharms()) {
+    for (ICharmId charmId : charmModel.getExperienceLearnedCharms()) {
       experiencePoints += costs.getFor(charmId);
     }
     return experiencePoints;

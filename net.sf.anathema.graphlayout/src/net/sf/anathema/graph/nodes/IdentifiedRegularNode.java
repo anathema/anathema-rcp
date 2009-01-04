@@ -6,10 +6,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import net.disy.commons.core.util.ObjectUtilities;
 import net.sf.anathema.lib.collection.ArrayUtilities;
-import net.sf.anathema.lib.util.Identificate;
 
-public class IdentifiedRegularNode extends Identificate implements IIdentifiedRegularNode {
+public class IdentifiedRegularNode implements IIdentifiedRegularNode {
 
   private final class NodeIndexComparator implements Comparator<ISimpleNode> {
     private final ISimpleNode[] orderedNodes;
@@ -27,9 +27,10 @@ public class IdentifiedRegularNode extends Identificate implements IIdentifiedRe
   private final List<ISimpleNode> parentList = new ArrayList<ISimpleNode>();
   private int layer = 0;
   private boolean lowerToChildren = false;
+  private final Object id;
 
-  public IdentifiedRegularNode(String id, IRegularNode... children) {
-    super(id);
+  public IdentifiedRegularNode(Object id, IRegularNode... children) {
+    this.id = id;
     Collections.addAll(childList, children);
   }
 
@@ -97,6 +98,20 @@ public class IdentifiedRegularNode extends Identificate implements IIdentifiedRe
 
   @Override
   public String toString() {
-    return getId() + " (Layer:" + getLayer() + ")"; //$NON-NLS-1$//$NON-NLS-2$
+    return id + " (Layer:" + getLayer() + ")"; //$NON-NLS-1$//$NON-NLS-2$
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof IdentifiedRegularNode)) {
+      return false;
+    }
+    IdentifiedRegularNode other = (IdentifiedRegularNode) obj;
+    return ObjectUtilities.equals(other.id, id);
+  }
+
+  @Override
+  public int hashCode() {
+    return id == null ? -1 : id.hashCode();
   }
 }

@@ -4,13 +4,15 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.tree.CharmId;
+import net.sf.anathema.charms.tree.ICharmId;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class LearningCharmSelectionListener_ExperienceTest {
 
-  public static final String CHARM_ID = "charmId"; //$NON-NLS-1$
+  public static final ICharmId CHARM_ID = new CharmId("charmId", null); //$NON-NLS-1$
   private CharmModel charmModel;
   private LearningCharmSelectionListener listener;
 

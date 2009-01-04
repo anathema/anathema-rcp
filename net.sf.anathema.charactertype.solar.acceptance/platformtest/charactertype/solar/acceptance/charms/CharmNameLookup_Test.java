@@ -12,7 +12,7 @@ public class CharmNameLookup_Test {
   @Test
   public void providesNameForRegisteredCharm() throws Exception {
     CharmNamesExtensionPoint names = new CharmNamesExtensionPoint();
-    String name = names.getNameFor(new CharmId("Solar: Invisible Statue Spirit", "Stealth")); //$NON-NLS-1$ //$NON-NLS-2$
+    String name = names.getNameFor(new CharmId("Solar.InvisibleStatueSpirit", "Stealth")); //$NON-NLS-1$ //$NON-NLS-2$
     assertThat(name, is("Invisible Statue Spirit")); //$NON-NLS-1$
   }
 

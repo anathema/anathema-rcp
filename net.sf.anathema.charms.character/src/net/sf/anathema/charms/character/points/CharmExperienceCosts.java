@@ -4,6 +4,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.charms.character.CharmModelUtilities;
 import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmExperienceCosts implements ICharmExperienceCosts {
 
@@ -15,7 +16,7 @@ public class CharmExperienceCosts implements ICharmExperienceCosts {
     charmModel = CharmModelUtilities.getModelFor(characterId, modelCollection);
   }
 
-  public int getFor(String charmId) {
+  public int getFor(ICharmId charmId) {
     if (charmModel.isCreationLearned(charmId)) {
       return 0;
     }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.graph.SugiyamaLayout;
 import net.sf.anathema.graph.graph.IProperHierarchicalGraph;
 import net.sf.anathema.graph.nodes.ISimpleNode;
@@ -20,11 +21,9 @@ public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
 
   private static final int LAYER_HEIGHT = 70;
   private static final int INITIAL_OFFSET = 20;
-  private final ICharmIdExtractor idExtractor;
 
-  public SugiyamaLayoutAlgorithm(ICharmIdExtractor idExtractor) {
+  public SugiyamaLayoutAlgorithm() {
     super(LayoutStyles.NO_LAYOUT_NODE_RESIZING);
-    this.idExtractor = idExtractor;
   }
 
   @Override
@@ -61,7 +60,7 @@ public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
     Map<InternalNode, IdentifiedRegularNode> nodesByZestNode = new HashMap<InternalNode, IdentifiedRegularNode>();
     for (InternalNode entity : entitiesToLayout) {
       GraphNode graphData = (GraphNode) entity.getLayoutEntity().getGraphData();
-      String charmId = idExtractor.getCharmId(graphData.getData());
+      ICharmId charmId = (ICharmId) graphData.getData();
       IdentifiedRegularNode regularNode = new IdentifiedRegularNode(charmId);
       nodesByZestNode.put(entity, regularNode);
       zestNodesByNodes.put(regularNode, entity);

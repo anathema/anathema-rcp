@@ -22,7 +22,7 @@ public final class CharmSelectionControl extends AggregatedDisposable implements
     addDisposable(charmVisuals);
   }
 
-  public void connect(final GraphViewer viewer, final ICharmIdExtractor idExtractor) {
+  public void connect(final GraphViewer viewer) {
     // TODO Mit Umsetzung von Case 291 die Anmeldung des Selektionslistener wieder herausnehmen
     charmVisuals.connect(this);
     final ISelectable selectable = new ViewerSelectable(viewer);
@@ -30,16 +30,16 @@ public final class CharmSelectionControl extends AggregatedDisposable implements
       @Override
       public void selectionChanged(final SelectionChangedEvent event) {
         selectionListeners.forAllDo(new GraphSelectionClosure(event, selectable));
-        updateVisuals(viewer, idExtractor);
+        updateVisuals(viewer);
       }
     };
     final IChangeListener changeListener = new IChangeListener() {
       @Override
       public void stateChanged() {
-        updateVisuals(viewer, idExtractor);
+        updateVisuals(viewer);
       }
     };
-    updateVisuals(viewer, idExtractor);
+    updateVisuals(viewer);
     viewer.addSelectionChangedListener(selectionListener);
     for (IChangeableModel model : models) {
       model.addChangeListener(changeListener);
@@ -48,9 +48,9 @@ public final class CharmSelectionControl extends AggregatedDisposable implements
     addDisposable(new SelectionListenerDisposable(selectionListener, viewer));
   }
 
-  private void updateVisuals(final GraphViewer viewer, ICharmIdExtractor idExtractor) {
+  private void updateVisuals(final GraphViewer viewer) {
     for (Object node : viewer.getGraphControl().getNodes()) {
-      charmVisuals.update(new ZestCharmNode((GraphNode) node, idExtractor));
+      charmVisuals.update(new ZestCharmNode((GraphNode) node));
     }
   }
 

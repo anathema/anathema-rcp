@@ -5,9 +5,12 @@ import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.tree.CharmId;
+import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
@@ -15,7 +18,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.matchers.JUnitMatchers;
 
 public class CharmPersister_Test {
 
@@ -37,9 +39,12 @@ public class CharmPersister_Test {
   @Test
   public void reloadsModelWithOneLearnedCharm() throws Exception {
     ICharmModel model = new CharmModel();
-    model.toggleCreationLearned("myCharm"); //$NON-NLS-1$
+    model.toggleCreationLearned(new CharmId("myCharm", "myTrait")); //$NON-NLS-1$ //$NON-NLS-2$
     ICharmModel loadedModel = saveAndLoad(model);
-    assertThat(loadedModel.getCreationLearnedCharms(), JUnitMatchers.hasItem("myCharm")); //$NON-NLS-1$
+    Iterator<ICharmId> learnedCharms = loadedModel.getCreationLearnedCharms().iterator();
+    ICharmId charmId = learnedCharms.next();
+    assertThat(charmId.getId(), is("myCharm")); //$NON-NLS-1$
+    assertThat(learnedCharms.hasNext(), is(false));
   }
 
   private ICharmModel saveAndLoad(ICharmModel model) throws IOException, PersistenceException {

@@ -15,6 +15,7 @@ import net.sf.anathema.charms.character.freebies.UnrestrictedCharmHandler;
 import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.character.points.CharmCostExtensionPoint;
 import net.sf.anathema.charms.character.points.CheapCharmPredicate;
+import net.sf.anathema.charms.tree.ICharmId;
 
 public class UnrestrictedCharmFreebiesBonusPointReducer extends AbstractPointHandler<ICharmModel> {
   private final ICreditManager creditManager;
@@ -37,7 +38,7 @@ public class UnrestrictedCharmFreebiesBonusPointReducer extends AbstractPointHan
     int cheapFreebiesCount = getCheapFreebies(characterId);
     CostDto costDto = CharmCostExtensionPoint.getCost(characterId);
     int charmCount = new UnrestrictedCharmCount(charms).count();
-    IPredicate<String> cheapCharmPredicate = CheapCharmPredicate.From(modelCollection, characterId);
+    IPredicate<ICharmId> cheapCharmPredicate = CheapCharmPredicate.From(modelCollection, characterId);
     int cheapCharmCount = new CheapCharmCount(charms, cheapCharmPredicate).count();
     int remainingCheapCount = cheapCharmCount - cheapFreebiesCount;
     int expensiveCount = charmCount - cheapCharmCount;

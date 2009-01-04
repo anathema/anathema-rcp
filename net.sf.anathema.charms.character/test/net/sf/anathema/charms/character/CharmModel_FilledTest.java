@@ -2,16 +2,17 @@ package net.sf.anathema.charms.character;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-
 import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.tree.CharmId;
+import net.sf.anathema.charms.tree.ICharmId;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class CharmModel_FilledTest {
 
-  private static final String CREATION_CHARM_ID = "creation"; //$NON-NLS-1$
-  private static final String EXPERIENCE_CHARM_ID = "experience"; //$NON-NLS-1$
+  private static final ICharmId CREATION_CHARM_ID = new CharmId("creation", null); //$NON-NLS-1$
+  private static final ICharmId EXPERIENCE_CHARM_ID = new CharmId("experience", null); //$NON-NLS-1$
   private CharmModel charmModel;
 
   @Before
@@ -50,6 +51,7 @@ public class CharmModel_FilledTest {
   public void hasLearnedExperienceCharmOnExperience() throws Exception {
     assertThat(charmModel.isExperienceLearned(EXPERIENCE_CHARM_ID), is(true));
   }
+
   @Test
   public void doesNotForgetCreationCharmOnToggleExperienced() throws Exception {
     charmModel.toggleExperiencedLearned(CREATION_CHARM_ID);

@@ -7,13 +7,17 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.fake.DummyModelCollection;
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.tree.CharmId;
+import net.sf.anathema.charms.tree.ICharmId;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class CharmBonusPointHandler_Test {
 
-  private static final String CHEAP_CHARM = "cheapCharm"; //$NON-NLS-1$
+  private static final ICharmId OTHER_CREATION_LEARNED = new CharmId("hisCreationLearnedCharm", null); //$NON-NLS-1$
+  private static final ICharmId CREATION_LEARNED = new CharmId("myCreationLearnedCharm", null); //$NON-NLS-1$
+  private static final ICharmId CHEAP_CHARM = new CharmId("cheapCharm", null); //$NON-NLS-1$
   private CharmBonusPointHandler pointHandler;
   private ICharacterId characterId;
   private CharmModel charmModel;
@@ -48,14 +52,14 @@ public class CharmBonusPointHandler_Test {
 
   @Test
   public void calculates5BonusPointForExpensiveCharm() throws Exception {
-    charmModel.toggleCreationLearned("myCreationLearnedCharm"); //$NON-NLS-1$
+    charmModel.toggleCreationLearned(CREATION_LEARNED);
     assertThat(pointHandler.getPoints(characterId), is(5));
   }
 
   @Test
   public void calculates10BonusPointForTwoExpensiveCharms() throws Exception {
-    charmModel.toggleCreationLearned("myCreationLearnedCharm"); //$NON-NLS-1$
-    charmModel.toggleCreationLearned("hisCreationLearnedCharm"); //$NON-NLS-1$
+    charmModel.toggleCreationLearned(CREATION_LEARNED);
+    charmModel.toggleCreationLearned(OTHER_CREATION_LEARNED);
     assertThat(pointHandler.getPoints(characterId), is(10));
   }
 

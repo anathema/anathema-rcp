@@ -26,7 +26,7 @@ public class ZestCharmNode_Test {
     color = new Color(parent.getDisplay(), 0, 250, 0);
     IContainer container = new Graph(parent, SWT.NONE);
     graphNode = new GraphNode(container, SWT.NONE);
-    charmNode = new ZestCharmNode(graphNode, null);
+    charmNode = new ZestCharmNode(graphNode);
   }
 
   @Test

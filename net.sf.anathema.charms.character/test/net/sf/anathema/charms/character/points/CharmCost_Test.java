@@ -6,6 +6,7 @@ import net.disy.commons.core.predicate.AcceptAllPredicate;
 import net.disy.commons.core.predicate.AcceptNothingPredicate;
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.points.cost.CostDto;
+import net.sf.anathema.charms.tree.ICharmId;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +14,8 @@ import org.junit.Test;
 public class CharmCost_Test {
 
   private CostDto costDto;
-  private IPredicate<String> cheapPredicate;
-  private IPredicate<String> expensivePredicate;
+  private IPredicate<ICharmId> cheapPredicate;
+  private IPredicate<ICharmId> expensivePredicate;
 
   @Before
   public void createCostDto() {
@@ -27,8 +28,8 @@ public class CharmCost_Test {
 
   @Before
   public void createPredicates() {
-    cheapPredicate = new AcceptAllPredicate<String>();
-    expensivePredicate = new AcceptNothingPredicate<String>();
+    cheapPredicate = new AcceptAllPredicate<ICharmId>();
+    expensivePredicate = new AcceptNothingPredicate<ICharmId>();
   }
 
   @Test

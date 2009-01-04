@@ -18,7 +18,7 @@ public final class GraphSelectionClosure implements IClosure<ICharmSelectionList
   @Override
   public void execute(ICharmSelectionListener listener) throws RuntimeException {
     StructuredSelection selection = (StructuredSelection) event.getSelection();
-    listener.charmSelected(((ICharmId) selection.getFirstElement()).getId());
+    listener.charmSelected(((ICharmId) selection.getFirstElement()));
     selectable.clearSelection();
   }
 }

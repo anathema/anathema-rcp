@@ -9,30 +9,26 @@ import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.model.MainTraitModelProvider;
-import net.sf.anathema.charms.character.tree.CharmTraitLookup;
-import net.sf.anathema.charms.character.tree.ITraitIdLookup;
+import net.sf.anathema.charms.tree.ICharmId;
 
-public class CheapCharmPredicate implements IPredicate<String> {
+public class CheapCharmPredicate implements IPredicate<ICharmId> {
 
-  public static IPredicate<String> From(IModelCollection modelCollection, ICharacterId characterId) {
+  public static IPredicate<ICharmId> From(IModelCollection modelCollection, ICharacterId characterId) {
     ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
     String traitModelId = new MainTraitModelProvider().getFor(characterType.getId());
     ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, traitModelId);
     ITraitCollectionModel model = (ITraitCollectionModel) modelCollection.getModel(modelIdentifier);
-    ITraitIdLookup idProvider = new CharmTraitLookup();
-    return new CheapCharmPredicate(model, idProvider);
+    return new CheapCharmPredicate(model);
   }
 
   private final ITraitCollectionModel traits;
-  private final ITraitIdLookup idLookup;
 
-  public CheapCharmPredicate(ITraitCollectionModel traits, ITraitIdLookup idLookup) {
+  public CheapCharmPredicate(ITraitCollectionModel traits) {
     this.traits = traits;
-    this.idLookup = idLookup;
   }
 
-  public boolean evaluate(String charmId) {
-    String traitId = idLookup.getTraitId(charmId);
+  public boolean evaluate(ICharmId charmId) {
+    String traitId = charmId.getPrimaryTrait();
     IBasicTrait trait = traits.getTrait(traitId);
     return trait.getStatusManager().getStatus().isCheap();
   }

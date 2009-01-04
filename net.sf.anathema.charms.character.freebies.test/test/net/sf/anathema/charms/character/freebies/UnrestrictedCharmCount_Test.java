@@ -4,14 +4,16 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.tree.CharmId;
+import net.sf.anathema.charms.tree.ICharmId;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class UnrestrictedCharmCount_Test {
-  private static final String FIRST_CHARM = "firstCharm"; //$NON-NLS-1$
-  private static final String SECOND_CHARM = "secondCharm"; //$NON-NLS-1$
-  private static final String EXPERIENCE_CHARM = "experienceCharm"; //$NON-NLS-1$
+  private static final ICharmId FIRST_CHARM = new CharmId("firstCharm", null); //$NON-NLS-1$
+  private static final ICharmId SECOND_CHARM = new CharmId("secondCharm", null); //$NON-NLS-1$
+  private static final ICharmId EXPERIENCE_CHARM = new CharmId("experienceCharm", null); //$NON-NLS-1$
   private ICharmModel charms;
   private UnrestrictedCharmCount count;
 

@@ -5,13 +5,15 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.tree.CharmId;
+import net.sf.anathema.charms.tree.ICharmId;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class CharmModel_EmptyTest {
 
-  private static final String CHARM_ID = "heaven"; //$NON-NLS-1$
+  private static final ICharmId CHARM_ID = new CharmId("heaven", null); //$NON-NLS-1$
   private CharmModel charmModel;
 
   @Before

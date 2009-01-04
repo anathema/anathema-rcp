@@ -7,6 +7,7 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmBonusPointHandler extends AbstractExecutableExtension implements IPointHandler {
 
@@ -31,7 +32,7 @@ public class CharmBonusPointHandler extends AbstractExecutableExtension implemen
 
   private int getCostsForCharms(ICharmModel charmModel, ICharmCost charmCost) {
     int bonusPointSum = 0;
-    for (String charmId : charmModel.getCreationLearnedCharms()) {
+    for (ICharmId charmId : charmModel.getCreationLearnedCharms()) {
       bonusPointSum += charmCost.getBonusPointCost(charmId);
     }
     return bonusPointSum;

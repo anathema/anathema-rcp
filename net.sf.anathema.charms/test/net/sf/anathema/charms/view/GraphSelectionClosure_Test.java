@@ -1,6 +1,7 @@
 package net.sf.anathema.charms.view;
 
 import static org.easymock.EasyMock.*;
+import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.DummyCharmId;
 
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -36,7 +37,7 @@ public class GraphSelectionClosure_Test {
     ISelectable selectable = GenericObjectMother.createDummy(ISelectable.class);
     GraphSelectionClosure listener = new GraphSelectionClosure(event, selectable);
     ICharmSelectionListener selectionListener = createMock(ICharmSelectionListener.class);
-    selectionListener.charmSelected("first"); //$NON-NLS-1$
+    selectionListener.charmSelected(new CharmId("first", null)); //$NON-NLS-1$
     replay(selectionListener);
     listener.execute(selectionListener);
     verify(selectionListener);
