@@ -95,7 +95,7 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
       PdfTemplate learnedTemplate,
       PdfTemplate notLearnedTemplate) throws DocumentException {
     CharmId charmId = new CharmId(genericId, type.getTraitType().getId());
-    boolean isLearned = model.isLearned(charmId.getId());
+    boolean isLearned = model.isLearned(charmId);
     Image image = Image.getInstance(isLearned ? learnedTemplate : notLearnedTemplate);
     TableCell tableCell = new TableCell(image);
     tableCell.setPadding(0);

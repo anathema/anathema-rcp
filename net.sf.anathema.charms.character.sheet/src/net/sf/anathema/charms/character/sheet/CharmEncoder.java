@@ -18,8 +18,6 @@ import net.sf.anathema.charms.character.sheet.stats.IMagicStats;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.display.DisplayCharm;
 import net.sf.anathema.charms.extension.CharmDataExtensionPoint;
-import net.sf.anathema.charms.tree.CharmIdLookup;
-import net.sf.anathema.charms.tree.CharmTreeProvider;
 import net.sf.anathema.charms.tree.ICharmId;
 
 import com.lowagie.text.DocumentException;
@@ -37,7 +35,7 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
       throws DocumentException {
     ICharmModel model = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
     IExperience experience = (IExperience) character.getModel(IExperience.MODEL_ID);
-    Set<String> learnedCharms = new HashSet<String>();
+    Set<ICharmId> learnedCharms = new HashSet<ICharmId>();
     addCharms(learnedCharms, model.getCreationLearnedCharms());
     if (experience.isExperienced()) {
       addCharms(learnedCharms, model.getExperienceLearnedCharms());
@@ -46,21 +44,20 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
     new MagicTableEncoder(context.getBaseFont(), magic).encodeTable(directContent, bounds);
   }
 
-  private List<IMagicStats> collectPrintMagic(Collection<String> learnedCharms, ICharacter character) {
+  private List<IMagicStats> collectPrintMagic(Collection<ICharmId> learnedCharms, ICharacter character) {
     final List<IMagicStats> printStats = new ArrayList<IMagicStats>();
     CharmDataExtensionPoint extensionPoint = new CharmDataExtensionPoint();
-    CharmIdLookup lookup = new CharmIdLookup(CharmTreeProvider.Create());
-    //Case 349: Generics sollen nur einmal auftauchen
-    for (String charmId : learnedCharms) {
-      ICharmId id = lookup.getCharmId(charmId);
-      CharmDto data = extensionPoint.getData(id);
+    // Case 349: Generics sollen nur einmal auftauchen
+    for (ICharmId charmId : learnedCharms) {
+      CharmDto data = extensionPoint.getData(charmId);
       DisplayCharm charm = new DisplayCharm(data);
-      printStats.add(new CharmStats(id, charm));
+      printStats.add(new CharmStats(charmId, charm));
     }
     return printStats;
   }
-  private void addCharms(Collection<String> learnedCharms, Iterable<String> charms) {
-    for (String id : charms) {
+
+  private void addCharms(Collection<ICharmId> learnedCharms, Iterable<ICharmId> charms) {
+    for (ICharmId id : charms) {
       learnedCharms.add(id);
     }
   }
