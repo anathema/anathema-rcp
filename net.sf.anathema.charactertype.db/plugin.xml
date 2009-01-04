@@ -230,7 +230,7 @@
             templateId="net.sf.anathema.character.template.dynastdb"
             name="%template.dynastdb.name">
          <modelList
-               modelListId="net.sf.anathema.character.basic.modelList">
+               modelListId="net.sf.anathema.character.essenceUser.modelList">
          </modelList>
       </template>
    </extension>
