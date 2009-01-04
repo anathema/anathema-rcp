@@ -207,6 +207,14 @@
             id="solar.third.{0}.excellency"
             name="Third {0} Excellency">
       </charmName>
+        <charmName
+            id="solar.{0}.essence.flow"
+            name="{0} Essence Flow">
+      </charmName>
+      <charmName
+            id="solar.infinite.{0}.mastery"
+            name="Infinite {0} Mastery">
+      </charmName>
    </extension>
    <extension
          point="net.sf.anathema.charms.charmdata">

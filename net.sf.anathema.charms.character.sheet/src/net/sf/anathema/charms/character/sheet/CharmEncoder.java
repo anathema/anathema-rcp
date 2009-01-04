@@ -42,14 +42,15 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
     if (experience.isExperienced()) {
       addCharms(learnedCharms, model.getExperienceLearnedCharms());
     }
-    List<IMagicStats> magic = collectPrintMagic(learnedCharms);
+    List<IMagicStats> magic = collectPrintMagic(learnedCharms, character);
     new MagicTableEncoder(context.getBaseFont(), magic).encodeTable(directContent, bounds);
   }
 
-  private List<IMagicStats> collectPrintMagic(Collection<String> learnedCharms) {
+  private List<IMagicStats> collectPrintMagic(Collection<String> learnedCharms, ICharacter character) {
     final List<IMagicStats> printStats = new ArrayList<IMagicStats>();
     CharmDataExtensionPoint extensionPoint = new CharmDataExtensionPoint();
     CharmIdLookup lookup = new CharmIdLookup(CharmTreeProvider.Create());
+    //Case 349: Generics sollen nur einmal auftauchen
     for (String charmId : learnedCharms) {
       ICharmId id = lookup.getCharmId(charmId);
       CharmDto data = extensionPoint.getData(id);
@@ -58,7 +59,6 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
     }
     return printStats;
   }
-
   private void addCharms(Collection<String> learnedCharms, Iterable<String> charms) {
     for (String id : charms) {
       learnedCharms.add(id);

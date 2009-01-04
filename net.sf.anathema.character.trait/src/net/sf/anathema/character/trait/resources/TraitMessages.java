@@ -22,7 +22,7 @@ public class TraitMessages {
     IExtensionElement element = extensionPoint.getFirst(new IPredicate<IExtensionElement>() {
       @Override
       public boolean evaluate(IExtensionElement candidate) {
-        return getName(traitId, candidate) != null;
+        return getName(traitId, candidate) != traitId;
       }
     });
     return getName(traitId, element);

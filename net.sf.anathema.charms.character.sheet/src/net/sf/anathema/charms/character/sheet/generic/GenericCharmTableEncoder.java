@@ -56,7 +56,7 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
     IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
     // TODO Case 349: Hier muss die richtige Entscheidung (Att/Abi) hin.
-    boolean worksOnAbilities = true;
+    boolean worksOnAbilities = mainModel.contains("abilit");
     String phraseCompletion;
     if (worksOnAbilities) {
       phraseCompletion = CategoryNames.ABILITY;

@@ -19,7 +19,7 @@ public class DefaultHeightDynamicEncoder extends AbstractExecutableExtension imp
   }
 
   @Override
-  public float getHeight() {
+  public float getHeight(ICharacter character) {
     return 77;
   }
 

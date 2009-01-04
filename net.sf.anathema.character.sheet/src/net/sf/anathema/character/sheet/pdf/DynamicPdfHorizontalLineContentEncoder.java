@@ -20,7 +20,7 @@ public final class DynamicPdfHorizontalLineContentEncoder extends AbstractExecut
   }
 
   @Override
-  public float getHeight() {
+  public float getHeight(ICharacter character) {
     return 42;
   }
 
