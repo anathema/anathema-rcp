@@ -1,7 +1,7 @@
 package net.sf.anathema.charms.tree.entries;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmListBuilder<T> implements ICharmListBuilder<T> {
 
-  private final Set<T> charms = new HashSet<T>();
+  private final Set<T> charms = new LinkedHashSet<T>();
   private final List<ICharmId> explicitCharms = new ArrayList<ICharmId>();
   private final List<ICharmId> implicitCharms = new ArrayList<ICharmId>();
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
