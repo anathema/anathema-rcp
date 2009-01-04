@@ -266,6 +266,12 @@
                   charmId="dragon-blooded.third.{0}.excellency">
             </charmPrerequisite>
          </charm>
+         <charm
+               id="dragon-blooded.terrestrial.{0}.reinforcement">
+            <charmPrerequisite
+                  charmId="dragon-blooded.any.{0}.excellency">
+            </charmPrerequisite>
+         </charm>
       </genericCharms>
    </extension>
 
