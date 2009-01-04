@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.MarkOfExaltation" exalt="Sidereal" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.TelltaleSymphony" exalt="Sidereal" group="Occult">
+    <prerequisite> 
+      <charmReference id="Sidereal.MarkOfExaltation"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.InciteDecorum" exalt="Sidereal" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.UnweavingMethod" exalt="Sidereal" group="Occult">
+    <prerequisite> 
+      <charmReference id="Sidereal.TelltaleSymphony"/>  
+      <charmReference id="Sidereal.InciteDecorum"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.WillingAssumptionOfChains" exalt="Sidereal" group="Occult">
+    <prerequisite> 
+      <charmReference id="Sidereal.UnweavingMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.TerrestrialCircleSorcery" exalt="Sidereal" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.CelestialCircleSorcery" exalt="Sidereal" group="Occult">
+    <prerequisite> 
+      <charmReference id="Sidereal.TerrestrialCircleSorcery"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

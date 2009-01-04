@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.FavorableInflectionProcedure" exalt="Sidereal" group="Linguistics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.BlueVervainBinding" exalt="Sidereal" group="Linguistics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.AbandonedWordsCurse" exalt="Sidereal" group="Linguistics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.LoversOath" exalt="Sidereal" group="Linguistics">
+    <prerequisite> 
+      <charmReference id="Sidereal.BlueVervainBinding"/>  
+      <charmReference id="Sidereal.AbandonedWordsCurse"/>  
+      <charmReference id="Sidereal.FavorableInflectionProcedure"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

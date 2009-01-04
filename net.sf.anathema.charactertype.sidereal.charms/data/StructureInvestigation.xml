@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.AuspiciousProspectsForCaste" exalt="Sidereal" group="Investigation">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.EfficientSecretaryTechnique" exalt="Sidereal" group="Investigation">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.ResearchAssistantInvocation" exalt="Sidereal" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Sidereal.EfficientSecretaryTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.EmbracingLifeMethod" exalt="Sidereal" group="Investigation">
+    <prerequisite> 
+      <charmReference id="Sidereal.ResearchAssistantInvocation"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

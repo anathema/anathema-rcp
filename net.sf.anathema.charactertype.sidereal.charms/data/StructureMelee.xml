@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.HarmonyOfBlows" exalt="Sidereal" group="Melee">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.OrchestrationOfMirroredFates" exalt="Sidereal" group="Melee">
+    <prerequisite> 
+      <charmReference id="Sidereal.HarmonyOfBlows"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.ImpedingTheFlow" exalt="Sidereal" group="Melee">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.SerenityInBlood" exalt="Sidereal" group="Melee">
+    <prerequisite> 
+      <charmReference id="Sidereal.HarmonyOfBlows"/>  
+      <charmReference id="Sidereal.ImpedingTheFlow"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.MeditationOnWar" exalt="Sidereal" group="Melee">
+    <prerequisite> 
+      <charmReference id="Sidereal.HarmonyOfBlows"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.SmilingAtTheDamned" exalt="Sidereal" group="Melee">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.PerfectionOfTheVisionaryWarrior" exalt="Sidereal" group="Melee">
+    <prerequisite> 
+      <charmReference id="Sidereal.OrchestrationOfMirroredFates"/>  
+      <charmReference id="Sidereal.SerenityInBlood"/>  
+      <charmReference id="Sidereal.SmilingAtTheDamned"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

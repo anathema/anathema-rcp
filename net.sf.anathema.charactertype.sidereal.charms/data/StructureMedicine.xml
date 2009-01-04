@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.PeacableConclusion" exalt="Sidereal" group="Medicine">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.SmoothTransition" exalt="Sidereal" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Sidereal.PeacableConclusion"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.InvocationOfTheStormFollowingSilence" exalt="Sidereal" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Sidereal.SmoothTransition"/>  
+      <charmReference id="sidereal.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.TerminateIllness" exalt="Sidereal" group="Medicine">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.DeferredWounds" exalt="Sidereal" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Sidereal.TerminateIllness"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.EarthAndSkyBargin" exalt="Sidereal" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Sidereal.DeferredWounds"/>  
+      <charmReference id="Sidereal.SmoothTransition"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

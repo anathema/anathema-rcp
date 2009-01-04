@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.OxBodyTechnique" exalt="Sidereal" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.WaterAndFireTreaty" exalt="Sidereal" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.WaterAndFireLegion" exalt="Sidereal" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Sidereal.WaterAndFireTreaty"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.SomeoneElsesDestiny" exalt="Sidereal" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.ShieldOfDestiny" exalt="Sidereal" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Sidereal.SomeoneElsesDestiny"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.OptimisticSecurityPractice" exalt="Sidereal" group="Resistance">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.HeartlessMaidenTrance" exalt="Sidereal" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Sidereal.OptimisticSecurityPractice"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.StormsEyeStance" exalt="Sidereal" group="Resistance">
+    <prerequisite> 
+      <charmReference id="Sidereal.HeartlessMaidenTrance"/>  
+      <charmReference id="Sidereal.ShieldOfDestiny"/>  
+      <charmReference id="Sidereal.WaterAndFireLegion"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.MethodologyOfSecrets" exalt="Sidereal" group="Lore">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.OfTruthsBestUnspoken" exalt="Sidereal" group="Lore">
+    <prerequisite> 
+      <charmReference id="Sidereal.MethodologyOfSecrets"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.OfSecretsYetUntold" exalt="Sidereal" group="Lore">
+    <prerequisite> 
+      <charmReference id="Sidereal.MethodologyOfSecrets"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.OfTheShapeOfTheWorld" exalt="Sidereal" group="Lore">
+    <prerequisite> 
+      <charmReference id="Sidereal.MethodologyOfSecrets"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.OfThingsDesiredAndFeared" exalt="Sidereal" group="Lore">
+    <prerequisite> 
+      <charmReference id="Sidereal.MethodologyOfSecrets"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.OfHorrorsBestUnknown" exalt="Sidereal" group="Lore">
+    <prerequisite> 
+      <charmReference id="Sidereal.OfSecretsYetUntold"/>  
+      <charmReference id="Sidereal.OfTheShapeOfTheWorld"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.TranscendentHatchetOfFate" exalt="Sidereal" group="Lore">
+    <prerequisite> 
+      <charmReference id="Sidereal.OfHorrorsBestUnknown"/>  
+      <charmReference id="Sidereal.OfThingsDesiredAndFeared"/>  
+      <charmReference id="Sidereal.OfTruthsBestUnspoken"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

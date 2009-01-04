@@ -1,0 +1,135 @@
+<charmlist>
+     <charm id="Sidereal.OrdainedBridleOfMercury" exalt="Sidereal" group="Ride">
+          <prerequisite>
+               <trait id="Ride" value="2" />
+               <essence value="2" />
+          </prerequisite>
+          <cost>
+               <essence cost="10" />
+               <willpower cost="1" />
+          </cost>
+          <duration event="AppliesBridle" />
+          <charmtype type="Simple">
+               <special speed="6" defense="-2" />
+          </charmtype>
+          <charmAttribute attribute="Obvious" visualize="true" />
+          <charmAttribute attribute="Touch" visualize="true" />
+          <source source="Sidereals2nd" />
+     </charm>
+     <charm id="Sidereal.SpiritShapeCompanion" exalt="Sidereal" group="Ride">
+          <prerequisite>
+               <trait id="Ride" value="3" />
+               <essence value="3" />
+               <charmReference id="Sidereal.OrdainedBridleOfMercury" />
+          </prerequisite>
+          <cost>
+               <essence cost="10" />
+               <willpower cost="1" />
+               <experience cost="3" permanent="true" />
+          </cost>
+          <duration duration="Instant" />
+          <charmtype type="Simple">
+               <special speed="6" defense="-2" />
+          </charmtype>
+          <charmAttribute attribute="Servitude" visualize="true" />
+          <charmAttribute attribute="Shaping" visualize="true" />
+          <charmAttribute attribute="Touch" visualize="true" />
+          <source source="Sidereals2nd" />
+     </charm>
+     <charm id="Sidereal.GodlyCompanion" exalt="Sidereal" group="Ride">
+          <prerequisite>
+               <trait id="Ride" value="4" />
+               <essence value="4" />
+               <charmReference id="Sidereal.SpiritShapeCompanion" />
+          </prerequisite>
+          <cost>
+               <essence cost="20" />
+               <willpower cost="1" />
+               <experience cost="3" permanent="true" />
+          </cost>
+          <duration duration="Instant" />
+          <charmtype type="Simple">
+               <special speed="6" defense="-2" />
+          </charmtype>
+          <charmAttribute attribute="Servitude" visualize="true" />
+          <charmAttribute attribute="Shaping" visualize="true" />
+          <charmAttribute attribute="Touch" visualize="true" />
+          <source source="Sidereals2nd" />
+     </charm>
+     <charm id="Sidereal.BreakingTheWildMortal" exalt="Sidereal" group="Ride">
+          <prerequisite>
+               <trait id="Ride" value="2" />
+               <essence value="2" />
+               <charmReference id="Sidereal.OrdainedBridleOfMercury" />
+          </prerequisite>
+          <cost>
+               <essence cost="10" />
+               <willpower cost="1" />
+          </cost>
+          <duration event="MercurysBridle" />
+          <charmtype type="Simple">
+               <special speed="6" defense="-2" />
+          </charmtype>
+          <charmAttribute attribute="Compulsion" visualize="true" />
+          <charmAttribute attribute="Fate" visualize="true" />
+          <charmAttribute attribute="Obvious" visualize="true" />
+          <charmAttribute attribute="Servitude" visualize="true" />
+          <charmAttribute attribute="Stackable" visualize="true" />
+          <source source="Sidereals2nd" />
+     </charm>
+     <charm id="Sidereal.YellowPath" exalt="Sidereal" group="Ride">
+          <prerequisite>
+               <trait id="Ride" value="3" />
+               <essence value="2" />
+          </prerequisite>
+          <cost>
+               <essence cost="2" />
+          </cost>
+          <duration amount="1" unit="journey" />
+          <charmtype type="Simple">
+               <special speed="6" defense="-2" />
+          </charmtype>
+          <source source="Sidereals2nd" />
+     </charm>
+     <charm id="Sidereal.GloryPath" exalt="Sidereal" group="Ride">
+          <prerequisite>
+               <trait id="Ride" value="3" />
+               <essence value="2" />
+               <charmReference id="Sidereal.YellowPath" />
+          </prerequisite>
+          <cost>
+               <essence cost="8" />
+          </cost>
+          <duration amount="5" unit="minute" />
+          <charmtype type="Simple">
+               <special speed="6" defense="-2" />
+          </charmtype>
+          <charmAttribute attribute="Obvious" visualize="true" />
+          <charmAttribute attribute="Virtue-Temperance" visualize="true" />
+          <source source="Sidereals2nd" />
+     </charm>
+     <charm id="Sidereal.RidingTheDragon" exalt="Sidereal" group="Ride">
+          <prerequisite>
+               <trait id="Ride" value="5" />
+               <essence value="4" />
+               <charmReference id="Sidereal.BreakingTheWildMortal" />
+               <charmReference id="Sidereal.GloryPath" />
+               <charmReference id="Sidereal.GodlyCompanion" />
+          </prerequisite>
+          <cost>
+               <essence cost="20" />
+               <willpower cost="1" />
+               <health cost="1" type="Lethal" />
+          </cost>
+          <duration amount="1" unit="scene" />
+          <charmtype type="Simple">
+               <special speed="8" defense="-3" />
+          </charmtype>
+          <charmAttribute attribute="Obvious" visualize="true" />
+          <charmAttribute attribute="PrayerStrip" visualize="true" />
+          <charmAttribute attribute="Shaping" visualize="true" />
+          <charmAttribute attribute="Touch" visualize="true" />
+          <charmAttribute attribute="Virtue-Conviction" visualize="true" />
+          <source source="Sidereals2nd" />
+     </charm>
+</charmlist>

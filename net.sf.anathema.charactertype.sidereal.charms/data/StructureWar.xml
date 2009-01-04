@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.AuspiciousRecruitmentDrive" exalt="Sidereal" group="War">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.RedHaze" exalt="Sidereal" group="War">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.TrainingMandateOfAuspiciousBattle" exalt="Sidereal" group="War">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.PredestinedTriumphPractice" exalt="Sidereal" group="War">
+    <prerequisite> 
+      <charmReference id="Sidereal.AuspiciousRecruitmentDrive"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.TrainingMandateOfCelestialEmpowerment" exalt="Sidereal" group="War">
+    <prerequisite> 
+      <charmReference id="Sidereal.PredestinedTriumphPractice"/>  
+      <charmReference id="Sidereal.TrainingMandateOfAuspiciousBattle"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.TrainingMandateOfWarGodPuissance" exalt="Sidereal" group="War">
+    <prerequisite> 
+      <charmReference id="Sidereal.TrainingMandateOfCelestialEmpowerment"/>  
+      <charmReference id="sidereal.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.EssenceDrainingBattlePattern" exalt="Sidereal" group="War">
+    <prerequisite> 
+      <charmReference id="Sidereal.PredestinedTriumphPractice"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.DemonBlockingBattlePattern" exalt="Sidereal" group="War">
+    <prerequisite> 
+      <charmReference id="Sidereal.PredestinedTriumphPractice"/>  
+      <charmReference id="Sidereal.RedHaze"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.SpiritBindingBattlePattern" exalt="Sidereal" group="War">
+    <prerequisite> 
+      <charmReference id="Sidereal.DemonBlockingBattlePattern"/>  
+      <charmReference id="Sidereal.EssenceDrainingBattlePattern"/>  
+      <charmReference id="Sidereal.TrainingMandateOfCelestialEmpowerment"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

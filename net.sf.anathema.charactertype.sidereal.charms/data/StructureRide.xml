@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.OrdainedBridleOfMercury" exalt="Sidereal" group="Ride">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.SpiritShapeCompanion" exalt="Sidereal" group="Ride">
+    <prerequisite> 
+      <charmReference id="Sidereal.OrdainedBridleOfMercury"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.GodlyCompanion" exalt="Sidereal" group="Ride">
+    <prerequisite> 
+      <charmReference id="Sidereal.SpiritShapeCompanion"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.BreakingTheWildMortal" exalt="Sidereal" group="Ride">
+    <prerequisite> 
+      <charmReference id="Sidereal.OrdainedBridleOfMercury"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.YellowPath" exalt="Sidereal" group="Ride">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.GloryPath" exalt="Sidereal" group="Ride">
+    <prerequisite> 
+      <charmReference id="Sidereal.YellowPath"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.RidingTheDragon" exalt="Sidereal" group="Ride">
+    <prerequisite> 
+      <charmReference id="Sidereal.BreakingTheWildMortal"/>  
+      <charmReference id="Sidereal.GloryPath"/>  
+      <charmReference id="Sidereal.GodlyCompanion"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

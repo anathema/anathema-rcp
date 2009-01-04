@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.ForceDecision" exalt="Sidereal" group="Presence">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.PresenceInAbsenceTechnique" exalt="Sidereal" group="Presence">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.ImposeMotivation" exalt="Sidereal" group="Presence">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.LoyaltySacrificingSidestep" exalt="Sidereal" group="Presence">
+    <prerequisite> 
+      <charmReference id="Sidereal.ImposeMotivation"/>  
+      <charmReference id="Sidereal.PresenceInAbsenceTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.EasilyAcceptedPropositionStance" exalt="Sidereal" group="Presence">
+    <prerequisite> 
+      <charmReference id="Sidereal.ForceDecision"/>  
+      <charmReference id="Sidereal.LoyaltySacrificingSidestep"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

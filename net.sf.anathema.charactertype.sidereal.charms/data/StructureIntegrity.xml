@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.VirtueEssenceReplenishment" exalt="Sidereal" group="Integrity">
+    <prerequisite> 
+      <charmReference id="sidereal.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.PreservationOfResolve" exalt="Sidereal" group="Integrity">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.UnwaveringWellBeingMeditation" exalt="Sidereal" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Sidereal.PreservationOfResolve"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.CreationPreservingWill" exalt="Sidereal" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Sidereal.UnwaveringWellBeingMeditation"/>  
+      <charmReference id="sidereal.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.UnhearingDedication" exalt="Sidereal" group="Integrity">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.DeathOfSelfMeditation" exalt="Sidereal" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Sidereal.UnhearingDedication"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.OneDirectionInvocation" exalt="Sidereal" group="Integrity">
+    <prerequisite> 
+      <charmReference id="Sidereal.VirtueEssenceReplenishment"/>  
+      <charmReference id="Sidereal.DeathOfSelfMeditation"/>  
+      <charmReference id="Sidereal.UnwaveringWellBeingMeditation"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

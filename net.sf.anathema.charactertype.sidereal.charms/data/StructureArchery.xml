@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.GeneralizedAmmunitionTechnique" exalt="Sidereal" group="Archery">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.AnyDirectionArrow" exalt="Sidereal" group="Archery">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.EveryDirectionArrow" exalt="Sidereal" group="Archery">
+    <prerequisite> 
+      <charmReference id="Sidereal.AnyDirectionArrow"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.OpportuneShot" exalt="Sidereal" group="Archery">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.FiveSeasonsResponse" exalt="Sidereal" group="Archery">
+    <prerequisite> 
+      <charmReference id="Sidereal.EveryDirectionArrow"/>  
+      <charmReference id="Sidereal.OpportuneShot"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.ManyMissilesBowTechnique" exalt="Sidereal" group="Archery">
+    <prerequisite> 
+      <charmReference id="Sidereal.FiveSeasonsResponse"/>  
+      <charmReference id="Sidereal.GeneralizedAmmunitionTechnique"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

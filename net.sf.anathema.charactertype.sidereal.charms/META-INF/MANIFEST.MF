@@ -1,6 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sidereal Charms Plug-in
-Bundle-SymbolicName: net.sf.anathema.charactertype.sidereal.charms
+Bundle-SymbolicName: net.sf.anathema.charactertype.sidereal.charms;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: net.sf.anathema.charms;bundle-version="1.0.0",
+ net.sf.anathema.charms.character;bundle-version="1.0.0"

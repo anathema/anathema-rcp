@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.ElementalVision" exalt="Sidereal" group="Craft">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.ExcellentImplementationOfObjectives" exalt="Sidereal" group="Craft">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.DestinyKnittingEntanglement" exalt="Sidereal" group="Craft">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.WorldShapingArtisticVision" exalt="Sidereal" group="Craft">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.PredestinedDeliveryShaping" exalt="Sidereal" group="Craft">
+    <prerequisite> 
+      <charmReference id="Sidereal.DestinyKnittingEntanglement"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.MendingWarpedDesigns" exalt="Sidereal" group="Craft">
+    <prerequisite> 
+      <charmReference id="Sidereal.ExcellentImplementationOfObjectives"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.ImplicitConstructionMethodology" exalt="Sidereal" group="Craft">
+    <prerequisite> 
+      <charmReference id="Sidereal.ElementalVision"/>  
+      <charmReference id="Sidereal.MendingWarpedDesigns"/>  
+      <charmReference id="Sidereal.PredestinedDeliveryShaping"/>  
+      <charmReference id="Sidereal.WorldShapingArtisticVision"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

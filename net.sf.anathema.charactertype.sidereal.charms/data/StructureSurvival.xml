@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.AdoptingTheUntamedFace" exalt="Sidereal" group="Survival">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.BecomingTheWilderness" exalt="Sidereal" group="Survival">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.DreamingTheWildLands" exalt="Sidereal" group="Survival">
+    <prerequisite> 
+      <charmReference id="Sidereal.AdoptingTheUntamedFace"/>  
+      <charmReference id="Sidereal.BecomingTheWilderness"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.SkyAndRainMantra" exalt="Sidereal" group="Survival">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.SkySpiritDemand" exalt="Sidereal" group="Survival">
+    <prerequisite> 
+      <charmReference id="Sidereal.SkyAndRainMantra"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.WildernessCommandingPractice" exalt="Sidereal" group="Survival">
+    <prerequisite> 
+      <charmReference id="Sidereal.DreamingTheWildLands"/>  
+      <charmReference id="Sidereal.SkySpiritDemand"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

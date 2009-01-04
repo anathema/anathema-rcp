@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.WillfulWeaponMethod" exalt="Sidereal" group="Thrown">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.LifeGetsWorseApproach" exalt="Sidereal" group="Thrown">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.EssenceThornPractice" exalt="Sidereal" group="Thrown">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.PainAmplificationStratagem" exalt="Sidereal" group="Thrown">
+    <prerequisite> 
+      <charmReference id="Sidereal.LifeGetsWorseApproach"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.ShadowPiercingNeedle" exalt="Sidereal" group="Thrown">
+    <prerequisite> 
+      <charmReference id="Sidereal.EssenceThornPractice"/>  
+      <charmReference id="sidereal.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.UnrelentingTormentTechnique" exalt="Sidereal" group="Thrown">
+    <prerequisite> 
+      <charmReference id="Sidereal.EssenceThornPractice"/>  
+      <charmReference id="Sidereal.PainAmplificationStratagem"/>  
+      <charmReference id="Sidereal.WillfulWeaponMethod"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

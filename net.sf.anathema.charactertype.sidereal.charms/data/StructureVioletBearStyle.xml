@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Celestial.SecretsOfFutureStrife" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Celestial.FlightOfMercury" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.SecretsOfFutureStrife"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.BladeOfTheBattleMaiden" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.SecretsOfFutureStrife"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.JoyInAdversityStance" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.SecretsOfFutureStrife"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.VioletBierOfSorrowsForm" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.BladeOfTheBattleMaiden"/>  
+      <charmReference id="Celestial.FlightOfMercury"/>  
+      <charmReference id="Celestial.JoyInAdversityStance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.DeathParryingStroke" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.VioletBierOfSorrowsForm"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.UnobstructedBlow" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.DeathParryingStroke"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.HorrificWreath" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.VioletBierOfSorrowsForm"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.MetalStorm" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.HorrificWreath"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.CrimsonPalmCounterstrike" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.VioletBierOfSorrowsForm"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.LifeSeveringBlow" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.CrimsonPalmCounterstrike"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Celestial.ConclusionPursuingApproach" exalt="Sidereal" group="VioletBierStyle">
+    <prerequisite> 
+      <charmReference id="Celestial.LifeSeveringBlow"/>  
+      <charmReference id="Celestial.MetalStorm"/>  
+      <charmReference id="Celestial.UnobstructedBlow"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

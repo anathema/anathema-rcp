@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.Absence" exalt="Sidereal" group="Dodge">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.DuckFate" exalt="Sidereal" group="Dodge">
+    <prerequisite> 
+      <charmReference id="Sidereal.Absence"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.AvoidanceKata" exalt="Sidereal" group="Dodge">
+    <prerequisite> 
+      <charmReference id="Sidereal.DuckFate"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.TroubleReductionStrategy" exalt="Sidereal" group="Dodge">
+    <prerequisite> 
+      <charmReference id="Sidereal.DuckFate"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.NeighborhoodRelocationScheme" exalt="Sidereal" group="Dodge">
+    <prerequisite> 
+      <charmReference id="Sidereal.AvoidanceKata"/>  
+      <charmReference id="Sidereal.TroubleReductionStrategy"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

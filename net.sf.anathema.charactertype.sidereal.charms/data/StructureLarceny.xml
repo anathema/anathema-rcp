@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.AvoidingTheTruthTechnique" exalt="Sidereal" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.ThoughtSwipingDistraction" exalt="Sidereal" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.SiderealShellGames" exalt="Sidereal" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Sidereal.AvoidingTheTruthTechnique"/>  
+      <charmReference id="Sidereal.ThoughtSwipingDistraction"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.NamePilferingPractice" exalt="Sidereal" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.DreamConfiscationApproach" exalt="Sidereal" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Sidereal.NamePilferingPractice"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.MasqueOfTheUncanny" exalt="Sidereal" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Sidereal.DreamConfiscationApproach"/>  
+      <charmReference id="sidereal.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.ConningChaosTechnique" exalt="Sidereal" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Sidereal.DreamConfiscationApproach"/>  
+      <charmReference id="Sidereal.SiderealShellGames"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

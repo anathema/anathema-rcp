@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.ForgottenEarth" exalt="Sidereal" group="Athletics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.BurnLife" exalt="Sidereal" group="Athletics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.InexorableAdvance" exalt="Sidereal" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Sidereal.BurnLife"/>  
+      <charmReference id="Sidereal.ForgottenEarth"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.UnswervingJuggernautPrinciple" exalt="Sidereal" group="Athletics">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.ForwardThinkingTechnique" exalt="Sidereal" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Sidereal.UnswervingJuggernautPrinciple"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.InvisibleMotion" exalt="Sidereal" group="Athletics">
+    <prerequisite> 
+      <charmReference id="Sidereal.ForwardThinkingTechnique"/>  
+      <charmReference id="Sidereal.InexorableAdvance"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

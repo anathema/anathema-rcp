@@ -34,8 +34,8 @@ public class CharmStructureConverter {
   }
 
   private static File createTargetFile(File targetFolder, File sourceFile) {
-    String name = sourceFile.getName();
-    String targetName = "Structure" + name.substring(name.lastIndexOf("_") + 1); //$NON-NLS-1$//$NON-NLS-2$
+    String sourceName = sourceFile.getName();
+    String targetName = "Structure" + sourceName.substring(0, 1).toUpperCase() + sourceName.substring(1);
     return new File(targetFolder, targetName);
   }
 }

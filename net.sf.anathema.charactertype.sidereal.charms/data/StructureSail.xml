@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.SerendipitousVoyage" exalt="Sidereal" group="Sail">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.StoneSkippingSpirit" exalt="Sidereal" group="Sail">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.SaltIntoAshSleight" exalt="Sidereal" group="Sail">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.WallsOfSaltAndAsh" exalt="Sidereal" group="Sail">
+    <prerequisite> 
+      <charmReference id="Sidereal.SaltIntoAshSleight"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.MirrorShatteringMethod" exalt="Sidereal" group="Sail">
+    <prerequisite> 
+      <charmReference id="Sidereal.StoneSkippingSpirit"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.FiveOrdealsOdyssey" exalt="Sidereal" group="Sail">
+    <prerequisite> 
+      <charmReference id="Sidereal.MirrorShatteringMethod"/>  
+      <charmReference id="Sidereal.SerendipitousVoyage"/>  
+      <charmReference id="Sidereal.WallsOfSaltAndAsh"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

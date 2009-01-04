@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.SoftPresencePractice" exalt="Sidereal" group="Stealth">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.WalkingOutsideFate" exalt="Sidereal" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Sidereal.SoftPresencePractice"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.SubordinateInspirationTechnique" exalt="Sidereal" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Sidereal.WalkingOutsideFate"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.GiftOfABrokenMask" exalt="Sidereal" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Sidereal.SoftPresencePractice"/>  
+      <charmReference id="sidereal.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.BlindingTheBoar" exalt="Sidereal" group="Stealth">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.CeasingToExistApproach" exalt="Sidereal" group="Stealth">
+    <prerequisite> 
+      <charmReference id="Sidereal.BlindingTheBoar"/>  
+      <charmReference id="Sidereal.SubordinateInspirationTechnique"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

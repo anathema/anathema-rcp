@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.ShunTheSmilingLady" exalt="Sidereal" group="Socialize">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.CashAndMurderGames" exalt="Sidereal" group="Socialize">
+    <prerequisite> 
+      <charmReference id="Sidereal.ShunTheSmilingLady"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.LifeWithoutCompunction" exalt="Sidereal" group="Socialize">
+    <prerequisite> 
+      <charmReference id="Sidereal.ShunTheSmilingLady"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.YouAndYoursStance" exalt="Sidereal" group="Socialize">
+    <prerequisite> 
+      <charmReference id="Sidereal.CashAndMurderGames"/>  
+      <charmReference id="Sidereal.LifeWithoutCompunction"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.FortuitousFellowship" exalt="Sidereal" group="Socialize">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.WantingAndFearingPrayer" exalt="Sidereal" group="Socialize">
+    <prerequisite> 
+      <charmReference id="Sidereal.FortuitousFellowship"/>  
+      <charmReference id="Sidereal.YouAndYoursStance"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

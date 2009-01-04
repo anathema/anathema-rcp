@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Sidereal.PriorWarning" exalt="Sidereal" group="Awareness">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.ExpectedPain" exalt="Sidereal" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Sidereal.PriorWarning"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.SupernalAwareness" exalt="Sidereal" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Sidereal.ExpectedPain"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Sidereal.WiseChoice" exalt="Sidereal" group="Awareness">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.InevitablePursuit" exalt="Sidereal" group="Awareness">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Sidereal.ConclusiveWisdom" exalt="Sidereal" group="Awareness">
+    <prerequisite> 
+      <charmReference id="Sidereal.InevitablePursuit"/>  
+      <charmReference id="Sidereal.SupernalAwareness"/>  
+      <charmReference id="Sidereal.WiseChoice"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>
