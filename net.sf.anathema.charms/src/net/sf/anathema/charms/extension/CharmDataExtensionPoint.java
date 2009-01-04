@@ -24,21 +24,22 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   private static final String EXTENSION_POINT_ID = "charmdata"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
 
-  public CharmDataExtensionPoint() {
+  CharmDataExtensionPoint() {
     this(new EclipseExtensionPoint(IPluginConstants.PLUGIN_ID, EXTENSION_POINT_ID));
   }
 
-  public CharmDataExtensionPoint(IExtensionPoint extensionPoint) {
+  private CharmDataExtensionPoint(IExtensionPoint extensionPoint) {
     this.extensionPoint = extensionPoint;
   }
 
   @Override
   public CharmDto getData(ICharmId charmId) {
     IExtensionElement extensionElement = getExtensionElement(charmId);
-    CharmDto charmDto = createEmptyCharmData();
-    if (extensionElement != null) {
-      fillCharmData(extensionElement, charmDto);
+    if (extensionElement == null) {
+      return null;
     }
+    CharmDto charmDto = new CharmDto();
+    fillCharmData(extensionElement, charmDto);
     return charmDto;
   }
 
@@ -46,10 +47,6 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
     String idString = charmId.getId();
     AttributePredicate charmIdPredicate = AttributePredicate.FromNameAndValue(ATTRIB_CHARM_ID, idString);
     return extensionPoint.getFirst(charmIdPredicate);
-  }
-
-  private CharmDto createEmptyCharmData() {
-    return new CharmDto();
   }
 
   private void fillCharmData(IExtensionElement extensionElement, CharmDto charmDto) {
