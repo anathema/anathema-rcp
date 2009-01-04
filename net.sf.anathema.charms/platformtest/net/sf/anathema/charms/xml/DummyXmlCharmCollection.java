@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DummyXmlCharmCollection implements IXmlCharmCollection {
+import net.sf.anathema.charms.xml.structure.IStructuredCharm;
+import net.sf.anathema.charms.xml.structure.IStructuredCharmCollection;
 
-  private final List<IXmlCharm> allCharms = new ArrayList<IXmlCharm>();
+public class DummyXmlCharmCollection implements IStructuredCharmCollection {
+
+  private final List<IStructuredCharm> allCharms = new ArrayList<IStructuredCharm>();
 
   @Override
-  public IXmlCharm getCharmForTreeId(String id) {
-    for (IXmlCharm charm : this) {
+  public IStructuredCharm getCharmForTreeId(String id) {
+    for (IStructuredCharm charm : this) {
       if (charm.getTreePart().equals(id)) {
         return charm;
       }
@@ -19,11 +22,11 @@ public class DummyXmlCharmCollection implements IXmlCharmCollection {
   }
 
   @Override
-  public Iterator<IXmlCharm> iterator() {
+  public Iterator<IStructuredCharm> iterator() {
     return allCharms.iterator();
   }
 
-  public void add(IXmlCharm charm) {
+  public void add(IStructuredCharm charm) {
     allCharms.add(charm);
   }
 }

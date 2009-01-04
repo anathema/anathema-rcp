@@ -8,6 +8,9 @@ import java.util.Set;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 import net.sf.anathema.charms.tree.ITreeProvider;
 import net.sf.anathema.charms.tree.TreeDto;
+import net.sf.anathema.charms.xml.structure.IStructuredCharm;
+import net.sf.anathema.charms.xml.structure.IStructuredCharmCollection;
+import net.sf.anathema.charms.xml.structure.StructuredCharmCollection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -15,12 +18,12 @@ import org.eclipse.core.runtime.IConfigurationElement;
 public class XmlTreeProvider implements ITreeProvider {
 
   private static final String ATTRIB_RESOURCE = "resource"; //$NON-NLS-1$
-  private IXmlCharmCollection charmCollection;
+  private IStructuredCharmCollection charmCollection;
 
   @Override
   public CharmPrerequisite[] getTree(String id) {
     Set<CharmPrerequisite> prerequisites = new LinkedHashSet<CharmPrerequisite>();
-    for (IXmlCharm charm : charmCollection) {
+    for (IStructuredCharm charm : charmCollection) {
       if (id.equals(charm.getTreePart())) {
         charm.addPrerequisites(prerequisites);
       }
@@ -41,16 +44,15 @@ public class XmlTreeProvider implements ITreeProvider {
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
-    setCharmCollection(new XmlCharmCollection(config.getAttribute(ATTRIB_RESOURCE), config.getContributor()));
+    setCharmCollection(new StructuredCharmCollection(config.getAttribute(ATTRIB_RESOURCE), config.getContributor()));
   }
 
-  protected void setCharmCollection(IXmlCharmCollection newCollection) {
+  protected void setCharmCollection(IStructuredCharmCollection newCollection) {
     this.charmCollection = newCollection;
   }
 
   @Override
   public List<String> getGenericCharms(String typeId) {
-    // TODO: Generic Charms
     return new ArrayList<String>();
   }
 }

@@ -4,6 +4,7 @@ import static org.easymock.EasyMock.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.charms.data.CharmPrerequisite;
+import net.sf.anathema.charms.xml.structure.IStructuredCharm;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class XmlTreeProvider_Test {
 
   @Test
   public void addsNoCharmsPrerequisitesForCharmsWithOtherTreeId() throws Exception {
-    IXmlCharm charm = createMock(IXmlCharm.class);
+    IStructuredCharm charm = createMock(IStructuredCharm.class);
     expect(charm.getTreePart()).andStubReturn("otherTree"); //$NON-NLS-1$
     replay(charm);
     charmCollection.add(charm);

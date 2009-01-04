@@ -7,15 +7,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.sf.anathema.charms.data.CharmPrerequisite;
+import net.sf.anathema.charms.xml.structure.IStructuredCharm;
+import net.sf.anathema.charms.xml.structure.StructuredCharm;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Element;
 import org.junit.Before;
 import org.junit.Test;
 
-public class XmlCharm_DbRootCharmTest {
+public class StructuredCharm_DbRootCharmTest {
 
-  private IXmlCharm xmlCharm;
+  private IStructuredCharm xmlCharm;
 
   @Before
   public void createArcheryWithoutCharmPrerequisite() throws Exception {
@@ -23,7 +25,7 @@ public class XmlCharm_DbRootCharmTest {
         + " <prerequisite/>" //$NON-NLS-1$
         + "</charm>"; //$NON-NLS-1$
     Element rootElement = DocumentUtilities.read(xml).getRootElement();
-    xmlCharm = new XmlCharm(rootElement);
+    xmlCharm = new StructuredCharm(rootElement);
 
   }
 
