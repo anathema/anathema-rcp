@@ -91,8 +91,13 @@ public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
         ISimpleNode[] layerNodes = graph.getNodesByLayer(layerIndex);
         for (ISimpleNode node : layerNodes) {
           InternalNode zestNode = zestNodesByZest.get(node);
-          zestNode.setInternalLocation(nodeX, layerY);
-          nodeX += zestNode.getWidthInLayout() + 5;
+          if (zestNode != null) {
+            zestNode.setInternalLocation(nodeX, layerY);
+            nodeX += zestNode.getWidthInLayout() + 5;
+          }
+          else {
+            nodeX += 50;
+          }
           maxLayerWidth = Math.max(maxLayerWidth, nodeX - x);
         }
         layerY += LAYER_HEIGHT;
