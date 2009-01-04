@@ -3,7 +3,7 @@ package net.sf.anathema.charms.view.tooltipp;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.display.DisplayCharm;
-import net.sf.anathema.charms.extension.CharmDataMap;
+import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.ICharmId;
 
 import org.eclipse.draw2d.IFigure;
@@ -14,7 +14,7 @@ public class TooltippFactory implements ITooltippFactory {
   private final ICharmDataMap dataMap;
 
   public TooltippFactory() {
-    this.dataMap = CharmDataMap.Create();
+    this.dataMap = CharmProvidingExtensionPoint.CreateCharmDataMap();
   }
 
   public IFigure createFor(ICharmId charmId) {

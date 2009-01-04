@@ -7,27 +7,13 @@ import java.util.List;
 import java.util.Set;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
-import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
-import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
-import net.sf.anathema.basics.eclipse.extension.NamePredicate;
-import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 
 public class CharmTreeProvider extends AbstractExecutableExtension implements ITreeProvider {
 
   private final Iterable<ITreeProvider> allProviders;
 
-  public static ITreeProvider Create() {
-    EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(IPluginConstants.PLUGIN_ID, "charmproviding");
-    NamePredicate treeProviderPredicate = NamePredicate.ForElementName("treeProvider");
-    ClassConveyerBelt<ITreeProvider> conveyerBelt = new ClassConveyerBelt<ITreeProvider>(
-        extensionPoint,
-        ITreeProvider.class,
-        treeProviderPredicate);
-    return new CharmTreeProvider(conveyerBelt.getAllObjects());
-  }
-
-  private CharmTreeProvider(Iterable<ITreeProvider> allProviders) {
+  public CharmTreeProvider(Iterable<ITreeProvider> allProviders) {
     this.allProviders = allProviders;
   }
 

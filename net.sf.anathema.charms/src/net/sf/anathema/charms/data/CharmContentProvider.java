@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.data;
 
-import net.sf.anathema.charms.tree.CharmTreeProvider;
+import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.ICharmId;
 
 import org.eclipse.jface.viewers.Viewer;
@@ -17,7 +17,7 @@ public class CharmContentProvider implements IGraphContentProvider {
       return null;
     }
     String treeId = (String) input;
-    return CharmTreeProvider.Create().getTree(treeId);
+    return CharmProvidingExtensionPoint.CreateTreeProvider().getTree(treeId);
   }
 
   public ICharmId getDestination(Object rel) {

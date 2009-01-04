@@ -24,7 +24,7 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   private static final String EXTENSION_POINT_ID = "charmdata"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
 
-  CharmDataExtensionPoint() {
+  public CharmDataExtensionPoint() {
     this(new EclipseExtensionPoint(IPluginConstants.PLUGIN_ID, EXTENSION_POINT_ID));
   }
 

@@ -7,13 +7,9 @@ import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataMap extends AbstractExecutableExtension implements ICharmDataMap {
 
-  private final ICharmDataMap[] allMaps;
+  private final Iterable<ICharmDataMap> allMaps;
 
-  public static ICharmDataMap Create() {
-    return new CharmDataMap(new CharmDataExtensionPoint());
-  }
-
-  private CharmDataMap(ICharmDataMap... allMaps) {
+  public CharmDataMap(Iterable<ICharmDataMap> allMaps) {
     this.allMaps = allMaps;
   }
 

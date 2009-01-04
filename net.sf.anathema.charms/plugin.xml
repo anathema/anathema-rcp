@@ -20,6 +20,9 @@
       <treeProvider
             class="net.sf.anathema.charms.tree.CharmTreeExtensionPoint">
       </treeProvider>
+      <charmDataMap
+            class="net.sf.anathema.charms.extension.CharmDataExtensionPoint">
+      </charmDataMap>
    </extension>
 
 </plugin>

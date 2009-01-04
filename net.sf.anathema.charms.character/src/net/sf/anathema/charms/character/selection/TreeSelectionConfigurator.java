@@ -6,7 +6,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.character.core.model.IViewElementConfigurator;
 import net.sf.anathema.charms.character.tree.SortedTreeDataCollection;
-import net.sf.anathema.charms.tree.CharmTreeProvider;
+import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.TreeDto;
 
 public class TreeSelectionConfigurator extends AbstractExecutableExtension implements IViewElementConfigurator {
@@ -15,7 +15,7 @@ public class TreeSelectionConfigurator extends AbstractExecutableExtension imple
   private final IChooseTreePredicateFactory chooserFactory;
 
   public TreeSelectionConfigurator() {
-    this(SortedTreeDataCollection.From(CharmTreeProvider.Create()), new ChooseTreePredicateFactory());
+    this(SortedTreeDataCollection.From(CharmProvidingExtensionPoint.CreateTreeProvider()), new ChooseTreePredicateFactory());
   }
 
   public TreeSelectionConfigurator(Iterable<TreeDto> trees, IChooseTreePredicateFactory chooserFactory) {
