@@ -24,7 +24,8 @@ public class GraphSnippet6 {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	@SuppressWarnings("nls")
+  public static void main(String[] args) {
 		Display d = new Display();
 		Shell shell = new Shell(d);
 		shell.setText("GraphSnippet6");

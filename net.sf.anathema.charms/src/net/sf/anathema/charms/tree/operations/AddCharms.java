@@ -7,9 +7,9 @@ import net.sf.anathema.charms.tree.entries.ICharmListBuilder;
 
 public final class AddCharms implements IClosure<IExtensionElement> {
   private final IPredicate<IExtensionElement> predicate;
-  private final ICharmListBuilder charmBuilder;
+  private final ICharmListBuilder<?> charmBuilder;
 
-  public AddCharms(IPredicate<IExtensionElement> predicate, ICharmListBuilder charmBuilder) {
+  public AddCharms(IPredicate<IExtensionElement> predicate, ICharmListBuilder<?> charmBuilder) {
     this.predicate = predicate;
     this.charmBuilder = charmBuilder;
   }

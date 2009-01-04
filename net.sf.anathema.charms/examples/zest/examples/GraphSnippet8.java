@@ -26,7 +26,8 @@ public class GraphSnippet8 {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	@SuppressWarnings("nls")
+  public static void main(String[] args) {
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		shell.setText("GraphSnippet8");
@@ -85,7 +86,8 @@ public class GraphSnippet8 {
 				// and use this connection to get the "Graph Data"
 				Object object = item.getGraphData();
 				if  (object instanceof GraphConnection ) {
-					GraphConnection connection = (GraphConnection) object;
+					@SuppressWarnings("hiding")
+          GraphConnection connection = (GraphConnection) object;
 					if ( connection.getData() != null && connection.getData() instanceof Boolean ) {
 						// If the data is false, don't filter, otherwise, filter.
 						return ((Boolean)connection.getData()).booleanValue();

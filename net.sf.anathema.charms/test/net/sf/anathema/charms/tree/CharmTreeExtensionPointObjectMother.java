@@ -23,7 +23,7 @@ public class CharmTreeExtensionPointObjectMother {
   public static IExtensionElement createCharm(String charmId, String... prerequisites) throws ExtensionException {
     IExtensionElement[] children = createPrerequisiteElements(prerequisites);
     return createExtensionElementWithAttributes(new MockName("charm"), //$NON-NLS-1$
-        new MockStringAttribute("id", charmId),
+        new MockStringAttribute("id", charmId), //$NON-NLS-1$
         new MockChildren(children));
   }
 
@@ -34,7 +34,7 @@ public class CharmTreeExtensionPointObjectMother {
   public static IExtensionElement createGenericCharms(String characterType, IExtensionElement... charms)
       throws ExtensionException {
     return createExtensionElementWithAttributes(new MockName("genericCharms"), //$NON-NLS-1$
-        new MockStringAttribute("characterType", characterType),
+        new MockStringAttribute("characterType", characterType), //$NON-NLS-1$
         new MockChildren(charms));
   }
 }

@@ -26,11 +26,13 @@ import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
  * @author Ian Bull
  * 
  */
+@SuppressWarnings("nls")
 public class GraphJFaceSnippet2 {
 
 	static class MyContentProvider implements IGraphContentProvider {
 
-		public Object getSource(Object rel) {
+	
+    public Object getSource(Object rel) {
 			if ("Rock2Paper".equals(rel)) {
 				return "Rock";
 			} else if ("Paper2Scissors".equals(rel)) {

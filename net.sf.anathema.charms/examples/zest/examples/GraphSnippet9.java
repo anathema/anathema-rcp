@@ -20,7 +20,8 @@ public class GraphSnippet9 {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	@SuppressWarnings("nls")
+  public static void main(String[] args) {
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		shell.setText("GraphSnippet9");

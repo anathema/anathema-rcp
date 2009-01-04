@@ -1,9 +1,7 @@
 package net.sf.anathema.character.freebies.abilities.coverage;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.replay;
-import static org.junit.Assert.assertEquals;
+import static org.easymock.EasyMock.*;
+import static org.junit.Assert.*;
 import net.sf.anathema.character.freebies.abilities.util.IAbilityFreebiesConstants;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.trait.BasicTrait;
@@ -17,9 +15,9 @@ import org.junit.Test;
 
 public class CoverageCalculator_Test {
 
-  private static final Identificate FIRST = new Identificate("first");
-  private static final Identificate SECOND = new Identificate("second");
-  private static final Identificate THIRD = new Identificate("third");
+  private static final Identificate FIRST = new Identificate("first"); //$NON-NLS-1$
+  private static final Identificate SECOND = new Identificate("second"); //$NON-NLS-1$
+  private static final Identificate THIRD = new Identificate("third"); //$NON-NLS-1$
   private DummyTraitCollection collection;
 
   @Before

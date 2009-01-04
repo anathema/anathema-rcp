@@ -22,7 +22,8 @@ import org.eclipse.zest.core.widgets.GraphNode;
  */
 public class AnimationSnippet {
 
-	public static void main(String[] args) {
+	@SuppressWarnings("nls")
+  public static void main(String[] args) {
 
 		Display d = new Display();
 		final Shell shell = new Shell(d);

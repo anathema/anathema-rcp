@@ -43,6 +43,7 @@ import org.eclipse.zest.core.widgets.ZestStyles;
  * @author Ian Bull
  * 
  */
+@SuppressWarnings("unchecked")
 public class GraphSnippet5 {
     public static final int BACKSPACE = 8;
     public static final int ENTER = 13;
@@ -50,6 +51,7 @@ public class GraphSnippet5 {
     /**
      * @param args
      */
+    @SuppressWarnings("nls")
     public static void main(String[] args) {
         final Map figureListing = new HashMap();
         final StringBuffer stringBuffer = new StringBuffer();
