@@ -52,18 +52,9 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     PdfPTable table = new PdfPTable(createColumnWidths());
     table.setWidthPercentage(100);
     table.addCell(new TableCell(new Phrase(), Rectangle.NO_BORDER));
-
     String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
     IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
-    // TODO Case 349: Hier muss die richtige Entscheidung (Att/Abi) hin.
-    boolean worksOnAbilities = mainModel.contains("abilit");
-    String phraseCompletion;
-    if (worksOnAbilities) {
-      phraseCompletion = CategoryNames.ABILITY;
-    }
-    else {
-      phraseCompletion = CategoryNames.ATTRIBUTE;
-    }
+    String phraseCompletion = mainModel + ".forgenerics";
     List<IDisplayTraitGroup<IDisplayTrait>> groups = factory.createDisplayTraitGroups(character);
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       for (IDisplayTrait trait : group.getTraits()) {
