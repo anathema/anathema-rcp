@@ -653,7 +653,7 @@
   </charm>  
   <charm id="Solar.Wonder-ForgingGenius" exalt="Solar" group="Craft">
     <prerequisite> 
-      <charmReference id="Solar.InfiniteMastery.Craft"/>  
+      <charmReference id="solar.infinite.{0}.mastery"/>  
       <charmReference id="Solar.Crack-MendingTechnique"/>  
       <charmReference id="Solar.CraftsmanNeedsNoTools"/> 
     </prerequisite>

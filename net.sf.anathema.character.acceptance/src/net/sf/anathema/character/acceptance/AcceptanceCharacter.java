@@ -1,10 +1,12 @@
 package net.sf.anathema.character.acceptance;
 
 import net.sf.anathema.character.core.character.CharacterId;
+import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 
 import org.eclipse.core.resources.IFolder;
@@ -38,5 +40,9 @@ public class AcceptanceCharacter {
 
   public IFolder getFolder() {
     return folder;
+  }
+
+  public ICharacterTemplate getTemplate() {
+    return new CharacterTemplateProvider().getTemplate(characterId);
   }
 }
