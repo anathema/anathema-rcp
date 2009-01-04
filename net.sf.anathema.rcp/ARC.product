@@ -29,7 +29,6 @@ Used without permission.
 
    <windowImages i16="/net.sf.anathema.rcp/icons/SunGear_16.gif" i32="/net.sf.anathema.rcp/icons/SunGear_32.gif" i48="/net.sf.anathema.rcp/icons/SunGear_48.gif" i64="/net.sf.anathema.rcp/icons/SunGear_64.gif" i128="/net.sf.anathema.rcp/icons/SunGear_128.gif"/>
 
-
    <launcher name="anathema">
       <solaris/>
       <win useIco="true">
@@ -37,7 +36,6 @@ Used without permission.
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>
@@ -61,7 +59,7 @@ Used without permission.
       <plugin id="net.sf.anathema.campaign.plot.report" fragment="true"/>
       <plugin id="net.sf.anathema.caste.import" fragment="true"/>
       <plugin id="net.sf.anathema.character.abilities"/>
-      <plugin id="net.sf.anathema.character.abilities.importwizard" fragment="true"/>
+      <plugin id="net.sf.anathema.character.abilities.importwizard"/>
       <plugin id="net.sf.anathema.character.abilities.sheet" fragment="true"/>
       <plugin id="net.sf.anathema.character.abilities.textreport" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes"/>
@@ -99,7 +97,6 @@ Used without permission.
       <plugin id="net.sf.anathema.charms"/>
       <plugin id="net.sf.anathema.charms.character"/>
       <plugin id="net.sf.anathema.charms.character.sheet" fragment="true"/>
-      <plugin id="net.sf.anathema.charms.character.solartest" fragment="true"/>
       <plugin id="net.sf.anathema.editor.styledtext"/>
       <plugin id="net.sf.anathema.graphlayout"/>
       <plugin id="net.sf.anathema.rcp"/>
@@ -110,11 +107,11 @@ Used without permission.
       <plugin id="org.eclipse.core.databinding"/>
       <plugin id="org.eclipse.core.expressions"/>
       <plugin id="org.eclipse.core.filesystem"/>
-      <plugin id="org.eclipse.core.filesystem.win32.x86"/>
+      <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.resources.compatibility" fragment="true"/>
-      <plugin id="org.eclipse.core.resources.win32.x86"/>
+      <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
       <plugin id="org.eclipse.core.runtime.compatibility"/>
       <plugin id="org.eclipse.core.runtime.compatibility.auth"/>
@@ -131,8 +128,8 @@ Used without permission.
       <plugin id="org.eclipse.jface.text"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.swt"/>
-      <plugin id="org.eclipse.swt.win32.win32.x86"/>
-      <plugin id="org.eclipse.swt.win32.win32.x86_64" fragment="true"/>
+      <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.swt.win32.win32.x86_64"/>
       <plugin id="org.eclipse.text"/>
       <plugin id="org.eclipse.ui"/>
       <plugin id="org.eclipse.ui.forms"/>
