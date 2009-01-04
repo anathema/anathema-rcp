@@ -18,7 +18,7 @@ import net.sf.anathema.charms.character.sheet.stats.IMagicStats;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.display.DisplayCharm;
-import net.sf.anathema.charms.extension.CharmDataMap;
+import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.ICharmId;
 
 import com.lowagie.text.DocumentException;
@@ -47,7 +47,7 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
 
   private List<IMagicStats> collectPrintMagic(Collection<ICharmId> learnedCharms, ICharacter character) {
     final List<IMagicStats> printStats = new ArrayList<IMagicStats>();
-    ICharmDataMap extensionPoint = CharmDataMap.Create();
+    ICharmDataMap extensionPoint = CharmProvidingExtensionPoint.CreateCharmDataMap();
     // Case 357: Generics sollen nur einmal auftauchen
     for (ICharmId id : learnedCharms) {
       CharmDto data = extensionPoint.getData(id);

@@ -7,7 +7,7 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.charms.tree.CharmTreeProvider;
+import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
@@ -28,7 +28,7 @@ public class GenericCharmEncoder extends AbstractExecutableExtension implements 
 
   private Collection<String> collectGenerics(ICharacter character) {
     String typeId = character.getCharacterType().getId();
-    return CharmTreeProvider.Create().getGenericCharms(typeId);
+    return CharmProvidingExtensionPoint.CreateTreeProvider().getGenericCharms(typeId);
   }
 
   @Override
