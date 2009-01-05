@@ -1,46 +1,43 @@
 package net.sf.anathema.character.trait.textreport;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.textreport.encoder.AbstractTextEncoder;
+import net.sf.anathema.character.textreport.encoder.AbstractListTextEncoder;
 import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.lib.util.IIdentificate;
 
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Element;
 import com.lowagie.text.Phrase;
 
-public abstract class AbstractTraitCollectionTextEncoder extends AbstractTextEncoder {
+public abstract class AbstractTraitCollectionTextEncoder extends AbstractListTextEncoder<IDisplayTrait> {
 
-  public final Iterable<Element> createParagraphs(ICharacter character) throws DocumentException {
-    Phrase traitPhrase = createTextParagraph(createBoldTitle(getTitle()));
-    traitPhrase.add(createBoldTitle(" ")); //$NON-NLS-1$
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = getFactory().createDisplayTraitGroups(character);
-    boolean firstPrinted = true;
-    for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
-      for (IDisplayTrait trait : group.getTraits()) {
-        if (trait.getValue() == 0) {
-          continue;
-        }
-        if (!firstPrinted) {
-          traitPhrase.add(createTextChunk(", ")); //$NON-NLS-1$
-        }
-        firstPrinted = false;
-        if (trait.getFavorization().getStatus().isCheap()) {
-          traitPhrase.add(createTextChunk("*")); //$NON-NLS-1$
-        }
-        traitPhrase.add(createTextChunk(getTraitName(trait.getTraitType())));
-        traitPhrase.add(createTextChunk(" " + String.valueOf(trait.getValue()))); //$NON-NLS-1$
-      }
+  @Override
+  protected void print(Phrase listPhrase, IDisplayTrait trait) {
+    if (trait.getFavorization().getStatus().isCheap()) {
+      listPhrase.add(createTextChunk("*")); //$NON-NLS-1$
     }
-    return Collections.singletonList((Element) traitPhrase);
+    listPhrase.add(createTextChunk(getTraitName(trait.getTraitType())));
+    listPhrase.add(createTextChunk(" " + String.valueOf(trait.getValue()))); //$NON-NLS-1$ 
+  }
+  
+  @Override
+  protected boolean isPrintable(IDisplayTrait trait) {
+    return trait.getValue() == 0;
   }
 
-  protected abstract String getTitle();
+  @Override
+  protected Iterable<IDisplayTrait> getList(ICharacter character) {
+    ArrayList<IDisplayTrait> list = new ArrayList<IDisplayTrait>();
+    for (IDisplayTraitGroup<IDisplayTrait> group : getFactory().createDisplayTraitGroups(character)) {
+      for (IDisplayTrait trait : group.getTraits()) {
+        list.add(trait);
+      }
+    }
+    return list;
+  }
 
   protected abstract IDisplayGroupFactory getFactory();
 

@@ -2,17 +2,15 @@ package net.sf.anathema.charms.character.sheet;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.character.model.CharmCollector;
 import net.sf.anathema.charms.character.sheet.stats.CharmStats;
 import net.sf.anathema.charms.character.sheet.stats.IMagicStats;
 import net.sf.anathema.charms.data.CharmDto;
@@ -34,20 +32,9 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    Set<ICharmId> learnedCharms = collectLearnedCharms(character);
+    Set<ICharmId> learnedCharms = new CharmCollector().collectLearnedCharms(character);
     List<IMagicStats> stats = createPrintStats(learnedCharms, character);
     new MagicTableEncoder(context.getBaseFont(), stats).encodeTable(directContent, bounds);
-  }
-
-  private Set<ICharmId> collectLearnedCharms(ICharacter character) {
-    ICharmModel model = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
-    IExperience experience = (IExperience) character.getModel(IExperience.MODEL_ID);
-    Set<ICharmId> learnedCharms = new HashSet<ICharmId>();
-    addCharms(learnedCharms, model.getCreationLearnedCharms());
-    if (experience.isExperienced()) {
-      addCharms(learnedCharms, model.getExperienceLearnedCharms());
-    }
-    return learnedCharms;
   }
 
   private List<IMagicStats> createPrintStats(Collection<ICharmId> learnedCharms, ICharacter character) {
@@ -60,11 +47,5 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
       printStats.add(new CharmStats(id, charm));
     }
     return printStats;
-  }
-
-  private void addCharms(Collection<ICharmId> learnedCharms, Iterable<ICharmId> charms) {
-    for (ICharmId id : charms) {
-      learnedCharms.add(id);
-    }
   }
 }

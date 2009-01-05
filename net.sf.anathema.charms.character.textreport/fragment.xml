@@ -9,6 +9,15 @@
          <after
                referenceId="abilities">
          </after>
+         <after
+               referenceId="description">
+         </after>
+         <after
+               referenceId="caste">
+         </after>
+         <after
+               referenceId="attributes">
+         </after>
       </textencoder>
    </extension>
 
