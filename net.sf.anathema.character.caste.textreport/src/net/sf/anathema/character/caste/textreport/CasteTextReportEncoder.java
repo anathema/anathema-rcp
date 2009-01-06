@@ -1,7 +1,6 @@
 package net.sf.anathema.character.caste.textreport;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
@@ -16,16 +15,18 @@ public class CasteTextReportEncoder extends AbstractTextEncoder {
 
   @Override
   public Iterable<Element> createParagraphs(ICharacter character) throws DocumentException {
-    List<Element> paragraphics = new ArrayList<Element>();
+    Phrase castePhrase = null;
     ICasteModel model = (ICasteModel) character.getModel(ICasteModel.ID);
     if (model != null) {
       ICaste caste = model.getCaste();
       if (caste != null) {
-        Phrase castePhrase = createTextParagraph(createBoldTitle(Messages.CasteTextReportEncoder_CasteLabel + " ")); //$NON-NLS-1$
+        castePhrase = createTextParagraph(createBoldTitle(Messages.CasteTextReportEncoder_CasteLabel + " ")); //$NON-NLS-1$
         castePhrase.add(createTextChunk(caste.getPrintName()));
-        paragraphics.add(castePhrase);
       }
     }
-    return paragraphics;
+    if (castePhrase == null) {
+      return Collections.emptyList();
+    }
+    return Collections.singletonList((Element) castePhrase);
   }
 }
