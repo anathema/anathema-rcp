@@ -31,7 +31,10 @@ public class XmlCharmDataMap_Test {
     documentReader.setXml("<charmlist>" //$NON-NLS-1$
         + "<charm id=\"Dragon-Blooded.Known\" group=\"Archery\">" //$NON-NLS-1$
         + " <cost>" //$NON-NLS-1$
-        + "   <essence cost=\"1\"/>" //$NON-NLS-1$
+        + "   <essence cost=\"2\"/>" //$NON-NLS-1$
+        + " </cost>" //$NON-NLS-1$
+        + " <cost>" //$NON-NLS-1$
+        + "   <willpower cost=\"1\"/>" //$NON-NLS-1$
         + " </cost>" //$NON-NLS-1$
         + " <duration duration=\"Instant\"/>" //$NON-NLS-1$
         + " <charmtype type=\"Supplemental\"/>" //$NON-NLS-1$
@@ -102,5 +105,12 @@ public class XmlCharmDataMap_Test {
     CostDto costDto = map.getData(KNOWN_ID).costs.get(0);
     ResourceDto resourceDto = costDto.resources.get(0);
     assertThat(resourceDto.type, is("motes")); //$NON-NLS-1$
+  }
+
+  @Test
+  public void hasAlternativeCostsForWillpower() throws Exception {
+    CostDto costDto = map.getData(KNOWN_ID).costs.get(1);
+    ResourceDto resourceDto = costDto.resources.get(0);
+    assertThat(resourceDto.type, is("willpower")); //$NON-NLS-1$
   }
 }

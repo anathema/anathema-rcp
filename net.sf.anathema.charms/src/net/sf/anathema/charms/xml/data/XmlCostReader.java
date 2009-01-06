@@ -41,7 +41,7 @@ public class XmlCostReader {
     int amount = ElementUtilities.getRequiredIntAttrib(resourceElement, ATTIB_COST);
     XmlCostText costText = new XmlCostText(resourceElement.attributeValue(ATTRIB_TEXT));
     if (costText.isBase()) {
-      readBaseCost(resource, amount);
+      readBaseCost(resource, amount, costText);
     }
     if (costText.isLinear()) {
       readLinearCost(resource, amount, costText);
@@ -55,9 +55,9 @@ public class XmlCostReader {
     resource.linearDto.unit = text.getLinearUnit();
   }
 
-  private void readBaseCost(ResourceDto resource, int amount) {
+  private void readBaseCost(ResourceDto resource, int amount, XmlCostText text) {
     resource.baseDto = new BaseDto();
     resource.baseDto.amount = amount;
-    resource.baseDto.orMore = false;
+    resource.baseDto.orMore = text.isOrMore();
   }
 }

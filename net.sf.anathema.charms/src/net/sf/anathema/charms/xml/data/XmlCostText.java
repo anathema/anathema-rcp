@@ -9,7 +9,7 @@ public class XmlCostText {
   }
 
   public boolean isBase() {
-    return text == null || isCombined();
+    return text == null || isCombined() || isOrMore();
   }
 
   public boolean isLinear() {
@@ -22,6 +22,10 @@ public class XmlCostText {
       return Integer.valueOf(new String(new byte[] { firstNumber }));
     }
     return baseAmount;
+  }
+
+  public boolean isOrMore() {
+    return text != null && text.toLowerCase().equals("or more");
   }
 
   public String getLinearUnit() {

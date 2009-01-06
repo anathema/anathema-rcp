@@ -1,19 +1,7 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
-<charmlist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ComplexCharms.xsd">
-  
-  <!-- DB Water - Bureaucracy -->
-  
+<charmlist>
   <charm id="Dragon-Blooded.BenevolentMaster'sBlessing" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="1"/>
-      <trait id="Bureaucracy" value="2"/>
-      <charmReference id="Dragon-Blooded.TerrestrialReinforcement.Bureaucracy"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="1"/>
-      
     </cost>
     <duration amount="1" unit="scene"/>
     <charmtype type="Simple"/>
@@ -21,14 +9,8 @@
   </charm>
   
   <charm id="Dragon-Blooded.ConfluenceSavantThought" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="2"/>
-      <trait id="Bureaucracy" value="3"/>
-    </prerequisite>
-    <cost>
-      
+   <cost>
         <essence cost="2"/>
-      
     </cost>
     <duration amount="1" unit="scene"/>
     <charmtype type="Simple"/>
@@ -37,16 +19,9 @@
   </charm>
 
   <charm id="Dragon-Blooded.Geese-Flying-SouthAdministration" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="2"/>
-      <trait id="Bureaucracy" value="4"/>
-      <charmReference id="Dragon-Blooded.ConfluenceSavantThought"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="5"/>
         <willpower cost="1"/>
-      
     </cost>
     <duration duration="LessOfTaskOr3Months"/>
     <charmtype type="Simple">
@@ -59,16 +34,8 @@
   </charm>
   
   <charm id="Dragon-Blooded.BestowSaffronMantle" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="3"/>
-      <trait id="Bureaucracy" value="4"/>
-      <charmReference id="Dragon-Blooded.Geese-Flying-SouthAdministration"/>
-      <charmReference id="Dragon-Blooded.BenevolentMaster'sBlessing"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="1" text="+1m per dot lent"/>
-      
     </cost>
     <duration duration="Special"/>
     <charmtype type="Simple"/>
@@ -77,15 +44,8 @@
   </charm>
   
   <charm id="Dragon-Blooded.ThrashingCarpSerenade" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="1"/>
-      <trait id="Bureaucracy" value="3"/>
-      <charmAttributeRequirement attribute="ExcellencyBureaucracy" count="1"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="3"/>
-      
     </cost>
     <duration amount="1" unit="scene"/>
     <charmtype type="Simple"/>
@@ -94,15 +54,8 @@
   </charm>
 
   <charm id="Dragon-Blooded.TestingWaters" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="2"/>
-      <trait id="Bureaucracy" value="5"/>
-      <charmReference id="Dragon-Blooded.ThrashingCarpSerenade"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="3"/>
-      
     </cost>
     <duration duration="Instant"/>
     <charmtype type="Simple"/>
@@ -110,14 +63,8 @@
   </charm>
 
   <charm id="Dragon-Blooded.FindingWater'sDepths" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="2"/>
-      <trait id="Bureaucracy" value="3"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="2"/>
-      
     </cost>
     <duration duration="Instant"/>
     <charmtype type="Simple"/>
@@ -125,15 +72,8 @@
   </charm>
   
   <charm id="Dragon-Blooded.ThoughtfulGiftTechnique" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="2"/>
-      <trait id="Bureaucracy" value="4"/>
-      <charmReference id="Dragon-Blooded.FindingWater'sDepths"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="2"/>
-      
     </cost>
     <duration duration="Instant"/>
     <charmtype type="Simple"/>
@@ -141,16 +81,9 @@
   </charm>
 
   <charm id="Dragon-Blooded.DistractionBabblingBrook" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="2"/>
-      <trait id="Bureaucracy" value="4"/>
-      <charmReference id="Dragon-Blooded.ThoughtfulGiftTechnique"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="4"/>
         <willpower cost="1"/>
-      
     </cost>
     <duration duration="Instant"/>
     <charmtype type="Simple"/>
@@ -161,16 +94,9 @@
   </charm>
   
   <charm id="Dragon-Blooded.DrowningNegotiationStyle" exalt="Dragon-Blooded" group="Bureaucracy">
-    <prerequisite>
-      <essence id="Essence" value="3"/>
-      <trait id="Bureaucracy" value="5"/>
-      <charmReference id="Dragon-Blooded.DistractionBabblingBrook"/>
-    </prerequisite>
     <cost>
-      
         <essence cost="5"/>
         <willpower cost="1"/>
-      
     </cost>
     <duration duration="Instant"/>
     <charmtype type="Simple"/>

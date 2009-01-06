@@ -1,15 +1,8 @@
 <charmlist>
 
 <charm id="Dragon-Blooded.ShapingHandStyle" exalt="Dragon-Blooded" group="Craft">
- <prerequisite>
-  <trait id="Craft" value="2"/>
-  <essence value="1"/>
-  <charmAttributeRequirement attribute="ExcellencyCraft" count="1"/>
- </prerequisite>
  <cost>
-  
    <essence cost="2"/>
-  
  </cost>
  <duration amount="1" unit="hour"/>
  <charmtype type="Simple"/>
@@ -18,15 +11,8 @@
 </charm>
 
 <charm id="Dragon-Blooded.Stone-CarvingFingersForm" exalt="Dragon-Blooded" group="Craft">
- <prerequisite>
-  <trait id="Craft" value="3"/>
-  <essence value="2"/>
-  <charmReference id="Dragon-Blooded.ShapingHandStyle"/>
- </prerequisite>
  <cost>
-  
-   <essence cost="1" text="per cubic foot"/>
-  
+   <essence cost="1" text=" per cubic foot"/>
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Simple"/>
@@ -34,15 +20,8 @@
 </charm>
 
 <charm id="Dragon-Blooded.PerfectClimbingAttitude" exalt="Dragon-Blooded" group="Craft">
- <prerequisite>
-  <trait id="Craft" value="3"/>
-  <essence value="2"/>
-  <charmReference id="Dragon-Blooded.Stone-CarvingFingersForm"/>
- </prerequisite>
  <cost>
-  
    <essence cost="1"/>
-  
  </cost>
  <duration amount="1" unit="scene"/>
  <charmtype type="Simple"/>
@@ -52,15 +31,9 @@
 
 
 <charm id="Dragon-Blooded.Flaw-FindingExamination" exalt="Dragon-Blooded" group="Craft">
- <prerequisite>
-  <trait id="Craft" value="3"/>
-  <essence value="1"/>
- </prerequisite>
  <cost>
-  
    <essence cost="1" text="for touch or 3m for sight"/>
    <willpower cost="1" text="to repair"/>
-  
  </cost>
  <duration amount="1" unit="minute"/>
  <charmtype type="Simple"/>
@@ -69,15 +42,8 @@
 </charm>
 
 <charm id="Dragon-Blooded.CharmLesserUnmaking" exalt="Dragon-Blooded" group="Craft">
- <prerequisite>
-  <trait id="Craft" value="5"/>
-  <essence value="3"/>
-  <charmReference id="Dragon-Blooded.Flaw-FindingExamination"/>
- </prerequisite>
  <cost>
-  
    <essence cost="5"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Simple"/>
@@ -85,22 +51,13 @@
 </charm>
 
 <charm id="Dragon-Blooded.CharmGreaterUnmaking" exalt="Dragon-Blooded" group="Craft">
- <prerequisite>
-  <trait id="Craft" value="5"/>
-  <essence value="4"/>
-  <charmReference id="Dragon-Blooded.CharmLesserUnmaking"/>
- </prerequisite>
  <cost>
-  
    <essence cost="10"/>
    <willpower cost="1"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Simple"/>
    <charmAttribute attribute="Combo-Basic" visualize="true"/>
   <source source="DragonBlooded2nd"/>
 </charm>
-
-
 </charmlist>

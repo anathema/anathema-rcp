@@ -34,11 +34,9 @@ public class DatedCharm extends BasicCharm implements IDatedCharm {
   }
 
   private void addCosts(CharmDto dto) throws PersistenceException {
-    Element costElement = charmElement.element(TAG_COST);
-    if (costElement == null) {
-      return;
+    for (Element costElement : ElementUtilities.elements(charmElement, TAG_COST)) {
+      new XmlCostReader(costElement, dto).read();
     }
-    new XmlCostReader(costElement, dto).read();
   }
 
   private void addKeywords(CharmDto dto) {
