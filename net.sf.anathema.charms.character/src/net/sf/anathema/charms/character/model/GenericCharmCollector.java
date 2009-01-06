@@ -5,11 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.trait.display.DisplayFactoryLookup;
-import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
-import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.model.MainTraitModelProvider;
 import net.sf.anathema.character.trait.resources.TraitMessages;
 import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.CharmId;
@@ -41,21 +37,13 @@ public class GenericCharmCollector {
   public List<String> getTraits(String genericId) {
     ICharmModel charmModel = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
     List<String> traits = new ArrayList<String>();
-    for (IDisplayTraitGroup<IDisplayTrait> group : getDisplayGroups()) {
-      for (IDisplayTrait trait : group) {
-        String traitId = trait.getTraitType().getId();
-        ICharmId charmId = new CharmId(genericId, traitId);
-        if (charmModel.isLearned(charmId)) {
-          traits.add(new TraitMessages().getNameFor(traitId));
-        }
+    for (IDisplayTrait trait : new TraitCollector(character).getAllTraits()) {
+      String traitId = trait.getTraitType().getId();
+      ICharmId charmId = new CharmId(genericId, traitId);
+      if (charmModel.isLearned(charmId)) {
+        traits.add(new TraitMessages().getNameFor(traitId));
       }
     }
     return traits;
-  }
-
-  private List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups() {
-    String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
-    IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
-    return factory.createDisplayTraitGroups(character);
   }
 }

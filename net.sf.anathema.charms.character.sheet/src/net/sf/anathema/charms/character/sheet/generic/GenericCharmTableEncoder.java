@@ -2,24 +2,20 @@ package net.sf.anathema.charms.character.sheet.generic;
 
 import java.awt.Color;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
-import net.sf.anathema.character.trait.display.DisplayFactoryLookup;
-import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
-import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.model.MainTraitModelProvider;
 import net.sf.anathema.character.trait.resources.TraitMessages;
-import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.character.model.GenericCharmCollector;
+import net.sf.anathema.charms.character.model.TraitCollector;
 import net.sf.anathema.charms.character.sheet.AbstractTableEncoder;
 import net.sf.anathema.charms.character.sheet.TableCell;
 import net.sf.anathema.charms.character.sheet.TableEncodingUtilities;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
-import net.sf.anathema.charms.tree.CharmId;
-import net.sf.anathema.charms.tree.ICharmId;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -53,30 +49,21 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     PdfPTable table = new PdfPTable(createColumnWidths());
     table.setWidthPercentage(100);
     table.addCell(new TableCell(new Phrase(), Rectangle.NO_BORDER));
-
-    for (IDisplayTraitGroup<IDisplayTrait> group : getDisplayGroups()) {
-      for (IDisplayTrait trait : group) {
-        table.addCell(createHeaderCell(directContent, trait));
-      }
+    Collection<IDisplayTrait> traits = new TraitCollector(character).getAllTraits();
+    for (IDisplayTrait trait : traits) {
+      table.addCell(createHeaderCell(directContent, trait));
     }
-    ICharmModel model = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
+    GenericCharmCollector collector = new GenericCharmCollector(character);
     CharmNamesExtensionPoint names = new CharmNamesExtensionPoint();
     for (String pattern : genericIdPatterns) {
       Phrase charmPhrase = new Phrase(names.getNameFor(new GenericDisplayId(character, pattern)), font);
+      List<String> learnedTraits = collector.getTraits(pattern);
       table.addCell(new TableCell(charmPhrase, Rectangle.NO_BORDER));
-      for (IDisplayTraitGroup<IDisplayTrait> group : getDisplayGroups()) {
-        for (IDisplayTrait trait : group) {
-          table.addCell(createGenericCell(model, trait, pattern, learnedTemplate, notLearnedTemplate));
-        }
+      for (IDisplayTrait trait : traits) {
+        table.addCell(createGenericCell(learnedTraits, trait, learnedTemplate, notLearnedTemplate));
       }
     }
     return table;
-  }
-
-  private List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups() {
-    String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
-    IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
-    return factory.createDisplayTraitGroups(character);
   }
 
   private PdfTemplate createCharmDotTemplate(PdfContentByte directContent, Color color) {
@@ -93,13 +80,11 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
   }
 
   private PdfPCell createGenericCell(
-      ICharmModel model,
+      List<String> learnedTraits,
       IDisplayTrait type,
-      String genericId,
       PdfTemplate learnedTemplate,
       PdfTemplate notLearnedTemplate) throws DocumentException {
-    ICharmId charmId = new CharmId(genericId, type.getTraitType().getId());
-    boolean isLearned = model.isLearned(charmId);
+    boolean isLearned = learnedTraits.contains(type.getTraitType().getId());
     Image image = Image.getInstance(isLearned ? learnedTemplate : notLearnedTemplate);
     TableCell tableCell = new TableCell(image);
     tableCell.setPadding(0);
