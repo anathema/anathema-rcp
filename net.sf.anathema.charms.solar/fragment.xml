@@ -242,9 +242,37 @@
                value="Combo-OK">
          </keyword>
          <source
-               addition="p.230"
+               addition="p230"
                source="Ex2">
          </source>
+      </charmdata>
+      <charmdata
+            charmId="solar.first.{0}.excellency">
+         <reflexive
+               primaryStep="1"
+               secondaryStep="2">
+            <additionalData>
+               <duration>
+                  duration body text
+               </duration>
+               <cost>
+                  <resource
+                        type="motes">
+                     <linear
+                           amount="1"
+                           unit="die">
+                     </linear>
+                  </resource>
+               </cost>
+            </additionalData>
+         </reflexive>
+         <source
+               addition="p183"
+               source="Ex2">
+         </source>
+         <keyword
+               value="Combo-OK">
+         </keyword>
       </charmdata>
    </extension>
    <extension

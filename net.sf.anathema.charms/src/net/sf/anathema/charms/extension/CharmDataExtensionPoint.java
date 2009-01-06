@@ -44,7 +44,7 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   }
 
   private IExtensionElement getExtensionElement(ICharmId charmId) {
-    String idString = charmId.getId();
+    String idString = charmId.getIdPattern();
     AttributePredicate charmIdPredicate = AttributePredicate.FromNameAndValue(ATTRIB_CHARM_ID, idString);
     return extensionPoint.getFirst(charmIdPredicate);
   }
