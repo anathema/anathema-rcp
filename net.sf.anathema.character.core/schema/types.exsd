@@ -1,16 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="net.sf.anathema.character.core">
+<schema targetNamespace="net.sf.anathema.character.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
+      <appinfo>
          <meta.schema plugin="net.sf.anathema.character.core" id="types" name="%extension-point.name.charactertypes"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Adds charactertypes.
       </documentation>
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="characterType" minOccurs="1" maxOccurs="unbounded"/>
@@ -34,37 +39,42 @@
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
    <element name="characterType">
+      <annotation>
+         <documentation>
+            The character type
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  A unique ID.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="image" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  An associated image for the character type. Used in Wizard and so on.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="resource"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="traitImageId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The identifier of the image used to represent resource dots onscreen.
                </documentation>
             </annotation>
          </attribute>
@@ -72,48 +82,33 @@
    </element>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         v1.0
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
-         <meta.section type="examples"/>
-      </appInfo>
-      <documentation>
-         [Enter extension point usage example here.]
-      </documentation>
-   </annotation>
-
-   <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="apiInfo"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Enter API information here.]
+         The supplied implementation can be instantiated to retrieve the Character Type associated with a given type id.
+Usually, this is only required when characters are loaded.
       </documentation>
    </annotation>
 
+
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="implementation"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         net.sf.anathema.character.core.type.internal.CharacterTypeExtensionPoint
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>
