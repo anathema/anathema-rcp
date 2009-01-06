@@ -1,5 +1,7 @@
 package net.sf.anathema.rcp;
 
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
@@ -21,5 +23,16 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
     configurer.setShowProgressIndicator(true);
     configurer.setShowFastViewBars(true);
+  }
+
+  @Override
+  public boolean preWindowShellClose() {
+    try {
+      ResourcesPlugin.getWorkspace().save(true, null);
+    }
+    catch (final CoreException e) {
+      // log exception, if required
+    }
+    return true;
   }
 }
