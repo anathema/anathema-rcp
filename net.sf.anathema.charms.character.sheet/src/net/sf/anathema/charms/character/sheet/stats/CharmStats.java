@@ -19,7 +19,6 @@ public class CharmStats extends AbstractCharmStats {
 
   public String getGroupName() {
     //TODO Case 349: Generics sollen nur einmal auftauchen - das geht nicht, wenn sie ihr Primary Trait rausrücken
-    //TODO Case 323 Lunars könnten hier unglücklich werden
     return charmId.getPrimaryTrait();
   }
 }

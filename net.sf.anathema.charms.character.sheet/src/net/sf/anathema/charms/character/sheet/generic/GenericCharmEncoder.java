@@ -28,7 +28,7 @@ public class GenericCharmEncoder extends AbstractExecutableExtension implements 
   
 
   private Collection<String> collect(ICharacter character) {
-    return new GenericCharmCollector().collect(character);
+    return new GenericCharmCollector(character).getGenericIdPatterns();
   }
 
   @Override

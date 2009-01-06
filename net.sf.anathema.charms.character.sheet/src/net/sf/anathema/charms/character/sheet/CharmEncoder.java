@@ -10,7 +10,9 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
+import net.sf.anathema.charms.character.model.GenericCharmCollector;
 import net.sf.anathema.charms.character.model.LearnedCharmCollector;
+import net.sf.anathema.charms.character.sheet.generic.GenericDisplayId;
 import net.sf.anathema.charms.character.sheet.stats.CharmStats;
 import net.sf.anathema.charms.character.sheet.stats.IMagicStats;
 import net.sf.anathema.charms.data.CharmDto;
@@ -39,13 +41,31 @@ public class CharmEncoder extends AbstractExecutableExtension implements IPdfCon
 
   private List<IMagicStats> createPrintStats(Collection<ICharmId> learnedCharms, ICharacter character) {
     final List<IMagicStats> printStats = new ArrayList<IMagicStats>();
-    ICharmDataMap extensionPoint = CharmProvidingExtensionPoint.CreateCharmDataMap();
-    // Case 357: Generics sollen nur einmal auftauchen
+    ICharmDataMap map = CharmProvidingExtensionPoint.CreateCharmDataMap();
+    GenericCharmCollector collector = new GenericCharmCollector(character);
+    List<ICharmId> learnedGenerics = collector.getLearnedGenerics();
+    Collection<String> genericIdPatterns = collector.getGenericIdPatterns();
+    for (String id : genericIdPatterns) {
+      printStats.add(createGenericStats(map, new GenericDisplayId(character, id)));
+    }
     for (ICharmId id : learnedCharms) {
-      CharmDto data = extensionPoint.getData(id);
-      DisplayCharm charm = new DisplayCharm(data);
-      printStats.add(new CharmStats(id, charm));
+      if (learnedGenerics.contains(id)) {
+        continue;
+      }
+      printStats.add(createPrintStats(map, id));
     }
     return printStats;
+  }
+
+  private CharmStats createPrintStats(ICharmDataMap map, ICharmId id) {
+    CharmDto data = map.getData(id);
+    DisplayCharm charm = new DisplayCharm(data);
+    return new CharmStats(id, charm);
+  }
+
+  private CharmStats createGenericStats(ICharmDataMap map, ICharmId id) {
+    CharmDto data = map.getData(id);
+    DisplayCharm charm = new DisplayCharm(data);
+    return new GenericStats(id, charm);
   }
 }

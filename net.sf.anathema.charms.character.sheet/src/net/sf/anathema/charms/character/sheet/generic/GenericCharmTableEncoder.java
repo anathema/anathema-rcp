@@ -53,10 +53,8 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     PdfPTable table = new PdfPTable(createColumnWidths());
     table.setWidthPercentage(100);
     table.addCell(new TableCell(new Phrase(), Rectangle.NO_BORDER));
-    String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = getDisplayGroups(mainModel);
-    String phraseCompletion = mainModel + ".forgenerics"; //$NON-NLS-1$
-    for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
+
+    for (IDisplayTraitGroup<IDisplayTrait> group : getDisplayGroups()) {
       for (IDisplayTrait trait : group) {
         table.addCell(createHeaderCell(directContent, trait));
       }
@@ -64,9 +62,9 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     ICharmModel model = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
     CharmNamesExtensionPoint names = new CharmNamesExtensionPoint();
     for (String pattern : genericIdPatterns) {
-      Phrase charmPhrase = new Phrase(names.getNameFor(new CharmId(pattern, phraseCompletion)), font);
+      Phrase charmPhrase = new Phrase(names.getNameFor(new GenericDisplayId(character, pattern)), font);
       table.addCell(new TableCell(charmPhrase, Rectangle.NO_BORDER));
-      for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
+      for (IDisplayTraitGroup<IDisplayTrait> group : getDisplayGroups()) {
         for (IDisplayTrait trait : group) {
           table.addCell(createGenericCell(model, trait, pattern, learnedTemplate, notLearnedTemplate));
         }
@@ -75,7 +73,8 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     return table;
   }
 
-  private List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups(String mainModel) {
+  private List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups() {
+    String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
     IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
     return factory.createDisplayTraitGroups(character);
   }
