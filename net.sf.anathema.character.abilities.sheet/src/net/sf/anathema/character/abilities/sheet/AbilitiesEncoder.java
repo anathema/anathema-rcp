@@ -94,7 +94,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
     float groupLabelX = position.x + 4;
     float markerX = groupLabelX + IVoidStateFormatConstants.TEXT_PADDING;
     int index = -1;
-    for (IDisplayTrait trait : group.getTraits()) {
+    for (IDisplayTrait trait : group) {
       index++;
       float yPosition = position.y - (index + 1) * traitEncoder.getTraitHeight();
       if (markedTraits.isMarked(trait)) {

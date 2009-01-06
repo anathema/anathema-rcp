@@ -93,7 +93,7 @@ public class SiderealMinimalAbilityValues_InteractionTest {
 
   private void reduceAllValuesByOne() throws Exception {
     for (IDisplayTraitGroup<IInteractiveTrait> group : AbilitiesInteractionUtilties.createDisplayGroups(folder)) {
-      for (IInteractiveTrait trait : group.getTraits()) {
+      for (IInteractiveTrait trait : group) {
         trait.setValue(trait.getValue() - 1);
       }
     }

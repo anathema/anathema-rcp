@@ -1,6 +1,7 @@
 package net.sf.anathema.character.trait.group;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import net.sf.anathema.character.trait.display.IDisplayTrait;
@@ -19,10 +20,10 @@ public class DisplayTraitGroup<T extends IDisplayTrait> implements IDisplayTrait
   public void addTrait(T trait) {
     traits.add(trait);
   }
-
+  
   @Override
-  public Iterable<T> getTraits() {
-    return traits;
+  public Iterator<T> iterator() {
+    return traits.iterator();
   }
 
   @Override

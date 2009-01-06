@@ -43,7 +43,7 @@ public class AttributesEditorInputDisplayGroupTest {
 
   @Test
   public void firstGroupIsCreatedCorrectly() throws Exception {
-    Iterator<IInteractiveTrait> iterator1 = groups.get(0).getTraits().iterator();
+    Iterator<IInteractiveTrait> iterator1 = groups.get(0).iterator();
     assertEquals("trait1", iterator1.next().getTraitType().getId()); //$NON-NLS-1$
     assertEquals("trait2", iterator1.next().getTraitType().getId()); //$NON-NLS-1$
     assertFalse(iterator1.hasNext());
@@ -51,7 +51,7 @@ public class AttributesEditorInputDisplayGroupTest {
 
   @Test
   public void secondGroupIsCreatedCorrectly() throws Exception {
-    Iterator<IInteractiveTrait> iterator2 = groups.get(1).getTraits().iterator();
+    Iterator<IInteractiveTrait> iterator2 = groups.get(1).iterator();
     assertEquals("trait3", iterator2.next().getTraitType().getId()); //$NON-NLS-1$
     assertEquals("trait4", iterator2.next().getTraitType().getId()); //$NON-NLS-1$
     assertFalse(iterator2.hasNext());

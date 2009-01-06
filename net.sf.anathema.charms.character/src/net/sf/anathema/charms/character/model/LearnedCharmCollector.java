@@ -6,12 +6,11 @@ import java.util.Set;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.tree.ICharmId;
 
-public class CharmCollector {
+public class LearnedCharmCollector {
 
-  public Set<ICharmId> collectLearnedCharms(ICharacter character) {
+  public Set<ICharmId> collect(ICharacter character) {
     ICharmModel model = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
     IExperience experience = (IExperience) character.getModel(IExperience.MODEL_ID);
     Set<ICharmId> learnedCharms = new HashSet<ICharmId>();

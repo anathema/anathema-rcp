@@ -1,7 +1,6 @@
 package net.sf.anathema.character.trait.textreport;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.AbstractListTextEncoder;
@@ -25,14 +24,14 @@ public abstract class AbstractTraitCollectionTextEncoder extends AbstractListTex
   
   @Override
   protected boolean isPrintable(IDisplayTrait trait) {
-    return trait.getValue() == 0;
+    return trait.getValue() != 0;
   }
 
   @Override
   protected Iterable<IDisplayTrait> getList(ICharacter character) {
     ArrayList<IDisplayTrait> list = new ArrayList<IDisplayTrait>();
     for (IDisplayTraitGroup<IDisplayTrait> group : getFactory().createDisplayTraitGroups(character)) {
-      for (IDisplayTrait trait : group.getTraits()) {
+      for (IDisplayTrait trait : group) {
         list.add(trait);
       }
     }

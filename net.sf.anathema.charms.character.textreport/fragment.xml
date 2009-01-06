@@ -19,6 +19,16 @@
                referenceId="attributes">
          </after>
       </textencoder>
+      <textencoder
+            class="net.sf.anathema.charms.textencoder.GenericCharmTextEncoder"
+            id="generics">
+      </textencoder>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.trait.traitname">
+      <messages
+            class="net.sf.anathema.charms.textencoder.EmptyNameCollection">
+      </messages>
    </extension>
 
 </fragment>

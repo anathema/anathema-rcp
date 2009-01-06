@@ -73,7 +73,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
           Composite content = sectionFactory.create(layoutContainer, title);
           content.setLayout(new GridLayout(3, false));
           TraitViewFactory factory = new TraitViewFactory(content, editorInput.getImageProvider(), characterId);
-          for (final IInteractiveTrait trait : group.getTraits()) {
+          for (final IInteractiveTrait trait : group) {
             String label = editorInput.getConfiguration().getTraitLabel(trait.getTraitType());
             final IExtendableIntValueView view = factory.create(label, toolkit, trait);
             for (ITraitGroupEditorDecoration decoration : decorations) {

@@ -19,6 +19,7 @@ import net.sf.anathema.charms.character.sheet.TableCell;
 import net.sf.anathema.charms.character.sheet.TableEncodingUtilities;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 import net.sf.anathema.charms.tree.CharmId;
+import net.sf.anathema.charms.tree.ICharmId;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -53,11 +54,10 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     table.setWidthPercentage(100);
     table.addCell(new TableCell(new Phrase(), Rectangle.NO_BORDER));
     String mainModel = new MainTraitModelProvider().getFor(character.getCharacterType().getId());
-    IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
+    List<IDisplayTraitGroup<IDisplayTrait>> groups = getDisplayGroups(mainModel);
     String phraseCompletion = mainModel + ".forgenerics"; //$NON-NLS-1$
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = factory.createDisplayTraitGroups(character);
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
-      for (IDisplayTrait trait : group.getTraits()) {
+      for (IDisplayTrait trait : group) {
         table.addCell(createHeaderCell(directContent, trait));
       }
     }
@@ -67,12 +67,17 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
       Phrase charmPhrase = new Phrase(names.getNameFor(new CharmId(pattern, phraseCompletion)), font);
       table.addCell(new TableCell(charmPhrase, Rectangle.NO_BORDER));
       for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
-        for (IDisplayTrait trait : group.getTraits()) {
+        for (IDisplayTrait trait : group) {
           table.addCell(createGenericCell(model, trait, pattern, learnedTemplate, notLearnedTemplate));
         }
       }
     }
     return table;
+  }
+
+  private List<IDisplayTraitGroup<IDisplayTrait>> getDisplayGroups(String mainModel) {
+    IDisplayGroupFactory factory = new DisplayFactoryLookup().getFor(mainModel);
+    return factory.createDisplayTraitGroups(character);
   }
 
   private PdfTemplate createCharmDotTemplate(PdfContentByte directContent, Color color) {
@@ -94,7 +99,7 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
       String genericId,
       PdfTemplate learnedTemplate,
       PdfTemplate notLearnedTemplate) throws DocumentException {
-    CharmId charmId = new CharmId(genericId, type.getTraitType().getId());
+    ICharmId charmId = new CharmId(genericId, type.getTraitType().getId());
     boolean isLearned = model.isLearned(charmId);
     Image image = Image.getInstance(isLearned ? learnedTemplate : notLearnedTemplate);
     TableCell tableCell = new TableCell(image);

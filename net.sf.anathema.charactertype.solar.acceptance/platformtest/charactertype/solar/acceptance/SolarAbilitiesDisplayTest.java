@@ -41,7 +41,7 @@ public class SolarAbilitiesDisplayTest {
   public void firstGroupIsDawn() throws Exception {
     IDisplayTraitGroup<IInteractiveTrait> group = groups.get(0);
     assertEquals("Dawn", group.getId()); //$NON-NLS-1$
-    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.iterator();
     assertCreationTrait(groupTraits.next(), "Archery"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "MartialArts"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Melee"); //$NON-NLS-1$
@@ -54,7 +54,7 @@ public class SolarAbilitiesDisplayTest {
   public void secondGroupIsZenith() throws Exception {
     IDisplayTraitGroup<IInteractiveTrait> group = groups.get(1);
     assertEquals("Zenith", group.getId()); //$NON-NLS-1$
-    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.iterator();
     assertCreationTrait(groupTraits.next(), "Integrity"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Performance"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Presence"); //$NON-NLS-1$
@@ -67,7 +67,7 @@ public class SolarAbilitiesDisplayTest {
   public void thirdGroupIsTwilight() throws Exception {
     IDisplayTraitGroup<IInteractiveTrait> group = groups.get(2);
     assertEquals("Twilight", group.getId()); //$NON-NLS-1$
-    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.iterator();
     assertCreationTrait(groupTraits.next(), "Craft"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Investigation"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Lore"); //$NON-NLS-1$
@@ -80,7 +80,7 @@ public class SolarAbilitiesDisplayTest {
   public void forthGroupIsNight() throws Exception {
     IDisplayTraitGroup<IInteractiveTrait> group = groups.get(3);
     assertEquals("Night", group.getId()); //$NON-NLS-1$
-    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.iterator();
     assertCreationTrait(groupTraits.next(), "Athletics"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Awareness"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Dodge"); //$NON-NLS-1$
@@ -93,7 +93,7 @@ public class SolarAbilitiesDisplayTest {
   public void fifthGroupIsEclipse() throws Exception {
     IDisplayTraitGroup<IInteractiveTrait> group = groups.get(4);
     assertEquals("Eclipse", group.getId()); //$NON-NLS-1$
-    Iterator<IInteractiveTrait> groupTraits = group.getTraits().iterator();
+    Iterator<IInteractiveTrait> groupTraits = group.iterator();
     assertCreationTrait(groupTraits.next(), "Bureaucracy"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Linguistics"); //$NON-NLS-1$
     assertCreationTrait(groupTraits.next(), "Ride"); //$NON-NLS-1$

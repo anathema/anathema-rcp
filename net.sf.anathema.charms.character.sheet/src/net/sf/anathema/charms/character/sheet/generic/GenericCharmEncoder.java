@@ -7,7 +7,7 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
+import net.sf.anathema.charms.character.model.GenericCharmCollector;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
@@ -21,19 +21,19 @@ public class GenericCharmEncoder extends AbstractExecutableExtension implements 
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    new GenericCharmTableEncoder(context.getBaseFont(), collectGenerics(character), character).encodeTable(
+    new GenericCharmTableEncoder(context.getBaseFont(), collect(character), character).encodeTable(
         directContent,
         bounds);
   }
+  
 
-  private Collection<String> collectGenerics(ICharacter character) {
-    String typeId = character.getCharacterType().getId();
-    return CharmProvidingExtensionPoint.CreateTreeProvider().getGenericCharms(typeId);
+  private Collection<String> collect(ICharacter character) {
+    return new GenericCharmCollector().collect(character);
   }
 
   @Override
   public float getHeight(ICharacter character) {
-    Collection<String> generics = collectGenerics(character);
+    Collection<String> generics = collect(character);
     return 55 + generics.size() * 11;
   }
 }

@@ -46,7 +46,7 @@ public class AttributesEncoder extends AbstractExecutableExtension implements IP
     float y = contentBounds.getMaxY() - groupSpacing;
     for (IDisplayTraitGroup< ? extends IDisplayTrait> group : attributeGroups) {
       y -= groupSpacing;
-      for (IDisplayTrait trait : group.getTraits()) {
+      for (IDisplayTrait trait : group) {
         y = encodeTrait(trait, directContent, contentBounds, y);
       }
     }

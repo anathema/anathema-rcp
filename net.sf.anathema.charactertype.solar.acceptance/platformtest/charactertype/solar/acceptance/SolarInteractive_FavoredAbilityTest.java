@@ -27,7 +27,7 @@ public class SolarInteractive_FavoredAbilityTest {
   public void createSolarFolderWithFirstAttributeFavored() throws Exception {
     this.character = AcceptanceCharacter.FromFolderNameAndTemplateId("Solar", IIntegrationConstants.DEFAULT_TEMPLATE); //$NON-NLS-1$
     List<IDisplayTraitGroup<IInteractiveTrait>> groups = AbilitiesInteractionUtilties.createDisplayGroups(character.getFolder());
-    favoredAbility = groups.get(0).getTraits().iterator().next();
+    favoredAbility = groups.get(0).iterator().next();
     ITraitCollectionModel abilities = (ITraitCollectionModel) character.getModel(IAbilitiesPluginConstants.MODEL_ID);
     abilities.getTrait(favoredAbility.getTraitType().getId()).getStatusManager().setStatus(new FavoredStatus());
     assertThat(favoredAbility.getFavorization().isFavored(), is(true));
