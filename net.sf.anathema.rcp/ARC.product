@@ -98,7 +98,6 @@ Used without permission.
       <plugin id="net.sf.anathema.charms.character"/>
       <plugin id="net.sf.anathema.charms.character.sheet" fragment="true"/>
       <plugin id="net.sf.anathema.charms.character.textreport" fragment="true"/>
-      <plugin id="net.sf.anathema.charms.report"/>
       <plugin id="net.sf.anathema.editor.styledtext"/>
       <plugin id="net.sf.anathema.graphlayout"/>
       <plugin id="net.sf.anathema.rcp"/>
@@ -139,7 +138,6 @@ Used without permission.
       <plugin id="org.eclipse.update.configurator"/>
       <plugin id="org.eclipse.zest.core"/>
       <plugin id="org.eclipse.zest.layouts"/>
-      <plugin id="org.junit4"/>
    </plugins>
 
 </product>

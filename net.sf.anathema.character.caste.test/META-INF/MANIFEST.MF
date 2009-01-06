@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name.f0
+Bundle-Name: Caste Tests
 Bundle-SymbolicName: net.sf.anathema.character.caste.test;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.character.caste;bundle-version="1.0.0",

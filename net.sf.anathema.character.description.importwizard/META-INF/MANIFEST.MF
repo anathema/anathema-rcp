@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name.Character.Description.ImportWizard
+Bundle-Name: Character Description Importer
 Bundle-SymbolicName: net.sf.anathema.character.description.importwizard;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.description;bundle-version="1.0.0"
