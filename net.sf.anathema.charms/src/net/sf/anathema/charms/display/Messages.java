@@ -7,10 +7,10 @@ public class Messages extends NLS {
   public static String DisplayResource_BaseAmountPattern;
   public static String DisplayResource_LinearAmountPattern;
   static {
-    // initialize resource bundle
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
 
   private Messages() {
+    // nothing to do
   }
 }
