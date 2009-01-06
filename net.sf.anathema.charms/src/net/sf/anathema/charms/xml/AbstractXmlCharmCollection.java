@@ -11,17 +11,19 @@ import org.eclipse.core.runtime.IContributor;
 
 public abstract class AbstractXmlCharmCollection<C> implements Iterable<C> {
 
-  private final IContributor contributor;
-  private final String resourcePath;
   private List<C> charms;
+  private final IDocumentReader documentReader;
 
   public AbstractXmlCharmCollection(String resourcePath, IContributor contributor) {
-    this.resourcePath = resourcePath;
-    this.contributor = contributor;
+    this(new ResourceDocumentReader(contributor, resourcePath));
   }
 
-  private Element readDocument() throws Exception {
-    return new ResourceDocumentReader(contributor, resourcePath).readDocument();
+  public AbstractXmlCharmCollection(IDocumentReader documentReader) {
+    this.documentReader = documentReader;
+  }
+
+  protected Element readDocument() throws Exception {
+    return documentReader.readDocument();
   }
 
   public final Iterator<C> iterator() {
