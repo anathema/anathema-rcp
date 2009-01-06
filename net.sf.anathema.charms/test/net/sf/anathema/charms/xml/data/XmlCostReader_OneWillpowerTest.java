@@ -9,14 +9,14 @@ import net.sf.anathema.charms.xml.TestDocumentReader;
 import org.junit.Before;
 import org.junit.Test;
 
-public class XmlCostReader_OneMoteTest {
+public class XmlCostReader_OneWillpowerTest {
 
   private CharmDto charmDto;
 
   @Before
   public void createCosts() throws Exception {
     charmDto = new CharmDto();
-    readCosts("<cost><essence cost=\"1\"/></cost>"); //$NON-NLS-1$
+    readCosts("<cost><willpower cost=\"1\"/></cost>"); //$NON-NLS-1$
   }
 
   @Test
@@ -35,8 +35,8 @@ public class XmlCostReader_OneMoteTest {
   }
 
   @Test
-  public void hasCostsOfTypeMotes() throws Exception {
-    assertThat(getResourceDto().type, is("motes"));
+  public void hasCostsOfTypeWillpower() throws Exception {
+    assertThat(getResourceDto().type, is("willpower"));
   }
 
   @Test

@@ -25,27 +25,37 @@ public class XmlCostReader {
 
   public void read() throws PersistenceException {
     dto.costs.add(costDto);
-    readEssenceCost();
+    readCost("essence", "motes");
+    readCost("willpower", "willpower");
   }
 
-  private void readEssenceCost() throws PersistenceException {
-    Element essenceElement = costElement.element("essence");
+  private void readCost(String tagName, String type) throws PersistenceException {
+    Element essenceElement = costElement.element(tagName);
     if (essenceElement == null) {
       return;
     }
     ResourceDto resource = new ResourceDto();
-    resource.type = "motes";
+    resource.type = type;
     String textValue = essenceElement.attributeValue(ATTRIB_TEXT);
     if (textValue == null) {
-      resource.baseDto = new BaseDto();
-      resource.baseDto.amount = ElementUtilities.getRequiredIntAttrib(essenceElement, "cost");
-      resource.baseDto.orMore = false;
+      readBaseCost(essenceElement, resource);
     }
     else {
-      resource.linearDto = new LinearDto();
-      resource.linearDto.amount = ElementUtilities.getRequiredIntAttrib(essenceElement, "cost");
-      resource.linearDto.unit = textValue.replace(" per ", "");
+      readLinearCost(essenceElement, resource, textValue);
     }
     costDto.resources.add(resource);
+  }
+
+  private void readLinearCost(Element essenceElement, ResourceDto resource, String textValue)
+      throws PersistenceException {
+    resource.linearDto = new LinearDto();
+    resource.linearDto.amount = ElementUtilities.getRequiredIntAttrib(essenceElement, "cost");
+    resource.linearDto.unit = textValue.replace(" per ", "");
+  }
+
+  private void readBaseCost(Element essenceElement, ResourceDto resource) throws PersistenceException {
+    resource.baseDto = new BaseDto();
+    resource.baseDto.amount = ElementUtilities.getRequiredIntAttrib(essenceElement, "cost");
+    resource.baseDto.orMore = false;
   }
 }
