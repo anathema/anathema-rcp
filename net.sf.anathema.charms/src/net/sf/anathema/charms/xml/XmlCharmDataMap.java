@@ -4,6 +4,8 @@ import java.text.MessageFormat;
 import java.util.Properties;
 
 import net.disy.commons.core.creation.IFactory;
+import net.sf.anathema.basics.eclipse.logging.Logger;
+import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.data.SourceDto;
@@ -25,9 +27,14 @@ public class XmlCharmDataMap implements ICharmDataMap {
   public CharmDto getData(ICharmId charmId) {
     for (IDatedCharm charm : charmCollection) {
       if (charm.hasId(charmId)) {
-        CharmDto data = charm.createDto();
-        localizeSources(charmId, data);
-        return data;
+        try {
+          CharmDto data = charm.createDto();
+          localizeSources(charmId, data);
+          return data;
+        }
+        catch (Exception e) {
+          new Logger(IPluginConstants.PLUGIN_ID).error("Error reading charm data from xml.", e);
+        }
       }
     }
     return null;
