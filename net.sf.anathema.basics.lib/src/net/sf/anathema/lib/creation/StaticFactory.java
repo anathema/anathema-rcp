@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character;
+package net.sf.anathema.lib.creation;
 
 import net.disy.commons.core.creation.IFactory;
 

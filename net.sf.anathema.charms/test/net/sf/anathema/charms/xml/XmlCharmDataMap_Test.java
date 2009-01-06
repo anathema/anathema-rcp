@@ -9,6 +9,7 @@ import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.xml.data.DatedCharmCollection;
+import net.sf.anathema.lib.creation.StaticFactory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +40,7 @@ public class XmlCharmDataMap_Test {
     map = new XmlCharmDataMap();
     sourceProperties = new Properties();
     map.setCharmCollection(new DatedCharmCollection(documentReader));
-    map.setSourceProperties(sourceProperties);
+    map.setSourceProperties(new StaticFactory<Properties, RuntimeException>(sourceProperties));
   }
 
   @Test

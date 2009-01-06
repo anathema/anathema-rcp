@@ -1,15 +1,9 @@
 package net.sf.anathema.charms.xml;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.text.MessageFormat;
-import java.util.Locale;
 import java.util.Properties;
 
-import net.disy.commons.core.io.IOUtilities;
-import net.sf.anathema.basics.eclipse.logging.Logger;
-import net.sf.anathema.charms.IPluginConstants;
+import net.disy.commons.core.creation.IFactory;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.data.SourceDto;
@@ -20,13 +14,12 @@ import net.sf.anathema.charms.xml.data.IDatedCharmCollection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IContributor;
 
 public class XmlCharmDataMap implements ICharmDataMap {
 
   private static final String ATTRIB_RESOURCE = "resource"; //$NON-NLS-1$
   private IDatedCharmCollection charmCollection;
-  private Properties sourceProperties;
+  private IFactory<Properties, RuntimeException> sourcePropertiesFactory;
 
   @Override
   public CharmDto getData(ICharmId charmId) {
@@ -41,51 +34,27 @@ public class XmlCharmDataMap implements ICharmDataMap {
   }
 
   private void localizeSources(ICharmId id, CharmDto data) {
+    Properties sourceProperties = sourcePropertiesFactory.createInstance();
     for (SourceDto sourceDto : data.sources) {
-      localizeSource(id, sourceDto);
+      localizeSource(id, sourceDto, sourceProperties);
     }
   }
 
-  private void localizeSource(ICharmId id, SourceDto sourceDto) {
+  private void localizeSource(ICharmId id, SourceDto sourceDto, Properties properties) {
     String source = sourceDto.source;
-    sourceDto.addition = sourceProperties.getProperty(MessageFormat.format("{0}.{1}.Page", source, id.getId())); //$NON-NLS-1$
-    sourceDto.source = sourceProperties.getProperty(source, source);
+    sourceDto.addition = properties.getProperty(MessageFormat.format("{0}.{1}.Page", source, id.getId())); //$NON-NLS-1$
+    sourceDto.source = properties.getProperty(source, source);
   }
 
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
     setCharmCollection(new DatedCharmCollection(config.getAttribute(ATTRIB_RESOURCE), config.getContributor()));
-    setSourceProperties(new Properties());
-    // TODO: nicht schon beim Programmstart laden
-    loadSourceProperties(config.getContributor());
+    setSourceProperties(new CharmSourcePropertiesFactory(config.getContributor()));
   }
 
-  private void loadSourceProperties(IContributor contributor) {
-    Localizer localizer = new Localizer(contributor.getName(), Locale.getDefault());
-    URL propertyUrl = localizer.getPropertyUrl("data/CharmSources"); //$NON-NLS-1$
-    if (propertyUrl == null) {
-      return;
-    }
-    loadSoureProperties(propertyUrl);
-  }
-
-  private void loadSoureProperties(URL propertyUrl) {
-    InputStream inputStream = null;
-    try {
-      inputStream = propertyUrl.openStream();
-      sourceProperties.load(inputStream);
-    }
-    catch (IOException e) {
-      new Logger(IPluginConstants.PLUGIN_ID).error("Error loading charm source properties.", e);
-    }
-    finally {
-      IOUtilities.close(inputStream);
-    }
-  }
-
-  protected void setSourceProperties(Properties properties) {
-    this.sourceProperties = properties;
+  protected void setSourceProperties(IFactory<Properties, RuntimeException> properties) {
+    this.sourcePropertiesFactory = properties;
 
   }
 
