@@ -12,6 +12,7 @@ import org.dom4j.Element;
 
 public class XmlCostReader {
 
+  private static final String ATTIB_COST = "cost";
   private static final String ATTRIB_TEXT = "text";
   private final Element costElement;
   private final CostDto costDto;
@@ -27,35 +28,36 @@ public class XmlCostReader {
     dto.costs.add(costDto);
     readCost("essence", "motes");
     readCost("willpower", "willpower");
+    readCost("experience", "experience");
   }
 
   private void readCost(String tagName, String type) throws PersistenceException {
-    Element essenceElement = costElement.element(tagName);
-    if (essenceElement == null) {
+    Element resourceElement = costElement.element(tagName);
+    if (resourceElement == null) {
       return;
     }
     ResourceDto resource = new ResourceDto();
     resource.type = type;
-    String textValue = essenceElement.attributeValue(ATTRIB_TEXT);
-    if (textValue == null) {
-      readBaseCost(essenceElement, resource);
+    int amount = ElementUtilities.getRequiredIntAttrib(resourceElement, ATTIB_COST);
+    XmlCostText costText = new XmlCostText(resourceElement.attributeValue(ATTRIB_TEXT));
+    if (costText.isBase()) {
+      readBaseCost(resource, amount);
     }
-    else {
-      readLinearCost(essenceElement, resource, textValue);
+    if (costText.isLinear()) {
+      readLinearCost(resource, amount, costText);
     }
     costDto.resources.add(resource);
   }
 
-  private void readLinearCost(Element essenceElement, ResourceDto resource, String textValue)
-      throws PersistenceException {
+  private void readLinearCost(ResourceDto resource, int amount, XmlCostText text) {
     resource.linearDto = new LinearDto();
-    resource.linearDto.amount = ElementUtilities.getRequiredIntAttrib(essenceElement, "cost");
-    resource.linearDto.unit = textValue.replace(" per ", "");
+    resource.linearDto.amount = text.getLinearAmout(amount);
+    resource.linearDto.unit = text.getLinearUnit();
   }
 
-  private void readBaseCost(Element essenceElement, ResourceDto resource) throws PersistenceException {
+  private void readBaseCost(ResourceDto resource, int amount) {
     resource.baseDto = new BaseDto();
-    resource.baseDto.amount = ElementUtilities.getRequiredIntAttrib(essenceElement, "cost");
+    resource.baseDto.amount = amount;
     resource.baseDto.orMore = false;
   }
 }
