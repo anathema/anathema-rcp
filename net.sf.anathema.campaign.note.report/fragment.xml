@@ -7,7 +7,7 @@
             class="net.sf.anathema.campaign.note.report.NoteExportWizard"
             icon="icons/pdf_icon.png"
             id="net.sf.anathema.campaign.note.report"
-            name="%Export-Wizard.Name">
+            name="Note Report">
       </wizard>
    </extension>
 
