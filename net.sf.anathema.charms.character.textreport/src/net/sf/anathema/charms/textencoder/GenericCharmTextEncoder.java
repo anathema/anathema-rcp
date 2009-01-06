@@ -40,24 +40,29 @@ public class GenericCharmTextEncoder extends AbstractTextEncoder {
         continue;
       }
       String charmName = getCharmName(names, generic);
-      Chunk title = createTextChunk(MessageFormat.format(
-          Messages.GenericCharmTextEncoder_Intro,
-          character.getDisplayName(),
-          charmName));
-      for (String trait : traits) {
-        int index = traits.indexOf(trait);
-        if (index == traits.size() - 1 && index != 0) {
-          title.append(Messages.GenericCharmTextEncoder_FinalConjunction);
-        }
-        else if (index != 0) {
-          title.append(", "); //$NON-NLS-1$
-        }
-        title.append(trait);
-      }
-      genericsParagraph.add(title);
+      Chunk chunk = createChunk(character, traits, charmName);
+      genericsParagraph.add(chunk);
       genericsParagraph.add(createTextChunk(".\n")); //$NON-NLS-1$
     }
     return Collections.singletonList((Element) genericsParagraph);
+  }
+
+  private Chunk createChunk(ICharacter character, List<String> traits, String charmName) {
+    Chunk chunk = createTextChunk(MessageFormat.format(
+        Messages.GenericCharmTextEncoder_Intro,
+        character.getDisplayName(),
+        charmName));
+    for (String trait : traits) {
+      int index = traits.indexOf(trait);
+      if (index == traits.size() - 1 && index != 0) {
+        chunk.append(Messages.GenericCharmTextEncoder_FinalConjunction);
+      }
+      else if (index != 0) {
+        chunk.append(", "); //$NON-NLS-1$
+      }
+      chunk.append(trait);
+    }
+    return chunk;
   }
 
   private String getCharmName(CharmNamesExtensionPoint names, String generic) {
