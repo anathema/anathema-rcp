@@ -48,18 +48,23 @@
    </element>
 
    <element name="configurator">
+      <annotation>
+         <documentation>
+            Specifies a configurator
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="modelId" type="string" use="required">
             <annotation>
                <documentation>
-                  id of the model whose view element this configurator applies to
+                  Id of the model whose view element this configurator applies to
                </documentation>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  implementation of the view element configurator
+                  Implementation of the view element configurator
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":net.sf.anathema.character.core.model.IViewElementConfigurator"/>
@@ -83,25 +88,17 @@
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         [Enter extension point usage example here.]
+         Charm trees are added to the &quot;Charms&quot; view element via the TreeSelectionConfigurator.
       </documentation>
    </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="apiinfo"/>
-      </appinfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         net.sf.anathema.character.core.model.display.ViewElementConfiguratorProvider
       </documentation>
    </annotation>
 
