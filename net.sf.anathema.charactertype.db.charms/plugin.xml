@@ -370,5 +370,127 @@
          </charm>
       </genericCharms>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.charmdata">
+      <charmdata
+            charmId="dragon-blooded.terrestrial.{0}.reinforcement">
+         <simple
+               defensemodifier="-1"
+               speed="6">
+            <additionalData>
+               <duration>
+                  duration body text
+               </duration>
+               <cost>
+                  <resource
+                        type="motes">
+                     <linear
+                           amount="1"
+                           unit="2 dice">
+                     </linear>
+                     <linear
+                           amount="1"
+                           unit="subject">
+                     </linear>
+                  </resource>
+               </cost>
+            </additionalData>
+         </simple>
+         <keyword
+               value="Combo-OK">
+         </keyword>
+         <keyword
+               value="Touch">
+         </keyword>
+         <source
+               addition="p128"
+               source="DB2">
+         </source>
+      </charmdata>
+      <charmdata
+            charmId="dragon-blooded.first.{0}.excellency">
+         <reflexive
+               primaryStep="1"
+               secondaryStep="2">
+            <additionalData>
+               <duration>
+                  duration body text
+               </duration>
+               <cost>
+                  <resource
+                        type="motes">
+                     <linear
+                           amount="1"
+                           unit="2 dice">
+                     </linear>
+                  </resource>
+               </cost>
+            </additionalData>
+         </reflexive>
+         <source
+               addition="p128"
+               source="DB2">
+         </source>
+         <keyword
+               value="Combo-OK">
+         </keyword>
+      </charmdata>
+      <charmdata
+            charmId="dragon-blooded.third.{0}.excellency">
+         <reflexive
+               primaryStep="4"
+               secondaryStep="6">
+            <additionalData>
+               <duration>
+                  duration body text
+               </duration>
+               <cost>
+                  <resource
+                        type="motes">
+                     <base
+                           amount="3"
+                           orMore="false">
+                     </base>
+                  </resource>
+               </cost>
+            </additionalData>
+         </reflexive>
+         <source
+               addition="p128"
+               source="DB2">
+         </source>
+         <keyword
+               value="Combo-OK">
+         </keyword>
+      </charmdata>
+      <charmdata
+            charmId="dragon-blooded.second.{0}.excellency">
+         <reflexive
+               primaryStep="1"
+               secondaryStep="2">
+            <additionalData>
+               <duration>
+                  duration body text
+               </duration>
+               <cost>
+                  <resource
+                        type="motes">
+                     <linear
+                           amount="2"
+                           unit="success">
+                     </linear>
+                  </resource>
+               </cost>
+            </additionalData>
+         </reflexive>
+         <source
+               addition="p128"
+               source="DB2">
+         </source>
+         <keyword
+               value="Combo-OK">
+         </keyword>
+      </charmdata>
+   </extension>
 
 </plugin>

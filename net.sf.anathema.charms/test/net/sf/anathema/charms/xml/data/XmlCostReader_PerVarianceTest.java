@@ -22,7 +22,7 @@ public class XmlCostReader_PerVarianceTest {
   public void detectsLinearCostAtStartOfString() throws Exception {
     readCosts("<cost><health cost=\"2\" text=\"per ally\"/></cost>"); //$NON-NLS-1$
     assertThat(getResourceDto().baseDto, is(nullValue()));
-    assertThat(getResourceDto().linearDto.unit, is("ally")); //$NON-NLS-1$
+    assertThat(getResourceDto().linearDto.get(0).unit, is("ally")); //$NON-NLS-1$
   }
 
   @Test

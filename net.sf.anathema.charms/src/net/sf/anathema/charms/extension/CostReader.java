@@ -1,5 +1,7 @@
 package net.sf.anathema.charms.extension;
 
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.charms.data.cost.BaseDto;
 import net.sf.anathema.charms.data.cost.CostDto;
@@ -28,7 +30,7 @@ public class CostReader {
     ResourceDto dto = new ResourceDto();
     dto.type = resourceElement.getAttribute(ATTRIB_TYPE);
     dto.baseDto = readBaseAmount(resourceElement);
-    dto.linearDto = readLinearAmount(resourceElement);
+    readLinearAmount(dto.linearDto, resourceElement);
     return dto;
   }
 
@@ -43,14 +45,12 @@ public class CostReader {
     return dto;
   }
 
-  private LinearDto readLinearAmount(IExtensionElement resourceElement) {
-    IExtensionElement baseElement = resourceElement.getElement(TAG_LINEAR);
-    if (baseElement == null) {
-      return null;
+  private void readLinearAmount(List<LinearDto> list, IExtensionElement resourceElement) {
+    for (IExtensionElement baseElement : resourceElement.getElements(TAG_LINEAR)) {
+      LinearDto dto = new LinearDto();
+      dto.amount = baseElement.getIntegerAttribute(ATTRIB_AMOUNT);
+      dto.unit = baseElement.getAttribute(ATTRIB_UNIT);
+      list.add(dto);
     }
-    LinearDto dto = new LinearDto();
-    dto.amount = baseElement.getIntegerAttribute(ATTRIB_AMOUNT);
-    dto.unit = baseElement.getAttribute(ATTRIB_UNIT);
-    return dto;
   }
 }

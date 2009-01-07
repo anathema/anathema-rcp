@@ -37,9 +37,8 @@ public class DisplayResource_MotesTest {
 
   @Test
   public void createsDisplayWithWithAmountAndShortResourcePerUnit() throws Exception {
-    resourceDto.linearDto = new LinearDto();
-    resourceDto.linearDto.amount = 4;
-    resourceDto.linearDto.unit = "Affe"; //$NON-NLS-1$
+    LinearDto linearDto = createLinearDto(4, "Affe"); //$NON-NLS-1$
+    resourceDto.linearDto.add(linearDto);
     assertThatDisplayedResourceIs("4m/Affe"); //$NON-NLS-1$
   }
 
@@ -48,10 +47,23 @@ public class DisplayResource_MotesTest {
     resourceDto.baseDto = new BaseDto();
     resourceDto.baseDto.amount = 2;
     resourceDto.baseDto.orMore = false;
-    resourceDto.linearDto = new LinearDto();
-    resourceDto.linearDto.amount = 4;
-    resourceDto.linearDto.unit = "die"; //$NON-NLS-1$
+    LinearDto linearDto = createLinearDto(4, "die"); //$NON-NLS-1$
+    resourceDto.linearDto.add(linearDto);
     assertThatDisplayedResourceIs("2m+4m/die"); //$NON-NLS-1$
+  }
+
+  @Test
+  public void combinesMultipleLinearAmounts() throws Exception {
+    resourceDto.linearDto.add(createLinearDto(4, "die")); //$NON-NLS-1$
+    resourceDto.linearDto.add(createLinearDto(3, "suki")); //$NON-NLS-1$
+    assertThatDisplayedResourceIs("4m/die+3m/suki"); //$NON-NLS-1$
+  }
+
+  private LinearDto createLinearDto(int amount, String unit) {
+    LinearDto firstLinearDto = new LinearDto();
+    firstLinearDto.amount = amount;
+    firstLinearDto.unit = unit;
+    return firstLinearDto;
   }
 
   private void assertThatDisplayedResourceIs(String expectedDisplay) {

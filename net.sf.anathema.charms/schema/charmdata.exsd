@@ -223,7 +223,7 @@ If no cost is given, the charm use is for free.
       <complexType>
          <sequence>
             <element ref="base" minOccurs="0" maxOccurs="1"/>
-            <element ref="linear" minOccurs="0" maxOccurs="1"/>
+            <element ref="linear" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="type" use="required">
             <annotation>

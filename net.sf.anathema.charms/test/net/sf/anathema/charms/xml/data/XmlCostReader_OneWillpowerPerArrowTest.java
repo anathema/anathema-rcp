@@ -41,12 +41,12 @@ public class XmlCostReader_OneWillpowerPerArrowTest {
 
   @Test
   public void hasAmountOne() throws Exception {
-    assertThat(getResourceDto().linearDto.amount, is(1));
+    assertThat(getResourceDto().linearDto.get(0).amount, is(1));
   }
 
   @Test
   public void hasUnitArrow() throws Exception {
-    assertThat(getResourceDto().linearDto.unit, is("arrow")); //$NON-NLS-1$
+    assertThat(getResourceDto().linearDto.get(0).unit, is("arrow")); //$NON-NLS-1$
   }
 
   private ResourceDto getResourceDto() {

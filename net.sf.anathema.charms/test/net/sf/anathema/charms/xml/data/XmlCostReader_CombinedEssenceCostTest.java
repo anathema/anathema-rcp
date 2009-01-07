@@ -36,7 +36,7 @@ public class XmlCostReader_CombinedEssenceCostTest {
 
   @Test
   public void hasLinearAmountOne() throws Exception {
-    assertThat(getResourceDto().linearDto.amount, is(1));
+    assertThat(getResourceDto().linearDto.get(0).amount, is(1));
   }
 
   @Test
@@ -50,8 +50,8 @@ public class XmlCostReader_CombinedEssenceCostTest {
   }
 
   @Test
-  public void hasNoOrMore() throws Exception {
-    assertThat(getResourceDto().linearDto.unit, is("arrow")); //$NON-NLS-1$
+  public void hasUnitArrow() throws Exception {
+    assertThat(getResourceDto().linearDto.get(0).unit, is("arrow")); //$NON-NLS-1$
   }
 
   private ResourceDto getResourceDto() {

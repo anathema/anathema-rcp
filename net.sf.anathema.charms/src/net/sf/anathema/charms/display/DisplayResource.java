@@ -20,7 +20,7 @@ public class DisplayResource {
     String shortType = ResourceMessages.get(resource.type);
     ConcatenateString resourceBuilder = new ConcatenateString("+");
     resourceBuilder.concatenate(getBaseAmount(shortType));
-    resourceBuilder.concatenate(getLinearAmount(shortType));
+    concatenateLinearAmounts(resourceBuilder, shortType);
     return resourceBuilder.create();
   }
 
@@ -36,11 +36,13 @@ public class DisplayResource {
     return MessageFormat.format(builder.toString(), dto.amount, shortType);
   }
 
-  private String getLinearAmount(String shortType) {
-    LinearDto dto = resource.linearDto;
-    if (dto == null) {
-      return null;
+  private void concatenateLinearAmounts(ConcatenateString resourceBuilder, String shortType) {
+    for (LinearDto dto : resource.linearDto) {
+      resourceBuilder.concatenate(getLinearAmount(dto,shortType));
     }
+  }
+
+  private String getLinearAmount(LinearDto dto, String shortType) {
     return MessageFormat.format(Messages.DisplayResource_LinearAmountPattern, dto.amount, shortType, dto.unit);
   }
 }

@@ -51,9 +51,10 @@ public class XmlCostReader {
   }
 
   private void readLinearCost(ResourceDto resource, int amount, XmlCostText text) {
-    resource.linearDto = new LinearDto();
-    resource.linearDto.amount = text.getLinearAmout(amount);
-    resource.linearDto.unit = text.getLinearUnit();
+    LinearDto dto = new LinearDto();
+    resource.linearDto.add(dto);
+    dto.amount = text.getLinearAmout(amount);
+    dto.unit = text.getLinearUnit();
   }
 
   private void readBaseCost(ResourceDto resource, int amount, XmlCostText text) {
