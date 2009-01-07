@@ -2,6 +2,8 @@ package net.sf.anathema.charms.xml.data;
 
 public class XmlCostText {
 
+  private static final String START_PER = "per ";
+  private static final String WHITESPACE_PER = " per ";
   private final String text;
 
   public XmlCostText(String text) {
@@ -13,7 +15,7 @@ public class XmlCostText {
   }
 
   public boolean isLinear() {
-    return text != null && text.indexOf(" per ") > -1;
+    return text != null && getUnitMarkerIndex() > -1;
   }
 
   public int getLinearAmout(int baseAmount) {
@@ -29,9 +31,19 @@ public class XmlCostText {
   }
 
   public String getLinearUnit() {
-    String unitMarker = " per ";
-    int unitMarkerIndex = text.indexOf(unitMarker);
-    return text.substring(unitMarkerIndex + unitMarker.length()).trim();
+    int unitMarkerIndex = getUnitMarkerIndex();
+    return text.substring(unitMarkerIndex).trim();
+  }
+
+  private int getUnitMarkerIndex() {
+    if (text.startsWith(START_PER)) {
+      return 4;
+    }
+    int index = text.indexOf(WHITESPACE_PER);
+    if (index == -1) {
+      return -1;
+    }
+    return index + WHITESPACE_PER.length();
   }
 
   private boolean isCombined() {

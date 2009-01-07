@@ -1,13 +1,7 @@
 <charmlist>
 <charm id="Dragon-Blooded.Dragon-GracedWeapon" exalt="Dragon-Blooded" group="Melee">
- <prerequisite>
-  <trait id="Melee" value="2"/>
-  <essence value="2"/>
- </prerequisite>
  <cost>
-  
    <essence cost="1"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Supplemental"/>
@@ -17,15 +11,8 @@
 </charm>
 
 <charm id="Dragon-Blooded.BlindingSparkDistraction" exalt="Dragon-Blooded" group="Melee">
- <prerequisite>
-  <trait id="Melee" value="3"/>
-  <essence value="2"/>
-  <charmReference id="Dragon-Blooded.Dragon-GracedWeapon"/>
- </prerequisite>
  <cost>
-  
    <essence cost="2"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Reflexive"/>
@@ -34,16 +21,12 @@
 </charm>
 
 <charm id="Dragon-Blooded.Ghost-FireBlade" exalt="Dragon-Blooded" group="Melee">
- <prerequisite>
-  <trait id="Melee" value="3"/>
-  <essence value="2"/>
-  <charmReference id="Dragon-Blooded.Dragon-GracedWeapon"/>
- </prerequisite>
  <cost>
-  
-   <essence cost="2" text="or 4m"/>
-  
+   <essence cost="2"/>
  </cost>
+ <cost>
+   <essence cost="4"/>
+ </cost> 
  <duration duration="Instant"/>
  <charmtype type="Supplemental"/>
  <charmAttribute attribute="Combo-OK" visualize="true"/>
@@ -53,16 +36,9 @@
 </charm>
 
 <charm id="Dragon-Blooded.RefiningInnerBlade" exalt="Dragon-Blooded" group="Melee">
- <prerequisite>
-  <trait id="Melee" value="4"/>
-  <essence value="3"/>
-  <charmReference id="Dragon-Blooded.Dragon-GracedWeapon"/>
- </prerequisite>
  <cost>
-  
    <essence cost="3"/>
    <willpower cost="1"/>
-  
  </cost>
  <duration amount="1" unit="scene"/>
  <charmtype type="Simple"/>
@@ -74,16 +50,9 @@
 </charm>
 
 <charm id="Dragon-Blooded.PortentousCometDeflectingMethod" exalt="Dragon-Blooded" group="Melee">
- <prerequisite>
-  <trait id="Melee" value="5"/>
-  <essence value="3"/>
-  <charmAttributeRequirement attribute="ExcellencyMelee" count="1"/>
- </prerequisite>
  <cost>
-  
    <essence cost="3"/>
    <willpower cost="1"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Reflexive">
@@ -95,15 +64,8 @@
 </charm>
 
 <charm id="Dragon-Blooded.ThreshingFloorTechnique" exalt="Dragon-Blooded" group="Melee">
- <prerequisite>
-  <trait id="Melee" value="5"/>
-  <essence value="2"/>
-  <charmReference id="Dragon-Blooded.TerrestrialReinforcement.Melee"/>
- </prerequisite>
  <cost>
-  
    <essence cost="2" text="+1 per ally"/>
-  
  </cost>
  <duration amount="1" unit="action"/>
  <charmtype type="Simple"/>
@@ -112,15 +74,8 @@
 </charm>
 
 <charm id="Dragon-Blooded.RingingAnvilOnslaught" exalt="Dragon-Blooded" group="Melee">
- <prerequisite>
-  <trait id="Melee" value="5"/>
-  <essence value="3"/>
-  <charmReference id="Dragon-Blooded.ThreshingFloorTechnique"/>
- </prerequisite>
  <cost>
-  
    <essence cost="8"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="ExtraAction"/>

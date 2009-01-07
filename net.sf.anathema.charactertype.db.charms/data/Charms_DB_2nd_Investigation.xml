@@ -1,13 +1,7 @@
 <charmlist>
 <charm id="Dragon-Blooded.ScentCrimeMethod" exalt="Dragon-Blooded" group="Investigation">
- <prerequisite>
-  <trait id="Investigation" value="3"/>
-  <essence value="1"/>
- </prerequisite>
  <cost>
-  
    <essence cost="2"/>
-  
  </cost>
  <duration amount="1" unit="scene"/>
  <charmtype type="Simple"/>
@@ -15,16 +9,9 @@
 </charm>
 
 <charm id="Dragon-Blooded.FalsehoodUnearthingAttitude" exalt="Dragon-Blooded" group="Investigation">
- <prerequisite>
-  <trait id="Investigation" value="3"/>
-  <essence value="2"/>
-  <charmReference id="Dragon-Blooded.ScentCrimeMethod"/>
- </prerequisite>
  <cost>
-  
    <essence cost="5"/>
    <willpower cost="1"/>
-  
  </cost>
  <duration amount="1" unit="scene"/>
  <charmtype type="Simple"/>
@@ -32,15 +19,8 @@
 </charm>
 
 <charm id="Dragon-Blooded.TamperingDetectionTechnique" exalt="Dragon-Blooded" group="Investigation">
- <prerequisite>
-  <trait id="Investigation" value="3"/>
-  <essence value="2"/>
-  <charmAttributeRequirement attribute="ExcellencyInvestigation" count="1"/>
- </prerequisite>
  <cost>
-  
    <essence cost="2"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Simple"/>
@@ -48,17 +28,9 @@
 </charm>
 
 <charm id="Dragon-Blooded.BloodhoundsNoseTechnique" exalt="Dragon-Blooded" group="Investigation">
- <prerequisite>
-  <trait id="Investigation" value="4"/>
-  <essence value="2"/>
-  <charmReference id="Dragon-Blooded.ScentCrimeMethod"/>
-  <charmReference id="Dragon-Blooded.TamperingDetectionTechnique"/>
- </prerequisite>
  <cost>
-  
    <essence cost="6"/>
    <willpower cost="1"/>
-  
  </cost>
  <duration amount="1" unit="scene"/>
  <charmtype type="Simple"/>
@@ -67,16 +39,9 @@
 </charm>
 
 <charm id="Dragon-Blooded.ClearWaterPrana" exalt="Dragon-Blooded" group="Investigation">
- <prerequisite>
-  <trait id="Investigation" value="5"/>
-  <essence value="3"/>
-  <charmReference id="Dragon-Blooded.TamperingDetectionTechnique"/>
- </prerequisite>
  <cost>
-  
    <essence cost="5"/>
    <willpower cost="1"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Simple"/>
@@ -84,16 +49,9 @@
 </charm>
 
 <charm id="Dragon-Blooded.RevelationAssociatesHunch" exalt="Dragon-Blooded" group="Investigation">
- <prerequisite>
-  <trait id="Investigation" value="4"/>
-  <essence value="2"/>
-  <charmAttributeRequirement attribute="ExcellencyInvestigation" count="1"/>
- </prerequisite>
  <cost>
-  
    <essence cost="4"/>
    <willpower cost="1"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Simple"/>
@@ -101,16 +59,9 @@
 </charm>
 
 <charm id="Dragon-Blooded.HomewardTrailDiscoveryMethod" exalt="Dragon-Blooded" group="Investigation">
- <prerequisite>
-  <trait id="Investigation" value="4"/>
-  <essence value="3"/>
-  <charmReference id="Dragon-Blooded.RevelationAssociatesHunch"/>
- </prerequisite>
  <cost>
-  
    <essence cost="4"/>
    <willpower cost="1"/>
-  
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Simple"/>

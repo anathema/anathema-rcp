@@ -29,6 +29,7 @@ public class XmlCostReader {
     readCost("essence", "motes");
     readCost("willpower", "willpower");
     readCost("experience", "experience");
+    readCost("health", "lethal_hl");
   }
 
   private void readCost(String tagName, String type) throws PersistenceException {
