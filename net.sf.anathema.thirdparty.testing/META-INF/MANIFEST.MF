@@ -6,8 +6,11 @@ Bundle-Version: 1.0.0
 Export-Package: net.sf.anathema.test.behaviour,
  net.sf.anathema.test.hamcrest,
  net.sf.anathema.test.matcher,
+ net.sf.anathema.test.xml,
+ org.custommonkey.xmlunit,
  org.easymock
 Bundle-ClassPath: lib/easymock.jar,
+ lib/xmlunit-1.2.jar,
  .
 Require-Bundle: org.junit4;visibility:=reexport,
  net.disy.commons;bundle-version="1.0.0"

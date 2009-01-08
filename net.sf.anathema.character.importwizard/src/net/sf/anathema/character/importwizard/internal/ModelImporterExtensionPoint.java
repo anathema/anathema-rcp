@@ -8,10 +8,8 @@ import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.logging.Logger;
-import net.sf.anathema.character.importwizard.IDocumentConverter;
 import net.sf.anathema.character.importwizard.IExecutableConverter;
 import net.sf.anathema.character.importwizard.IModelImporter;
-import net.sf.anathema.character.importwizard.ModelImporter;
 import net.sf.anathema.character.importwizard.XslDocumentConverter;
 import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPluginConstants;
 

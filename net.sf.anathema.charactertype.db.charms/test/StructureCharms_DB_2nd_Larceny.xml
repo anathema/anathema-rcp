@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.ObserverAwarenessMethod" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.TracklessWalkStyle" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ObserverAwarenessMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.EarsSnowyOwl" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.ObserverAwarenessMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.NakedThiefStyle" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite> 
+      <charmReference id="dragon-blooded.any.{0}.excellency"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.WindowInDoorTechnique" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.EarsSnowyOwl"/>  
+      <charmReference id="Dragon-Blooded.NakedThiefStyle"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.Imposter'sVoiceTechnique" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.PreciseInkTechnique" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.WatersHonestyMethod" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.PerfectGamblingPrana" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.WatersHonestyMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.FloodVictoryPrana" exalt="Dragon-Blooded" group="Larceny">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.PerfectGamblingPrana"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

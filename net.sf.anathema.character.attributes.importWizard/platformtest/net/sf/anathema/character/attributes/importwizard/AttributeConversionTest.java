@@ -1,5 +1,8 @@
 package net.sf.anathema.character.attributes.importwizard;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
 import java.io.File;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
@@ -10,8 +13,8 @@ import net.sf.anathema.character.attributes.AttributesPlugin;
 import net.sf.anathema.character.importwizard.XslDocumentConverter;
 import net.sf.anathema.character.importwizard.utility.ImportDocumentObjectMother;
 
+import org.custommonkey.xmlunit.Diff;
 import org.dom4j.Document;
-import org.junit.Assert;
 import org.junit.Test;
 
 public class AttributeConversionTest {
@@ -26,6 +29,7 @@ public class AttributeConversionTest {
         "stylesheet", //$NON-NLS-1$
         new File("xsl/AttributeCreation.xsl")), new MockStringAttribute("bundle", AttributesPlugin.ID)); //$NON-NLS-1$ //$NON-NLS-2$
     Document resultdocument = new XslDocumentConverter(element).convert(document);
-    Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
+    Diff diff = new Diff(resultdocument.asXML(), expecteddocument.asXML());
+    assertThat(diff.similar(), is(true));
   }
 }

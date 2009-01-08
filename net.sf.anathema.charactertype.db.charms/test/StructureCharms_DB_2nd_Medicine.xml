@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Dragon-Blooded.InfectionBanishingPrana" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.DreadInfectionStrike" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.InfectionBanishingPrana"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.DiseaseBanishingTechnique" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.InfectionBanishingPrana"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.WoundClosingTouch" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.DiseaseBanishingTechnique"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.GrievousWoundAlterationEnergy" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.WoundClosingTouch"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.MadnessAnalyzingStare" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.InfectionBanishingPrana"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.PurityMindMethod" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.WoundClosingTouch"/>  
+      <charmReference id="Dragon-Blooded.MadnessAnalyzingStare"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.VerdantCurtainSerenity" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.PurityMindMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.JadeCrucibleMethod" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.GrievousWoundAlterationEnergy"/>  
+      <charmReference id="Dragon-Blooded.PurityMindMethod"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Dragon-Blooded.MostBeneficentSeedFiveDragons" exalt="Dragon-Blooded" group="Medicine">
+    <prerequisite> 
+      <charmReference id="Dragon-Blooded.JadeCrucibleMethod"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>

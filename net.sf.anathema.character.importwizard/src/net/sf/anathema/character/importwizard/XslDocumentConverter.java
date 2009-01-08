@@ -10,6 +10,7 @@ import javax.xml.transform.TransformerException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.importexport.XSLDocumentConverter;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
+import net.sf.anathema.character.importwizard.internal.IDocumentConverter;
 
 import org.dom4j.Document;
 import org.eclipse.core.runtime.CoreException;

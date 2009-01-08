@@ -1,10 +1,11 @@
-package net.sf.anathema.character.importwizard;
+package net.sf.anathema.character.importwizard.internal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import net.sf.anathema.basics.eclipse.resource.FileWriter;
 import net.sf.anathema.character.core.model.ModelExtensionPoint;
+import net.sf.anathema.character.importwizard.IModelImporter;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 
 import org.dom4j.Document;
