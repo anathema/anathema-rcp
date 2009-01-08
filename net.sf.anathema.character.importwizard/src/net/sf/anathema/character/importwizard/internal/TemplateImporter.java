@@ -3,7 +3,6 @@ package net.sf.anathema.character.importwizard.internal;
 import java.io.IOException;
 
 import net.disy.commons.core.provider.IProvider;
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.importwizard.IModelImporter;
 import net.sf.anathema.character.importwizard.plugin.CharacterImportWizardPluginConstants;
@@ -14,7 +13,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
-public class TemplateImporter extends AbstractExecutableExtension implements IModelImporter {
+public class TemplateImporter implements IModelImporter {
 
   public IStatus runImport(IContainer container, Document document) throws IOException, CoreException {
     IProvider<String> provider = new TemplateConverter(document);

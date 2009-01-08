@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 
-public class ModelImporter {
+public class ModelImporter implements IModelImporter {
 
   private final IDocumentConverter converter;
   private final String modelId;

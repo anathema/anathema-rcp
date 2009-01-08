@@ -2,6 +2,7 @@ package net.sf.anathema.character.trait.groupeditor;
 
 import java.net.URL;
 
+import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.Character;
 import net.sf.anathema.character.core.character.ICharacter;
@@ -20,10 +21,9 @@ import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.ui.IEditorInput;
 
-public abstract class AbstractTraitCollectionEditorInputFactory implements IEditorInputFactory {
+public abstract class AbstractTraitCollectionEditorInputFactory extends AbstractExecutableExtension implements IEditorInputFactory {
 
   @Override
   public final IEditorInput create(
@@ -62,10 +62,4 @@ public abstract class AbstractTraitCollectionEditorInputFactory implements IEdit
   protected abstract ITraitCollectionTemplate createTraitCollectionTemplate(ICharacterTemplate template);
 
   protected abstract IEditorInputConfiguration createEditorInputConfiguration();
-
-  @Override
-  public final void setInitializationData(IConfigurationElement config, String propertyName, Object data)
-      throws CoreException {
-    // nothing to do
-  }
 }

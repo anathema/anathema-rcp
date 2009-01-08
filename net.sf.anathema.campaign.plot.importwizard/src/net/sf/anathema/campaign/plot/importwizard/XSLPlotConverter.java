@@ -1,10 +1,12 @@
 package net.sf.anathema.campaign.plot.importwizard;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
 
 import javax.xml.transform.TransformerException;
 
+import net.sf.anathema.basics.eclipse.resource.ResourceUtils;
 import net.sf.anathema.basics.importexport.XSLDocumentConverter;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.campaign.plot.PlotPlugin;
@@ -59,6 +61,7 @@ public class XSLPlotConverter {
       throws TransformerException,
       IOException {
     Map<String, String> parameters = new BundlePersistenceUtilities().getBundleVersionMap(PlotPlugin.ID);
-    return new XSLDocumentConverter(PlotPlugin.ID, contentStylesheet, parameters).run(sourceDocument);
+    URL url = ResourceUtils.getResourceUrl(PlotPlugin.ID, contentStylesheet);
+    return new XSLDocumentConverter(url, parameters).run(sourceDocument);
   }
 }

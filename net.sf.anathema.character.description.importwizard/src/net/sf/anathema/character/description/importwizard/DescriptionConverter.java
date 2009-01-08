@@ -1,14 +1,15 @@
 package net.sf.anathema.character.description.importwizard;
 
+import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.description.plugin.CharacterDescriptionPluginConstants;
-import net.sf.anathema.character.importwizard.IDocumentConverter;
+import net.sf.anathema.character.importwizard.IExecutableConverter;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class DescriptionConverter implements IDocumentConverter {
+public class DescriptionConverter extends AbstractExecutableExtension implements IExecutableConverter {
 
   private static final String TAG_PERIPHRASIS = "Periphrasis"; //$NON-NLS-1$
   private static final String TAG_PERIPHRASE = "Periphrase"; //$NON-NLS-1$

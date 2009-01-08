@@ -2,6 +2,7 @@ package net.sf.anathema.basics.importexport;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -12,7 +13,6 @@ import javax.xml.transform.stream.StreamSource;
 
 import net.disy.commons.core.creation.IFactory;
 import net.disy.commons.core.io.IOUtilities;
-import net.sf.anathema.basics.eclipse.resource.ResourceUtils;
 
 import org.dom4j.Document;
 import org.dom4j.io.DocumentResult;
@@ -23,11 +23,11 @@ public class XSLDocumentConverter {
   private final Map<String, String> parameters;
   private final IFactory<InputStream, IOException> streamFactory;
 
-  public XSLDocumentConverter(final String pluginId, final String stylesheet, Map<String, String> parameters) {
+  public XSLDocumentConverter(final URL stylesheet, Map<String, String> parameters) {
     this(new IFactory<InputStream, IOException>() {
       @Override
       public InputStream createInstance() throws IOException {
-        return ResourceUtils.getInputStream(pluginId, stylesheet);
+        return stylesheet.openStream();
       }
     }, parameters);
   }

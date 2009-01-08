@@ -4,7 +4,11 @@
    <extension
          point="net.sf.anathema.character.importwizard.modelimporters">
       <importer
-            class="net.sf.anathema.character.attributes.importwizard.AttributesImporter">
+            modelid="net.sf.anathema.character.attributes.model">
+         <xslconverter
+               bundle="net.sf.anathema.character.attributes"
+               stylesheet="xsl/AttributeCreation.xsl">
+         </xslconverter>
       </importer>
    </extension>
 

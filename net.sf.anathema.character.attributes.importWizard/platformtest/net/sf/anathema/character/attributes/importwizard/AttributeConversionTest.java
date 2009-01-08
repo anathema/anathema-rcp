@@ -1,5 +1,11 @@
 package net.sf.anathema.character.attributes.importwizard;
 
+import java.io.File;
+
+import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
+import net.sf.anathema.basics.eclipse.extension.fake.MockResourceAttribute;
+import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.character.attributes.AttributesPlugin;
 import net.sf.anathema.character.importwizard.XslDocumentConverter;
 import net.sf.anathema.character.importwizard.utility.ImportDocumentObjectMother;
@@ -16,10 +22,10 @@ public class AttributeConversionTest {
   public void createsAttributes() throws Exception {
     Document document = ImportDocumentObjectMother.getDocumentFromFile(getClass(), PATH, "oldcharacter.ecg"); //$NON-NLS-1$
     Document expecteddocument = ImportDocumentObjectMother.getDocumentFromFile(getClass(), PATH, "newattributes.model"); //$NON-NLS-1$
-    Document resultdocument = new XslDocumentConverter(
-        "xsl/AttributeCreation.xsl", //$NON-NLS-1$
-        AttributesPlugin.ID,
-        Messages.AttributesImporter_ErrorMessage).convert(document);
+    IExtensionElement element = ExtensionObjectMother.createExtensionElementWithAttributes(new MockResourceAttribute(
+        "stylesheet", //$NON-NLS-1$
+        new File("xsl/AttributeCreation.xsl")), new MockStringAttribute("bundle", AttributesPlugin.ID)); //$NON-NLS-1$ //$NON-NLS-2$
+    Document resultdocument = new XslDocumentConverter(element).convert(document);
     Assert.assertEquals(expecteddocument.asXML(), resultdocument.asXML());
   }
 }

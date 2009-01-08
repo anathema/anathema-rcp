@@ -4,7 +4,10 @@
    <extension
          point="net.sf.anathema.character.importwizard.modelimporters">
       <importer
-            class="net.sf.anathema.character.experience.importwizard.ExperienceImporter">
+            modelid="net.sf.anathema.character.experience.model">
+         <javaconverter
+               class="net.sf.anathema.character.experience.importwizard.ExperienceConverter">
+         </javaconverter>
       </importer>
    </extension>
 
