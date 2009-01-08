@@ -25,10 +25,6 @@ import org.eclipse.ui.IEditorInput;
 
 public abstract class AbstractTraitCollectionEditorInputFactory implements IEditorInputFactory {
 
-  public AbstractTraitCollectionEditorInputFactory() {
-    super();
-  }
-
   @Override
   public final IEditorInput create(
       IFile modelFile,
