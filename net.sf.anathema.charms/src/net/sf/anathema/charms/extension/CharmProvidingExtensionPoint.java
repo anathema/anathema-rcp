@@ -5,6 +5,7 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.NamePredicate;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.ICharmDataMap;
+import net.sf.anathema.charms.data.IExecutableCharmDataMap;
 import net.sf.anathema.charms.tree.CharmTreeProvider;
 import net.sf.anathema.charms.tree.ITreeProvider;
 
@@ -20,9 +21,9 @@ public class CharmProvidingExtensionPoint {
   public static ICharmDataMap CreateCharmDataMap() {
     EclipseExtensionPoint extensionPoint = createExtensionPoint();
     NamePredicate dataMapPredicate = NamePredicate.ForElementName(TAG_CHARM_DATA_MAP);
-    ClassConveyerBelt<ICharmDataMap> conveyerBelt = new ClassConveyerBelt<ICharmDataMap>(
+    ClassConveyerBelt<IExecutableCharmDataMap> conveyerBelt = new ClassConveyerBelt<IExecutableCharmDataMap>(
         extensionPoint,
-        ICharmDataMap.class,
+        IExecutableCharmDataMap.class,
         dataMapPredicate);
     return new CharmDataMap(conveyerBelt.getAllObjects());
   }

@@ -7,7 +7,7 @@ import net.disy.commons.core.creation.IFactory;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmDto;
-import net.sf.anathema.charms.data.ICharmDataMap;
+import net.sf.anathema.charms.data.IExecutableCharmDataMap;
 import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.xml.data.DatedCharmCollection;
@@ -17,7 +17,7 @@ import net.sf.anathema.charms.xml.data.IDatedCharmCollection;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 
-public class XmlCharmDataMap implements ICharmDataMap {
+public class XmlCharmDataMap implements IExecutableCharmDataMap {
 
   private static final String ATTRIB_RESOURCE = "resource"; //$NON-NLS-1$
   private IDatedCharmCollection charmCollection;

@@ -1,15 +1,14 @@
 package net.sf.anathema.charms.extension;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.tree.ICharmId;
 
-public class CharmDataMap extends AbstractExecutableExtension implements ICharmDataMap {
+public class CharmDataMap implements ICharmDataMap {
 
-  private final Iterable<ICharmDataMap> allMaps;
+  private final Iterable< ? extends ICharmDataMap> allMaps;
 
-  public CharmDataMap(Iterable<ICharmDataMap> allMaps) {
+  public CharmDataMap(Iterable< ? extends ICharmDataMap> allMaps) {
     this.allMaps = allMaps;
   }
 

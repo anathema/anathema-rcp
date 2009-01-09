@@ -11,7 +11,6 @@ import net.sf.anathema.character.sheet.plugin.CharacterSheetPluginConstants;
 
 public class RegisteredContentEncoderProvider implements IContentEncoderProvider {
 
-  static final String ATTRIB_FIELD_ID = "fieldId"; //$NON-NLS-1$
   private static final String ENCODERS_EXTENSION_POINT = "encoders"; //$NON-NLS-1$
   private final IPluginExtension[] extensions;
 

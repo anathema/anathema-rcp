@@ -81,7 +81,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":net.sf.anathema.charms.data.ICharmDataMap"/>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.charms.data.IExecutableCharmDataMap"/>
                </appinfo>
             </annotation>
          </attribute>
