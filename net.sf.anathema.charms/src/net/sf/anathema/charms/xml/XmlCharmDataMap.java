@@ -1,6 +1,8 @@
 package net.sf.anathema.charms.xml;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import net.disy.commons.core.creation.IFactory;
@@ -20,20 +22,22 @@ import org.eclipse.core.runtime.IConfigurationElement;
 public class XmlCharmDataMap implements IExecutableCharmDataMap {
 
   private static final String ATTRIB_RESOURCE = "resource"; //$NON-NLS-1$
-  private IDatedCharmCollection charmCollection;
+  private final List<IDatedCharmCollection> charmCollections = new ArrayList<IDatedCharmCollection>();
   private IFactory<Properties, RuntimeException> sourcePropertiesFactory;
 
   @Override
   public CharmDto getData(ICharmId charmId) {
-    for (IDatedCharm charm : charmCollection) {
-      if (charm.hasId(charmId)) {
-        try {
-          CharmDto data = charm.createDto();
-          localizeSources(charmId, data);
-          return data;
-        }
-        catch (Exception e) {
-          new Logger(IPluginConstants.PLUGIN_ID).error("Error reading charm data from xml.", e);
+    for (IDatedCharmCollection charmCollection : charmCollections) {
+      for (IDatedCharm charm : charmCollection) {
+        if (charm.hasId(charmId)) {
+          try {
+            CharmDto data = charm.createDto();
+            localizeSources(charmId, data);
+            return data;
+          }
+          catch (Exception e) {
+            new Logger(IPluginConstants.PLUGIN_ID).error("Error reading charm data from xml.", e);
+          }
         }
       }
     }
@@ -56,7 +60,9 @@ public class XmlCharmDataMap implements IExecutableCharmDataMap {
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
-    setCharmCollection(new DatedCharmCollection(config.getAttribute(ATTRIB_RESOURCE), config.getContributor()));
+    for (IConfigurationElement element : config.getChildren()) {
+      addCharmCollection(new DatedCharmCollection(element.getAttribute(ATTRIB_RESOURCE), config.getContributor()));
+    }
     setSourceProperties(new CharmSourcePropertiesFactory(config.getContributor()));
   }
 
@@ -65,7 +71,7 @@ public class XmlCharmDataMap implements IExecutableCharmDataMap {
 
   }
 
-  protected void setCharmCollection(IDatedCharmCollection charmCollection) {
-    this.charmCollection = charmCollection;
+  protected void addCharmCollection(IDatedCharmCollection charmCollection) {
+    charmCollections.add(charmCollection);
   }
 }

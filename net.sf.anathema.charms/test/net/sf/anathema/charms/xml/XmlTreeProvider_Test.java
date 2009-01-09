@@ -18,7 +18,7 @@ public class XmlTreeProvider_Test {
   public void createTreeProvider() {
     treeProvider = new XmlTreeProvider();
     charmCollection = new DummyXmlCharmCollection();
-    treeProvider.setCharmCollection(charmCollection);
+    treeProvider.addCharmCollection(charmCollection);
   }
 
   @Test

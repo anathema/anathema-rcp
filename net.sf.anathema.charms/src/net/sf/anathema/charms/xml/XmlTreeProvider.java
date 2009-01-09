@@ -18,14 +18,16 @@ import org.eclipse.core.runtime.IConfigurationElement;
 public class XmlTreeProvider implements IExecutableTreeProvider {
 
   private static final String ATTRIB_RESOURCE = "resource"; //$NON-NLS-1$
-  private IStructuredCharmCollection charmCollection;
+  private final List<IStructuredCharmCollection> charmCollections = new ArrayList<IStructuredCharmCollection>();
 
   @Override
   public CharmPrerequisite[] getTree(String id) {
     Set<CharmPrerequisite> prerequisites = new LinkedHashSet<CharmPrerequisite>();
-    for (IStructuredCharm charm : charmCollection) {
-      if (id.equals(charm.getTreePart())) {
-        charm.addPrerequisites(prerequisites);
+    for (IStructuredCharmCollection charmCollection : charmCollections) {
+      for (IStructuredCharm charm : charmCollection) {
+        if (id.equals(charm.getTreePart())) {
+          charm.addPrerequisites(prerequisites);
+        }
       }
     }
     return prerequisites.toArray(new CharmPrerequisite[prerequisites.size()]);
@@ -44,11 +46,13 @@ public class XmlTreeProvider implements IExecutableTreeProvider {
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
-    setCharmCollection(new StructuredCharmCollection(config.getAttribute(ATTRIB_RESOURCE), config.getContributor()));
+    for (IConfigurationElement element : config.getChildren()) {
+      addCharmCollection(new StructuredCharmCollection(element.getAttribute(ATTRIB_RESOURCE), config.getContributor()));
+    }
   }
 
-  protected void setCharmCollection(IStructuredCharmCollection newCollection) {
-    this.charmCollection = newCollection;
+  protected void addCharmCollection(IStructuredCharmCollection newCollection) {
+    charmCollections.add(newCollection);
   }
 
   @Override

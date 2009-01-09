@@ -44,7 +44,7 @@ public class XmlCharmDataMap_Test {
         + "</charm></charmlist>"); //$NON-NLS-1$
     map = new XmlCharmDataMap();
     sourceProperties = new Properties();
-    map.setCharmCollection(new DatedCharmCollection(documentReader));
+    map.addCharmCollection(new DatedCharmCollection(documentReader));
     map.setSourceProperties(new StaticFactory<Properties, RuntimeException>(sourceProperties));
   }
 

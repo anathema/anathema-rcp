@@ -278,8 +278,8 @@
    <extension
          point="net.sf.anathema.charms.charmproviding">
       <treeProvider
-            class="net.sf.anathema.charms.xml.XmlTreeProvider"
-            resource="data/Structure.xml">
+            class="net.sf.anathema.charms.xml.XmlTreeProvider">
+            <resource resource="data/Structure.xml"/>
       </treeProvider>
    </extension>
 

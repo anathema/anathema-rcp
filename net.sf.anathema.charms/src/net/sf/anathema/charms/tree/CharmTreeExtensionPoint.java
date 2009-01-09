@@ -11,8 +11,8 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
-import net.sf.anathema.charms.tree.entries.CharmPrerequisiteFactory;
 import net.sf.anathema.charms.tree.entries.CharmListBuilder;
+import net.sf.anathema.charms.tree.entries.CharmPrerequisiteFactory;
 import net.sf.anathema.charms.tree.entries.GenericIdFactory;
 import net.sf.anathema.charms.tree.entries.ICharmListBuilder;
 import net.sf.anathema.charms.tree.operations.AddCharms;
@@ -20,7 +20,7 @@ import net.sf.anathema.charms.tree.operations.CollectTreeIds;
 import net.sf.anathema.charms.tree.operations.ForGenerics;
 import net.sf.anathema.charms.tree.operations.ForTreePart;
 
-public class CharmTreeExtensionPoint extends AbstractExecutableExtension implements ITreeProvider {
+public class CharmTreeExtensionPoint extends AbstractExecutableExtension implements IExecutableTreeProvider {
 
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   public static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$
