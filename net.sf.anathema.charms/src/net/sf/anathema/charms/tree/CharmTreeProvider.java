@@ -6,14 +6,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.charms.data.CharmPrerequisite;
 
-public class CharmTreeProvider extends AbstractExecutableExtension implements ITreeProvider {
+public class CharmTreeProvider implements ITreeProvider {
 
-  private final Iterable<ITreeProvider> allProviders;
+  private final Iterable< ? extends ITreeProvider> allProviders;
 
-  public CharmTreeProvider(Iterable<ITreeProvider> allProviders) {
+  public CharmTreeProvider(Iterable< ? extends ITreeProvider> allProviders) {
     this.allProviders = allProviders;
   }
 

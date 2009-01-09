@@ -7,6 +7,7 @@ import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.data.IExecutableCharmDataMap;
 import net.sf.anathema.charms.tree.CharmTreeProvider;
+import net.sf.anathema.charms.tree.IExecutableTreeProvider;
 import net.sf.anathema.charms.tree.ITreeProvider;
 
 public class CharmProvidingExtensionPoint {
@@ -31,9 +32,9 @@ public class CharmProvidingExtensionPoint {
   public static ITreeProvider CreateTreeProvider() {
     EclipseExtensionPoint extensionPoint = createExtensionPoint();
     NamePredicate treeProviderPredicate = NamePredicate.ForElementName(TAG_TREE_PROVIDER);
-    ClassConveyerBelt<ITreeProvider> conveyerBelt = new ClassConveyerBelt<ITreeProvider>(
+    ClassConveyerBelt<IExecutableTreeProvider> conveyerBelt = new ClassConveyerBelt<IExecutableTreeProvider>(
         extensionPoint,
-        ITreeProvider.class,
+        IExecutableTreeProvider.class,
         treeProviderPredicate);
     return new CharmTreeProvider(conveyerBelt.getAllObjects());
   }

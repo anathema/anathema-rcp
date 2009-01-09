@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import net.sf.anathema.charms.data.CharmPrerequisite;
-import net.sf.anathema.charms.tree.ITreeProvider;
+import net.sf.anathema.charms.tree.IExecutableTreeProvider;
 import net.sf.anathema.charms.tree.TreeDto;
 import net.sf.anathema.charms.xml.structure.IStructuredCharm;
 import net.sf.anathema.charms.xml.structure.IStructuredCharmCollection;
@@ -15,7 +15,7 @@ import net.sf.anathema.charms.xml.structure.StructuredCharmCollection;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 
-public class XmlTreeProvider implements ITreeProvider {
+public class XmlTreeProvider implements IExecutableTreeProvider {
 
   private static final String ATTRIB_RESOURCE = "resource"; //$NON-NLS-1$
   private IStructuredCharmCollection charmCollection;
