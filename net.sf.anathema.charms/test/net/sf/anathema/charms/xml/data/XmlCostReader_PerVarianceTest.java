@@ -1,5 +1,6 @@
 package net.sf.anathema.charms.xml.data;
 
+import static net.sf.anathema.test.hamcrest.AnathemaMatchers.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.charms.data.CharmDto;
@@ -28,7 +29,7 @@ public class XmlCostReader_PerVarianceTest {
   @Test
   public void ignoresPerWithinWords() throws Exception {
     readCosts("<cost><health cost=\"2\" text=\"super ally\"/></cost>"); //$NON-NLS-1$
-    assertThat(getResourceDto().linearDto, is(nullValue()));
+    assertThat(getResourceDto().linearDto, is(empty()));
   }
 
   private ResourceDto getResourceDto() {

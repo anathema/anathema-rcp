@@ -423,7 +423,9 @@ There is no charm with no duration, so at least one entry is required. Multiple 
       </annotation>
       <complexType>
          <sequence>
-            <element ref="duration" minOccurs="2" maxOccurs="2"/>
+            <element ref="until"/>
+            <element ref="trait"/>
+            <element ref="amount"/>
          </sequence>
       </complexType>
    </element>
