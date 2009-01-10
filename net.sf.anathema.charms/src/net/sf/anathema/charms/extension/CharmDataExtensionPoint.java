@@ -22,6 +22,7 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   private static final String ATTRIB_ADDITION = "addition"; //$NON-NLS-1$
   private static final String TAG_COST = "cost"; //$NON-NLS-1$
   private static final String EXTENSION_POINT_ID = "charmdata"; //$NON-NLS-1$
+  private static final String TAG_DURATION = "duration"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
 
   public CharmDataExtensionPoint() {
@@ -52,12 +53,24 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   private void fillCharmData(IExtensionElement extensionElement, CharmDto charmDto) {
     IExtensionElement typeElement = extensionElement.getElements()[0];
     charmDto.type = typeElement.getName();
-    fillInCosts(typeElement, charmDto);
+    fillInCost(typeElement, charmDto);
+    fillInDuration(typeElement, charmDto);
     fillInKeywords(extensionElement, charmDto);
     fillInSources(extensionElement, charmDto);
   }
 
-  private void fillInCosts(IExtensionElement typeElement, CharmDto charmDto) {
+  private void fillInDuration(IExtensionElement typeElement, CharmDto charmDto) {
+    IExtensionElement additionalDataElement = typeElement.getElement(TAG_ADDITIONALDATA);
+    if (additionalDataElement == null) {
+      return;
+    }
+    DurationReader durationReader = new DurationReader();
+    for (IExtensionElement durationElement : additionalDataElement.getElements(TAG_DURATION)) {
+      charmDto.durations.add(durationReader.read(durationElement));
+    }
+  }
+
+  private void fillInCost(IExtensionElement typeElement, CharmDto charmDto) {
     IExtensionElement additionalDataElement = typeElement.getElement(TAG_ADDITIONALDATA);
     if (additionalDataElement == null) {
       return;

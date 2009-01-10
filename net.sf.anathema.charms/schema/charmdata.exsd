@@ -6,7 +6,7 @@
          <meta.schema plugin="net.sf.anathema.charms" id="charmdata" name="Charm Data"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Contributers can use this extension point to specify individual Charm&apos;s data as opposed to the general makeup of the charm tree.
       </documentation>
    </annotation>
 
@@ -162,17 +162,16 @@
             If there is more than one cost given, they are interpreted as alternative cost options.
 
 If no cost is given, the charm use is for free.
+
+There is no charm with no duration, so at least one entry is required. Multiple entries are interpreted as alternative durations.
          </documentation>
       </annotation>
       <complexType>
          <sequence>
-            <element ref="duration"/>
+            <element ref="duration" minOccurs="1" maxOccurs="unbounded"/>
             <element ref="cost" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
       </complexType>
-   </element>
-
-   <element name="duration" type="string">
    </element>
 
    <element name="keyword">
@@ -302,12 +301,139 @@ If no cost is given, the charm use is for free.
       </complexType>
    </element>
 
+   <element name="duration">
+      <annotation>
+         <documentation>
+            A Charm duration.
+         </documentation>
+      </annotation>
+      <complexType>
+         <choice>
+            <element ref="amount"/>
+            <element ref="trait"/>
+            <element ref="text"/>
+            <element ref="until"/>
+            <element ref="lesserof"/>
+         </choice>
+      </complexType>
+   </element>
+
+   <element name="amount">
+      <annotation>
+         <documentation>
+            A duration like &quot;5 months&quot;, best described by a fixed number and a unit.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="unit" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="trait">
+      <annotation>
+         <documentation>
+            A duration like &quot;(Essence) hours&quot;, best described by a character trait and a unit.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="traitid" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="unit" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="text">
+      <annotation>
+         <documentation>
+            A duration described by a keyword text.
+&quot;Instant&quot;, &quot;Special&quot;, &quot;Indefinite&quot;
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="keyword" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Instant">
+                  </enumeration>
+                  <enumeration value="Special">
+                  </enumeration>
+                  <enumeration value="Varies">
+                  </enumeration>
+                  <enumeration value="Indefinite">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="until">
+      <annotation>
+         <documentation>
+            A duration lasting until an event occurs.
+&quot;Until dawn&quot;
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="event" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="lesserof">
+      <annotation>
+         <documentation>
+            A duration using the lesser of two value. 
+&quot;One cavalry charge or Essence Long Ticks, whichever is less&quot;
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="duration" minOccurs="2" maxOccurs="2"/>
+         </sequence>
+      </complexType>
+   </element>
+
    <annotation>
       <appinfo>
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         v1.0
       </documentation>
    </annotation>
 
@@ -325,7 +451,8 @@ If no cost is given, the charm use is for free.
          <meta.section type="apiinfo"/>
       </appinfo>
       <documentation>
-         [Enter API information here.]
+         The supplied implementations method &quot;getData(ICharmId)&quot; returns all known data for a given charm registered with this extension point. 
+Contributors are encouraged to use the more general &quot;net.sf.anathema.charms.extension.CharmProvidingExtensionPoint&quot; should be used to access all the systems charm data maps at once.
       </documentation>
    </annotation>
 
@@ -334,7 +461,7 @@ If no cost is given, the charm use is for free.
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         net.sf.anathema.charms.extension.CharmDataExtensionPoint
       </documentation>
    </annotation>
 
