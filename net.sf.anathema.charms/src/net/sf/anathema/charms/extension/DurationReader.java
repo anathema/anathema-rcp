@@ -18,7 +18,7 @@ public class DurationReader {
   private AmountDto readAmountDuration(IExtensionElement element) {
     AmountDto amountDto = new AmountDto();
     if (element.getName().equals("amount")) {
-      amountDto.amount = element.getIntegerAttribute("amount");
+      amountDto.value = element.getIntegerAttribute("value");
     }
     if (element.getName().equals("trait")) {
       amountDto.trait = element.getAttribute("trait");

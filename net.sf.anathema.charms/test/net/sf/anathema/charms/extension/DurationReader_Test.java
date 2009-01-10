@@ -53,7 +53,7 @@ public class DurationReader_Test {
   @Test
   public void readsAmountDurationsAmount() throws Exception {
     IExtensionElement amount = createAmountElement(6, "ticks"); //$NON-NLS-1$
-    assertThat(readDuration(amount).amount.amount, is(6));
+    assertThat(readDuration(amount).amount.value, is(6));
   }
 
   @Test
@@ -71,7 +71,7 @@ public class DurationReader_Test {
   @Test
   public void hasNoAmountDurationIfTraitDurationIsSpecified() throws Exception {
     IExtensionElement trait = createTraitElement("Strength", "ticks"); //$NON-NLS-1$ //$NON-NLS-2$
-    assertThat(readDuration(trait).amount.amount, is(nullValue()));
+    assertThat(readDuration(trait).amount.value, is(nullValue()));
   }
 
   @Test
@@ -93,7 +93,7 @@ public class DurationReader_Test {
 
   private IExtensionElement createAmountElement(int amount, String unit) throws ExtensionException {
     return createExtensionElementWithAttributes(new MockName("amount"), //$NON-NLS-1$
-        new MockIntegerAttribute("amount", amount), //$NON-NLS-1$
+        new MockIntegerAttribute("value", amount), //$NON-NLS-1$
         new MockStringAttribute("unit", unit)); //$NON-NLS-1$
   }
 

@@ -23,6 +23,7 @@ public class TooltippFactory implements ITooltippFactory {
     ConcatenateString textBuilder = new ConcatenateString("\n");
     textBuilder.concatenate("Type: " + displayData.getType());
     textBuilder.concatenate("Costs: " + displayData.getCost());
+    textBuilder.concatenate("Duration: " + displayData.getDuration());
     textBuilder.concatenate("Keywords: " + displayData.getKeywords());
     textBuilder.concatenate("Sources: " + displayData.getAllSources());
     return new Label(textBuilder.create());

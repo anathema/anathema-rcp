@@ -253,6 +253,9 @@
                secondaryStep="2">
             <additionalData>
                <duration>
+                  <text
+                        keyword="Instant">
+                  </text>
                   duration body text
                </duration>
                <cost>

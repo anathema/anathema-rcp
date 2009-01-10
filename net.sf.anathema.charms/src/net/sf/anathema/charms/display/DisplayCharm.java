@@ -1,9 +1,11 @@
 package net.sf.anathema.charms.display;
 
+import net.sf.anathema.character.trait.resources.TraitMessages;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.data.cost.CostDto;
 import net.sf.anathema.charms.data.cost.ResourceDto;
+import net.sf.anathema.charms.data.duration.DurationDto;
 import net.sf.anathema.charms.view.tooltipp.ConcatenateString;
 
 public class DisplayCharm {
@@ -66,5 +68,29 @@ public class DisplayCharm {
 
   private String getResource(ResourceDto resource) {
     return new DisplayResource(resource).get();
+  }
+
+  public String getDuration() {
+    ConcatenateString alternativeDuration = new ConcatenateString(" or ");
+    for (DurationDto duration : data.durations) {
+      alternativeDuration.concatenate(getSingleDuration(duration));
+    }
+    return alternativeDuration.create(none);
+  }
+
+  private String getSingleDuration(DurationDto duration) {
+    if (duration.keyword != null) {
+      return duration.keyword;
+    }
+    if (duration.until != null) {
+      return "Until " + duration.until;
+    }
+    if (duration.amount != null) {
+      if (duration.amount.trait != null) {
+        return new TraitMessages().getNameFor(duration.amount.trait) + " " + duration.amount.unit;
+      }
+      return duration.amount.value + " " + duration.amount.unit;
+    }
+    return null;
   }
 }
