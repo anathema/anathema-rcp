@@ -73,7 +73,7 @@
  <cost>
    <essence cost="8"/>
  </cost>
- <duration duration="PerformanceEndsPlus"/>
+ <duration event="PerformanceEnds" trait="Essence" unit="hour"/>
  <charmtype type="Simple"/>
  <charmAttribute attribute="Combo-OK" visualize="true"/>
  <charmAttribute attribute="Compulsion" visualize="true"/>

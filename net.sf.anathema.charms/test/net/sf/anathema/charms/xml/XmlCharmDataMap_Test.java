@@ -8,6 +8,7 @@ import java.util.Properties;
 import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.data.cost.CostDto;
 import net.sf.anathema.charms.data.cost.ResourceDto;
+import net.sf.anathema.charms.data.duration.DurationDto;
 import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.xml.data.DatedCharmCollection;
@@ -112,5 +113,11 @@ public class XmlCharmDataMap_Test {
     CostDto costDto = map.getData(KNOWN_ID).costs.get(1);
     ResourceDto resourceDto = costDto.resources.get(0);
     assertThat(resourceDto.type, is("willpower")); //$NON-NLS-1$
+  }
+  
+  @Test
+  public void hasInstantDuration() throws Exception {
+    DurationDto durationDto = map.getData(KNOWN_ID).durations.get(0);
+    assertThat(durationDto.keyword, is("Instant")); //$NON-NLS-1$
   }
 }

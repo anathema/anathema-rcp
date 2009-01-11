@@ -18,6 +18,7 @@ public class DatedCharm extends BasicCharm implements IDatedCharm {
   private static final String TAG_SOURCE = "source"; //$NON-NLS-1$
   private static final String ATTRIB_SOURCE = "source"; //$NON-NLS-1$
   private static final String TAG_COST = "cost"; //$NON-NLS-1$
+  private static final String TAG_DURATION = "duration"; //$NON-NLS-1$
 
   public DatedCharm(Element charmElement) {
     super(charmElement);
@@ -28,9 +29,16 @@ public class DatedCharm extends BasicCharm implements IDatedCharm {
     CharmDto dto = new CharmDto();
     dto.type = charmElement.element(TAG_CHARMTYPE).attributeValue(ATTRIB_TYPE).toLowerCase();
     addKeywords(dto);
+    addDuration(dto);
     addSources(dto);
     addCosts(dto);
     return dto;
+  }
+
+  private void addDuration(CharmDto dto) {
+    for (Element durationElement : ElementUtilities.elements(charmElement, TAG_DURATION)) {
+      new XmlDurationReader(durationElement, dto).read();
+    }
   }
 
   private void addCosts(CharmDto dto) throws PersistenceException {

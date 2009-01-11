@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
-import net.sf.anathema.basics.eclipse.extension.fake.MockIntegerAttribute;
 import net.sf.anathema.basics.eclipse.extension.fake.MockName;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.charms.data.duration.DurationDto;
@@ -40,7 +39,7 @@ public class DurationReader_Test {
 
   @Test
   public void readsAmountDurationsUnit() throws Exception {
-    IExtensionElement amount = createAmountElement(5, "wars"); //$NON-NLS-1$
+    IExtensionElement amount = createAmountElement("5", "wars"); //$NON-NLS-1$ //$NON-NLS-2$
     assertThat(readDuration(amount).amount.unit, is("wars")); //$NON-NLS-1$
   }
 
@@ -52,8 +51,8 @@ public class DurationReader_Test {
 
   @Test
   public void readsAmountDurationsAmount() throws Exception {
-    IExtensionElement amount = createAmountElement(6, "ticks"); //$NON-NLS-1$
-    assertThat(readDuration(amount).amount.value, is(6));
+    IExtensionElement amount = createAmountElement("6", "ticks"); //$NON-NLS-1$ //$NON-NLS-2$
+    assertThat(readDuration(amount).amount.value, is("6")); //$NON-NLS-1$
   }
 
   @Test
@@ -76,7 +75,7 @@ public class DurationReader_Test {
 
   @Test
   public void hasNoTraitDurationIfAmountDurationIsSpecified() throws Exception {
-    IExtensionElement amount = createAmountElement(5, "ticks"); //$NON-NLS-1$
+    IExtensionElement amount = createAmountElement("5", "ticks"); //$NON-NLS-1$ //$NON-NLS-2$
     assertThat(readDuration(amount).amount.trait, is(nullValue()));
   }
 
@@ -91,9 +90,9 @@ public class DurationReader_Test {
         new MockStringAttribute("unit", unit)); //$NON-NLS-1$
   }
 
-  private IExtensionElement createAmountElement(int amount, String unit) throws ExtensionException {
+  private IExtensionElement createAmountElement(String amount, String unit) throws ExtensionException {
     return createExtensionElementWithAttributes(new MockName("amount"), //$NON-NLS-1$
-        new MockIntegerAttribute("value", amount), //$NON-NLS-1$
+        new MockStringAttribute("value", amount), //$NON-NLS-1$
         new MockStringAttribute("unit", unit)); //$NON-NLS-1$
   }
 

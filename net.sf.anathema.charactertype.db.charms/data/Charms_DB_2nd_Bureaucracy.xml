@@ -37,7 +37,7 @@
     <cost>
         <essence cost="1" text="+1m per dot lent"/>
     </cost>
-    <duration duration="Special"/>
+    <duration amount="Successes" unit="week"/>
     <charmtype type="Simple"/>
     <charmAttribute attribute="Touch" visualize="true"/>
     <source source="DragonBlooded2nd"/>

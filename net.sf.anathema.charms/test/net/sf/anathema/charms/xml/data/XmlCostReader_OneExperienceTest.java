@@ -1,5 +1,6 @@
 package net.sf.anathema.charms.xml.data;
 
+import static net.sf.anathema.test.hamcrest.AnathemaMatchers.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.charms.data.CharmDto;
@@ -31,7 +32,7 @@ public class XmlCostReader_OneExperienceTest {
 
   @Test
   public void hasNoBaseCostsLinearCosts() throws Exception {
-    assertThat(getResourceDto().linearDto, is(nullValue()));
+    assertThat(getResourceDto().linearDto, is(empty()));
   }
 
   @Test

@@ -43,7 +43,7 @@
         <essence cost="2"/>
         <willpower cost="1"/>
     </cost>
-    <duration duration="Concentration"/>
+    <duration event="ConcentrationEnds"/>
     <charmtype type="Simple"/>
     <charmAttribute attribute="Combo-OK" visualize="true"/>
     <charmAttribute attribute="Social" visualize="true"/>
