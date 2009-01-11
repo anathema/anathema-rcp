@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<fragment>
+   <extension
+         point="net.sf.anathema.character.importwizard.modelimporters">
+      <importer
+            modelid="net.sf.anathema.character.abilities.model">
+         <xslconverter
+               bundle="net.sf.anathema.character.abilities"
+               stylesheet="xsl/AbilityCreation.xsl">
+         </xslconverter>
+      </importer>
+   </extension>
+
+</fragment>

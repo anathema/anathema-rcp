@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name.f0
+Bundle-SymbolicName: net.sf.anathema.character.abilities.importwizard;singleton:=true
+Bundle-Version: 1.0.0
+Fragment-Host: net.sf.anathema.character.abilities;bundle-version="1.0.0"
+Require-Bundle: net.sf.anathema.basics.importexport;bundle-version="1.0.0",
+ net.sf.anathema.character.importwizard;bundle-version="1.0.0"
+Bundle-Vendor: %Bundle-Vendor.f0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Localization: plugin

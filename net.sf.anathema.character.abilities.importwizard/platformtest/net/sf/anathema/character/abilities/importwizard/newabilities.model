@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<model bundleVersion="1.0.0">
+	<trait id="Archery" creationValue="0" />
+	<trait id="Melee" creationValue="5" favored="true"/>
+	<trait id="Integrity" creationValue="1" experiencedValue="2" favored="true"/>
+	<trait id="Investigation" creationValue="1"/>
+	<trait id="Craft" creationValue="2" experiencedValue="4"> 
+    	<trait id="Air" creationValue="2" experiencedValue="2"/>  
+    	<trait id="Magitech" creationValue="0" experiencedValue="4"/>  
+  	</trait>	
+</model>
