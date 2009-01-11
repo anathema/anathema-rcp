@@ -13,8 +13,7 @@ public abstract class AbstractCharmStats extends AbstractMagicStats {
   }
 
   public String getDurationString() {
-    //TODO Case 346: Hier muss die Dauer aus dem DisplayCharm (getMagic) abgefragt und internationalisiert zurückgegeben werden.
-    return null;
+    return getMagic().getDuration();
   }
 
   public String getSourceString() {
