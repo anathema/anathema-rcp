@@ -51,7 +51,7 @@
    <element name="treeProvider">
       <complexType>
          <sequence>
-            <element ref="resource" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="resource" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="class" type="string" use="required">
             <annotation>
@@ -68,8 +68,8 @@
 
    <element name="charmDataMap">
       <complexType>
-         <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="resource"/>
+         <sequence>
+            <element ref="resource" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="class" type="string" use="required">
             <annotation>

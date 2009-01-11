@@ -225,6 +225,10 @@
                speed="6">
             <additionalData>
                <duration>
+                  <amount
+                        unit="scene"
+                        value="1">
+                  </amount>
                   duration body text
                </duration>
                <cost>
