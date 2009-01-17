@@ -287,13 +287,19 @@
       <treeProvider
             class="net.sf.anathema.charms.xml.XmlTreeProvider">
             <resource resource="data/Structure.xml"/>
+            <resource
+                  resource="data/StructureOccult.xml">
+            </resource>
       </treeProvider>
-      <treeProvider
-            class="net.sf.anathema.charms.xml.XmlTreeProvider">
+      <charmDataMap
+            class="net.sf.anathema.charms.xml.XmlCharmDataMap">
          <resource
-               resource="data/StructureOccult.xml">
+               resource="data/DataOccult.xml">
          </resource>
-      </treeProvider>
+         <resource
+               resource="data/Data.xml">
+         </resource>
+      </charmDataMap>
    </extension>
 
 </fragment>
