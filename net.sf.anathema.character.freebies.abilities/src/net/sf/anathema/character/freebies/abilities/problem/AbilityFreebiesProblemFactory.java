@@ -4,6 +4,7 @@ import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.IModelChangeListener;
 import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.freebies.abilities.FavoredCountHandler;
 import net.sf.anathema.character.freebies.abilities.FavoredFreebiesHandler;
 import net.sf.anathema.character.freebies.abilities.UnrestrictedFreebiesHandler;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
@@ -36,10 +37,19 @@ public class AbilityFreebiesProblemFactory {
     return new FreebiesProblemFactory(dto);
   }
 
+  public IModelChangeListener createFavoredCount() {
+    IFreebiesHandler freebiesHandler = new FavoredCountHandler();
+    FreebiesProblemDto dto = createDto(freebiesHandler);
+    dto.description = "There are still favored abilities unchosen.";
+    dto.errorMessage = "Error creating favored ability count problem marker.";
+    dto.markerType = "net.sf.anathema.character.freebies.abilities.marker.favoredcount"; //$NON-NLS-1$
+    return new FreebiesProblemFactory(dto);
+  }
+
   private FreebiesProblemDto createDto(IFreebiesHandler freebiesHandler) {
     FreebiesProblemDto dto = new FreebiesProblemDto();
     dto.hasProblem = new HasUnspentFreebies(creditManager, freebiesHandler);
-    dto.editorOpener = "net.sf.anathema.character.abilities.editor";
+    dto.editorOpener = "net.sf.anathema.character.abilities.editor"; //$NON-NLS-1$
     dto.modelName = "Abilities";
     dto.modelId = IAbilitiesPluginConstants.MODEL_ID;
     return dto;

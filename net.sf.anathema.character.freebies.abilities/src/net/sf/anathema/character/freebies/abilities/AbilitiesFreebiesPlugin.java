@@ -22,6 +22,7 @@ public class AbilitiesFreebiesPlugin extends AbstractAnathemaUIPlugin {
     AbilityFreebiesProblemFactory problemFactory = new AbilityFreebiesProblemFactory();
     modelListeners.add(problemFactory.createForUnrestrictedFreebies());
     modelListeners.add(problemFactory.createForCheapFreebies());
+    modelListeners.add(problemFactory.createFavoredCount());
     for (IModelChangeListener listener : modelListeners) {
       ModelCache.getInstance().addModelChangeListener(listener);
     }
