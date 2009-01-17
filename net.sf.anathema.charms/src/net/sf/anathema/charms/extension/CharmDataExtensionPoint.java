@@ -64,8 +64,8 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
     if (additionalDataElement == null) {
       return;
     }
-    for (IExtensionElement durationElement : additionalDataElement.getElements(TAG_DURATION)) {
-      charmDto.durations.add(new DurationReader().read(durationElement));
+    for (IExtensionElement duration : additionalDataElement.getElements(TAG_DURATION)) {
+      charmDto.durations.add(new DurationReader(duration).read());
     }
   }
 

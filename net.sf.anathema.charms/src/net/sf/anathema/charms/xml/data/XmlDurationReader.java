@@ -14,16 +14,18 @@ public class XmlDurationReader {
   private static final String TAG_ADDITION = "addition"; //$NON-NLS-1$
   private static final String TAG_MINIMUM = "minimum"; //$NON-NLS-1$
   private final DurationDto duration = new DurationDto();
-  private final Element durationElement;
   private final XmlPrimitiveBuilder primitiveBuilder = new XmlPrimitiveBuilder();
+  private final Element durationElement;
 
   public XmlDurationReader(Element durationElement) {
     this.durationElement = durationElement;
   }
 
   public DurationDto read() {
-    duration.keyword = durationElement.attributeValue(ATTRIB_DURATION);
-    if (isAdditiveDuration()) {
+    if (isKeywordDuration()) {
+      readKeywordDuration();
+    }
+    else if (isAdditiveDuration()) {
       readAdditiveDuration();
     }
     else if (isMinimumDuration()) {
@@ -33,6 +35,14 @@ public class XmlDurationReader {
       readSimpleDuration();
     }
     return duration;
+  }
+
+  private boolean isKeywordDuration() {
+    return durationElement.attributeValue(ATTRIB_DURATION) != null;
+  }
+
+  private void readKeywordDuration() {
+    duration.keyword = durationElement.attributeValue(ATTRIB_DURATION);
   }
 
   private void readSimpleDuration() {
@@ -49,7 +59,8 @@ public class XmlDurationReader {
   }
 
   private void buildAndAddPrimitives(String elementName, List<PrimitiveDurationDto> list) {
-    readPrimitiveChildren(elementName);
+    Element listElement = durationElement.element(elementName);
+    readPrimitiveChildren(listElement);
     addReadPrimitives(list);
   }
 
@@ -57,10 +68,8 @@ public class XmlDurationReader {
     additions.addAll(primitiveBuilder.getBuiltPrimitives());
   }
 
-  private void readPrimitiveChildren(String elementName) {
-    for (Element element : ElementUtilities.elements(durationElement.element(elementName))) {
-      primitiveBuilder.readSimpleDuration(element);
-    }
+  private void readPrimitiveChildren(Element listElement) {
+    primitiveBuilder.readSimpleDurations(ElementUtilities.elements(listElement));
   }
 
   private boolean isMinimumDuration() {

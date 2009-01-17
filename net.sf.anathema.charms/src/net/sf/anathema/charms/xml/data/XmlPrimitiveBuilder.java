@@ -12,8 +12,19 @@ import net.sf.anathema.charms.extension.PrimitiveDurationFactory;
 import org.dom4j.Element;
 
 public class XmlPrimitiveBuilder {
+  private static final String ATTRIB_AMOUNT = "amount"; //$NON-NLS-1$
+  private static final String ATTRIB_MULTIPLIER = "multiplier"; //$NON-NLS-1$
+  private static final String ATTRIB_UNIT = "unit"; //$NON-NLS-1$
+  private static final String ATTRIB_TRAIT = "trait"; //$NON-NLS-1$
+  private static final String ATTRIB_EVENT = "event"; //$NON-NLS-1$
   private final PrimitiveDurationFactory factory = new PrimitiveDurationFactory();
   private final List<PrimitiveDurationDto> durations = new ArrayList<PrimitiveDurationDto>();
+
+  public void readSimpleDurations(List<Element> elements) {
+    for (Element element : elements) {
+      readSimpleDuration(element);
+    }
+  }
 
   public void readSimpleDuration(Element element) {
     if (isUntilDuration(element)) {
@@ -33,36 +44,40 @@ public class XmlPrimitiveBuilder {
 
   private void readUntilDuration(Element element) {
     PrimitiveDurationDto primitiveDuration = createPrimitiveDuration();
-    primitiveDuration.until = element.attributeValue("event");
+    primitiveDuration.until = element.attributeValue(ATTRIB_EVENT);
   }
 
   private void readTraitDuration(Element element) {
     PrimitiveDurationDto primitiveDuration = createPrimitiveDuration();
     primitiveDuration.trait = new TraitDto();
-    primitiveDuration.trait.trait = element.attributeValue("trait");
-    primitiveDuration.trait.unit = element.attributeValue("unit");
-    if (element.attribute("multiplier") != null) {
-      primitiveDuration.trait.multiplier = Integer.valueOf(element.attributeValue("multiplier"));
+    primitiveDuration.trait.trait = element.attributeValue(ATTRIB_TRAIT);
+    primitiveDuration.trait.unit = element.attributeValue(ATTRIB_UNIT);
+    if (hasMultiplier(element)) {
+      primitiveDuration.trait.multiplier = Integer.valueOf(element.attributeValue(ATTRIB_MULTIPLIER));
     }
+  }
+
+  private boolean hasMultiplier(Element element) {
+    return element.attribute(ATTRIB_MULTIPLIER) != null;
   }
 
   private void readAmountDuration(Element element) {
     PrimitiveDurationDto primitiveDuration = createPrimitiveDuration();
     primitiveDuration.amount = new AmountDto();
-    primitiveDuration.amount.value = element.attributeValue("amount");
-    primitiveDuration.amount.unit = element.attributeValue("unit");
+    primitiveDuration.amount.value = element.attributeValue(ATTRIB_AMOUNT);
+    primitiveDuration.amount.unit = element.attributeValue(ATTRIB_UNIT);
   }
 
   private boolean isUntilDuration(Element element) {
-    return element.attribute("event") != null;
+    return element.attribute(ATTRIB_EVENT) != null;
   }
 
   private boolean isTraitDuration(Element element) {
-    return element.attribute("trait") != null;
+    return element.attribute(ATTRIB_TRAIT) != null;
   }
 
   private boolean isAmountDuration(Element element) {
-    return element.attribute("amount") != null;
+    return element.attribute(ATTRIB_AMOUNT) != null;
   }
 
   public Collection< ? extends PrimitiveDurationDto> getBuiltPrimitives() {

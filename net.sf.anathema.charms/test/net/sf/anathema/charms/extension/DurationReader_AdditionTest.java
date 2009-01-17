@@ -27,6 +27,6 @@ public class DurationReader_AdditionTest {
   }
 
   private DurationDto readDuration() {
-    return new DurationReader().read(duration);
+    return new DurationReader(duration).read();
   }
 }

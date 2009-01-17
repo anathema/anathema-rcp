@@ -26,7 +26,7 @@ public class DurationReader_KeywordTest {
   }
   
   private DurationDto readDuration(IExtensionElement duration) {
-    return new DurationReader().read(duration);
+    return new DurationReader(duration).read();
   }
 
   public static IExtensionElement createKeywordElement(String keyword) throws ExtensionException {

@@ -30,7 +30,7 @@ public class DurationReader_UntilTest {
   }
 
   private DurationDto readDuration(IExtensionElement duration) {
-    return new DurationReader().read(duration);
+    return new DurationReader(duration).read();
   }
 
   private static IExtensionElement createUntilDuration(String event) throws ExtensionException {

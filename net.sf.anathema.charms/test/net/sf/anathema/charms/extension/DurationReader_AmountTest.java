@@ -27,7 +27,7 @@ public class DurationReader_AmountTest {
   }
 
   private DurationDto readDuration(IExtensionElement duration) {
-    return new DurationReader().read(duration);
+    return new DurationReader(duration).read();
   }
 
   public static IExtensionElement createAmountElement(String value, String unit) throws ExtensionException {

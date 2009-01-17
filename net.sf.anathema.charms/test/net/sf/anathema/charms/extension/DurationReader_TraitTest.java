@@ -33,7 +33,7 @@ public class DurationReader_TraitTest {
   }
 
   private DurationDto readDuration(IExtensionElement duration) {
-    return new DurationReader().read(duration);
+    return new DurationReader(duration).read();
   }
 
   private static IExtensionElement createTraitDuration(String trait, int multiplier, String unit)

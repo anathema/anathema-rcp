@@ -38,6 +38,6 @@ public class DurationReader_MinimumTest {
   }
 
   private DurationDto readDuration() {
-    return new DurationReader().read(duration);
+    return new DurationReader(duration).read();
   }
 }
