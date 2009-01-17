@@ -309,12 +309,84 @@ There is no charm with no duration, so at least one entry is required. Multiple 
       </annotation>
       <complexType>
          <choice>
+            <element ref="addition"/>
+            <element ref="minimum"/>
+            <element ref="text"/>
+         </choice>
+      </complexType>
+   </element>
+
+   <element name="text">
+      <annotation>
+         <documentation>
+            A duration described by a keyword text.
+&quot;Instant&quot;, &quot;Special&quot;, &quot;Indefinite&quot;
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="keyword" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Instant">
+                  </enumeration>
+                  <enumeration value="Special">
+                  </enumeration>
+                  <enumeration value="Varies">
+                  </enumeration>
+                  <enumeration value="Indefinite">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="addition">
+      <complexType>
+         <sequence>
+            <element ref="until" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="amount" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="trait" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="minimum">
+      <annotation>
+         <documentation>
+            A duration using the lesser of two value. 
+&quot;One cavalry charge or Essence Long Ticks, whichever is less&quot;
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="2" maxOccurs="2">
+            <element ref="until"/>
             <element ref="amount"/>
             <element ref="trait"/>
-            <element ref="text"/>
-            <element ref="until"/>
-            <element ref="lesserof"/>
-         </choice>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="until">
+      <annotation>
+         <documentation>
+            A duration lasting until an event occurs.
+&quot;Until dawn&quot;
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="event" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -356,6 +428,13 @@ There is no charm with no duration, so at least one entry is required. Multiple 
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="multiplier" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="unit" type="string" use="required">
             <annotation>
                <documentation>
@@ -363,70 +442,6 @@ There is no charm with no duration, so at least one entry is required. Multiple 
                </documentation>
             </annotation>
          </attribute>
-      </complexType>
-   </element>
-
-   <element name="text">
-      <annotation>
-         <documentation>
-            A duration described by a keyword text.
-&quot;Instant&quot;, &quot;Special&quot;, &quot;Indefinite&quot;
-         </documentation>
-      </annotation>
-      <complexType>
-         <attribute name="keyword" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-            <simpleType>
-               <restriction base="string">
-                  <enumeration value="Instant">
-                  </enumeration>
-                  <enumeration value="Special">
-                  </enumeration>
-                  <enumeration value="Varies">
-                  </enumeration>
-                  <enumeration value="Indefinite">
-                  </enumeration>
-               </restriction>
-            </simpleType>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="until">
-      <annotation>
-         <documentation>
-            A duration lasting until an event occurs.
-&quot;Until dawn&quot;
-         </documentation>
-      </annotation>
-      <complexType>
-         <attribute name="event" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="lesserof">
-      <annotation>
-         <documentation>
-            A duration using the lesser of two value. 
-&quot;One cavalry charge or Essence Long Ticks, whichever is less&quot;
-         </documentation>
-      </annotation>
-      <complexType>
-         <sequence>
-            <element ref="until"/>
-            <element ref="trait"/>
-            <element ref="amount"/>
-         </sequence>
       </complexType>
    </element>
 

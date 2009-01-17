@@ -241,10 +241,12 @@
                speed="6">
             <additionalData>
                <duration>
-                  <amount
-                        unit="scene"
-                        value="1">
-                  </amount>
+                  <addition>
+                     <amount
+                           unit="scene"
+                           value="1">
+                     </amount>
+                  </addition>
                   duration body text
                </duration>
                <cost>
@@ -279,12 +281,6 @@
                primaryStep="1"
                secondaryStep="2">
             <additionalData>
-               <duration>
-                  <text
-                        keyword="Instant">
-                  </text>
-                  duration body text
-               </duration>
                <cost>
                   <resource
                         type="motes">
@@ -294,6 +290,11 @@
                      </linear>
                   </resource>
                </cost>
+               <duration>
+                  <text
+                        keyword="Instant">
+                  </text>
+               </duration>
             </additionalData>
          </reflexive>
          <source

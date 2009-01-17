@@ -2,6 +2,7 @@ package net.sf.anathema.charms.xml.data;
 
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.SourceDto;
+import net.sf.anathema.charms.data.duration.DurationDto;
 import net.sf.anathema.charms.xml.BasicCharm;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.ElementUtilities;
@@ -37,7 +38,8 @@ public class DatedCharm extends BasicCharm implements IDatedCharm {
 
   private void addDuration(CharmDto dto) {
     for (Element durationElement : ElementUtilities.elements(charmElement, TAG_DURATION)) {
-      new XmlDurationReader(durationElement, dto).read();
+      DurationDto duration = new XmlDurationReader(durationElement).read();
+      dto.durations.add(duration);
     }
   }
 

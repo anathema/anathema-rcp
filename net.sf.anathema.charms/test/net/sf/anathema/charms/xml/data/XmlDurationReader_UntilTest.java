@@ -2,30 +2,22 @@ package net.sf.anathema.charms.xml.data;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import net.sf.anathema.charms.data.CharmDto;
+import net.sf.anathema.charms.data.duration.DurationDto;
 import net.sf.anathema.charms.xml.TestDocumentReader;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class XmlDurationReader_UntilTest {
 
-  private CharmDto charmDto;
-
-  @Before
-  public void createCosts() throws Exception {
-    charmDto = new CharmDto();
-  }
-
   @Test
   public void readsUntilDuration() throws Exception {
-    readDuration("<duration event=\"NextAction\"/>");
-    assertThat(charmDto.durations.get(0).until, is("NextAction"));
+    DurationDto duration = readDuration("<duration event=\"NextAction\"/>"); //$NON-NLS-1$
+    assertThat(duration.additions.get(0).until, is("NextAction")); //$NON-NLS-1$
   }
 
-  private void readDuration(String xml) throws Exception {
+  private DurationDto readDuration(String xml) throws Exception {
     TestDocumentReader reader = new TestDocumentReader();
     reader.setXml(xml);
-    new XmlDurationReader(reader.readDocument(), charmDto).read();
+    return new XmlDurationReader(reader.readDocument()).read();
   }
 }

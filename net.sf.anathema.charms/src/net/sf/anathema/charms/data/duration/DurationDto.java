@@ -1,8 +1,11 @@
 package net.sf.anathema.charms.data.duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DurationDto {
 
-  public String until;
   public String keyword;
-  public AmountDto amount;
+  public List<PrimitiveDurationDto> additions = new ArrayList<PrimitiveDurationDto>();
+  public List<PrimitiveDurationDto> minimums = new ArrayList<PrimitiveDurationDto>();
 }

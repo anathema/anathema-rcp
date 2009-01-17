@@ -6,6 +6,7 @@ import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.data.cost.CostDto;
 import net.sf.anathema.charms.data.cost.ResourceDto;
 import net.sf.anathema.charms.data.duration.DurationDto;
+import net.sf.anathema.charms.data.duration.PrimitiveDurationDto;
 import net.sf.anathema.charms.view.tooltipp.ConcatenateString;
 
 public class DisplayCharm {
@@ -79,18 +80,58 @@ public class DisplayCharm {
   }
 
   private String getSingleDuration(DurationDto duration) {
-    if (duration.keyword != null) {
+    if (isKeywordDuration(duration)) {
       return duration.keyword;
     }
-    if (duration.until != null) {
-      return "Until " + duration.until;
+    else if (isAdditiveDuration(duration)) {
+      return createAdditiveText(duration);
     }
-    if (duration.amount != null) {
-      if (duration.amount.trait != null) {
-        return new TraitMessages().getNameFor(duration.amount.trait) + " " + duration.amount.unit;
+    else {
+      return createMinimumText(duration);
+    }
+  }
+
+  private String createAdditiveText(DurationDto duration) {
+    ConcatenateString additiveText = new ConcatenateString(" + "); //$NON-NLS-1$
+    for (PrimitiveDurationDto dto : duration.additions) {
+      additiveText.concatenate(getPrimitiveText(dto));
+    }
+    return additiveText.create();
+  }
+
+  public String getPrimitiveText(PrimitiveDurationDto primitive) {
+    if (primitive.until != null) {
+      return "Until " + primitive.until;
+    }
+    if (primitive.amount != null) {
+      return primitive.amount.value + " " + primitive.amount.unit;
+    }
+    else if (primitive.trait != null) {
+      StringBuilder builder = new StringBuilder(new TraitMessages().getNameFor(primitive.trait.trait));
+      if (primitive.trait.multiplier != 1) {
+        builder.append("*");
+        builder.append(primitive.trait.multiplier);
       }
-      return duration.amount.value + " " + duration.amount.unit;
+      builder.append(" ");
+      builder.append(primitive.trait.unit);
+      return builder.toString();
     }
     return null;
+  }
+
+  private String createMinimumText(DurationDto duration) {
+    ConcatenateString minimumText = new ConcatenateString(" or ");
+    for (PrimitiveDurationDto dto : duration.minimums) {
+      minimumText.concatenate(getPrimitiveText(dto));
+    }
+    return minimumText.create() + ", whichever is less";
+  }
+
+  private boolean isAdditiveDuration(DurationDto duration) {
+    return !duration.additions.isEmpty();
+  }
+
+  private boolean isKeywordDuration(DurationDto duration) {
+    return duration.keyword != null;
   }
 }

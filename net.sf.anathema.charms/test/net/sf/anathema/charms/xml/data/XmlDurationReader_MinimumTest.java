@@ -8,33 +8,23 @@ import net.sf.anathema.charms.xml.TestDocumentReader;
 import org.junit.Before;
 import org.junit.Test;
 
-public class XmlDurationReader_AndTest {
+public class XmlDurationReader_MinimumTest {
 
   private DurationDto duration;
 
   @Before
   public void createDuration() throws Exception {
     duration = readDuration("<duration>" //$NON-NLS-1$
-        + "<addition>" //$NON-NLS-1$
+        + "<minimum>" //$NON-NLS-1$
         + "<duration event=\"PerformanceEnds\"/>" //$NON-NLS-1$
         + "<duration trait=\"Essence\" unit=\"hour\"/>" //$NON-NLS-1$
-        + "</addition>" //$NON-NLS-1$
+        + "</minimum>" //$NON-NLS-1$
         + "</duration>"); //$NON-NLS-1$
   }
 
   @Test
   public void readsUnit() throws Exception {
-    assertThat(duration.additions.get(1).trait.unit, is("hour")); //$NON-NLS-1$
-  }
-
-  @Test
-  public void readsTrait() throws Exception {
-    assertThat(duration.additions.get(1).trait.trait, is("Essence")); //$NON-NLS-1$
-  }
-
-  @Test
-  public void readsEvent() throws Exception {
-    assertThat(duration.additions.get(0).until, is("PerformanceEnds")); //$NON-NLS-1$
+    assertThat(duration.minimums.size(), is(2));
   }
 
   private DurationDto readDuration(String xml) throws Exception {
