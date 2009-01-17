@@ -50,7 +50,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
         9));
   }
 
-  protected final void addSubsectionEncoder(ISubSectionEncoder encoder) {
+  private final void addSubsectionEncoder(ISubSectionEncoder encoder) {
     subsectionEncoders.add(encoder);
   }
 

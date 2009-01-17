@@ -11,11 +11,15 @@ public class MarkedTraits {
   private final List<IIdentificate> markedTraitTypes = new ArrayList<IIdentificate>();
 
   public MarkedTraits() {
-    markedTraitTypes.add(new Identificate("Athletics")); //$NON-NLS-1$
-    markedTraitTypes.add(new Identificate("Dodge")); //$NON-NLS-1$
-    markedTraitTypes.add(new Identificate("Larceny")); //$NON-NLS-1$
-    markedTraitTypes.add(new Identificate("Ride")); //$NON-NLS-1$
-    markedTraitTypes.add(new Identificate("Stealth")); //$NON-NLS-1$
+    addMarkedTrait("Athletics"); //$NON-NLS-1$
+    addMarkedTrait("Dodge"); //$NON-NLS-1$
+    addMarkedTrait("Larceny"); //$NON-NLS-1$
+    addMarkedTrait("Ride"); //$NON-NLS-1$
+    addMarkedTrait("Stealth"); //$NON-NLS-1$
+  }
+
+  private void addMarkedTrait(String id) {
+    markedTraitTypes.add(new Identificate(id));
   }
 
   public boolean isMarked(IDisplayTrait trait) {
