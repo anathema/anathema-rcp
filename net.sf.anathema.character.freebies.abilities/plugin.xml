@@ -50,5 +50,15 @@
             type="net.sf.anathema.markers.view.element">
       </super>
    </extension>
+   <extension
+         id="net.sf.anathema.character.freebies.abilities.marker.cheap"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="net.sf.anathema.markers.view.element">
+      </super>
+   </extension>
 
 </plugin>

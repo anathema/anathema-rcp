@@ -19,7 +19,9 @@ public class AbilitiesFreebiesPlugin extends AbstractAnathemaUIPlugin {
   @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
-    modelListeners.add(AbilityFreebiesProblemFactory.CreateForUnrestrictedFreebies());
+    AbilityFreebiesProblemFactory problemFactory = new AbilityFreebiesProblemFactory();
+    modelListeners.add(problemFactory.createForUnrestrictedFreebies());
+    modelListeners.add(problemFactory.createForCheapFreebies());
     for (IModelChangeListener listener : modelListeners) {
       ModelCache.getInstance().addModelChangeListener(listener);
     }

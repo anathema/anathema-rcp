@@ -1,30 +1,29 @@
-package net.sf.anathema.character.freebies.abilities.problem;
+package net.sf.anathema.character.freebies.problem;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
 import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
-import net.sf.anathema.character.freebies.problem.ProblemMarkerDto;
 
-public class AbilityProblemMarkerFactory {
+public class ProblemDtoFactory {
 
   private final IDisplayNameProvider characterNameProvider;
 
-  public AbilityProblemMarkerFactory(IModelIdentifier modelIdentifier) {
+  public ProblemDtoFactory(IModelIdentifier modelIdentifier) {
     this(CharacterDisplayNameProvider.CreateFrom(modelIdentifier));
   }
 
-  public AbilityProblemMarkerFactory(IDisplayNameProvider characterNameProvider) {
+  public ProblemDtoFactory(IDisplayNameProvider characterNameProvider) {
     this.characterNameProvider = characterNameProvider;
   }
 
-  public ProblemMarkerDto create(String description, String type) {
-    IDisplayNameProvider modelNameProvider = new ModelDisplayNameProvider("Abilties", characterNameProvider);
+  public ProblemMarkerDto create(FreebiesProblemDto problemDto) {
+    IDisplayNameProvider modelNameProvider = new ModelDisplayNameProvider(problemDto.modelName, characterNameProvider);
     ProblemMarkerDto dto = new ProblemMarkerDto();
-    dto.description = description;
-    dto.editorOpener = "net.sf.anathema.character.abilities.editor";
+    dto.description = problemDto.description;
+    dto.editorOpener = problemDto.editorOpener;
     dto.path = modelNameProvider.getDisplayName();
-    dto.type = type;
+    dto.type = problemDto.markerType;
     return dto;
   }
 }
