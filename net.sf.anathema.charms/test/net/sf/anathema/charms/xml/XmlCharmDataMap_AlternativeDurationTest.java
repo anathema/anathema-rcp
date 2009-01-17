@@ -3,8 +3,10 @@ package net.sf.anathema.charms.xml;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.Properties;
 
+import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.duration.DurationDto;
 import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;
@@ -14,7 +16,7 @@ import net.sf.anathema.lib.creation.StaticFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-public class XmlCharmDataMap_ComplexDurationTest {
+public class XmlCharmDataMap_AlternativeDurationTest {
 
   private TestDocumentReader documentReader;
   private XmlCharmDataMap map;
@@ -32,12 +34,8 @@ public class XmlCharmDataMap_ComplexDurationTest {
         + " <cost>" //$NON-NLS-1$
         + "   <willpower cost=\"1\"/>" //$NON-NLS-1$
         + " </cost>" //$NON-NLS-1$
-        + "<complexDuration>" //$NON-NLS-1$
-        + "        <minimum>" //$NON-NLS-1$
-        + "            <duration amount=\"1\" unit=\"task\"/>\r\n" //$NON-NLS-1$
-        + "            <duration amount=\"3\" unit=\"month\"/>\r\n" //$NON-NLS-1$
-        + "        </minimum>" //$NON-NLS-1$
-        + "</complexDuration>" //$NON-NLS-1$
+        + "<duration trait=\"Essence\" unit=\"action\"/>" //$NON-NLS-1$
+        + "<duration trait=\"Essence\" unit=\"longtick\"/>" //$NON-NLS-1$
         + " <charmtype type=\"Supplemental\"/>" //$NON-NLS-1$
         + " <charmAttribute attribute=\"Visible\" visualize=\"true\"/>" //$NON-NLS-1$
         + " <source source=\"Book\"/>" //$NON-NLS-1$
@@ -49,8 +47,9 @@ public class XmlCharmDataMap_ComplexDurationTest {
   }
 
   @Test
-  public void hasMinimumDuration() throws Exception {
-    DurationDto durationDto = map.getData(KNOWN_ID).durations.get(0);
-    assertThat(durationDto.minimums.size(), is(2));
+  public void hasTwoDuration() throws Exception {
+    CharmDto charmData = map.getData(KNOWN_ID);
+    List<DurationDto> durationDtos = charmData.durations;
+    assertThat(durationDtos.size(), is(2));
   }
 }

@@ -42,7 +42,7 @@ public abstract class AbstractXmlCharmCollection<C> implements Iterable<C> {
       }
     }
     catch (Exception e) {
-      // TODO Fehlerhandling
+      throw new RuntimeException(e);
     }
     return newCharms;
   }

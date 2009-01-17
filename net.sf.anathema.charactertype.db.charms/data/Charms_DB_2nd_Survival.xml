@@ -22,7 +22,7 @@
  <cost>
    <essence cost="1" text="+1m per additional hunter"/>
  </cost>
- <duration amount="1" unit="hunt"/> <!-- Added to CharmDuration -->
+ <duration amount="1" unit="hunt"/>
  <charmtype type="Simple"/>
  <charmAttribute attribute="Combo-OK" visualize="true"/>
   <source source="DragonBlooded2nd"/>
@@ -42,7 +42,7 @@
    <essence cost="5"/>
    <willpower cost="1"/>
  </cost>
- <duration amount="1" unit="journey"/> <!-- Added to CharmDuration -->
+ <duration amount="1" unit="journey"/>
  <charmtype type="Simple"/>
  <charmAttribute attribute="Combo-OK" visualize="true"/>
  <charmAttribute attribute="Cooperative" visualize="true"/>

@@ -1,12 +1,10 @@
 <charmlist>
 <charm id="Dragon-Blooded.TerrestrialCircleSorcery" exalt="Dragon-Blooded" group="Occult">
-  <duration duration="Permanent"/>  
   <charmtype type="Permanent"/>
   <source source="DragonBlooded2nd"/>
 </charm>
 
 <charm id="Dragon-Blooded.ShadowlandsCircleNecromancy" exalt="Dragon-Blooded" group="Occult">
-  <duration duration="Permanent"/>  
   <charmtype type="Permanent"/>
   <source source="BlackTreatise"/>
 </charm>

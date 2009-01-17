@@ -15,7 +15,7 @@
  <cost>
    <essence cost="2" text="per fang"/>
  </cost>
- <duration duration="Varies"/>
+ <duration duration="Special"/>
  <charmtype type="Simple"/>
   <charmAttribute attribute="Combo-OK" visualize="true"/>
  <charmAttribute attribute="Cooperative" visualize="true"/>

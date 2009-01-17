@@ -14,7 +14,8 @@
  <cost>
    <essence cost="2"/>
  </cost>
- <duration duration="EssenceActionsOrLongTicks"/>
+ <duration trait="Essence" unit"action"/>
+ <duration trait="Essence" unit"longtick"/>
  <charmtype type="Simple"/>
  <charmAttribute attribute="Compulsion" visualize="true"/>
   <source source="DragonBlooded2nd"/>
@@ -57,7 +58,8 @@
    <essence cost="8"/>
    <willpower cost="1"/>
  </cost>
- <duration duration="OneSceneOrInstant"/>
+ <duration duration="Instant"/>
+ <duration amout="1" unit="scene"/>
  <charmtype type="Simple"/>
  <charmAttribute attribute="Compulsion" visualize="true"/>
   <source source="DragonBlooded2nd"/>

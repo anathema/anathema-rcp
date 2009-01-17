@@ -13,7 +13,7 @@
     <cost>
         <essence cost="1" text="per minute"/>
     </cost>
-    <duration duration="Varies"/>
+    <duration duration="Special"/>
     <charmtype type="Simple"/>
      <charmAttribute attribute="Combo-Basic" visualize="true"/>
     <source source="DragonBlooded2nd"/>

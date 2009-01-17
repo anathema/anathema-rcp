@@ -22,7 +22,6 @@
 </charm>
 
 <charm id="Dragon-Blooded.OathTen-ThousandDragons" exalt="Dragon-Blooded" group="Integrity">
- <duration duration="Permanent"/>
  <charmtype type="Permanent"/>
   <source source="DragonBlooded2nd"/>
 </charm>

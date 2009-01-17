@@ -40,7 +40,12 @@
    <essence cost="3" text="per point of Magnitude"/>
    <willpower cost="1"/>
  </cost>
- <duration duration="1ChargeOrEssence"/> <!-- Added to CharmDuration -->
+ <complexDuration>
+ 	<minimum>
+ 		<duration amount="1" unit="charge"/>
+ 		<duration trait="Essence" unit="longtick"/>
+ 	</minimum>
+ </complexDuration>
  <charmtype type="Supplemental"/>
  <charmAttribute attribute="Combo-OK" visualize="true"/>
  <charmAttribute attribute="War" visualize="true"/>
