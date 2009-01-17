@@ -5,10 +5,6 @@ import net.disy.commons.core.util.IClosure;
 
 public abstract class AbstractExtensionPoint implements IExtensionPoint {
 
-  public AbstractExtensionPoint() {
-    super();
-  }
-
   @Override
   public IExtensionElement getFirst(IPredicate<IExtensionElement> predicate) {
     for (IPluginExtension extension : getExtensions()) {

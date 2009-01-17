@@ -9,5 +9,4 @@ import org.eclipse.ui.IEditorInput;
 public interface IEditorInputProvider {
 
   public IEditorInput getEditorInput() throws PersistenceException, CoreException, ExtensionException;
-
 }
