@@ -9,6 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockName;
+import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChild;
 import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.charms.data.CharmDto;
@@ -18,34 +19,26 @@ import net.sf.anathema.charms.tree.ICharmId;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CharmDataExtensionPoint_Test {
-
+public class CharmDataExtensionPoint_ElementOrderTest {
   private CharmDataExtensionPoint point;
 
   @Before
   public void createExtensionPoint() throws Exception {
-    IExtensionElement charm = createCharm();
+    IExtensionElement charm = createCharmWithSourceElementFirst();
     IPluginExtension extension = ExtensionObjectMother.createPluginExtension(charm);
     IExtensionPoint extensionPoint = ExtensionObjectMother.createExtensionPoint(extension);
     point = new CharmDataExtensionPoint(extensionPoint);
   }
 
   @Test
-  public void returnsNullForUnknownCharm() throws Exception {
-    ICharmId charmId = new CharmId("somecharm", "notrait");
-    CharmDto actualDto = point.getData(charmId);
-    assertThat(actualDto, is(nullValue()));
-  }
-
-  @Test
-  public void retrievesDataByIdPattern() throws Exception {
+  public void doesNotCareAboutElementOrder() throws Exception {
     ICharmId charmId = new CharmId("id.{0}", "trait");
     CharmDto actualDto = point.getData(charmId);
-    assertThat(actualDto.type, is("reflexive"));
+    assertThat(actualDto.type, is("permanent"));
   }
 
-  private IExtensionElement createCharm() throws ExtensionException {
-    IExtensionElement type = ExtensionObjectMother.createExtensionElementWithAttributes(new MockName("reflexive"));
+  private IExtensionElement createCharmWithSourceElementFirst() throws ExtensionException {
+    IExtensionElement type = ExtensionObjectMother.createExtensionElementWithAttributes(new MockName("permanent"));
     IExtensionElement keywords = ExtensionObjectMother.createExtensionElementWithAttributes(new MockStringAttribute(
         "value",
         "Combo-OK"));
@@ -55,8 +48,10 @@ public class CharmDataExtensionPoint_Test {
     MockStringAttribute id = new MockStringAttribute("charmId", "id.{0}");
     return ExtensionObjectMother.createExtensionElementWithAttributes(
         id,
+        new MockNamedChildren("source", source),
+        new MockChildren(source),
         new MockChildren(type),
-        new MockNamedChildren("keyword", keywords),
-        new MockNamedChildren("source", source));
+        new MockNamedChild("permanent", type),
+        new MockNamedChildren("keyword", keywords));
   }
 }
