@@ -14,5 +14,6 @@ Require-Bundle: net.sf.anathema.character.core;visibility:=reexport,
  org.eclipse.ui.forms;bundle-version="3.3.100"
 Export-Package: net.sf.anathema.character.freebies.configuration,
  net.sf.anathema.character.freebies.coverage,
- net.sf.anathema.character.freebies.fake
+ net.sf.anathema.character.freebies.fake,
+ net.sf.anathema.character.freebies.problem
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

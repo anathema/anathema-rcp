@@ -40,5 +40,15 @@
             class="net.sf.anathema.character.freebies.abilities.coverage.SurplusMarkingEditorDecoration">
       </decoration>
    </extension>
+   <extension
+         id="net.sf.anathema.character.freebies.abilities.marker.unrestricted"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+     <super
+            type="net.sf.anathema.markers.view.element">
+      </super>
+   </extension>
 
 </plugin>

@@ -10,6 +10,7 @@ import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+import net.sf.anathema.lib.control.GenericControl;
 
 public class ModelCache implements IModelCache {
 
@@ -17,6 +18,8 @@ public class ModelCache implements IModelCache {
   private final Map<IModelIdentifier, IModel> modelsByIdentifier = new HashMap<IModelIdentifier, IModel>();
   private final Map<IModel, IModelIdentifier> identifiersByModel = new HashMap<IModel, IModelIdentifier>();
   private final DependenciesHandler dependenciesHandler = new DependenciesHandler(new CharacterTemplateProvider());
+  private final Map<IModelIdentifier, IChangeListener> changeListeners = new HashMap<IModelIdentifier, IChangeListener>();
+  private final GenericControl<IModelChangeListener> modelChangeListeners = new GenericControl<IModelChangeListener>();
 
   private ModelCache() {
     // nothing to do
@@ -36,6 +39,9 @@ public class ModelCache implements IModelCache {
         storeModel(identifier, model);
         initializer.initialize();
         loadDependencies(identifier, model);
+        IChangeListener listener = new OverallModelChangeListener(identifier, modelChangeListeners);
+        changeListeners.put(identifier, listener);
+        model.addChangeListener(listener);
       }
     }
     return model;
@@ -64,9 +70,12 @@ public class ModelCache implements IModelCache {
     getModel(modelIdentifier);
   }
 
-  private void removeFromCache(IModel item, IModelIdentifier modelIdentifier) {
-    identifiersByModel.remove(item);
-    modelsByIdentifier.remove(modelIdentifier);
+  private void removeFromCache(IModel model, IModelIdentifier identifier) {
+    IChangeListener modelChangeListener = changeListeners.get(identifier);
+    identifiersByModel.remove(model);
+    modelsByIdentifier.remove(identifier);
+    changeListeners.remove(modelChangeListener);
+    model.removeChangeListener(modelChangeListener);
   }
 
   @Override
@@ -87,5 +96,13 @@ public class ModelCache implements IModelCache {
         removeFromCache(entry.getValue(), entry.getKey());
       }
     }
+  }
+
+  public void addModelChangeListener(IModelChangeListener listener) {
+    modelChangeListeners.addListener(listener);
+  }
+
+  public void removeModelChangeListener(IModelChangeListener listener) {
+    modelChangeListeners.removeListener(listener);
   }
 }
