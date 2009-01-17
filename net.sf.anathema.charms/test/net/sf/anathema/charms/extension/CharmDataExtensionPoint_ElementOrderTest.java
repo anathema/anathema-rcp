@@ -17,11 +17,13 @@ import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class CharmDataExtensionPoint_ElementOrderTest {
   private CharmDataExtensionPoint point;
 
+  @Ignore
   @Before
   public void createExtensionPoint() throws Exception {
     IExtensionElement charm = createCharmWithSourceElementFirst();

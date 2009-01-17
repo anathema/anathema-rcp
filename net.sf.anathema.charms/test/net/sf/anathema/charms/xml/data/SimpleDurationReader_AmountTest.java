@@ -7,8 +7,7 @@ import net.sf.anathema.charms.xml.TestDocumentReader;
 
 import org.junit.Test;
 
-public class XmlDurationReader_AmountTest {
-
+public class SimpleDurationReader_AmountTest {
   @Test
   public void readsUnit() throws Exception {
     DurationDto duration = readDuration("<duration amount=\"1\" unit=\"scene\"/>"); //$NON-NLS-1$
@@ -36,6 +35,6 @@ public class XmlDurationReader_AmountTest {
   private DurationDto readDuration(String xml) throws Exception {
     TestDocumentReader reader = new TestDocumentReader();
     reader.setXml(xml);
-    return new XmlDurationReader(reader.readDocument()).read();
+    return new SimpleDurationReader(reader.readDocument()).read();
   }
 }

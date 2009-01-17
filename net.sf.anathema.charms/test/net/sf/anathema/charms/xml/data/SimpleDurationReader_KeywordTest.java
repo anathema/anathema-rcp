@@ -7,7 +7,7 @@ import net.sf.anathema.charms.xml.TestDocumentReader;
 
 import org.junit.Test;
 
-public class XmlDurationReader_KeywordTest {
+public class SimpleDurationReader_KeywordTest {
 
   @Test
   public void readsKeywordDuration() throws Exception {
@@ -24,6 +24,6 @@ public class XmlDurationReader_KeywordTest {
   private DurationDto readDuration(String xml) throws Exception {
     TestDocumentReader reader = new TestDocumentReader();
     reader.setXml(xml);
-    return new XmlDurationReader(reader.readDocument()).read();
+    return new SimpleDurationReader(reader.readDocument()).read();
   }
 }

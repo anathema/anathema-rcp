@@ -8,18 +8,18 @@ import net.sf.anathema.charms.xml.TestDocumentReader;
 import org.junit.Before;
 import org.junit.Test;
 
-public class XmlDurationReader_MinimumTest {
+public class ComplexDurationReader_MinimumTest {
 
   private DurationDto duration;
 
   @Before
   public void createDuration() throws Exception {
-    duration = readDuration("<duration>" //$NON-NLS-1$
+    duration = readDuration("<complexDuration>" //$NON-NLS-1$
         + "<minimum>" //$NON-NLS-1$
         + "<duration event=\"PerformanceEnds\"/>" //$NON-NLS-1$
         + "<duration trait=\"Essence\" unit=\"hour\"/>" //$NON-NLS-1$
         + "</minimum>" //$NON-NLS-1$
-        + "</duration>"); //$NON-NLS-1$
+        + "</complexDuration>"); //$NON-NLS-1$
   }
 
   @Test
@@ -30,6 +30,6 @@ public class XmlDurationReader_MinimumTest {
   private DurationDto readDuration(String xml) throws Exception {
     TestDocumentReader reader = new TestDocumentReader();
     reader.setXml(xml);
-    return new XmlDurationReader(reader.readDocument()).read();
+    return new ComplexDurationReader(reader.readDocument()).read();
   }
 }

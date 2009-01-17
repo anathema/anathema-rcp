@@ -8,46 +8,26 @@ import net.sf.anathema.lib.xml.ElementUtilities;
 
 import org.dom4j.Element;
 
-public class XmlDurationReader {
+public class ComplexDurationReader implements IDurationReader {
 
-  private static final String ATTRIB_DURATION = "duration"; //$NON-NLS-1$
   private static final String TAG_ADDITION = "addition"; //$NON-NLS-1$
   private static final String TAG_MINIMUM = "minimum"; //$NON-NLS-1$
   private final DurationDto duration = new DurationDto();
   private final XmlPrimitiveBuilder primitiveBuilder = new XmlPrimitiveBuilder();
   private final Element durationElement;
 
-  public XmlDurationReader(Element durationElement) {
+  public ComplexDurationReader(Element durationElement) {
     this.durationElement = durationElement;
   }
 
   public DurationDto read() {
-    if (isKeywordDuration()) {
-      readKeywordDuration();
-    }
-    else if (isAdditiveDuration()) {
+    if (isAdditiveDuration()) {
       readAdditiveDuration();
     }
-    else if (isMinimumDuration()) {
+    else {
       readMinimumDuration();
     }
-    else {
-      readSimpleDuration();
-    }
     return duration;
-  }
-
-  private boolean isKeywordDuration() {
-    return durationElement.attributeValue(ATTRIB_DURATION) != null;
-  }
-
-  private void readKeywordDuration() {
-    duration.keyword = durationElement.attributeValue(ATTRIB_DURATION);
-  }
-
-  private void readSimpleDuration() {
-    primitiveBuilder.readSimpleDuration(durationElement);
-    duration.additions.addAll(primitiveBuilder.getBuiltPrimitives());
   }
 
   private void readMinimumDuration() {
@@ -70,10 +50,6 @@ public class XmlDurationReader {
 
   private void readPrimitiveChildren(Element listElement) {
     primitiveBuilder.readSimpleDurations(ElementUtilities.elements(listElement));
-  }
-
-  private boolean isMinimumDuration() {
-    return durationElement.element(TAG_MINIMUM) != null;
   }
 
   private boolean isAdditiveDuration() {
