@@ -1,30 +1,25 @@
 <charmlist>
   <charm id="Solar.TerrestrialCircleSorcery" exalt="Solar" group="Occult">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition"/>
   </charm>
   
   <charm id="Solar.CelestialCircleSorcery" exalt="Solar" group="Occult">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition"/>
   </charm>
   
   <charm id="Solar.SolarCircleSorcery" exalt="Solar" group="Occult">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition"/>
   </charm>
   
   <charm id="Solar.ShadowlandsCircleNecromancy" exalt="Solar" group="Occult">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="BlackTreatise"/>
   </charm>
   
   <charm id="Solar.LabyrinthCircleNecromancy" exalt="Solar" group="Occult">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
      <source source="BlackTreatise"/>
   </charm>
@@ -93,7 +88,6 @@
   
   <charm id="Solar.Sorcerer'sBurningChakram" exalt="Solar" group="Occult">
     <cost/>
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Obvious" visualize="true"/>
     <source source="SecondEdition"/>

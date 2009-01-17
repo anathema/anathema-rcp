@@ -78,7 +78,6 @@
     <source source="SecondEdition" page="188"/>
   </charm>
   <charm id="Solar.PhantomArrowTechnique" exalt="Solar" group="Archery">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Obvious" visualize="true"/>
     <source source="SecondEdition" page="188"/>
@@ -195,7 +194,6 @@
     <source source="SecondEdition" page="191"/>
   </charm>
   <charm id="Solar.InvincibleFuryDawn" exalt="Solar" group="Melee">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="191"/>
   </charm>
@@ -335,7 +333,6 @@
     <source source="SecondEdition" page="194"/>
   </charm>
   <charm id="Solar.ProtectionCelestialBliss" exalt="Solar" group="Melee">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="194"/>
   </charm>
@@ -362,7 +359,7 @@
     <cost>
         <essence cost="3" text="per action"/>
     </cost>
-    <duration duration="Varies"/>
+    <duration duration="Special"/>
     <charmtype type="Supplemental"/>
     <charmAttribute attribute="Combo-OK" visualize="true"/>
     <charmAttribute attribute="Crippling" visualize="true"/>
@@ -399,7 +396,6 @@
     <source source="SecondEdition" page="196"/>
   </charm>
   <charm id="Solar.ReturningWeaponConcentration" exalt="Solar" group="Thrown">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="196"/>
   </charm>
@@ -512,7 +508,6 @@
     <source source="SecondEdition" page="198"/>
   </charm>
   <charm id="Solar.LegendaryWarriorCurriculum" exalt="Solar" group="War">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="198"/>
   </charm>
@@ -543,22 +538,18 @@
     <source source="SecondEdition" page="199"/>
   </charm>
   <charm id="Solar.Destiny-ManifestingMethod" exalt="Solar" group="Integrity">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="199"/>
   </charm>
   <charm id="Solar.RighteousLionDefense" exalt="Solar" group="Integrity">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="199"/>
   </charm>
   <charm id="Solar.StubbornBoarDefense" exalt="Solar" group="Integrity">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="199"/>
   </charm>
   <charm id="Solar.PhoenixRenewalTactic" exalt="Solar" group="Integrity">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="200"/>
   </charm>
@@ -605,7 +596,6 @@
     <source source="SecondEdition" page="201"/>
   </charm>
   <charm id="Solar.SunKingRadiance" exalt="Solar" group="Integrity">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Obvious" visualize="true"/>
     <source source="SecondEdition" page="201"/>
@@ -647,7 +637,6 @@
     <source source="SecondEdition" page="202"/>
   </charm>
   <charm id="Solar.Phantom-ConjuringPerformance" exalt="Solar" group="Performance">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Obvious" visualize="true"/>
     <source source="SecondEdition" page="202"/>
@@ -697,7 +686,7 @@
         <essence cost="10"/>
         <willpower cost="1"/>
     </cost>
-    <duration amount="Charisma" unit="day"/>
+    <duration trait="Charisma" unit="day"/>
     <charmtype type="Simple">
       <special speed="6" turntype="Tick" defense="-1"/>
     </charmtype>
@@ -770,7 +759,7 @@
         <essence cost="12"/>
         <willpower cost="1"/>
     </cost>
-    <duration amount="Charisma" unit="day"/>
+    <duration trait="Charisma" unit="day"/>
     <charmtype type="Simple">
       <special speed="6" turntype="LongTick" defense="-1"/>
     </charmtype>
@@ -946,7 +935,6 @@
     <source source="SecondEdition" page="208"/>
   </charm>
   <charm id="Solar.Ox-BodyTechnique" exalt="Solar" group="Resistance">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Stackable" visualize="true"/>
     <source source="SecondEdition" page="208"/>
@@ -1033,12 +1021,10 @@
     <source source="SecondEdition" page="210"/>
   </charm>
   <charm id="Solar.Element-ResistingPrana" exalt="Solar" group="Survival">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="210"/>
   </charm>
   <charm id="Solar.EternalElementalHarmony" exalt="Solar" group="Survival">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="210"/>
   </charm>
@@ -1094,7 +1080,6 @@
     <source source="SecondEdition" page="211"/>
   </charm>
   <charm id="Solar.City-MovingSecrets" exalt="Solar" group="Survival">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="211"/>
   </charm>
@@ -1262,7 +1247,6 @@
     <source source="SecondEdition" page="215"/>
   </charm>
   <charm id="Solar.LegendaryScholarCurriculum" exalt="Solar" group="Lore">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Obvious" visualize="true"/>
     <source source="SecondEdition" page="215"/>
@@ -1295,7 +1279,6 @@
     <source source="SecondEdition" page="216"/>
   </charm>
   <charm id="Solar.WyldCauldronTechnique" exalt="Solar" group="Lore">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="217"/>
   </charm>
@@ -1369,7 +1352,6 @@
     <source source="SecondEdition" page="218"/>
   </charm>
   <charm id="Solar.ImmanentSolarGlory" exalt="Solar" group="Lore">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Obvious" visualize="true"/>
     <charmAttribute attribute="Mandate" visualize="true"/>
@@ -1379,7 +1361,7 @@
     <cost>
         <essence cost="5"/>
     </cost>
-    <duration amount="Essence" unit="hour"/>
+    <duration trait="Essence" unit="hour"/>
     <charmtype type="Simple">
       <special speed="5" turntype="Tick" defense="-1"/>
     </charmtype>
@@ -1440,19 +1422,16 @@
     <source source="SecondEdition" page="220"/>
   </charm>
   <charm id="Solar.Ailment-RectifyingMethod" exalt="Solar" group="Medicine">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Touch" visualize="true"/>
     <source source="SecondEdition" page="220"/>
   </charm>
   <charm id="Solar.Body-PurifyingAdmonitions" exalt="Solar" group="Medicine">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Touch" visualize="true"/>
     <source source="SecondEdition" page="220"/>
   </charm>
   <charm id="Solar.Wholeness-RestoringMeditation" exalt="Solar" group="Medicine">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Touch" visualize="true"/>
     <source source="SecondEdition" page="220"/>
@@ -1471,7 +1450,6 @@
   </charm>
 
   <charm id="Solar.Wonder-ForgingGenius" exalt="Solar" group="Craft">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="OadenolsCodex" page="29"/>
   </charm>
@@ -1480,7 +1458,7 @@
       <essence cost="16"/>
       <willpower cost="2"/>
     </cost>
-    <duration duration="Varies"/>
+    <duration duration="Special"/>
     <charmtype type="Supplemental"/>
     <charmAttribute attribute="Combo-OK" visualize="true"/>
     <charmAttribute attribute="Obvious" visualize="true"/>
@@ -1798,7 +1776,7 @@
         <essence cost="5"/>
         <willpower cost="1" text="(optional)"/>
     </cost>
-    <duration amount="Essence" unit="refresh"/>
+    <duration trait="Essence" unit="refresh"/>
     <charmtype type="Simple">
       <special speed="6" turntype="Tick" defense="-1"/>
     </charmtype>
@@ -2000,7 +1978,6 @@
     <source source="SecondEdition" page="233"/>
   </charm>
   <charm id="Solar.ExcellentEmissary'sTongue" exalt="Solar" group="Linguistics">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="233"/>
   </charm>
@@ -2030,17 +2007,14 @@
     <source source="SecondEdition" page="234"/>
   </charm>
   <charm id="Solar.MasterHorseman'sTechniques" exalt="Solar" group="Ride">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="234"/>
   </charm>
   <charm id="Solar.WorthyMountTechnique" exalt="Solar" group="Ride">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="234"/>
   </charm>
   <charm id="Solar.SingleSpiritMethod" exalt="Solar" group="Ride">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <source source="SecondEdition" page="235"/>
   </charm>
@@ -2071,7 +2045,6 @@
     <source source="SecondEdition" page="236"/>
   </charm>
   <charm id="Solar.Wind-RacingEssenceInfusion" exalt="Solar" group="Ride">
-    <duration duration="Permanent"/>
     <charmtype type="Permanent"/>
     <charmAttribute attribute="Obvious" visualize="true"/>
     <source source="SecondEdition" page="236"/>
