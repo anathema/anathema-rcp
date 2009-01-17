@@ -219,38 +219,6 @@
    <extension
          point="net.sf.anathema.charms.charmdata">
       <charmdata
-            charmId="Solar.InvisibleStatueSpirit">
-         <simple
-               defensemodifier="-1"
-               speed="6">
-            <additionalData>
-               <duration>
-                  <amount
-                        unit="scene"
-                        value="1">
-                  </amount>
-                  duration body text
-               </duration>
-               <cost>
-                  <resource
-                        type="motes">
-                     <base
-                           amount="5"
-                           orMore="false">
-                     </base>
-                  </resource>
-               </cost>
-            </additionalData>
-         </simple>
-         <keyword
-               value="Combo-OK">
-         </keyword>
-         <source
-               addition="p230"
-               source="Ex2">
-         </source>
-      </charmdata>
-      <charmdata
             charmId="solar.first.{0}.excellency">
          <reflexive
                primaryStep="1"
@@ -280,6 +248,115 @@
          <keyword
                value="Combo-OK">
          </keyword>
+      </charmdata>
+      <charmdata
+            charmId="solar.second.{0}.excellency">
+         <reflexive
+               primaryStep="1"
+               secondaryStep="2">
+            <additionalData>
+               <duration>
+                  duration body text
+                  <text
+                        keyword="Instant">
+                  </text>
+               </duration>
+               <cost>
+                  <resource
+                        type="motes">
+                     <linear
+                           amount="2"
+                           unit="success">
+                     </linear>
+                  </resource>
+               </cost>
+            </additionalData>
+         </reflexive>
+         <source
+               addition="p184"
+               source="Ex2">
+         </source>
+         <keyword
+               value="Combo-OK">
+         </keyword>
+      </charmdata>
+      <charmdata
+            charmId="solar.third.{0}.excellency">
+         <reflexive
+               primaryStep="4"
+               secondaryStep="6">
+            <additionalData>
+               <duration>
+                  duration body text
+                  <text
+                        keyword="Instant">
+                  </text>
+               </duration>
+               <cost>
+                  <resource
+                        type="motes">
+                     <base
+                           amount="4"
+                           orMore="false">
+                     </base>
+                  </resource>
+               </cost>
+            </additionalData>
+         </reflexive>
+         <source
+               addition="p185"
+               source="Ex2">
+         </source>
+         <keyword
+               value="Combo-OK">
+         </keyword>
+      </charmdata>
+      <charmdata
+            charmId="solar.infinite.{0}.mastery">
+         <simple
+               defensemodifier="-1"
+               speed="6">
+            <additionalData>
+               <duration>
+                  <addition>
+                     <amount
+                           unit="scene"
+                           value="1">
+                     </amount>
+                  </addition>
+               </duration>
+               <cost>
+                  <resource
+                        type="motes">
+                     <base
+                           amount="2"
+                           orMore="true">
+                     </base>
+                  </resource>
+                  <resource
+                        type="willpower">
+                     <base
+                           amount="1"
+                           orMore="false">
+                     </base>
+                  </resource>
+               </cost>
+            </additionalData>
+         </simple>
+         <source
+               addition="p185"
+               source="Ex2">
+         </source>
+      </charmdata>
+      <charmdata
+            charmId="solar.{0}.essence.flow">
+         <permanent>
+            permanent body text
+         </permanent>
+         <source
+               addition="p187"
+               source="Ex2">
+         </source>
       </charmdata>
    </extension>
    <extension
