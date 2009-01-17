@@ -18,10 +18,15 @@ public class ProblemModel {
   public void adjustMarking(IResourceMarker problemMarker) throws CoreException {
     boolean markerExists = problemMarker.exists();
     boolean needsMarking = hasProblem.evaluate(modelIdentifier);
-    if (needsMarking == markerExists) {
+    boolean markerStatusAsRequired = needsMarking == markerExists;
+    if (markerStatusAsRequired) {
       return;
     }
-    if (hasProblem.evaluate(modelIdentifier)) {
+    updateMarkerStatus(problemMarker, needsMarking);
+  }
+
+  private void updateMarkerStatus(IResourceMarker problemMarker, boolean needsMarking) throws CoreException {
+    if (needsMarking) {
       problemMarker.create();
     }
     else {

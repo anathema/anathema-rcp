@@ -13,13 +13,13 @@ public class ProblemResourceMarker_Test {
 
   private static final String TYPE = "marker.type"; //$NON-NLS-1$
   private IResource resource;
-  private ProblemMarkerDto dto;
+  private ProblemMarkerTemplate dto;
   private ProblemResourceMarker resourceMarker;
 
   @Before
   public void createResourceMarker() {
     resource = createMock(IResource.class);
-    dto = new ProblemMarkerDto();
+    dto = new ProblemMarkerTemplate();
     dto.type = TYPE;
     resourceMarker = new ProblemResourceMarker(resource, dto);
   }

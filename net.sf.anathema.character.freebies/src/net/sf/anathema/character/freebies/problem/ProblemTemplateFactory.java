@@ -5,21 +5,21 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.repository.ModelDisplayNameProvider;
 import net.sf.anathema.character.core.resource.CharacterDisplayNameProvider;
 
-public class ProblemDtoFactory {
+public class ProblemTemplateFactory {
 
   private final IDisplayNameProvider characterNameProvider;
 
-  public ProblemDtoFactory(IModelIdentifier modelIdentifier) {
+  public ProblemTemplateFactory(IModelIdentifier modelIdentifier) {
     this(CharacterDisplayNameProvider.CreateFrom(modelIdentifier));
   }
 
-  public ProblemDtoFactory(IDisplayNameProvider characterNameProvider) {
+  public ProblemTemplateFactory(IDisplayNameProvider characterNameProvider) {
     this.characterNameProvider = characterNameProvider;
   }
 
-  public ProblemMarkerDto create(FreebiesProblemDto problemDto) {
+  public ProblemMarkerTemplate create(FreebiesProblemTemplate problemDto) {
     IDisplayNameProvider modelNameProvider = new ModelDisplayNameProvider(problemDto.modelName, characterNameProvider);
-    ProblemMarkerDto dto = new ProblemMarkerDto();
+    ProblemMarkerTemplate dto = new ProblemMarkerTemplate();
     dto.description = problemDto.description;
     dto.editorOpener = problemDto.editorOpener;
     dto.path = modelNameProvider.getDisplayName();

@@ -13,3 +13,5 @@ Require-Bundle: net.sf.anathema.character.attributes,
  net.sf.anathema.character.experience,
  net.sf.anathema.basics.repository
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: net.sf.anathema.character.freebies.attributes.AttributeFreebiesPlugin

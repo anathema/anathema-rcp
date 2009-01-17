@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.problem;
 
-public class ProblemMarkerDto {
+public class ProblemMarkerTemplate {
 
   public String type;
   public String description;

@@ -11,9 +11,9 @@ import org.eclipse.core.runtime.CoreException;
 
 public class FreebiesProblemFactory implements IModelChangeListener {
 
-  private final FreebiesProblemDto dto;
+  private final FreebiesProblemTemplate dto;
 
-  public FreebiesProblemFactory(FreebiesProblemDto dto) {
+  public FreebiesProblemFactory(FreebiesProblemTemplate dto) {
     this.dto = dto;
   }
 
@@ -46,8 +46,8 @@ public class FreebiesProblemFactory implements IModelChangeListener {
   }
 
   private ProblemResourceMarker createProblemMarker(IModelIdentifier modelIdentifier, IResource resource) {
-    ProblemDtoFactory problemFactory = new ProblemDtoFactory(modelIdentifier);
-    ProblemMarkerDto problemDto = problemFactory.create(dto);
+    ProblemTemplateFactory problemFactory = new ProblemTemplateFactory(modelIdentifier);
+    ProblemMarkerTemplate problemDto = problemFactory.create(dto);
     return new ProblemResourceMarker(resource, problemDto);
   }
 }

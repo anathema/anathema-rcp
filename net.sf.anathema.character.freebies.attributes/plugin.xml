@@ -48,16 +48,9 @@
             id="net.sf.anathema.character.attributes.count.favored">
       </creditProvider>
    </extension>
-   <extension
-         point="net.sf.anathema.character.core.modelmarkers">
-      <marker
-            class="net.sf.anathema.character.freebies.attributes.mark.AttributesMarker"
-            modelId="net.sf.anathema.character.attributes.model">
-      </marker>
-   </extension>
 
    <extension
-         id="net.sf.anathema.markers.unspent.primary.attribute"
+         id="net.sf.anathema.character.freebies.attributes.marker.primary"
          point="org.eclipse.core.resources.markers">
       <persistent
             value="true">
@@ -68,7 +61,7 @@
    </extension>
 
    <extension
-         id="net.sf.anathema.markers.unspent.secondary.attribute"
+         id="net.sf.anathema.character.freebies.attributes.marker.secondary"
          point="org.eclipse.core.resources.markers">
       <persistent
             value="true">
@@ -79,7 +72,7 @@
    </extension>
 
    <extension
-         id="net.sf.anathema.markers.unspent.tertiary.attribute"
+         id="net.sf.anathema.character.freebies.attributes.marker.tertiary"
          point="org.eclipse.core.resources.markers">
       <persistent
             value="true">
@@ -89,17 +82,7 @@
       </super>
    </extension>
    <extension
-         id="net.sf.anathema.markers.unspent.attribute.freebies"
-         point="org.eclipse.core.resources.markers">
-      <persistent
-            value="true">
-      </persistent>
-      <super
-            type="net.sf.anathema.markers.view.element">
-      </super>
-   </extension>
-   <extension
-         id="net.sf.anathema.markers.unspent.attribute.picks"
+         id="net.sf.anathema.character.freebies.attributes.marker.favoredcount"
          point="org.eclipse.core.resources.markers">
       <persistent
             value="true">
