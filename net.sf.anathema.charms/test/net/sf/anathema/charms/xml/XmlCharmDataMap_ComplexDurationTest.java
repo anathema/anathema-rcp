@@ -32,11 +32,9 @@ public class XmlCharmDataMap_ComplexDurationTest {
         + " <cost>" //$NON-NLS-1$
         + "   <willpower cost=\"1\"/>" //$NON-NLS-1$
         + " </cost>" //$NON-NLS-1$
-        + "<complexDuration>" //$NON-NLS-1$
-        + "        <minimum>" //$NON-NLS-1$
-        + "            <duration amount=\"1\" unit=\"task\"/>\r\n" //$NON-NLS-1$
-        + "            <duration amount=\"3\" unit=\"month\"/>\r\n" //$NON-NLS-1$
-        + "        </minimum>" //$NON-NLS-1$
+        + "<complexDuration type=\"minimum\">" //$NON-NLS-1$
+        + "  <duration amount=\"1\" unit=\"task\"/>\r\n" //$NON-NLS-1$
+        + "  <duration amount=\"3\" unit=\"month\"/>\r\n" //$NON-NLS-1$
         + "</complexDuration>" //$NON-NLS-1$
         + " <charmtype type=\"Supplemental\"/>" //$NON-NLS-1$
         + " <charmAttribute attribute=\"Visible\" visualize=\"true\"/>" //$NON-NLS-1$

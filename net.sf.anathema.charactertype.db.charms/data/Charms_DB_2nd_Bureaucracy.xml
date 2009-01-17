@@ -23,11 +23,9 @@
         <essence cost="5"/>
         <willpower cost="1"/>
     </cost>
-    <complexDuration>
-    	<minimum>
-    	 	<duration amount="1" unit="task"/>
-    	 	<duration amount="3" unit="month"/>
-    	</minimum>
+    <complexDuration type="minimum">
+    	<duration amount="1" unit="task"/>
+    	<duration amount="3" unit="month"/>
     </complexDuration>
     <charmtype type="Simple">
 	  <special speed="1" turntype="DramaticAction" defense="-1"/>

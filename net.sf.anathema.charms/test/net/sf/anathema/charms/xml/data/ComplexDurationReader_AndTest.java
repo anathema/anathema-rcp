@@ -14,11 +14,9 @@ public class ComplexDurationReader_AndTest {
 
   @Before
   public void createDuration() throws Exception {
-    duration = readDuration("<complexDuration>" //$NON-NLS-1$
-        + "<addition>" //$NON-NLS-1$
+    duration = readDuration("<complexDuration type=\"addition\">" //$NON-NLS-1$
         + "<duration event=\"PerformanceEnds\"/>" //$NON-NLS-1$
         + "<duration trait=\"Essence\" unit=\"hour\"/>" //$NON-NLS-1$
-        + "</addition>" //$NON-NLS-1$
         + "</complexDuration>"); //$NON-NLS-1$
   }
 

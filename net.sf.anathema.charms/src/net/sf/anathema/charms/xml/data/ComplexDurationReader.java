@@ -10,8 +10,8 @@ import org.dom4j.Element;
 
 public class ComplexDurationReader implements IDurationReader {
 
-  private static final String TAG_ADDITION = "addition"; //$NON-NLS-1$
-  private static final String TAG_MINIMUM = "minimum"; //$NON-NLS-1$
+  private static final String VALUE_ADDITION = "addition"; //$NON-NLS-1$
+  private static final String ATTRIB_TYPE = "type"; //$NON-NLS-1$
   private final DurationDto duration = new DurationDto();
   private final XmlPrimitiveBuilder primitiveBuilder = new XmlPrimitiveBuilder();
   private final Element durationElement;
@@ -31,16 +31,15 @@ public class ComplexDurationReader implements IDurationReader {
   }
 
   private void readMinimumDuration() {
-    buildAndAddPrimitives(TAG_MINIMUM, duration.minimums);
+    buildAndAddPrimitives(duration.minimums);
   }
 
   private void readAdditiveDuration() {
-    buildAndAddPrimitives(TAG_ADDITION, duration.additions);
+    buildAndAddPrimitives(duration.additions);
   }
 
-  private void buildAndAddPrimitives(String elementName, List<PrimitiveDurationDto> list) {
-    Element listElement = durationElement.element(elementName);
-    readPrimitiveChildren(listElement);
+  private void buildAndAddPrimitives(List<PrimitiveDurationDto> list) {
+    readPrimitiveChildren();
     addReadPrimitives(list);
   }
 
@@ -48,11 +47,11 @@ public class ComplexDurationReader implements IDurationReader {
     additions.addAll(primitiveBuilder.getBuiltPrimitives());
   }
 
-  private void readPrimitiveChildren(Element listElement) {
-    primitiveBuilder.readSimpleDurations(ElementUtilities.elements(listElement));
+  private void readPrimitiveChildren() {
+    primitiveBuilder.readSimpleDurations(ElementUtilities.elements(durationElement));
   }
 
   private boolean isAdditiveDuration() {
-    return durationElement.element(TAG_ADDITION) != null;
+    return durationElement.attributeValue(ATTRIB_TYPE).equals(VALUE_ADDITION);
   }
 }

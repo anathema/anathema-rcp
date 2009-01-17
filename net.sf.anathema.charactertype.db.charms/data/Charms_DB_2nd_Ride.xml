@@ -40,11 +40,9 @@
    <essence cost="3" text="per point of Magnitude"/>
    <willpower cost="1"/>
  </cost>
- <complexDuration>
- 	<minimum>
- 		<duration amount="1" unit="charge"/>
- 		<duration trait="Essence" unit="longtick"/>
- 	</minimum>
+ <complexDuration type="minimum">
+	<duration amount="1" unit="charge"/>
+	<duration trait="Essence" unit="longtick"/>
  </complexDuration>
  <charmtype type="Supplemental"/>
  <charmAttribute attribute="Combo-OK" visualize="true"/>
