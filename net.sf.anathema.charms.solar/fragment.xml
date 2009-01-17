@@ -288,6 +288,12 @@
             class="net.sf.anathema.charms.xml.XmlTreeProvider">
             <resource resource="data/Structure.xml"/>
       </treeProvider>
+      <treeProvider
+            class="net.sf.anathema.charms.xml.XmlTreeProvider">
+         <resource
+               resource="data/StructureOccult.xml">
+         </resource>
+      </treeProvider>
    </extension>
 
 </fragment>

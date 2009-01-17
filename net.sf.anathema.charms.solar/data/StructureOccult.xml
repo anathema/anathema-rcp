@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<charmlist> 
+  <charm id="Solar.TerrestrialCircleSorcery" exalt="Solar" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.CelestialCircleSorcery" exalt="Solar" group="Occult">
+    <prerequisite> 
+      <charmReference id="Solar.TerrestrialCircleSorcery"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.SolarCircleSorcery" exalt="Solar" group="Occult">
+    <prerequisite> 
+      <charmReference id="Solar.CelestialCircleSorcery"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.ShadowlandsCircleNecromancy" exalt="Solar" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.LabyrinthCircleNecromancy" exalt="Solar" group="Occult">
+    <prerequisite> 
+      <charmReference id="Solar.ShadowlandsCircleNecromancy"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Spirit-DetectingGlance" exalt="Solar" group="Occult">
+    <prerequisite></prerequisite>
+  </charm>  
+  <charm id="Solar.Spirit-CuttingAttack" exalt="Solar" group="Occult">
+    <prerequisite> 
+      <charmReference id="Solar.Spirit-DetectingGlance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Ghost-EatingTechnique" exalt="Solar" group="Occult">
+    <prerequisite> 
+      <charmReference id="Solar.Spirit-CuttingAttack"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Spirit-RepellingDiagram" exalt="Solar" group="Occult">
+    <prerequisite> 
+      <charmReference id="Solar.Spirit-CuttingAttack"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.All-EncompassingSorcerer'sSight" exalt="Solar" group="Occult">
+    <prerequisite> 
+      <charmReference id="Solar.Spirit-DetectingGlance"/> 
+    </prerequisite>
+  </charm>  
+  <charm id="Solar.Sorcerer'sBurningChakram" exalt="Solar" group="Occult">
+    <prerequisite> 
+      <charmReference id="Solar.All-EncompassingSorcerer'sSight"/> 
+    </prerequisite>
+  </charm> 
+</charmlist>
