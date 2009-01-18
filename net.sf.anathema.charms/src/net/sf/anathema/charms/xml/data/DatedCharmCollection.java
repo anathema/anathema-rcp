@@ -6,7 +6,7 @@ import net.sf.anathema.charms.xml.IDocumentReader;
 import org.dom4j.Element;
 import org.eclipse.core.runtime.IContributor;
 
-public class DatedCharmCollection extends AbstractXmlCharmCollection<IDatedCharm> implements IDatedCharmCollection {
+public class DatedCharmCollection extends AbstractXmlCharmCollection<IDatedCharm> {
 
   public DatedCharmCollection(String resourcePath, IContributor contributor) {
     super(resourcePath, contributor);

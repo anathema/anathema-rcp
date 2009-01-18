@@ -14,7 +14,6 @@ import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.xml.data.DatedCharmCollection;
 import net.sf.anathema.charms.xml.data.IDatedCharm;
-import net.sf.anathema.charms.xml.data.IDatedCharmCollection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -22,12 +21,12 @@ import org.eclipse.core.runtime.IConfigurationElement;
 public class XmlCharmDataMap implements IExecutableCharmDataMap {
 
   private static final String ATTRIB_RESOURCE = "resource"; //$NON-NLS-1$
-  private final List<IDatedCharmCollection> charmCollections = new ArrayList<IDatedCharmCollection>();
+  private final List<Iterable<IDatedCharm>> charmCollections = new ArrayList<Iterable<IDatedCharm>>();
   private IFactory<Properties, RuntimeException> sourcePropertiesFactory;
 
   @Override
   public CharmDto getData(ICharmId charmId) {
-    for (IDatedCharmCollection charmCollection : charmCollections) {
+    for (Iterable<IDatedCharm> charmCollection : charmCollections) {
       for (IDatedCharm charm : charmCollection) {
         if (charm.hasId(charmId)) {
           try {
@@ -71,7 +70,7 @@ public class XmlCharmDataMap implements IExecutableCharmDataMap {
 
   }
 
-  protected void addCharmCollection(IDatedCharmCollection charmCollection) {
+  protected void addCharmCollection(Iterable<IDatedCharm> charmCollection) {
     charmCollections.add(charmCollection);
   }
 }
