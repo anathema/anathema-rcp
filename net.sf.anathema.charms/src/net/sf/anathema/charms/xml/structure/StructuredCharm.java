@@ -1,7 +1,5 @@
 package net.sf.anathema.charms.xml.structure;
 
-import static net.sf.anathema.charms.xml.BasicCharm.*;
-
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Set;

@@ -34,7 +34,7 @@ public class BasicCharm {
     return getGroup();
   }
 
-  public final boolean hasId(ICharmId charmId) {
-    return getCharmIdString().equals(charmId.getIdPattern()) && getPrimaryTrait().equals(charmId.getPrimaryTrait());
+  public final boolean hasId(ICharmId id) {
+    return getCharmIdString().equals(id.getIdPattern()) && getPrimaryTrait().equals(id.getPrimaryTrait());
   }
 }

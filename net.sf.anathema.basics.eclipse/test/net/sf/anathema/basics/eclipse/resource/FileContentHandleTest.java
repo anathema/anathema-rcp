@@ -14,16 +14,16 @@ public class FileContentHandleTest {
   @Test
   public void isAdaptableForMarkerHandle() throws Exception {
     IMarker marker = EasyMock.createMock(IMarker.class);
-    String markerId = "markerID";
+    String markerId = "markerID"; //$NON-NLS-1$
     IFile file = createMarkedFile(marker, markerId);
     FileContentHandle contentHandle = new FileContentHandle(file);
     IMarkerHandle markerHandler = (IMarkerHandle) contentHandle.getAdapter(IMarkerHandle.class);
-    assertSame(marker, markerHandler.createMarker(markerId)); //$NON-NLS-1$
+    assertSame(marker, markerHandler.createMarker(markerId));
   }
 
   private IFile createMarkedFile(IMarker marker, String markerId) throws CoreException {
     IFile file = EasyMock.createMock(IFile.class);
-    EasyMock.expect(file.createMarker(markerId)).andReturn(marker); //$NON-NLS-1$
+    EasyMock.expect(file.createMarker(markerId)).andReturn(marker);
     EasyMock.replay(file);
     return file;
   }
