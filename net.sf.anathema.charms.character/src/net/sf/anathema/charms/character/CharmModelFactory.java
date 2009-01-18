@@ -12,7 +12,7 @@ public class CharmModelFactory extends AbstractModelFactory<NullModelTemplate, I
 
   @Override
   protected NullModelTemplate createModelTemplate(ICharacterTemplate template) {
-    return null;
+    return new NullModelTemplate();
   }
 
   @Override

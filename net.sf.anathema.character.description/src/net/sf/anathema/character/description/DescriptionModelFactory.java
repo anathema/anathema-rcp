@@ -11,7 +11,7 @@ public class DescriptionModelFactory extends AbstractModelFactory<NullModelTempl
 
   @Override
   protected NullModelTemplate createModelTemplate(ICharacterTemplate template) {
-    return null;
+    return new NullModelTemplate();
   }
 
   @Override
