@@ -31,7 +31,7 @@
          point="net.sf.anathema.character.freebies.credits">
       <creditProvider
             class="net.sf.anathema.character.freebies.abilities.FavoredCountCreditProvider"
-            id="net.sf.anathema.character.attributes.count.favored">
+            id="net.sf.anathema.character.abilities.count.favored">
       </creditProvider>
    </extension>
    <extension

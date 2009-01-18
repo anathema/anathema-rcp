@@ -20,6 +20,9 @@ public class HasUnspentFreebies implements IPredicate<IModelIdentifier> {
   public boolean evaluate(IModelIdentifier identifier) {
     ICharacterId characterId = identifier.getCharacterId();
     int credit = creditManager.getCredit(characterId, freebiesHandler.getCreditId());
+    if (credit == 0) {
+      return false;
+    }
     int spentPoints = freebiesHandler.getPoints(characterId, credit);
     return spentPoints < credit;
   }
