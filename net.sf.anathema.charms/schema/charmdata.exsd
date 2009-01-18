@@ -49,18 +49,18 @@
 
    <element name="charmdata">
       <complexType>
-         <choice>
-            <element ref="reflexive"/>
-            <element ref="supplemental"/>
-            <element ref="simple"/>
-            <element ref="extraaction"/>
-            <element ref="permanent"/>
-            <element ref="enchantment"/>
-            <sequence>
-               <element ref="keyword" minOccurs="0" maxOccurs="unbounded"/>
-               <element ref="source" minOccurs="0" maxOccurs="unbounded"/>
-            </sequence>
-         </choice>
+         <sequence>
+            <element ref="keyword" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="source" minOccurs="0" maxOccurs="unbounded"/>
+            <choice>
+               <element ref="reflexive"/>
+               <element ref="supplemental"/>
+               <element ref="simple"/>
+               <element ref="extraaction"/>
+               <element ref="permanent"/>
+               <element ref="enchantment"/>
+            </choice>
+         </sequence>
          <attribute name="charmId" type="string" use="required">
             <annotation>
                <documentation>
