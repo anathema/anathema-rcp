@@ -16,6 +16,8 @@ import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.freebies.problem.FreebiesProblemFactory;
 import net.sf.anathema.character.freebies.problem.FreebiesProblemTemplate;
 import net.sf.anathema.character.freebies.problem.HasUnspentFreebies;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 
 public class AttributeFreebiesProblemFactory {
 
@@ -31,46 +33,47 @@ public class AttributeFreebiesProblemFactory {
 
   public IModelChangeListener createForPrimaryFreebies() {
     IFreebiesHandler freebiesHandler = new PrimaryAttributeFreebies(modelCollection, creditManager);
-    FreebiesProblemTemplate dto = createDto(freebiesHandler);
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = createDto(freebiesHandler);
     dto.description = "There are still primary attribute dots available.";
     dto.errorMessage = "Error creating primary attribute dots problem marker.";
     dto.markerType = "net.sf.anathema.character.freebies.attributes.marker.primary"; //$NON-NLS-1$
-    return new FreebiesProblemFactory(dto);
+    return new FreebiesProblemFactory<ITraitCollectionModel>(dto);
   }
 
   public IModelChangeListener createForSecondaryFreebies() {
     IFreebiesHandler freebiesHandler = new SecondaryAttributeFreebies(modelCollection, creditManager);
-    FreebiesProblemTemplate dto = createDto(freebiesHandler);
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = createDto(freebiesHandler);
     dto.description = "There are still secondary attribute dots available.";
     dto.errorMessage = "Error creating secondary attribute dots problem marker.";
     dto.markerType = "net.sf.anathema.character.freebies.attributes.marker.secondary"; //$NON-NLS-1$
-    return new FreebiesProblemFactory(dto);
+    return new FreebiesProblemFactory<ITraitCollectionModel>(dto);
   }
 
   public IModelChangeListener createForTertiaryFreebies() {
     IFreebiesHandler freebiesHandler = new TertiaryAttributeFreebies(modelCollection, creditManager);
-    FreebiesProblemTemplate dto = createDto(freebiesHandler);
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = createDto(freebiesHandler);
     dto.description = "There are still tertiary attribute dots available.";
     dto.errorMessage = "Error creating tertiary attribute dots problem marker.";
     dto.markerType = "net.sf.anathema.character.freebies.attributes.marker.tertiary"; //$NON-NLS-1$
-    return new FreebiesProblemFactory(dto);
+    return new FreebiesProblemFactory<ITraitCollectionModel>(dto);
   }
 
   public IModelChangeListener createFavoredCount() {
     IFreebiesHandler freebiesHandler = new FavoredAttributeCountHandler();
-    FreebiesProblemTemplate dto = createDto(freebiesHandler);
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = createDto(freebiesHandler);
     dto.description = "There are still favored attributes unchosen.";
     dto.errorMessage = "Error creating favored attributes count problem marker.";
     dto.markerType = "net.sf.anathema.character.freebies.attributes.marker.favoredcount"; //$NON-NLS-1$
-    return new FreebiesProblemFactory(dto);
+    return new FreebiesProblemFactory<ITraitCollectionModel>(dto);
   }
 
-  private FreebiesProblemTemplate createDto(IFreebiesHandler freebiesHandler) {
-    FreebiesProblemTemplate dto = new FreebiesProblemTemplate();
+  private FreebiesProblemTemplate<ITraitCollectionModel> createDto(IFreebiesHandler freebiesHandler) {
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = new FreebiesProblemTemplate<ITraitCollectionModel>();
     dto.hasProblem = new HasUnspentFreebies(creditManager, freebiesHandler);
     dto.editorOpener = "net.sf.anathema.character.modelopener"; //$NON-NLS-1$
     dto.modelName = "Attributes";
     dto.modelId = IAttributesPluginConstants.MODEL_ID;
+    dto.persister = new TraitCollectionPersister();
     return dto;
   }
 }

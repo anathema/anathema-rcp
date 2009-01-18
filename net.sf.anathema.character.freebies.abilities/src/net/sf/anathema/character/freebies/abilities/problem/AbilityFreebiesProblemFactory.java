@@ -15,6 +15,8 @@ import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.freebies.problem.FreebiesProblemFactory;
 import net.sf.anathema.character.freebies.problem.FreebiesProblemTemplate;
 import net.sf.anathema.character.freebies.problem.HasUnspentFreebies;
+import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 
 public class AbilityFreebiesProblemFactory {
 
@@ -29,37 +31,38 @@ public class AbilityFreebiesProblemFactory {
 
   public IModelChangeListener createForUnrestrictedFreebies() {
     IFreebiesHandler freebiesHandler = new UnrestrictedFreebiesHandler(modelCollection, creditManager);
-    FreebiesProblemTemplate dto = createDto(freebiesHandler);
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = createDto(freebiesHandler);
     dto.description = "There are still unrestricted ability dots available.";
     dto.errorMessage = "Error creating unrestricted ability dots problem marker.";
     dto.markerType = "net.sf.anathema.character.freebies.abilities.marker.unrestricted"; //$NON-NLS-1$
-    return new FreebiesProblemFactory(dto);
+    return new FreebiesProblemFactory<ITraitCollectionModel>(dto);
   }
 
   public IModelChangeListener createForCheapFreebies() {
     IFreebiesHandler freebiesHandler = new FavoredFreebiesHandler(modelCollection);
-    FreebiesProblemTemplate dto = createDto(freebiesHandler);
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = createDto(freebiesHandler);
     dto.description = "There are still cheap ability dots available.";
     dto.errorMessage = "Error creating cheap ability dots problem marker.";
     dto.markerType = "net.sf.anathema.character.freebies.abilities.marker.cheap"; //$NON-NLS-1$
-    return new FreebiesProblemFactory(dto);
+    return new FreebiesProblemFactory<ITraitCollectionModel>(dto);
   }
 
   public IModelChangeListener createFavoredCount() {
     IFreebiesHandler freebiesHandler = new FavoredCountHandler();
-    FreebiesProblemTemplate dto = createDto(freebiesHandler);
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = createDto(freebiesHandler);
     dto.description = "There are still favored abilities unchosen.";
     dto.errorMessage = "Error creating favored ability count problem marker.";
     dto.markerType = "net.sf.anathema.character.freebies.abilities.marker.favoredcount"; //$NON-NLS-1$
-    return new FreebiesProblemFactory(dto);
+    return new FreebiesProblemFactory<ITraitCollectionModel>(dto);
   }
 
-  private FreebiesProblemTemplate createDto(IFreebiesHandler freebiesHandler) {
-    FreebiesProblemTemplate dto = new FreebiesProblemTemplate();
+  private FreebiesProblemTemplate<ITraitCollectionModel> createDto(IFreebiesHandler freebiesHandler) {
+    FreebiesProblemTemplate<ITraitCollectionModel> dto = new FreebiesProblemTemplate<ITraitCollectionModel>();
     dto.hasProblem = new HasUnspentFreebies(creditManager, freebiesHandler);
     dto.editorOpener = "net.sf.anathema.character.modelopener"; //$NON-NLS-1$
     dto.modelName = "Abilities";
     dto.modelId = IAbilitiesPluginConstants.MODEL_ID;
+    dto.persister = new TraitCollectionPersister();
     return dto;
   }
 }
