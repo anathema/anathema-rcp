@@ -1,5 +1,7 @@
 package net.sf.anathema.charms.extension;
 
+import net.disy.commons.core.predicate.IPredicate;
+import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.eclipse.extension.AttributePredicate;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
@@ -12,6 +14,20 @@ import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataExtensionPoint extends AbstractExecutableExtension implements IExecutableCharmDataMap {
+
+  public static final class OfAnyCharmType implements IPredicate<IExtensionElement> {
+    private static String[] types = new String[] { "permanent", //$NON-NLS-1$
+        "reflexive", //$NON-NLS-1$
+        "simple", //$NON-NLS-1$
+        "enchantment", //$NON-NLS-1$
+        "supplemental", //$NON-NLS-1$
+        "extraaction" }; //$NON-NLS-1$
+
+    @Override
+    public boolean evaluate(IExtensionElement candidate) {
+      return ArrayUtilities.containsValue(types, candidate.getName());
+    }
+  }
 
   private static final String TAG_ADDITIONALDATA = "additionalData"; //$NON-NLS-1$
   private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
@@ -51,12 +67,16 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   }
 
   private void fillCharmData(IExtensionElement extensionElement, CharmDto charmDto) {
-    IExtensionElement typeElement = extensionElement.getElements()[0];
+    IExtensionElement typeElement = getTypeElement(extensionElement);
     charmDto.type = typeElement.getName();
     fillInCost(typeElement, charmDto);
     fillInDuration(typeElement, charmDto);
     fillInKeywords(extensionElement, charmDto);
     fillInSources(extensionElement, charmDto);
+  }
+
+  private IExtensionElement getTypeElement(IExtensionElement extensionElement) {
+    return ArrayUtilities.getFirst(extensionElement.getElements(), new OfAnyCharmType());
   }
 
   private void fillInDuration(IExtensionElement typeElement, CharmDto charmDto) {

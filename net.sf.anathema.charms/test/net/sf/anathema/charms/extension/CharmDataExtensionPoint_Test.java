@@ -9,6 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockName;
+import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChild;
 import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.charms.data.CharmDto;
@@ -32,31 +33,30 @@ public class CharmDataExtensionPoint_Test {
 
   @Test
   public void returnsNullForUnknownCharm() throws Exception {
-    ICharmId charmId = new CharmId("somecharm", "notrait");
+    ICharmId charmId = new CharmId("somecharm", "notrait"); //$NON-NLS-1$ //$NON-NLS-2$
     CharmDto actualDto = point.getData(charmId);
     assertThat(actualDto, is(nullValue()));
   }
 
   @Test
   public void retrievesDataByIdPattern() throws Exception {
-    ICharmId charmId = new CharmId("id.{0}", "trait");
+    ICharmId charmId = new CharmId("id.{0}", "trait"); //$NON-NLS-1$ //$NON-NLS-2$
     CharmDto actualDto = point.getData(charmId);
-    assertThat(actualDto.type, is("reflexive"));
+    assertThat(actualDto.type, is("reflexive")); //$NON-NLS-1$
   }
 
   private IExtensionElement createCharm() throws ExtensionException {
-    IExtensionElement type = ExtensionObjectMother.createExtensionElementWithAttributes(new MockName("reflexive"));
+    IExtensionElement type = ExtensionObjectMother.createExtensionElementWithAttributes(new MockName("reflexive")); //$NON-NLS-1$
     IExtensionElement keywords = ExtensionObjectMother.createExtensionElementWithAttributes(new MockStringAttribute(
-        "value",
-        "Combo-OK"));
+        "value", //$NON-NLS-1$
+        "Combo-OK")); //$NON-NLS-1$
     IExtensionElement source = ExtensionObjectMother.createExtensionElementWithAttributes(new MockStringAttribute(
-        "source",
-        "Ex2"));
-    MockStringAttribute id = new MockStringAttribute("charmId", "id.{0}");
-    return ExtensionObjectMother.createExtensionElementWithAttributes(
-        id,
-        new MockChildren(type),
-        new MockNamedChildren("keyword", keywords),
-        new MockNamedChildren("source", source));
+        "source", //$NON-NLS-1$
+        "Ex2")); //$NON-NLS-1$
+    MockStringAttribute id = new MockStringAttribute("charmId", "id.{0}"); //$NON-NLS-1$ //$NON-NLS-2$
+    return ExtensionObjectMother.createExtensionElementWithAttributes(id, new MockChildren(type), new MockNamedChild(
+        "reflexive", type), //$NON-NLS-1$
+        new MockNamedChildren("keyword", keywords), //$NON-NLS-1$
+        new MockNamedChildren("source", source)); //$NON-NLS-1$
   }
 }
