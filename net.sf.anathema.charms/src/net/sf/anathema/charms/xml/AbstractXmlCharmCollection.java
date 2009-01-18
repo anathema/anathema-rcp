@@ -1,5 +1,6 @@
 package net.sf.anathema.charms.xml;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,17 +14,15 @@ public abstract class AbstractXmlCharmCollection<C> implements Iterable<C> {
 
   private List<C> charms;
   private final IDocumentReader documentReader;
+  private String resourcePath;
 
   public AbstractXmlCharmCollection(String resourcePath, IContributor contributor) {
     this(new ResourceDocumentReader(contributor, resourcePath));
+    this.resourcePath = resourcePath;
   }
 
   public AbstractXmlCharmCollection(IDocumentReader documentReader) {
     this.documentReader = documentReader;
-  }
-
-  protected Element readDocument() throws Exception {
-    return documentReader.readDocument();
   }
 
   public final Iterator<C> iterator() {
@@ -35,16 +34,22 @@ public abstract class AbstractXmlCharmCollection<C> implements Iterable<C> {
 
   private List<C> readCharms() {
     List<C> newCharms = new ArrayList<C>();
-    try {
-      Element root = readDocument();
-      for (Element charmElement : ElementUtilities.elements(root, "charm")) {
-        newCharms.add(createCharm(charmElement));
-      }
-    }
-    catch (Exception e) {
-      throw new RuntimeException(e);
+    Element root = readDocument();
+    for (Element charmElement : ElementUtilities.elements(root, "charm")) {
+      newCharms.add(createCharm(charmElement));
     }
     return newCharms;
+  }
+
+  private Element readDocument() {
+    try {
+      return documentReader.readDocument();
+    }
+    catch (Exception e) {
+      String filename = resourcePath == null ? "unknown document" : resourcePath;
+      String format = MessageFormat.format("Error parsing {0}. Reason: {1}", filename, e.getMessage());
+      throw new RuntimeException(format);
+    }
   }
 
   protected abstract C createCharm(Element charmElement);
