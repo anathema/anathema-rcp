@@ -68,7 +68,7 @@ public class AttributeFreebiesProblemFactory {
   private FreebiesProblemTemplate createDto(IFreebiesHandler freebiesHandler) {
     FreebiesProblemTemplate dto = new FreebiesProblemTemplate();
     dto.hasProblem = new HasUnspentFreebies(creditManager, freebiesHandler);
-    dto.editorOpener = "net.sf.anathema.character.attributes.editor"; //$NON-NLS-1$
+    dto.editorOpener = "net.sf.anathema.character.modelopener"; //$NON-NLS-1$
     dto.modelName = "Attributes";
     dto.modelId = IAttributesPluginConstants.MODEL_ID;
     return dto;
