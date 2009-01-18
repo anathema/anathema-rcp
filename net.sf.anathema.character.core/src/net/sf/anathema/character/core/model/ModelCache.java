@@ -9,6 +9,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.character.core.model.cache.NotifyOfModelCreation;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.lib.control.GenericControl;
 
@@ -33,15 +34,15 @@ public class ModelCache implements IModelCache {
     IModel model = modelsByIdentifier.get(identifier);
     if (model == null) {
       IModelInitializer initializer = new ModelExtensionPoint().createModel(identifier);
-      final IModel newModel = initializer.getModel();
-      model = newModel;
+      model = initializer.getModel();
       if (model != null) {
         storeModel(identifier, model);
         initializer.initialize();
         loadDependencies(identifier, model);
-        IChangeListener listener = new OverallModelChangeListener(identifier, modelChangeListeners);
-        changeListeners.put(identifier, listener);
-        model.addChangeListener(listener);
+        IChangeListener overallChangeListener = new OverallModelChangeListener(identifier, modelChangeListeners);
+        changeListeners.put(identifier, overallChangeListener);
+        model.addChangeListener(overallChangeListener);
+        modelChangeListeners.forAllDo(new NotifyOfModelCreation(identifier));
       }
     }
     return model;

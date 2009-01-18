@@ -50,4 +50,9 @@ public class FreebiesProblemFactory implements IModelChangeListener {
     ProblemMarkerTemplate problemDto = problemFactory.create(dto);
     return new ProblemResourceMarker(resource, problemDto);
   }
+
+  @Override
+  public void modelCreated(IModelIdentifier identifier) {
+    modelChanged(identifier);
+  }
 }
