@@ -32,11 +32,11 @@
 
 <charm id="Dragon-Blooded.ElementalSuccorMethod" exalt="Dragon-Blooded" group="Lore">
  <cost>
-   <essence cost="5" text="per lhl/>
+   <essence cost="5" text="per lhl"/>
    <willpower cost="1" text="per lhl"/>
  </cost>
  <cost>
-   <essence cost="2" text="per bhl/>
+   <essence cost="2" text="per bhl"/>
  </cost>
  <duration duration="Instant"/>
  <charmtype type="Simple"/>

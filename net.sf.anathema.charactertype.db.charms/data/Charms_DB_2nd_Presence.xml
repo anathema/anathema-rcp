@@ -14,8 +14,8 @@
  <cost>
    <essence cost="2"/>
  </cost>
- <duration trait="Essence" unit"action"/>
- <duration trait="Essence" unit"longtick"/>
+ <duration trait="Essence" unit="action"/>
+ <duration trait="Essence" unit="longtick"/>
  <charmtype type="Simple"/>
  <charmAttribute attribute="Compulsion" visualize="true"/>
   <source source="DragonBlooded2nd"/>
