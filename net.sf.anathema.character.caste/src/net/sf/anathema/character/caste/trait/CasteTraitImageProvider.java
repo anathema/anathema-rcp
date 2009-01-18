@@ -18,17 +18,29 @@ public class CasteTraitImageProvider extends AbstractExecutableExtension impleme
 
   @Override
   public Image getImage(IDisplayTrait trait, ICharacterId characterId) {
+    ICaste caste = getCaste(characterId);
+    return ICharacterCorePluginConstants.IMAGE_REGISTRY.get(caste.getId());
+  }
+
+  @Override
+  public boolean hasImage(IDisplayTrait trait, ICharacterId characterId) {
     ITraitStatus status = trait.getFavorization().getStatus();
     if (!(status instanceof CasteStatus)) {
-      return null;
+      return false;
     }
+    ICaste caste = getCaste(characterId);
+    return isCasteTrait(caste, trait);
+  }
+
+  private ICaste getCaste(ICharacterId characterId) {
     IModelCollection modelCollection = ModelCache.getInstance();
     ModelIdentifier modelIdentifier = new ModelIdentifier(characterId, ICasteModel.ID);
     ICasteModel model = (ICasteModel) modelCollection.getModel(modelIdentifier);
     ICaste caste = model.getCaste();
-    if (caste.supportsTrait(trait.getTraitType())) {
-      return ICharacterCorePluginConstants.IMAGE_REGISTRY.get(caste.getId());
-    }
-    return null;
+    return caste;
+  }
+
+  private boolean isCasteTrait(ICaste caste, IDisplayTrait trait) {
+    return caste.supportsTrait(trait.getTraitType());
   }
 }

@@ -8,5 +8,7 @@ import org.eclipse.swt.graphics.Image;
 
 public interface ITraitStatusImageProvider extends IExecutableExtension {
 
+  public boolean hasImage(IDisplayTrait trait, ICharacterId characterId);
+
   public Image getImage(IDisplayTrait trait, ICharacterId characterId);
 }

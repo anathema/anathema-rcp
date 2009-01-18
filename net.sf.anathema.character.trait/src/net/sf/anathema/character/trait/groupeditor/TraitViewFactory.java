@@ -32,10 +32,7 @@ public class TraitViewFactory {
     activeImage = provider.createActiveImage();
   }
 
-  public IExtendableIntValueView create(
-      String text,
-      FormToolkit toolkit,
-      final IInteractiveTrait trait) {
+  public IExtendableIntValueView create(String text, FormToolkit toolkit, final IInteractiveTrait trait) {
     final Button favoredButton = toolkit.createButton(parent, null, SWT.TOGGLE);
     initListening(trait, favoredButton);
     Color background = toolkit.getColors().getBackground();
@@ -66,7 +63,10 @@ public class TraitViewFactory {
         passiveImage,
         imageProvider,
         characterId);
-    FavorizationModelListener listener = new FavorizationModelListener(favoredButton, trait.getFavorization(), favorizationImageProvider);
+    FavorizationModelListener listener = new FavorizationModelListener(
+        favoredButton,
+        trait.getFavorization(),
+        favorizationImageProvider);
     trait.getFavorization().addFavoredChangeListener(listener);
     trait.getFavorization().addFavorableChangeListener(listener);
     favoredButton.addListener(SWT.MouseUp, new FavorizationButtonChangeListener(favoredButton, trait));

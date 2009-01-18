@@ -7,21 +7,21 @@ import net.sf.anathema.character.trait.status.ITraitStatusImageProvider;
 
 import org.eclipse.swt.graphics.Image;
 
-public class FavoredTraitStatusImageProvider extends AbstractExecutableExtension implements ITraitStatusImageProvider {
+public class StaticTraitStatusImageProvider extends AbstractExecutableExtension implements ITraitStatusImageProvider {
 
-  private final Image favoredImage;
+  private final Image image;
 
-  public FavoredTraitStatusImageProvider(Image favoredImage) {
-    this.favoredImage = favoredImage;
+  public StaticTraitStatusImageProvider(Image image) {
+    this.image = image;
   }
 
   @Override
   public Image getImage(IDisplayTrait trait, ICharacterId characterId) {
-    return favoredImage;
+    return image;
   }
 
   @Override
   public boolean hasImage(IDisplayTrait trait, ICharacterId characterId) {
-    return trait.getFavorization().isFavored();
+    return true;
   }
 }

@@ -9,6 +9,6 @@ public class CharmContentProvider_Test {
 
   @Test
   public void returnsEmptyNodeSetForNullId() throws Exception {
-     assertThat(new CharmContentProvider().getElements(null), is(nullValue()));
+    assertThat(new CharmContentProvider().getElements(null).length, is(0));
   }
 }
