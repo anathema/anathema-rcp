@@ -42,13 +42,8 @@ public final class ViewEditorLinker implements IDisposable, Runnable, ILinker {
       return;
     }
     IEditorInput editorInput = partContainer.getEditorInput();
-    if (editorInput == null) {
-      selector.setSelection(null);
-    }
-    else {
-      ILink link = (ILink) editorInput.getAdapter(ILink.class);
-      selector.setSelection(link);
-    }
+    ILink link = (ILink) editorInput.getAdapter(ILink.class);
+    selector.setSelection(link);
   }
 
   @Override

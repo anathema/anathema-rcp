@@ -17,7 +17,7 @@ public final class CharacterPointsUpdatable implements IUpdatable, IExperiencePr
   private IExperience experience = null;
   private final IModelCollection modelProvider;
   private final IUpdatable modelChangeUpdatable;
-  private IChangeListener modelChangedListener = new IChangeListener() {
+  private final IChangeListener modelChangedListener = new IChangeListener() {
     @Override
     public void stateChanged() {
       modelChangeUpdatable.update();

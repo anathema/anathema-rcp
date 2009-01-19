@@ -30,11 +30,11 @@ public class PartContainer implements IPartContainer {
   public IEditorInput getEditorInput() {
     IWorkbenchPage activePage = workbenchWindow.getActivePage();
     if (activePage == null) {
-      return null;
+      return new NullEditorInput();
     }
     IEditorPart activeEditor = activePage.getActiveEditor();
     if (activeEditor == null) {
-      return null;
+      return new NullEditorInput();
     }
     return activeEditor.getEditorInput();
   }

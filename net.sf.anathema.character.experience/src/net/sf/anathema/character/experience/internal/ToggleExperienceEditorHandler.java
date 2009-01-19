@@ -43,9 +43,6 @@ public class ToggleExperienceEditorHandler extends AbstractToggleExperienceHandl
     IWorkbenchWindow window = (IWorkbenchWindow) parameters.get("org.eclipse.ui.IWorkbenchWindow"); //$NON-NLS-1$
     PartContainer partContainer = new PartContainer(window);
     IEditorInput input = partContainer.getEditorInput();
-    if (input == null) {
-      return;
-    }
     IModelIdentifier modelIdentifier = (IModelIdentifier) input.getAdapter(IModelIdentifier.class);
     if (modelIdentifier == null) {
       return;

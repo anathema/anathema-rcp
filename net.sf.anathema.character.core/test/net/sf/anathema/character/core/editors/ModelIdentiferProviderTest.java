@@ -24,9 +24,9 @@ public class ModelIdentiferProviderTest {
     this.modelIdentifierProvider = new ModelIdentifierProvider();
   }
 
-  @Test
-  public void returnsNullForNullProvider() throws Exception {
-    assertNull(modelIdentifierProvider.getModelIdentifier(null));
+  @Test(expected = NullPointerException.class)
+  public void doesNotAcceptNullInput() throws Exception {
+    modelIdentifierProvider.getModelIdentifier(null);
   }
 
   @Test
@@ -36,7 +36,7 @@ public class ModelIdentiferProviderTest {
   }
 
   @Test
-  public void testname() throws Exception {
+  public void createsModelIdentifierForCharacterEditorInput() throws Exception {
     IModelIdentifier modelIdentifier = EasyMock.createMock(IModelIdentifier.class);
     IEditorInput input = createInput(modelIdentifier);
     assertSame(modelIdentifier, modelIdentifierProvider.getModelIdentifier(input));

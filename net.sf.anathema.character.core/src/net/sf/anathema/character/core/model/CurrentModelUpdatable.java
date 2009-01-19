@@ -11,7 +11,7 @@ import net.sf.anathema.lib.ui.IUpdatable;
 import org.eclipse.ui.IEditorInput;
 
 public final class CurrentModelUpdatable implements IUpdatable, IDisposable {
-  private IChangeListener modelChangeListener = new IChangeListener() {
+  private final IChangeListener modelChangeListener = new IChangeListener() {
     @Override
     public void stateChanged() {
       updatable.update();
@@ -31,10 +31,6 @@ public final class CurrentModelUpdatable implements IUpdatable, IDisposable {
   @Override
   public void update() {
     IEditorInput editorInput = partContainer.getEditorInput();
-    if (editorInput == null) {
-      modelSelected(null);
-      return;
-    }
     IModelIdentifier modelIdentifier = (IModelIdentifier) editorInput.getAdapter(IModelIdentifier.class);
     if (modelIdentifier == null) {
       modelSelected(null);
