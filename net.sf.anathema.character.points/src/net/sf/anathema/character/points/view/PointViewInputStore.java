@@ -32,16 +32,21 @@ public class PointViewInputStore implements IValueListInputStore {
       return storeInput(nullInput);
     }
     IExperience experience = getExperienceModel(characterId);
-    if (lastInput != null
-        && characterId.equals(lastInput.getCharacterId())
-        && experience != null
-        && lastExperienced == experience.isExperienced()) {
+    if (isSameCharacter(characterId) && isSameExperienceState(experience)) {
       return lastInput;
     }
     if (experience != null) {
       this.lastExperienced = experience.isExperienced();
     }
     return storeInput(factory.create(characterId, lastExperienced));
+  }
+
+  private boolean isSameExperienceState(IExperience experience) {
+    return experience != null && lastExperienced == experience.isExperienced();
+  }
+
+  private boolean isSameCharacter(ICharacterId characterId) {
+    return lastInput != null && characterId.equals(lastInput.getCharacterId());
   }
 
   private IExperience getExperienceModel(ICharacterId characterId) {
