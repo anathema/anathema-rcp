@@ -1,8 +1,7 @@
 package net.sf.anathema.character.freebies.view;
 
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.IModelIdentifier;
-import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
+import net.sf.anathema.character.core.editors.CharacterIdProvider;
 import net.sf.anathema.view.valuelist.IValueEntry;
 import net.sf.anathema.view.valuelist.IValueListEntryProvider;
 
@@ -18,11 +17,10 @@ public class FreebiePointInputProvider implements IValueListEntryProvider {
 
   @Override
   public IValueEntry[] getEntries(IEditorInput editorInput) {
-    IModelIdentifier modelIdentifier = new ModelIdentifierProvider().getModelIdentifier(editorInput);
-    if (modelIdentifier == null) {
+    ICharacterId characterId = new CharacterIdProvider().getCharacterId(editorInput);
+    if (characterId == null) {
       return new IValueEntry[0];
     }
-    ICharacterId characterId = modelIdentifier.getCharacterId();
     return factory.create(characterId);
   }
 }

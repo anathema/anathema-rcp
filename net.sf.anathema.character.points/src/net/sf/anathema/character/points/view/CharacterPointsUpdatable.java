@@ -4,9 +4,8 @@ import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.ui.IPartContainer;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
-import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
+import net.sf.anathema.character.core.editors.CharacterIdProvider;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.lib.ui.IUpdatable;
 
@@ -24,7 +23,10 @@ public final class CharacterPointsUpdatable implements IUpdatable, IExperiencePr
     }
   };
 
-  public CharacterPointsUpdatable(IPartContainer partContainer, IUpdatable modelChangeUpdatable, IModelCollection modelProvider) {
+  public CharacterPointsUpdatable(
+      IPartContainer partContainer,
+      IUpdatable modelChangeUpdatable,
+      IModelCollection modelProvider) {
     this.partContainer = partContainer;
     this.modelChangeUpdatable = modelChangeUpdatable;
     this.modelProvider = modelProvider;
@@ -37,12 +39,11 @@ public final class CharacterPointsUpdatable implements IUpdatable, IExperiencePr
       experience.removeChangeListener(modelChangedListener);
     }
     IEditorInput editorInput = partContainer.getEditorInput();
-    IModelIdentifier modelIdentifier = new ModelIdentifierProvider().getModelIdentifier(editorInput);
-    if (modelIdentifier == null) {
+    ICharacterId characterId = new CharacterIdProvider().getCharacterId(editorInput);
+    if (characterId == null) {
       experience = null;
     }
     else {
-      ICharacterId characterId = modelIdentifier.getCharacterId();
       experience = (IExperience) modelProvider.getModel(new ModelIdentifier(characterId, IExperience.MODEL_ID));
       experience.addChangeListener(modelChangedListener);
     }

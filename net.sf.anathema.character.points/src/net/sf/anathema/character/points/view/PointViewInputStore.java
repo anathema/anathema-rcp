@@ -1,9 +1,8 @@
 package net.sf.anathema.character.points.view;
 
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
-import net.sf.anathema.character.core.editors.ModelIdentifierProvider;
+import net.sf.anathema.character.core.editors.CharacterIdProvider;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.experience.IExperience;
@@ -28,11 +27,10 @@ public class PointViewInputStore implements IValueListInputStore {
   }
 
   public ICharacterValueEntryFactory getEntriesFactory(IEditorInput editorInput) {
-    IModelIdentifier modelIdentifier = new ModelIdentifierProvider().getModelIdentifier(editorInput);
-    if (modelIdentifier == null) {
+    ICharacterId characterId = new CharacterIdProvider().getCharacterId(editorInput);
+    if (characterId == null) {
       return storeInput(nullInput);
     }
-    ICharacterId characterId = modelIdentifier.getCharacterId();
     IExperience experience = getExperienceModel(characterId);
     if (lastInput != null
         && characterId.equals(lastInput.getCharacterId())
