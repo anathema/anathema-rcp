@@ -1,13 +1,14 @@
-package net.sf.anathema.basics.repository.input;
+package net.sf.anathema.basics.repository.input.internal;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 import net.sf.anathema.basics.item.text.TitledText;
-import net.sf.anathema.basics.repository.input.internal.ItemNameProvider;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ItemNameProviderTest {
+public class ItemNameProvider_Test {
 
   private static final String NAME = "Name"; //$NON-NLS-1$
   private static final String UNTITLED = "Untitled"; //$NON-NLS-1$
@@ -26,8 +27,8 @@ public class ItemNameProviderTest {
   }
 
   @Test
-  public void returnsNullNameForNullItem() throws Exception {
-    Assert.assertEquals(null, provider.getName(null));
+  public void returnsEmptyNameForNullItem() throws Exception {
+    assertThat(provider.getName(null), is("")); //$NON-NLS-1$
   }
 
   @Test

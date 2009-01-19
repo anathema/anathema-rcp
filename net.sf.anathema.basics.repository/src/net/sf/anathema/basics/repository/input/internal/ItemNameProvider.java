@@ -12,7 +12,7 @@ public class ItemNameProvider {
 
   public String getName(ITitledText itemData) {
     if (itemData == null) {
-      return null;
+      return ""; //$NON-NLS-1$
     }
     String name = itemData.getName().getText();
     if (StringUtilities.isNullOrEmpty(name)) {
