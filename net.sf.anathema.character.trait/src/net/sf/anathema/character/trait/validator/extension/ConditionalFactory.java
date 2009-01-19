@@ -43,19 +43,16 @@ public class ConditionalFactory implements IValidatorFactory {
       IBasicTrait trait) {
     for (IExtensionElement alternateMinimumElement : validatorElement.getElements(TAG_ALTERNATE_MINIMUM)) {
       AlternateMinimumBuilder builder = new AlternateMinimumBuilder();
-      for (IExtensionElement minimumElement1 : alternateMinimumElement.getElements()) {
-        String traitId = minimumElement1.getAttribute(ATTRIB_TRAIT_ID);
-        int value = minimumElement1.getIntegerAttribute(ATTRIB_VALUE);
+      for (IExtensionElement minimumElement : alternateMinimumElement.getElements()) {
+        String traitId = minimumElement.getAttribute(ATTRIB_TRAIT_ID);
+        int value = minimumElement.getIntegerAttribute(ATTRIB_VALUE);
         if (!collectionModel.contains(traitId)) {
           builder.reset();
           break;
         }
         builder.addAlternative(collectionModel.getTrait(traitId), value);
       }
-      IValidator validator = builder.createValidator(trait);
-      if (validator != null) {
-        list.add(validator);
-      }
+      list.add(builder.createValidator(trait));
     }
   }
 

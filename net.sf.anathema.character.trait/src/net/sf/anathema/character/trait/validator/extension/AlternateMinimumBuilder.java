@@ -9,7 +9,7 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.validator.IValidator;
 
 public class AlternateMinimumBuilder {
-  
+
   private final Map<String, MinimumRequirement> requirements = new HashMap<String, MinimumRequirement>();
 
   public void addAlternative(IBasicTrait trait, int value) {
@@ -23,11 +23,15 @@ public class AlternateMinimumBuilder {
   public IValidator createValidator(IBasicTrait trait) {
     String traitId = trait.getTraitType().getId();
     if (!requirements.containsKey(traitId)) {
-      return null;
+      return new NullValidator();
     }
+    return createAlternateMinimumValidator(traitId);
+  }
+
+  private IValidator createAlternateMinimumValidator(String traitId) {
     MinimumRequirement requirement = requirements.get(traitId);
     requirements.remove(traitId);
-    Collection<? extends ICheck> otherChecks = requirements.values();
+    Collection< ? extends ICheck> otherChecks = requirements.values();
     return new ValidateAlternateMinimalValue(requirement.getMinimalValue(), otherChecks);
   }
 }
