@@ -248,6 +248,26 @@
             referenceId="DbBall"
             resourceUrl="icons/Ball_Db_16.png">
       </image>
+      <image
+            referenceId="Air"
+            resourceUrl="icons/Aspect_Air_16.png">
+      </image>
+      <image
+            referenceId="Earth"
+            resourceUrl="icons/Aspect_Earth_16.png">
+      </image>
+      <image
+            referenceId="Fire"
+            resourceUrl="icons/Aspect_Fire_16.png">
+      </image>
+      <image
+            referenceId="Water"
+            resourceUrl="icons/Aspect_Water_16.png">
+      </image>
+      <image
+            referenceId="Wood"
+            resourceUrl="icons/Aspect_Wood_16.png">
+      </image>
    </extension>
    <extension
          point="net.sf.anathema.character.importwizard.templateconverters">
