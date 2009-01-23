@@ -123,20 +123,7 @@ public class SugiyamaLayoutAlgorithm extends AbstractLayoutAlgorithm {
 
   @Override
   protected boolean isValidConfiguration(boolean asynchronous, boolean continueous) {
-    if (asynchronous && continueous) {
-      return false;
-    }
-    else if (asynchronous && !continueous) {
-      return true;
-    }
-    else if (!asynchronous && continueous) {
-      return false;
-    }
-    else if (!asynchronous && !continueous) {
-      return true;
-    }
-
-    return false;
+    return !continueous;
   }
 
   @Override
