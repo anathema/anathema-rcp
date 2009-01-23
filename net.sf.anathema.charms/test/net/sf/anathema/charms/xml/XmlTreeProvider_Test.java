@@ -1,5 +1,6 @@
 package net.sf.anathema.charms.xml;
 
+import static net.sf.anathema.test.hamcrest.AnathemaMatchers.*;
 import static org.easymock.EasyMock.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -20,6 +21,17 @@ public class XmlTreeProvider_Test {
     charmCollection = new DummyXmlCharmCollection();
     treeProvider.addCharmCollection(charmCollection);
   }
+  
+  @Test
+  public void addsCharmsPrerequisitesForCharmsWithExpectedTreeId() throws Exception {
+    IStructuredCharm charm = createNiceMock(IStructuredCharm.class);
+    expect(charm.getTreePart()).andStubReturn("myTree"); //$NON-NLS-1$
+    replay(charm);
+    charmCollection.add(charm);
+    CharmPrerequisite[] tree = treeProvider.getTree("myTree"); //$NON-NLS-1$
+    assertThat(tree.length, is(0));
+    verify(charm);
+  }
 
   @Test
   public void addsNoCharmsPrerequisitesForCharmsWithOtherTreeId() throws Exception {
@@ -30,5 +42,15 @@ public class XmlTreeProvider_Test {
     CharmPrerequisite[] tree = treeProvider.getTree("myTree"); //$NON-NLS-1$
     assertThat(tree.length, is(0));
     verify(charm);
+  }
+
+  @Test
+  public void doesNotProvideGenerics() throws Exception {
+    assertThat(treeProvider.getGenericCharms("Solar"), is(empty()));
+  }
+  
+  @Test
+  public void hasNoTreesInList() throws Exception {
+    assertThat(treeProvider.getTreeList(), is(empty()));
   }
 }

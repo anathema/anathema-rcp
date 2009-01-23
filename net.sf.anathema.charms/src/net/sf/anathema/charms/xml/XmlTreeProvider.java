@@ -1,6 +1,7 @@
 package net.sf.anathema.charms.xml;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -57,6 +58,6 @@ public class XmlTreeProvider implements IExecutableTreeProvider {
 
   @Override
   public List<String> getGenericCharms(String typeId) {
-    return new ArrayList<String>();
+    return Collections.emptyList();
   }
 }
