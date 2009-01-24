@@ -11,19 +11,17 @@ import net.sf.anathema.charms.view.tooltipp.ConcatenateString;
 
 public class DisplayCharm {
 
+  private final static String NOT_AVAILABLE = "N/A";
+  private final static String NONE = "-";
   private final CharmDto data;
-  private final String notAvailable;
-  private final String none;
 
   public DisplayCharm(CharmDto data) {
     this.data = data;
-    this.notAvailable = "N/A";
-    this.none = "-";
   }
 
   public String getType() {
     String definedType = data.type;
-    return definedType == null ? notAvailable : definedType;
+    return definedType == null ? NOT_AVAILABLE : definedType;
   }
 
   public String getKeywords() {
@@ -31,7 +29,7 @@ public class DisplayCharm {
     for (String keyword : data.keywords) {
       keywordsBuilder.concatenate(keyword);
     }
-    return keywordsBuilder.create(none);
+    return keywordsBuilder.create(NONE);
   }
 
   public String getAllSources() {
@@ -39,7 +37,7 @@ public class DisplayCharm {
     for (SourceDto source : data.sources) {
       sourcesBuilder.concatenate(getSingleSource(source));
     }
-    return sourcesBuilder.create(none);
+    return sourcesBuilder.create(NONE);
   }
 
   private String getSingleSource(SourceDto source) {
@@ -56,7 +54,7 @@ public class DisplayCharm {
     for (CostDto cost : data.costs) {
       alternativeCosts.concatenate(getSingleCost(cost));
     }
-    return alternativeCosts.create(none);
+    return alternativeCosts.create(NONE);
   }
 
   private String getSingleCost(CostDto cost) {
@@ -64,7 +62,7 @@ public class DisplayCharm {
     for (ResourceDto resource : cost.resources) {
       costBuilder.concatenate(getResource(resource));
     }
-    return costBuilder.create(none);
+    return costBuilder.create(NONE);
   }
 
   private String getResource(ResourceDto resource) {
@@ -76,7 +74,7 @@ public class DisplayCharm {
     for (DurationDto duration : data.durations) {
       alternativeDuration.concatenate(getSingleDuration(duration));
     }
-    return alternativeDuration.create(none);
+    return alternativeDuration.create(NONE);
   }
 
   private String getSingleDuration(DurationDto duration) {
@@ -99,7 +97,7 @@ public class DisplayCharm {
     return additiveText.create();
   }
 
-  public String getPrimitiveText(PrimitiveDurationDto primitive) {
+  private String getPrimitiveText(PrimitiveDurationDto primitive) {
     if (primitive.until != null) {
       return "Until " + primitive.until;
     }
