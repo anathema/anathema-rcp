@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.eclipse.core.runtime.Platform;
 import org.junit.Test;
 
-public class BundleVersionCollectionTest {
+public class BundleVersionCollection_Test {
 
   private static final String BUNDLE_ID = "net.sf.anathema.basics.item"; //$NON-NLS-1$
 
@@ -15,8 +15,8 @@ public class BundleVersionCollectionTest {
     assertEquals(version, new BundleVersionCollection().getBundleVersion(BUNDLE_ID));
   }
 
-  @Test
-  public void returnsNullForMissingPlugin() throws Exception {
-    assertNull(new BundleVersionCollection().getBundleVersion("xyz")); //$NON-NLS-1$
+  @Test(expected=NullPointerException.class)
+  public void throwsExceptionForMissingPlugin() throws Exception {
+    new BundleVersionCollection().getBundleVersion("xyz");  //$NON-NLS-1$
   }
 }

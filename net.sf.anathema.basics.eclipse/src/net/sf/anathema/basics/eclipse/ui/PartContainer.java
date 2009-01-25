@@ -1,7 +1,6 @@
 package net.sf.anathema.basics.eclipse.ui;
 
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IPartService;
 import org.eclipse.ui.IWorkbenchPage;
@@ -29,13 +28,13 @@ public class PartContainer implements IPartContainer {
 
   public IEditorInput getEditorInput() {
     IWorkbenchPage activePage = workbenchWindow.getActivePage();
-    if (activePage == null) {
+    if (noEditorIsActive(activePage)) {
       return new NullEditorInput();
     }
-    IEditorPart activeEditor = activePage.getActiveEditor();
-    if (activeEditor == null) {
-      return new NullEditorInput();
-    }
-    return activeEditor.getEditorInput();
+    return activePage.getActiveEditor().getEditorInput();
+  }
+
+  private boolean noEditorIsActive(IWorkbenchPage activePage) {
+    return activePage == null || activePage.getActiveEditor() == null;
   }
 }

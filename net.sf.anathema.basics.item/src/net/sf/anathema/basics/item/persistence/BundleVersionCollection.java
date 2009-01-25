@@ -9,9 +9,6 @@ public class BundleVersionCollection implements IBundleVersionCollection {
   @Override
   public String getBundleVersion(String bundleId) {
     Bundle bundle = Platform.getBundle(bundleId);
-    if (bundle == null) {
-      return null;
-    }
     return (String) bundle.getHeaders().get(HEADER_BUNDLE_VERSION);
   }
 }
