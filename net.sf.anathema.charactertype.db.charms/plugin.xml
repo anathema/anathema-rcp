@@ -236,10 +236,10 @@
          point="net.sf.anathema.charms.charmdata">
       <charmdata
             charmId="dragon-blooded.terrestrial.{0}.reinforcement">
-         <simple
+       <type>  <simple
                defensemodifier="-1"
                speed="6">
-            <additionalData>
+            <durationAndCost>
                <duration>
                   <addition>
                      <amount
@@ -262,8 +262,8 @@
                      </linear>
                   </resource>
                </cost>
-            </additionalData>
-         </simple>
+            </durationAndCost>
+         </simple></type>
          <keyword
                value="Combo-OK">
          </keyword>
@@ -277,10 +277,10 @@
       </charmdata>
       <charmdata
             charmId="dragon-blooded.first.{0}.excellency">
-         <reflexive
+       <type>  <reflexive
                primaryStep="1"
                secondaryStep="2">
-            <additionalData>
+            <durationAndCost>
                <cost>
                   <resource
                         type="motes">
@@ -295,8 +295,8 @@
                         keyword="Instant">
                   </text>
                </duration>
-            </additionalData>
-         </reflexive>
+            </durationAndCost>
+         </reflexive></type>
          <source
                addition="p128"
                source="DB2">
@@ -307,10 +307,10 @@
       </charmdata>
       <charmdata
             charmId="dragon-blooded.third.{0}.excellency">
-         <reflexive
+     <type>    <reflexive
                primaryStep="4"
                secondaryStep="6">
-            <additionalData>
+            <durationAndCost>
                <duration>
                   <text
                         keyword="Instant">
@@ -326,8 +326,8 @@
                      </base>
                   </resource>
                </cost>
-            </additionalData>
-         </reflexive>
+            </durationAndCost>
+         </reflexive></type>
          <source
                addition="p128"
                source="DB2">
@@ -338,10 +338,10 @@
       </charmdata>
       <charmdata
             charmId="dragon-blooded.second.{0}.excellency">
-         <reflexive
+       <type>  <reflexive
                primaryStep="1"
                secondaryStep="2">
-            <additionalData>
+            <durationAndCost>
                <duration>
                   <text
                         keyword="Instant">
@@ -357,8 +357,8 @@
                      </linear>
                   </resource>
                </cost>
-            </additionalData>
-         </reflexive>
+            </durationAndCost>
+         </reflexive></type>
          <source
                addition="p128"
                source="DB2">

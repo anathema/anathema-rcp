@@ -52,14 +52,7 @@
          <sequence>
             <element ref="keyword" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="source" minOccurs="0" maxOccurs="unbounded"/>
-            <choice>
-               <element ref="reflexive"/>
-               <element ref="supplemental"/>
-               <element ref="simple"/>
-               <element ref="extraaction"/>
-               <element ref="permanent"/>
-               <element ref="enchantment"/>
-            </choice>
+            <element ref="type"/>
          </sequence>
          <attribute name="charmId" type="string" use="required">
             <annotation>
@@ -71,10 +64,23 @@
       </complexType>
    </element>
 
+   <element name="type">
+      <complexType>
+         <choice>
+            <element ref="reflexive"/>
+            <element ref="supplemental"/>
+            <element ref="simple"/>
+            <element ref="extraaction"/>
+            <element ref="permanent"/>
+            <element ref="enchantment"/>
+         </choice>
+      </complexType>
+   </element>
+
    <element name="simple">
       <complexType>
          <sequence>
-            <element ref="additionalData"/>
+            <element ref="durationAndCost"/>
          </sequence>
          <attribute name="speed" type="string" use="default" value="6">
             <annotation>
@@ -96,7 +102,7 @@
    <element name="reflexive">
       <complexType>
          <sequence>
-            <element ref="additionalData"/>
+            <element ref="durationAndCost"/>
          </sequence>
          <attribute name="primaryStep" type="string" use="default" value="1">
             <annotation>
@@ -118,7 +124,7 @@
    <element name="supplemental">
       <complexType>
          <sequence>
-            <element ref="additionalData"/>
+            <element ref="durationAndCost"/>
          </sequence>
       </complexType>
    </element>
@@ -126,7 +132,7 @@
    <element name="extraaction">
       <complexType>
          <sequence>
-            <element ref="additionalData"/>
+            <element ref="durationAndCost"/>
          </sequence>
       </complexType>
    </element>
@@ -137,7 +143,7 @@
    <element name="enchantment">
       <complexType>
          <sequence>
-            <element ref="additionalData"/>
+            <element ref="durationAndCost"/>
          </sequence>
          <attribute name="speed" type="string">
             <annotation>
@@ -156,7 +162,7 @@
       </complexType>
    </element>
 
-   <element name="additionalData">
+   <element name="durationAndCost">
       <annotation>
          <documentation>
             If there is more than one cost given, they are interpreted as alternative cost options.

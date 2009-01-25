@@ -220,10 +220,11 @@
          point="net.sf.anathema.charms.charmdata">
       <charmdata
             charmId="solar.first.{0}.excellency">
+            <type>
          <reflexive
                primaryStep="1"
                secondaryStep="2">
-            <additionalData>
+            <durationAndCost>
                <duration>
                   <text
                         keyword="Instant">
@@ -239,8 +240,9 @@
                      </linear>
                   </resource>
                </cost>
-            </additionalData>
+            </durationAndCost>
          </reflexive>
+         </type>
          <source
                addition="p183"
                source="Ex2">
@@ -251,10 +253,11 @@
       </charmdata>
       <charmdata
             charmId="solar.second.{0}.excellency">
+            <type>
          <reflexive
                primaryStep="1"
                secondaryStep="2">
-            <additionalData>
+            <durationAndCost>
                <duration>
                   duration body text
                   <text
@@ -270,8 +273,8 @@
                      </linear>
                   </resource>
                </cost>
-            </additionalData>
-         </reflexive>
+            </durationAndCost>
+         </reflexive></type>
          <source
                addition="p184"
                source="Ex2">
@@ -282,10 +285,10 @@
       </charmdata>
       <charmdata
             charmId="solar.third.{0}.excellency">
-         <reflexive
+    <type>     <reflexive
                primaryStep="4"
                secondaryStep="6">
-            <additionalData>
+            <durationAndCost>
                <duration>
                   duration body text
                   <text
@@ -301,8 +304,8 @@
                      </base>
                   </resource>
                </cost>
-            </additionalData>
-         </reflexive>
+            </durationAndCost>
+         </reflexive></type>
          <source
                addition="p185"
                source="Ex2">
@@ -313,10 +316,10 @@
       </charmdata>
       <charmdata
             charmId="solar.infinite.{0}.mastery">
-         <simple
+       <type>  <simple
                defensemodifier="-1"
                speed="6">
-            <additionalData>
+            <durationAndCost>
                <duration>
                   <addition>
                      <amount
@@ -341,8 +344,8 @@
                      </base>
                   </resource>
                </cost>
-            </additionalData>
-         </simple>
+            </durationAndCost>
+         </simple></type>
          <source
                addition="p185"
                source="Ex2">
@@ -350,9 +353,9 @@
       </charmdata>
       <charmdata
             charmId="solar.{0}.essence.flow">
-         <permanent>
+        <type> <permanent>
             permanent body text
-         </permanent>
+         </permanent></type>
          <source
                addition="p187"
                source="Ex2">

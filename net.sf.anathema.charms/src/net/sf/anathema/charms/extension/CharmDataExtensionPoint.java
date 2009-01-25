@@ -1,7 +1,5 @@
 package net.sf.anathema.charms.extension;
 
-import net.disy.commons.core.predicate.IPredicate;
-import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.eclipse.extension.AttributePredicate;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
@@ -15,30 +13,17 @@ import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataExtensionPoint extends AbstractExecutableExtension implements IExecutableCharmDataMap {
 
-  public static final class OfAnyCharmType implements IPredicate<IExtensionElement> {
-    private static String[] types = new String[] { "permanent", //$NON-NLS-1$
-        "reflexive", //$NON-NLS-1$
-        "simple", //$NON-NLS-1$
-        "enchantment", //$NON-NLS-1$
-        "supplemental", //$NON-NLS-1$
-        "extraaction" }; //$NON-NLS-1$
-
-    @Override
-    public boolean evaluate(IExtensionElement candidate) {
-      return ArrayUtilities.containsValue(types, candidate.getName());
-    }
-  }
-
-  private static final String TAG_ADDITIONALDATA = "additionalData"; //$NON-NLS-1$
-  private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
+  private static final String TAG_TYPE = "type"; //$NON-NLS-1$
+  private static final String TAG_DURATION_AND_COST = "durationAndCost"; //$NON-NLS-1$
   private static final String TAG_KEYWORD = "keyword"; //$NON-NLS-1$
-  private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
+  private static final String TAG_COST = "cost"; //$NON-NLS-1$
   private static final String TAG_SOURCE = "source"; //$NON-NLS-1$
+  private static final String TAG_DURATION = "duration"; //$NON-NLS-1$
+  private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
+  private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String ATTRIB_SOURCE = "source"; //$NON-NLS-1$
   private static final String ATTRIB_ADDITION = "addition"; //$NON-NLS-1$
-  private static final String TAG_COST = "cost"; //$NON-NLS-1$
   private static final String EXTENSION_POINT_ID = "charmdata"; //$NON-NLS-1$
-  private static final String TAG_DURATION = "duration"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
 
   public CharmDataExtensionPoint() {
@@ -76,26 +61,26 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   }
 
   private IExtensionElement getTypeElement(IExtensionElement extensionElement) {
-    return ArrayUtilities.getFirst(extensionElement.getElements(), new OfAnyCharmType());
+    return extensionElement.getElement(TAG_TYPE).getElements()[0];
   }
 
   private void fillInDuration(IExtensionElement typeElement, CharmDto charmDto) {
-    IExtensionElement additionalDataElement = typeElement.getElement(TAG_ADDITIONALDATA);
-    if (additionalDataElement == null) {
+    IExtensionElement durationAndCostElement = typeElement.getElement(TAG_DURATION_AND_COST);
+    if (durationAndCostElement == null) {
       return;
     }
-    for (IExtensionElement duration : additionalDataElement.getElements(TAG_DURATION)) {
+    for (IExtensionElement duration : durationAndCostElement.getElements(TAG_DURATION)) {
       charmDto.durations.add(new DurationReader(duration).read());
     }
   }
 
   private void fillInCost(IExtensionElement typeElement, CharmDto charmDto) {
-    IExtensionElement additionalDataElement = typeElement.getElement(TAG_ADDITIONALDATA);
-    if (additionalDataElement == null) {
+    IExtensionElement durationAndCostElement = typeElement.getElement(TAG_DURATION_AND_COST);
+    if (durationAndCostElement == null) {
       return;
     }
     CostReader costReader = new CostReader();
-    for (IExtensionElement costElement : additionalDataElement.getElements(TAG_COST)) {
+    for (IExtensionElement costElement : durationAndCostElement.getElements(TAG_COST)) {
       charmDto.costs.add(costReader.read(costElement));
     }
   }
