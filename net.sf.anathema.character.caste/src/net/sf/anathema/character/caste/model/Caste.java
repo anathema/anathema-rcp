@@ -20,10 +20,14 @@ public class Caste implements ICaste {
   @Override
   public String getId() {
     String id = element.getAttribute("casteId"); //$NON-NLS-1$
+    assertIdIsNotNull(id);
+    return id;
+  }
+
+  private void assertIdIsNotNull(String id) {
     if (id == null) {
       throw new IllegalStateException("Caste id must be given."); //$NON-NLS-1$
     }
-    return id;
   }
 
   @Override

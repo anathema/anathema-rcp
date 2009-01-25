@@ -29,13 +29,16 @@ public class CasteModelPersister implements IModelPersister<CasteTemplate, ICast
   @Override
   public ICasteModel load(Document document, CasteTemplate template) throws PersistenceException {
     CasteModel casteModel = createNew(template);
-    if (document == null) {
-      return casteModel;
+    if (document != null) {
+      setCasteFromDocument(document, casteModel);
     }
+    return casteModel;
+  }
+
+  private void setCasteFromDocument(Document document, CasteModel casteModel) {
     Element root = document.getRootElement();
     String caste = root.attributeValue(ATTRIB_CASTE);
     casteModel.setCasteById(caste);
-    return casteModel;
   }
 
   @Override
