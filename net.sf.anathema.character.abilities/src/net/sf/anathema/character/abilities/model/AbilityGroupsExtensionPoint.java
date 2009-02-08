@@ -29,7 +29,7 @@ public class AbilityGroupsExtensionPoint {
 
   public TraitGroup[] getTraitGroups(String characterType) {
     IExtensionElement groupListElement = getElementFor(characterType);
-    if (groupListElement != null) {
+    if (groupListElement != IExtensionElement. NO_ELEMENT) {
       return readAllGroups(groupListElement);
     }
     return new DefaultAbilityGroups().get();

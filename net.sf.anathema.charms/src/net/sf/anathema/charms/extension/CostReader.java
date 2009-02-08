@@ -36,7 +36,7 @@ public class CostReader {
 
   private BaseDto readBaseAmount(IExtensionElement resourceElement) {
     IExtensionElement baseElement = resourceElement.getElement(TAG_BASE);
-    if (baseElement == null) {
+    if (baseElement == IExtensionElement.NO_ELEMENT) {
       return null;
     }
     BaseDto dto = new BaseDto();

@@ -32,7 +32,7 @@ public class ExtensionElement implements IExtensionElement {
   public IExtensionElement getElement(String name) {
     IConfigurationElement[] children = eclipseElement.getChildren(name);
     if (children.length == 0) {
-      return null;
+      return NO_ELEMENT;
     }
     return new ExtensionElement(children[0]);
   }

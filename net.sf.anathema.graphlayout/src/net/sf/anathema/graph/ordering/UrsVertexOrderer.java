@@ -3,7 +3,6 @@ package net.sf.anathema.graph.ordering;
 import net.sf.anathema.graph.graph.IProperHierarchicalGraph;
 import net.sf.anathema.graph.nodes.ISimpleNode;
 import net.sf.anathema.graph.nodes.WeightedNode;
-import net.sf.anathema.graph.util.BarycenterCalculator;
 import net.sf.anathema.graph.util.IncidentMatrixUtilities;
 
 public class UrsVertexOrderer extends AbstractVertexOrderer {
@@ -50,9 +49,9 @@ public class UrsVertexOrderer extends AbstractVertexOrderer {
     ISimpleNode[] lowerLayer = graph.getNodesByLayer(upperLayerIndex + 1);
     WeightedNode[] weightedLowerLayerNodes = getWeightedLowerLayerNodes(upperLayer, lowerLayer);
     for (int nodeIndex = 0; nodeIndex + 1 < weightedLowerLayerNodes.length; nodeIndex++) {
-      Double firstNodeWeight = weightedLowerLayerNodes[nodeIndex].getWeight();
-      Double secondNodeWeight = weightedLowerLayerNodes[nodeIndex + 1].getWeight();
-      if (firstNodeWeight != null && secondNodeWeight != null && firstNodeWeight.equals(secondNodeWeight)) {
+      Double firstNodeWeight = weightedLowerLayerNodes[nodeIndex].weight;
+      Double secondNodeWeight = weightedLowerLayerNodes[nodeIndex + 1].weight;
+      if (bothWeightsExist(firstNodeWeight, secondNodeWeight) && firstNodeWeight.equals(secondNodeWeight)) {
         exchangeNodes(weightedLowerLayerNodes, nodeIndex);
         reorderLayer(upperLayerIndex + 1, weightedLowerLayerNodes);
         sortLayerByOutgoingEdgeBarycenter(upperLayerIndex);
@@ -64,14 +63,18 @@ public class UrsVertexOrderer extends AbstractVertexOrderer {
     }
   }
 
+  private boolean bothWeightsExist(Double firstNodeWeight, Double secondNodeWeight) {
+    return firstNodeWeight != WeightedNode.NO_WEIGHT && secondNodeWeight != WeightedNode.NO_WEIGHT;
+  }
+
   private void reorderUpperLayer(int upperLayerIndex) {
     ISimpleNode[] upperLayer = graph.getNodesByLayer(upperLayerIndex);
     ISimpleNode[] lowerLayer = graph.getNodesByLayer(upperLayerIndex + 1);
     WeightedNode[] weightedUpperLayerNodes = getWeightedUpperLayerNodes(upperLayer, lowerLayer);
     for (int nodeIndex = 0; nodeIndex + 1 < weightedUpperLayerNodes.length; nodeIndex++) {
-      Double firstNodeWeight = weightedUpperLayerNodes[nodeIndex].getWeight();
-      Double secondNodeWeight = weightedUpperLayerNodes[nodeIndex + 1].getWeight();
-      if (firstNodeWeight != null && secondNodeWeight != null && firstNodeWeight.equals(secondNodeWeight)) {
+      Double firstNodeWeight = weightedUpperLayerNodes[nodeIndex].weight;
+      Double secondNodeWeight = weightedUpperLayerNodes[nodeIndex + 1].weight;
+      if (bothWeightsExist(firstNodeWeight, secondNodeWeight) && firstNodeWeight.equals(secondNodeWeight)) {
         exchangeNodes(weightedUpperLayerNodes, nodeIndex);
         reorderLayer(upperLayerIndex, weightedUpperLayerNodes);
         sortLayerByIncomingEdgeBarycenter(upperLayerIndex + 1);
@@ -92,7 +95,7 @@ public class UrsVertexOrderer extends AbstractVertexOrderer {
   private void reorderLayer(int layerIndex, WeightedNode[] weightedNodes) {
     ISimpleNode[] sortedLayer = new ISimpleNode[weightedNodes.length];
     for (int nodeIndex = 0; nodeIndex < weightedNodes.length; nodeIndex++) {
-      sortedLayer[nodeIndex] = weightedNodes[nodeIndex].getNode();
+      sortedLayer[nodeIndex] = weightedNodes[nodeIndex].node;
     }
     graph.setNewLayerOrder(layerIndex, sortedLayer);
   }
@@ -102,8 +105,7 @@ public class UrsVertexOrderer extends AbstractVertexOrderer {
     WeightedNode[] weightedNodes = new WeightedNode[upperLayer.length];
     for (int rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
       boolean[] rowVector = matrix[rowIndex];
-      Double vectorCenter = BarycenterCalculator.calculateVectorCenter(rowVector);
-      weightedNodes[rowIndex] = new WeightedNode(upperLayer[rowIndex], vectorCenter);
+      weightedNodes[rowIndex] = WeightedNode.CreateFromNodeAndConnectionVector(upperLayer[rowIndex], rowVector);
     }
     return weightedNodes;
   }
@@ -113,8 +115,7 @@ public class UrsVertexOrderer extends AbstractVertexOrderer {
     WeightedNode[] weightedNodes = new WeightedNode[lowerLayer.length];
     for (int columnIndex = 0; columnIndex < matrix[0].length; columnIndex++) {
       boolean[] columnVector = IncidentMatrixUtilities.getColumnVector(matrix, columnIndex);
-      Double vectorCenter = BarycenterCalculator.calculateVectorCenter(columnVector);
-      weightedNodes[columnIndex] = new WeightedNode(lowerLayer[columnIndex], vectorCenter);
+      weightedNodes[columnIndex] = WeightedNode.CreateFromNodeAndConnectionVector(lowerLayer[columnIndex], columnVector);
     }
     return weightedNodes;
   }

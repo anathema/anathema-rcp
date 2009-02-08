@@ -6,7 +6,7 @@ import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public interface IExtensionElement {
-
+  public static final IExtensionElement NO_ELEMENT = null;
   public String getAttribute(String name);
 
   public <K extends IExecutableExtension> K getAttributeAsObject(String name, Class<K> clazz) throws ExtensionException;

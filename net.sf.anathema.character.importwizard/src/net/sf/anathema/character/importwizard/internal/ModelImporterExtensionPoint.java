@@ -45,7 +45,7 @@ public class ModelImporterExtensionPoint {
 
   private IDocumentConverter createConverter(IExtensionElement element) {
     IExtensionElement javaElement = element.getElement(TAG_JAVACONVERTER);
-    if (javaElement == null) {
+    if (javaElement == IExtensionElement.NO_ELEMENT) {
       return new XslDocumentConverter(element.getElement(TAG_XSLCONVERTER));
     }
     try {
@@ -55,7 +55,7 @@ public class ModelImporterExtensionPoint {
       String message = MessageFormat.format("Failed to instantiate importer class {0}", //$NON-NLS-1$
           javaElement.getAttribute(ATTRIB_CLASS));
       LOGGER.error(message, e);
-      return null;
+      return new NullConverter();
     }
   }
 }

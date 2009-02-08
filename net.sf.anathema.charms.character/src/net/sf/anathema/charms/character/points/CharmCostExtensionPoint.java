@@ -44,7 +44,7 @@ public class CharmCostExtensionPoint {
         ATTRIB_CHARACTER_TYPE,
         characterTypeId);
     IExtensionElement costElement = extensionPoint.getFirst(characterTypePredicate);
-    if (costElement == null) {
+    if (costElement == IExtensionElement. NO_ELEMENT) {
       String pattern = "No charm costs defined for character type {0}.";
       throw new IllegalStateException(MessageFormat.format(pattern, characterTypeId));
     }

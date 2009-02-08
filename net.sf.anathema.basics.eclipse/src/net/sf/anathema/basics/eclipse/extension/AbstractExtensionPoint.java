@@ -14,7 +14,7 @@ public abstract class AbstractExtensionPoint implements IExtensionPoint {
         }
       }
     }
-    return null;
+    return IExtensionElement.NO_ELEMENT;
   }
 
   @Override

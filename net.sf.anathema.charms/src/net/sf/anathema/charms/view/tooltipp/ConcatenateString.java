@@ -2,6 +2,7 @@ package net.sf.anathema.charms.view.tooltipp;
 
 public class ConcatenateString {
 
+  public static final String EMPTY_VALUE = null;
   private final String separator;
   private String result = ""; //$NON-NLS-1$
 
@@ -18,7 +19,7 @@ public class ConcatenateString {
   }
 
   public void concatenate(String value) {
-    if (value == null || value.isEmpty()) {
+    if (value == EMPTY_VALUE || value.isEmpty()) {
       return;
     }
     if (!result.isEmpty()) {

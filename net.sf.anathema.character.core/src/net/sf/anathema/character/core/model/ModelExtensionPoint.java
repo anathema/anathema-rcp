@@ -123,7 +123,7 @@ public class ModelExtensionPoint {
       for (IExtensionElement modelElement : extension.getElements()) {
         IModelDescriptor modelDescriptor = ModelDescriptor.create(modelElement);
         IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
-        if (configurationElement != null && modelDescriptor.isSupportedBy(template)) {
+        if (configurationElement != IExtensionElement.NO_ELEMENT && modelDescriptor.isSupportedBy(template)) {
           supportedElements.add(modelElement);
         }
       }
@@ -137,7 +137,7 @@ public class ModelExtensionPoint {
       return null;
     }
     IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
-    if (configurationElement != null) {
+    if (configurationElement != IExtensionElement.NO_ELEMENT) {
       return createModelDisplayConfiguration(modelElement, configurationElement);
     }
     return null;
@@ -156,7 +156,7 @@ public class ModelExtensionPoint {
     for (IPluginExtension extension : getPluginExtensions()) {
       for (IExtensionElement modelElement : extension.getElements()) {
         IExtensionElement configurationElement = modelElement.getElement(TAG_DISPLAY_CONFIGURATION);
-        if (configurationElement != null) {
+        if (configurationElement != IExtensionElement.NO_ELEMENT) {
           String filenameAttribute = modelElement.getAttribute(ATTRIB_FILENAME);
           if (fileName.equals(filenameAttribute)) {
             return createModelDisplayConfiguration(modelElement, configurationElement);

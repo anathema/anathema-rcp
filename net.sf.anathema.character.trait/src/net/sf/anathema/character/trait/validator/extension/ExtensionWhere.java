@@ -32,7 +32,7 @@ public class ExtensionWhere implements IWhere {
   public boolean evaluate(String templateId, IModelContainer container, String modelId, IBasicTrait trait) {
     List<IWhere> allWheres = new ArrayList<IWhere>();
     IExtensionElement modelElement = element.getElement(TAG_MODEL_ID);
-    if (modelElement != null) {
+    if (modelElement != IExtensionElement.NO_ELEMENT) {
       allWheres.add(new WhereModelId(modelElement.getAttribute(ATTRIB_ID)));
     }
     IExtensionElement traitIdElement = element.getElement(TAG_TRAIT_ID);

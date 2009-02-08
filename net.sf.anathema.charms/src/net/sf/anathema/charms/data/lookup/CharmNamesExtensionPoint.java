@@ -25,7 +25,7 @@ public class CharmNamesExtensionPoint implements INameMap {
 
   public String getNameFor(ICharmId charmId) {
     IExtensionElement charm = extensionPoint.getFirst(new CharmWithId(charmId.getIdPattern()));
-    if (charm == null) {
+    if (charm == IExtensionElement. NO_ELEMENT) {
       return charmId.getId();
     }
     String trait = new TraitMessages().getNameFor(charmId.getPrimaryTrait());

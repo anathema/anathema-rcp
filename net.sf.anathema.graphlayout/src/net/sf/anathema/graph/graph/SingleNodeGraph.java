@@ -23,7 +23,7 @@ public class SingleNodeGraph implements IProperHierarchicalGraph {
     if (layer == 1) {
       return new ISimpleNode[] { node };
     }
-    return null;
+    return new ISimpleNode[0];
   }
 
   public void setNewLayerOrder(final int layer, final ISimpleNode[] orderedNodes) {

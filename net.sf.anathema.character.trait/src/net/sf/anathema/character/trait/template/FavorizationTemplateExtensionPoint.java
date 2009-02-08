@@ -22,9 +22,13 @@ public class FavorizationTemplateExtensionPoint {
   }
 
   public IFavorizationTemplate readTemplate(final String templateId) {
-    FavorizationTemplateElementPredicate elementPredicate = FavorizationTemplateElementPredicate.ForTemplateAndModelId(templateId, modelId);
+    FavorizationTemplateElementPredicate elementPredicate = FavorizationTemplateElementPredicate.ForTemplateAndModelId(
+        templateId,
+        modelId);
     IExtensionElement templateElement = extensionPoint.getFirst(elementPredicate);
-    return templateElement == null ? new FavorizationTemplate(0) : readTemplate(templateElement);
+    return templateElement == IExtensionElement.NO_ELEMENT
+        ? new FavorizationTemplate(0)
+        : readTemplate(templateElement);
   }
 
   private IFavorizationTemplate readTemplate(IExtensionElement element) {

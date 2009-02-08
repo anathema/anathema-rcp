@@ -37,7 +37,7 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
   @Override
   public CharmDto getData(ICharmId charmId) {
     IExtensionElement extensionElement = getExtensionElement(charmId);
-    if (extensionElement == null) {
+    if (extensionElement == IExtensionElement. NO_ELEMENT) {
       return null;
     }
     CharmDto charmDto = new CharmDto();
@@ -66,7 +66,7 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
 
   private void fillInDuration(IExtensionElement typeElement, CharmDto charmDto) {
     IExtensionElement durationAndCostElement = typeElement.getElement(TAG_DURATION_AND_COST);
-    if (durationAndCostElement == null) {
+    if (durationAndCostElement == IExtensionElement.NO_ELEMENT) {
       return;
     }
     for (IExtensionElement duration : durationAndCostElement.getElements(TAG_DURATION)) {
@@ -76,7 +76,7 @@ public class CharmDataExtensionPoint extends AbstractExecutableExtension impleme
 
   private void fillInCost(IExtensionElement typeElement, CharmDto charmDto) {
     IExtensionElement durationAndCostElement = typeElement.getElement(TAG_DURATION_AND_COST);
-    if (durationAndCostElement == null) {
+    if (durationAndCostElement == IExtensionElement.NO_ELEMENT) {
       return;
     }
     CostReader costReader = new CostReader();

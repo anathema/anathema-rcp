@@ -114,7 +114,7 @@ public class DisplayCharm {
       builder.append(primitive.trait.unit);
       return builder.toString();
     }
-    return null;
+    return ConcatenateString.EMPTY_VALUE;
   }
 
   private String createMinimumText(DurationDto duration) {

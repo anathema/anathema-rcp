@@ -10,7 +10,6 @@ import net.sf.anathema.graph.graph.IProperHierarchicalGraph;
 import net.sf.anathema.graph.nodes.ISimpleNode;
 import net.sf.anathema.graph.nodes.WeightedNode;
 import net.sf.anathema.graph.nodes.WeightedNodeComparator;
-import net.sf.anathema.graph.util.BarycenterCalculator;
 import net.sf.anathema.graph.util.IncidentMatrixUtilities;
 import net.sf.anathema.lib.collection.MultiEntryMap;
 
@@ -28,8 +27,7 @@ public abstract class AbstractVertexOrderer implements IVertexOrderer {
     WeightedNode[] weightedNodes = new WeightedNode[lowerLayer.length];
     for (int columnIndex = 0; columnIndex < matrix[0].length; columnIndex++) {
       boolean[] columnVector = IncidentMatrixUtilities.getColumnVector(matrix, columnIndex);
-      Double vectorCenter = BarycenterCalculator.calculateVectorCenter(columnVector);
-      weightedNodes[columnIndex] = new WeightedNode(lowerLayer[columnIndex], vectorCenter);
+      weightedNodes[columnIndex] = WeightedNode.CreateFromNodeAndConnectionVector(lowerLayer[columnIndex], columnVector);
     }
     return weightedNodes;
   }
@@ -39,8 +37,7 @@ public abstract class AbstractVertexOrderer implements IVertexOrderer {
     WeightedNode[] weightedNodes = new WeightedNode[upperLayer.length];
     for (int rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
       boolean[] rowVector = matrix[rowIndex];
-      Double vectorCenter = BarycenterCalculator.calculateVectorCenter(rowVector);
-      weightedNodes[rowIndex] = new WeightedNode(upperLayer[rowIndex], vectorCenter);
+      weightedNodes[rowIndex] = WeightedNode.CreateFromNodeAndConnectionVector(upperLayer[rowIndex], rowVector);
     }
     return weightedNodes;
   }
@@ -48,7 +45,7 @@ public abstract class AbstractVertexOrderer implements IVertexOrderer {
   private void setLayerOrder(int layerIndex, WeightedNode[] weightedNodes) {
     ISimpleNode[] sortedLayer = new ISimpleNode[weightedNodes.length];
     for (int nodeIndex = 0; nodeIndex < weightedNodes.length; nodeIndex++) {
-      sortedLayer[nodeIndex] = weightedNodes[nodeIndex].getNode();
+      sortedLayer[nodeIndex] = weightedNodes[nodeIndex].node;
     }
     graph.setNewLayerOrder(layerIndex, sortedLayer);
   }
@@ -92,8 +89,8 @@ public abstract class AbstractVertexOrderer implements IVertexOrderer {
   protected MultiEntryMap<Double, Integer> getWeightSeparation(WeightedNode[] weightedLayerNodes) {
     MultiEntryMap<Double, Integer> nodeIndicesByWeight = new MultiEntryMap<Double, Integer>();
     for (int index = 0; index < weightedLayerNodes.length; index++) {
-      Double weight = weightedLayerNodes[index].getWeight();
-      if (weight != null) {
+      Double weight = weightedLayerNodes[index].weight;
+      if (weight != WeightedNode.NO_WEIGHT) {
         nodeIndicesByWeight.add(weight, index);
       }
       else {
@@ -121,4 +118,4 @@ public abstract class AbstractVertexOrderer implements IVertexOrderer {
       weightedLayerNodes[permutatedIndex] = nodesByOriginalIndex.get(originalIndex);
     }
   }
- }
+}

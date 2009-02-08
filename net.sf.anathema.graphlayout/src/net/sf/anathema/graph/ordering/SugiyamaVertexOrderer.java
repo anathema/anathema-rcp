@@ -47,8 +47,8 @@ public class SugiyamaVertexOrderer extends AbstractVertexOrderer {
   private boolean isMonoton(WeightedNode[] weightedLowerLayerNodes) {
     Double weight = new Double(Integer.MIN_VALUE);
     for (WeightedNode node : weightedLowerLayerNodes) {
-      Double currentWeight = node.getWeight();
-      if (currentWeight == null) {
+      Double currentWeight = node.weight;
+      if (currentWeight == WeightedNode.NO_WEIGHT) {
         continue;
       }
       if (currentWeight < weight) {

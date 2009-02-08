@@ -59,7 +59,7 @@ public class CharmTreeExtensionPoint extends AbstractExecutableExtension impleme
     IExtensionElement treeElement = extensionProvider.getFirst(new TreeWithId(id));
     TreeDto dto = new TreeDto();
     dto.id = id;
-    if (treeElement == null) {
+    if (treeElement == IExtensionElement. NO_ELEMENT) {
       dto.name = id;
       return dto;
     }

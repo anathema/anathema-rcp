@@ -5,7 +5,6 @@ import java.util.List;
 import net.sf.anathema.graph.graph.IProperHierarchicalGraph;
 import net.sf.anathema.graph.nodes.ISimpleNode;
 import net.sf.anathema.graph.nodes.WeightedNode;
-import net.sf.anathema.graph.util.BarycenterCalculator;
 import net.sf.anathema.graph.util.IncidentMatrixUtilities;
 import net.sf.anathema.lib.collection.ArrayUtilities;
 import net.sf.anathema.lib.collection.MultiEntryMap;
@@ -101,7 +100,7 @@ public class SandraVertexOrderer extends AbstractVertexOrderer {
   private void reorderLayer(int layerIndex, WeightedNode[] weightedNodes) {
     ISimpleNode[] sortedLayer = new ISimpleNode[weightedNodes.length];
     for (int nodeIndex = 0; nodeIndex < weightedNodes.length; nodeIndex++) {
-      sortedLayer[nodeIndex] = weightedNodes[nodeIndex].getNode();
+      sortedLayer[nodeIndex] = weightedNodes[nodeIndex].node;
     }
     graph.setNewLayerOrder(layerIndex, sortedLayer);
   }
@@ -111,8 +110,7 @@ public class SandraVertexOrderer extends AbstractVertexOrderer {
     WeightedNode[] weightedNodes = new WeightedNode[upperLayer.length];
     for (int rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
       boolean[] rowVector = matrix[rowIndex];
-      Double vectorCenter = BarycenterCalculator.calculateVectorCenter(rowVector);
-      weightedNodes[rowIndex] = new WeightedNode(upperLayer[rowIndex], vectorCenter);
+      weightedNodes[rowIndex] = WeightedNode.CreateFromNodeAndConnectionVector(upperLayer[rowIndex], rowVector);
     }
     return weightedNodes;
   }
@@ -122,8 +120,7 @@ public class SandraVertexOrderer extends AbstractVertexOrderer {
     WeightedNode[] weightedNodes = new WeightedNode[lowerLayer.length];
     for (int columnIndex = 0; columnIndex < matrix[0].length; columnIndex++) {
       boolean[] columnVector = IncidentMatrixUtilities.getColumnVector(matrix, columnIndex);
-      Double vectorCenter = BarycenterCalculator.calculateVectorCenter(columnVector);
-      weightedNodes[columnIndex] = new WeightedNode(lowerLayer[columnIndex], vectorCenter);
+      weightedNodes[columnIndex] = WeightedNode.CreateFromNodeAndConnectionVector(lowerLayer[columnIndex], columnVector);
     }
     return weightedNodes;
   }
