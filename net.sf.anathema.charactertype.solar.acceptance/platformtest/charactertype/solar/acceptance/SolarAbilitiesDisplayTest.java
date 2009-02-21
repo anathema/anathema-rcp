@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
+import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
+import net.sf.anathema.character.acceptance.TraitInteractionUtilties;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -22,8 +24,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import abilities.integration.AbilitiesInteractionUtilties;
-
 public class SolarAbilitiesDisplayTest {
 
   private static IFolder folder;
@@ -34,7 +34,7 @@ public class SolarAbilitiesDisplayTest {
     new CharacterFactory().createNewCharacter(IIntegrationConstants.DEFAULT_TEMPLATE, "Solar"); //$NON-NLS-1$
     IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
     folder = project.getFolder("Solar"); //$NON-NLS-1$
-    groups = AbilitiesInteractionUtilties.createDisplayGroups(folder);
+    groups = TraitInteractionUtilties.createDisplayGroups(folder, IAbilitiesPluginConstants.MODEL_ID);
   }
 
   @Test

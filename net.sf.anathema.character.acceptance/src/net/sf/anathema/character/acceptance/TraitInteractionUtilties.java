@@ -1,10 +1,9 @@
-package abilities.integration;
+package net.sf.anathema.character.acceptance;
 
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
-import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelContainer;
@@ -20,7 +19,7 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 
-public class AbilitiesInteractionUtilties {
+public class TraitInteractionUtilties {
 
   private static final class DummyProvider implements IDisplayNameProvider {
     @Override
@@ -42,15 +41,12 @@ public class AbilitiesInteractionUtilties {
     }
   }
 
-  public static List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups(final IFolder folder)
+  public static List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups(final IFolder folder, String modelId)
       throws PersistenceException,
       CoreException,
       ExtensionException {
-    String modelId = IAbilitiesPluginConstants.MODEL_ID;
     ModelExtensionPoint extensionPoint = new ModelExtensionPoint();
     IModelDisplayConfiguration displayConfiguration = extensionPoint.getDisplayConfiguration(modelId);
-    return ((TraitCollectionEditorInput) displayConfiguration.createEditorInput(
-        folder,
-        new DummyProvider())).createDisplayGroups();
+    return ((TraitCollectionEditorInput) displayConfiguration.createEditorInput(folder, new DummyProvider())).createDisplayGroups();
   }
 }

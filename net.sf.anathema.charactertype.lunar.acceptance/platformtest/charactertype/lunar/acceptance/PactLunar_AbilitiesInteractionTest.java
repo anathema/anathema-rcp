@@ -8,6 +8,7 @@ import java.util.List;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.acceptance.AcceptanceCharacterUtilities;
 import net.sf.anathema.character.acceptance.AcceptanceTraitUtilities;
+import net.sf.anathema.character.acceptance.TraitInteractionUtilties;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -23,8 +24,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abilities.integration.AbilitiesInteractionUtilties;
-
 public class PactLunar_AbilitiesInteractionTest {
 
   private IFolder folder;
@@ -36,7 +35,7 @@ public class PactLunar_AbilitiesInteractionTest {
   @Before
   public void createLunarFolder() throws Exception {
     folder = AcceptanceCharacterUtilities.createCharacterFolder(ILunarAcceptanceConstants.PACT_LUNAR_ID, "Lunar"); //$NON-NLS-1$
-    interactiveAbilities = AbilitiesInteractionUtilties.createDisplayGroups(folder);
+    interactiveAbilities = TraitInteractionUtilties.createDisplayGroups(folder, IAbilitiesPluginConstants.MODEL_ID);
     abilities = (ITraitCollectionModel) ModelCache.getInstance().getModel(
         new ModelIdentifier(new CharacterId(folder), IAbilitiesPluginConstants.MODEL_ID));
     interactiveSurvival = AcceptanceTraitUtilities.extract(interactiveAbilities, "Survival"); //$NON-NLS-1$

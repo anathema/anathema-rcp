@@ -2,21 +2,15 @@ package charactertype.solar.acceptance;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-
-import java.util.List;
-
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.acceptance.AcceptanceCharacter;
+import net.sf.anathema.character.acceptance.InteractionTraitList;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
-import net.sf.anathema.character.trait.status.FavoredStatus;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import abilities.integration.AbilitiesInteractionUtilties;
 
 public class SolarInteractive_FavoredAbilityTest {
 
@@ -26,10 +20,9 @@ public class SolarInteractive_FavoredAbilityTest {
   @Before
   public void createSolarFolderWithFirstAttributeFavored() throws Exception {
     this.character = AcceptanceCharacter.FromFolderNameAndTemplateId("Solar", IIntegrationConstants.DEFAULT_TEMPLATE); //$NON-NLS-1$
-    List<IDisplayTraitGroup<IInteractiveTrait>> groups = AbilitiesInteractionUtilties.createDisplayGroups(character.getFolder());
-    favoredAbility = groups.get(0).iterator().next();
     ITraitCollectionModel abilities = (ITraitCollectionModel) character.getModel(IAbilitiesPluginConstants.MODEL_ID);
-    abilities.getTrait(favoredAbility.getTraitType().getId()).getStatusManager().setStatus(new FavoredStatus());
+    InteractionTraitList groups = character.createTraitInteraction(IAbilitiesPluginConstants.MODEL_ID);
+    favoredAbility = groups.setTraitFavoredAndReturn(abilities, 0, 0);
     assertThat(favoredAbility.getFavorization().isFavored(), is(true));
   }
 

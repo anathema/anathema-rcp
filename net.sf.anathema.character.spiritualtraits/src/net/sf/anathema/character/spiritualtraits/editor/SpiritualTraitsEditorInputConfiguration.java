@@ -1,0 +1,29 @@
+package net.sf.anathema.character.spiritualtraits.editor;
+
+import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
+import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.groupeditor.IEditorInputConfiguration;
+import net.sf.anathema.lib.util.IIdentificate;
+
+public class SpiritualTraitsEditorInputConfiguration implements IEditorInputConfiguration {
+
+  @Override
+  public String getModelId() {
+    return IPluginConstants.MODEL_ID;
+  }
+
+  @Override
+  public String getGroupLabel(IDisplayTraitGroup< ? > group) {
+    return group.getLabel();
+  }
+
+  @Override
+  public String getTraitLabel(IIdentificate traitType) {
+    return traitType.getId();
+  }
+
+  @Override
+  public boolean supportsSubTraits() {
+    return false;
+  }
+}

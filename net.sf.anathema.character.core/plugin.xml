@@ -72,7 +72,11 @@
          </modelReference>
          <modelReference
                modelId="net.sf.anathema.character.abilities.model">
-         </modelReference></modelList>
+         </modelReference>
+          <modelReference
+               modelId="net.sf.anathema.character.spiritualtraits.model">
+         </modelReference>
+         </modelList>
       <modelList
             id="net.sf.anathema.character.essenceUser.modelList">
          <listReference

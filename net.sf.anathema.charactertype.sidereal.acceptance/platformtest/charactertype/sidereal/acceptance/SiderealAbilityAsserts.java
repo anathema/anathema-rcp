@@ -1,12 +1,13 @@
 package charactertype.sidereal.acceptance;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.acceptance.AcceptanceTraitUtilities;
+import net.sf.anathema.character.acceptance.TraitInteractionUtilties;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -17,8 +18,6 @@ import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
-
-import abilities.integration.AbilitiesInteractionUtilties;
 
 public class SiderealAbilityAsserts {
 
@@ -196,12 +195,13 @@ public class SiderealAbilityAsserts {
     assertHasTraitValueOf(folder, "War", 0); //$NON-NLS-1$
   }
 
-  public static void assertAlternateMinimum(
-      IFolder folder,
-      String defaultMinimum,
-      String alternateMinimum,
-      int value) throws PersistenceException, CoreException, ExtensionException {
-    List<IDisplayTraitGroup<IInteractiveTrait>> abilities = AbilitiesInteractionUtilties.createDisplayGroups(folder);
+  public static void assertAlternateMinimum(IFolder folder, String defaultMinimum, String alternateMinimum, int value)
+      throws PersistenceException,
+      CoreException,
+      ExtensionException {
+    List<IDisplayTraitGroup<IInteractiveTrait>> abilities = TraitInteractionUtilties.createDisplayGroups(
+        folder,
+        IAbilitiesPluginConstants.MODEL_ID);
     IInteractiveTrait defaultTrait = AcceptanceTraitUtilities.extract(abilities, defaultMinimum);
     IInteractiveTrait alternateTrait = AcceptanceTraitUtilities.extract(abilities, alternateMinimum);
     alternateTrait.setValue(value);

@@ -1,9 +1,8 @@
 package net.sf.anathema.character.attributes.model;
 
-import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.trait.collection.ITraitCollectionTemplateProvider;
 import net.sf.anathema.character.trait.groupeditor.AbstractTraitCollectionEditorInputFactory;
 import net.sf.anathema.character.trait.groupeditor.IEditorInputConfiguration;
-import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 
 public class AttributeEditorInputFactory extends AbstractTraitCollectionEditorInputFactory {
 
@@ -13,7 +12,7 @@ public class AttributeEditorInputFactory extends AbstractTraitCollectionEditorIn
   }
 
   @Override
-  protected ITraitCollectionTemplate createTraitCollectionTemplate(ICharacterTemplate characterTemplate) {
-    return new AttributesTemplateProvider().getTraitTemplate(characterTemplate.getId());
+  public ITraitCollectionTemplateProvider getTraitTemplateProvider() {
+    return new AttributesTemplateProvider();
   }
 }

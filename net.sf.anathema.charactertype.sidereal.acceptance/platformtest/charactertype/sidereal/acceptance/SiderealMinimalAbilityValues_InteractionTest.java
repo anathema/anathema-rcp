@@ -1,7 +1,9 @@
 package charactertype.sidereal.acceptance;
 
+import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.acceptance.AcceptanceCasteUtilities;
 import net.sf.anathema.character.acceptance.AcceptanceCharacterUtilities;
+import net.sf.anathema.character.acceptance.TraitInteractionUtilties;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
@@ -11,8 +13,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import abilities.integration.AbilitiesInteractionUtilties;
 
 public class SiderealMinimalAbilityValues_InteractionTest {
 
@@ -92,7 +92,9 @@ public class SiderealMinimalAbilityValues_InteractionTest {
   }
 
   private void reduceAllValuesByOne() throws Exception {
-    for (IDisplayTraitGroup<IInteractiveTrait> group : AbilitiesInteractionUtilties.createDisplayGroups(folder)) {
+    for (IDisplayTraitGroup<IInteractiveTrait> group : TraitInteractionUtilties.createDisplayGroups(
+        folder,
+        IAbilitiesPluginConstants.MODEL_ID)) {
       for (IInteractiveTrait trait : group) {
         trait.setValue(trait.getValue() - 1);
       }

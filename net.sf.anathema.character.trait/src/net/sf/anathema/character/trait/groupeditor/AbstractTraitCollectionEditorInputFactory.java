@@ -14,6 +14,7 @@ import net.sf.anathema.character.core.repository.IEditorInputFactory;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.FavorizationInteraction;
+import net.sf.anathema.character.trait.collection.ITraitCollectionTemplateProvider;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
@@ -23,7 +24,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IEditorInput;
 
-public abstract class AbstractTraitCollectionEditorInputFactory extends AbstractExecutableExtension implements IEditorInputFactory {
+public abstract class AbstractTraitCollectionEditorInputFactory extends AbstractExecutableExtension implements
+    IEditorInputFactory {
 
   @Override
   public final IEditorInput create(
@@ -59,7 +61,11 @@ public abstract class AbstractTraitCollectionEditorInputFactory extends Abstract
     return new FavorizationInteraction(modelContainer, favorizationTemplate, modelId);
   }
 
-  protected abstract ITraitCollectionTemplate createTraitCollectionTemplate(ICharacterTemplate template);
-
   protected abstract IEditorInputConfiguration createEditorInputConfiguration();
+
+  protected abstract ITraitCollectionTemplateProvider getTraitTemplateProvider();
+
+  private final ITraitCollectionTemplate createTraitCollectionTemplate(ICharacterTemplate characterTemplate) {
+    return getTraitTemplateProvider().getTraitTemplate(characterTemplate.getId());
+  }
 }

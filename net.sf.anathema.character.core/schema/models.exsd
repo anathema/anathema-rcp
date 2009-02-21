@@ -69,7 +69,7 @@
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="filename" type="string">
+         <attribute name="filename" type="string" use="required">
             <annotation>
                <documentation>
                   

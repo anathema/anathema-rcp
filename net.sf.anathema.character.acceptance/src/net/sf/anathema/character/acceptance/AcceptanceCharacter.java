@@ -45,4 +45,8 @@ public class AcceptanceCharacter {
   public ICharacterTemplate getTemplate() {
     return new CharacterTemplateProvider().getTemplate(characterId);
   }
+
+  public InteractionTraitList createTraitInteraction(String modelId) throws Exception {
+    return new InteractionTraitList(TraitInteractionUtilties.createDisplayGroups(getFolder(), modelId));
+  }
 }
