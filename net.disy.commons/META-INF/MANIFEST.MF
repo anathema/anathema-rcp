@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: disy Commons
+Bundle-Name: %Bundle-Name.0
 Bundle-SymbolicName: net.disy.commons
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -30,3 +30,4 @@ Export-Package: net.disy.commons.core.adaptable,
  net.disy.commons.core.thread,
  net.disy.commons.core.transformer,
  net.disy.commons.core.util
+Bundle-Localization: plugin
