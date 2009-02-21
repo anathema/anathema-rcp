@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 @SuppressWarnings("nls")
-public class SolarEssenceTest extends AbstractDynastDbTest {
+public class DynastDbEssence_Test extends AbstractDynastDbTest {
 
   private InteractionTraitList traitList;
 
@@ -32,6 +32,15 @@ public class SolarEssenceTest extends AbstractDynastDbTest {
     int startValue = essence.getValue();
     essence.setValue(startValue - 1);
     assertThat(essence.getValue(), is(startValue));
+  }
+
+  @Test
+  public void canRaiseEssenceAboveStartValue() throws Exception {
+    IInteractiveTrait essence = getEssenceTrait();
+    int startValue = essence.getValue();
+    int targetValue = startValue + 1;
+    essence.setValue(targetValue);
+    assertThat(essence.getValue(), is(targetValue));
   }
 
   private IInteractiveTrait getEssenceTrait() {
