@@ -95,5 +95,21 @@
             modelId="net.sf.anathema.character.abilities.model">
       </traitmodel>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.validator">
+      <validator>
+         <condition>
+            <where>
+               <characterType
+                     id="net.sf.anathema.character.type.mortal">
+               </characterType>
+            </where>
+         </condition>
+         <maximum
+               traitId="Essence"
+               value="1">
+         </maximum>
+      </validator>
+   </extension>
 
 </plugin>

@@ -34,6 +34,14 @@ public class HeroicMortalEssenceTest extends AbstractHeroicMortalTest {
     assertThat(essence.getValue(), is(startValue));
   }
 
+  @Test
+  public void cannotRaiseEssenceAboveStartValue() throws Exception {
+    IInteractiveTrait essence = getEssenceTrait();
+    int startValue = essence.getValue();
+    essence.setValue(startValue + 1);
+    assertThat(essence.getValue(), is(startValue));
+  }
+
   private IInteractiveTrait getEssenceTrait() {
     return traitList.getTrait(new Identificate("Essence"));
   }

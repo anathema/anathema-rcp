@@ -66,6 +66,25 @@
       </complexType>
    </element>
 
+   <element name="maximum">
+      <complexType>
+         <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="traitId" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
    <element name="validator">
       <complexType>
          <sequence>
@@ -73,6 +92,7 @@
             <choice minOccurs="1" maxOccurs="unbounded">
                <element ref="minimum"/>
                <element ref="alternateMinimum"/>
+               <element ref="maximum"/>
             </choice>
          </sequence>
       </complexType>
@@ -93,6 +113,7 @@
             <element ref="modelContent"/>
             <element ref="modelId"/>
             <element ref="templateId"/>
+            <element ref="characterType"/>
          </choice>
       </complexType>
    </element>

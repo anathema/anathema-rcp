@@ -15,6 +15,7 @@ public class ConditionalFactory implements IValidatorFactory {
 
   private static final String TAG_ALTERNATE_MINIMUM = "alternateMinimum"; //$NON-NLS-1$
   private static final String TAG_MINIMUM = "minimum"; //$NON-NLS-1$
+  private static final String TAG_MAXIMUM = "maximum"; //$NON-NLS-1$
   private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
   private static final String ATTRIB_TRAIT_ID = "traitId"; //$NON-NLS-1$
   private final IExtensionElement validatorElement;
@@ -30,6 +31,7 @@ public class ConditionalFactory implements IValidatorFactory {
     List<IValidator> unconditionedValidators = new ArrayList<IValidator>();
     IBasicTrait trait = validationObject.trait;
     addMinimumValidators(unconditionedValidators, trait);
+    addMaximumValidators(unconditionedValidators, trait);
     ITraitCollectionModel traitCollection = (ITraitCollectionModel) validationObject.container.getModel(validationObject.modelId);
     addAlternateMinimumValidators(unconditionedValidators, traitCollection, trait);
     List<IValidator> conditionedValidators = new ArrayList<IValidator>();
@@ -59,11 +61,27 @@ public class ConditionalFactory implements IValidatorFactory {
   }
 
   private void addMinimumValidators(List<IValidator> list, IBasicTrait trait) {
-    for (IExtensionElement minimumElement : validatorElement.getElements(TAG_MINIMUM)) {
-      String traitId = minimumElement.getAttribute(ATTRIB_TRAIT_ID);
+    IExtensionElement[] minimumElements = validatorElement.getElements(TAG_MINIMUM);
+    for (IExtensionElement element : getElementsForTrait(minimumElements, trait)) {
+      list.add(new ValidateMinimalValue(element.getIntegerAttribute(ATTRIB_VALUE)));
+    }
+  }
+
+  private void addMaximumValidators(List<IValidator> list, IBasicTrait trait) {
+    IExtensionElement[] maximumElements = validatorElement.getElements(TAG_MAXIMUM);
+    for (IExtensionElement element : getElementsForTrait(maximumElements, trait)) {
+      list.add(new ValidateMaximalValue(element.getIntegerAttribute(ATTRIB_VALUE)));
+    }
+  }
+
+  private List<IExtensionElement> getElementsForTrait(IExtensionElement[] elements, IBasicTrait trait) {
+    List<IExtensionElement> traitElements = new ArrayList<IExtensionElement>();
+    for (IExtensionElement element : elements) {
+      String traitId = element.getAttribute(ATTRIB_TRAIT_ID);
       if (traitId == null || trait.getTraitType().getId().equals(traitId)) {
-        list.add(new ValidateMinimalValue(minimumElement.getIntegerAttribute(ATTRIB_VALUE)));
+        traitElements.add(element);
       }
     }
+    return traitElements;
   }
 }
