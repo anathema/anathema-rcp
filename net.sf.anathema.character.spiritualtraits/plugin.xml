@@ -40,6 +40,19 @@
                value="1">
          </minimum>
       </validator>
+      <validator>
+         <condition>
+            <wherenot>
+               <characterType
+                     id="net.sf.anathema.character.type.mortal">
+               </characterType>
+            </wherenot>
+         </condition>
+         <minimum
+               traitId="Essence"
+               value="2">
+         </minimum>
+      </validator>
    </extension>
 
 </plugin>

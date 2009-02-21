@@ -1,4 +1,4 @@
-package charactertype.solar.acceptance;
+package charactertype.sidereal.acceptance;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 @SuppressWarnings("nls")
-public class SolarEssenceTest extends AbstractDefaultSolarTest {
+public class SiderealEssenceTest extends AbstractDefaultSiderealTest {
 
   private InteractionTraitList traitList;
 

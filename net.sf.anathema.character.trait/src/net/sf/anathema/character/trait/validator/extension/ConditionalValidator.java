@@ -1,37 +1,24 @@
 package net.sf.anathema.character.trait.validator.extension;
 
-import net.sf.anathema.character.core.character.IModelContainer;
-import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.character.trait.validator.where.IWhere;
+import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
 public class ConditionalValidator implements IValidator {
 
   private final IValidator validator;
   private final IWhere where;
-  private final String templateId;
-  private final IModelContainer modelContainer;
-  private final String modelId;
-  private final IBasicTrait trait;
+  private final ValidationDto validationObject;
 
-  public ConditionalValidator(
-      IValidator validator,
-      IWhere where,
-      String templateId,
-      IModelContainer modelContainer,
-      String modelId,
-      IBasicTrait trait) {
+  public ConditionalValidator(IValidator validator, IWhere where, ValidationDto validationObject) {
     this.validator = validator;
     this.where = where;
-    this.templateId = templateId;
-    this.modelContainer = modelContainer;
-    this.modelId = modelId;
-    this.trait = trait;
+    this.validationObject = validationObject;
   }
 
   @Override
   public int getValidValue(int value) {
-    if (where.evaluate(templateId, modelContainer, modelId, trait)) {
+    if (where.evaluate(validationObject)) {
       return validator.getValidValue(value);
     }
     return value;

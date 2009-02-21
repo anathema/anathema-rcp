@@ -2,6 +2,7 @@ package net.sf.anathema.character.trait.collection;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModelFactory;
 import net.sf.anathema.character.core.model.IModelInitializer;
@@ -19,13 +20,14 @@ public abstract class AbstractTraitCollectionFactory extends
   private final IModelPersister<ITraitCollectionTemplate, ITraitCollectionModel> persister = new TraitCollectionPersister();
 
   @Override
-  public final IModelInitializer createInitializer(
-      IContentHandle contentHandler,
-      final ICharacterTemplate template,
-      final IModelIdentifier identifier) throws PersistenceException, CoreException {
-    final ITraitCollectionModel model = create(contentHandler, template);
+  public IModelInitializer createInitializer(
+      IContentHandle handle,
+      ICharacterTemplate template,
+      ICharacterType characterType,
+      IModelIdentifier identifier) throws PersistenceException, CoreException {
+    final ITraitCollectionModel model = create(handle, template);
     final ITraitCollectionTemplate modelTemplate = createModelTemplate(template);
-    return new TraitCollectionModelInitializer(model, contentHandler, identifier, template, modelTemplate);
+    return new TraitCollectionModelInitializer(model, handle, identifier, template, modelTemplate, characterType);
   }
 
   @Override

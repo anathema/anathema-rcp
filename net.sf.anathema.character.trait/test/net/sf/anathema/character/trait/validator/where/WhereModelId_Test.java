@@ -14,14 +14,20 @@ public class WhereModelId_Test {
   public void createWhereModelId() throws Exception {
     this.where = new WhereModelId(TEST_MODEL_ID);
   }
-  
+
   @Test
   public void evaluatesEqualModelIdTrue() throws Exception {
-    assertTrue(where.evaluate(null, null, TEST_MODEL_ID, null));
+    assertTrue(where.evaluate(createDto(TEST_MODEL_ID)));
   }
-  
+
   @Test
   public void evaluatesOtherModelIdFalse() throws Exception {
-    assertFalse(where.evaluate(null, null, "other.test.model.id", null)); //$NON-NLS-1$
+    assertFalse(where.evaluate(createDto("other.test.model.id"))); //$NON-NLS-1$
+  }
+
+  private ValidationDto createDto(String modelId) {
+    ValidationDto dto = new ValidationDto();
+    dto.modelId = modelId;
+    return dto;
   }
 }

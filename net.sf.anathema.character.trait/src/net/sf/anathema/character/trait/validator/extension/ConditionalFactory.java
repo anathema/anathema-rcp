@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.character.trait.validator.IValidatorFactory;
 import net.sf.anathema.character.trait.validator.where.IWhere;
+import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
 public class ConditionalFactory implements IValidatorFactory {
 
@@ -26,13 +26,15 @@ public class ConditionalFactory implements IValidatorFactory {
   }
 
   @Override
-  public List<IValidator> create(String templateId, IModelContainer container, String modelId, IBasicTrait trait) {
+  public List<IValidator> create(ValidationDto validationObject) {
     List<IValidator> unconditionedValidators = new ArrayList<IValidator>();
+    IBasicTrait trait = validationObject.trait;
     addMinimumValidators(unconditionedValidators, trait);
-    addAlternateMinimumValidators(unconditionedValidators, (ITraitCollectionModel) container.getModel(modelId), trait);
+    ITraitCollectionModel traitCollection = (ITraitCollectionModel) validationObject.container.getModel(validationObject.modelId);
+    addAlternateMinimumValidators(unconditionedValidators, traitCollection, trait);
     List<IValidator> conditionedValidators = new ArrayList<IValidator>();
     for (IValidator validator : unconditionedValidators) {
-      conditionedValidators.add(new ConditionalValidator(validator, whereClause, templateId, container, modelId, trait));
+      conditionedValidators.add(new ConditionalValidator(validator, whereClause, validationObject));
     }
     return conditionedValidators;
   }

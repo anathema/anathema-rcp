@@ -6,33 +6,30 @@ import java.util.List;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
-import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 import net.sf.anathema.character.trait.validator.extension.ConditionalFactory;
-import net.sf.anathema.character.trait.validator.extension.ExtensionWhere;
-import net.sf.anathema.character.trait.validator.where.AllWhere;
+import net.sf.anathema.character.trait.validator.extension.ExtensionWhereFactory;
 import net.sf.anathema.character.trait.validator.where.IWhere;
+import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
 public class ValidatorFactory implements IValidatorFactory {
 
   private static final String EXTENSION_POINT = "validator"; //$NON-NLS-1$
   private static final String TAG_CONDITION = "condition"; //$NON-NLS-1$
-  private static final String TAG_WHERE = "where"; //$NON-NLS-1$
 
   @Override
-  public List<IValidator> create(String templateId, IModelContainer container, String modelId, IBasicTrait trait) {
-    IExperience experience = (IExperience) container.getModel(IExperience.MODEL_ID);
+  public List<IValidator> create(ValidationDto dto) {
+    IExperience experience = (IExperience) dto.container.getModel(IExperience.MODEL_ID);
     List<IValidator> validators = new ArrayList<IValidator>();
-    validators.add(new RespectCreationValueMinimum(experience, trait));
-    validators.add(new RespectFavoredMinimum(trait));
-    validators.add(new SubTraitValidator(experience, (ITraitCollectionModel) container.getModel(modelId), trait));
+    validators.add(new RespectCreationValueMinimum(experience, dto.trait));
+    validators.add(new RespectFavoredMinimum(dto.trait));
+    validators.add(new SubTraitValidator(experience, (ITraitCollectionModel) dto.getModel(), dto.trait));
     validators.add(new RespectValueMaximum(experience));
     for (IPluginExtension extension : new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, EXTENSION_POINT).getExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
-        addConfiguredValidators(validators, extensionElement, templateId, container, modelId, trait);
+        addConfiguredValidators(validators, extensionElement, dto);
       }
     }
     return validators;
@@ -41,20 +38,13 @@ public class ValidatorFactory implements IValidatorFactory {
   private void addConfiguredValidators(
       List<IValidator> validators,
       IExtensionElement validatorElement,
-      String templateId,
-      IModelContainer container,
-      String modelId,
-      IBasicTrait trait) {
-    AllWhere whereClause = createWhereClause(validatorElement.getElement(TAG_CONDITION));
+      ValidationDto validationObject) {
+    IWhere whereClause = createWhereClause(validatorElement.getElement(TAG_CONDITION));
     IValidatorFactory factory = new ConditionalFactory(validatorElement, whereClause);
-    validators.addAll(factory.create(templateId, container, modelId, trait));
+    validators.addAll(factory.create(validationObject));
   }
 
-  private AllWhere createWhereClause(IExtensionElement parent) {
-    List<IWhere> allWheres = new ArrayList<IWhere>();
-    for (IExtensionElement whereElement : parent.getElements(TAG_WHERE)) {
-      allWheres.add(new ExtensionWhere(whereElement));
-    }
-    return new AllWhere(allWheres);
+  private IWhere createWhereClause(IExtensionElement element) {
+    return new ExtensionWhereFactory().createWhereClause(element);
   }
 }

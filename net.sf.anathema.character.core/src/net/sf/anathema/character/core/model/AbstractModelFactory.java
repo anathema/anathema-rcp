@@ -3,6 +3,7 @@ package net.sf.anathema.character.core.model;
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.template.IModelTemplate;
@@ -33,10 +34,11 @@ public abstract class AbstractModelFactory<T extends IModelTemplate, M extends I
 
   @Override
   public IModelInitializer createInitializer(
-      IContentHandle contentHandler,
+      IContentHandle handle,
       ICharacterTemplate template,
+      ICharacterType characterType,
       IModelIdentifier identifier) throws PersistenceException, CoreException {
-    M model = create(contentHandler, template);
-    return new ModelInitializer(model, contentHandler, identifier);
+    M model = create(handle, template);
+    return new ModelInitializer(model, handle, identifier);
   }
 }

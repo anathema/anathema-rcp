@@ -11,6 +11,11 @@
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="validator" minOccurs="1" maxOccurs="unbounded"/>
@@ -76,7 +81,8 @@
    <element name="condition">
       <complexType>
          <sequence>
-            <element ref="where" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="where" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="wherenot" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
       </complexType>
    </element>
@@ -87,6 +93,14 @@
             <element ref="modelContent"/>
             <element ref="modelId"/>
             <element ref="templateId"/>
+         </choice>
+      </complexType>
+   </element>
+
+   <element name="wherenot">
+      <complexType>
+         <choice>
+            <element ref="characterType"/>
          </choice>
       </complexType>
    </element>
@@ -145,6 +159,18 @@
             </annotation>
          </attribute>
          <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="characterType">
+      <complexType>
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
                   

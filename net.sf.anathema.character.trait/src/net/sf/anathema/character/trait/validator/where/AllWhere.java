@@ -1,8 +1,5 @@
 package net.sf.anathema.character.trait.validator.where;
 
-import net.sf.anathema.character.core.character.IModelContainer;
-import net.sf.anathema.character.trait.IBasicTrait;
-
 public class AllWhere implements IWhere {
 
   private final Iterable<IWhere> allWheres;
@@ -12,9 +9,9 @@ public class AllWhere implements IWhere {
   }
 
   @Override
-  public boolean evaluate(String templateId, IModelContainer container, String modelId, IBasicTrait trait) {
+  public boolean evaluate(ValidationDto validationObject) {
     for (IWhere where : allWheres) {
-      if (!where.evaluate(templateId, container, modelId, trait)) {
+      if (!where.evaluate(validationObject)) {
         return false;
       }
     }

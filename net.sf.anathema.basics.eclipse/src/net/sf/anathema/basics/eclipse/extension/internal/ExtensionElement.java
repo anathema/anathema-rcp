@@ -43,10 +43,7 @@ public class ExtensionElement implements IExtensionElement {
   }
 
   public IExtensionElement[] getElements() {
-    return ArrayUtilities.transform(
-        eclipseElement.getChildren(),
-        IExtensionElement.class,
-        new ElementTransformer());
+    return ArrayUtilities.transform(eclipseElement.getChildren(), IExtensionElement.class, new ElementTransformer());
   }
 
   @Override
@@ -99,9 +96,6 @@ public class ExtensionElement implements IExtensionElement {
 
   @Override
   public IExtensionElement[] getElements(String name) {
-    return ArrayUtilities.transform(
-        eclipseElement.getChildren(name),
-        IExtensionElement.class,
-        new ElementTransformer());
+    return ArrayUtilities.transform(eclipseElement.getChildren(name), IExtensionElement.class, new ElementTransformer());
   }
 }

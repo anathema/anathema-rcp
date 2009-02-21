@@ -1,9 +1,7 @@
 package net.sf.anathema.character.trait.validator.where;
 
-import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.content.IContentChecker;
 import net.sf.anathema.character.core.model.content.IModelContentCheck;
-import net.sf.anathema.character.trait.IBasicTrait;
 
 public class WhereModelContent implements IWhere {
 
@@ -16,11 +14,11 @@ public class WhereModelContent implements IWhere {
   }
 
   @Override
-  public boolean evaluate(String templateId, IModelContainer container, String modelId, IBasicTrait trait) {
+  public boolean evaluate(ValidationDto validationObject) {
     final IModelContentCheck contentCheck = contentChecker.getCheck(definition);
     if (contentCheck == null) {
       return false;
     }
-    return contentCheck.evaluate(container, contentChecker.getContentValue(definition));
+    return contentCheck.evaluate(validationObject.container, contentChecker.getContentValue(definition));
   }
 }

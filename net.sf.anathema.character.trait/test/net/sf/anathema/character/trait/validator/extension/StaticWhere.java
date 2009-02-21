@@ -1,8 +1,7 @@
 package net.sf.anathema.character.trait.validator.extension;
 
-import net.sf.anathema.character.core.character.IModelContainer;
-import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.validator.where.IWhere;
+import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
 public class StaticWhere implements IWhere {
 
@@ -13,7 +12,7 @@ public class StaticWhere implements IWhere {
   }
 
   @Override
-  public boolean evaluate(String templateId, IModelContainer container, String modelId, IBasicTrait trait) {
+  public boolean evaluate(ValidationDto validationObject) {
     return evaluation;
   }
 }

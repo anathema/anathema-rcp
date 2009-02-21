@@ -1,4 +1,4 @@
-package charactertype.solar.acceptance;
+package charactertype.mortal.acceptance;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 @SuppressWarnings("nls")
-public class SolarEssenceTest extends AbstractDefaultSolarTest {
+public class HeroicMortalEssenceTest extends AbstractHeroicMortalTest {
 
   private InteractionTraitList traitList;
 
@@ -21,9 +21,9 @@ public class SolarEssenceTest extends AbstractDefaultSolarTest {
   }
 
   @Test
-  public void startsWithEssenceValueOf2() throws Exception {
+  public void startsWithEssenceValueOf1() throws Exception {
     IInteractiveTrait essence = getEssenceTrait();
-    assertThat(essence.getValue(), is(2));
+    assertThat(essence.getValue(), is(1));
   }
 
   @Test

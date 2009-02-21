@@ -88,5 +88,12 @@
             name="%new.wizard.character.template.heroicmortal">
       </wizard>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.maintraits">
+      <traitmodel
+            characterType="net.sf.anathema.character.type.mortal"
+            modelId="net.sf.anathema.character.abilities.model">
+      </traitmodel>
+   </extension>
 
 </plugin>

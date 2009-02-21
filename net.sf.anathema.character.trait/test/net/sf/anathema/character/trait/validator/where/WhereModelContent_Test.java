@@ -20,30 +20,30 @@ public class WhereModelContent_Test {
     mockContentChecker = createMock(IContentChecker.class);
     this.where = new WhereModelContent(DEFINITION, mockContentChecker);
   }
-  
+
   @Test
   public void evaluatesFalseIfNoModelCheckIsFoundForDefinition() throws Exception {
     expect(mockContentChecker.getCheck(DEFINITION)).andReturn(null);
     replay(mockContentChecker);
-    assertFalse(where.evaluate(null, null, null, null));
+    assertFalse(where.evaluate(new ValidationDto()));
   }
-  
+
   @Test
   public void evaluatesToFalseIfCheckEvaluatesToFalseForContent() throws Exception {
     IModelContentCheck modelCheck = createContentCheck(false);
     expect(mockContentChecker.getCheck(DEFINITION)).andReturn(modelCheck);
     expect(mockContentChecker.getContentValue(DEFINITION)).andReturn(CONTENT);
     replay(mockContentChecker);
-    assertFalse(where.evaluate(null, null, null, null));
+    assertFalse(where.evaluate(new ValidationDto()));
   }
-  
+
   @Test
   public void evaluatesToTrueIfCheckEvaluatesToTrueForContent() throws Exception {
     IModelContentCheck modelCheck = createContentCheck(true);
     expect(mockContentChecker.getCheck(DEFINITION)).andReturn(modelCheck);
     expect(mockContentChecker.getContentValue(DEFINITION)).andReturn(CONTENT);
     replay(mockContentChecker);
-    assertTrue(where.evaluate(null, null, null, null));
+    assertTrue(where.evaluate(new ValidationDto()));
   }
 
   private IModelContentCheck createContentCheck(boolean evaluation) {

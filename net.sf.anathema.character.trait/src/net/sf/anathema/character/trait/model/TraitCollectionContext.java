@@ -5,12 +5,12 @@ import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.character.trait.validator.ValidatorFactory;
+import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
 public class TraitCollectionContext implements ITraitCollectionContext {
 
@@ -33,9 +33,18 @@ public class TraitCollectionContext implements ITraitCollectionContext {
     if (!getCollection().contains(traitId)) {
       return new ArrayList<IValidator>();
     }
-    IBasicTrait trait = getCollection().getTrait(traitId);
-    String templateId = character.getTemplate().getId();
-    return new ValidatorFactory().create(templateId, character, modelId, trait);
+    ValidationDto validationObject = createValidationObject(traitId);
+    return new ValidatorFactory().create(validationObject);
+  }
+
+  private ValidationDto createValidationObject(String traitId) {
+    ValidationDto validationObject = new ValidationDto();
+    validationObject.trait = getCollection().getTrait(traitId);
+    validationObject.templateId = character.getTemplate().getId();
+    validationObject.container = character;
+    validationObject.charactertype = character.getCharacterType().getId();
+    validationObject.modelId = modelId;
+    return validationObject;
   }
 
   @Override

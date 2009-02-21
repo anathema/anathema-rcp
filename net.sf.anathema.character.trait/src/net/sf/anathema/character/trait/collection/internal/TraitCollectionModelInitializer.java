@@ -2,6 +2,7 @@ package net.sf.anathema.character.trait.collection.internal;
 
 import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
+import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.model.ModelInitializer;
 import net.sf.anathema.character.trait.IBasicTrait;
@@ -26,11 +27,12 @@ public class TraitCollectionModelInitializer extends ModelInitializer {
       IContentHandle contentHandler,
       IModelIdentifier identifier,
       ICharacterTemplate template,
-      ITraitCollectionTemplate modelTemplate) {
+      ITraitCollectionTemplate modelTemplate,
+      ICharacterType characterType) {
     super(traitCollection, contentHandler, identifier);
     this.traitCollection = traitCollection;
     this.modelTemplate = modelTemplate;
-    updatable = new TraitCollectionUpdatable(template, identifier, traitCollection);
+    updatable = new TraitCollectionUpdatable(template, identifier, traitCollection, characterType);
     traitCollection.setDependencyUpdatable(updatable);
   }
 
