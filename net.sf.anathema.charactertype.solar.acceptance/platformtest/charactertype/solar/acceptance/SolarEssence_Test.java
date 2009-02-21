@@ -1,4 +1,4 @@
-package charactertype.lunar.acceptance;
+package charactertype.solar.acceptance;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 @SuppressWarnings("nls")
-public class PactLunarEssenceTest extends AbstractPactLunarTest {
+public class SolarEssence_Test extends AbstractDefaultSolarTest {
 
   private InteractionTraitList traitList;
 
@@ -32,6 +32,15 @@ public class PactLunarEssenceTest extends AbstractPactLunarTest {
     int startValue = essence.getValue();
     essence.setValue(startValue - 1);
     assertThat(essence.getValue(), is(startValue));
+  }
+
+  @Test
+  public void canRaiseEssenceAboveStartValue() throws Exception {
+    IInteractiveTrait essence = getEssenceTrait();
+    int startValue = essence.getValue();
+    int targetValue = startValue + 1;
+    essence.setValue(targetValue);
+    assertThat(essence.getValue(), is(targetValue));
   }
 
   private IInteractiveTrait getEssenceTrait() {

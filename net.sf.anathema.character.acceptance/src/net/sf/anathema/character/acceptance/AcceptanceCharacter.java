@@ -1,5 +1,6 @@
 package net.sf.anathema.character.acceptance;
 
+import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModel;
@@ -22,6 +23,7 @@ public class AcceptanceCharacter {
 
   private AcceptanceCharacter(String folderName, String templateId) {
     folder = new CharacterFactory().createNewCharacter(templateId, folderName);
+    Ensure.ensureNotNull(folder);
     characterId = new CharacterId(folder);
   }
 

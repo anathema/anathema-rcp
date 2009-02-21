@@ -11,7 +11,7 @@ import net.sf.anathema.character.trait.validator.IValidatorFactory;
 import net.sf.anathema.character.trait.validator.where.IWhere;
 import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
-public class ConditionalFactory implements IValidatorFactory {
+public class ConditionalValidatorFactory implements IValidatorFactory {
 
   private static final String TAG_ALTERNATE_MINIMUM = "alternateMinimum"; //$NON-NLS-1$
   private static final String TAG_MINIMUM = "minimum"; //$NON-NLS-1$
@@ -21,7 +21,7 @@ public class ConditionalFactory implements IValidatorFactory {
   private final IExtensionElement validatorElement;
   private final IWhere whereClause;
 
-  public ConditionalFactory(IExtensionElement validatorElement, IWhere whereClause) {
+  public ConditionalValidatorFactory(IExtensionElement validatorElement, IWhere whereClause) {
     this.validatorElement = validatorElement;
     this.whereClause = whereClause;
   }

@@ -9,7 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
-import net.sf.anathema.character.trait.validator.extension.ConditionalFactory;
+import net.sf.anathema.character.trait.validator.extension.ConditionalValidatorFactory;
 import net.sf.anathema.character.trait.validator.extension.ExtensionWhereFactory;
 import net.sf.anathema.character.trait.validator.where.IWhere;
 import net.sf.anathema.character.trait.validator.where.ValidationDto;
@@ -40,7 +40,7 @@ public class ValidatorFactory implements IValidatorFactory {
       IExtensionElement validatorElement,
       ValidationDto validationObject) {
     IWhere whereClause = createWhereClause(validatorElement.getElement(TAG_CONDITION));
-    IValidatorFactory factory = new ConditionalFactory(validatorElement, whereClause);
+    IValidatorFactory factory = new ConditionalValidatorFactory(validatorElement, whereClause);
     validators.addAll(factory.create(validationObject));
   }
 
