@@ -1,9 +1,9 @@
 package net.sf.anathema.charms.character.sheet.generic;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.trait.resources.INameCollection;
 
-public class CategoryNames extends AbstractExecutableExtension implements INameCollection {
+public class CategoryNames extends UnconfiguredExecutableExtension implements INameCollection {
 
   private static final String ABILITY = "net.sf.anathema.character.abilities.model.forgenerics"; //$NON-NLS-1$
   private static final String ATTRIBUTE = "net.sf.anathema.character.attributes.model.forgenerics"; //$NON-NLS-1$

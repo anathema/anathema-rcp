@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
@@ -24,7 +24,7 @@ import net.sf.anathema.charms.tree.ICharmId;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class CharmEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
+public class CharmEncoder extends UnconfiguredExecutableExtension implements IPdfContentBoxEncoder {
 
   @Override
   public String getHeader(ICharacter character) {

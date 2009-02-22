@@ -2,7 +2,7 @@ package net.sf.anathema.charms.character.sheet.generic;
 
 import java.util.Collection;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
@@ -12,7 +12,7 @@ import net.sf.anathema.charms.character.model.GenericCharmCollector;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class GenericCharmEncoder extends AbstractExecutableExtension implements IDynamicPdfContentBoxEncoder {
+public class GenericCharmEncoder extends UnconfiguredExecutableExtension implements IDynamicPdfContentBoxEncoder {
   @Override
   public String getHeader(ICharacter character) {
     return Messages.GenericCharmEncoder_Header;
