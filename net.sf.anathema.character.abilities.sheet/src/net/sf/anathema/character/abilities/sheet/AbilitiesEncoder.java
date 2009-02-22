@@ -21,46 +21,48 @@ import com.lowagie.text.pdf.PdfContentByte;
 
 public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentBoxEncoder {
 
-  private final List<ISubSectionEncoder> subsectionEncoders = new ArrayList<ISubSectionEncoder>();
-  private final PdfTraitEncoder traitEncoder;
   private final MarkerEncoder markerEncoder = new MarkerEncoder();
   private final MarkedTraits markedTraits = new MarkedTraits();
 
-  public AbilitiesEncoder() {
-    traitEncoder = PdfTraitEncoder.createSmallTraitEncoder();
-    addSubsectionEncoder(new EmptySubsectionEncoder(traitEncoder, Messages.AbilitiesEncoder_CraftsHeader, 10, 9));
-    addSubsectionEncoder(new EmptySubsectionEncoder(traitEncoder, Messages.AbilitiesEncoder_SpecialtiesHeader, 3, 9));
-  }
-
-  private final void addSubsectionEncoder(ISubSectionEncoder encoder) {
-    subsectionEncoders.add(encoder);
+  private List<ISubSectionEncoder> getEmptySubsectionEncoder(final PdfTraitEncoder traitEncoder) {
+    final List<ISubSectionEncoder> subsectionEncoders = new ArrayList<ISubSectionEncoder>();
+    subsectionEncoders.add(new EmptySubsectionEncoder(traitEncoder, Messages.AbilitiesEncoder_CraftsHeader, 10, 9));
+    subsectionEncoders.add(new EmptySubsectionEncoder(traitEncoder, Messages.AbilitiesEncoder_SpecialtiesHeader, 3, 9));
+    return subsectionEncoders;
   }
 
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
+    final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(directContent);
     Position position = new Position(bounds.getMinX(), bounds.getMaxY());
     float width = bounds.width;
-    float yPosition = encodeTraitGroups(directContent, character, position, width);
-    for (ISubSectionEncoder encoder : subsectionEncoders) {
+    float yPosition = encodeTraitGroups(traitEncoder, directContent, character, position, width);
+    for (ISubSectionEncoder encoder : getEmptySubsectionEncoder(traitEncoder)) {
       yPosition -= IVoidStateFormatConstants.LINE_HEIGHT;
       yPosition -= encoder.encode(directContent, character, new Position(position.x, yPosition), width);
     }
     encodeMarkerCommentText(directContent, position, bounds.getMinY() + 4);
   }
 
-  private float encodeTraitGroups(PdfContentByte directContent, ICharacter character, Position position, float width) {
+  private float encodeTraitGroups(
+      final PdfTraitEncoder traitEncoder,
+      PdfContentByte directContent,
+      ICharacter character,
+      Position position,
+      float width) {
     List<IDisplayTraitGroup<IDisplayTrait>> groups = new AbilitiesDisplayGroupFactory().createDisplayTraitGroups(character);
     float yPosition = position.y;
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       Position groupPosition = new Position(position.x, yPosition);
-      yPosition -= encodeTraitGroup(directContent, group, groupPosition, width);
+      yPosition -= encodeTraitGroup(traitEncoder, directContent, group, groupPosition, width);
       yPosition -= IVoidStateFormatConstants.TEXT_PADDING;
     }
     return yPosition;
   }
 
   private float encodeTraitGroup(
+      final PdfTraitEncoder traitEncoder,
       PdfContentByte directContent,
       IDisplayTraitGroup<IDisplayTrait> group,
       Position position,
@@ -79,7 +81,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
       }
       String label = AbilitiesMessages.get(trait.getTraitType().getId());
       Position traitPosition = new Position(traitX, yPosition);
-      height += encodeFavorableTrait(directContent, label, trait, traitPosition, width - groupLabelWidth);
+      height += encodeFavorableTrait(traitEncoder, directContent, label, trait, traitPosition, width - groupLabelWidth);
     }
     Position groupLabelPosition = new Position(groupLabelX, position.y - height / 2);
     addGroupLabel(directContent, group, groupLabelPosition);
@@ -92,6 +94,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
   }
 
   private int encodeFavorableTrait(
+      final PdfTraitEncoder traitEncoder,
       PdfContentByte directContent,
       String label,
       IDisplayTrait trait,
@@ -100,7 +103,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
     int value = trait.getValue();
     boolean favored = trait.getFavorization().getStatus().isCheap();
     int maximalValue = trait.getMaximalValue();
-    return traitEncoder.encodeWithTextAndRectangle(directContent, label, position, width, value, favored, maximalValue);
+    return traitEncoder.encodeWithTextAndRectangle(label, position, width, value, favored, maximalValue);
   }
 
   private float encodeMarkerCommentText(PdfContentByte directContent, Position position, float yPosition) {

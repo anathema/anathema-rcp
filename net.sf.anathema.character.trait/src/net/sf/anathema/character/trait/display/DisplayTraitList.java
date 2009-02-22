@@ -1,9 +1,11 @@
 package net.sf.anathema.character.trait.display;
 
+import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.List;
 
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
 
 public class DisplayTraitList<T extends IDisplayTrait> implements Iterable<IDisplayTraitGroup<T>> {
@@ -14,7 +16,11 @@ public class DisplayTraitList<T extends IDisplayTrait> implements Iterable<IDisp
     this.groups = groups;
   }
 
-  public T getTrait(Identificate type) {
+  public T getTrait(String type) {
+    return getTrait(new Identificate(type));
+  }
+
+  public T getTrait(IIdentificate type) {
     for (IDisplayTraitGroup<T> group : groups) {
       for (T trait : group) {
         if (trait.getTraitType().equals(type)) {
@@ -22,7 +28,7 @@ public class DisplayTraitList<T extends IDisplayTrait> implements Iterable<IDisp
         }
       }
     }
-    throw new IllegalArgumentException("No trait found for type " + type.getId());
+    throw new IllegalArgumentException(MessageFormat.format("No trait found for type {0}.", type.getId()));
   }
 
   @Override

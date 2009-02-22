@@ -30,12 +30,12 @@ public abstract class AbstractTraitSubsectionEncoder extends AbstractPdfEncoder 
       String name = trait.getTraitType().getId();
       Position traitPosition = new Position(position.x, position.y - height);
       int value = trait.getValue();
-      traitEncoder.encodeWithText(directContent, name, traitPosition, width, value, dotCount);
+      traitEncoder.encodeWithText(name, traitPosition, width, value, dotCount);
       height += traitEncoder.getTraitHeight();
     }
     for (int index = traits.length; index < lineCount; index++) {
       Position traitPosition = new Position(position.x, position.y - height);
-      traitEncoder.encodeWithLine(directContent, traitPosition, width, 0, dotCount);
+      traitEncoder.encodeWithLine(traitPosition, width, 0, dotCount);
       height += traitEncoder.getTraitHeight();
     }
     return height;

@@ -20,8 +20,6 @@ import com.lowagie.text.pdf.PdfContentByte;
 
 public class AttributesEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
 
-  private final PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder();
-
   @Override
   public String getHeader(ICharacter character) {
     return "Attributes"; //$NON-NLS-1$
@@ -38,41 +36,37 @@ public class AttributesEncoder extends AbstractExecutableExtension implements IP
       PdfContentByte directContent,
       Bounds contentBounds,
       Iterable<IDisplayTraitGroup<IDisplayTrait>> attributeGroups) {
+    final PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(directContent);
     float groupSpacing = smallTraitEncoder.getTraitHeight() / 2;
     float y = contentBounds.getMaxY() - groupSpacing;
     for (IDisplayTraitGroup< ? extends IDisplayTrait> group : attributeGroups) {
       y -= groupSpacing;
       for (IDisplayTrait trait : group) {
-        y = encodeTrait(trait, directContent, contentBounds, y);
+        y = encodeTrait(smallTraitEncoder, trait, contentBounds, y);
       }
     }
   }
 
-  private float encodeTrait(IDisplayTrait trait, PdfContentByte directContent, Bounds contentBounds, float y) {
+  private float encodeTrait(PdfTraitEncoder traitEncoder, IDisplayTrait trait, Bounds contentBounds, float y) {
     float newY = y;
     IDisplayFavorization favorization = trait.getFavorization();
     String traitLabel = AttributeMessages.get(trait.getTraitType().getId());
     int value = trait.getValue();
     Position position = new Position(contentBounds.x, newY);
     if (!favorization.isFavorable()) {
-      newY -= smallTraitEncoder.encodeWithText(
-          directContent,
-          traitLabel,
-          position,
-          contentBounds.width,
-          value,
-          trait.getMaximalValue());
+      newY -= traitEncoder.encodeWithText(traitLabel, position, contentBounds.width, value, trait.getMaximalValue());
     }
     else {
       boolean favored = favorization.isFavored();
-      newY -= smallTraitEncoder.encodeWithTextAndRectangle(
-          directContent,
+      int maximalValue = trait.getMaximalValue();
+      float width = contentBounds.width;
+      newY -= traitEncoder.encodeWithTextAndRectangle(
           traitLabel,
           position,
-          contentBounds.width,
+          width,
           value,
           favored,
-          trait.getMaximalValue());
+          maximalValue);
     }
     return newY;
   }
