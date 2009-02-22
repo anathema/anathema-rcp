@@ -58,20 +58,11 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
     }
   }
 
-  public int encodeDotsCenteredAndUngrouped(
-      Position position,
-      float width,
-      int value,
-      int dotCount) {
+  public int encodeDotsCenteredAndUngrouped(Position position, float width, int value, int dotCount) {
     return encodeShapeCenteredAndUngrouped(position, width, value, dotCount, new Dot());
   }
 
-  private int encodeGroupedDots(
-      Position position,
-      float width,
-      int value,
-      int dotCount,
-      final int dotSpacing) {
+  private int encodeGroupedDots(Position position, float width, int value, int dotCount, final int dotSpacing) {
     int groupSpacing = dotCount > 5 ? dotSize / 2 : 0;
     int spacecount = (int) Math.ceil((double) dotCount / 5);
     for (int dot = 0; dot < dotCount; dot++) {
@@ -87,12 +78,7 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
     return dotCount * dotSize + (dotCount - 1) * dotSpacing + groupSpacing;
   }
 
-  private int encodeShapeCenteredAndUngrouped(
-      Position position,
-      float width,
-      int value,
-      int dotCount,
-      IShape shape) {
+  private int encodeShapeCenteredAndUngrouped(Position position, float width, int value, int dotCount, IShape shape) {
     initDirectContent();
     int dotWidth = dotCount * dotSize;
     final float dotSpacing = (width - dotWidth) / (dotCount + 1);
@@ -105,11 +91,7 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
     return height;
   }
 
-  public int encodeSquaresCenteredAndUngrouped(
-      Position position,
-      float width,
-      int value,
-      int dotCount) {
+  public int encodeSquaresCenteredAndUngrouped(Position position, float width, int value, int dotCount) {
     return encodeShapeCenteredAndUngrouped(position, width, value, dotCount, new Square());
   }
 
@@ -120,12 +102,7 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
     return height;
   }
 
-  public int encodeWithText(
-      String text,
-      Position position,
-      float width,
-      int value,
-      int dotCount) {
+  public int encodeWithText(String text, Position position, float width, int value, int dotCount) {
     initDirectContent();
     directContent.beginText();
     directContent.showTextAligned(PdfContentByte.ALIGN_LEFT, text, position.x, position.y, 0);

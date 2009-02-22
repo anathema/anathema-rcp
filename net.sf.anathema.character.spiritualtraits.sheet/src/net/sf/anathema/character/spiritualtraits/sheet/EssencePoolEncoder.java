@@ -15,7 +15,15 @@ public class EssencePoolEncoder extends AbstractPdfEncoder {
     this.directContent = directContent;
   }
 
-  public void encodePool(String label, String poolValue, Position poolPosition, float width) {
+  public void encode(Bounds bounds) {
+    float poolLineHeight = (bounds.height - IVoidStateFormatConstants.TEXT_PADDING) / 2;
+    Position personalPosition = new Position(bounds.x, bounds.getMaxY() - poolLineHeight);
+    encodePool("Personal Pool", "0", personalPosition, bounds.width);
+    Position peripheralPosition = new Position(bounds.x, bounds.getMaxY() - 2 * poolLineHeight);
+    encodePool("Peripheral Pool", "0", peripheralPosition, bounds.width);
+  }
+
+  private void encodePool(String label, String poolValue, Position poolPosition, float width) {
     drawText(directContent, label, poolPosition, PdfContentByte.ALIGN_LEFT);
     String availableString = " Available";
     float availableTextWidth = getDefaultTextWidth(availableString);
@@ -28,13 +36,5 @@ public class EssencePoolEncoder extends AbstractPdfEncoder {
     drawMissingTextLine(directContent, lineStartPoint, lineLength);
     String totalString = poolValue + " Total / ";
     drawText(directContent, totalString, lineStartPoint, PdfContentByte.ALIGN_RIGHT);
-  }
-
-  public void encode(Bounds bounds) {
-    float poolLineHeight = (bounds.height - IVoidStateFormatConstants.TEXT_PADDING) / 2;
-    Position personalPosition = new Position(bounds.x, bounds.getMaxY() - poolLineHeight);
-    encodePool("Personal Pool", "0", personalPosition, bounds.width);
-    Position peripheralPosition = new Position(bounds.x, bounds.getMaxY() - 2 * poolLineHeight);
-    encodePool("Peripheral Pool", "0", peripheralPosition, bounds.width);
   }
 }
