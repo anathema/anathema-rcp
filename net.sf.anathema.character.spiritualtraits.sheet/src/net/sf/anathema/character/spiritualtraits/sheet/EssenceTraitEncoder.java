@@ -3,7 +3,7 @@ package net.sf.anathema.character.spiritualtraits.sheet;
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.sheet.content.PdfEncoder;
+import net.sf.anathema.character.sheet.content.IGraphicalEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.spiritualtraits.display.SpiritualTraitDisplayGroupFactory;
@@ -13,20 +13,18 @@ import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 
-import com.lowagie.text.pdf.PdfContentByte;
-
 public class EssenceTraitEncoder {
 
-  private final PdfContentByte directContent;
   private final int essenceMaximum;
+  private final IGraphicalEncoder pdfEncoder;
 
-  public EssenceTraitEncoder(PdfContentByte directContent, int essenceMaximum) {
-    this.directContent = directContent;
+  public EssenceTraitEncoder(IGraphicalEncoder pdfEncoder, int essenceMaximum) {
+    this.pdfEncoder = pdfEncoder;
     this.essenceMaximum = essenceMaximum;
   }
 
   public int encode(ICharacter character, Bounds bounds) {
-    final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createLargeTraitEncoder(new PdfEncoder(directContent));
+    final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createLargeTraitEncoder(pdfEncoder);
     encodeEssenceDots(traitEncoder, bounds, getEssenceValue(character), essenceMaximum);
     return traitEncoder.getTraitHeight();
   }
@@ -36,7 +34,7 @@ public class EssenceTraitEncoder {
     traitEncoder.encodeDotsCenteredAndUngrouped(essencePosition, bounds.width, essenceValue, essenceMax);
   }
 
-  private int getEssenceValue(ICharacter character) {
+  protected int getEssenceValue(ICharacter character) {
     List<IDisplayTraitGroup<IDisplayTrait>> displayGroups = new SpiritualTraitDisplayGroupFactory().createDisplayTraitGroups(character);
     DisplayTraitList<IDisplayTrait> displayTraitList = new DisplayTraitList<IDisplayTrait>(displayGroups);
     return displayTraitList.getTrait(IPluginConstants.ESSENCE_TRAIT_ID).getValue();

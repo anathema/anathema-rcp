@@ -12,7 +12,7 @@ public class PdfHeaderBoxEncoder {
   private static final int HEADER_FONT_SIZE = IVoidStateFormatConstants.HEADER_FONT_SIZE;
 
   public void encodeHeaderBox(PdfContentByte directContent, Bounds bounds, String title) {
-    IPdfEncoder pdfEncoder = new PdfEncoder(directContent);
+    IGraphicalEncoder pdfEncoder = new PdfEncoder(directContent);
     pdfEncoder.setFillColorBlack();
     Bounds headerBounds = calculateHeaderBounds(bounds);
     directContent.rectangle(

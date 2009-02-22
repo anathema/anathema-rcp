@@ -9,7 +9,7 @@ import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public final class PdfEncoder extends UnconfiguredExecutableExtension implements IPdfEncoder {
+public final class PdfEncoder extends UnconfiguredExecutableExtension implements IGraphicalEncoder {
 
   private final PdfContentByte directContent;
 

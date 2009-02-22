@@ -9,7 +9,7 @@ import net.sf.anathema.character.abilities.util.AbilitiesDisplayGroupFactory;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
-import net.sf.anathema.character.sheet.content.IPdfEncoder;
+import net.sf.anathema.character.sheet.content.IGraphicalEncoder;
 import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
@@ -69,7 +69,7 @@ public class AbilitiesEncoder extends UnconfiguredExecutableExtension implements
       IDisplayTraitGroup<IDisplayTrait> group,
       Position position,
       float width) {
-    IPdfEncoder pdfEncoder = new PdfEncoder(directContent);
+    IGraphicalEncoder pdfEncoder = new PdfEncoder(directContent);
     float height = 0;
     float groupLabelWidth = IVoidStateFormatConstants.LINE_HEIGHT + IVoidStateFormatConstants.TEXT_PADDING;
     float traitX = position.x + groupLabelWidth;
@@ -91,7 +91,7 @@ public class AbilitiesEncoder extends UnconfiguredExecutableExtension implements
     return height;
   }
 
-  private void addGroupLabel(IPdfEncoder pdfEncoder, IDisplayTraitGroup<IDisplayTrait> group, Position position) {
+  private void addGroupLabel(IGraphicalEncoder pdfEncoder, IDisplayTraitGroup<IDisplayTrait> group, Position position) {
     String groupLabel = group.getLabel();
     pdfEncoder.drawVerticalText(groupLabel, position, PdfContentByte.ALIGN_CENTER);
   }

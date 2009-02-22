@@ -1,5 +1,8 @@
 package net.sf.anathema.character.sheet.elements;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 public class Position {
 
   public final float x;
@@ -16,5 +19,15 @@ public class Position {
 
   public float getY() {
     return y;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    return EqualsBuilder.reflectionEquals(this, obj);
+  }
+
+  @Override
+  public int hashCode() {
+    return HashCodeBuilder.reflectionHashCode(this);
   }
 }

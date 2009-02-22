@@ -2,7 +2,7 @@ package net.sf.anathema.character.sheet.content;
 
 import net.sf.anathema.character.sheet.elements.Position;
 
-public interface IPdfEncoder {
+public interface IGraphicalEncoder {
 
   public void setCommentFont();
 

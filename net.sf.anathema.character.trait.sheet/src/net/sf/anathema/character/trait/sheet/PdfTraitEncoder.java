@@ -1,6 +1,6 @@
 package net.sf.anathema.character.trait.sheet;
 
-import net.sf.anathema.character.sheet.content.IPdfEncoder;
+import net.sf.anathema.character.sheet.content.IGraphicalEncoder;
 import net.sf.anathema.character.sheet.elements.Position;
 
 import com.lowagie.text.pdf.PdfContentByte;
@@ -25,23 +25,23 @@ public class PdfTraitEncoder {
 
   private static final int SMALL_DOT_SPACING = 2;
 
-  public static PdfTraitEncoder createLargeTraitEncoder(IPdfEncoder pdfEncoder) {
+  public static PdfTraitEncoder createLargeTraitEncoder(IGraphicalEncoder pdfEncoder) {
     return new PdfTraitEncoder(pdfEncoder, 14, 10);
   }
 
-  public static PdfTraitEncoder createMediumTraitEncoder(IPdfEncoder pdfEncoder) {
+  public static PdfTraitEncoder createMediumTraitEncoder(IGraphicalEncoder pdfEncoder) {
     return new PdfTraitEncoder(pdfEncoder, 12, 8);
   }
 
-  public static PdfTraitEncoder createSmallTraitEncoder(IPdfEncoder pdfEncoder) {
+  public static PdfTraitEncoder createSmallTraitEncoder(IGraphicalEncoder pdfEncoder) {
     return new PdfTraitEncoder(pdfEncoder, 11, 6);
   }
 
   private final int height;
   private final int dotSize;
-  private final IPdfEncoder pdfEncoder;
+  private final IGraphicalEncoder pdfEncoder;
 
-  private PdfTraitEncoder(IPdfEncoder pdfEncoder, int height, int dotSize) {
+  private PdfTraitEncoder(IGraphicalEncoder pdfEncoder, int height, int dotSize) {
     this.pdfEncoder = pdfEncoder;
     this.height = height;
     this.dotSize = dotSize;
