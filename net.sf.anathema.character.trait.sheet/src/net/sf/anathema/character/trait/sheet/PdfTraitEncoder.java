@@ -1,7 +1,6 @@
 package net.sf.anathema.character.trait.sheet;
 
 import net.sf.anathema.character.sheet.content.IPdfEncoder;
-import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Position;
 
 import com.lowagie.text.pdf.PdfContentByte;
@@ -10,8 +9,7 @@ public class PdfTraitEncoder {
 
   private class Dot implements IShape {
     public void encode(Position lowerLeft, int dotIndex, int value) {
-      directContent.arc(lowerLeft.x, lowerLeft.y, lowerLeft.x + dotSize, lowerLeft.y + dotSize, 0, 360);
-      commitShape(dotIndex < value);
+      drawCircle(lowerLeft, dotIndex < value);
     }
   }
 
@@ -21,44 +19,32 @@ public class PdfTraitEncoder {
 
   private class Square implements IShape {
     public void encode(Position lowerLeft, int dotIndex, int value) {
-      directContent.rectangle(lowerLeft.x, lowerLeft.y, dotSize, dotSize);
-      commitShape(dotIndex < value);
+      drawRectangle(lowerLeft, dotIndex < value);
     }
   }
 
   private static final int SMALL_DOT_SPACING = 2;
 
-  public static PdfTraitEncoder createLargeTraitEncoder(PdfContentByte directContent) {
-    return new PdfTraitEncoder(directContent, 14, 10);
+  public static PdfTraitEncoder createLargeTraitEncoder(IPdfEncoder pdfEncoder) {
+    return new PdfTraitEncoder(pdfEncoder, 14, 10);
   }
 
-  public static PdfTraitEncoder createMediumTraitEncoder(PdfContentByte directContent) {
-    return new PdfTraitEncoder(directContent, 12, 8);
+  public static PdfTraitEncoder createMediumTraitEncoder(IPdfEncoder pdfEncoder) {
+    return new PdfTraitEncoder(pdfEncoder, 12, 8);
   }
 
-  public static PdfTraitEncoder createSmallTraitEncoder(PdfContentByte directContent) {
-    return new PdfTraitEncoder(directContent, 11, 6);
+  public static PdfTraitEncoder createSmallTraitEncoder(IPdfEncoder pdfEncoder) {
+    return new PdfTraitEncoder(pdfEncoder, 11, 6);
   }
 
   private final int height;
   private final int dotSize;
-  private final PdfContentByte directContent;
   private final IPdfEncoder pdfEncoder;
 
-  private PdfTraitEncoder(PdfContentByte directContent, int height, int dotSize) {
-    this.pdfEncoder = new PdfEncoder(directContent);
-    this.directContent = directContent;
+  private PdfTraitEncoder(IPdfEncoder pdfEncoder, int height, int dotSize) {
+    this.pdfEncoder = pdfEncoder;
     this.height = height;
     this.dotSize = dotSize;
-  }
-
-  private void commitShape(boolean isFilled) {
-    if (isFilled) {
-      directContent.fillStroke();
-    }
-    else {
-      directContent.stroke();
-    }
   }
 
   public int encodeDotsCenteredAndUngrouped(Position position, float width, int value, int dotCount) {
@@ -82,7 +68,6 @@ public class PdfTraitEncoder {
   }
 
   private int encodeShapeCenteredAndUngrouped(Position position, float width, int value, int dotCount, IShape shape) {
-    initDirectContent();
     int dotWidth = dotCount * dotSize;
     final float dotSpacing = (width - dotWidth) / (dotCount + 1);
     float neededWidth = dotWidth + (dotCount - 1) * dotSpacing;
@@ -99,17 +84,13 @@ public class PdfTraitEncoder {
   }
 
   public int encodeWithLine(Position position, float width, int value, int dotCount) {
-    initDirectContent();
     float dotsWidth = encodeGroupedDots(position, width, value, dotCount, SMALL_DOT_SPACING);
     pdfEncoder.drawMissingTextLine(position, width - dotsWidth - 5);
     return height;
   }
 
   public int encodeWithText(String text, Position position, float width, int value, int dotCount) {
-    initDirectContent();
-    directContent.beginText();
-    directContent.showTextAligned(PdfContentByte.ALIGN_LEFT, text, position.x, position.y, 0);
-    directContent.endText();
+    pdfEncoder.drawText(text, position, PdfContentByte.ALIGN_LEFT);
     encodeGroupedDots(position, width, value, dotCount, SMALL_DOT_SPACING);
     return height;
   }
@@ -121,21 +102,21 @@ public class PdfTraitEncoder {
       int value,
       boolean favored,
       int dotCount) {
-    initDirectContent();
-    directContent.rectangle(position.x, position.y, dotSize, dotSize);
-    commitShape(favored);
+    drawRectangle(position, favored);
     int squareWidth = dotSize + 2;
     Position usualTraitPosition = new Position(position.x + squareWidth, position.y);
     return encodeWithText(text, usualTraitPosition, width - squareWidth, value, dotCount);
   }
 
-  public int getTraitHeight() {
-    return height;
+  private void drawRectangle(Position position, boolean filled) {
+    pdfEncoder.drawRectangle(position, dotSize, filled);
   }
 
-  private void initDirectContent() {
-    pdfEncoder.setDefaultFont();
-    pdfEncoder.setFillColorBlack();
-    directContent.setLineWidth(0.8f);
+  private void drawCircle(Position lowerLeft, boolean isFilled) {
+    pdfEncoder.drawCircle(lowerLeft, dotSize, isFilled);
+  }
+
+  public int getTraitHeight() {
+    return height;
   }
 }

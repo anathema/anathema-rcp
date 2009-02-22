@@ -24,4 +24,7 @@ public interface IPdfEncoder {
 
   public void drawLabelledContent(String label, String content, Position position, float width);
 
+  public void drawRectangle(Position lowerLeft, int size, boolean filled);
+
+  public void drawCircle(Position lowerLeft, int size, boolean isFilled);
 }

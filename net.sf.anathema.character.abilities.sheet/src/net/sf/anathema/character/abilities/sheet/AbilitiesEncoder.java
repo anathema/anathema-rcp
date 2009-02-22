@@ -35,7 +35,7 @@ public class AbilitiesEncoder extends UnconfiguredExecutableExtension implements
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(directContent);
+    final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(new PdfEncoder(directContent));
     Position position = new Position(bounds.getMinX(), bounds.getMaxY());
     float width = bounds.width;
     float yPosition = encodeTraitGroups(traitEncoder, directContent, character, position, width);
@@ -110,10 +110,7 @@ public class AbilitiesEncoder extends UnconfiguredExecutableExtension implements
     markerEncoder.encode(directContent, new Position(position.x, yPosition));
     String mobilityPenaltyText = Messages.AbilitiesEncoder_MarkerComment;
     Position commentPosition = new Position(position.x + 5, yPosition);
-    new PdfEncoder(directContent).drawComment(
-        mobilityPenaltyText,
-        commentPosition,
-        PdfContentByte.ALIGN_LEFT);
+    new PdfEncoder(directContent).drawComment(mobilityPenaltyText, commentPosition, PdfContentByte.ALIGN_LEFT);
     return 10;
   }
 

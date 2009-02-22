@@ -3,6 +3,7 @@ package net.sf.anathema.character.spiritualtraits.sheet;
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
+import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.spiritualtraits.display.SpiritualTraitDisplayGroupFactory;
@@ -25,7 +26,7 @@ public class EssenceTraitEncoder {
   }
 
   public int encode(ICharacter character, Bounds bounds) {
-    final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createLargeTraitEncoder(directContent);
+    final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createLargeTraitEncoder(new PdfEncoder(directContent));
     encodeEssenceDots(traitEncoder, bounds, getEssenceValue(character), essenceMaximum);
     return traitEncoder.getTraitHeight();
   }

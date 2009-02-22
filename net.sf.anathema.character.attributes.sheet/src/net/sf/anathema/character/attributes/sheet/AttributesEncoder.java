@@ -8,6 +8,7 @@ import net.sf.anathema.character.attributes.util.AttributeDisplayGroupFactory;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
+import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.trait.display.IDisplayFavorization;
@@ -36,7 +37,7 @@ public class AttributesEncoder extends UnconfiguredExecutableExtension implement
       PdfContentByte directContent,
       Bounds contentBounds,
       Iterable<IDisplayTraitGroup<IDisplayTrait>> attributeGroups) {
-    final PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(directContent);
+    final PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(new PdfEncoder(directContent));
     float groupSpacing = smallTraitEncoder.getTraitHeight() / 2;
     float y = contentBounds.getMaxY() - groupSpacing;
     for (IDisplayTraitGroup< ? extends IDisplayTrait> group : attributeGroups) {
@@ -60,13 +61,7 @@ public class AttributesEncoder extends UnconfiguredExecutableExtension implement
       boolean favored = favorization.isFavored();
       int maximalValue = trait.getMaximalValue();
       float width = contentBounds.width;
-      newY -= traitEncoder.encodeWithTextAndRectangle(
-          traitLabel,
-          position,
-          width,
-          value,
-          favored,
-          maximalValue);
+      newY -= traitEncoder.encodeWithTextAndRectangle(traitLabel, position, width, value, favored, maximalValue);
     }
     return newY;
   }

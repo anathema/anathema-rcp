@@ -92,6 +92,33 @@ public final class PdfEncoder extends UnconfiguredExecutableExtension implements
     }
   }
 
+  public void drawRectangle(Position position, int size, boolean filled) {
+    initDirectContentForShapes();
+    directContent.rectangle(position.x, position.y, size, size);
+    commitShape(filled);
+  }
+
+  public void drawCircle(Position lowerLeft, int size, boolean isFilled) {
+    initDirectContentForShapes();
+    directContent.arc(lowerLeft.x, lowerLeft.y, lowerLeft.x + size, lowerLeft.y + size, 0, 360);
+    commitShape(isFilled);
+  }
+
+  private void commitShape(boolean isFilled) {
+    if (isFilled) {
+      directContent.fillStroke();
+    }
+    else {
+      directContent.stroke();
+    }
+  }
+
+  private void initDirectContentForShapes() {
+    setDefaultFont();
+    setFillColorBlack();
+    directContent.setLineWidth(0.8f);
+  }
+
   private void initDirectContentForText() {
     setFillColorBlack();
     setDefaultFont();
