@@ -1,6 +1,6 @@
 package net.sf.anathema.character.spiritualtraits.sheet;
 
-import net.sf.anathema.character.sheet.content.PdfEncoder;
+import net.sf.anathema.character.sheet.content.IPdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
@@ -9,10 +9,10 @@ import com.lowagie.text.pdf.PdfContentByte;
 
 public class EssencePoolEncoder {
 
-  private final PdfEncoder pdfEncoder;
+  private final IPdfEncoder pdfEncoder;
 
-  public EssencePoolEncoder(PdfContentByte directContent) {
-    this.pdfEncoder = new PdfEncoder(directContent);
+  public EssencePoolEncoder(IPdfEncoder pdfEncoder) {
+    this.pdfEncoder = pdfEncoder;
   }
 
   public void encode(Bounds bounds) {

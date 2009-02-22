@@ -9,6 +9,7 @@ import net.sf.anathema.character.report.text.CharacterTextContainer;
 import net.sf.anathema.character.report.text.ICharacterText;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
+import net.sf.anathema.character.sheet.content.IPdfEncoder;
 import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
@@ -31,7 +32,7 @@ public class PersonalInfoEncoder extends AbstractExecutableExtension implements 
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    PdfEncoder pdfEncoder = new PdfEncoder(directContent);
+    IPdfEncoder pdfEncoder = new PdfEncoder(directContent);
     ICharacterDescription description = (ICharacterDescription) character.getModel(ICharacterDescription.MODEL_ID);
     float lineHeight = (bounds.height - TEXT_PADDING) / 3;
     float entryWidth = (bounds.width - TEXT_PADDING) / 2;

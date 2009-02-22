@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait.sheet;
 
+import net.sf.anathema.character.sheet.content.IPdfEncoder;
 import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Position;
 
@@ -42,7 +43,7 @@ public class PdfTraitEncoder {
   private final int height;
   private final int dotSize;
   private final PdfContentByte directContent;
-  private final PdfEncoder pdfEncoder;
+  private final IPdfEncoder pdfEncoder;
 
   private PdfTraitEncoder(PdfContentByte directContent, int height, int dotSize) {
     this.pdfEncoder = new PdfEncoder(directContent);
