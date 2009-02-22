@@ -1,17 +1,19 @@
 package net.sf.anathema.character.sheet.content;
 
 import static net.sf.anathema.character.sheet.content.IPdfBoxEncoder.*;
+import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class PdfHeaderBoxEncoder extends AbstractPdfEncoder {
+public class PdfHeaderBoxEncoder {
   private static final int HEADER_FONT_PADDING = 3;
   private static final int HEADER_FONT_SIZE = IVoidStateFormatConstants.HEADER_FONT_SIZE;
 
   public void encodeHeaderBox(PdfContentByte directContent, Bounds bounds, String title) {
-    setFillColorBlack(directContent);
+    PdfEncoder pdfEncoder = new PdfEncoder(directContent);
+    pdfEncoder.setFillColorBlack();
     Bounds headerBounds = calculateHeaderBounds(bounds);
     directContent.rectangle(
         headerBounds.x + ARCSPACE,
@@ -29,7 +31,7 @@ public class PdfHeaderBoxEncoder extends AbstractPdfEncoder {
         360);
     directContent.fillStroke();
     setFillColorWhite(directContent);
-    directContent.setFontAndSize(getBaseFont(), HEADER_FONT_SIZE);
+    directContent.setFontAndSize(IEncodeContext.BASEFONT, HEADER_FONT_SIZE);
     directContent.beginText();
     directContent.showTextAligned(PdfContentByte.ALIGN_CENTER, title, (int) headerBounds.getCenterX(), headerBounds.y
         + HEADER_FONT_PADDING, 0);

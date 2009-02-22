@@ -8,7 +8,7 @@ import net.sf.anathema.character.sheet.elements.Bounds;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class PdfBoxEncoder extends AbstractPdfEncoder {
+public class PdfBoxEncoder {
 
   public static final int CONTENT_INSET = 5;
 

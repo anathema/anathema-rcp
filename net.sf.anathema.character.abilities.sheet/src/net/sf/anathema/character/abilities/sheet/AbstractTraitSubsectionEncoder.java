@@ -1,13 +1,14 @@
 package net.sf.anathema.character.abilities.sheet;
 
-import net.sf.anathema.character.sheet.content.AbstractPdfEncoder;
+import net.sf.anathema.character.sheet.common.IEncodeContext;
+import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 
 import com.lowagie.text.pdf.PdfContentByte;
 
-public abstract class AbstractTraitSubsectionEncoder extends AbstractPdfEncoder implements ISubSectionEncoder {
+public abstract class AbstractTraitSubsectionEncoder implements ISubSectionEncoder {
   private static final int SUBSECTION_FONT_SIZE = 8;
   private final PdfTraitEncoder traitEncoder;
   private final int lineCount;
@@ -43,11 +44,14 @@ public abstract class AbstractTraitSubsectionEncoder extends AbstractPdfEncoder 
 
   private final int drawSubsectionHeader(PdfContentByte directContent, String text, Position position, float width) {
     setSubsectionFont(directContent);
-    drawText(directContent, text, new Position(position.x + width / 2, position.y), PdfContentByte.ALIGN_CENTER);
+    new PdfEncoder(directContent).drawText(
+        text,
+        new Position(position.x + width / 2, position.y),
+        PdfContentByte.ALIGN_CENTER);
     return (int) (SUBSECTION_FONT_SIZE * 1.5);
   }
 
   protected final void setSubsectionFont(PdfContentByte directContent) {
-    directContent.setFontAndSize(getBaseFont(), SUBSECTION_FONT_SIZE);
+    directContent.setFontAndSize(IEncodeContext.BASEFONT, SUBSECTION_FONT_SIZE);
   }
 }

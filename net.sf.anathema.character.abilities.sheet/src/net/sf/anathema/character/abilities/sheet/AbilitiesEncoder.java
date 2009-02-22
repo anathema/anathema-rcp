@@ -3,12 +3,13 @@ package net.sf.anathema.character.abilities.sheet;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.abilities.model.AbilitiesMessages;
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayGroupFactory;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
-import net.sf.anathema.character.sheet.content.AbstractPdfEncoder;
+import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
@@ -19,7 +20,7 @@ import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentBoxEncoder {
+public class AbilitiesEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
 
   private final MarkerEncoder markerEncoder = new MarkerEncoder();
   private final MarkedTraits markedTraits = new MarkedTraits();
@@ -81,7 +82,7 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
       }
       String label = AbilitiesMessages.get(trait.getTraitType().getId());
       Position traitPosition = new Position(traitX, yPosition);
-      height += encodeFavorableTrait(traitEncoder, directContent, label, trait, traitPosition, width - groupLabelWidth);
+      height += encodeFavorableTrait(traitEncoder, label, trait, traitPosition, width - groupLabelWidth);
     }
     Position groupLabelPosition = new Position(groupLabelX, position.y - height / 2);
     addGroupLabel(directContent, group, groupLabelPosition);
@@ -90,12 +91,11 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
 
   private void addGroupLabel(PdfContentByte directContent, IDisplayTraitGroup<IDisplayTrait> group, Position position) {
     String groupLabel = group.getLabel();
-    drawVerticalText(directContent, groupLabel, position, PdfContentByte.ALIGN_CENTER);
+    new PdfEncoder(directContent).drawVerticalText(groupLabel, position, PdfContentByte.ALIGN_CENTER);
   }
 
   private int encodeFavorableTrait(
       final PdfTraitEncoder traitEncoder,
-      PdfContentByte directContent,
       String label,
       IDisplayTrait trait,
       Position position,
@@ -110,7 +110,10 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
     markerEncoder.encode(directContent, new Position(position.x, yPosition));
     String mobilityPenaltyText = Messages.AbilitiesEncoder_MarkerComment;
     Position commentPosition = new Position(position.x + 5, yPosition);
-    drawComment(directContent, mobilityPenaltyText, commentPosition, PdfContentByte.ALIGN_LEFT);
+    new PdfEncoder(directContent).drawComment(
+        mobilityPenaltyText,
+        commentPosition,
+        PdfContentByte.ALIGN_LEFT);
     return 10;
   }
 

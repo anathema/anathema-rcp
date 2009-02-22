@@ -1,18 +1,20 @@
 package net.sf.anathema.character.spiritualtraits.sheet;
 
-import net.sf.anathema.character.sheet.content.AbstractPdfEncoder;
+import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class EssencePoolEncoder extends AbstractPdfEncoder {
+public class EssencePoolEncoder {
 
   private final PdfContentByte directContent;
+  private final PdfEncoder pdfEncoder;
 
   public EssencePoolEncoder(PdfContentByte directContent) {
     this.directContent = directContent;
+    this.pdfEncoder = new PdfEncoder(directContent);
   }
 
   public void encode(Bounds bounds) {
@@ -24,17 +26,17 @@ public class EssencePoolEncoder extends AbstractPdfEncoder {
   }
 
   private void encodePool(String label, String poolValue, Position poolPosition, float width) {
-    drawText(directContent, label, poolPosition, PdfContentByte.ALIGN_LEFT);
+    pdfEncoder.drawText(label, poolPosition, PdfContentByte.ALIGN_LEFT);
     String availableString = " Available";
-    float availableTextWidth = getDefaultTextWidth(availableString);
+    float availableTextWidth = pdfEncoder.getDefaultTextWidth(availableString);
     Position availablePosition = new Position(poolPosition.x + width, poolPosition.y);
-    drawText(directContent, availableString, availablePosition, PdfContentByte.ALIGN_RIGHT);
+    pdfEncoder.drawText(availableString, availablePosition, PdfContentByte.ALIGN_RIGHT);
     float lineLength = 10;
     Position lineStartPoint = new Position(
         (int) (availablePosition.x - availableTextWidth - lineLength),
         poolPosition.y);
-    drawMissingTextLine(directContent, lineStartPoint, lineLength);
+    pdfEncoder.drawMissingTextLine(lineStartPoint, lineLength);
     String totalString = poolValue + " Total / ";
-    drawText(directContent, totalString, lineStartPoint, PdfContentByte.ALIGN_RIGHT);
+    pdfEncoder.drawText(totalString, lineStartPoint, PdfContentByte.ALIGN_RIGHT);
   }
 }

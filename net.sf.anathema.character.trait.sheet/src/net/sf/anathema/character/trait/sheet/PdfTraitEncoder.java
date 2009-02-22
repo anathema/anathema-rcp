@@ -1,11 +1,11 @@
 package net.sf.anathema.character.trait.sheet;
 
-import net.sf.anathema.character.sheet.content.AbstractPdfEncoder;
+import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Position;
 
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class PdfTraitEncoder extends AbstractPdfEncoder {
+public class PdfTraitEncoder {
 
   private class Dot implements IShape {
     public void encode(PdfContentByte directContent, Position lowerLeft, int dotIndex, int value) {
@@ -42,8 +42,10 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
   private final int height;
   private final int dotSize;
   private final PdfContentByte directContent;
+  private final PdfEncoder pdfEncoder;
 
   private PdfTraitEncoder(PdfContentByte directContent, int height, int dotSize) {
+    this.pdfEncoder = new PdfEncoder(directContent);
     this.directContent = directContent;
     this.height = height;
     this.dotSize = dotSize;
@@ -98,7 +100,7 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
   public int encodeWithLine(Position position, float width, int value, int dotCount) {
     initDirectContent();
     float dotsWidth = encodeGroupedDots(position, width, value, dotCount, SMALL_DOT_SPACING);
-    drawMissingTextLine(directContent, position, width - dotsWidth - 5);
+    pdfEncoder.drawMissingTextLine(position, width - dotsWidth - 5);
     return height;
   }
 
@@ -131,8 +133,8 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
   }
 
   private void initDirectContent() {
-    setDefaultFont(directContent);
-    setFillColorBlack(directContent);
+    pdfEncoder.setDefaultFont();
+    pdfEncoder.setFillColorBlack();
     directContent.setLineWidth(0.8f);
   }
 }

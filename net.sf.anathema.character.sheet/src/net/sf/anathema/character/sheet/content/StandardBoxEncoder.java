@@ -4,10 +4,10 @@ import net.sf.anathema.character.sheet.elements.Bounds;
 
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class StandardBoxEncoder extends AbstractPdfEncoder implements IPdfBoxEncoder {
+public class StandardBoxEncoder implements IPdfBoxEncoder {
 
   public void encodeContentBox(PdfContentByte directContent, Bounds contentBounds) {
-    setFillColorBlack(directContent);
+    new PdfEncoder(directContent).setFillColorBlack();
     directContent.setLineWidth(0.5f);
     directContent.moveTo(contentBounds.x, contentBounds.y + ARCSPACE);
     BoxEncodingUtils.add90DegreeArc(directContent, contentBounds.x, contentBounds.y, 180);
