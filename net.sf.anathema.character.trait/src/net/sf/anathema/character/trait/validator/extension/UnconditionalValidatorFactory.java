@@ -56,13 +56,14 @@ public class UnconditionalValidatorFactory {
       AlternateMinimumBuilder builder = new AlternateMinimumBuilder();
       for (IExtensionElement minimumElement : alternateMinimumElement.getElements()) {
         String traitId = minimumElement.getAttribute(ATTRIB_TRAIT_ID);
-        int value = minimumElement.getIntegerAttribute(ATTRIB_VALUE);
         ITraitCollectionModel traitCollection = dto.getModel();
         if (!traitCollection.contains(traitId)) {
           builder.reset();
           break;
         }
-        builder.addAlternative(traitCollection.getTrait(traitId), value);
+        IBasicTrait trait = traitCollection.getTrait(traitId);
+        int value = minimumElement.getIntegerAttribute(ATTRIB_VALUE);
+        builder.addAlternative(trait, value);
       }
       list.add(builder.createValidator(dto.trait));
     }
