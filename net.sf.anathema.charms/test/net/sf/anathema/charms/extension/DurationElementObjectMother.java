@@ -18,13 +18,13 @@ public class DurationElementObjectMother {
   }
 
   static IExtensionElement createDuration(IMockProp... children) throws ExtensionException {
-    return createExtensionElementWithAttributes(children);
+    return createExtensionElement(children);
   }
 
   static IExtensionElement createNamedElement(String name, IMockProp... children) throws ExtensionException {
     MockName elementName = new MockName(name);
     IMockProp[] props = concat(elementName, children, IMockProp.class);
-    return createExtensionElementWithAttributes(props);
+    return createExtensionElement(props);
   }
 
 }

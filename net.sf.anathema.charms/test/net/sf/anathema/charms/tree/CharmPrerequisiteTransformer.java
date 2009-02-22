@@ -11,7 +11,7 @@ public class CharmPrerequisiteTransformer implements ITransformer<String, IExten
   @Override
   public IExtensionElement transform(String charmId) {
     try {
-      return ExtensionObjectMother.createExtensionElementWithAttributes(
+      return ExtensionObjectMother.createExtensionElement(
           new MockName("charmPrerequisite"), //$NON-NLS-1$
           new MockStringAttribute("charmId", charmId)); //$NON-NLS-1$
     }

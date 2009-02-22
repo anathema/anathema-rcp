@@ -10,7 +10,7 @@ public class CasteObjectMother {
   public static ICaste createCaste(String id, String printName) throws ExtensionException {
     MockStringAttribute idAttribute = new MockStringAttribute("casteId", id); //$NON-NLS-1$
     MockStringAttribute printNameAttribute = new MockStringAttribute("printName", printName); //$NON-NLS-1$
-    return new Caste(ExtensionObjectMother.createExtensionElementWithAttributes(idAttribute, printNameAttribute));
+    return new Caste(ExtensionObjectMother.createExtensionElement(idAttribute, printNameAttribute));
   }
 
 }

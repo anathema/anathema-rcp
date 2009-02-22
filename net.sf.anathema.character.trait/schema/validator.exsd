@@ -47,44 +47,6 @@
       </complexType>
    </element>
 
-   <element name="minimum">
-      <complexType>
-         <attribute name="value" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="traitId" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="maximum">
-      <complexType>
-         <attribute name="value" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="traitId" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
    <element name="validator">
       <complexType>
          <sequence>
@@ -126,6 +88,52 @@
       </complexType>
    </element>
 
+   <element name="minimum">
+      <complexType>
+         <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="traitId" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="alternateMinimum">
+      <complexType>
+         <sequence>
+            <element ref="traitMinimum" minOccurs="2" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="maximum">
+      <complexType>
+         <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="traitId" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
    <element name="modelId">
       <complexType>
          <attribute name="id" type="string" use="required">
@@ -159,14 +167,6 @@
                </documentation>
             </annotation>
          </attribute>
-      </complexType>
-   </element>
-
-   <element name="alternateMinimum">
-      <complexType>
-         <sequence>
-            <element ref="traitMinimum" minOccurs="2" maxOccurs="unbounded"/>
-         </sequence>
       </complexType>
    </element>
 

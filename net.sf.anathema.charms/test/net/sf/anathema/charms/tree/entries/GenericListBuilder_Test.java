@@ -39,7 +39,7 @@ public class GenericListBuilder_Test {
   }
 
   private IExtensionElement createDataElement() throws Exception {
-    return createExtensionElementWithAttributes(new MockName("tree"), //$NON-NLS-1$
+    return createExtensionElement(new MockName("tree"), //$NON-NLS-1$
         new MockStringAttribute("id", TREE_ID), //$NON-NLS-1$
         new MockStringAttribute("characterType", CHARACTER_TYPE), //$NON-NLS-1$
         new MockStringAttribute("primaryTrait", TRAIT_ID)); //$NON-NLS-1$

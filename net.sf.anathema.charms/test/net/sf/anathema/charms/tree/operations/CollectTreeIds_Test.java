@@ -27,7 +27,7 @@ public class CollectTreeIds_Test {
 
   @Test
   public void addsNoUnknownElement() throws Exception {
-    collect.execute(createExtensionElementWithAttributes(new MockName("unknown"))); //$NON-NLS-1$
+    collect.execute(createExtensionElement(new MockName("unknown"))); //$NON-NLS-1$
     assertThat(idSet.size(), is(0));
   }
 
@@ -48,6 +48,6 @@ public class CollectTreeIds_Test {
   private void collectIdForElementWithNameAndId(String elementName, String attributeName, String id)
       throws ExtensionException {
     MockStringAttribute idAttribute = new MockStringAttribute(attributeName, id);
-    collect.execute(createExtensionElementWithAttributes(new MockName(elementName), idAttribute));
+    collect.execute(createExtensionElement(new MockName(elementName), idAttribute));
   }
 }

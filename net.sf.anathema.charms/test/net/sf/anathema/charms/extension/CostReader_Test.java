@@ -18,16 +18,16 @@ public class CostReader_Test {
   public void readsMultipleLinearResources() throws Exception {
     IExtensionElement firstLinear = createLinearElement(1, "Tümer"); //$NON-NLS-1$
     IExtensionElement secondLinear = createLinearElement(2, "Hasen"); //$NON-NLS-1$
-    IExtensionElement resource = createExtensionElementWithAttributes(new MockNamedChildren("linear", //$NON-NLS-1$
+    IExtensionElement resource = createExtensionElement(new MockNamedChildren("linear", //$NON-NLS-1$
         firstLinear,
         secondLinear));
-    IExtensionElement element = createExtensionElementWithAttributes(new MockNamedChildren("resource", resource)); //$NON-NLS-1$
+    IExtensionElement element = createExtensionElement(new MockNamedChildren("resource", resource)); //$NON-NLS-1$
     CostDto dto = new CostReader().read(element);
     assertThat(dto.resources.get(0).linearDto.size(), is(2));
   }
 
   private IExtensionElement createLinearElement(int amount, String unit) throws ExtensionException {
-    return createExtensionElementWithAttributes(new MockIntegerAttribute("amount", amount), new MockStringAttribute( //$NON-NLS-1$
+    return createExtensionElement(new MockIntegerAttribute("amount", amount), new MockStringAttribute( //$NON-NLS-1$
         "unit", //$NON-NLS-1$
         unit));
   }

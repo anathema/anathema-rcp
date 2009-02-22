@@ -20,7 +20,7 @@ public class ExtensionObjectMother {
     return pluginExtension;
   }
 
-  public static IExtensionElement createExtensionElementWithAttributes(IMockProp... attributes)
+  public static IExtensionElement createExtensionElement(IMockProp... attributes)
       throws ExtensionException {
     IExtensionElement element = EasyMock.createNiceMock(IExtensionElement.class);
     for (IMockProp attribute : attributes) {

@@ -27,8 +27,8 @@ public class ExtensionWhere_Test {
   }
 
   private ExtensionWhere createWhereForIdentifiedChild(String tagName, String id) throws ExtensionException {
-    IExtensionElement idElement = createExtensionElementWithAttributes(new MockStringAttribute("id", id));
-    IExtensionElement element = createExtensionElementWithAttributes(new MockNamedChild(tagName, idElement));
+    IExtensionElement idElement = createExtensionElement(new MockStringAttribute("id", id));
+    IExtensionElement element = createExtensionElement(new MockNamedChild(tagName, idElement));
     return new ExtensionWhere(element);
   }
 }

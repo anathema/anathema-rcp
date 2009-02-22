@@ -17,7 +17,7 @@ public class MainTraitModelProviderTest {
 
   @Before
   public void createProvider() throws ExtensionException {
-    IExtensionElement element = createExtensionElementWithAttributes(
+    IExtensionElement element = createExtensionElement(
         new MockStringAttribute("characterType", CHARACTER_TYPE), //$NON-NLS-1$
         new MockStringAttribute("modelId", MODEL_ID)); //$NON-NLS-1$
     provider = new MainTraitModelProvider(createPluginExtension(element));

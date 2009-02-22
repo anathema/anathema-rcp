@@ -16,7 +16,7 @@ public class FavorizationElementObjectMother {
     public IExtensionElement transform(String traitId) {
       try {
         MockStringAttribute traitIdAttribute = new MockStringAttribute("traitId", traitId); //$NON-NLS-1$
-        return ExtensionObjectMother.createExtensionElementWithAttributes(traitIdAttribute);
+        return ExtensionObjectMother.createExtensionElement(traitIdAttribute);
       }
       catch (ExtensionException e) {
         throw new RuntimeException(e);
@@ -33,7 +33,7 @@ public class FavorizationElementObjectMother {
         requiredFavored,
         IExtensionElement.class,
         new RequiredFavoredElementTransformer());
-    return ExtensionObjectMother.createExtensionElementWithAttributes(
+    return ExtensionObjectMother.createExtensionElement(
         templateIdAttribute,
         modelIdAttribute,
         countAttribute,

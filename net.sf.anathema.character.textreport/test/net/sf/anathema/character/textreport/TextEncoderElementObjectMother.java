@@ -16,10 +16,10 @@ public class TextEncoderElementObjectMother {
       throws ExtensionException {
     MockName afterName = new MockName("after"); //$NON-NLS-1$
     MockStringAttribute referenceAttribute = new MockStringAttribute("referenceId", afterId); //$NON-NLS-1$
-    IExtensionElement afterElement = ExtensionObjectMother.createExtensionElementWithAttributes(
+    IExtensionElement afterElement = ExtensionObjectMother.createExtensionElement(
         afterName,
         referenceAttribute);
-    return ExtensionObjectMother.createExtensionElementWithAttributes(
+    return ExtensionObjectMother.createExtensionElement(
         createEncoderAttribute(encoder),
         afterId == null ? new MockChildren() : new MockChildren(afterElement),
         new MockStringAttribute("id", id)); //$NON-NLS-1$

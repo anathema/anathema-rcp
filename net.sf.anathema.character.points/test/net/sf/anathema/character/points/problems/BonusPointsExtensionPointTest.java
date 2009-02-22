@@ -19,7 +19,7 @@ public class BonusPointsExtensionPointTest {
   public void createExtensionPoint() throws Exception {
     MockIntegerAttribute amoutAttribute = new MockIntegerAttribute("amount", BONUS_POINT_COUNT); //$NON-NLS-1$
     MockStringAttribute templateIdAttribute = new MockStringAttribute("templateId", TEMPLATE_ID); //$NON-NLS-1$
-    IExtensionElement element = ExtensionObjectMother.createExtensionElementWithAttributes(
+    IExtensionElement element = ExtensionObjectMother.createExtensionElement(
         amoutAttribute,
         templateIdAttribute);
     extensionPoint = new BonusPointExtensionPoint(ExtensionObjectMother.createPluginExtension(element));

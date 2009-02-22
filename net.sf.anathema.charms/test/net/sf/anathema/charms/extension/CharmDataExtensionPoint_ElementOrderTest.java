@@ -59,16 +59,16 @@ public class CharmDataExtensionPoint_ElementOrderTest {
   }
 
   private IExtensionElement createCharmWithSourceElementFirst() throws ExtensionException {
-    IExtensionElement innerTypeElement = ExtensionObjectMother.createExtensionElementWithAttributes(new MockName(charmType));
-    IExtensionElement outerTypeElement = ExtensionObjectMother.createExtensionElementWithAttributes(new MockName("type"), new MockChildren(innerTypeElement));
-    IExtensionElement keywords = ExtensionObjectMother.createExtensionElementWithAttributes(new MockStringAttribute(
+    IExtensionElement innerTypeElement = ExtensionObjectMother.createExtensionElement(new MockName(charmType));
+    IExtensionElement outerTypeElement = ExtensionObjectMother.createExtensionElement(new MockName("type"), new MockChildren(innerTypeElement));
+    IExtensionElement keywords = ExtensionObjectMother.createExtensionElement(new MockStringAttribute(
         "value", //$NON-NLS-1$
         "Combo-OK")); //$NON-NLS-1$
-    IExtensionElement source = ExtensionObjectMother.createExtensionElementWithAttributes(new MockStringAttribute(
+    IExtensionElement source = ExtensionObjectMother.createExtensionElement(new MockStringAttribute(
         "source", //$NON-NLS-1$
         "Ex2")); //$NON-NLS-1$
     MockStringAttribute id = new MockStringAttribute("charmId", "id.{0}"); //$NON-NLS-1$ //$NON-NLS-2$
-    return ExtensionObjectMother.createExtensionElementWithAttributes(id, new MockNamedChildren("source", source), //$NON-NLS-1$
+    return ExtensionObjectMother.createExtensionElement(id, new MockNamedChildren("source", source), //$NON-NLS-1$
         new MockChildren(source, outerTypeElement),
         new MockNamedChild("type", outerTypeElement),
         new MockNamedChildren("keyword", keywords)); //$NON-NLS-1$

@@ -29,7 +29,7 @@ public class TextEncoderExtensionPoint_FilledTest {
         ITextReportEncoder.class);
     IPluginExtension pluginExtension = ExtensionObjectMother.createPluginExtension(
         TextEncoderElementObjectMother.create(encoder, null, null),
-        ExtensionObjectMother.createExtensionElementWithAttributes(illegalAttribute, new MockChildren()));
+        ExtensionObjectMother.createExtensionElement(illegalAttribute, new MockChildren()));
     encoders = new TextEncoderExtensionPoint(pluginExtension).getEncoders();
   }
 

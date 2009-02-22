@@ -20,15 +20,15 @@ public class ModelListProviderTest {
 
   @Before
   public void createFilledProvider() throws ExtensionException {
-    IExtensionElement modelReferenceElement = ExtensionObjectMother.createExtensionElementWithAttributes(
+    IExtensionElement modelReferenceElement = ExtensionObjectMother.createExtensionElement(
         new MockStringAttribute("modelId", CONTAINED_MODEL_ID), //$NON-NLS-1$
         new MockName("modelReference")); //$NON-NLS-1$
-    IExtensionElement modelListReferenceElement = ExtensionObjectMother.createExtensionElementWithAttributes(
+    IExtensionElement modelListReferenceElement = ExtensionObjectMother.createExtensionElement(
         new MockStringAttribute("listId", MODEL_LIST_ID), //$NON-NLS-1$
         new MockName("listReference")); //$NON-NLS-1$
-    IExtensionElement modelListElement = ExtensionObjectMother.createExtensionElementWithAttributes(new MockChildren(
+    IExtensionElement modelListElement = ExtensionObjectMother.createExtensionElement(new MockChildren(
         modelReferenceElement), new MockStringAttribute("id", MODEL_LIST_ID)); //$NON-NLS-1$
-    IExtensionElement delegatingModelListElement = ExtensionObjectMother.createExtensionElementWithAttributes(
+    IExtensionElement delegatingModelListElement = ExtensionObjectMother.createExtensionElement(
         new MockChildren(modelListReferenceElement),
         new MockStringAttribute("id", DELEGATING_MODEL_LIST_ID)); //$NON-NLS-1$
     modelListProvider = new ModelListProvider(ExtensionObjectMother.createPluginExtension(

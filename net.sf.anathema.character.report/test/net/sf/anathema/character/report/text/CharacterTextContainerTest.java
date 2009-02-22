@@ -23,7 +23,7 @@ public class CharacterTextContainerTest {
     text = createMock(ICharacterText.class);
     IMockProp idAttribute = new MockStringAttribute("id", ID); //$NON-NLS-1$
     IMockProp classAttribute = new MockExecutableExtensionAttribute<ICharacterText>("class", ICharacterText.class, text); //$NON-NLS-1$
-    IExtensionElement element = ExtensionObjectMother.createExtensionElementWithAttributes(idAttribute, classAttribute);
+    IExtensionElement element = ExtensionObjectMother.createExtensionElement(idAttribute, classAttribute);
     IPluginExtension extension = ExtensionObjectMother.createPluginExtension(element);
     textContainer = new CharacterTextContainer(extension);
   }

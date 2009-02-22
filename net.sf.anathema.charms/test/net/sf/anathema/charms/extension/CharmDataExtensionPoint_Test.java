@@ -46,18 +46,18 @@ public class CharmDataExtensionPoint_Test {
   }
 
   private IExtensionElement createCharm() throws ExtensionException {
-    IExtensionElement reflexiveType = ExtensionObjectMother.createExtensionElementWithAttributes(new MockName(
+    IExtensionElement reflexiveType = ExtensionObjectMother.createExtensionElement(new MockName(
         "reflexive")); //$NON-NLS-1$
-    IExtensionElement type = ExtensionObjectMother.createExtensionElementWithAttributes(
+    IExtensionElement type = ExtensionObjectMother.createExtensionElement(
         new MockName("type"), new MockChildren(reflexiveType)); //$NON-NLS-1$
-    IExtensionElement keywords = ExtensionObjectMother.createExtensionElementWithAttributes(new MockStringAttribute(
+    IExtensionElement keywords = ExtensionObjectMother.createExtensionElement(new MockStringAttribute(
         "value", //$NON-NLS-1$
         "Combo-OK")); //$NON-NLS-1$
-    IExtensionElement source = ExtensionObjectMother.createExtensionElementWithAttributes(new MockStringAttribute(
+    IExtensionElement source = ExtensionObjectMother.createExtensionElement(new MockStringAttribute(
         "source", //$NON-NLS-1$
         "Ex2")); //$NON-NLS-1$
     MockStringAttribute id = new MockStringAttribute("charmId", "id.{0}"); //$NON-NLS-1$ //$NON-NLS-2$
-    return ExtensionObjectMother.createExtensionElementWithAttributes(
+    return ExtensionObjectMother.createExtensionElement(
         id,
         new MockChildren(type),
         new MockNamedChild("type", type), //$NON-NLS-1$
