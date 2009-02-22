@@ -1,12 +1,12 @@
 package net.sf.anathema.character.caste.sheet;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.report.text.ICharacterText;
 
-public class CasteCharacterText extends AbstractExecutableExtension implements ICharacterText {
+public class CasteCharacterText extends UnconfiguredExecutableExtension implements ICharacterText {
 
   @Override
   public String getLabel() {

@@ -1,7 +1,7 @@
 package net.sf.anathema.charms.character.selection;
 
 import net.disy.commons.core.predicate.IPredicate;
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
 import net.sf.anathema.character.core.model.IViewElementConfigurator;
@@ -9,7 +9,7 @@ import net.sf.anathema.charms.character.tree.SortedTreeDataCollection;
 import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.TreeDto;
 
-public class TreeSelectionConfigurator extends AbstractExecutableExtension implements IViewElementConfigurator {
+public class TreeSelectionConfigurator extends UnconfiguredExecutableExtension implements IViewElementConfigurator {
 
   private final Iterable<TreeDto> trees;
   private final IChooseTreePredicateFactory chooserFactory;

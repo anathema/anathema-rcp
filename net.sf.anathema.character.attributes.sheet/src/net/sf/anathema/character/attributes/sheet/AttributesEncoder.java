@@ -2,7 +2,7 @@ package net.sf.anathema.character.attributes.sheet;
 
 import java.util.List;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeMessages;
 import net.sf.anathema.character.attributes.util.AttributeDisplayGroupFactory;
 import net.sf.anathema.character.core.character.ICharacter;
@@ -18,7 +18,7 @@ import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class AttributesEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
+public class AttributesEncoder extends UnconfiguredExecutableExtension implements IPdfContentBoxEncoder {
 
   @Override
   public String getHeader(ICharacter character) {

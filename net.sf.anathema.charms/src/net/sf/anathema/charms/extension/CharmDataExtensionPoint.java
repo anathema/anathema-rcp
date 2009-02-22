@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.extension;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.eclipse.extension.AttributePredicate;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
@@ -11,7 +11,7 @@ import net.sf.anathema.charms.data.IExecutableCharmDataMap;
 import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.tree.ICharmId;
 
-public class CharmDataExtensionPoint extends AbstractExecutableExtension implements IExecutableCharmDataMap {
+public class CharmDataExtensionPoint extends UnconfiguredExecutableExtension implements IExecutableCharmDataMap {
 
   private static final String TAG_TYPE = "type"; //$NON-NLS-1$
   private static final String TAG_DURATION_AND_COST = "durationAndCost"; //$NON-NLS-1$

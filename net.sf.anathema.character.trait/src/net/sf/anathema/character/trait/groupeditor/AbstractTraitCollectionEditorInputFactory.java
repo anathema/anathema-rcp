@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait.groupeditor;
 
 import java.net.URL;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.Character;
 import net.sf.anathema.character.core.character.ICharacter;
@@ -24,7 +24,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IEditorInput;
 
-public abstract class AbstractTraitCollectionEditorInputFactory extends AbstractExecutableExtension implements
+public abstract class AbstractTraitCollectionEditorInputFactory extends UnconfiguredExecutableExtension implements
     IEditorInputFactory {
 
   @Override

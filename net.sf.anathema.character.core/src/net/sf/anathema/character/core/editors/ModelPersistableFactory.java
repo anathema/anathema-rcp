@@ -1,6 +1,6 @@
 package net.sf.anathema.character.core.editors;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.basics.item.editor.ErrorMessageEditorInput;
 import net.sf.anathema.character.core.character.CharacterId;
@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IMemento;
 
-public class ModelPersistableFactory extends AbstractExecutableExtension implements IElementFactory {
+public class ModelPersistableFactory extends UnconfiguredExecutableExtension implements IElementFactory {
   public static final String PROP_FULL_PATH = "fullPath"; //$NON-NLS-1$
   private final IContainer root;
   private final ICharacterTemplateProvider templateProvider;

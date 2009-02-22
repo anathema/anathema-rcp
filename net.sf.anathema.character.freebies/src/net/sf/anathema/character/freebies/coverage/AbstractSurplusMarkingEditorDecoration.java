@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
@@ -21,7 +21,7 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 import org.eclipse.swt.graphics.Image;
 
-public abstract class AbstractSurplusMarkingEditorDecoration<G> extends AbstractExecutableExtension implements
+public abstract class AbstractSurplusMarkingEditorDecoration<G> extends UnconfiguredExecutableExtension implements
     ITraitGroupEditorDecoration {
 
   private final Map<IIntValueView, SurplusPainter> surplusPainters = new HashMap<IIntValueView, SurplusPainter>();

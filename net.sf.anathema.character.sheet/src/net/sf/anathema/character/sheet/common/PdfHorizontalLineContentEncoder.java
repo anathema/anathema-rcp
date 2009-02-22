@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.common;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.content.HorizontalLineListEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
@@ -9,7 +9,7 @@ import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class PdfHorizontalLineContentEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
+public class PdfHorizontalLineContentEncoder extends UnconfiguredExecutableExtension implements IPdfContentBoxEncoder {
 
   private static final int LINE_HEIGHT = IVoidStateFormatConstants.LINE_HEIGHT - 2;
   private final int columnCount;

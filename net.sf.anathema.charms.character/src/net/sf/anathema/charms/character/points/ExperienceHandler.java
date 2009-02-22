@@ -1,12 +1,12 @@
 package net.sf.anathema.charms.character.points;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 
-public class ExperienceHandler extends AbstractExecutableExtension implements IPointHandler {
+public class ExperienceHandler extends UnconfiguredExecutableExtension implements IPointHandler {
 
   private final IModelCollection modelCollection;
 

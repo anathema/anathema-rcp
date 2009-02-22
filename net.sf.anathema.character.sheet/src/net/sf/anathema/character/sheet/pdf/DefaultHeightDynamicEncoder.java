@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.pdf;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
@@ -10,7 +10,7 @@ import net.sf.anathema.character.sheet.elements.Bounds;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class DefaultHeightDynamicEncoder extends AbstractExecutableExtension implements IDynamicPdfContentBoxEncoder {
+public class DefaultHeightDynamicEncoder extends UnconfiguredExecutableExtension implements IDynamicPdfContentBoxEncoder {
 
   private final IPdfContentBoxEncoder encoder;
 

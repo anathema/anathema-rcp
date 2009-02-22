@@ -1,6 +1,6 @@
 package net.sf.anathema.campaign.plot.dnd;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.repository.view.IRepositoryDND;
 
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -10,7 +10,7 @@ import org.eclipse.swt.dnd.DragSource;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.ui.IViewSite;
 
-public class PlotRepositoryDND extends AbstractExecutableExtension implements IRepositoryDND {
+public class PlotRepositoryDND extends UnconfiguredExecutableExtension implements IRepositoryDND {
 
   private final int dndOperations = DND.DROP_MOVE;
   private final Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };

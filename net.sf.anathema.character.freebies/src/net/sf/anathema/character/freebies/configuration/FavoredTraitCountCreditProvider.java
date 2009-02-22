@@ -1,9 +1,9 @@
 package net.sf.anathema.character.freebies.configuration;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.trait.collection.ITraitCollectionTemplateProvider;
 
-public class FavoredTraitCountCreditProvider extends AbstractExecutableExtension implements ICreditProvider {
+public class FavoredTraitCountCreditProvider extends UnconfiguredExecutableExtension implements ICreditProvider {
 
   private final ITraitCollectionTemplateProvider provider;
 

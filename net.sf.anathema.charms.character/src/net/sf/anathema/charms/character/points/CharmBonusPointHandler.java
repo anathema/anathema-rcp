@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.character.points;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -9,7 +9,7 @@ import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.tree.ICharmId;
 
-public class CharmBonusPointHandler extends AbstractExecutableExtension implements IPointHandler {
+public class CharmBonusPointHandler extends UnconfiguredExecutableExtension implements IPointHandler {
 
   private final IModelCollection modelCollection;
   private final ICharmCostFactory charmCostFactory;

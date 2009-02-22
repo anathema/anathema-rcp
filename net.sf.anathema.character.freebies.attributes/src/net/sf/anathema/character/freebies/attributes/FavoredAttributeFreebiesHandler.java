@@ -2,7 +2,7 @@ package net.sf.anathema.character.freebies.attributes;
 
 import java.util.Map;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.attributes.model.AttributeGroupTemplate;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -18,7 +18,7 @@ import net.sf.anathema.character.freebies.configuration.ICreditManager;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class FavoredAttributeFreebiesHandler extends AbstractExecutableExtension implements IFreebiesHandler {
+public class FavoredAttributeFreebiesHandler extends UnconfiguredExecutableExtension implements IFreebiesHandler {
   private static final String CREDIT_ID = "net.sf.anthema.character.attributes.freebies.favored"; //$NON-NLS-1$
   private final IModelCollection modelProvider;
   private final ICreditManager creditManager;

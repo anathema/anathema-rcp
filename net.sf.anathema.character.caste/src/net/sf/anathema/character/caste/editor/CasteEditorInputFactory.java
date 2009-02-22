@@ -2,7 +2,7 @@ package net.sf.anathema.character.caste.editor;
 
 import java.net.URL;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -15,7 +15,7 @@ import net.sf.anathema.lib.exception.PersistenceException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 
-public class CasteEditorInputFactory extends AbstractExecutableExtension implements IEditorInputFactory {
+public class CasteEditorInputFactory extends UnconfiguredExecutableExtension implements IEditorInputFactory {
 
   @Override
   public CasteEditorInput create(

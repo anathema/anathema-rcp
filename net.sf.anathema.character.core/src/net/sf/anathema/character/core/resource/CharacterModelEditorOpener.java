@@ -1,6 +1,6 @@
 package net.sf.anathema.character.core.resource;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.basics.eclipse.ui.IResourceEditorOpener;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
@@ -21,7 +21,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 
-public class CharacterModelEditorOpener extends AbstractExecutableExtension implements IResourceEditorOpener {
+public class CharacterModelEditorOpener extends UnconfiguredExecutableExtension implements IResourceEditorOpener {
 
   public static final String ID = "net.sf.anathema.character.modelopener"; //$NON-NLS-1$
 

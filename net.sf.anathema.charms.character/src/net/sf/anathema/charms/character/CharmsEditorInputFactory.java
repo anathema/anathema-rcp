@@ -2,7 +2,7 @@ package net.sf.anathema.charms.character;
 
 import java.net.URL;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
@@ -15,7 +15,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IEditorInput;
 
-public class CharmsEditorInputFactory extends AbstractExecutableExtension implements IEditorInputFactory {
+public class CharmsEditorInputFactory extends UnconfiguredExecutableExtension implements IEditorInputFactory {
   
   @Override
   public IEditorInput create(

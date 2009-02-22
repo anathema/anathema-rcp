@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.repository.RepositoryPlugin;
 
 import org.eclipse.core.resources.IContainer;
@@ -13,7 +13,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 
-public class ResourceProblemProvider extends AbstractExecutableExtension implements IProblemProvider {
+public class ResourceProblemProvider extends UnconfiguredExecutableExtension implements IProblemProvider {
 
   @Override
   public Collection<IProblem> findProblems(IContainer workspaceRoot) {

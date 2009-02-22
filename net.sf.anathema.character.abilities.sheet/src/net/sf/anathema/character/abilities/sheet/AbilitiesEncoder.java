@@ -3,7 +3,7 @@ package net.sf.anathema.character.abilities.sheet;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.abilities.model.AbilitiesMessages;
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayGroupFactory;
 import net.sf.anathema.character.core.character.ICharacter;
@@ -20,7 +20,7 @@ import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class AbilitiesEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
+public class AbilitiesEncoder extends UnconfiguredExecutableExtension implements IPdfContentBoxEncoder {
 
   private final MarkerEncoder markerEncoder = new MarkerEncoder();
   private final MarkedTraits markedTraits = new MarkedTraits();

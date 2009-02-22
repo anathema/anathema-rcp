@@ -1,6 +1,6 @@
 package net.sf.anathema.character.caste.trait;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -14,7 +14,7 @@ import net.sf.anathema.character.trait.status.ITraitStatusImageProvider;
 
 import org.eclipse.swt.graphics.Image;
 
-public class CasteTraitImageProvider extends AbstractExecutableExtension implements ITraitStatusImageProvider {
+public class CasteTraitImageProvider extends UnconfiguredExecutableExtension implements ITraitStatusImageProvider {
 
   @Override
   public Image getImage(IDisplayTrait trait, ICharacterId characterId) {

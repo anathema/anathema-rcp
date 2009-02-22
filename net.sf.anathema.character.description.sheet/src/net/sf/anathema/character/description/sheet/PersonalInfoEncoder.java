@@ -2,7 +2,7 @@ package net.sf.anathema.character.description.sheet;
 
 import static net.sf.anathema.character.sheet.page.IVoidStateFormatConstants.*;
 import net.disy.commons.core.util.StringUtilities;
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.description.ICharacterDescription;
 import net.sf.anathema.character.report.text.CharacterTextContainer;
@@ -17,7 +17,7 @@ import net.sf.anathema.character.sheet.elements.Position;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class PersonalInfoEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
+public class PersonalInfoEncoder extends UnconfiguredExecutableExtension implements IPdfContentBoxEncoder {
 
   @Override
   public String getHeader(ICharacter character) {

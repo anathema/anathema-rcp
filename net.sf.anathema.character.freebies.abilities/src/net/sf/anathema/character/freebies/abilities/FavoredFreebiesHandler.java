@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.abilities;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.abilities.util.TraitListFactory;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -12,7 +12,7 @@ import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class FavoredFreebiesHandler extends AbstractExecutableExtension implements IFreebiesHandler {
+public class FavoredFreebiesHandler extends UnconfiguredExecutableExtension implements IFreebiesHandler {
 
   private final IModelCollection modelCollection;
 

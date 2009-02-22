@@ -1,7 +1,7 @@
 package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.points.configuration.IPointHandler;
@@ -17,7 +17,7 @@ import org.junit.Test;
 
 public class PointViewInputFactoryTest {
 
-  private final class StaticValuePointHandler extends AbstractExecutableExtension implements IPointHandler {
+  private final class StaticValuePointHandler extends UnconfiguredExecutableExtension implements IPointHandler {
     private final int points;
 
     public StaticValuePointHandler(int points) {

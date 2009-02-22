@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
@@ -20,7 +20,7 @@ import net.sf.anathema.charms.tree.operations.CollectTreeIds;
 import net.sf.anathema.charms.tree.operations.ForGenerics;
 import net.sf.anathema.charms.tree.operations.ForTreePart;
 
-public class CharmTreeExtensionPoint extends AbstractExecutableExtension implements IExecutableTreeProvider {
+public class CharmTreeExtensionPoint extends UnconfiguredExecutableExtension implements IExecutableTreeProvider {
 
   private static final String EXTENSION_NAME = "charmtree"; //$NON-NLS-1$
   public static final String TAG_TREEPART = "treepart"; //$NON-NLS-1$

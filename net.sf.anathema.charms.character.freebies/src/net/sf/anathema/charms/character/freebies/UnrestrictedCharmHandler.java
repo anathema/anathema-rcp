@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.character.freebies;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -11,7 +11,7 @@ import net.sf.anathema.charms.character.freebies.plugin.ICharmFreebiesConstants;
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
 
-public class UnrestrictedCharmHandler extends AbstractExecutableExtension implements IFreebiesHandler {
+public class UnrestrictedCharmHandler extends UnconfiguredExecutableExtension implements IFreebiesHandler {
 
   private final IModelCollection modelCollection;
   private final ICreditManager creditManager;

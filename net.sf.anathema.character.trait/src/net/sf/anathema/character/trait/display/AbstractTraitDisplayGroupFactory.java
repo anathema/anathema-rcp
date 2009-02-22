@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait.display;
 
 import java.util.List;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.FavorizationInteraction;
@@ -15,7 +15,7 @@ import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 
-public abstract class AbstractTraitDisplayGroupFactory extends AbstractExecutableExtension implements
+public abstract class AbstractTraitDisplayGroupFactory extends UnconfiguredExecutableExtension implements
     IDisplayGroupFactory {
 
   private final String modelId;

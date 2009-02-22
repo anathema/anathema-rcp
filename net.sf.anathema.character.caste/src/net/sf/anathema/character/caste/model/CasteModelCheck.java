@@ -1,12 +1,12 @@
 package net.sf.anathema.character.caste.model;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.content.IModelContentCheck;
 
-public class CasteModelCheck extends AbstractExecutableExtension implements IModelContentCheck {
+public class CasteModelCheck extends UnconfiguredExecutableExtension implements IModelContentCheck {
 
   @Override
   public boolean evaluate(IModelContainer container, String content) {

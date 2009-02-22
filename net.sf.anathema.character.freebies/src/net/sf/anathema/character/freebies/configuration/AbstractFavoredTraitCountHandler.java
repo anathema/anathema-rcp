@@ -1,6 +1,6 @@
 package net.sf.anathema.character.freebies.configuration;
 
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
@@ -9,7 +9,7 @@ import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.status.FavoredStatus;
 
-public abstract class AbstractFavoredTraitCountHandler extends AbstractExecutableExtension implements IFreebiesHandler {
+public abstract class AbstractFavoredTraitCountHandler extends UnconfiguredExecutableExtension implements IFreebiesHandler {
 
   private final IModelCollection modelProvider;
 
