@@ -1,6 +1,5 @@
 package net.sf.anathema.character.abilities.sheet;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,46 +16,24 @@ import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExecutableExtension;
-
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Font;
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentBoxEncoder, IExecutableExtension {
+public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentBoxEncoder {
 
-  private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
   private final List<ISubSectionEncoder> subsectionEncoders = new ArrayList<ISubSectionEncoder>();
   private final PdfTraitEncoder traitEncoder;
   private final MarkerEncoder markerEncoder = new MarkerEncoder();
   private final MarkedTraits markedTraits = new MarkedTraits();
 
   public AbilitiesEncoder() {
-    traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
-    addSubsectionEncoder(new EmptySubsectionEncoder(
-        BASEFONT,
-        traitEncoder,
-        Messages.AbilitiesEncoder_CraftsHeader,
-        10,
-        9));
-    addSubsectionEncoder(new EmptySubsectionEncoder(
-        BASEFONT,
-        traitEncoder,
-        Messages.AbilitiesEncoder_SpecialtiesHeader,
-        3,
-        9));
+    traitEncoder = PdfTraitEncoder.createSmallTraitEncoder();
+    addSubsectionEncoder(new EmptySubsectionEncoder(traitEncoder, Messages.AbilitiesEncoder_CraftsHeader, 10, 9));
+    addSubsectionEncoder(new EmptySubsectionEncoder(traitEncoder, Messages.AbilitiesEncoder_SpecialtiesHeader, 3, 9));
   }
 
   private final void addSubsectionEncoder(ISubSectionEncoder encoder) {
     subsectionEncoders.add(encoder);
-  }
-
-  @Override
-  protected BaseFont getBaseFont() {
-    return BASEFONT;
   }
 
   @Override
@@ -137,11 +114,5 @@ public class AbilitiesEncoder extends AbstractPdfEncoder implements IPdfContentB
   @Override
   public String getHeader(ICharacter character) {
     return Messages.AbilitiesEncoder_AbilitiesHeader;
-  }
-
-  @Override
-  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
-      throws CoreException {
-    // nothing to do
   }
 }

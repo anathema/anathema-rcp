@@ -5,24 +5,16 @@ import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
 public abstract class AbstractTraitSubsectionEncoder extends AbstractPdfEncoder implements ISubSectionEncoder {
   private static final int SUBSECTION_FONT_SIZE = 8;
   private final PdfTraitEncoder traitEncoder;
-  private final BaseFont baseFont;
   private final int lineCount;
 
-  public AbstractTraitSubsectionEncoder(BaseFont baseFont, PdfTraitEncoder traitEncoder, int lineCount) {
-    this.baseFont = baseFont;
+  public AbstractTraitSubsectionEncoder(PdfTraitEncoder traitEncoder, int lineCount) {
     this.traitEncoder = traitEncoder;
     this.lineCount = lineCount;
-  }
-
-  @Override
-  protected BaseFont getBaseFont() {
-    return baseFont;
   }
 
   protected int drawNamedTraitSection(

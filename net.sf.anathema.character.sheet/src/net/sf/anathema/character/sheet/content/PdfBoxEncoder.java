@@ -6,21 +6,18 @@ import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
 public class PdfBoxEncoder extends AbstractPdfEncoder {
 
   public static final int CONTENT_INSET = 5;
 
-  private BaseFont baseFont;
   private final PdfHeaderBoxEncoder headerBoxEncoder;
   private final IPdfBoxEncoder standardBoxEncoder;
 
-  public PdfBoxEncoder(BaseFont baseFont) {
-    this.baseFont = baseFont;
-    this.headerBoxEncoder = new PdfHeaderBoxEncoder(baseFont);
-    this.standardBoxEncoder = new StandardBoxEncoder(baseFont);
+  public PdfBoxEncoder() {
+    this.headerBoxEncoder = new PdfHeaderBoxEncoder();
+    this.standardBoxEncoder = new StandardBoxEncoder();
   }
 
   public Bounds calculateContentBounds(Bounds bounds) {
@@ -44,8 +41,12 @@ public class PdfBoxEncoder extends AbstractPdfEncoder {
     return encodeBox(directContent, bounds, title, standardBoxEncoder);
   }
 
-  public void encodeBox(PdfContentByte directContent, IEncodeContext context, IPdfContentBoxEncoder encoder, ICharacter character, Bounds bounds)
-      throws DocumentException {
+  public void encodeBox(
+      PdfContentByte directContent,
+      IEncodeContext context,
+      IPdfContentBoxEncoder encoder,
+      ICharacter character,
+      Bounds bounds) throws DocumentException {
     encodeBox(directContent, context, encoder, standardBoxEncoder, character, bounds);
   }
 
@@ -70,10 +71,5 @@ public class PdfBoxEncoder extends AbstractPdfEncoder {
 
   public float calculateInsettedWidth(float width) {
     return width - 2 * CONTENT_INSET;
-  }
-
-  @Override
-  protected BaseFont getBaseFont() {
-    return baseFont;
   }
 }

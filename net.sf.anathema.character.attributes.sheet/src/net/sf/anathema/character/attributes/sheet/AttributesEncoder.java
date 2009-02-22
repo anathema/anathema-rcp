@@ -1,6 +1,5 @@
 package net.sf.anathema.character.attributes.sheet;
 
-import java.awt.Color;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
@@ -17,14 +16,11 @@ import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Font;
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
 public class AttributesEncoder extends AbstractExecutableExtension implements IPdfContentBoxEncoder {
 
-  private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
-  private final PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder(BASEFONT);
+  private final PdfTraitEncoder smallTraitEncoder = PdfTraitEncoder.createSmallTraitEncoder();
 
   @Override
   public String getHeader(ICharacter character) {

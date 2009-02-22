@@ -12,16 +12,10 @@ import net.sf.anathema.character.sheet.content.AbstractPdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
 public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfContentBoxEncoder {
-
-  private BaseFont baseFont;
 
   @Override
   public String getHeader(ICharacter character) {
@@ -36,7 +30,6 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    baseFont = context.getBaseFont();
     ICharacterDescription description = (ICharacterDescription) character.getModel(ICharacterDescription.MODEL_ID);
     float lineHeight = (bounds.height - TEXT_PADDING) / 3;
     float entryWidth = (bounds.width - TEXT_PADDING) / 2;
@@ -73,16 +66,5 @@ public class PersonalInfoEncoder extends AbstractPdfEncoder implements IPdfConte
         motivationContent,
         motivationPosition,
         bounds.width);
-  }
-
-  @Override
-  protected BaseFont getBaseFont() {
-    return baseFont;
-  }
-
-  @Override
-  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
-      throws CoreException {
-    // nothing to do
   }
 }

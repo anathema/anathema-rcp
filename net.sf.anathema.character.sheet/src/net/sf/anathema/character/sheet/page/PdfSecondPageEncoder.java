@@ -32,7 +32,7 @@ public class PdfSecondPageEncoder implements IPdfPageEncoder {
     this.contentEncoderProvider = contentEncoderProvider;
     this.configuration = configuration;
     this.context = context;
-    this.boxEncoder = new PdfBoxEncoder(context.getBaseFont());
+    this.boxEncoder = new PdfBoxEncoder();
   }
 
   public void encode(Document document, PdfContentByte directContent, ICharacter character) throws DocumentException {

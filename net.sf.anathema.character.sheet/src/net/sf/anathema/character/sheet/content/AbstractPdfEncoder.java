@@ -1,19 +1,19 @@
 package net.sf.anathema.character.sheet.content;
 
 import net.disy.commons.core.util.StringUtilities;
+import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExecutableExtension;
+import net.sf.anathema.character.sheet.pdf.EncodeContext;
 
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public abstract class AbstractPdfEncoder implements IExecutableExtension {
+public abstract class AbstractPdfEncoder extends AbstractExecutableExtension {
 
-  protected abstract BaseFont getBaseFont();
+  protected final BaseFont getBaseFont() {
+    return EncodeContext.BASEFONT;
+  }
 
   protected final void setCommentFont(PdfContentByte directContent) {
     directContent.setFontAndSize(getBaseFont(), IVoidStateFormatConstants.COMMENT_FONT_SIZE);
@@ -95,11 +95,5 @@ public abstract class AbstractPdfEncoder implements IExecutableExtension {
     setFillColorBlack(directContent);
     setDefaultFont(directContent);
     directContent.setLineWidth(0);
-  }
-
-  @Override
-  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
-      throws CoreException {
-    // nothing to do
   }
 }

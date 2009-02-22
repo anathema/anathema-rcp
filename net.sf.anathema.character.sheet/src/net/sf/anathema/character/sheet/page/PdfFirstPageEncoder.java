@@ -8,6 +8,7 @@ import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 import net.sf.anathema.character.sheet.content.PdfBoxEncoder;
 import net.sf.anathema.character.sheet.content.PdfTextEncodingUtilities;
 import net.sf.anathema.character.sheet.elements.Bounds;
+import net.sf.anathema.character.sheet.pdf.EncodeContext;
 
 import com.lowagie.text.Anchor;
 import com.lowagie.text.Document;
@@ -45,7 +46,7 @@ public class PdfFirstPageEncoder implements IPdfPageEncoder {
     this.contentEncoderProvider = boxEncoderProvider;
     this.pageConfiguration = pageConfiguration;
     this.context = context;
-    this.boxEncoder = new PdfBoxEncoder(context.getBaseFont());
+    this.boxEncoder = new PdfBoxEncoder();
   }
 
   private float calculateBoxIncrement(float height) {
@@ -134,7 +135,7 @@ public class PdfFirstPageEncoder implements IPdfPageEncoder {
 
   private void encodeCopyright(PdfContentByte directContent) throws DocumentException {
     int lineHeight = IVoidStateFormatConstants.COMMENT_FONT_SIZE + 2;
-    Font copyrightFont = new Font(context.getBaseFont(), IVoidStateFormatConstants.COMMENT_FONT_SIZE);
+    Font copyrightFont = new Font(EncodeContext.BASEFONT, IVoidStateFormatConstants.COMMENT_FONT_SIZE);
     float copyrightHeight = pageConfiguration.getPageHeight() - pageConfiguration.getContentHeight();
     Bounds firstColumnBounds = pageConfiguration.getFirstColumnRectangle(CONTENT_HEIGHT, copyrightHeight, 1);
     Anchor voidstatePhrase = new Anchor("Inspired by Voidstate\nhttp://www.voidstate.com", copyrightFont); //$NON-NLS-1$

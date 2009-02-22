@@ -1,6 +1,5 @@
 package net.sf.anathema.character.spiritualtraits.sheet;
 
-import java.awt.Color;
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
@@ -18,28 +17,11 @@ import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
 import net.sf.anathema.lib.util.Identificate;
 
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Font;
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
 public class EssenceEncoder extends AbstractPdfEncoder implements IPdfContentBoxEncoder {
 
-  private static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
-  private final int essenceMax;
-  private final PdfTraitEncoder largeTraitEncoder = PdfTraitEncoder.createLargeTraitEncoder(BASEFONT);
-
-  public EssenceEncoder() {
-    this(5);
-  }
-
-  public EssenceEncoder(int maxEssence) {
-    this.essenceMax = maxEssence;
-  }
-
-  @Override
-  protected BaseFont getBaseFont() {
-    return BASEFONT;
-  }
+  private final PdfTraitEncoder largeTraitEncoder = PdfTraitEncoder.createLargeTraitEncoder();
 
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
@@ -48,7 +30,8 @@ public class EssenceEncoder extends AbstractPdfEncoder implements IPdfContentBox
     DisplayTraitList<IDisplayTrait> displayTraitList = new DisplayTraitList<IDisplayTrait>(displayGroups);
     int value = displayTraitList.getTrait(new Identificate("Essence")).getValue();
     Position essencePosition = new Position(bounds.x, bounds.y + bounds.height - largeTraitEncoder.getTraitHeight());
-    largeTraitEncoder.encodeDotsCenteredAndUngrouped(directContent, essencePosition, bounds.width, value, essenceMax);
+    int maxEssence = context.getMaxEssence();
+    largeTraitEncoder.encodeDotsCenteredAndUngrouped(directContent, essencePosition, bounds.width, value, maxEssence);
     float poolHeight = bounds.height - largeTraitEncoder.getTraitHeight() - IVoidStateFormatConstants.TEXT_PADDING;
     float poolLineHeight = poolHeight / 2;
     Position personalPosition = new Position(bounds.x, essencePosition.y - poolLineHeight);

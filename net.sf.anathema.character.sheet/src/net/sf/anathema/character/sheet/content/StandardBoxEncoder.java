@@ -1,23 +1,10 @@
 package net.sf.anathema.character.sheet.content;
 
-
 import net.sf.anathema.character.sheet.elements.Bounds;
 
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
 public class StandardBoxEncoder extends AbstractPdfEncoder implements IPdfBoxEncoder {
-
-  private final BaseFont baseFont;
-
-  public StandardBoxEncoder(BaseFont baseFont) {
-    this.baseFont = baseFont;
-  }
-
-  @Override
-  protected BaseFont getBaseFont() {
-    return baseFont;
-  }
 
   public void encodeContentBox(PdfContentByte directContent, Bounds contentBounds) {
     setFillColorBlack(directContent);

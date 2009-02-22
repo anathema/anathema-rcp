@@ -3,7 +3,6 @@ package net.sf.anathema.character.trait.sheet;
 import net.sf.anathema.character.sheet.content.AbstractPdfEncoder;
 import net.sf.anathema.character.sheet.elements.Position;
 
-import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
 public class PdfTraitEncoder extends AbstractPdfEncoder {
@@ -28,24 +27,22 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
 
   private static final int SMALL_DOT_SPACING = 2;
 
-  public static PdfTraitEncoder createLargeTraitEncoder(BaseFont baseFont) {
-    return new PdfTraitEncoder(baseFont, 14, 10);
+  public static PdfTraitEncoder createLargeTraitEncoder() {
+    return new PdfTraitEncoder(14, 10);
   }
 
-  public static PdfTraitEncoder createMediumTraitEncoder(BaseFont baseFont) {
-    return new PdfTraitEncoder(baseFont, 12, 8);
+  public static PdfTraitEncoder createMediumTraitEncoder() {
+    return new PdfTraitEncoder(12, 8);
   }
 
-  public static PdfTraitEncoder createSmallTraitEncoder(BaseFont baseFont) {
-    return new PdfTraitEncoder(baseFont, 11, 6);
+  public static PdfTraitEncoder createSmallTraitEncoder() {
+    return new PdfTraitEncoder(11, 6);
   }
 
   private final int height;
   private final int dotSize;
-  private final BaseFont baseFont;
 
-  private PdfTraitEncoder(BaseFont baseFont, int height, int dotSize) {
-    this.baseFont = baseFont;
+  private PdfTraitEncoder(int height, int dotSize) {
     this.height = height;
     this.dotSize = dotSize;
   }
@@ -154,11 +151,6 @@ public class PdfTraitEncoder extends AbstractPdfEncoder {
     int squareWidth = dotSize + 2;
     Position usualTraitPosition = new Position(position.x + squareWidth, position.y);
     return encodeWithText(directContent, text, usualTraitPosition, width - squareWidth, value, dotCount);
-  }
-
-  @Override
-  protected BaseFont getBaseFont() {
-    return baseFont;
   }
 
   public int getTraitHeight() {

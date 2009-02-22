@@ -8,11 +8,12 @@ import com.lowagie.text.Font;
 import com.lowagie.text.pdf.BaseFont;
 
 public class EncodeContext implements IEncodeContext {
-  private static final BaseFont baseFont = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
+
+  public static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
 
   @Override
   public BaseFont getBaseFont() {
-    return baseFont;
+    return EncodeContext.BASEFONT;
   }
 
   @Override
