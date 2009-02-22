@@ -4,10 +4,14 @@ import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExecutableExtension;
+
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public abstract class AbstractPdfEncoder {
+public abstract class AbstractPdfEncoder implements IExecutableExtension {
 
   protected abstract BaseFont getBaseFont();
 
@@ -91,5 +95,11 @@ public abstract class AbstractPdfEncoder {
     setFillColorBlack(directContent);
     setDefaultFont(directContent);
     directContent.setLineWidth(0);
+  }
+
+  @Override
+  public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
+      throws CoreException {
+    // nothing to do
   }
 }

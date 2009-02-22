@@ -1,16 +1,18 @@
 package net.sf.anathema.character.abilities.util;
 
-import java.util.List;
-
-import net.sf.anathema.basics.eclipse.extension.AbstractExecutableExtension;
+import net.sf.anathema.character.abilities.model.AbilitiesGroupTemplate;
+import net.sf.anathema.character.abilities.template.AbilitiesTemplateProvider;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
-import net.sf.anathema.character.trait.display.IDisplayTrait;
-import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.display.AbstractTraitDisplayGroupFactory;
+import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 
-public class AbilitiesDisplayGroupFactory extends AbstractExecutableExtension implements IDisplayGroupFactory{
+public class AbilitiesDisplayGroupFactory extends AbstractTraitDisplayGroupFactory {
+  public AbilitiesDisplayGroupFactory() {
+    super(IAbilitiesPluginConstants.MODEL_ID, new AbilitiesTemplateProvider());
+  }
 
-  public List<IDisplayTraitGroup<IDisplayTrait>> createDisplayTraitGroups(ICharacter character) {
-    return new DisplayGroupFactory(character, IAbilitiesPluginConstants.MODEL_ID).create();
-   }
+  @Override
+  protected ITraitGroupTemplate createGroupTemplate(ICharacter character) {
+    return new AbilitiesGroupTemplate(character.getTemplate());
+  }
 }

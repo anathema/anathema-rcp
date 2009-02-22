@@ -1,6 +1,5 @@
-package net.sf.anathema.character.spiritualtraits.editor;
+package net.sf.anathema.character.spiritualtraits.model;
 
-import net.sf.anathema.character.spiritualtraits.model.SpiritualTraitGroupTemplate;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.collection.TraitCollectionTemplateProvider;
 import net.sf.anathema.character.trait.model.ITraitGroupTemplate;

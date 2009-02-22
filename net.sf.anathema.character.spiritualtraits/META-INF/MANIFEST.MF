@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Eclipse-ExtensibleAPI: true
 Bundle-Name: Spiritualtraits Plug-in
 Bundle-SymbolicName: net.sf.anathema.character.spiritualtraits;singleton:=true
 Bundle-Version: 1.0.0

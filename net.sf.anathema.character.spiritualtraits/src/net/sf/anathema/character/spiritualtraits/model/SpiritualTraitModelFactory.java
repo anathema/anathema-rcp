@@ -7,6 +7,6 @@ public class SpiritualTraitModelFactory extends AbstractTraitCollectionFactory {
 
   @Override
   protected ITraitCollectionTemplateProvider getTemplateProvider() {
-    return new SpiritualTraitTemplateProvider();
+    return new SpiritualTraitsTemplateProvider();
   }
 }

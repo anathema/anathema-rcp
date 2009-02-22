@@ -4,6 +4,7 @@ Bundle-Name: %net.sf.anathema.character.description.BundleName
 Bundle-SymbolicName: net.sf.anathema.character.description;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Localization: plugin
+Eclipse-ExtensibleAPI: true
 Require-Bundle: net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.jface,
  net.sf.anathema.basics.lib,
