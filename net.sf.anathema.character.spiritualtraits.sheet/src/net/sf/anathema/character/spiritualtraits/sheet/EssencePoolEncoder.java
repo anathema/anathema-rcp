@@ -9,11 +9,9 @@ import com.lowagie.text.pdf.PdfContentByte;
 
 public class EssencePoolEncoder {
 
-  private final PdfContentByte directContent;
   private final PdfEncoder pdfEncoder;
 
   public EssencePoolEncoder(PdfContentByte directContent) {
-    this.directContent = directContent;
     this.pdfEncoder = new PdfEncoder(directContent);
   }
 

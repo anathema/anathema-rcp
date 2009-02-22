@@ -8,18 +8,18 @@ import com.lowagie.text.pdf.PdfContentByte;
 public class PdfTraitEncoder {
 
   private class Dot implements IShape {
-    public void encode(PdfContentByte directContent, Position lowerLeft, int dotIndex, int value) {
+    public void encode(Position lowerLeft, int dotIndex, int value) {
       directContent.arc(lowerLeft.x, lowerLeft.y, lowerLeft.x + dotSize, lowerLeft.y + dotSize, 0, 360);
       commitShape(dotIndex < value);
     }
   }
 
   private interface IShape {
-    public void encode(PdfContentByte directContent, Position lowerLeft, int dotIndex, int value);
+    public void encode(Position lowerLeft, int dotIndex, int value);
   }
 
   private class Square implements IShape {
-    public void encode(PdfContentByte directContent, Position lowerLeft, int dotIndex, int value) {
+    public void encode(Position lowerLeft, int dotIndex, int value) {
       directContent.rectangle(lowerLeft.x, lowerLeft.y, dotSize, dotSize);
       commitShape(dotIndex < value);
     }
@@ -75,7 +75,7 @@ public class PdfTraitEncoder {
       float rightEdgeX = position.x + width;
       float spaceNeededRight = currentGroupingSpace + (dotCount - dot) * (dotSize + dotSpacing);
       Position lowerLeft = new Position(rightEdgeX - spaceNeededRight, position.y);
-      new Dot().encode(directContent, lowerLeft, dot, value);
+      new Dot().encode(lowerLeft, dot, value);
     }
     return dotCount * dotSize + (dotCount - 1) * dotSpacing + groupSpacing;
   }
@@ -87,7 +87,7 @@ public class PdfTraitEncoder {
     float neededWidth = dotWidth + (dotCount - 1) * dotSpacing;
     float leftDotX = position.x + (width - neededWidth) / 2;
     for (int dot = 0; dot < dotCount; dot++) {
-      shape.encode(directContent, new Position(leftDotX, position.y), dot, value);
+      shape.encode(new Position(leftDotX, position.y), dot, value);
       leftDotX += dotSize + dotSpacing;
     }
     return height;
