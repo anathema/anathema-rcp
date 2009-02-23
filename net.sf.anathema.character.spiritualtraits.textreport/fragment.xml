@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<fragment>
+   <extension
+         point="net.sf.anathema.character.textreport.textencoder">
+      <textencoder
+            class="net.sf.anathema.character.spiritualtraits.textreport.EssenceTextEncoder"
+            id="essence">
+         <after
+               referenceId="charms">
+         </after>
+      </textencoder>
+   </extension>
+
+</fragment>

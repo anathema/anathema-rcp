@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Textreport Fragment
+Bundle-SymbolicName: net.sf.anathema.character.spiritualtraits.textreport;singleton:=true
+Bundle-Version: 1.0.0
+Fragment-Host: net.sf.anathema.character.spiritualtraits;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: net.sf.anathema.character.textreport,
+ net.sf.anathema.character.trait.textreport;bundle-version="1.0.0"
