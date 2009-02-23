@@ -19,6 +19,10 @@ public class ModelContentChecker implements IContentChecker {
     final String contentId = definition.substring(0, seperator);
     EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(CharacterCorePlugin.ID, "modelcheck"); //$NON-NLS-1$
     AttributePredicate predicate = AttributePredicate.FromNameAndValue(ATTRIB_CONTENT_ID, contentId);
-    return new ClassConveyerBelt<IModelContentCheck>(extensionPoint, IModelContentCheck.class, predicate).getFirstObject();
+    IModelContentCheck check = new ClassConveyerBelt<IModelContentCheck>(extensionPoint, IModelContentCheck.class, predicate).getFirstObject();
+    if (check == ClassConveyerBelt.NO_OBJECT_FOUND) {
+      return new NullModelContentCheck();
+    }
+    return check;
   }
 }

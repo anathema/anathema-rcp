@@ -23,6 +23,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 public abstract class AbstractToggleExperienceHandler extends AbstractHandler implements IElementUpdater {
 
+  private static final Object RETURN_VALUE_EXPECTED_BY_ECLIPSE = null;
   private final ExperiencePersister persister = new ExperiencePersister();
 
   @Override
@@ -31,7 +32,7 @@ public abstract class AbstractToggleExperienceHandler extends AbstractHandler im
     IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
     toggleExperiencedState(identifier, window);
     refreshUserInterface(event);
-    return null;
+    return RETURN_VALUE_EXPECTED_BY_ECLIPSE;
   }
 
   protected abstract ModelIdentifier getExperienceIdentifier(ExecutionEvent event) throws ExecutionException;

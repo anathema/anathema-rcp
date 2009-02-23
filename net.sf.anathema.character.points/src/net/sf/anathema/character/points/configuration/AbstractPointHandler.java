@@ -24,6 +24,9 @@ public abstract class AbstractPointHandler<M extends IModel> extends Unconfigure
 
   @Override
   public final int getPoints(ICharacterId characterId) {
+    if (characterId == null) {
+      return 0;
+    }
     return calculatePoints(new ModelIdentifier(characterId, modelId));
   }
 

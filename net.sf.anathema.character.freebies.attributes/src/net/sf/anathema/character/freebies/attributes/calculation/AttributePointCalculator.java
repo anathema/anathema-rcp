@@ -103,6 +103,6 @@ public class AttributePointCalculator {
         return dots;
       }
     }
-    return null;
+    return new Dots(0);
   }
 }

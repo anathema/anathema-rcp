@@ -4,6 +4,7 @@ import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.model.content.IContentChecker;
 import net.sf.anathema.character.core.model.content.IModelContentCheck;
+import net.sf.anathema.character.core.model.content.NullModelContentCheck;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +24,8 @@ public class WhereModelContent_Test {
 
   @Test
   public void evaluatesFalseIfNoModelCheckIsFoundForDefinition() throws Exception {
-    expect(mockContentChecker.getCheck(DEFINITION)).andReturn(null);
+    expect(mockContentChecker.getCheck(DEFINITION)).andReturn(new NullModelContentCheck());
+    expect(mockContentChecker.getContentValue(DEFINITION)).andReturn(null);
     replay(mockContentChecker);
     assertFalse(where.evaluate(new ValidationDto()));
   }

@@ -17,7 +17,7 @@ public class CasteCharacterText extends UnconfiguredExecutableExtension implemen
   public String getTextFor(ICharacter character) {
     ICaste caste = getCasteModel(character).getCaste();
     if (caste == null) {
-      return null;
+      return ""; //$NON-NLS-1$
     }
     return caste.getPrintName();
   }

@@ -16,9 +16,6 @@ public class WhereModelContent implements IWhere {
   @Override
   public boolean evaluate(ValidationDto validationObject) {
     final IModelContentCheck contentCheck = contentChecker.getCheck(definition);
-    if (contentCheck == null) {
-      return false;
-    }
     return contentCheck.evaluate(validationObject.container, contentChecker.getContentValue(definition));
   }
 }

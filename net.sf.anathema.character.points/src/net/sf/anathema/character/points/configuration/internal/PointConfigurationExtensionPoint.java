@@ -46,9 +46,7 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
         if (pointCalculatorElementName.equals(configurationElement.getName())) {
           String groupReference = configurationElement.getAttribute(ATTRIB_GROUP_REFERENCE);
           IPointHandler handler = getPointHandler(configurationElement);
-          if (handler != null) {
-            handlersByGroupId.add(groupReference, handler);
-          }
+          handlersByGroupId.add(groupReference, handler);
         }
         else if (TAG_POINT_GROUP.equals(configurationElement.getName())) {
           String groupId = configurationElement.getAttribute(ATTRIB_GROUP_ID);
@@ -79,7 +77,7 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
     }
     catch (ExtensionException e) {
       logger.error(Messages.PointConfigurationExtensionPoint_CalculatorLoadError, e);
-      return null;
+      return new NullPointHandler();
     }
   }
 

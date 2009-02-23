@@ -11,6 +11,8 @@ import org.eclipse.core.runtime.IExecutableExtension;
 
 public class ClassConveyerBelt<T extends IExecutableExtension> {
 
+  public static final Object NO_OBJECT_FOUND = null;
+  private final T nothing = (T) NO_OBJECT_FOUND;
   private final String pluginId;
   private final IPluginExtension[] extensions;
   private final Class<T> objectClass;
@@ -78,6 +80,6 @@ public class ClassConveyerBelt<T extends IExecutableExtension> {
         }
       }
     }
-    return null;
+    return nothing;
   }
 }

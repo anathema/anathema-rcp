@@ -1,6 +1,7 @@
 package net.sf.anathema.character.caste.sheet;
 
 import static org.easymock.EasyMock.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.caste.ICaste;
 import net.sf.anathema.character.caste.ICasteModel;
@@ -41,8 +42,8 @@ public class CasteCharacterTextTest {
   }
 
   @Test
-  public void returnsNullForNoChoosenCaste() throws Exception {
-    assertNull(casteText.getTextFor(createCharacter(createCasteModel(null)))); 
+  public void returnsEmptyTextForNoChoosenCaste() throws Exception {
+    assertThat(casteText.getTextFor(createCharacter(createCasteModel(null))), is("")); 
   }
 
   public static ICasteModel createCasteModel(ICaste caste) {

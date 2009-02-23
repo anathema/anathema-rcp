@@ -32,17 +32,20 @@ public class ResourceEditorOpenerExtensionPoint {
     if (openerId == null) {
       return;
     }
-    IResourceEditorOpener opener = null;
-    opener = getOpener(openerId);
-    if (opener == null) {
-      return;
-    }
+    IResourceEditorOpener opener = getOpener(openerId);
     opener.openEditor(page, resource);
   }
 
   private IResourceEditorOpener getOpener(final String openerId) {
     EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(RepositoryPlugin.ID, "sourceopener"); //$NON-NLS-1$
     OpenerIdPredicate predicate = new OpenerIdPredicate(openerId);
-    return new ClassConveyerBelt<IResourceEditorOpener>(extensionPoint, IResourceEditorOpener.class, predicate).getFirstObject();
+    IResourceEditorOpener opener = new ClassConveyerBelt<IResourceEditorOpener>(
+        extensionPoint,
+        IResourceEditorOpener.class,
+        predicate).getFirstObject();
+    if (opener == ClassConveyerBelt.NO_OBJECT_FOUND) {
+      return new NullOpener();
+    }
+    return opener;
   }
 }

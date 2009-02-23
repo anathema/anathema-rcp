@@ -26,9 +26,11 @@ import org.eclipse.core.runtime.Path;
 
 public class CharacterFactory {
 
+  private static final IFolder NO_FOLDER = null;
   private static final String TAG_TEMPLATE = "template"; //$NON-NLS-1$
   private static final ILogger logger = new Logger(CharacterCorePlugin.ID);
 
+  //TODO Der Rückgabewert wird nur für Tests gebraucht. Vielleicht kann man ihn (und damit die Null-Referenz) loswerden?
   public IFolder createNewCharacter(String templateName, String folderName) {
     try {
       IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
@@ -39,7 +41,7 @@ public class CharacterFactory {
     }
     catch (Exception e) {
       logger.error(Messages.NewCharacterActionDelegate_CharacterCreationError, e);
-      return null;
+      return NO_FOLDER;
     }
   }
 

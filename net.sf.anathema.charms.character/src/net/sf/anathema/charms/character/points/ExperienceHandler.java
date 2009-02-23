@@ -20,6 +20,6 @@ public class ExperienceHandler extends UnconfiguredExecutableExtension implement
 
   @Override
   public int getPoints(ICharacterId characterId) {
-    return new  CharmExperienceExpenditure(characterId, modelCollection).getPoints();
+    return new CharmExperienceExpenditure(characterId, modelCollection).getPoints();
   }
 }

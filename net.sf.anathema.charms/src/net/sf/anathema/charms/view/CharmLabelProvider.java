@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 
 public class CharmLabelProvider extends LabelProvider {
 
+  private static final String NO_TEXT = ""; //$NON-NLS-1$
   private final ICharmDataProvider dataProvider;
 
   public CharmLabelProvider(ICharmDataProvider dataProvider) {
@@ -17,7 +18,7 @@ public class CharmLabelProvider extends LabelProvider {
   @Override
   public String getText(Object element) {
     if (element instanceof CharmPrerequisite) {
-      return null;
+      return NO_TEXT;
     }
     return dataProvider.getDisplayName((ICharmId)element);
   }

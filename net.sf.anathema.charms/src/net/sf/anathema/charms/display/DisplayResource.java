@@ -27,7 +27,7 @@ public class DisplayResource {
   private String getBaseAmount(String shortType) {
     BaseDto dto = resource.baseDto;
     if (dto == null) {
-      return null;
+      return ConcatenateString.EMPTY_VALUE;
     }
     StringBuilder builder = new StringBuilder(Messages.DisplayResource_BaseAmountPattern);
     if (dto.orMore) {
