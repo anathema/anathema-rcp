@@ -58,13 +58,13 @@
    <extension
          point="net.sf.anathema.character.points.configurations">
       <bonusPointCalculator
-            groupReference="spiritualtraits"
+            groupReference="essence"
             handlerClass="net.sf.anathema.character.spiritualtraits.points.EssenceBonuspointHandler">
       </bonusPointCalculator>
       <pointGroup
-            groupId="spiritualtraits"
+            groupId="essence"
             modelId="net.sf.anathema.character.spiritualtraits.model"
-            name="%pointGroup.name.0">
+            name="%pointGroup.essence.name">
       </pointGroup>
    </extension>
 

@@ -11,7 +11,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-public class BonusPointProblemProviderTest {
+public class BonusPointEvaluationProblemProviderTest {
 
   @Test
   public void problemAddedForNegativeAvailableBonusPoints() throws Exception {

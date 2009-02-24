@@ -1,8 +1,11 @@
 package charactertype.lunar.acceptance;
 
+import static net.sf.anathema.character.acceptance.IAcceptanceConstants.*;
+import static net.sf.anathema.character.acceptance.TraitAssert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.acceptance.InteractionTraitList;
+import net.sf.anathema.character.acceptance.TraitAssert;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.lib.util.Identificate;
@@ -20,6 +23,10 @@ public class PactLunarEssence_Test extends AbstractPactLunarTest {
     traitList = character.createTraitInteraction(IPluginConstants.MODEL_ID);
   }
 
+  private IInteractiveTrait getEssenceTrait() {
+    return traitList.getTrait(new Identificate("Essence"));
+  }
+
   @Test
   public void startsWithEssenceValueOf2() throws Exception {
     IInteractiveTrait essence = getEssenceTrait();
@@ -28,22 +35,22 @@ public class PactLunarEssence_Test extends AbstractPactLunarTest {
 
   @Test
   public void cannotReduceEssenceBelowStartValue() throws Exception {
-    IInteractiveTrait essence = getEssenceTrait();
-    int startValue = essence.getValue();
-    essence.setValue(startValue - 1);
-    assertThat(essence.getValue(), is(startValue));
+    assertCannotLower(getEssenceTrait());
   }
 
   @Test
   public void canRaiseEssenceAboveStartValue() throws Exception {
-    IInteractiveTrait essence = getEssenceTrait();
-    int startValue = essence.getValue();
-    int targetValue = startValue + 1;
-    essence.setValue(targetValue);
-    assertThat(essence.getValue(), is(targetValue));
+    TraitAssert.assertCanRaise(getEssenceTrait());
   }
 
-  private IInteractiveTrait getEssenceTrait() {
-    return traitList.getTrait(new Identificate("Essence"));
+  @Test
+  public void spentsNoBonusPointsOnEssenceOfStartValue() throws Exception {
+    assertThat(character.getBonusPoints(ESSENCE_POINT_CONFIGURATION), is(0));
+  }
+
+  @Test
+  public void spentsTenBonusPointsOnEssenceForOnePointOfIncrement() throws Exception {
+    increaseByOne(getEssenceTrait());
+    assertThat(character.getBonusPoints(ESSENCE_POINT_CONFIGURATION), is(10));
   }
 }

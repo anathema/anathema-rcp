@@ -533,4 +533,15 @@
          </bonus>
       </charmCosts>
    </extension>
+   <extension
+         point="net.sf.anathema.character.spiritualtraits.spiritualTraitCosts">
+      <spiritualTraitCosts
+            characterType="net.sf.anathema.character.type.sidereal">
+         <bonuspoints>
+            <cost
+                  essence="10">
+            </cost>
+         </bonuspoints>
+      </spiritualTraitCosts>
+   </extension>
 </plugin>
