@@ -1,6 +1,5 @@
 package net.sf.anathema.character.core.model;
 
-import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 
@@ -9,7 +8,7 @@ public class ModelInitializer implements IModelInitializer {
   private final IModel modelObject;
   private final IModelIdentifier modelIdentifier;
 
-  public ModelInitializer(IModel modelObject, IContentHandle file, IModelIdentifier modelIdentifier) {
+  public ModelInitializer(IModel modelObject, IModelIdentifier modelIdentifier) {
     this.modelObject = modelObject;
     this.modelIdentifier = modelIdentifier;
   }

@@ -343,5 +343,16 @@
             name="%new.wizard.character.template.defaultsolar">
       </wizard>
    </extension>
+   <extension
+         point="net.sf.anathema.character.spiritualtraits.spiritualTraitCosts">
+      <spiritualTraitCosts
+            characterType="net.sf.anathema.character.type.solar">
+         <bonuspoints>
+            <cost
+                  essence="7">
+            </cost>
+         </bonuspoints>
+      </spiritualTraitCosts>
+   </extension>
 
 </plugin>

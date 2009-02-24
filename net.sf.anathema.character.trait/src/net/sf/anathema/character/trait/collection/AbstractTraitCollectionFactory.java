@@ -27,7 +27,7 @@ public abstract class AbstractTraitCollectionFactory extends
       IModelIdentifier identifier) throws PersistenceException, CoreException {
     final ITraitCollectionModel model = create(handle, template);
     final ITraitCollectionTemplate modelTemplate = createModelTemplate(template);
-    return new TraitCollectionModelInitializer(model, handle, identifier, template, modelTemplate, characterType);
+    return new TraitCollectionModelInitializer(model, identifier, template, modelTemplate, characterType);
   }
 
   @Override

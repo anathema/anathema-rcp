@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Experience Importer
+Bundle-Name: %Bundle-Name.f0
 Bundle-SymbolicName: net.sf.anathema.character.experience.importwizard;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.experience;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: net.sf.anathema.character.importwizard
 Bundle-Localization: plugin
-Bundle-Vendor: Anathema Team
+Bundle-Vendor: %Bundle-Vendor.f1

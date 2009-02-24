@@ -48,15 +48,14 @@ import java.lang.reflect.Modifier;
  *    }
  *  }
  * </pre>
- * 
  * <p>
  * If required, the superclass <code>hashCode()</code> can be added using {@link #appendSuper}.
  * </p>
  * <p>
  * Alternatively, there is a method that uses reflection to determine the fields to test. Because these fields are
- * usually private, the method, <code>reflectionHashCode</code>, uses <code>AccessibleObject.setAccessible</code>
- * to change the visibility of the fields. This will fail under a security manager, unless the appropriate permissions
- * are set up correctly. It is also slower than testing explicitly.
+ * usually private, the method, <code>reflectionHashCode</code>, uses <code>AccessibleObject.setAccessible</code> to
+ * change the visibility of the fields. This will fail under a security manager, unless the appropriate permissions are
+ * set up correctly. It is also slower than testing explicitly.
  * </p>
  * <p>
  * A typical invocation for this method would look like:
@@ -110,16 +109,16 @@ public class HashCodeBuilder {
    */
   public HashCodeBuilder(int initialNonZeroOddNumber, int multiplierNonZeroOddNumber) {
     if (initialNonZeroOddNumber == 0) {
-      throw new IllegalArgumentException("HashCodeBuilder requires a non zero initial value");
+      throw new IllegalArgumentException("HashCodeBuilder requires a non zero initial value"); //$NON-NLS-1$
     }
     if (initialNonZeroOddNumber % 2 == 0) {
-      throw new IllegalArgumentException("HashCodeBuilder requires an odd initial value");
+      throw new IllegalArgumentException("HashCodeBuilder requires an odd initial value"); //$NON-NLS-1$
     }
     if (multiplierNonZeroOddNumber == 0) {
-      throw new IllegalArgumentException("HashCodeBuilder requires a non zero multiplier");
+      throw new IllegalArgumentException("HashCodeBuilder requires a non zero multiplier"); //$NON-NLS-1$
     }
     if (multiplierNonZeroOddNumber % 2 == 0) {
-      throw new IllegalArgumentException("HashCodeBuilder requires an odd multiplier");
+      throw new IllegalArgumentException("HashCodeBuilder requires an odd multiplier"); //$NON-NLS-1$
     }
     iConstant = multiplierNonZeroOddNumber;
     iTotal = initialNonZeroOddNumber;
@@ -135,9 +134,9 @@ public class HashCodeBuilder {
    * This constructor uses two hard coded choices for the constants needed to build a hash code.
    * </p>
    * <p>
-   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will
-   * throw a security exception if run under a security manager, if the permissions are not set up correctly. It is also
-   * not as efficient as testing explicitly.
+   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will throw
+   * a security exception if run under a security manager, if the permissions are not set up correctly. It is also not
+   * as efficient as testing explicitly.
    * </p>
    * <p>
    * Transient members will be not be used, as they are likely derived fields, and not part of the value of the
@@ -163,13 +162,13 @@ public class HashCodeBuilder {
    * This constructor uses two hard coded choices for the constants needed to build a hash code.
    * </p>
    * <p>
-   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will
-   * throw a security exception if run under a security manager, if the permissions are not set up correctly. It is also
-   * not as efficient as testing explicitly.
+   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will throw
+   * a security exception if run under a security manager, if the permissions are not set up correctly. It is also not
+   * as efficient as testing explicitly.
    * </p>
    * <P>
-   * If the TestTransients parameter is set to <code>true</code>, transient members will be tested, otherwise they
-   * are ignored, as they are likely derived fields, and not part of the value of the <code>Object</code>.
+   * If the TestTransients parameter is set to <code>true</code>, transient members will be tested, otherwise they are
+   * ignored, as they are likely derived fields, and not part of the value of the <code>Object</code>.
    * </p>
    * <p>
    * Static fields will not be tested. Superclass fields will be included.
@@ -189,9 +188,9 @@ public class HashCodeBuilder {
    * This method uses reflection to build a valid hash code.
    * </p>
    * <p>
-   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will
-   * throw a security exception if run under a security manager, if the permissions are not set up correctly. It is also
-   * not as efficient as testing explicitly.
+   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will throw
+   * a security exception if run under a security manager, if the permissions are not set up correctly. It is also not
+   * as efficient as testing explicitly.
    * </p>
    * <p>
    * Transient members will be not be used, as they are likely derived fields, and not part of the value of the
@@ -221,13 +220,13 @@ public class HashCodeBuilder {
    * This method uses reflection to build a valid hash code.
    * </p>
    * <p>
-   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will
-   * throw a security exception if run under a security manager, if the permissions are not set up correctly. It is also
-   * not as efficient as testing explicitly.
+   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will throw
+   * a security exception if run under a security manager, if the permissions are not set up correctly. It is also not
+   * as efficient as testing explicitly.
    * </p>
    * <p>
-   * If the TestTransients parameter is set to <code>true</code>, transient members will be tested, otherwise they
-   * are ignored, as they are likely derived fields, and not part of the value of the <code>Object</code>.
+   * If the TestTransients parameter is set to <code>true</code>, transient members will be tested, otherwise they are
+   * ignored, as they are likely derived fields, and not part of the value of the <code>Object</code>.
    * </p>
    * <p>
    * Static fields will not be tested. Superclass fields will be included.
@@ -258,13 +257,13 @@ public class HashCodeBuilder {
    * This method uses reflection to build a valid hash code.
    * </p>
    * <p>
-   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will
-   * throw a security exception if run under a security manager, if the permissions are not set up correctly. It is also
-   * not as efficient as testing explicitly.
+   * It uses <code>AccessibleObject.setAccessible</code> to gain access to private fields. This means that it will throw
+   * a security exception if run under a security manager, if the permissions are not set up correctly. It is also not
+   * as efficient as testing explicitly.
    * </p>
    * <p>
-   * If the TestTransients parameter is set to <code>true</code>, transient members will be tested, otherwise they
-   * are ignored, as they are likely derived fields, and not part of the value of the <code>Object</code>.
+   * If the TestTransients parameter is set to <code>true</code>, transient members will be tested, otherwise they are
+   * ignored, as they are likely derived fields, and not part of the value of the <code>Object</code>.
    * </p>
    * <p>
    * Static fields will not be included. Superclass fields will be included up to and including the specified
@@ -290,13 +289,13 @@ public class HashCodeBuilder {
       int multiplierNonZeroOddNumber,
       Object object,
       boolean testTransients,
-      Class reflectUpToClass) {
+      Class< ? > reflectUpToClass) {
 
     if (object == null) {
-      throw new IllegalArgumentException("The object to build a hash code for must not be null");
+      throw new IllegalArgumentException("The object to build a hash code for must not be null"); //$NON-NLS-1$
     }
     HashCodeBuilder builder = new HashCodeBuilder(initialNonZeroOddNumber, multiplierNonZeroOddNumber);
-    Class clazz = object.getClass();
+    Class< ? > clazz = object.getClass();
     reflectionAppend(object, clazz, builder, testTransients);
     while (clazz.getSuperclass() != null && clazz != reflectUpToClass) {
       clazz = clazz.getSuperclass();
@@ -315,7 +314,7 @@ public class HashCodeBuilder {
    * @param builder the builder to append to
    * @param useTransients whether to use transient fields
    */
-  private static void reflectionAppend(Object object, Class clazz, HashCodeBuilder builder, boolean useTransients) {
+  private static void reflectionAppend(Object object, Class< ? > clazz, HashCodeBuilder builder, boolean useTransients) {
     Field[] fields = clazz.getDeclaredFields();
     AccessibleObject.setAccessible(fields, true);
     for (int i = 0; i < fields.length; i++) {
@@ -329,7 +328,7 @@ public class HashCodeBuilder {
         catch (IllegalAccessException e) {
           // this can't happen. Would get a Security exception instead
           // throw a runtime exception in case the impossible happens.
-          throw new InternalError("Unexpected IllegalAccessException");
+          throw new InternalError("Unexpected IllegalAccessException"); //$NON-NLS-1$
         }
       }
     }
@@ -503,9 +502,8 @@ public class HashCodeBuilder {
    * Append a <code>hashCode</code> for a <code>boolean</code>.
    * </p>
    * <p>
-   * This adds <code>iConstant * 1</code> to the <code>hashCode</code> and not a <code>1231</code> or
-   * <code>1237</code> as done in java.lang.Boolean. This is in accordance with the <quote>Effective Java</quote>
-   * design.
+   * This adds <code>iConstant * 1</code> to the <code>hashCode</code> and not a <code>1231</code> or <code>1237</code>
+   * as done in java.lang.Boolean. This is in accordance with the <quote>Effective Java</quote> design.
    * </p>
    * 
    * @param value the boolean to add to the <code>hashCode</code>

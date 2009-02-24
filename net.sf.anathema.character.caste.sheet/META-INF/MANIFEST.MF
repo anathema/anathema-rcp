@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Graphic Printout for Castes
+Bundle-Name: %Bundle-Name.f0
 Bundle-SymbolicName: net.sf.anathema.character.caste.sheet;singleton:=true
 Bundle-Version: 1.0.0
 Fragment-Host: net.sf.anathema.character.caste;bundle-version="1.0.0"

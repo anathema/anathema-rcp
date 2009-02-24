@@ -46,7 +46,7 @@
       <pointGroup
             groupId="abilitypoints"
             modelId="net.sf.anathema.character.abilities.model"
-            name="Abilities">
+            name="%pointGroup.name.0">
       </pointGroup>
    </extension>
    <extension

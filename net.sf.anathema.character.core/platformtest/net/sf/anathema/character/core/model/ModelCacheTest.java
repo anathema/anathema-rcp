@@ -13,6 +13,7 @@ import org.eclipse.core.resources.IContainer;
 import org.junit.Before;
 import org.junit.Test;
 
+@SuppressWarnings("nls")
 public class ModelCacheTest {
 
   private ModelCache instance;

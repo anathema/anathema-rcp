@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Tests for Characters
+Bundle-Name: %Bundle-Name.0
 Bundle-SymbolicName: net.sf.anathema.character.acceptance;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -44,3 +44,4 @@ Require-Bundle: net.sf.anathema.basics.eclipse;bundle-version="1.0.0",
  net.sf.anathema.rcp;bundle-version="1.0.0",
  net.sf.anathema.view.valuelist;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.character.acceptance
+Bundle-Localization: plugin

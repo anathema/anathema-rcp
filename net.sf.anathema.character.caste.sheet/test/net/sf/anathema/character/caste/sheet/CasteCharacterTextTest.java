@@ -11,6 +11,7 @@ import net.sf.anathema.character.core.character.ICharacter;
 import org.junit.Before;
 import org.junit.Test;
 
+@SuppressWarnings("nls")
 public class CasteCharacterTextTest {
 
   private CasteCharacterText casteText;
@@ -37,13 +38,13 @@ public class CasteCharacterTextTest {
 
   @Test
   public void returnsCastePrintNameForSetCaste() throws Exception {
-    ICasteModel casteModel = createCasteModel(new DummyCaste("tumid")); //$NON-NLS-1$
-    assertEquals("tumidPrintName", casteText.getTextFor(createCharacter(casteModel))); //$NON-NLS-1$
+    ICasteModel casteModel = createCasteModel(new DummyCaste("tumid"));
+    assertEquals("tumidPrintName", casteText.getTextFor(createCharacter(casteModel)));
   }
 
   @Test
   public void returnsEmptyTextForNoChoosenCaste() throws Exception {
-    assertThat(casteText.getTextFor(createCharacter(createCasteModel(null))), is("")); 
+    assertThat(casteText.getTextFor(createCharacter(createCasteModel(null))), is(""));
   }
 
   public static ICasteModel createCasteModel(ICaste caste) {

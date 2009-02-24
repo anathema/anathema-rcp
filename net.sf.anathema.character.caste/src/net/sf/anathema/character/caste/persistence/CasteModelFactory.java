@@ -44,7 +44,7 @@ public class CasteModelFactory extends AbstractModelFactory<CasteTemplate, ICast
       ICharacterType characterType,
       IModelIdentifier identifier) throws PersistenceException, CoreException {
     ICasteModel model = create(handle, template);
-    return new CasteModelInitializer(handle, identifier, model);
+    return new CasteModelInitializer(identifier, model);
   }
 
   @Override

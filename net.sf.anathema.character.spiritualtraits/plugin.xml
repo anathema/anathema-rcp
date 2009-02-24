@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="spiritualTraitCosts" name="%extension-point.name.0" schema="schema/spiritualTraitCosts.exsd"/>
    <extension
          point="net.sf.anathema.character.core.models">
       <model
@@ -8,7 +9,7 @@
             id="net.sf.anathema.character.spiritualtraits.model"
             modelFactory="net.sf.anathema.character.spiritualtraits.model.SpiritualTraitModelFactory">
          <displayConfiguration
-               displayName="Spirtual Traits"
+               displayName="%displayConfiguration.displayName.0"
                editorId="net.sf.anathema.character.spiritualtraits.editor"
                editorInputFactory="net.sf.anathema.character.spiritualtraits.editor.SpirtualTraitsEditorInputFactory"
                icon="icons/TabCharacter16.png">
@@ -22,7 +23,7 @@
             default="false"
             icon="icons/TabCharacter16.png"
             id="net.sf.anathema.character.spiritualtraits.editor"
-            name="Spiritual Traits Editor">
+            name="%editor.name.0">
       </editor>
    </extension>
    <extension
@@ -53,6 +54,18 @@
                value="2">
          </minimum>
       </validator>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.points.configurations">
+      <bonusPointCalculator
+            groupReference="spiritualtraits"
+            handlerClass="net.sf.anathema.character.spiritualtraits.points.EssenceBonuspointHandler">
+      </bonusPointCalculator>
+      <pointGroup
+            groupId="spiritualtraits"
+            modelId="net.sf.anathema.character.spiritualtraits.model"
+            name="%pointGroup.name.0">
+      </pointGroup>
    </extension>
 
 </plugin>

@@ -39,6 +39,6 @@ public abstract class AbstractModelFactory<T extends IModelTemplate, M extends I
       ICharacterType characterType,
       IModelIdentifier identifier) throws PersistenceException, CoreException {
     M model = create(handle, template);
-    return new ModelInitializer(model, handle, identifier);
+    return new ModelInitializer(model, identifier);
   }
 }

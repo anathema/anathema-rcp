@@ -1,6 +1,5 @@
 package net.sf.anathema.character.caste.persistence;
 
-import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.character.caste.ICasteModel;
 import net.sf.anathema.character.caste.trait.CasteStatusUpdater;
 import net.sf.anathema.character.core.character.ICharacterId;
@@ -12,8 +11,8 @@ import net.sf.anathema.character.trait.model.TraitCollectionProvider;
 
 public final class CasteModelInitializer extends ModelInitializer {
 
-  public CasteModelInitializer(IContentHandle file, IModelIdentifier modelIdentifier, ICasteModel model) {
-    super(model, file, modelIdentifier);
+  public CasteModelInitializer(IModelIdentifier modelIdentifier, ICasteModel model) {
+    super(model, modelIdentifier);
   }
 
   @Override

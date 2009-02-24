@@ -9,10 +9,15 @@ import net.sf.anathema.character.core.plugin.internal.CharacterCorePlugin;
 
 public class ViewElementConfiguratorProvider {
 
+  private static final String EXTENSIN_POINT = "viewelementconfigurator"; //$NON-NLS-1$
+
   public List<IViewElementConfigurator> getFor(final String modelId) {
-    return new ClassConveyerBelt<IViewElementConfigurator>(
-        new EclipseExtensionPoint(CharacterCorePlugin.ID, "viewelementconfigurator"),
+    ModelIdPredicate predicate = new ModelIdPredicate(modelId);
+    EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(CharacterCorePlugin.ID, EXTENSIN_POINT);
+    ClassConveyerBelt<IViewElementConfigurator> classConveyerBelt = new ClassConveyerBelt<IViewElementConfigurator>(
+        extensionPoint,
         IViewElementConfigurator.class,
-        new ModelIdPredicate(modelId)).getAllObjects();
+        predicate);
+    return classConveyerBelt.getAllObjects();
   }
 }

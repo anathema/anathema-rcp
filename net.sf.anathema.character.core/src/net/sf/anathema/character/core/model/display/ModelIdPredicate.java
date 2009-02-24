@@ -4,6 +4,7 @@ import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 
 public final class ModelIdPredicate implements IPredicate<IExtensionElement> {
+  private static final String ATTRIB_MODEL_ID = "modelId"; //$NON-NLS-1$
   private final String modelId;
 
   public ModelIdPredicate(String modelId) {
@@ -12,6 +13,6 @@ public final class ModelIdPredicate implements IPredicate<IExtensionElement> {
 
   @Override
   public boolean evaluate(IExtensionElement element) {
-    return element.getAttribute("modelId").equals(modelId);
+    return element.getAttribute(ATTRIB_MODEL_ID).equals(modelId);
   }
 }
