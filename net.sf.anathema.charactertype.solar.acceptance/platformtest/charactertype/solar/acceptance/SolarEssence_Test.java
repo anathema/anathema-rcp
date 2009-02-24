@@ -52,4 +52,11 @@ public class SolarEssence_Test extends AbstractDefaultSolarTest {
     increaseByOne(getEssenceTrait());
     assertThat(character.getBonusPoints(ESSENCE_POINT_CONFIGURATION), is(7));
   }
+
+  @Test
+  public void spents16XpOnEssenceForIncrementFrom2To3() throws Exception {
+    character.setExperienced();
+    increaseByOne(getEssenceTrait());
+    assertThat(character.getXpSpent(ESSENCE_POINT_CONFIGURATION), is(16));
+  }
 }

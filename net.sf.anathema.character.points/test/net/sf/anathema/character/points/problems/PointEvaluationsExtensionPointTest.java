@@ -9,7 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BonusPointEvaluationsExtensionPointTest {
+public class PointEvaluationsExtensionPointTest {
 
   private static final int BONUS_POINT_COUNT = 2;
   private static final String TEMPLATE_ID = "foundTemplate"; //$NON-NLS-1$

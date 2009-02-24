@@ -51,6 +51,7 @@
       <complexType>
          <sequence>
             <element ref="bonuspoints"/>
+            <element ref="experience"/>
          </sequence>
          <attribute name="characterType" type="string" use="required">
             <annotation>
@@ -63,6 +64,14 @@
    </element>
 
    <element name="bonuspoints">
+      <complexType>
+         <sequence>
+            <element ref="cost"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="experience">
       <complexType>
          <sequence>
             <element ref="cost"/>

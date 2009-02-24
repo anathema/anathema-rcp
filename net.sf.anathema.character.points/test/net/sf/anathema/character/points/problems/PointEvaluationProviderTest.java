@@ -13,7 +13,7 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BonusPointEvaluationProviderTest {
+public class PointEvaluationProviderTest {
 
   private DummyExperience dummyExperience;
   private DummyModelCollection modelCollection;

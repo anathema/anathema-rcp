@@ -404,6 +404,11 @@
                   essence="10">
             </cost>
          </bonuspoints>
+         <experience>
+            <cost
+                  essence="10">
+            </cost>
+         </experience>
       </spiritualTraitCosts>
    </extension>
 </plugin>

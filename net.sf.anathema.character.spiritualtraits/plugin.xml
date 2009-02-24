@@ -66,6 +66,10 @@
             modelId="net.sf.anathema.character.spiritualtraits.model"
             name="%pointGroup.essence.name">
       </pointGroup>
+      <experiencePointCalculator
+            groupReference="essence"
+            handlerClass="net.sf.anathema.character.spiritualtraits.points.EssenceExperiencePointHandler">
+      </experiencePointCalculator>
    </extension>
 
 </plugin>

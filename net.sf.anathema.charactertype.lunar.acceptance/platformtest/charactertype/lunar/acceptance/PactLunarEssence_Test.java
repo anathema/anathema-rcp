@@ -53,4 +53,11 @@ public class PactLunarEssence_Test extends AbstractPactLunarTest {
     increaseByOne(getEssenceTrait());
     assertThat(character.getBonusPoints(ESSENCE_POINT_CONFIGURATION), is(10));
   }
+
+  @Test
+  public void spents18XpOnEssenceForIncrementFrom2To3() throws Exception {
+    character.setExperienced();
+    increaseByOne(getEssenceTrait());
+    assertThat(character.getXpSpent(ESSENCE_POINT_CONFIGURATION), is(18));
+  }
 }

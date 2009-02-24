@@ -352,6 +352,11 @@
                   essence="7">
             </cost>
          </bonuspoints>
+         <experience>
+            <cost
+                  essence="8">
+            </cost>
+         </experience>
       </spiritualTraitCosts>
    </extension>
 

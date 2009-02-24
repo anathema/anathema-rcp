@@ -8,18 +8,16 @@ import net.sf.anathema.character.points.configuration.internal.IPointConfigurati
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
 
-public class BonusPointEvaluation {
+public class PointEvaluation {
 
   private final ICharacterTemplateProvider templateProvider;
   private final IPointConfigurationProvider configurationProvider;
 
-  public static BonusPointEvaluation FromExtensionPoints() {
-    return new BonusPointEvaluation(new CharacterTemplateProvider(), new PointConfigurationExtensionPoint());
+  public static PointEvaluation FromExtensionPoints() {
+    return new PointEvaluation(new CharacterTemplateProvider(), new PointConfigurationExtensionPoint());
   }
 
-  public BonusPointEvaluation(
-      ICharacterTemplateProvider templateProvider,
-      IPointConfigurationProvider configurationProvider) {
+  public PointEvaluation(ICharacterTemplateProvider templateProvider, IPointConfigurationProvider configurationProvider) {
     this.templateProvider = templateProvider;
     this.configurationProvider = configurationProvider;
   }
@@ -27,6 +25,17 @@ public class BonusPointEvaluation {
   public int getSpentBonusPoints(ICharacterId characterId, String configurationName) throws Exception {
     ICharacterTemplate template = templateProvider.getTemplate(characterId);
     for (IPointConfiguration configuration : configurationProvider.getBonusPointConfigurations(template)) {
+      String currentName = configuration.getName();
+      if (currentName.equals(configurationName)) {
+        return configuration.getPoints(characterId);
+      }
+    }
+    return 0;
+  }
+
+  public int getSpentXp(ICharacterId characterId, String configurationName) throws Exception {
+    ICharacterTemplate template = templateProvider.getTemplate(characterId);
+    for (IPointConfiguration configuration : configurationProvider.getExperiencePointConfigurations(template)) {
       String currentName = configuration.getName();
       if (currentName.equals(configurationName)) {
         return configuration.getPoints(characterId);

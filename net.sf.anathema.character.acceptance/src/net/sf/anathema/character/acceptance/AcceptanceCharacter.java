@@ -8,8 +8,9 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
+import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
-import net.sf.anathema.character.points.configuration.BonusPointEvaluation;
+import net.sf.anathema.character.points.configuration.PointEvaluation;
 
 import org.eclipse.core.resources.IFolder;
 
@@ -21,6 +22,7 @@ public class AcceptanceCharacter {
 
   private final IFolder folder;
   private final CharacterId characterId;
+
   private AcceptanceCharacter(String folderName, String templateId) {
     folder = new CharacterFactory().createNewCharacter(templateId, folderName);
     Ensure.ensureNotNull(folder);
@@ -53,7 +55,17 @@ public class AcceptanceCharacter {
   }
 
   public int getBonusPoints(String configurationName) throws Exception {
-    BonusPointEvaluation evaluation = BonusPointEvaluation.FromExtensionPoints();
+    PointEvaluation evaluation = PointEvaluation.FromExtensionPoints();
     return evaluation.getSpentBonusPoints(characterId, configurationName);
+  }
+
+  public int getXpSpent(String configurationName) throws Exception {
+    PointEvaluation evaluation = PointEvaluation.FromExtensionPoints();
+    return evaluation.getSpentXp(characterId, configurationName);
+  }
+
+  public void setExperienced() {
+    IExperience experience = (IExperience) getModel(IExperience.MODEL_ID);
+    experience.setExperienced(true);
   }
 }

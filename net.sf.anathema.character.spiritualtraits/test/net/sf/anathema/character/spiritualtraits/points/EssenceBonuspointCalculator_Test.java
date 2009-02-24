@@ -1,8 +1,9 @@
-package net.sf.anathema.character.spiritualtraits.points.essence;
+package net.sf.anathema.character.spiritualtraits.points;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
+import net.sf.anathema.character.spiritualtraits.points.essence.EssenceBonuspointCalculator;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollection;

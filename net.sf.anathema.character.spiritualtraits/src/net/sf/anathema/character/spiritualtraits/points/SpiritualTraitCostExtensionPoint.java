@@ -12,6 +12,7 @@ public class SpiritualTraitCostExtensionPoint implements IEssenceCostMap {
   private static final String ATTRIB_ESSENCE = "essence"; //$NON-NLS-1$
   private static final String TAG_COST = "cost"; //$NON-NLS-1$
   private static String TAG_BONUSPOINTS = "bonuspoints"; //$NON-NLS-1$
+  private static String TAG_EXPERIENCE = "experience"; //$NON-NLS-1$
   private static final String ATTRIB_CHARACTER_TYPE = "characterType"; //$NON-NLS-1$
   private static final String EXTENSION_POINT = "spiritualTraitCosts"; //$NON-NLS-1$
   private final IExtensionPoint extensionPoint;
@@ -25,17 +26,26 @@ public class SpiritualTraitCostExtensionPoint implements IEssenceCostMap {
   }
 
   public int getEssenceBonuspointCost(String characterType) {
+    return getEssenceCost(characterType, TAG_BONUSPOINTS);
+  }
+
+  @Override
+  public int getEssenceExperienceCost(String characterType) {
+    return getEssenceCost(characterType, TAG_EXPERIENCE);
+  }
+
+  private int getEssenceCost(String characterType, String tagName) {
     AttributePredicate predicate = AttributePredicate.FromNameAndValue(ATTRIB_CHARACTER_TYPE, characterType);
     IExtensionElement characterTypeElement = extensionPoint.getFirst(predicate);
     if (characterTypeElement == null) {
       return 0;
     }
-    return getEssenceCost(characterTypeElement, TAG_BONUSPOINTS);
+    return getEssenceCost(characterTypeElement, tagName);
   }
 
   private int getEssenceCost(IExtensionElement characterTypeElement, String elementName) {
-    IExtensionElement bonuspointCostsElement = characterTypeElement.getElement(elementName);
-    IExtensionElement costElement = bonuspointCostsElement.getElement(TAG_COST);
+    IExtensionElement taggedCostsElement = characterTypeElement.getElement(elementName);
+    IExtensionElement costElement = taggedCostsElement.getElement(TAG_COST);
     return costElement.getIntegerAttribute(ATTRIB_ESSENCE);
   }
 }
