@@ -1,9 +1,10 @@
 package charactertype.db.acceptance;
 
-import net.sf.anathema.character.acceptance.AcceptanceCharacter;
 
 import org.junit.After;
 import org.junit.Before;
+
+import character.acceptance.AcceptanceCharacter;
 
 public class AbstractDynastDbTest {
   protected AcceptanceCharacter character;
