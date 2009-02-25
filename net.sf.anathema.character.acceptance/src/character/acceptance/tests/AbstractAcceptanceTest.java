@@ -5,17 +5,16 @@ import org.junit.Before;
 
 import character.acceptance.AcceptanceCharacter;
 
+@SuppressWarnings("nls")
 public abstract class AbstractAcceptanceTest {
   protected AcceptanceCharacter character;
 
   @Before
   public void createCharacter() {
-    this.character = AcceptanceCharacter.FromFolderNameAndTemplateId(getFolderName(), getTemplateId());
+    this.character = AcceptanceCharacter.FromFolderNameAndTemplateId("TestCharacter", getTemplateId());
   }
 
   protected abstract String getTemplateId();
-
-  protected abstract String getFolderName();
 
   @After
   public void clearCharacter() throws Exception {

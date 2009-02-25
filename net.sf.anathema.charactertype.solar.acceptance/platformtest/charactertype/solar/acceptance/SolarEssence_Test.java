@@ -1,63 +1,21 @@
 package charactertype.solar.acceptance;
 
-import static character.acceptance.IAcceptanceConstants.*;
-import static character.acceptance.TraitAssert.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
-import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
-import net.sf.anathema.lib.util.Identificate;
+import character.acceptance.tests.AbstractEssenceUserEssence_Test;
 
-import org.junit.Before;
-import org.junit.Test;
+public class SolarEssence_Test extends AbstractEssenceUserEssence_Test {
 
-import character.acceptance.InteractionTraitList;
-
-@SuppressWarnings("nls")
-public class SolarEssence_Test extends AbstractDefaultSolarTest {
-
-  private InteractionTraitList traitList;
-
-  @Before
-  public void createInteraction() throws Exception {
-    traitList = character.createTraitInteraction(IPluginConstants.MODEL_ID);
+  @Override
+  protected String getTemplateId() {
+    return IIntegrationConstants.DEFAULT_TEMPLATE;
   }
 
-  private IInteractiveTrait getEssenceTrait() {
-    return traitList.getTrait(new Identificate("Essence"));
+  @Override
+  protected int getBonuspointsForOneIncrement() {
+    return 7;
   }
 
-  @Test
-  public void startsWithEssenceValueOf2() throws Exception {
-    IInteractiveTrait essence = getEssenceTrait();
-    assertThat(essence.getValue(), is(2));
-  }
-
-  @Test
-  public void cannotReduceEssenceBelowStartValue() throws Exception {
-    assertCannotLower(getEssenceTrait());
-  }
-
-  @Test
-  public void canRaiseEssenceAboveStartValue() throws Exception {
-    assertCanRaise(getEssenceTrait());
-  }
-
-  @Test
-  public void spentsNoBonusPointsOnEssenceOfStartValue() throws Exception {
-    assertThat(character.getBonusPoints(ESSENCE_POINT_CONFIGURATION), is(0));
-  }
-
-  @Test
-  public void spentsSevenBonusPointsOnEssenceForOnePointOfIncrement() throws Exception {
-    increaseByOne(getEssenceTrait());
-    assertThat(character.getBonusPoints(ESSENCE_POINT_CONFIGURATION), is(7));
-  }
-
-  @Test
-  public void spents16XpOnEssenceForIncrementFrom2To3() throws Exception {
-    character.setExperienced();
-    increaseByOne(getEssenceTrait());
-    assertThat(character.getXpSpent(ESSENCE_POINT_CONFIGURATION), is(16));
+  @Override
+  protected int getXpForIncrementFrom2To3() {
+    return 16;
   }
 }

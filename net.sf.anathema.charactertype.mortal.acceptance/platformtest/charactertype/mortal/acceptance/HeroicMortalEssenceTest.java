@@ -2,38 +2,13 @@ package charactertype.mortal.acceptance;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
-import net.sf.anathema.lib.util.Identificate;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import character.acceptance.InteractionTraitList;
+import character.acceptance.tests.AbstractEssenceTest;
 
-@SuppressWarnings("nls")
-public class HeroicMortalEssenceTest extends AbstractHeroicMortalTest {
-
-  private InteractionTraitList traitList;
-
-  @Before
-  public void createInteraction() throws Exception {
-    traitList = character.createTraitInteraction(IPluginConstants.MODEL_ID);
-  }
-
-  @Test
-  public void startsWithEssenceValueOf1() throws Exception {
-    IInteractiveTrait essence = getEssenceTrait();
-    assertThat(essence.getValue(), is(1));
-  }
-
-  @Test
-  public void cannotReduceEssenceBelowStartValue() throws Exception {
-    IInteractiveTrait essence = getEssenceTrait();
-    int startValue = essence.getValue();
-    essence.setValue(startValue - 1);
-    assertThat(essence.getValue(), is(startValue));
-  }
+public class HeroicMortalEssenceTest extends AbstractEssenceTest {
 
   @Test
   public void cannotRaiseEssenceAboveStartValue() throws Exception {
@@ -43,7 +18,13 @@ public class HeroicMortalEssenceTest extends AbstractHeroicMortalTest {
     assertThat(essence.getValue(), is(startValue));
   }
 
-  private IInteractiveTrait getEssenceTrait() {
-    return traitList.getTrait(new Identificate("Essence"));
+  @Override
+  protected int getStartValue() {
+    return 1;
+  }
+
+  @Override
+  protected String getTemplateId() {
+    return IAcceptanceConstants.HEROIC_TEMPLATE_ID;
   }
 }
