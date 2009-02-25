@@ -31,16 +31,13 @@ public class VirtueTraitsEncoder {
 
   private void encodeVirtue(final IDisplayTrait trait, final Position position, final float width) {
     final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(graphicalEncoder);
-    float yPosition = position.y;
-    yPosition -= IVoidStateFormatConstants.LINE_HEIGHT - 3;
     final String label = SpiritualTraitLabelMap.getLabel(trait.getTraitType().getId());
-    final float labelX = position.x + width / 2;
-    graphicalEncoder.drawText(label, new Position(labelX, yPosition), PdfContentByte.ALIGN_CENTER);
-    yPosition -= traitEncoder.getTraitHeight() - 1;
-    final Position traitPosition = new Position(position.x, yPosition);
-    final int value = trait.getValue();
-    traitEncoder.encodeDotsCenteredAndUngrouped(traitPosition, width, value, 5);
-    yPosition -= traitEncoder.getTraitHeight() - 1;
-    traitEncoder.encodeSquaresCenteredAndUngrouped(new Position(position.x, yPosition), width, 0, 5);
+    final float centerX = position.x + width / 2;
+    final Position labelPosition = new Position(centerX, position.y - IVoidStateFormatConstants.LINE_HEIGHT + 3);
+    graphicalEncoder.drawText(label, labelPosition, PdfContentByte.ALIGN_CENTER);
+    final Position traitPosition = new Position(position.x, labelPosition.y - traitEncoder.getTraitHeight() + 1);
+    traitEncoder.encodeDotsCenteredAndUngrouped(traitPosition, width, trait.getValue(), 5);
+    final Position squarePosition = new Position(position.x, (traitPosition.y - traitEncoder.getTraitHeight() + 1));
+    traitEncoder.encodeSquaresCenteredAndUngrouped(squarePosition, width, 0, 5);
   }
 }
