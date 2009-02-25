@@ -2,13 +2,14 @@ package charactertype.mortal.acceptance;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import net.sf.anathema.character.acceptance.InteractionTraitList;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import character.acceptance.InteractionTraitList;
 
 @SuppressWarnings("nls")
 public class HeroicMortalEssenceTest extends AbstractHeroicMortalTest {

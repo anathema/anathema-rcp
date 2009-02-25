@@ -37,7 +37,6 @@
             </where>
          </condition>
          <minimum
-               traitId="Essence"
                value="1">
          </minimum>
       </validator>
@@ -53,6 +52,15 @@
                traitId="Essence"
                value="2">
          </minimum>
+      </validator>
+      <validator>
+         <condition>
+            <where>
+               <modelId
+                     id="net.sf.anathema.character.spiritualtraits.model">
+               </modelId>
+            </where>
+         </condition>
       </validator>
    </extension>
    <extension

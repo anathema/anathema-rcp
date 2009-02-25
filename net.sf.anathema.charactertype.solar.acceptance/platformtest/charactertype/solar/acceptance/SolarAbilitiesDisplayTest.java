@@ -7,7 +7,6 @@ import java.util.List;
 
 import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
-import net.sf.anathema.character.acceptance.TraitInteractionUtilties;
 import net.sf.anathema.character.core.create.CharacterFactory;
 import net.sf.anathema.character.core.create.CharacterRepositoryUtilities;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -23,6 +22,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import character.acceptance.TraitInteractionUtilties;
 
 public class SolarAbilitiesDisplayTest {
 

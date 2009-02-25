@@ -42,6 +42,8 @@ Require-Bundle: net.sf.anathema.basics.eclipse;bundle-version="1.0.0",
  net.sf.anathema.editor.styledtext;bundle-version="1.0.0",
  net.sf.anathema.graphlayout;bundle-version="1.0.0",
  net.sf.anathema.rcp;bundle-version="1.0.0",
- net.sf.anathema.view.valuelist;bundle-version="1.0.0"
-Export-Package: net.sf.anathema.character.acceptance
+ net.sf.anathema.view.valuelist;bundle-version="1.0.0",
+ net.sf.anathema.character.spiritualtraits;bundle-version="1.0.0"
+Export-Package: character.acceptance,
+ character.acceptance.tests
 Bundle-Localization: plugin

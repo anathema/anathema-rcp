@@ -1,9 +1,10 @@
 package charactertype.lunar.acceptance;
 
-import net.sf.anathema.character.acceptance.AcceptanceCharacter;
 
 import org.junit.After;
 import org.junit.Before;
+
+import character.acceptance.AcceptanceCharacter;
 
 public class AbstractPactLunarTest {
   protected AcceptanceCharacter character;

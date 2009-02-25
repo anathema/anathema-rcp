@@ -1,17 +1,18 @@
 package charactertype.lunar.acceptance;
 
-import static net.sf.anathema.character.acceptance.IAcceptanceConstants.*;
-import static net.sf.anathema.character.acceptance.TraitAssert.*;
+import static character.acceptance.IAcceptanceConstants.*;
+import static character.acceptance.TraitAssert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import net.sf.anathema.character.acceptance.InteractionTraitList;
-import net.sf.anathema.character.acceptance.TraitAssert;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import character.acceptance.InteractionTraitList;
+import character.acceptance.TraitAssert;
 
 @SuppressWarnings("nls")
 public class PactLunarEssence_Test extends AbstractPactLunarTest {

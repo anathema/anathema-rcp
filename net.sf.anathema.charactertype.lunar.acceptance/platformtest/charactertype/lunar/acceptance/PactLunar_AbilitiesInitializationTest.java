@@ -2,7 +2,6 @@ package charactertype.lunar.acceptance;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import net.sf.anathema.character.acceptance.AcceptanceCharacterUtilities;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -13,6 +12,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import character.acceptance.AcceptanceCharacterUtilities;
 
 public class PactLunar_AbilitiesInitializationTest {
 

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.acceptance;
+package character.acceptance;
 
 import net.disy.commons.core.util.Ensure;
 import net.sf.anathema.character.core.character.CharacterId;

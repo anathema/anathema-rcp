@@ -6,9 +6,6 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
-import net.sf.anathema.character.acceptance.AcceptanceCharacterUtilities;
-import net.sf.anathema.character.acceptance.AcceptanceTraitUtilities;
-import net.sf.anathema.character.acceptance.TraitInteractionUtilties;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -23,6 +20,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import character.acceptance.AcceptanceCharacterUtilities;
+import character.acceptance.AcceptanceTraitUtilities;
+import character.acceptance.TraitInteractionUtilties;
 
 public class PactLunar_AbilitiesInteractionTest {
 

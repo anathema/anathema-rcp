@@ -6,8 +6,6 @@ import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.ExtensionException;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
-import net.sf.anathema.character.acceptance.AcceptanceTraitUtilities;
-import net.sf.anathema.character.acceptance.TraitInteractionUtilties;
 import net.sf.anathema.character.core.character.CharacterId;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -18,6 +16,9 @@ import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+
+import character.acceptance.AcceptanceTraitUtilities;
+import character.acceptance.TraitInteractionUtilties;
 
 public class SiderealAbilityAsserts {
 

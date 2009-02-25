@@ -1,7 +1,5 @@
 package charactertype.sidereal.acceptance;
 
-import net.sf.anathema.character.acceptance.AcceptanceCasteUtilities;
-import net.sf.anathema.character.acceptance.AcceptanceCharacterUtilities;
 import net.sf.anathema.character.core.model.ModelCache;
 
 import org.eclipse.core.resources.IFolder;
@@ -9,6 +7,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import character.acceptance.AcceptanceCasteUtilities;
+import character.acceptance.AcceptanceCharacterUtilities;
 
 public class SiderealMinimalAbilityValues_InitializationTest {
 

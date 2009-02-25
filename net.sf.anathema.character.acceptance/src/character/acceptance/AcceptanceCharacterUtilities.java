@@ -1,4 +1,4 @@
-package net.sf.anathema.character.acceptance;
+package character.acceptance;
 
 import net.sf.anathema.character.core.create.CharacterFactory;
 

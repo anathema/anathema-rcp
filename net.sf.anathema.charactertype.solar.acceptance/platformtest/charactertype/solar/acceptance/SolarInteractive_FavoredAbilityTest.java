@@ -3,14 +3,15 @@ package charactertype.solar.acceptance;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
-import net.sf.anathema.character.acceptance.AcceptanceCharacter;
-import net.sf.anathema.character.acceptance.InteractionTraitList;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import character.acceptance.AcceptanceCharacter;
+import character.acceptance.InteractionTraitList;
 
 public class SolarInteractive_FavoredAbilityTest {
 

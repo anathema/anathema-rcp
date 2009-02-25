@@ -1,9 +1,10 @@
 package charactertype.mortal.acceptance;
 
-import net.sf.anathema.character.acceptance.AcceptanceCharacter;
 
 import org.junit.After;
 import org.junit.Before;
+
+import character.acceptance.AcceptanceCharacter;
 
 public class AbstractHeroicMortalTest {
   protected AcceptanceCharacter character;
@@ -11,7 +12,7 @@ public class AbstractHeroicMortalTest {
   @Before
   public void createCharacter() {
     this.character = AcceptanceCharacter.FromFolderNameAndTemplateId(
-        "Mortal", IMortalAcceptanceConstants.HEROIC_TEMPLATE_ID); //$NON-NLS-1$
+        "Mortal", IAcceptanceConstants.HEROIC_TEMPLATE_ID); //$NON-NLS-1$
   }
 
   @After

@@ -1,9 +1,6 @@
 package charactertype.sidereal.acceptance;
 
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
-import net.sf.anathema.character.acceptance.AcceptanceCasteUtilities;
-import net.sf.anathema.character.acceptance.AcceptanceCharacterUtilities;
-import net.sf.anathema.character.acceptance.TraitInteractionUtilties;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
@@ -13,6 +10,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import character.acceptance.AcceptanceCasteUtilities;
+import character.acceptance.AcceptanceCharacterUtilities;
+import character.acceptance.TraitInteractionUtilties;
 
 public class SiderealMinimalAbilityValues_InteractionTest {
 
