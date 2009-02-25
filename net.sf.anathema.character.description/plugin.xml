@@ -24,5 +24,14 @@
          </displayConfiguration>
       </model>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modellists">
+      <modelList
+            id="net.sf.anathema.character.basic.modelList">
+         <modelReference
+               modelId="net.sf.anathema.character.description.model">
+         </modelReference>
+      </modelList>
+   </extension>
 
 </plugin>

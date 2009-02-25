@@ -62,5 +62,14 @@
             modelId="net.sf.anathema.character.abilities.model">
       </factory>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modellists">
+      <modelList
+            id="net.sf.anathema.character.basic.modelList">
+         <modelReference
+               modelId="net.sf.anathema.character.abilities.model">
+         </modelReference>
+      </modelList>
+   </extension>
 
 </plugin>

@@ -71,6 +71,15 @@
             class="net.sf.anathema.charms.character.preference.CharmPreferenceInitializer">
       </initializer>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modellists">
+      <modelList
+            id="net.sf.anathema.character.essenceUser.modelList">
+         <modelReference
+               modelId="net.sf.anathema.charms.character.modelId">
+         </modelReference>
+      </modelList>
+   </extension>
 
 
 </plugin>

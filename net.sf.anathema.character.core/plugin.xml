@@ -64,25 +64,13 @@
          point="net.sf.anathema.character.core.modellists">
       <modelList
             id="net.sf.anathema.character.basic.modelList">
-         <modelReference
-               modelId="net.sf.anathema.character.description.model">
-         </modelReference>
-         <modelReference
-               modelId="net.sf.anathema.character.attributes.model">
-         </modelReference>
-         <modelReference
-               modelId="net.sf.anathema.character.abilities.model">
-         </modelReference>
          </modelList>
       <modelList
             id="net.sf.anathema.character.essenceUser.modelList">
          <listReference
                listId="net.sf.anathema.character.basic.modelList">
          </listReference>
-         <modelReference
-               modelId="net.sf.anathema.charms.character.modelId">
-         </modelReference>
-      </modelList>
+       </modelList>
    </extension>
    <extension
          id="net.sf.anathema.character.uneditedmodel.marker"
