@@ -12,40 +12,34 @@ import org.junit.Before;
 import org.junit.Test;
 
 @SuppressWarnings("nls")
-public class SpiritualTraitGroupTemplate_EssenceGroupTest {
+public class SpiritualTraitGroupTemplate_WillpowerGroupTest {
 
-  private TraitGroup essenceGroup;
-  private SpiritualTraitGroupTemplate template;
+  private TraitGroup willpowerGroup;
 
   @Before
   public void createTemplate() throws Exception {
-    template = new SpiritualTraitGroupTemplate();
-    essenceGroup = template.getGroups()[0];
-  }
-
-  @Test
-  public void hasTwoGroup() throws Exception {
-    assertThat(template.getGroups().length, is(3));
+    SpiritualTraitGroupTemplate template = new SpiritualTraitGroupTemplate();
+    willpowerGroup = template.getGroups()[2];
   }
 
   @Test
   public void hasIdEssence() throws Exception {
-    assertThat(essenceGroup.getId(), is("Essence"));
+    assertThat(willpowerGroup.getId(), is("Willpower"));
   }
 
   @Test
   public void hasEnglishLabelEssence() throws Exception {
     Locale.setDefault(Locale.ENGLISH);
-    assertThat(essenceGroup.getLabel(), is("Essence"));
+    assertThat(willpowerGroup.getLabel(), is("Willpower"));
   }
 
   @Test
   public void containsOneTraitIds() throws Exception {
-    assertThat(essenceGroup.getTraitIds().length, is(1));
+    assertThat(willpowerGroup.getTraitIds().length, is(1));
   }
 
   @Test
   public void containsTraitIdEssence() throws Exception {
-    assertThat(essenceGroup.getTraitIds(), AnathemaMatchers.contains("Essence"));
+    assertThat(willpowerGroup.getTraitIds(), AnathemaMatchers.contains("Willpower"));
   }
 }
