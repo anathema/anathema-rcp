@@ -15,7 +15,7 @@ public class ModelListProvider implements IModelListProvider {
   private static final String ATTRIB_LIST_ID = "listId"; //$NON-NLS-1$
   private static final String TAG_MODEL_REFERENCE = "modelReference"; //$NON-NLS-1$
   private static final String TAG_LIST_REFERENCE = "listReference"; //$NON-NLS-1$
-  private final Map<String, IModelList> modelListsById = new HashMap<String, IModelList>();
+  private final Map<String, ModelList> modelListsById = new HashMap<String, ModelList>();
 
   public ModelListProvider() {
     this(new EclipseExtensionPoint(CharacterCorePlugin.ID, "modellists").getExtensions()); //$NON-NLS-1$
@@ -30,8 +30,8 @@ public class ModelListProvider implements IModelListProvider {
   }
 
   private void addModelList(IExtensionElement element) {
-    ModelList modelList = new ModelList(this);
     String modelListId = element.getAttribute(ATTRIB_ID);
+    ModelList modelList = createRegisteredModelList(modelListId);
     for (IExtensionElement child : element.getElements()) {
       if (TAG_MODEL_REFERENCE.equals(child.getName())) {
         modelList.addModelId(child.getAttribute(ATTRIB_MODEL_ID));
@@ -40,11 +40,15 @@ public class ModelListProvider implements IModelListProvider {
         modelList.addModelListId(child.getAttribute(ATTRIB_LIST_ID));
       }
     }
-    addModelList(modelListId, modelList);
   }
 
-  public void addModelList(String modelListId, IModelList modelList) {
-    modelListsById.put(modelListId, modelList);
+  private ModelList createRegisteredModelList(String listId) {
+    if (modelListsById.containsKey(listId)) {
+      return modelListsById.get(listId);
+    }
+    final ModelList modelList = new ModelList(this);
+    modelListsById.put(listId, modelList);
+    return modelList;
   }
 
   @Override
