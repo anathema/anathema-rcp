@@ -7,6 +7,10 @@
             class="net.sf.anathema.character.spiritualtraits.sheet.EssenceBoxEncoder"
             fieldId="encoder.essence">
       </encoder>
+      <encoder
+            class="net.sf.anathema.character.spiritualtraits.sheet.VirtuesBoxEncoder"
+            fieldId="encoder.virtues">
+      </encoder>
    </extension>
 
 </fragment>
