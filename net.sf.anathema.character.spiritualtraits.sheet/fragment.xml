@@ -11,6 +11,10 @@
             class="net.sf.anathema.character.spiritualtraits.sheet.VirtuesBoxEncoder"
             fieldId="encoder.virtues">
       </encoder>
+      <encoder
+            class="net.sf.anathema.character.spiritualtraits.sheet.WillpowerBoxEncoder"
+            fieldId="encoder.willpower">
+      </encoder>
    </extension>
 
 </fragment>
