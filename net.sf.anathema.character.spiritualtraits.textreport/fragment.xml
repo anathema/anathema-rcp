@@ -17,7 +17,17 @@
             class="net.sf.anathema.character.spiritualtraits.textreport.VirtuesTextEncoder"
             id="virtues">
          <after
-               referenceId="abilities">
+               referenceId="attributes">
+         </after>
+      </textencoder>
+      <textencoder
+            class="net.sf.anathema.character.spiritualtraits.textreport.WillpowerTextEncoder"
+            id="willpower">
+         <after
+               referenceId="charms">
+         </after>
+         <after
+               referenceId="abilties">
          </after>
       </textencoder>
    </extension>

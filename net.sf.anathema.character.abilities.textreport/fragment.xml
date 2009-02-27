@@ -15,6 +15,9 @@
          <after
                referenceId="caste">
          </after>
+         <after
+               referenceId="virtues">
+         </after>
       </textencoder>
    </extension>
 

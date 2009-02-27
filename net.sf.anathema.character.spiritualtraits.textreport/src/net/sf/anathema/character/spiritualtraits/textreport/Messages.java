@@ -7,11 +7,12 @@ public class Messages extends NLS {
   public static String EssenceTextEncoder_Title;
   public static String EssenceTextEncoder_Trait;
   public static String VirtuesTextEncoder_Title;
+  public static String WillpowerTextEncoder_Title;
   static {
-    // initialize resource bundle
     NLS.initializeMessages(BUNDLE_NAME, Messages.class);
   }
 
   private Messages() {
+    // nothing to do
   }
 }

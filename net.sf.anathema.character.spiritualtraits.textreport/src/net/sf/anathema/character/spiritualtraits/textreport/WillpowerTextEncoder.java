@@ -6,13 +6,13 @@ import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
 import net.sf.anathema.character.trait.textreport.AbstractTraitCollectionTextEncoder;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class EssenceTextEncoder extends AbstractTraitCollectionTextEncoder {
+public class WillpowerTextEncoder extends AbstractTraitCollectionTextEncoder {
 
   @Override
   protected IDisplayGroupFactory getFactory() {
     return new SubTraitGroupFactory(
         new SpiritualTraitDisplayGroupFactory(),
-        SpiritualTraitGroupTemplate.ESSENCE_GROUP_ID);
+        SpiritualTraitGroupTemplate.WILLPOWER_GROUP_ID);
   }
 
   @Override
@@ -22,6 +22,6 @@ public class EssenceTextEncoder extends AbstractTraitCollectionTextEncoder {
 
   @Override
   protected String getTitle() {
-    return Messages.EssenceTextEncoder_Title;
+    return Messages.WillpowerTextEncoder_Title;
   }
 }
