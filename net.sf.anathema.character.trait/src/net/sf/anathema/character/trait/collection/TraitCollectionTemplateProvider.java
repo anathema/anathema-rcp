@@ -6,29 +6,37 @@ import net.sf.anathema.character.trait.model.ITraitCollectionTemplate;
 import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 import net.sf.anathema.character.trait.template.FavorizationTemplateExtensionPoint;
+import net.sf.anathema.character.trait.template.IFavorizationTemplateMap;
 
 public abstract class TraitCollectionTemplateProvider implements ITraitCollectionTemplateProvider {
 
   private static final String FAVORIZATION_EXTENSION_POINT = "favorization"; //$NON-NLS-1$
-  private final String modelId;
+  private final IFavorizationTemplateMap templateProvider;
 
-  public TraitCollectionTemplateProvider(String modelId) {
-    this.modelId = modelId;
+  private static IFavorizationTemplateMap createMapFromPlatform(final String modelId) {
+    final EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(
+        CharacterTraitPlugin.PLUGIN_ID,
+        FAVORIZATION_EXTENSION_POINT);
+    return new FavorizationTemplateExtensionPoint(modelId, extensionPoint);
   }
 
-  public ITraitCollectionTemplate getTraitTemplate(String characterTemplateId) {
-    IFavorizationTemplate favoredTemplate = getFavorizationTemplate(characterTemplateId);
-    ITraitGroupTemplate groupTemplate = createGroupTemplate(characterTemplateId);
+  public TraitCollectionTemplateProvider(final String modelId) {
+    this(createMapFromPlatform(modelId));
+  }
+
+  public TraitCollectionTemplateProvider(final IFavorizationTemplateMap templateProvider) {
+    this.templateProvider = templateProvider;
+  }
+
+  public ITraitCollectionTemplate getTraitTemplate(final String characterTemplateId) {
+    final IFavorizationTemplate favoredTemplate = getFavorizationTemplate(characterTemplateId);
+    final ITraitGroupTemplate groupTemplate = createGroupTemplate(characterTemplateId);
     return new TraitCollectionTemplate(groupTemplate, favoredTemplate);
   }
 
   protected abstract ITraitGroupTemplate createGroupTemplate(String characterTemplateId);
 
-  private IFavorizationTemplate getFavorizationTemplate(String characterTemplateId) {
-    EclipseExtensionPoint extensionPoint = new EclipseExtensionPoint(
-        CharacterTraitPlugin.PLUGIN_ID,
-        FAVORIZATION_EXTENSION_POINT);
-    FavorizationTemplateExtensionPoint templateProvider = new FavorizationTemplateExtensionPoint(modelId, extensionPoint);
-    return templateProvider.readTemplate(characterTemplateId);
+  private IFavorizationTemplate getFavorizationTemplate(final String characterTemplateId) {
+    return templateProvider.getTemplate(characterTemplateId);
   }
 }

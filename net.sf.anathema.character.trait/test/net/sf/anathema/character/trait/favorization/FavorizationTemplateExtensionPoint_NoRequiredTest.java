@@ -6,6 +6,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.template.FavorizationTemplateExtensionPoint;
+import net.sf.anathema.character.trait.template.IFavorizationTemplateMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class FavorizationTemplateExtensionPoint_NoRequiredTest {
   private static final int CONFIGURED_FAVORED_COUNT = 2;
   private static final String TEMPLATE_ID = "testTemplateId"; //$NON-NLS-1$
   private static final String MODEL_ID = "testModelId"; //$NON-NLS-1$
-  private FavorizationTemplateExtensionPoint provider;
+  private IFavorizationTemplateMap provider;
 
   @Before
   public void createProvider() throws Exception {
@@ -26,13 +27,13 @@ public class FavorizationTemplateExtensionPoint_NoRequiredTest {
 
   @Test
   public void providesNoFavoredCountIfNoConfigurationIsFoundForTemplateId() throws Exception {
-    IFavorizationTemplate template = provider.readTemplate("otherTemplateId"); //$NON-NLS-1$
+    IFavorizationTemplate template = provider.getTemplate("otherTemplateId"); //$NON-NLS-1$
     assertEquals(0, template.getAllowedFavored());
   }
 
   @Test
   public void readsFavoredCountCorrectly() throws Exception {
-    IFavorizationTemplate template = provider.readTemplate(TEMPLATE_ID);
+    IFavorizationTemplate template = provider.getTemplate(TEMPLATE_ID);
     assertEquals(CONFIGURED_FAVORED_COUNT, template.getAllowedFavored());
   }
 }

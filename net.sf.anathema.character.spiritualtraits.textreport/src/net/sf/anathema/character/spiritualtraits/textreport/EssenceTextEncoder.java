@@ -9,11 +9,11 @@ public class EssenceTextEncoder extends AbstractTraitCollectionTextEncoder {
 
   @Override
   protected IDisplayGroupFactory getFactory() {
-    return new SpiritualTraitDisplayGroupFactory();
+    return new SubTraitGroupFactory(new SpiritualTraitDisplayGroupFactory(), "Essence");
   }
 
   @Override
-  protected String getTraitName(IIdentificate traitType) {
+  protected String getTraitName(final IIdentificate traitType) {
     return ""; //$NON-NLS-1$
   }
 

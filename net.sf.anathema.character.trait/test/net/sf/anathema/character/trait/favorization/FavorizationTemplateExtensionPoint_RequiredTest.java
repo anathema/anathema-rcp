@@ -6,6 +6,7 @@ import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.character.trait.model.IFavorizationTemplate;
 import net.sf.anathema.character.trait.template.FavorizationTemplateExtensionPoint;
+import net.sf.anathema.character.trait.template.IFavorizationTemplateMap;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;
@@ -17,7 +18,7 @@ public class FavorizationTemplateExtensionPoint_RequiredTest {
   private static final int CONFIGURED_FAVORED_COUNT = 2;
   private static final String TEMPLATE_ID = "testTemplateId"; //$NON-NLS-1$
   private static final String MODEL_ID = "testModelId"; //$NON-NLS-1$
-  private FavorizationTemplateExtensionPoint provider;
+  private IFavorizationTemplateMap provider;
 
   @Before
   public void createProvider() throws Exception {
@@ -32,13 +33,13 @@ public class FavorizationTemplateExtensionPoint_RequiredTest {
 
   @Test
   public void marksRequiredFavoredNotAsRequiredForOtherTemplateId() throws Exception {
-    IFavorizationTemplate template = provider.readTemplate("otherTemplateId"); //$NON-NLS-1$
+    IFavorizationTemplate template = provider.getTemplate("otherTemplateId"); //$NON-NLS-1$
     assertFalse(template.isRequiredFavored(new Identificate(REQUIRED_FAVORED_ID)));
   }
 
   @Test
   public void marksRequiredFavoredAsRequiredForTemplateId() throws Exception {
-    IFavorizationTemplate template = provider.readTemplate(TEMPLATE_ID);
+    IFavorizationTemplate template = provider.getTemplate(TEMPLATE_ID);
     assertTrue(template.isRequiredFavored(new Identificate(REQUIRED_FAVORED_ID)));
   }
 }
