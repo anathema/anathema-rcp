@@ -6,9 +6,9 @@ import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 
 public class SpiritualTraitGroupTemplate implements ITraitGroupTemplate {
 
-  private static final String ESSENCE_GROUP_ID = "Essence"; //$NON-NLS-1$
-  private static final String VIRTUES_GROUP_ID = "Virtues"; //$NON-NLS-1$
-  private static final String WILLPOWER_GROUP_ID = WILLPOWER_ID;
+  public static final String ESSENCE_GROUP_ID = "Essence"; //$NON-NLS-1$
+  public static final String VIRTUES_GROUP_ID = "Virtues"; //$NON-NLS-1$
+  public static final String WILLPOWER_GROUP_ID = "Willpower"; //$NON-NLS-1$
 
   @Override
   public TraitGroup[] getGroups() {
@@ -16,17 +16,17 @@ public class SpiritualTraitGroupTemplate implements ITraitGroupTemplate {
   }
 
   public TraitGroup createVirtuesGroup() {
-    String label = Messages.SpiritualTraitGroupTemplate_VirtuesGroup;
+    final String label = Messages.SpiritualTraitGroupTemplate_VirtuesGroup;
     return new TraitGroup(VIRTUES_GROUP_ID, label, COMPASSION_ID, CONVICTION_ID, TEMPERANCE_ID, VALOR_ID);
   }
 
   private TraitGroup createEssenceGroup() {
-    String label = Messages.SpiritualTraitGroupTemplate_EssenceGroup;
+    final String label = Messages.SpiritualTraitGroupTemplate_EssenceGroup;
     return new TraitGroup(ESSENCE_GROUP_ID, label, ESSENCE_TRAIT_ID);
   }
 
   private TraitGroup createWillpowerGroup() {
-    String label = Messages.SpiritualTraitGroupTemplate_WillpowerGroup;
+    final String label = Messages.SpiritualTraitGroupTemplate_WillpowerGroup;
     return new TraitGroup(WILLPOWER_GROUP_ID, label, WILLPOWER_ID);
   }
 }

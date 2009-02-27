@@ -9,6 +9,16 @@
          <after
                referenceId="charms">
          </after>
+         <after
+               referenceId="virtues">
+         </after>
+      </textencoder>
+      <textencoder
+            class="net.sf.anathema.character.spiritualtraits.textreport.VirtuesTextEncoder"
+            id="virtues">
+         <after
+               referenceId="abilities">
+         </after>
       </textencoder>
    </extension>
 
