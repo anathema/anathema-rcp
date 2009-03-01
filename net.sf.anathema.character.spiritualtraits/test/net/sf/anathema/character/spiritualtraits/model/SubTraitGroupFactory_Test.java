@@ -1,4 +1,4 @@
-package net.sf.anathema.character.spiritualtraits.textreport;
+package net.sf.anathema.character.spiritualtraits.model;
 
 import static org.easymock.EasyMock.*;
 import static org.hamcrest.CoreMatchers.*;

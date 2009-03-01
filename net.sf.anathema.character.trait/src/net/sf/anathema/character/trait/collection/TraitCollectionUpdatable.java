@@ -46,7 +46,7 @@ public final class TraitCollectionUpdatable implements IUpdatable {
     if (experience.isExperienced()) {
       return;
     }
-    for (IBasicTrait trait : model.getTraits()) {
+    for (IBasicTrait trait : model.getAllTraits()) {
       validateCreationValue(trait);
     }
   }

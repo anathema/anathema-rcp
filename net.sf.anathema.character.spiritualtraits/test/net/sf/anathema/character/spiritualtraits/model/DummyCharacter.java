@@ -1,4 +1,4 @@
-package net.sf.anathema.character.spiritualtraits.textreport;
+package net.sf.anathema.character.spiritualtraits.model;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.character.ICharacterTemplate;

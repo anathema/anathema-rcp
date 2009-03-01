@@ -42,7 +42,7 @@ public class TraitCollectionModelInitializer extends ModelInitializer {
   }
 
   private void initializeRequiredFavored(final IFavorizationTemplate template) {
-    for (IBasicTrait trait : traitCollection.getTraits()) {
+    for (IBasicTrait trait : traitCollection.getAllTraits()) {
       ITraitStatus status = trait.getStatusManager().getStatus();
       IIdentificate traitType = trait.getTraitType();
       if (status instanceof DefaultStatus && template.isRequiredFavored(traitType)) {

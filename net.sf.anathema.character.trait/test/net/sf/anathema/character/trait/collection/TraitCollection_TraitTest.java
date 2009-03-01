@@ -15,7 +15,7 @@ public class TraitCollection_TraitTest {
 
   @Before
   public void createCollectionWithoutSubTrait() {
-    BasicTrait basicTrait = new BasicTrait(TRAIT_ID);
+    final BasicTrait basicTrait = new BasicTrait(TRAIT_ID);
     collection = new TraitCollection(basicTrait);
     trait = collection.getTrait(TRAIT_ID);
   }

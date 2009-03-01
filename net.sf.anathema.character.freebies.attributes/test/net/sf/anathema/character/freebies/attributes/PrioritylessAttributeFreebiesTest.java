@@ -42,7 +42,7 @@ public class PrioritylessAttributeFreebiesTest {
   @Test
   public void spentFreebiesFitIntoCredits() throws Exception {
     ITraitCollectionModel attributes = TraitCollectionModelFactory.create(new AttributeGroupTemplate().getGroups());
-    attributes.getTraits()[0].getCreationModel().setValue(attributeValue);
+    attributes.getAllTraits()[0].getCreationModel().setValue(attributeValue);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes);
     PrioritylessAttributeFreebies freebies = new PrioritylessAttributeFreebies(
         modelProvider,

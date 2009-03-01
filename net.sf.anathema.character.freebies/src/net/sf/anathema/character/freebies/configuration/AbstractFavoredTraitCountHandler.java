@@ -22,7 +22,7 @@ public abstract class AbstractFavoredTraitCountHandler extends UnconfiguredExecu
     IModelIdentifier modelIdentifer = new ModelIdentifier(id, getModelId());
     ITraitCollectionModel traitCollection = (ITraitCollectionModel) modelProvider.getModel(modelIdentifer);
     int count = 0;
-    for (IBasicTrait trait : traitCollection.getTraits()) {
+    for (IBasicTrait trait : traitCollection.getAllTraits()) {
       if (trait.getStatusManager().getStatus() instanceof FavoredStatus) {
         count++;
       }

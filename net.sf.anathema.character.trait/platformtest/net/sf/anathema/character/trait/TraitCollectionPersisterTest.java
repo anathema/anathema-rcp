@@ -53,7 +53,7 @@ public class TraitCollectionPersisterTest {
   @Test
   public void favoredTraitIsFavoredAfterLoad() throws Exception {
     ITraitCollectionModel traits = persister.createNew(createTemplate());
-    IBasicTrait favoredTrait = traits.getTraits()[0];
+    IBasicTrait favoredTrait = traits.getAllTraits()[0];
     favoredTrait.getStatusManager().setStatus(new FavoredStatus());
     String favoredTraitId = favoredTrait.getTraitType().getId();
     ITraitCollectionModel loaded = saveAndLoad(traits);
@@ -63,7 +63,7 @@ public class TraitCollectionPersisterTest {
   @Test
   public void unfavoredTraitIsUnfavoredAfterLoad() throws Exception {
     ITraitCollectionModel attributes = persister.createNew(createTemplate());
-    IBasicTrait favoredTrait = attributes.getTraits()[0];
+    IBasicTrait favoredTrait = attributes.getAllTraits()[0];
     String favoredTraitId = favoredTrait.getTraitType().getId();
     ITraitCollectionModel loaded = saveAndLoad(attributes);
     assertTrue(loaded.getTrait(favoredTraitId).getStatusManager().getStatus() instanceof DefaultStatus);
@@ -76,7 +76,7 @@ public class TraitCollectionPersisterTest {
         + "</model>"; //$NON-NLS-1$
     ITraitCollectionModel loaded = persister.load(DocumentUtilities.read(xmlString), createTemplate());
     assertIsTrait(loaded.getTrait(TRAIT1), 1);
-    assertEquals(1, loaded.getTraits().length);
+    assertEquals(1, loaded.getAllTraits().length);
   }
 
   private void assertIsTrait(IBasicTrait trait, int creationValue) {

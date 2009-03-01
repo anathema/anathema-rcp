@@ -2,6 +2,7 @@ package net.sf.anathema.character.spiritualtraits.textreport;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import net.sf.anathema.character.spiritualtraits.model.SubTraitGroupFactory;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Before;

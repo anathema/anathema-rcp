@@ -17,7 +17,7 @@ public class TraitCollectionExperienceCalculator {
 
   public int calculate() {
     int sum = 0;
-    for (IBasicTrait attribute : collection.getTraits()) {
+    for (IBasicTrait attribute : collection.getAllTraits()) {
       sum += calculate(attribute);
     }
     return sum;

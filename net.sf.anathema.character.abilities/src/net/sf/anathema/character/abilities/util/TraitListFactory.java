@@ -10,7 +10,7 @@ public class TraitListFactory {
 
   public List<IBasicTrait> createFrom(ITraitCollectionModel model) {
     ArrayList<IBasicTrait> list = new ArrayList<IBasicTrait>();
-    for (IBasicTrait trait : model.getTraits()) {
+    for (IBasicTrait trait : model.getAllTraits()) {
       if (model.getSubTraits(trait.getTraitType().getId()).isEmpty()) {
         list.add(trait);
       }

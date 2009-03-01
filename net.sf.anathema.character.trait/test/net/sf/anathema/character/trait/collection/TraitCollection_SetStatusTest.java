@@ -28,10 +28,10 @@ public class TraitCollection_SetStatusTest {
         new BasicTrait(new Identificate("third"))); //$NON-NLS-1$
     setStatus = EasyMock.createMock(ITraitStatus.class);
     otherStatus = EasyMock.createMock(ITraitStatus.class);
-    traitCollection.getTraits()[0].getStatusManager().setStatus(setStatus);
-    traitCollection.getTraits()[1].getStatusManager().setStatus(otherStatus);
+    traitCollection.getAllTraits()[0].getStatusManager().setStatus(setStatus);
+    traitCollection.getAllTraits()[1].getStatusManager().setStatus(otherStatus);
     traitCollection.setStatusFor(setStatus, Collections.singletonList(new Identificate("third"))); //$NON-NLS-1$
-    traits = traitCollection.getTraits();
+    traits = traitCollection.getAllTraits();
   }
   
   @Test

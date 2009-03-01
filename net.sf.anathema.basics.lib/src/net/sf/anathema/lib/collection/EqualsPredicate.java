@@ -1,4 +1,4 @@
-package net.sf.anathema.graph.layering;
+package net.sf.anathema.lib.collection;
 
 import net.disy.commons.core.predicate.IPredicate;
 

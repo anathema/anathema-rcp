@@ -14,7 +14,7 @@ public class AttributeBonusPointCalculator {
 
   public int calculate() {
     int sum = 0;
-    for (IBasicTrait trait : attributes.getTraits()) {
+    for (IBasicTrait trait : attributes.getAllTraits()) {
       sum += calculate(trait);
     }
     return sum;

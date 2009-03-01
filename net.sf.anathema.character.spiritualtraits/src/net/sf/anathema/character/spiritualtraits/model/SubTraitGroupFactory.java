@@ -1,4 +1,4 @@
-package net.sf.anathema.character.spiritualtraits.textreport;
+package net.sf.anathema.character.spiritualtraits.model;
 
 import java.util.ArrayList;
 import java.util.List;

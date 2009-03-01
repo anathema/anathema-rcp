@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait.points;
 
 import net.sf.anathema.character.trait.IBasicTrait;
 
-public abstract class AbstractPointWiseBonuspointCalculator {
+public abstract class AbstractPointWiseBonuspointCalculator implements ICalculator {
 
   private final PointwiseCostDto pointDto;
 

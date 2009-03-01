@@ -74,7 +74,7 @@ public abstract class AbstractTraitCollectionPersister<T extends IModelTemplate,
         TAG_MODEL,
         CharacterTraitPlugin.PLUGIN_ID);
     Element root = document.getRootElement();
-    for (IBasicTrait trait : item.getTraits()) {
+    for (IBasicTrait trait : item.getAllTraits()) {
       Element traitElement = saveTrait(root, trait);
       ElementUtilities.addAttribute(
           traitElement,

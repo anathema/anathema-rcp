@@ -9,6 +9,7 @@ import java.util.Set;
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.graph.nodes.IRegularNode;
 import net.sf.anathema.graph.nodes.ISimpleNode;
+import net.sf.anathema.lib.collection.EqualsPredicate;
 
 public class TwoCommonParentsOptimizer {
 

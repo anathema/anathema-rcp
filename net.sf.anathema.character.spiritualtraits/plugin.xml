@@ -69,15 +69,24 @@
             groupReference="essence"
             handlerClass="net.sf.anathema.character.spiritualtraits.points.EssenceBonuspointHandler">
       </bonusPointCalculator>
+      <bonusPointCalculator
+            groupReference="virtues"
+            handlerClass="net.sf.anathema.character.spiritualtraits.points.VirtuesBonuspointHandler">
+      </bonusPointCalculator>
+      <experiencePointCalculator
+            groupReference="essence"
+            handlerClass="net.sf.anathema.character.spiritualtraits.points.EssenceExperiencePointHandler">
+      </experiencePointCalculator>
       <pointGroup
             groupId="essence"
             modelId="net.sf.anathema.character.spiritualtraits.model"
             name="%pointGroup.essence.name">
       </pointGroup>
-      <experiencePointCalculator
-            groupReference="essence"
-            handlerClass="net.sf.anathema.character.spiritualtraits.points.EssenceExperiencePointHandler">
-      </experiencePointCalculator>
+      <pointGroup
+            groupId="virtues"
+            modelId="net.sf.anathema.character.spiritualtraits.model"
+            name="Virtues">
+      </pointGroup>
    </extension>
    <extension
          point="net.sf.anathema.character.core.modellists">

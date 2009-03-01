@@ -10,9 +10,11 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 public interface ITraitCollectionModel extends IModel {
 
-  public IBasicTrait[] getTraits();
+  public IBasicTrait[] getAllTraits();
 
   public IBasicTrait getTrait(String id);
+
+  public IBasicTrait[] getTraits(String... id);
 
   public void addSubTrait(String trait, IBasicTrait subTrait);
 

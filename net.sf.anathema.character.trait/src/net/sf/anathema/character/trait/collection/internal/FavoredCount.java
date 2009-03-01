@@ -14,7 +14,7 @@ public class FavoredCount {
 
   public int get() {
     int favoredCount = 0;
-    for (IBasicTrait trait : traitCollection.getTraits()) {
+    for (IBasicTrait trait : traitCollection.getAllTraits()) {
       if (FavoredStatus.isFavored(trait)) {
         favoredCount++;
       }

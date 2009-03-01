@@ -4,72 +4,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.trait.IBasicTrait;
-import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.collection.AbstractTraitCollection;
 import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.lib.collection.MultiEntryMap;
 import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class DummyTraitCollection extends AbstractModel implements ITraitCollectionModel {
+public class DummyTraitCollection extends AbstractTraitCollection {
 
   private final List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
   private final MultiEntryMap<String, IBasicTrait> subTraits = new MultiEntryMap<String, IBasicTrait>();
 
   @Override
-  public IBasicTrait[] getTraits() {
+  public IBasicTrait[] getAllTraits() {
     return traits.toArray(new IBasicTrait[traits.size()]);
   }
 
-  public void addTrait(IBasicTrait... addedTraits) {
-    for (IBasicTrait trait : addedTraits) {
+  public void addTrait(final IBasicTrait... addedTraits) {
+    for (final IBasicTrait trait : addedTraits) {
       traits.add(trait);
     }
   }
 
   @Override
-  public IBasicTrait getTrait(String id) {
-    for (IBasicTrait trait : getTraits()) {
-      if (id.equals(trait.getTraitType().getId())) {
-        return trait;
-      }
-    }
-    return null;
-  }
-
-  @Override
-  public void addChangeListener(IChangeListener modelChangeListener) {
+  public void addChangeListener(final IChangeListener modelChangeListener) {
     // nothing to do
   }
 
   @Override
-  public void removeChangeListener(IChangeListener modelChangeListener) {
+  public void removeChangeListener(final IChangeListener modelChangeListener) {
     // nothing to do
   }
 
   @Override
-  public void setStatusFor(ITraitStatus newStatus, List< ? extends IIdentificate> traits) {
+  public void setStatusFor(final ITraitStatus newStatus, final List< ? extends IIdentificate> traits) {
     // nothing to do
   }
 
   @Override
-  public void setDependencyUpdatable(IUpdatable updatable) {
+  public void setDependencyUpdatable(final IUpdatable updatable) {
     // nothing to do
   }
 
   @Override
-  public boolean contains(String traitId) {
-    return getTrait(traitId) != null;
-  }
-
-  @Override
-  public void addSubTrait(String traitId, IBasicTrait subTrait) {
+  public void addSubTrait(final String traitId, final IBasicTrait subTrait) {
     subTraits.add(traitId, subTrait);
   }
 
   @Override
-  public List<IBasicTrait> getSubTraits(String traitId) {
+  public List<IBasicTrait> getSubTraits(final String traitId) {
     return subTraits.get(traitId);
   }
 }

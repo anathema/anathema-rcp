@@ -2,7 +2,7 @@ package net.sf.anathema.graph.nodes;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.disy.commons.core.util.Ensure;
-import net.sf.anathema.graph.layering.EqualsPredicate;
+import net.sf.anathema.lib.collection.EqualsPredicate;
 
 public class DummyNode implements ISimpleNode {
 

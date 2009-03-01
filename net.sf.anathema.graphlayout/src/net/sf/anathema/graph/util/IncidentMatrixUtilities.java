@@ -1,8 +1,8 @@
 package net.sf.anathema.graph.util;
 
 import net.disy.commons.core.util.ArrayUtilities;
-import net.sf.anathema.graph.layering.EqualsPredicate;
 import net.sf.anathema.graph.nodes.ISimpleNode;
+import net.sf.anathema.lib.collection.EqualsPredicate;
 
 public class IncidentMatrixUtilities {
 

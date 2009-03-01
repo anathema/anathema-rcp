@@ -57,14 +57,14 @@ public class AttributeFreebiesBonusPointReducer_CalculationTest {
   @Test
   public void returnsNegative4ForOneAttributeAt2() throws Exception {
     setAllAttributesTo(1);
-    attributes.getTraits()[0].getCreationModel().setValue(2);
+    attributes.getAllTraits()[0].getCreationModel().setValue(2);
     assertEquals(-4, reducer.getPoints(characterId));
   }
 
   @Test
   public void returnsNegative3ForOneFavoredAttributeAt2() throws Exception {
     setAllAttributesTo(1);
-    IBasicTrait attribute = attributes.getTraits()[0];
+    IBasicTrait attribute = attributes.getAllTraits()[0];
     attribute.getCreationModel().setValue(2);
     attribute.getStatusManager().setStatus(new FavoredStatus());
     assertEquals(-3, reducer.getPoints(characterId));
@@ -79,12 +79,12 @@ public class AttributeFreebiesBonusPointReducer_CalculationTest {
   @Test
   public void noReductionCalculatedForPointsExceedingCredit() throws Exception {
     setAllAttributesTo(2);
-    attributes.getTraits()[0].getCreationModel().setValue(3);
+    attributes.getAllTraits()[0].getCreationModel().setValue(3);
     assertEquals(-36, reducer.getPoints(characterId));
   }
 
   private void setAllAttributesTo(int value) {
-    for (IBasicTrait trait : attributes.getTraits()) {
+    for (IBasicTrait trait : attributes.getAllTraits()) {
       trait.getCreationModel().setValue(value);
     }
   }
