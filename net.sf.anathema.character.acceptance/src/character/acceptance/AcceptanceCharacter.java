@@ -16,14 +16,14 @@ import org.eclipse.core.resources.IFolder;
 
 public class AcceptanceCharacter {
 
-  public static AcceptanceCharacter FromFolderNameAndTemplateId(String folderName, String templateId) {
+  public static AcceptanceCharacter FromFolderNameAndTemplateId(final String folderName, final String templateId) {
     return new AcceptanceCharacter(folderName, templateId);
   }
 
   private final IFolder folder;
   private final CharacterId characterId;
 
-  private AcceptanceCharacter(String folderName, String templateId) {
+  private AcceptanceCharacter(final String folderName, final String templateId) {
     folder = new CharacterFactory().createNewCharacter(templateId, folderName);
     Ensure.ensureNotNull(folder);
     characterId = new CharacterId(folder);
@@ -34,11 +34,11 @@ public class AcceptanceCharacter {
     folder.delete(true, null);
   }
 
-  public final IModel getModel(String modelId) {
+  public final IModel getModel(final String modelId) {
     return ModelCache.getInstance().getModel(new ModelIdentifier(characterId, modelId));
   }
 
-  public final int getCredit(String creditId) {
+  public final int getCredit(final String creditId) {
     return new CreditManager().getCredit(characterId, creditId);
   }
 
@@ -50,22 +50,27 @@ public class AcceptanceCharacter {
     return new CharacterTemplateProvider().getTemplate(characterId);
   }
 
-  public InteractionTraitList createTraitInteraction(String modelId) throws Exception {
+  public InteractionTraitList createTraitInteraction(final String modelId) throws Exception {
     return new InteractionTraitList(TraitInteractionUtilties.createDisplayGroups(getFolder(), modelId));
   }
 
-  public int getBonusPoints(String configurationName) throws Exception {
-    PointEvaluation evaluation = PointEvaluation.FromExtensionPoints();
+  public int getBonusPoints(final String configurationName) throws Exception {
+    final PointEvaluation evaluation = PointEvaluation.FromExtensionPoints();
     return evaluation.getSpentBonusPoints(characterId, configurationName);
   }
 
-  public int getXpSpent(String configurationName) throws Exception {
-    PointEvaluation evaluation = PointEvaluation.FromExtensionPoints();
+  public int getXpSpent(final String configurationName) throws Exception {
+    final PointEvaluation evaluation = PointEvaluation.FromExtensionPoints();
     return evaluation.getSpentXp(characterId, configurationName);
   }
 
   public void setExperienced() {
-    IExperience experience = (IExperience) getModel(IExperience.MODEL_ID);
+    final IExperience experience = (IExperience) getModel(IExperience.MODEL_ID);
     experience.setExperienced(true);
+  }
+
+  public void setCreation() {
+    final IExperience experience = (IExperience) getModel(IExperience.MODEL_ID);
+    experience.setExperienced(false);
   }
 }

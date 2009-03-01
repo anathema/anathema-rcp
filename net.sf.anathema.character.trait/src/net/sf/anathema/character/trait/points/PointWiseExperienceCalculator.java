@@ -2,35 +2,35 @@ package net.sf.anathema.character.trait.points;
 
 import net.sf.anathema.character.trait.IBasicTrait;
 
-public abstract class AbstractPointWiseExperienceCalculator {
+public class PointWiseExperienceCalculator implements ICalculator {
 
   private final int xpCost;
+  private final IBasicTrait[] traits;
 
-  public AbstractPointWiseExperienceCalculator(int xpCost) {
+  public PointWiseExperienceCalculator(final int xpCost, final IBasicTrait... traits) {
     this.xpCost = xpCost;
+    this.traits = traits;
   }
 
   public final int calculate() {
     int points = 0;
-    for (IBasicTrait trait : getCalculationTraits()) {
+    for (final IBasicTrait trait : traits) {
       points += calculatePointsForTrait(trait);
     }
     return points;
   }
 
-  private int calculatePointsForTrait(IBasicTrait trait) {
-    int creationValue = trait.getCreationModel().getValue();
-    int experienceValue = trait.getExperiencedModel().getValue();
+  private int calculatePointsForTrait(final IBasicTrait trait) {
+    final int creationValue = trait.getCreationModel().getValue();
+    final int experienceValue = trait.getExperiencedModel().getValue();
     return calculateXp(creationValue, experienceValue);
   }
 
-  private int calculateXp(int creationValue, int experienceValue) {
+  private int calculateXp(final int creationValue, final int experienceValue) {
     int xpSpent = 0;
     for (int currentValue = creationValue; currentValue < experienceValue; currentValue++) {
       xpSpent += currentValue * xpCost;
     }
     return xpSpent;
   }
-
-  protected abstract IBasicTrait[] getCalculationTraits();
 }

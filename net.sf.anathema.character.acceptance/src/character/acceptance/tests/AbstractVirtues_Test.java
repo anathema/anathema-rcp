@@ -33,21 +33,21 @@ public abstract class AbstractVirtues_Test extends AbstractAcceptanceTest {
 
   @Test
   public final void startsVirtuesWithValueOf1() throws Exception {
-    for (IInteractiveTrait virtue : getVirtues()) {
+    for (final IInteractiveTrait virtue : getVirtues()) {
       assertThat(virtue.getValue(), is(1));
     }
   }
 
   @Test
   public final void cannotReduceNoVirtueBelowStartValue() throws Exception {
-    for (IInteractiveTrait virtue : getVirtues()) {
+    for (final IInteractiveTrait virtue : getVirtues()) {
       assertCannotLower(virtue);
     }
   }
 
   @Test
   public final void canRaiseAnyVirtueAboveStartValue() throws Exception {
-    for (IInteractiveTrait virtue : getVirtues()) {
+    for (final IInteractiveTrait virtue : getVirtues()) {
       assertCanRaise(virtue);
     }
   }
@@ -55,5 +55,15 @@ public abstract class AbstractVirtues_Test extends AbstractAcceptanceTest {
   @Test
   public final void spentsNoBonusPointsOnEssenceOfStartValue() throws Exception {
     assertThat(character.getBonusPoints(VIRTUES_POINT_CONFIGURATION), is(0));
+  }
+
+  @Test
+  public final void spents3XpOnIncreasingAVirtueFrom1To2OnExperience() throws Exception {
+    character.setExperienced();
+    for (final IInteractiveTrait virtue : getVirtues()) {
+      virtue.setValue(2);
+      assertThat(character.getXpSpent(VIRTUES_POINT_CONFIGURATION), is(3));
+      virtue.setValue(1);
+    }
   }
 }

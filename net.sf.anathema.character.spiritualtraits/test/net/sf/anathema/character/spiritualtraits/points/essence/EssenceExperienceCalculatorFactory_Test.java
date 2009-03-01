@@ -1,28 +1,28 @@
-package net.sf.anathema.character.spiritualtraits.points;
+package net.sf.anathema.character.spiritualtraits.points.essence;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
-import net.sf.anathema.character.spiritualtraits.points.essence.EssenceExperienceCalculator;
+import net.sf.anathema.character.spiritualtraits.points.essence.EssenceExperienceCalculatoryFactory;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollection;
+import net.sf.anathema.character.trait.points.ICalculator;
 
 import org.junit.Before;
 import org.junit.Test;
 
-@SuppressWarnings("nls")
-public class EssenceExperienceCalculator_Test {
+public class EssenceExperienceCalculatorFactory_Test {
 
   private static final int COST = 6;
   private BasicTrait essence;
-  private EssenceExperienceCalculator calculator;
+  private ICalculator calculator;
 
   @Before
   public void createCalculatorWithXpCost6() throws Exception {
     this.essence = new BasicTrait(IPluginConstants.ESSENCE_TRAIT_ID);
-    ITraitCollectionModel collection = new TraitCollection(essence);
-    calculator = new EssenceExperienceCalculator(collection, COST);
+    final ITraitCollectionModel collection = new TraitCollection(essence);
+    calculator = new EssenceExperienceCalculatoryFactory(collection, COST).create();
   }
 
   @Test
