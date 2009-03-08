@@ -3,8 +3,7 @@ package net.sf.anathema.character.freebies.virtues;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.fake.StaticDummyModelCollection;
+import net.sf.anathema.character.core.fake.DummyModelCollection;
 import net.sf.anathema.character.freebies.virtues.internal.IVirtueFreebieLimit;
 import net.sf.anathema.character.freebies.virtues.internal.VirtueFreebiesHandler;
 import net.sf.anathema.character.trait.BasicTrait;
@@ -18,13 +17,19 @@ public class VirtueFreebiesHandler_Test {
 
   private VirtueFreebiesHandler handler;
   private DummyTraitCollection model;
-  private IModelCollection models;
+  private DummyModelCollection models;
 
   @Before
   public void createHandler() throws Exception {
     model = new DummyTraitCollection();
-    models = new StaticDummyModelCollection(model);
-    handler = new VirtueFreebiesHandler(models);
+    models = new DummyModelCollection();
+    models.addModel("net.sf.anathema.character.spiritualtraits.model", model);
+    IVirtueFreebieLimit limit = new IVirtueFreebieLimit() {
+      @Override
+      public int getFor(ICharacterId id) {
+        return 3;
+      }};
+    handler = new VirtueFreebiesHandler(models,limit);
   }
   
   @Test

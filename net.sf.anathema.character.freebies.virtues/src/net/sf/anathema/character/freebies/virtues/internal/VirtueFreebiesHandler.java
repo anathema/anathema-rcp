@@ -3,9 +3,11 @@ package net.sf.anathema.character.freebies.virtues.internal;
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
 import net.sf.anathema.character.freebies.virtues.VirtueFreebiesConstants;
+import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.spiritualtraits.virtues.Virtues;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -35,7 +37,7 @@ public class VirtueFreebiesHandler extends UnconfiguredExecutableExtension imple
 
   @Override
   public int getPoints(ICharacterId id, int credit) {
-    ITraitCollectionModel traits = (ITraitCollectionModel) models.getModel(null);
+    ITraitCollectionModel traits = (ITraitCollectionModel) models.getModel(new ModelIdentifier(id, IPluginConstants.MODEL_ID));
     IBasicTrait[] allTraits = traits.getAllTraits();
     if (allTraits.length == 0) {
       return 0;
