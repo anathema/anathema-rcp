@@ -19,4 +19,5 @@ Require-Bundle: net.sf.anathema.basics.eclipse;bundle-version="1.0.0",
  net.sf.anathema.character.freebies.abilities;bundle-version="1.0.0",
  net.sf.anathema.character.freebies.attributes;bundle-version="1.0.0",
  net.sf.anathema.charms.character.freebies;bundle-version="1.0.0",
- net.sf.anathema.character.spiritualtraits;bundle-version="1.0.0"
+ net.sf.anathema.character.spiritualtraits;bundle-version="1.0.0",
+ net.sf.anathema.character.freebies.virtues;bundle-version="1.0.0"

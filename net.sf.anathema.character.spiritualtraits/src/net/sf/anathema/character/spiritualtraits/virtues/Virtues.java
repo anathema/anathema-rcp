@@ -1,4 +1,4 @@
-package net.sf.anathema.character.spiritualtraits.points.virtues;
+package net.sf.anathema.character.spiritualtraits.virtues;
 
 import net.sf.anathema.character.spiritualtraits.model.SpiritualTraitGroupTemplate;
 import net.sf.anathema.character.trait.IBasicTrait;

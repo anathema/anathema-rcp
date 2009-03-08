@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="freebieLimit" name="Virtue Freebie Limit" schema="schema/freebieLimit.exsd"/>
+   <extension
+         point="net.sf.anathema.character.freebies.configurations">
+      <FreebiesConfiguration
+            handlerClass="net.sf.anathema.character.freebies.virtues.internal.VirtueFreebiesHandler"
+            name="Virtues">
+      </FreebiesConfiguration>
+   </extension>
+
+</plugin>

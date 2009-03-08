@@ -280,6 +280,10 @@
                id="net.sf.anathema.charms.character.credit.unrestricted"
                value="7">
          </credit>
+         <credit
+               id="net.sf.anathema.character.virtues.freebies"
+               value="5">
+         </credit>
       </creditList>
    </extension>
    <extension

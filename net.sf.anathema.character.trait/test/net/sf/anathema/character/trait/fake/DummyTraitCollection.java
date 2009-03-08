@@ -1,6 +1,7 @@
 package net.sf.anathema.character.trait.fake;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
@@ -22,9 +23,7 @@ public class DummyTraitCollection extends AbstractTraitCollection {
   }
 
   public void addTrait(final IBasicTrait... addedTraits) {
-    for (final IBasicTrait trait : addedTraits) {
-      traits.add(trait);
-    }
+    Collections.addAll(traits, addedTraits);
   }
 
   @Override

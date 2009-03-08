@@ -1,6 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Virtues Plug-in
-Bundle-SymbolicName: net.sf.anathema.character.freebies.virtues
+Bundle-SymbolicName: net.sf.anathema.character.freebies.virtues;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: net.sf.anathema.character.freebies,
+ net.sf.anathema.character.trait;bundle-version="1.0.0",
+ net.sf.anathema.character.spiritualtraits;bundle-version="1.0.0"
+Export-Package: net.sf.anathema.character.freebies.virtues

@@ -16,7 +16,7 @@ import character.acceptance.InteractionTraitList;
 @SuppressWarnings("nls")
 public abstract class AbstractVirtues_Test extends AbstractAcceptanceTest {
 
-  private InteractionTraitList traitList;
+  protected InteractionTraitList traitList;
 
   @Before
   public void createInteraction() throws Exception {
@@ -53,7 +53,7 @@ public abstract class AbstractVirtues_Test extends AbstractAcceptanceTest {
   }
 
   @Test
-  public final void spentsNoBonusPointsOnEssenceOfStartValue() throws Exception {
+  public final void spentsNoBonusPointsOnVirtuesOfStartValue() throws Exception {
     assertThat(character.getBonusPoints(VIRTUES_POINT_CONFIGURATION), is(0));
   }
 

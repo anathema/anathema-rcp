@@ -288,6 +288,10 @@
                id=" net.sf.anathema.charms.character.credit.unrestricted"
                value="5">
          </credit>
+         <credit
+               id="net.sf.anathema.character.virtues.freebies"
+               value="5">
+         </credit>
       </creditList>
    </extension>
    <extension
@@ -358,6 +362,13 @@
             </cost>
          </experience>
       </spiritualTraitCosts>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.freebies.virtues.freebieLimit">
+      <limit
+            characterType="net.sf.anathema.character.type.solar"
+            limit="4">
+      </limit>
    </extension>
 
 </plugin>
