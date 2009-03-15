@@ -16,20 +16,24 @@ public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTr
   private final ITraitPreferences traitPreferences;
   private final IFavorizationInteraction favorizationHandler;
   private final IEditorInputConfiguration configuration;
+  private final ITraitCollectionContext context;
 
   public InteractiveTraitGroupTransformer(
       ITraitCollectionContext context,
       IFavorizationInteraction favorizationHandler,
       ITraitPreferences traitPreferences,
       IEditorInputConfiguration configuration) {
-    super(context);
+    super(context.getCollection());
+    this.context = context;
     this.favorizationHandler = favorizationHandler;
     this.traitPreferences = traitPreferences;
     this.configuration = configuration;
   }
 
   @Override
-  protected IInteractiveTrait createTrait(IBasicTrait trait, IExperience experience, List<IValidator> validators) {
+  protected IInteractiveTrait createTrait(IBasicTrait trait) {
+    IExperience experience = context.getExperience();
+    List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
     InteractiveTraitFactory factory = new InteractiveTraitFactory(
         traitPreferences,
         experience,

@@ -1,25 +1,26 @@
 package net.sf.anathema.character.trait.display;
 
-import java.util.List;
-
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.AbstractTraitGroupTransformer;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
-import net.sf.anathema.character.trait.validator.IValidator;
 
 public class DisplayTraitGroupTransformer extends AbstractTraitGroupTransformer<IDisplayTrait> {
 
   private final IFavorizationInteraction favorizationHandler;
+  private final ITraitCollectionContext context;
 
   public DisplayTraitGroupTransformer(ITraitCollectionContext context, IFavorizationInteraction favorizationHandler) {
-    super(context);
+    super(context.getCollection());
+    this.context = context;
     this.favorizationHandler = favorizationHandler;
   }
 
   @Override
-  protected IDisplayTrait createTrait(IBasicTrait trait, IExperience experience, List<IValidator> validators) {
-    return new DisplayTrait(new DisplayFavorization(favorizationHandler, trait), trait, experience, 10);
+  protected IDisplayTrait createTrait(IBasicTrait trait) {
+    IExperience experience = context.getExperience();
+    DisplayFavorization favorization = new DisplayFavorization(favorizationHandler, trait);
+    return new DisplayTrait(favorization, trait, experience, 10);
   }
 }
