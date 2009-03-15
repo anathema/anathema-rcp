@@ -33,7 +33,8 @@ public class InteractiveTrait_ReturnToCreationTest {
         experience,
         EasyMock.createMock(IInteractiveFavorization.class),
         new ArrayList<IValidator>(),
-        new DummyTraitPreferences(ExperienceTraitTreatment.IncreaseWithCreation));
+        new DummyTraitPreferences(ExperienceTraitTreatment.IncreaseWithCreation),
+        5);
   }
 
   @Test

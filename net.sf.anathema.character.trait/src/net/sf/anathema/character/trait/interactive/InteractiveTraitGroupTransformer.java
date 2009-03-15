@@ -14,19 +14,22 @@ public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTr
 
   private final ITraitPreferences traitPreferences;
   private final IFavorizationInteraction favorizationHandler;
+  private final int maximum;
 
   public InteractiveTraitGroupTransformer(
       ITraitCollectionContext context,
       IFavorizationInteraction favorizationHandler,
-      ITraitPreferences traitPreferences) {
+      ITraitPreferences traitPreferences,
+      int maximum) {
     super(context);
     this.favorizationHandler = favorizationHandler;
     this.traitPreferences = traitPreferences;
+    this.maximum = maximum;
   }
 
   @Override
   protected InteractiveTrait createTrait(IBasicTrait trait, IExperience experience, List<IValidator> validators) {
     InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
-    return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences);
+    return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences, maximum);
   }
 }

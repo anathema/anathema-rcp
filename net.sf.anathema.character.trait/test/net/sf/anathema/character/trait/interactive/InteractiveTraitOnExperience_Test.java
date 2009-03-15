@@ -1,6 +1,7 @@
 package net.sf.anathema.character.trait.interactive;
 
 import static org.easymock.EasyMock.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class InteractiveTraitOnExperience_Test {
     }
   }
 
+  private static final int MAXIMUM = 16;
   private static final int CREATION_VALUE = 2;
   private IExperience experience;
   private IBasicTrait basicTrait;
@@ -58,7 +60,7 @@ public class InteractiveTraitOnExperience_Test {
     IInteractiveFavorization favorization = createNiceMock(IInteractiveFavorization.class);
     replay(favorization);
     valueValidators = new ArrayList<IValidator>();
-    interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, valueValidators, null);
+    interactiveTrait = new InteractiveTrait(basicTrait, experience, favorization, valueValidators, null, MAXIMUM);
   }
 
   @Test
@@ -80,6 +82,6 @@ public class InteractiveTraitOnExperience_Test {
 
   @Test
   public void hasStaticMaximumValueOf5() throws Exception {
-    assertEquals(5, interactiveTrait.getMaximalValue());
+    assertThat(interactiveTrait.getMaximalValue(), is(MAXIMUM));
   }
 }

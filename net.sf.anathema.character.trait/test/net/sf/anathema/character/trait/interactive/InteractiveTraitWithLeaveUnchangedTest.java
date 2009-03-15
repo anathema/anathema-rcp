@@ -33,7 +33,8 @@ public class InteractiveTraitWithLeaveUnchangedTest {
         experience,
         EasyMock.createMock(IInteractiveFavorization.class),
         new ArrayList<IValidator>(),
-        new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged));
+        new DummyTraitPreferences(ExperienceTraitTreatment.LeaveUnchanged),
+        5);
   }
 
   @Test

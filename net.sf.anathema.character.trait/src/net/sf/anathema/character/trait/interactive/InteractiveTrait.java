@@ -18,6 +18,16 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 public class InteractiveTrait extends ChangeManagement implements IInteractiveTrait {
 
+  private final class ValidationTrigger implements IChangeListener {
+
+    @Override
+    public void stateChanged() {
+      if (favorization.isFavored()) {
+        setValue(getValue());
+      }
+    }
+  }
+
   private final ChangeControl changeControl = new ChangeControl();
   private final IChangeListener changeListener = new IChangeListener() {
     @Override
@@ -40,36 +50,34 @@ public class InteractiveTrait extends ChangeManagement implements IInteractiveTr
   private final List<IValidator> valueValidators;
 
   public InteractiveTrait(
-      final IBasicTrait basicTrait,
-      final IExperience experience,
-      final IInteractiveFavorization favorization,
+      IBasicTrait basicTrait,
+      IExperience experience,
+      IInteractiveFavorization favorization,
       List<IValidator> valueValidators,
-      ITraitPreferences traitPreferences) {
+      ITraitPreferences traitPreferences,
+      int maxValue) {
     this.experience = experience;
     this.traitPreferences = traitPreferences;
     this.favorization = favorization;
     this.valueValidators = valueValidators;
     this.basicTrait = basicTrait;
-    displayTrait = new DisplayTrait(favorization, basicTrait, experience, 5);
+    displayTrait = new DisplayTrait(favorization, basicTrait, experience, maxValue);
     basicTrait.getCreationModel().addChangeListener(changeListener);
     basicTrait.getCreationModel().addChangeListener(experienceTreatmentListener);
     basicTrait.getExperiencedModel().addChangeListener(changeListener);
     experience.addChangeListener(changeListener);
-    allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getCreationModel(), changeListener));
-    allDisposables.addDisposable(new ChangeableModelDisposable(basicTrait.getExperiencedModel(), changeListener));
-    allDisposables.addDisposable(new ChangeableModelDisposable(
-        basicTrait.getCreationModel(),
-        experienceTreatmentListener));
+    addDisposables();
+    favorization.addFavoredChangeListener(new ValidationTrigger());
+  }
+
+  private void addDisposables() {
+    IIntValueModel creationModel = basicTrait.getCreationModel();
+    IIntValueModel experiencedModel = basicTrait.getExperiencedModel();
+    allDisposables.addDisposable(new ChangeableModelDisposable(creationModel, changeListener));
+    allDisposables.addDisposable(new ChangeableModelDisposable(experiencedModel, changeListener));
+    allDisposables.addDisposable(new ChangeableModelDisposable(creationModel, experienceTreatmentListener));
     allDisposables.addDisposable(changeControl);
     allDisposables.addDisposable(favorization);
-    favorization.addFavoredChangeListener(new IChangeListener() {
-      @Override
-      public void stateChanged() {
-        if (favorization.isFavored()) {
-          setValue(getValue());
-        }
-      }
-    });
   }
 
   @Override

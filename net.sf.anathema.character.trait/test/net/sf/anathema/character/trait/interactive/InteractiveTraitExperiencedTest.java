@@ -40,7 +40,8 @@ public class InteractiveTraitExperiencedTest {
         experience,
         favorization,
         new ArrayList<IValidator>(),
-        traitPreferences);
+        traitPreferences,
+        5);
   }
 
   @Test

@@ -1,7 +1,6 @@
 package net.sf.anathema.character.trait.validator;
 
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.display.DisplayTrait;
 
 public class RespectValueMaximum implements IValidator {
 
@@ -13,6 +12,10 @@ public class RespectValueMaximum implements IValidator {
 
   @Override
   public int getValidValue(int value) {
-    return Math.min(value, DisplayTrait.getCurrentEssenceValue(experience));
+    return Math.min(value, getCurrentEssenceValue());
+  }
+
+  private int getCurrentEssenceValue() {
+    return experience.isExperienced() ? 7 : 5;
   }
 }

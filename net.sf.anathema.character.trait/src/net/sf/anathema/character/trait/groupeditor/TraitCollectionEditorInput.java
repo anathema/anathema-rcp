@@ -49,6 +49,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
     }
   }
 
+  private static final int TRAIT_MAXIMUM = 5;
   private final ITraitCollectionContext context;
   private final IFavorizationInteraction favorizationHandler;
   private final IEditorInputConfiguration configuration;
@@ -77,7 +78,8 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
     return CollectionUtilities.transform(context.getTraitGroups(), new InteractiveTraitGroupTransformer(
         context,
         favorizationHandler,
-        traitPreferences));
+        traitPreferences,
+        TRAIT_MAXIMUM));
   }
 
   @Override
@@ -94,7 +96,7 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
     List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
     IExperience experience = context.getExperience();
     InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, new NullFavorizationHandler());
-    return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences);
+    return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences, TRAIT_MAXIMUM);
   }
 
   @Override
