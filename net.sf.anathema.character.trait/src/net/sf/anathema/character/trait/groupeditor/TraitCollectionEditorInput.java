@@ -20,8 +20,7 @@ import net.sf.anathema.character.trait.display.IntViewImageProvider;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
-import net.sf.anathema.character.trait.interactive.InteractiveFavorization;
-import net.sf.anathema.character.trait.interactive.InteractiveTrait;
+import net.sf.anathema.character.trait.interactive.InteractiveTraitFactory;
 import net.sf.anathema.character.trait.interactive.InteractiveTraitGroupTransformer;
 import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
@@ -49,7 +48,6 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
     }
   }
 
-  private static final int TRAIT_MAXIMUM = 5;
   private final ITraitCollectionContext context;
   private final IFavorizationInteraction favorizationHandler;
   private final IEditorInputConfiguration configuration;
@@ -79,32 +77,31 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
         context,
         favorizationHandler,
         traitPreferences,
-        TRAIT_MAXIMUM));
+        configuration));
   }
 
   @Override
   public List<IInteractiveTrait> getSubTraits(String parentTraitId) {
     List<IInteractiveTrait> interactiveTraits = new ArrayList<IInteractiveTrait>();
     for (IBasicTrait trait : context.getCollection().getSubTraits(parentTraitId)) {
-      InteractiveTrait interactiveTrait = createInteractiveSubTrait(trait);
+      IInteractiveTrait interactiveTrait = createInteractiveSubTrait(trait);
       interactiveTraits.add(interactiveTrait);
     }
     return interactiveTraits;
   }
 
-  private InteractiveTrait createInteractiveSubTrait(IBasicTrait trait) {
+  private IInteractiveTrait createInteractiveSubTrait(IBasicTrait trait) {
     List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
     IExperience experience = context.getExperience();
-    InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, new NullFavorizationHandler());
-    return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences, TRAIT_MAXIMUM);
+    InteractiveTraitFactory factory = new InteractiveTraitFactory(traitPreferences, trait, experience, validators);
+    return factory.create(configuration, new NullFavorizationHandler());
   }
 
   @Override
   public IInteractiveTrait addSubTrait(String traitId, String subtraitId) {
     IBasicTrait trait = new BasicTrait(new Identificate(subtraitId));
     context.getCollection().addSubTrait(traitId, trait);
-    InteractiveTrait interactiveTrait = createInteractiveSubTrait(trait);
-    return interactiveTrait;
+    return createInteractiveSubTrait(trait);
   }
 
   @Override

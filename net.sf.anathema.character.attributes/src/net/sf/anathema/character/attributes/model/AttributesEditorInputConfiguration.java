@@ -1,10 +1,10 @@
 package net.sf.anathema.character.attributes.model;
 
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.groupeditor.IEditorInputConfiguration;
+import net.sf.anathema.character.trait.groupeditor.AbstractEditorInputConfiguration;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class AttributesEditorInputConfiguration implements IEditorInputConfiguration {
+public class AttributesEditorInputConfiguration extends AbstractEditorInputConfiguration {
 
   @Override
   public String getModelId() {
@@ -19,10 +19,5 @@ public class AttributesEditorInputConfiguration implements IEditorInputConfigura
   @Override
   public String getTraitLabel(IIdentificate traitType) {
     return AttributeMessages.get(traitType.getId());
-  }
-
-  @Override
-  public boolean supportsSubTraits() {
-    return false;
   }
 }

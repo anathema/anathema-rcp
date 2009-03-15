@@ -2,10 +2,10 @@ package net.sf.anathema.character.abilities.model;
 
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.groupeditor.IEditorInputConfiguration;
+import net.sf.anathema.character.trait.groupeditor.AbstractEditorInputConfiguration;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class AbilitiesEditorInputConfiguration implements IEditorInputConfiguration {
+public class AbilitiesEditorInputConfiguration extends AbstractEditorInputConfiguration {
 
   @Override
   public String getGroupLabel(IDisplayTraitGroup< ? > group) {

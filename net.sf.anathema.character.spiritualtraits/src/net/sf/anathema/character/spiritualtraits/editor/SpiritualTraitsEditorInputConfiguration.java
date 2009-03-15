@@ -1,11 +1,12 @@
 package net.sf.anathema.character.spiritualtraits.editor;
 
+import net.sf.anathema.character.spiritualtraits.display.SpiritualTraitLabelMap;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.groupeditor.IEditorInputConfiguration;
+import net.sf.anathema.character.trait.groupeditor.AbstractEditorInputConfiguration;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public class SpiritualTraitsEditorInputConfiguration implements IEditorInputConfiguration {
+public class SpiritualTraitsEditorInputConfiguration extends AbstractEditorInputConfiguration {
 
   @Override
   public String getModelId() {
@@ -19,11 +20,14 @@ public class SpiritualTraitsEditorInputConfiguration implements IEditorInputConf
 
   @Override
   public String getTraitLabel(IIdentificate traitType) {
-    return traitType.getId();
+    return SpiritualTraitLabelMap.getLabel(traitType.getId());
   }
 
   @Override
-  public boolean supportsSubTraits() {
-    return false;
+  public int getTraitMaximum(IIdentificate traitType) {
+    if (traitType.getId().equals(IPluginConstants.WILLPOWER_ID)) {
+      return 10;
+    }
+    return super.getTraitMaximum(traitType);
   }
 }
