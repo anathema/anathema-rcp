@@ -10,7 +10,6 @@ import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
-import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
@@ -20,12 +19,10 @@ import net.sf.anathema.character.trait.display.IntViewImageProvider;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
-import net.sf.anathema.character.trait.interactive.InteractiveTraitFactory;
 import net.sf.anathema.character.trait.interactive.InteractiveTraitGroupTransformer;
 import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
 import net.sf.anathema.character.trait.preference.TraitPreferenceFactory;
-import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.lib.collection.CollectionUtilities;
 import net.sf.anathema.lib.util.IIdentificate;
 import net.sf.anathema.lib.util.Identificate;
@@ -49,20 +46,20 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   }
 
   private final ITraitCollectionContext context;
-  private final IFavorizationInteraction favorizationHandler;
+  private final IFavorizationInteraction favorizationInteraction;
   private final IEditorInputConfiguration configuration;
   private final ITraitPreferences traitPreferences = TraitPreferenceFactory.create();
 
   public TraitCollectionEditorInput(
-      final IFile file,
+      IFile file,
       URL imageUrl,
       IDisplayNameProvider displayNameProvider,
-      final ITraitCollectionContext context,
-      final IFavorizationInteraction favorizationHandler,
-      final IEditorInputConfiguration configuration) {
+      ITraitCollectionContext context,
+      IFavorizationInteraction favorizationInteraction,
+      IEditorInputConfiguration configuration) {
     super(file, imageUrl, displayNameProvider, new TraitCollectionPersister());
     this.context = context;
-    this.favorizationHandler = favorizationHandler;
+    this.favorizationInteraction = favorizationInteraction;
     this.configuration = configuration;
   }
 
@@ -73,11 +70,12 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
 
   /** Creates attribute display groups and displaytraits. Displaytraits must be disposed of by clients. */
   public List<IDisplayTraitGroup<IInteractiveTrait>> createDisplayGroups() {
-    return CollectionUtilities.transform(context.getTraitGroups(), new InteractiveTraitGroupTransformer(
+    InteractiveTraitGroupTransformer transformer = new InteractiveTraitGroupTransformer(
         context,
-        favorizationHandler,
+        favorizationInteraction,
         traitPreferences,
-        configuration));
+        configuration);
+    return CollectionUtilities.transform(context.getTraitGroups(), transformer);
   }
 
   @Override
@@ -91,14 +89,13 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   }
 
   private IInteractiveTrait createInteractiveSubTrait(IBasicTrait trait) {
-    List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
-    IExperience experience = context.getExperience();
-    InteractiveTraitFactory factory = new InteractiveTraitFactory(
+    IFavorizationInteraction subFavorizationInteraction = new NullFavorizationInteraction();
+    InteractiveTraitGroupTransformer transformer = new InteractiveTraitGroupTransformer(
+        context,
+        subFavorizationInteraction,
         traitPreferences,
-        experience,
-        configuration,
-        new NullFavorizationInteraction());
-    return factory.create(trait, validators);
+        configuration);
+    return transformer.createTrait(trait);
   }
 
   @Override
