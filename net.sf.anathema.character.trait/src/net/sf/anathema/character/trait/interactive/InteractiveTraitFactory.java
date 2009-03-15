@@ -27,8 +27,10 @@ public class InteractiveTraitFactory {
     this.validators = validators;
   }
 
-  public IInteractiveTrait create(IEditorInputConfiguration configuration, IFavorizationInteraction favorizationHandler) {
-    InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationHandler);
+  public IInteractiveTrait create(
+      IEditorInputConfiguration configuration,
+      IFavorizationInteraction favorizationInteraction) {
+    InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationInteraction);
     int maximum = configuration.getTraitMaximum(trait.getTraitType());
     return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences, maximum);
   }
