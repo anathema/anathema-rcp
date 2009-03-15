@@ -11,25 +11,23 @@ import net.sf.anathema.character.trait.validator.IValidator;
 
 public class InteractiveTraitFactory {
 
-  private final IBasicTrait trait;
   private final IExperience experience;
-  private final List<IValidator> validators;
   private final ITraitPreferences traitPreferences;
+  private final IFavorizationInteraction favorizationInteraction;
+  private final IEditorInputConfiguration configuration;
 
   public InteractiveTraitFactory(
       ITraitPreferences traitPreferences,
-      IBasicTrait trait,
       IExperience experience,
-      List<IValidator> validators) {
-    this.traitPreferences = traitPreferences;
-    this.trait = trait;
-    this.experience = experience;
-    this.validators = validators;
-  }
-
-  public IInteractiveTrait create(
       IEditorInputConfiguration configuration,
       IFavorizationInteraction favorizationInteraction) {
+    this.traitPreferences = traitPreferences;
+    this.experience = experience;
+    this.configuration = configuration;
+    this.favorizationInteraction = favorizationInteraction;
+  }
+
+  public IInteractiveTrait create(IBasicTrait trait, List<IValidator> validators) {
     InteractiveFavorization favorization = new InteractiveFavorization(trait, experience, favorizationInteraction);
     int maximum = configuration.getTraitMaximum(trait.getTraitType());
     return new InteractiveTrait(trait, experience, favorization, validators, traitPreferences, maximum);

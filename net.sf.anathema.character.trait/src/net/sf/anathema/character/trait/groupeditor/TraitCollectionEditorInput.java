@@ -93,8 +93,12 @@ public class TraitCollectionEditorInput extends AbstractCharacterModelEditorInpu
   private IInteractiveTrait createInteractiveSubTrait(IBasicTrait trait) {
     List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
     IExperience experience = context.getExperience();
-    InteractiveTraitFactory factory = new InteractiveTraitFactory(traitPreferences, trait, experience, validators);
-    return factory.create(configuration, new NullFavorizationInteraction());
+    InteractiveTraitFactory factory = new InteractiveTraitFactory(
+        traitPreferences,
+        experience,
+        configuration,
+        new NullFavorizationInteraction());
+    return factory.create(trait, validators);
   }
 
   @Override

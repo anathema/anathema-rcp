@@ -30,7 +30,11 @@ public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTr
 
   @Override
   protected IInteractiveTrait createTrait(IBasicTrait trait, IExperience experience, List<IValidator> validators) {
-    InteractiveTraitFactory factory = new InteractiveTraitFactory(traitPreferences, trait, experience, validators);
-    return factory.create(configuration, favorizationHandler);
+    InteractiveTraitFactory factory = new InteractiveTraitFactory(
+        traitPreferences,
+        experience,
+        configuration,
+        favorizationHandler);
+    return factory.create(trait, validators);
   }
 }
