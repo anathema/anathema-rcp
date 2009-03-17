@@ -58,19 +58,23 @@
             <where>
                <modelId
                      id="net.sf.anathema.character.spiritualtraits.model">
-               </modelId>
-            </where>
+               </modelId></where>
          </condition>
+         <special
+               class="net.sf.anathema.character.spiritualtraits.validator.VirtueSumMinimumValidator"
+               traitId="Willpower">
+         </special>
       </validator>
       <validator>
          <condition>
             <where>
                <modelId
                      id="net.sf.anathema.character.spiritualtraits.model">
-               </modelId></where>
+               </modelId>
+            </where>
          </condition>
          <special
-               class="net.sf.anathema.character.spiritualtraits.validator.VirtueSumMinimumValidator"
+               class="net.sf.anathema.character.spiritualtraits.validator.VirtueSumMaximumValidator"
                traitId="Willpower">
          </special>
       </validator>
