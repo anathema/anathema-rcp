@@ -22,7 +22,7 @@ public class SpiritualTraitGroupTemplate implements ITraitGroupTemplate {
 
   private TraitGroup createEssenceGroup() {
     final String label = Messages.SpiritualTraitGroupTemplate_EssenceGroup;
-    return new TraitGroup(ESSENCE_GROUP_ID, label, ESSENCE_TRAIT_ID);
+    return new TraitGroup(ESSENCE_GROUP_ID, label, ESSENCE_ID);
   }
 
   private TraitGroup createWillpowerGroup() {

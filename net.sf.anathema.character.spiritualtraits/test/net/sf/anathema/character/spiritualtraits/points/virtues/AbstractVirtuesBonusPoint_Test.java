@@ -22,7 +22,7 @@ public class AbstractVirtuesBonusPoint_Test {
     this.conviction = createVirtue(CONVICTION_ID);
     this.temperance = createVirtue(TEMPERANCE_ID);
     this.valor = createVirtue(VALOR_ID);
-    this.essence = new BasicTrait(ESSENCE_TRAIT_ID);
+    this.essence = new BasicTrait(ESSENCE_ID);
     collection = new TraitCollection(essence, compassion, conviction, temperance, valor);
   }
 

@@ -23,7 +23,7 @@ public class EssenceBonuspointCalculator_Test {
   @Before
   public void createCalculatorWithTwoTraitsOnEssenceStartValue() throws Exception {
     this.otherTrait = new BasicTrait("other");
-    this.essence = new BasicTrait(IPluginConstants.ESSENCE_TRAIT_ID);
+    this.essence = new BasicTrait(IPluginConstants.ESSENCE_ID);
     ITraitCollectionModel collection = new TraitCollection(otherTrait, essence);
     costDto = new PointwiseCostDto();
     costDto.pointCost = 12;

@@ -20,7 +20,7 @@ public class EssenceExperienceCalculatorFactory_Test {
 
   @Before
   public void createCalculatorWithXpCost6() throws Exception {
-    this.essence = new BasicTrait(IPluginConstants.ESSENCE_TRAIT_ID);
+    this.essence = new BasicTrait(IPluginConstants.ESSENCE_ID);
     final ITraitCollectionModel collection = new TraitCollection(essence);
     calculator = new EssenceExperienceCalculatoryFactory(collection, COST).create();
   }

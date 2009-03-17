@@ -7,8 +7,11 @@ import java.util.List;
 
 import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
+import net.sf.anathema.basics.eclipse.logging.Logger;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
+import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
+import net.sf.anathema.character.trait.validator.ISpecialValidator;
 import net.sf.anathema.character.trait.validator.IValidator;
 import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
@@ -16,6 +19,8 @@ public class UnconditionalValidatorFactory {
   private static final String TAG_ALTERNATE_MINIMUM = "alternateMinimum"; //$NON-NLS-1$
   private static final String TAG_MINIMUM = "minimum"; //$NON-NLS-1$
   private static final String TAG_MAXIMUM = "maximum"; //$NON-NLS-1$
+  private static final String TAG_SPECIAL = "special"; //$NON-NLS-1$
+  private static final String ATTRIB_CLASS = "class"; //$NON-NLS-1$
   private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
   private final List<IValidator> list = new ArrayList<IValidator>();
   private final IExtensionElement validatorElement;
@@ -30,7 +35,27 @@ public class UnconditionalValidatorFactory {
     addMinimumValidators(dto.trait);
     addMaximumValidators(dto.trait);
     addAlternateMinimumValidators();
+    addSpecialValidators(dto.trait);
     return list;
+  }
+
+  private void addSpecialValidators(IBasicTrait trait) {
+    IExtensionElement[] minimumElements = validatorElement.getElements(TAG_SPECIAL);
+    for (IExtensionElement element : getElementsForTrait(minimumElements, trait)) {
+      addSpecialValidator(element);
+    }
+  }
+
+  private void addSpecialValidator(IExtensionElement element) {
+    try {
+      ISpecialValidator validator = element.getAttributeAsObject(ATTRIB_CLASS, ISpecialValidator.class);
+      validator.initValidation(dto);
+      list.add(validator);
+    }
+    catch (Exception e) {
+      String message = "Error initializing trait validator";
+      new Logger(CharacterTraitPlugin.PLUGIN_ID).error(message, e);
+    }
   }
 
   private void addMinimumValidators(IBasicTrait trait) {

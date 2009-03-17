@@ -37,6 +37,6 @@ public class EssenceTraitEncoder {
   protected int getEssenceValue(ICharacter character) {
     List<IDisplayTraitGroup<IDisplayTrait>> displayGroups = new SpiritualTraitDisplayGroupFactory().createDisplayTraitGroups(character);
     DisplayTraitList<IDisplayTrait> displayTraitList = new DisplayTraitList<IDisplayTrait>(displayGroups);
-    return displayTraitList.getTrait(IPluginConstants.ESSENCE_TRAIT_ID).getValue();
+    return displayTraitList.getTrait(IPluginConstants.ESSENCE_ID).getValue();
   }
 }

@@ -11,6 +11,7 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.trait.display.IDisplayGroupFactory;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
+import net.sf.anathema.character.trait.validator.DummyCharacter;
 
 import org.junit.Before;
 import org.junit.Test;

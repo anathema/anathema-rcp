@@ -17,7 +17,7 @@ public class EssenceExperienceCalculatoryFactory {
   }
 
   public ICalculator create() {
-    final IBasicTrait essence = spiritualTraits.getTrait(ESSENCE_TRAIT_ID);
+    final IBasicTrait essence = spiritualTraits.getTrait(ESSENCE_ID);
     return new PointWiseExperienceCalculator(experienceCost, essence);
   }
 }

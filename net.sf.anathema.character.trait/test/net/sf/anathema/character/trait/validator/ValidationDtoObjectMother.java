@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait.validator;
 
+import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.validator.where.ValidationDto;
 import net.sf.anathema.lib.util.Identificate;
@@ -16,5 +17,14 @@ public class ValidationDtoObjectMother {
     ValidationDto dto = new ValidationDto();
     dto.trait = new BasicTrait(new Identificate(traitId));
     return dto;
+  }
+
+  public static ValidationDto ForModel(String modelId, IModel model) {
+    ValidationDto validationDto = new ValidationDto();
+    validationDto.modelId = modelId;
+    DummyCharacter character = new DummyCharacter();
+    character.addModel(validationDto.modelId, model);
+    validationDto.container = character;
+    return validationDto;
   }
 }

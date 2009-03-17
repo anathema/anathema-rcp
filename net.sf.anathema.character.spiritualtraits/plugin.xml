@@ -62,6 +62,18 @@
             </where>
          </condition>
       </validator>
+      <validator>
+         <condition>
+            <where>
+               <modelId
+                     id="net.sf.anathema.character.spiritualtraits.model">
+               </modelId></where>
+         </condition>
+         <special
+               class="net.sf.anathema.character.spiritualtraits.validator.VirtueSumMinimumValidator"
+               traitId="Willpower">
+         </special>
+      </validator>
    </extension>
    <extension
          point="net.sf.anathema.character.points.configurations">

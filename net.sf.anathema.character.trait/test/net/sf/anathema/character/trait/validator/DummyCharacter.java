@@ -1,15 +1,20 @@
-package net.sf.anathema.character.spiritualtraits.model;
+package net.sf.anathema.character.trait.validator;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.IModel;
 
+@SuppressWarnings("nls")
 public class DummyCharacter implements ICharacter {
+
+  private final Map<String, IModel> modelsById = new HashMap<String, IModel>();
 
   @Override
   public String getDisplayName() {
-    // TODO Auto-generated method stub
     return null;
   }
 
@@ -41,13 +46,15 @@ public class DummyCharacter implements ICharacter {
 
   @Override
   public IModel getModel(final String modelId) {
-    // TODO Auto-generated method stub
-    return null;
+    return modelsById.get(modelId);
+  }
+
+  public void addModel(String modelId, IModel model) {
+    modelsById.put(modelId, model);
   }
 
   @Override
   public ICharacterType getCharacterType() {
-    // TODO Auto-generated method stub
     return null;
   }
 }

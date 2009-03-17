@@ -17,7 +17,7 @@ public class EssenceBonuspointCalculator extends AbstractPointWiseBonuspointCalc
 
   @Override
   protected IBasicTrait[] getCalculationTraits() {
-    IBasicTrait essence = spiritualTraits.getTrait(ESSENCE_TRAIT_ID);
+    IBasicTrait essence = spiritualTraits.getTrait(ESSENCE_ID);
     return new IBasicTrait[] { essence };
   }
 }

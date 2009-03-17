@@ -55,6 +55,7 @@
                <element ref="minimum"/>
                <element ref="alternateMinimum"/>
                <element ref="maximum"/>
+               <element ref="special"/>
             </choice>
          </sequence>
       </complexType>
@@ -112,6 +113,28 @@
          <sequence>
             <element ref="traitMinimum" minOccurs="2" maxOccurs="unbounded"/>
          </sequence>
+      </complexType>
+   </element>
+
+   <element name="special">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.character.trait.validator.ISpecialValidator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="traitId" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
