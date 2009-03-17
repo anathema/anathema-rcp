@@ -71,5 +71,20 @@
          </modelReference>
       </modelList>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.validator">
+      <validator>
+         <condition>
+            <where>
+               <modelContent
+                     definition="net.sf.anathema.character.abilities.model">
+               </modelContent>
+            </where>
+         </condition>
+         <special
+               class="net.sf.anathema.character.spiritualtraits.validator.RespectEssenceMaximum">
+         </special>
+      </validator>
+   </extension>
 
 </plugin>

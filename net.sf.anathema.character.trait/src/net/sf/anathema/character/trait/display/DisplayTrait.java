@@ -11,11 +11,7 @@ public class DisplayTrait implements IDisplayTrait {
   private final IExperience experience;
   private final int maxValue;
 
-  public DisplayTrait(
-      IDisplayFavorization favorization,
-      IBasicTrait basicTrait,
-      IExperience experience,
-      int maxValue) {
+  public DisplayTrait(IDisplayFavorization favorization, IBasicTrait basicTrait, IExperience experience, int maxValue) {
     this.basicTrait = basicTrait;
     this.maxValue = maxValue;
     this.experience = experience;
@@ -40,10 +36,6 @@ public class DisplayTrait implements IDisplayTrait {
   @Override
   public int getMaximalValue() {
     return maxValue;
-  }
-
-  public static int getCurrentEssenceValue(IExperience experience) {
-    return experience.isExperienced() ? 7 : 5;
   }
 
   @Override

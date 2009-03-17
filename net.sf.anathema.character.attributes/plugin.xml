@@ -62,6 +62,18 @@
                value="1">
          </minimum>
       </validator>
+      <validator>
+         <condition>
+            <where>
+               <modelId
+                     id="net.sf.anathema.character.attributes.model">
+               </modelId>
+            </where>
+         </condition>
+         <special
+               class="net.sf.anathema.character.spiritualtraits.validator.RespectEssenceMaximum">
+         </special>
+      </validator>
    </extension>
    <extension
          point="net.sf.anathema.character.trait.traitname">

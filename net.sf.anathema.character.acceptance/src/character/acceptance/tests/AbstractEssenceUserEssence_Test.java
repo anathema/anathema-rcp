@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-@SuppressWarnings("nls")
 public abstract class AbstractEssenceUserEssence_Test extends AbstractEssenceTest {
 
   @Override

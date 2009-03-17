@@ -1,9 +1,12 @@
 package net.sf.anathema.character.spiritualtraits.editor;
 
+import net.disy.commons.core.util.ArrayUtilities;
 import net.sf.anathema.character.spiritualtraits.display.SpiritualTraitLabelMap;
+import net.sf.anathema.character.spiritualtraits.model.SpiritualTraitGroupTemplate;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.groupeditor.AbstractEditorInputConfiguration;
+import net.sf.anathema.lib.collection.EqualsPredicate;
 import net.sf.anathema.lib.util.IIdentificate;
 
 public class SpiritualTraitsEditorInputConfiguration extends AbstractEditorInputConfiguration {
@@ -25,8 +28,13 @@ public class SpiritualTraitsEditorInputConfiguration extends AbstractEditorInput
 
   @Override
   public int getTraitMaximum(IIdentificate traitType) {
-    if (traitType.getId().equals(IPluginConstants.WILLPOWER_ID)) {
+    String traitId = traitType.getId();
+    if (traitId.equals(IPluginConstants.WILLPOWER_ID)) {
       return 10;
+    }
+    String[] virtueIds = new SpiritualTraitGroupTemplate().createVirtuesGroup().getTraitIds();
+    if (ArrayUtilities.contains(virtueIds, new EqualsPredicate<String>(traitId))) {
+      return 5;
     }
     return super.getTraitMaximum(traitType);
   }

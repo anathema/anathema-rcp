@@ -7,7 +7,6 @@ import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.plugin.CharacterTraitPlugin;
 import net.sf.anathema.character.trait.validator.extension.ConditionalValidatorFactory;
 import net.sf.anathema.character.trait.validator.extension.ExtensionWhereFactory;
@@ -25,8 +24,7 @@ public class ValidatorFactory implements IValidatorFactory {
     List<IValidator> validators = new ArrayList<IValidator>();
     validators.add(new RespectCreationValueMinimum(experience, dto.trait));
     validators.add(new RespectFavoredMinimum(dto.trait));
-    validators.add(new SubTraitValidator(experience, (ITraitCollectionModel) dto.getModel(), dto.trait));
-    validators.add(new RespectValueMaximum(experience));
+    validators.add(new SubTraitValidator(experience, dto.getModel(), dto.trait));
     for (IPluginExtension extension : new EclipseExtensionPoint(CharacterTraitPlugin.PLUGIN_ID, EXTENSION_POINT).getExtensions()) {
       for (IExtensionElement extensionElement : extension.getElements()) {
         addConfiguredValidators(validators, extensionElement, dto);
