@@ -18,7 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 @SuppressWarnings("nls")
-public class UnconditionalValidatorFactory_Test {
+public class UnconditionalValidatorFactory_MaximumTest {
 
   private static final int MAXIMUM = 3;
   private static final String TRAIT_ID = "test.traitId";
