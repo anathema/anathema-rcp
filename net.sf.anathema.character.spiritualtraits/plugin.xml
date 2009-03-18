@@ -117,5 +117,11 @@
          </modelReference>
       </modelList>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.modeldependencies">
+      <provider
+            class="net.sf.anathema.character.spiritualtraits.WillpowerDependencyProvider">
+      </provider>
+   </extension>
 
 </plugin>
