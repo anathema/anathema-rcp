@@ -26,9 +26,7 @@ public class VirtueSumMaximumValidator extends UnconfiguredExecutableExtension i
   public int getValidValue(int value) {
     Arrays.sort(virtues, 0, virtues.length, new ReverseCreationValueComparator());
     int virtueSum = virtues[0].getCreationModel().getValue() + virtues[1].getCreationModel().getValue();
-    if (virtueSum > 7) {
-      return value;
-    }
-    return Math.min(value, 8);
+    int allowedMaximum = Math.max(virtueSum, 8);
+    return Math.min(value, allowedMaximum);
   }
 }

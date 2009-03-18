@@ -47,4 +47,12 @@ public class VirtueSumMaximumValidator_Test {
     validator.initValidation(validationDto);
     assertThat(validator.getValidValue(9), is(8));
   }
+
+  @Test
+  public void acceptsOnlyValueOf8ForValueHighValueSum8() throws Exception {
+    collection.getTrait(COMPASSION_ID).getCreationModel().setValue(4);
+    collection.getTrait(TEMPERANCE_ID).getCreationModel().setValue(4);
+    validator.initValidation(validationDto);
+    assertThat(validator.getValidValue(9), is(8));
+  }
 }
