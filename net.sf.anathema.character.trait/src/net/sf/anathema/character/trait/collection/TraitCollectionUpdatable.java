@@ -72,5 +72,4 @@ public final class TraitCollectionUpdatable implements IUpdatable {
     validationObject.charactertype = characterType.getId();
     return validationObject;
   }
-
 }

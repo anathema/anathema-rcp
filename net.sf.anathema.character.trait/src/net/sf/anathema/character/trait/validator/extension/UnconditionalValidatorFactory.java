@@ -40,8 +40,8 @@ public class UnconditionalValidatorFactory {
   }
 
   private void addSpecialValidators(IBasicTrait trait) {
-    IExtensionElement[] minimumElements = validatorElement.getElements(TAG_SPECIAL);
-    for (IExtensionElement element : getElementsForTrait(minimumElements, trait)) {
+    IExtensionElement[] specialElements = validatorElement.getElements(TAG_SPECIAL);
+    for (IExtensionElement element : getElementsForTrait(specialElements, trait)) {
       addSpecialValidator(element);
     }
   }
