@@ -1,6 +1,7 @@
 package character.acceptance.tests;
 
 import static character.acceptance.IAcceptanceConstants.*;
+import static character.acceptance.TraitAssert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
@@ -69,13 +70,20 @@ public abstract class AbstractWillpower_Test extends AbstractAcceptanceTest {
     getWillpower().setValue(3);
     assertThat(character.getBonusPoints(WILLPOWER_POINT_CONFIGURATION), is(2));
   }
-  
+
   @Test
   public void doesNotPayBonusPointsForDotsCoveredByVirtues() throws Exception {
     setHighestVirtueSumTo9();
     assertThat(character.getBonusPoints(WILLPOWER_POINT_CONFIGURATION), is(0));
   }
-  
+
+  @Test
+  public final void spentsCorrectXpOnWillpowerIncrement() throws Exception {
+    character.setExperienced();
+    increaseByOne(getWillpower());
+    assertThat(character.getXpSpent(WILLPOWER_POINT_CONFIGURATION), is(2));
+  }
+
   private void setHighestVirtueSumTo9() {
     getVirtues()[0].setValue(4);
     getVirtues()[1].setValue(1);

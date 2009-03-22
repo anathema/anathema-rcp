@@ -101,6 +101,10 @@
             groupReference="virtues"
             handlerClass="net.sf.anathema.character.spiritualtraits.points.VirtuesXpHandler">
       </experiencePointCalculator>
+      <experiencePointCalculator
+            groupReference="willpower"
+            handlerClass="net.sf.anathema.character.spiritualtraits.points.WillpowerXpHandler">
+      </experiencePointCalculator>
       <pointGroup
             groupId="essence"
             modelId="net.sf.anathema.character.spiritualtraits.model"
