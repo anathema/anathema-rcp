@@ -9,5 +9,12 @@
             name="Virtues">
       </FreebiesConfiguration>
    </extension>
+   <extension
+         point="net.sf.anathema.character.points.configurations">
+      <bonusPointCalculator
+            groupReference="virtues"
+            handlerClass="net.sf.anathema.character.freebies.virtues.internal.VirtueFreebiesBonusPointReducer">
+      </bonusPointCalculator>
+   </extension>
 
 </plugin>
