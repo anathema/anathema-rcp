@@ -24,7 +24,7 @@ public class VirtuesBonusPointCalculatorFactory_Test extends AbstractVirtuesBonu
 
   @Test
   public void calculatesThreeBonusPointsForIncreasedCompassion() throws Exception {
-    setIncreasedCreationValue(compassion);
+    setIncreasedCreationValue(willpower);
     assertThat(calculator.calculate(), is(3));
   }
 

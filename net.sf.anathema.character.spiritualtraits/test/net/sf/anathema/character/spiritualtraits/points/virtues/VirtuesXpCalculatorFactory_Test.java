@@ -24,8 +24,8 @@ public class VirtuesXpCalculatorFactory_Test extends AbstractVirtuesBonusPoint_T
 
   @Test
   public void calculates3XpForIncreasingCompassionFrom1To2() throws Exception {
-    setCreationValue(compassion, 1);
-    setIncreasedExperienceValue(compassion);
+    setCreationValue(willpower, 1);
+    setIncreasedExperienceValue(willpower);
     assertThat(calculator.calculate(), is(3));
   }
 
@@ -52,9 +52,9 @@ public class VirtuesXpCalculatorFactory_Test extends AbstractVirtuesBonusPoint_T
 
   @Test
   public void sumsUpXpForIncrements() throws Exception {
-    setCreationValue(compassion, 1);
+    setCreationValue(willpower, 1);
     setCreationValue(temperance, 1);
-    setIncreasedExperienceValue(compassion);
+    setIncreasedExperienceValue(willpower);
     setIncreasedExperienceValue(temperance);
     assertThat(calculator.calculate(), is(6));
   }

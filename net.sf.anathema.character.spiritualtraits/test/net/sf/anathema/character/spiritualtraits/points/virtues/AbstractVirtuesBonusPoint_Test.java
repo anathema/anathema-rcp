@@ -9,7 +9,7 @@ import org.junit.Before;
 
 public class AbstractVirtuesBonusPoint_Test {
 
-  protected IBasicTrait compassion;
+  protected IBasicTrait willpower;
   protected IBasicTrait conviction;
   protected IBasicTrait temperance;
   protected IBasicTrait valor;
@@ -18,12 +18,12 @@ public class AbstractVirtuesBonusPoint_Test {
 
   @Before
   public void createCollection() throws Exception {
-    this.compassion = createVirtue(COMPASSION_ID);
+    this.willpower = createVirtue(COMPASSION_ID);
     this.conviction = createVirtue(CONVICTION_ID);
     this.temperance = createVirtue(TEMPERANCE_ID);
     this.valor = createVirtue(VALOR_ID);
     this.essence = new BasicTrait(ESSENCE_ID);
-    collection = new TraitCollection(essence, compassion, conviction, temperance, valor);
+    collection = new TraitCollection(essence, willpower, conviction, temperance, valor);
   }
 
   private BasicTrait createVirtue(final String id) {

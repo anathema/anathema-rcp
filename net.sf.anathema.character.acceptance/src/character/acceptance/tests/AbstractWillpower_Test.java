@@ -78,10 +78,16 @@ public abstract class AbstractWillpower_Test extends AbstractAcceptanceTest {
   }
 
   @Test
+  public final void spendsNoXpForStartingWillpower() throws Exception {
+    character.setExperienced();
+    assertThat(character.getXpSpent(WILLPOWER_POINT_CONFIGURATION), is(0));
+  }
+  
+  @Test
   public final void spentsCorrectXpOnWillpowerIncrement() throws Exception {
     character.setExperienced();
     increaseByOne(getWillpower());
-    assertThat(character.getXpSpent(WILLPOWER_POINT_CONFIGURATION), is(2));
+    assertThat(character.getXpSpent(WILLPOWER_POINT_CONFIGURATION), is(4));
   }
 
   private void setHighestVirtueSumTo9() {
