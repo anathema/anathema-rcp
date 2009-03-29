@@ -77,9 +77,9 @@
       <validator>
          <condition>
             <where>
-               <modelContent
-                     definition="net.sf.anathema.character.abilities.model">
-               </modelContent>
+               <modelId
+                     id="net.sf.anathema.character.abilities.model">
+               </modelId>
             </where>
          </condition>
          <special
