@@ -33,6 +33,7 @@
       </bonusPointCalculator>
       <experiencePointCalculator
             configurationId="attributeExperienceCosts"
+            groupReference="attributepoints"
             handlerClass="net.sf.anathema.character.points.trait.ExperienceHandler">
       </experiencePointCalculator>
       <experienceConfigurations>
