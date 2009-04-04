@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Backgrounds Plug-in
+Bundle-SymbolicName: net.sf.anathema.character.backgrounds
+Bundle-Version: 1.0.0
