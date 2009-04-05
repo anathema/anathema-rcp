@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Backgrounds Plug-in
-Bundle-SymbolicName: net.sf.anathema.character.backgrounds
+Bundle-SymbolicName: net.sf.anathema.character.backgrounds;singleton:=true
 Bundle-Version: 1.0.0
+Require-Bundle: net.sf.anathema.character.core,
+ net.sf.anathema.basics.item;bundle-version="1.0.0",
+ net.sf.anathema.basics.repository;bundle-version="1.0.0",
+ net.sf.anathema.basics.jface;bundle-version="1.0.0",
+ org.eclipse.ui.forms;bundle-version="3.3.101"

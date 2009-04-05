@@ -66,6 +66,7 @@ Used without permission.
       <plugin id="net.sf.anathema.character.attributes.importwizard" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes.sheet" fragment="true"/>
       <plugin id="net.sf.anathema.character.attributes.textreport" fragment="true"/>
+      <plugin id="net.sf.anathema.character.backgrounds"/>
       <plugin id="net.sf.anathema.character.caste"/>
       <plugin id="net.sf.anathema.character.caste.sheet" fragment="true"/>
       <plugin id="net.sf.anathema.character.caste.textreport" fragment="true"/>
