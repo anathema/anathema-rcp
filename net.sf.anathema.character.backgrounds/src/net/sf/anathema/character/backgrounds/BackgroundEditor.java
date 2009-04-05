@@ -21,6 +21,29 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgroundModel> {
 
+  private static final class TextChangingFocusListener implements FocusListener {
+
+    private final Text textfield;
+
+    public TextChangingFocusListener(Text textfield) {
+      this.textfield = textfield;
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+      if (textfield.getText().equals(DEFAULT_TEXT)) {
+        textfield.setText(EMPTY_TEXT);
+      }
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+      if (textfield.getText().equals(EMPTY_TEXT)) {
+        textfield.setText(DEFAULT_TEXT);
+      }
+    }
+  }
+
   private static final String EMPTY_TEXT = "";
   private static final String DEFAULT_TEXT = "Type a background name and press 'Enter'";
 
@@ -64,21 +87,7 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
             // nothing
           }
         });
-        entry.addFocusListener(new FocusListener() {
-          @Override
-          public void focusGained(FocusEvent e) {
-            if (entry.getText().equals(DEFAULT_TEXT)) {
-              entry.setText(EMPTY_TEXT);
-            }
-          }
-
-          @Override
-          public void focusLost(FocusEvent e) {
-            if (entry.getText().equals(EMPTY_TEXT)) {
-              entry.setText(DEFAULT_TEXT);
-            }
-          }
-        });
+        entry.addFocusListener(new TextChangingFocusListener(entry));
       }
 
       private void createBackgroundTable(
@@ -103,7 +112,9 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
 
       @Override
       public void setFocus() {
-        // entry.setFocus();
+        entry.setFocus();
+        entry.setText(DEFAULT_TEXT);
+        entry.selectAll();
       }
     };
   }
