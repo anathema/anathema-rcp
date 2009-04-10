@@ -1,22 +1,22 @@
 package net.sf.anathema.character.core.traitview;
 
-import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 
 public class IntValuePaintContext implements IIntValuePaintContext {
-  private final PaintEvent event;
+  private final GC gc;
   private final int value;
   private final IntDisplayArea area;
 
-  public IntValuePaintContext(PaintEvent event, int value, IntDisplayArea area) {
-    this.event = event;
+  public IntValuePaintContext(GC gc, int value, IntDisplayArea area) {
+    this.gc = gc;
     this.value = value;
     this.area = area;
   }
 
   @Override
   public void drawImage(int index, Image image) {
-    event.gc.drawImage(image, area.getXPosition(index), 1);
+    gc.drawImage(image, area.getXPosition(index), 1);
   }
 
   @Override

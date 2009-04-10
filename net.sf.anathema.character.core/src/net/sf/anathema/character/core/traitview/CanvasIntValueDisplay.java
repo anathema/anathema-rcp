@@ -1,9 +1,6 @@
 package net.sf.anathema.character.core.traitview;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import net.disy.commons.core.exception.UnreachableCodeReachedException;
 import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.basics.swt.layout.GridDataFactory;
 import net.sf.anathema.character.core.traitview.internal.MouseInputAdapter;
@@ -13,54 +10,13 @@ import net.sf.anathema.lib.control.intvalue.IIntValueChangedListener;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
 public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawable {
-
-  private final class IntValuePaintListener implements PaintListener {
-
-    private final List<IIntValuePainter> allPainters = new ArrayList<IIntValuePainter>();
-    private final IntDisplayArea area;
-
-    public IntValuePaintListener(Image passiveImage, Image valueImage, int maxValue) {
-      ImageData imageData = passiveImage.getImageData();
-      this.area = new IntDisplayArea(imageData.height, imageData.width, maxValue);
-      add(new BasicIntValuePainter(passiveImage, valueImage));
-    }
-
-    public IntDisplayArea getArea() {
-      return area;
-    }
-
-    @Override
-    public final void paintControl(PaintEvent e) {
-      for (int index = 0; index < area.getMaxValue(); index++) {
-        IntValuePaintContext context = new IntValuePaintContext(e, value, area);
-        getResponsiblePainter(context, index).drawImage(context, index);
-      }
-    }
-
-    private IIntValuePainter getResponsiblePainter(IntValuePaintContext context, int index) {
-      for (IIntValuePainter painter : allPainters) {
-        if (painter.isResponsible(context, index)) {
-          return painter;
-        }
-      }
-      throw new UnreachableCodeReachedException();
-    }
-
-    public void add(IIntValuePainter painter) {
-      painter.init(CanvasIntValueDisplay.this, area.getImageHeight(), area.getImageHeight());
-      allPainters.add(0, painter);
-    }
-  }
 
   private final class MouseDragListener extends MouseInputAdapter {
     private boolean isDrag;
@@ -102,7 +58,18 @@ public class CanvasIntValueDisplay implements IExtendableIntValueView, IRedrawab
   private final IntValuePaintListener paintListener;
 
   public CanvasIntValueDisplay(Color background, Composite parent, Image passiveImage, Image valueImage, int maxValue) {
-    this.paintListener = new IntValuePaintListener(passiveImage, valueImage, maxValue);
+    this.paintListener = new IntValuePaintListener(new IValueContainer() {
+
+      @Override
+      public void redraw() {
+        CanvasIntValueDisplay.this.redraw();
+      }
+
+      @Override
+      public int getValue() {
+        return value;
+      }
+    }, passiveImage, valueImage, maxValue);
     this.composite = createComposite(parent);
     this.composite.setBackground(background);
   }
