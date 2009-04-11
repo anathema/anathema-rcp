@@ -9,7 +9,6 @@ public class BackgroundModelFactory extends AbstractModelFactory<BackgroundTempl
 
   @Override
   protected BackgroundTemplate createModelTemplate(ICharacterTemplate template) {
-    // String characterTypeId = template.getCharacterTypeId();
     return new BackgroundTemplate();
   }
 

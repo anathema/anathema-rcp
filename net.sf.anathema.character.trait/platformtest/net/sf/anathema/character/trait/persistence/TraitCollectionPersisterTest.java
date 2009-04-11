@@ -1,10 +1,10 @@
 package net.sf.anathema.character.trait.persistence;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.FavorizationTemplate;
@@ -37,7 +37,7 @@ public class TraitCollectionPersisterTest {
 
       @Override
       public ITraitGroupTemplate getGroupTemplate() {
-        final TraitGroup[] groups = new TraitGroup[] {new TraitGroup("Gruppe", null, TRAIT1, TRAIT2)}; //$NON-NLS-1$
+        final TraitGroup[] groups = new TraitGroup[] { new TraitGroup("Gruppe", null, TRAIT1, TRAIT2) }; //$NON-NLS-1$
         return new StaticTraitGroupTemplate(groups);
       }
 
@@ -51,7 +51,7 @@ public class TraitCollectionPersisterTest {
   @Test
   public void favoredTraitIsFavoredAfterLoad() throws Exception {
     ITraitCollectionModel traits = persister.createNew(createTemplate());
-    IBasicTrait favoredTrait = traits.getAllTraits()[0];
+    IBasicTrait favoredTrait = traits.getAllTraits().iterator().next();
     favoredTrait.getStatusManager().setStatus(new FavoredStatus());
     String favoredTraitId = favoredTrait.getTraitType().getId();
     ITraitCollectionModel loaded = saveAndLoad(traits);
@@ -61,7 +61,7 @@ public class TraitCollectionPersisterTest {
   @Test
   public void unfavoredTraitIsUnfavoredAfterLoad() throws Exception {
     ITraitCollectionModel attributes = persister.createNew(createTemplate());
-    IBasicTrait favoredTrait = attributes.getAllTraits()[0];
+    IBasicTrait favoredTrait = attributes.getAllTraits().iterator().next();
     String favoredTraitId = favoredTrait.getTraitType().getId();
     ITraitCollectionModel loaded = saveAndLoad(attributes);
     assertTrue(loaded.getTrait(favoredTraitId).getStatusManager().getStatus() instanceof DefaultStatus);
@@ -74,7 +74,13 @@ public class TraitCollectionPersisterTest {
         + "</model>"; //$NON-NLS-1$
     ITraitCollectionModel loaded = persister.load(DocumentUtilities.read(xmlString), createTemplate());
     assertIsTrait(loaded.getTrait(TRAIT1), 1);
-    assertEquals(1, loaded.getAllTraits().length);
+    assertHasOneTrait(loaded);
+  }
+
+  private void assertHasOneTrait(ITraitCollectionModel loaded) {
+    Iterator<IBasicTrait> allTraits = loaded.getAllTraits().iterator();
+    allTraits.next();
+    assertFalse(allTraits.hasNext());
   }
 
   private void assertIsTrait(IBasicTrait trait, int creationValue) {
@@ -83,9 +89,7 @@ public class TraitCollectionPersisterTest {
     assertEquals(-1, trait.getExperiencedModel().getValue());
   }
 
-  private ITraitCollectionModel saveAndLoad(ITraitCollectionModel attributes)
-      throws IOException,
-      PersistenceException {
+  private ITraitCollectionModel saveAndLoad(ITraitCollectionModel attributes) throws IOException, PersistenceException {
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     persister.save(stream, attributes);
     String xmlString = new String(stream.toByteArray());

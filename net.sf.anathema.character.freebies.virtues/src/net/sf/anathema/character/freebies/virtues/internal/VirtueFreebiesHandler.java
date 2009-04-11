@@ -37,9 +37,9 @@ public class VirtueFreebiesHandler extends UnconfiguredExecutableExtension imple
 
   @Override
   public int getPoints(ICharacterId id, int credit) {
-    ITraitCollectionModel traits = (ITraitCollectionModel) models.getModel(new ModelIdentifier(id, IPluginConstants.MODEL_ID));
-    IBasicTrait[] allTraits = traits.getAllTraits();
-    if (allTraits.length == 0) {
+    ModelIdentifier identifier = new ModelIdentifier(id, IPluginConstants.MODEL_ID);
+    ITraitCollectionModel traits = (ITraitCollectionModel) models.getModel(identifier);
+    if (!traits.getAllTraits().iterator().hasNext()) {
       return 0;
     }
     Virtues virtues = new Virtues(traits);

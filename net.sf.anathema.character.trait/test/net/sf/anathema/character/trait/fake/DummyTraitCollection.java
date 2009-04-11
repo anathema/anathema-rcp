@@ -18,8 +18,8 @@ public class DummyTraitCollection extends AbstractTraitCollection {
   private final MultiEntryMap<String, IBasicTrait> subTraits = new MultiEntryMap<String, IBasicTrait>();
 
   @Override
-  public IBasicTrait[] getAllTraits() {
-    return traits.toArray(new IBasicTrait[traits.size()]);
+  public Iterable<IBasicTrait> getAllTraits() {
+    return traits;
   }
 
   public void addTrait(final IBasicTrait... addedTraits) {

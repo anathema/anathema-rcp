@@ -7,7 +7,6 @@ import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.collection.TraitCollection;
-import net.sf.anathema.character.trait.model.TraitCollectionProvider;
 import net.sf.anathema.lib.util.Identificate;
 
 import org.junit.Test;
@@ -19,7 +18,7 @@ public class TraitCollectionProviderTest {
     IModelCollection modelCollection = createMock(IModelCollection.class);
     replay(modelCollection);
     TraitCollectionProvider provider = new TraitCollectionProvider(modelCollection, null);
-    assertEquals(0, provider.getModel(new DummyCharacterId()).getAllTraits().length);
+    assertFalse(provider.getModel(new DummyCharacterId()).getAllTraits().iterator().hasNext());
   }
 
   @Test

@@ -2,8 +2,12 @@ package net.sf.anathema.backgrounds;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+
+import java.util.Iterator;
+
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.backgrounds.BackgroundModel;
+import net.sf.anathema.character.trait.IBasicTrait;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
@@ -21,14 +25,16 @@ public class BackgroundModel_Test {
 
   @Test
   public void containsNoBackgroundsAfterCreation() throws Exception {
-    assertThat(backgroundModel.getBackgrounds().isEmpty(), is(true));
+    assertThat(backgroundModel.getAllTraits().iterator().hasNext(), is(false));
   }
 
   @Test
   public void remembersAddedBackgrounds() throws Exception {
     backgroundModel.addBackground("MyBG");
-    assertThat(backgroundModel.getBackgrounds().contains("MyBG"), is(true));
-    assertThat(backgroundModel.getBackgrounds().size(), is(1));
+    Iterator<IBasicTrait> allTraits = backgroundModel.getAllTraits().iterator();
+    assertThat(allTraits.next().getTraitType().getId(), is("MyBG"));
+    assertThat(allTraits.hasNext(), is(false));
+
   }
 
   @Test

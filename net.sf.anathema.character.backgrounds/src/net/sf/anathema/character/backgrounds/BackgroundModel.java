@@ -1,35 +1,40 @@
 package net.sf.anathema.character.backgrounds;
 
-import java.util.ArrayList;
-import java.util.List;
+import net.disy.commons.core.util.IClosure;
+import net.sf.anathema.character.trait.BasicTrait;
+import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.collection.TraitCollection;
+import net.sf.anathema.lib.control.GenericControl;
+import net.sf.anathema.lib.util.Identificate;
 
-import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.core.model.AbstractModel;
-import net.sf.anathema.lib.control.change.ChangeControl;
+public class BackgroundModel extends TraitCollection implements IBackgroundModel {
 
-public class BackgroundModel extends AbstractModel implements IBackgroundModel {
-  private final ChangeControl changeControl = new ChangeControl();
-  private final List<String> backgrounds = new ArrayList<String>();
+  private final GenericControl<IBackgroundModificationListener> modificationListeners = new GenericControl<IBackgroundModificationListener>();
 
-  @Override
-  public void addChangeListener(IChangeListener listener) {
-    changeControl.addChangeListener(listener);
-  }
-
-  @Override
-  public void removeChangeListener(IChangeListener listener) {
-    changeControl.removeChangeListener(listener);
-  }
-
-  @Override
-  public List<String> getBackgrounds() {
-    return backgrounds;
+  public BackgroundModel(IBasicTrait... traits) {
+    super(traits);
   }
 
   @Override
   public void addBackground(String background) {
-    backgrounds.add(background);
-    changeControl.fireChangedEvent();
+    final BasicTrait trait = new BasicTrait(new Identificate(background));
+    addTrait(trait);
+    modificationListeners.forAllDo(new IClosure<IBackgroundModificationListener>() {
+      @Override
+      public void execute(IBackgroundModificationListener listener) {
+        listener.traitAdded(trait);
+      }
+    });
     setDirty(true);
+  }
+
+  @Override
+  public void addModificationListener(IBackgroundModificationListener listener) {
+    modificationListeners.addListener(listener);
+  }
+
+  @Override
+  public void removeModificationListener(IBackgroundModificationListener listener) {
+    modificationListeners.removeListener(listener);
   }
 }

@@ -36,8 +36,7 @@ public class AttributeFreebiesBonusPointReducer_CalculationTest {
 
   @Before
   public void createReducer() throws Exception {
-    attributes = TraitCollectionModelFactory.create(
-        new AttributeGroupTemplate().getGroups());
+    attributes = TraitCollectionModelFactory.create(new AttributeGroupTemplate().getGroups());
     characterId = EasyMock.createMock(ICharacterId.class);
     IModelCollection modelProvider = AttributeObjectMother.createModelProvider(attributes, characterId);
     reducer = new AttributeFreebiesBonusPointReducer(modelProvider, new DummyCreditManager());
@@ -57,14 +56,14 @@ public class AttributeFreebiesBonusPointReducer_CalculationTest {
   @Test
   public void returnsNegative4ForOneAttributeAt2() throws Exception {
     setAllAttributesTo(1);
-    attributes.getAllTraits()[0].getCreationModel().setValue(2);
+    attributes.getAllTraits().iterator().next().getCreationModel().setValue(2);
     assertEquals(-4, reducer.getPoints(characterId));
   }
 
   @Test
   public void returnsNegative3ForOneFavoredAttributeAt2() throws Exception {
     setAllAttributesTo(1);
-    IBasicTrait attribute = attributes.getAllTraits()[0];
+    IBasicTrait attribute = attributes.getAllTraits().iterator().next();
     attribute.getCreationModel().setValue(2);
     attribute.getStatusManager().setStatus(new FavoredStatus());
     assertEquals(-3, reducer.getPoints(characterId));
@@ -79,7 +78,7 @@ public class AttributeFreebiesBonusPointReducer_CalculationTest {
   @Test
   public void noReductionCalculatedForPointsExceedingCredit() throws Exception {
     setAllAttributesTo(2);
-    attributes.getAllTraits()[0].getCreationModel().setValue(3);
+    attributes.getAllTraits().iterator().next().getCreationModel().setValue(3);
     assertEquals(-36, reducer.getPoints(characterId));
   }
 

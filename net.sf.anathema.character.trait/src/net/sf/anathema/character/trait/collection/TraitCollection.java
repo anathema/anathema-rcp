@@ -1,5 +1,6 @@
 package net.sf.anathema.character.trait.collection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
@@ -20,7 +21,7 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 public class TraitCollection extends AbstractTraitCollection {
   private final MultiEntryMap<String, IBasicTrait> subTraits = new MultiEntryMap<String, IBasicTrait>();
-  private final IBasicTrait[] traits;
+  private final List<IBasicTrait> traits = new ArrayList<IBasicTrait>();
   private final IChangeListener changeListener = new IChangeListener() {
     @Override
     public void stateChanged() {
@@ -37,16 +38,20 @@ public class TraitCollection extends AbstractTraitCollection {
   };
 
   public TraitCollection(final IBasicTrait... traits) {
-    this.traits = traits;
     for (final IBasicTrait basicTrait : traits) {
-      basicTrait.getCreationModel().addChangeListener(changeListener);
-      basicTrait.getExperiencedModel().addChangeListener(changeListener);
-      basicTrait.getStatusManager().addChangeListener(changeListener);
+      addTrait(basicTrait);
     }
   }
 
+  protected void addTrait(IBasicTrait trait) {
+    this.traits.add(trait);
+    trait.getCreationModel().addChangeListener(changeListener);
+    trait.getExperiencedModel().addChangeListener(changeListener);
+    trait.getStatusManager().addChangeListener(changeListener);
+  }
+
   @Override
-  public IBasicTrait[] getAllTraits() {
+  public Iterable<IBasicTrait> getAllTraits() {
     return traits;
   }
 
