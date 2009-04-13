@@ -14,7 +14,7 @@ public class AttributesContext {
   public static ITraitCollectionContext create(ICharacterId characterId, IModelCollection modelCollection) {
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     ITraitCollectionTemplate traitTemplate = new AttributesTemplateProvider().getTraitTemplate(template.getId());
-    return TraitCollectionContext.create(
+    return new TraitCollectionContext(
         Character.From(characterId, modelCollection),
         IAttributesPluginConstants.MODEL_ID,
         traitTemplate.getGroupTemplate());

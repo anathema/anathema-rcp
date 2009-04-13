@@ -6,8 +6,10 @@ import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
 import net.sf.anathema.character.core.traitview.IValueContainer;
 import net.sf.anathema.character.core.traitview.IntDisplayArea;
 import net.sf.anathema.character.core.traitview.IntValuePaintListener;
-import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.display.IntViewImageProvider;
+import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
+import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
@@ -55,8 +57,8 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
     }
   }
 
-  private static final String EMPTY_TEXT = "";
-  private static final String DEFAULT_TEXT = "Type a background name and press 'Enter'";
+  private static final String EMPTY_TEXT = ""; //$NON-NLS-1$
+  private static final String DEFAULT_TEXT = Messages.BackgroundEditor_HINT_TEXT;
 
   @Override
   protected IEditorControl createItemEditorControl() {
@@ -123,8 +125,8 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
 
               @Override
               public int getValue() {
-                IBasicTrait background = (IBasicTrait) event.item.getData();
-                return background.getCreationModel().getValue();
+                IDisplayTrait background = (IDisplayTrait) event.item.getData();
+                return background.getValue();
               }
             };
             final IntValuePaintListener intValuePaint = createIntValuePaint(redrawable);
@@ -148,23 +150,33 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
             if (xWithinDisplayArea >= 0) {
               int value = displayArea.getIndexForPosition(xWithinDisplayArea);
               TableItem item = table.getItem(new Point(e.x, e.y));
-              IBasicTrait background = (IBasicTrait) item.getData();
-              background.getCreationModel().setValue(value);
+              IInteractiveTrait background = (IInteractiveTrait) item.getData();
+              background.setValue(value);
               table.redraw();
             }
           }
         });
-        // TODO Abmelden des Listeners
-        editorInput.getItem().addModificationListener(new IBackgroundModificationListener() {
-          @Override
-          public void traitAdded(IBasicTrait trait) {
-            addBackgroundToTable(table, trait);
-            entry.setText(DEFAULT_TEXT);
-          }
-        });
-        for (IBasicTrait background : getPersistableEditorInput().getItem().getAllTraits()) {
+        startListeningForNewBackgrounds(editorInput, table);
+        for (IDisplayTrait background : editorInput.getBackgrounds()) {
           addBackgroundToTable(table, background);
         }
+      }
+
+      private void startListeningForNewBackgrounds(final BackgroundEditorInput editorInput, final Table table) {
+        final IBackgroundAdditionListener<IDisplayTrait> additionListener = new IBackgroundAdditionListener<IDisplayTrait>() {
+          @Override
+          public void traitAdded(IDisplayTrait trait) {
+            addBackgroundToTable(table, trait);
+            entry.setText(EMPTY_TEXT);
+          }
+        };
+        addDisposable(new IDisposable() {
+          @Override
+          public void dispose() {
+            editorInput.removeModificationListener(additionListener);
+          }
+        });
+        editorInput.addModificationListener(additionListener);
       }
 
       @Override
@@ -199,7 +211,7 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
     return new IntViewImageProvider(activeImageId);
   }
 
-  private void addBackgroundToTable(final Table table, IBasicTrait background) {
+  private void addBackgroundToTable(final Table table, IDisplayTrait background) {
     TableItem item = new TableItem(table, SWT.NONE);
     item.setText(background.getTraitType().getId());
     item.setData(background);

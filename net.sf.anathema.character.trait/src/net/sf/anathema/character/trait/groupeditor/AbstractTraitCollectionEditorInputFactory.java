@@ -40,7 +40,7 @@ public abstract class AbstractTraitCollectionEditorInputFactory extends Unconfig
     ICharacter character = Character.From(characterId, modelProvider);
     IFavorizationInteraction favorizationHandler = createFavorizationInteraction(character, template, modelId);
     ITraitCollectionTemplate collectionTemplate = createTraitCollectionTemplate(template);
-    TraitCollectionContext context = TraitCollectionContext.create(
+    TraitCollectionContext context = new TraitCollectionContext(
         character,
         modelId,
         collectionTemplate.getGroupTemplate());

@@ -9,7 +9,7 @@ import net.sf.anathema.lib.util.Identificate;
 
 public class BackgroundModel extends TraitCollection implements IBackgroundModel {
 
-  private final GenericControl<IBackgroundModificationListener> modificationListeners = new GenericControl<IBackgroundModificationListener>();
+  private final GenericControl<IBackgroundAdditionListener<IBasicTrait>> modificationListeners = new GenericControl<IBackgroundAdditionListener<IBasicTrait>>();
 
   public BackgroundModel(IBasicTrait... traits) {
     super(traits);
@@ -19,9 +19,9 @@ public class BackgroundModel extends TraitCollection implements IBackgroundModel
   public void addBackground(String background) {
     final BasicTrait trait = new BasicTrait(new Identificate(background));
     addTrait(trait);
-    modificationListeners.forAllDo(new IClosure<IBackgroundModificationListener>() {
+    modificationListeners.forAllDo(new IClosure<IBackgroundAdditionListener<IBasicTrait>>() {
       @Override
-      public void execute(IBackgroundModificationListener listener) {
+      public void execute(IBackgroundAdditionListener<IBasicTrait> listener) {
         listener.traitAdded(trait);
       }
     });
@@ -29,12 +29,12 @@ public class BackgroundModel extends TraitCollection implements IBackgroundModel
   }
 
   @Override
-  public void addModificationListener(IBackgroundModificationListener listener) {
+  public void addModificationListener(IBackgroundAdditionListener<IBasicTrait> listener) {
     modificationListeners.addListener(listener);
   }
 
   @Override
-  public void removeModificationListener(IBackgroundModificationListener listener) {
+  public void removeModificationListener(IBackgroundAdditionListener<IBasicTrait> listener) {
     modificationListeners.removeListener(listener);
   }
 }

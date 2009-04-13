@@ -26,7 +26,7 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
     }
     ICharacterTemplate template = new CharacterTemplateProvider().getTemplate(characterId);
     ITraitCollectionTemplate traitTemplate = new AbilitiesTemplateProvider().getTraitTemplate(template.getId());
-    return TraitCollectionContext.create(
+    return new TraitCollectionContext(
         Character.From(characterId, modelCollection),
         IAbilitiesPluginConstants.MODEL_ID,
         traitTemplate.getGroupTemplate());

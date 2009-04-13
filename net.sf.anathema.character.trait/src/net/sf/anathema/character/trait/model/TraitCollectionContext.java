@@ -14,10 +14,6 @@ import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
 public class TraitCollectionContext implements ITraitCollectionContext {
 
-  public static TraitCollectionContext create(ICharacter character, String modelId, ITraitGroupTemplate groups) {
-    return new TraitCollectionContext(character, modelId, groups);
-  }
-
   private final ITraitGroupTemplate groupTemplate;
   private final ICharacter character;
   private final String modelId;

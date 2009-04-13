@@ -13,10 +13,8 @@ import net.sf.anathema.character.trait.validator.IValidator;
 
 public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTransformer<IInteractiveTrait> {
 
-  private final ITraitPreferences traitPreferences;
-  private final IFavorizationInteraction favorizationHandler;
-  private final IEditorInputConfiguration configuration;
   private final ITraitCollectionContext context;
+  private final InteractiveTraitFactory factory;
 
   public InteractiveTraitGroupTransformer(
       ITraitCollectionContext context,
@@ -24,21 +22,14 @@ public final class InteractiveTraitGroupTransformer extends AbstractTraitGroupTr
       ITraitPreferences traitPreferences,
       IEditorInputConfiguration configuration) {
     super(context.getCollection());
+    IExperience experience = context.getExperience();
     this.context = context;
-    this.favorizationHandler = favorizationInteraction;
-    this.traitPreferences = traitPreferences;
-    this.configuration = configuration;
+    this.factory = new InteractiveTraitFactory(traitPreferences, experience, configuration, favorizationInteraction);
   }
 
   @Override
   public IInteractiveTrait createTrait(IBasicTrait trait) {
-    IExperience experience = context.getExperience();
     List<IValidator> validators = context.getValidators(trait.getTraitType().getId());
-    InteractiveTraitFactory factory = new InteractiveTraitFactory(
-        traitPreferences,
-        experience,
-        configuration,
-        favorizationHandler);
     return factory.create(trait, validators);
   }
 }
