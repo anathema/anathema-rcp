@@ -45,6 +45,10 @@
             groupReference="backgrounds"
             handlerClass="net.sf.anathema.character.backgrounds.points.BonusPointHandler">
       </bonusPointCalculator>
+      <experiencePointCalculator
+            groupReference="backgrounds"
+            handlerClass="net.sf.anathema.character.backgrounds.points.ExperiencePointHandler">
+      </experiencePointCalculator>
    </extension>
 
 </plugin>
