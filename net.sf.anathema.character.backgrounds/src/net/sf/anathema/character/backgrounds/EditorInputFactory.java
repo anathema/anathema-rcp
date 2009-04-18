@@ -4,6 +4,7 @@ import java.net.URL;
 
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.core.character.Character;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterType;

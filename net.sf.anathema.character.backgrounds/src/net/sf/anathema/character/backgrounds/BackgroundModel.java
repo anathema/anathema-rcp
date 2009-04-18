@@ -1,6 +1,8 @@
 package net.sf.anathema.character.backgrounds;
 
 import net.disy.commons.core.util.IClosure;
+import net.sf.anathema.character.backgrounds.model.IBackgroundAdditionListener;
+import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.TraitCollection;
@@ -16,7 +18,7 @@ public class BackgroundModel extends TraitCollection implements IBackgroundModel
   }
 
   @Override
-  public void addBackground(String background) {
+  public IBasicTrait addBackground(String background) {
     final BasicTrait trait = new BasicTrait(new Identificate(background));
     addTrait(trait);
     modificationListeners.forAllDo(new IClosure<IBackgroundAdditionListener<IBasicTrait>>() {
@@ -26,6 +28,7 @@ public class BackgroundModel extends TraitCollection implements IBackgroundModel
       }
     });
     setDirty(true);
+    return trait;
   }
 
   @Override

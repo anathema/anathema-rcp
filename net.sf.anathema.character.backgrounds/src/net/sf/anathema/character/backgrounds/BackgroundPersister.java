@@ -1,5 +1,6 @@
 package net.sf.anathema.character.backgrounds;
 
+import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.persistence.AbstractTraitCollectionPersister;
 

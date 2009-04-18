@@ -1,5 +1,6 @@
 package net.sf.anathema.character.backgrounds;
 
+import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.groupeditor.AbstractEditorInputConfiguration;
 import net.sf.anathema.lib.util.IIdentificate;

@@ -2,6 +2,8 @@ package net.sf.anathema.character.backgrounds;
 
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.IEditorControl;
+import net.sf.anathema.character.backgrounds.model.IBackgroundAdditionListener;
+import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
 import net.sf.anathema.character.core.traitview.IValueContainer;
 import net.sf.anathema.character.core.traitview.IntDisplayArea;

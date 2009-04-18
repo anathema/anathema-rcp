@@ -1,4 +1,4 @@
-package net.sf.anathema.character.backgrounds;
+package net.sf.anathema.character.backgrounds.model;
 
 
 public interface IBackgroundAdditionListener<T> {

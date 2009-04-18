@@ -6,6 +6,8 @@ import java.util.List;
 
 import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
+import net.sf.anathema.character.backgrounds.model.IBackgroundAdditionListener;
+import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.experience.IExperience;
