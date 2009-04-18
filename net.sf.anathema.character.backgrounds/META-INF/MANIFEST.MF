@@ -11,3 +11,4 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.character.trait;bundle-version="1.0.0",
  net.sf.anathema.character.experience;bundle-version="1.0.0",
  net.sf.anathema.character.points;bundle-version="1.0.0"
+Export-Package: net.sf.anathema.character.backgrounds.model

@@ -34,5 +34,17 @@
          </modelReference>
       </modelList>
    </extension>
+   <extension
+         point="net.sf.anathema.character.points.configurations">
+      <pointGroup
+            groupId="backgrounds"
+            modelId="net.sf.anathema.character.backgrounds.model"
+            name="Backgrounds">
+      </pointGroup>
+      <bonusPointCalculator
+            groupReference="backgrounds"
+            handlerClass="net.sf.anathema.character.backgrounds.points.BonusPointHandler">
+      </bonusPointCalculator>
+   </extension>
 
 </plugin>
