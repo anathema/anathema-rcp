@@ -1,5 +1,6 @@
 package charactertype.sidereal.acceptance;
 
+import static character.acceptance.AcceptanceCharacterUtilities.*;
 import net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants;
 import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
@@ -12,18 +13,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import character.acceptance.AcceptanceCasteUtilities;
-import character.acceptance.AcceptanceCharacterUtilities;
 import character.acceptance.TraitInteractionUtilties;
 
+@SuppressWarnings("nls")
 public class SiderealMinimalAbilityValues_InteractionTest {
 
   private IFolder folder;
 
   @Before
   public void createSiderealFolder() throws Exception {
-    folder = AcceptanceCharacterUtilities.createCharacterFolder(
-        IAcceptanceConstants.DEFAULT_TEMPLATE,
-        "Sidereal"); //$NON-NLS-1$
+    folder = createCharacterFolder(IAcceptanceConstants.DEFAULT_TEMPLATE, "Sidereal");
   }
 
   @Test
@@ -34,53 +33,53 @@ public class SiderealMinimalAbilityValues_InteractionTest {
 
   @Test
   public void hasJourneysMinimalAbilitiesWithJourneysCaste() throws Exception {
-    AcceptanceCasteUtilities.setCasteInModel(folder, "Journeys"); //$NON-NLS-1$
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Journeys");
     reduceAllValuesByOne();
     SiderealAbilityAsserts.assertJourneysMinimalAbilities(folder);
   }
 
   @Test
   public void journeyCastesHaveSailAsAlternateMinimumToRide() throws Exception {
-    AcceptanceCasteUtilities.setCasteInModel(folder, "Journeys"); //$NON-NLS-1$
-    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Ride", "Sail", 2); //$NON-NLS-1$ //$NON-NLS-2$
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Journeys");
+    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Ride", "Sail", 2);
   }
 
   @Test
   public void hasSerenityMinimalAbilitiesWithSerenityCaste() throws Exception {
-    AcceptanceCasteUtilities.setCasteInModel(folder, "Serenity"); //$NON-NLS-1$
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Serenity");
     reduceAllValuesByOne();
     SiderealAbilityAsserts.assertSerenityMinimalAbilities(folder);
   }
 
   @Test
   public void serenityCastesHavePerformanceAsAlternateMinimumToCraft() throws Exception {
-    AcceptanceCasteUtilities.setCasteInModel(folder, "Serenity"); //$NON-NLS-1$
-    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Craft", "Performance", 2); //$NON-NLS-1$ //$NON-NLS-2$
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Serenity");
+    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Craft", "Performance", 2);
   }
 
   @Test
   public void hasBattlesMinimalAbilitiesWithBattlesCaste() throws Exception {
-    AcceptanceCasteUtilities.setCasteInModel(folder, "Battles"); //$NON-NLS-1$
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Battles");
     reduceAllValuesByOne();
     SiderealAbilityAsserts.assertBattlesMinimalAbilities(folder);
   }
 
   @Test
   public void battleCastesHaveMeleeAsAlternateMinimumToArchery() throws Exception {
-    AcceptanceCasteUtilities.setCasteInModel(folder, "Battles"); //$NON-NLS-1$
-    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Archery", "Melee", 3); //$NON-NLS-1$ //$NON-NLS-2$
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Battles");
+    SiderealAbilityAsserts.assertAlternateMinimum(folder, "Archery", "Melee", 3);
   }
 
   @Test
   public void hasSecretsMinimalAbilitiesWithSecretsCaste() throws Exception {
-    AcceptanceCasteUtilities.setCasteInModel(folder, "Secrets"); //$NON-NLS-1$
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Secrets");
     reduceAllValuesByOne();
     SiderealAbilityAsserts.assertSecretsMinimalAbilities(folder);
   }
 
   @Test
   public void hasEndingsMinimalAbilitiesWithEndingsCaste() throws Exception {
-    AcceptanceCasteUtilities.setCasteInModel(folder, "Endings"); //$NON-NLS-1$
+    AcceptanceCasteUtilities.setCasteInModel(folder, "Endings");
     reduceAllValuesByOne();
     SiderealAbilityAsserts.assertEndingsMinimalAbilities(folder);
   }
