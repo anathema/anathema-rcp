@@ -4,7 +4,7 @@ import net.sf.anathema.character.spiritualtraits.virtues.Virtues;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.points.ICalculator;
-import net.sf.anathema.character.trait.points.PointWiseExperienceCalculator;
+import net.sf.anathema.character.trait.points.CurrentRatingExperienceCalculator;
 
 public class VirtuesXpCalculatorFactory {
 
@@ -16,6 +16,6 @@ public class VirtuesXpCalculatorFactory {
 
   public ICalculator create() {
     final IBasicTrait[] traits = virtues.getTraits();
-    return new PointWiseExperienceCalculator(3, traits);
+    return new CurrentRatingExperienceCalculator(3, traits);
   }
 }

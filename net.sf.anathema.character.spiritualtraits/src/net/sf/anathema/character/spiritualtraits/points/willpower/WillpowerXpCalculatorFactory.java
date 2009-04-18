@@ -4,7 +4,7 @@ import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.points.ICalculator;
-import net.sf.anathema.character.trait.points.PointWiseExperienceCalculator;
+import net.sf.anathema.character.trait.points.CurrentRatingExperienceCalculator;
 
 public class WillpowerXpCalculatorFactory {
 
@@ -16,6 +16,6 @@ public class WillpowerXpCalculatorFactory {
   }
 
   public ICalculator create() {
-    return new PointWiseExperienceCalculator(2, trait);
+    return new CurrentRatingExperienceCalculator(2, trait);
   }
 }

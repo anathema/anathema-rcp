@@ -4,7 +4,7 @@ import static net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants.
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.points.ICalculator;
-import net.sf.anathema.character.trait.points.PointWiseExperienceCalculator;
+import net.sf.anathema.character.trait.points.CurrentRatingExperienceCalculator;
 
 public class EssenceExperienceCalculatoryFactory {
 
@@ -18,6 +18,6 @@ public class EssenceExperienceCalculatoryFactory {
 
   public ICalculator create() {
     final IBasicTrait essence = spiritualTraits.getTrait(ESSENCE_ID);
-    return new PointWiseExperienceCalculator(experienceCost, essence);
+    return new CurrentRatingExperienceCalculator(experienceCost, essence);
   }
 }
