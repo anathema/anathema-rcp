@@ -20,7 +20,7 @@ public class SolarInteractive_FavoredAbilityTest {
 
   @Before
   public void createSolarFolderWithFirstAttributeFavored() throws Exception {
-    this.character = AcceptanceCharacter.FromFolderNameAndTemplateId("Solar", IIntegrationConstants.DEFAULT_TEMPLATE); //$NON-NLS-1$
+    this.character = AcceptanceCharacter.FromFolderNameAndTemplateId("Solar", IAcceptanceConstants.DEFAULT_TEMPLATE); //$NON-NLS-1$
     ITraitCollectionModel abilities = (ITraitCollectionModel) character.getModel(IAbilitiesPluginConstants.MODEL_ID);
     InteractionTraitList groups = character.createTraitInteraction(IAbilitiesPluginConstants.MODEL_ID);
     favoredAbility = groups.setTraitFavoredAndReturn(abilities, 0, 0);

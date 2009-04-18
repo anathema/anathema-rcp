@@ -12,7 +12,7 @@ public class AbstractDefaultSiderealTest {
   @Before
   public void createSidereal() {
     this.character = AcceptanceCharacter.FromFolderNameAndTemplateId(
-        "Sidereal", ISiderealAcceptanceConstants.DEFAULT_TEMPLATE_ID); //$NON-NLS-1$
+        "Sidereal", IAcceptanceConstants.DEFAULT_TEMPLATE); //$NON-NLS-1$
   }
 
   @After

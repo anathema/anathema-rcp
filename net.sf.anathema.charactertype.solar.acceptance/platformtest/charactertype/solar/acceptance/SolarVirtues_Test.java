@@ -13,7 +13,7 @@ public class SolarVirtues_Test extends AbstractVirtues_Test {
 
   @Override
   protected String getTemplateId() {
-    return IIntegrationConstants.DEFAULT_TEMPLATE;
+    return IAcceptanceConstants.DEFAULT_TEMPLATE;
   }
   
   @Test

@@ -11,7 +11,7 @@ public class AbstractDefaultSolarTest {
 
   @Before
   public void createSolar() {
-    this.character = AcceptanceCharacter.FromFolderNameAndTemplateId("Solar", IIntegrationConstants.DEFAULT_TEMPLATE); //$NON-NLS-1$
+    this.character = AcceptanceCharacter.FromFolderNameAndTemplateId("Solar", IAcceptanceConstants.DEFAULT_TEMPLATE); //$NON-NLS-1$
   }
 
   @After

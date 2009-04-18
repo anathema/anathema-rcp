@@ -6,6 +6,6 @@ public class SolarWillpower_Test extends AbstractWillpower_Test {
 
   @Override
   protected String getTemplateId() {
-    return IIntegrationConstants.DEFAULT_TEMPLATE;
+    return IAcceptanceConstants.DEFAULT_TEMPLATE;
   }
 }

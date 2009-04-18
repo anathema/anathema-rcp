@@ -22,7 +22,7 @@ public class SiderealMinimalAbilityValues_InteractionTest {
   @Before
   public void createSiderealFolder() throws Exception {
     folder = AcceptanceCharacterUtilities.createCharacterFolder(
-        ISiderealAcceptanceConstants.DEFAULT_TEMPLATE_ID,
+        IAcceptanceConstants.DEFAULT_TEMPLATE,
         "Sidereal"); //$NON-NLS-1$
   }
 

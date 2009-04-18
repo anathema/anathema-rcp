@@ -12,7 +12,7 @@ public class AbstractPactLunarTest {
   @Before
   public void createLunar() {
     this.character = AcceptanceCharacter.FromFolderNameAndTemplateId(
-        "Pactlunar", ILunarAcceptanceConstants.PACT_LUNAR_ID); //$NON-NLS-1$
+        "Pactlunar", IAcceptanceConstants.PACT_LUNAR_ID); //$NON-NLS-1$
   }
 
   @After

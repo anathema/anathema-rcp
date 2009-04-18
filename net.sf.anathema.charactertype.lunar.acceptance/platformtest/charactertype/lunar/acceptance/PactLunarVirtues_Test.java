@@ -6,6 +6,6 @@ public class PactLunarVirtues_Test extends AbstractVirtues_Test {
 
   @Override
   protected String getTemplateId() {
-    return ILunarAcceptanceConstants.PACT_LUNAR_ID;
+    return IAcceptanceConstants.PACT_LUNAR_ID;
   }
 }

@@ -1,8 +1,8 @@
 package charactertype.sidereal.acceptance;
 
-import character.acceptance.tests.AbstractWillpower_Test;
+import character.acceptance.tests.AbstractBackground_Test;
 
-public class SiderealWillpower_Test extends AbstractWillpower_Test {
+public class SiderealBackground_Test extends AbstractBackground_Test {
 
   @Override
   protected String getTemplateId() {

@@ -32,7 +32,7 @@ public class SolarAbilitiesDisplayTest {
 
   @BeforeClass
   public static void createSolarFolder() throws Exception {
-    new CharacterFactory().createNewCharacter(IIntegrationConstants.DEFAULT_TEMPLATE, "Solar"); //$NON-NLS-1$
+    new CharacterFactory().createNewCharacter(IAcceptanceConstants.DEFAULT_TEMPLATE, "Solar"); //$NON-NLS-1$
     IProject project = RepositoryUtilities.getProject(CharacterRepositoryUtilities.getCharacterItemType());
     folder = project.getFolder("Solar"); //$NON-NLS-1$
     groups = TraitInteractionUtilties.createDisplayGroups(folder, IAbilitiesPluginConstants.MODEL_ID);

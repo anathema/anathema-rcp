@@ -16,6 +16,6 @@ public class SiderealEssence_Test extends AbstractEssenceUserEssence_Test {
 
   @Override
   protected String getTemplateId() {
-    return ISiderealAcceptanceConstants.DEFAULT_TEMPLATE_ID;
+    return IAcceptanceConstants.DEFAULT_TEMPLATE;
   }
 }

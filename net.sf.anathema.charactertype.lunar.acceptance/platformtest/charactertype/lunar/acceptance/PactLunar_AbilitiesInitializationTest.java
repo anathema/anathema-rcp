@@ -22,7 +22,7 @@ public class PactLunar_AbilitiesInitializationTest {
 
   @Before
   public void createLunarFolder() throws Exception {
-    folder = AcceptanceCharacterUtilities.createCharacterFolder(ILunarAcceptanceConstants.PACT_LUNAR_ID, "Lunar"); //$NON-NLS-1$
+    folder = AcceptanceCharacterUtilities.createCharacterFolder(IAcceptanceConstants.PACT_LUNAR_ID, "Lunar"); //$NON-NLS-1$
     abilitiesModel = CharacterAcceptanceUtilities.getAbilitiesModel(folder);
   }
 

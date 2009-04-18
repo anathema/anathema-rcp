@@ -6,7 +6,7 @@ public class SolarEssence_Test extends AbstractEssenceUserEssence_Test {
 
   @Override
   protected String getTemplateId() {
-    return IIntegrationConstants.DEFAULT_TEMPLATE;
+    return IAcceptanceConstants.DEFAULT_TEMPLATE;
   }
 
   @Override

@@ -35,7 +35,7 @@ public class PactLunar_AbilitiesInteractionTest {
 
   @Before
   public void createLunarFolder() throws Exception {
-    folder = AcceptanceCharacterUtilities.createCharacterFolder(ILunarAcceptanceConstants.PACT_LUNAR_ID, "Lunar"); //$NON-NLS-1$
+    folder = AcceptanceCharacterUtilities.createCharacterFolder(IAcceptanceConstants.PACT_LUNAR_ID, "Lunar"); //$NON-NLS-1$
     interactiveAbilities = TraitInteractionUtilties.createDisplayGroups(folder, IAbilitiesPluginConstants.MODEL_ID);
     abilities = (ITraitCollectionModel) ModelCache.getInstance().getModel(
         new ModelIdentifier(new CharacterId(folder), IAbilitiesPluginConstants.MODEL_ID));
