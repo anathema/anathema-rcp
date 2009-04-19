@@ -11,7 +11,5 @@ public interface IEditorInputConfiguration {
 
   public int getTraitMaximum(IIdentificate traitId);
 
-  public String getTraitLabel(IIdentificate traitId);
-
   public boolean supportsSubTraits();
 }

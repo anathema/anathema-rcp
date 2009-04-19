@@ -1,7 +1,6 @@
 package net.sf.anathema.character.spiritualtraits.editor;
 
 import net.disy.commons.core.util.ArrayUtilities;
-import net.sf.anathema.character.spiritualtraits.display.SpiritualTraitLabelMap;
 import net.sf.anathema.character.spiritualtraits.model.SpiritualTraitGroupTemplate;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
@@ -19,11 +18,6 @@ public class SpiritualTraitsEditorInputConfiguration extends AbstractEditorInput
   @Override
   public String getGroupLabel(IDisplayTraitGroup< ? > group) {
     return group.getLabel();
-  }
-
-  @Override
-  public String getTraitLabel(IIdentificate traitType) {
-    return SpiritualTraitLabelMap.getLabel(traitType.getId());
   }
 
   @Override

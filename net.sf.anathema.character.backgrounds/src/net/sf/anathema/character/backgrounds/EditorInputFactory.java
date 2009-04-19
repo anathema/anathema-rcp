@@ -7,12 +7,10 @@ import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvid
 import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.core.character.Character;
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
-import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.model.TraitCollectionContext;
 import net.sf.anathema.character.trait.persistence.StaticTraitGroupTemplate;
@@ -33,9 +31,8 @@ public class EditorInputFactory extends UnconfiguredExecutableExtension implemen
       IModelCollection modelProvider) throws PersistenceException, CoreException {
     IModelIdentifier identifier = new ModelIdentifier(characterId, IBackgroundModel.MODEL_ID);
     IBackgroundModel background = (IBackgroundModel) modelProvider.getModel(identifier);
-    ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
     ITraitCollectionContext context = createContext(characterId, modelProvider);
-    return new BackgroundEditorInput(modelFile, imageUrl, nameProvider, characterType, background, context);
+    return new BackgroundEditorInput(modelFile, imageUrl, nameProvider, characterId, background, context);
   }
 
   private ITraitCollectionContext createContext(ICharacterId characterId, IModelCollection modelProvider) {

@@ -5,36 +5,25 @@ import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.character.backgrounds.model.IBackgroundAdditionListener;
 import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
-import net.sf.anathema.character.core.traitview.IValueContainer;
-import net.sf.anathema.character.core.traitview.IntDisplayArea;
-import net.sf.anathema.character.core.traitview.IntValuePaintListener;
-import net.sf.anathema.character.trait.display.IDisplayTrait;
-import net.sf.anathema.character.trait.display.IntViewImageProvider;
+import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
+import net.sf.anathema.character.trait.groupeditor.dynamic.DynamicTraitContainer;
+import net.sf.anathema.character.trait.groupeditor.dynamic.IDynamicEditor;
+import net.sf.anathema.character.trait.groupeditor.dynamic.TraitContainer;
+import net.sf.anathema.character.trait.groupeditor.dynamic.TraitViewFactory;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.lib.ui.IDisposable;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Transform;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
-public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgroundModel> {
+public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgroundModel> implements IDynamicEditor {
 
   private static final class TextChangingFocusListener implements FocusListener {
 
@@ -61,6 +50,7 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
 
   private static final String EMPTY_TEXT = ""; //$NON-NLS-1$
   private static final String DEFAULT_TEXT = Messages.BackgroundEditor_HINT_TEXT;
+  private Composite layoutContainer;
 
   @Override
   protected IEditorControl createItemEditorControl() {
@@ -72,9 +62,9 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
       public void createPartControl(final Composite parent) {
         final BackgroundEditorInput editorInput = (BackgroundEditorInput) getEditorInput();
         final FormToolkit toolkit = new FormToolkit(parent.getDisplay());
-        Composite container = createParentContainer(parent, toolkit);
-        createBackgroundEntry(editorInput, toolkit, container);
-        createBackgroundTable(editorInput, toolkit, container);
+        Composite body = createParentContainer(parent, toolkit);
+        createBackgroundEntry(editorInput, toolkit, body);
+        createBackgroundTable(editorInput, toolkit, body);
       }
 
       private Composite createParentContainer(final Composite parent, final FormToolkit toolkit) {
@@ -108,67 +98,26 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
       private void createBackgroundTable(
           final BackgroundEditorInput editorInput,
           final FormToolkit toolkit,
-          final Composite container) {
-        final Table table = toolkit.createTable(container, SWT.BORDER | SWT.SINGLE);
-        table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-        table.addListener(SWT.MeasureItem, new Listener() {
-          public void handleEvent(Event event) {
-            event.width = getEntryWidth(table);
-          }
-        });
-        table.addListener(SWT.PaintItem, new Listener() {
-          public void handleEvent(final Event event) {
-            IValueContainer redrawable = new IValueContainer() {
-
-              @Override
-              public void redraw() {
-                // nothing to do
-              }
-
-              @Override
-              public int getValue() {
-                IDisplayTrait background = (IDisplayTrait) event.item.getData();
-                return background.getValue();
-              }
-            };
-            final IntValuePaintListener intValuePaint = createIntValuePaint(redrawable);
-            int x = getEntryWidth(table) - intValuePaint.getArea().getPreferredWidth();
-            int itemHeight = table.getItemHeight();
-            int imageHeight = intValuePaint.getArea().getPreferredHeight();
-            int y = event.y + (itemHeight - imageHeight) / 2;
-            Transform transform = new Transform(table.getDisplay());
-            transform.translate(x, y);
-            event.gc.setTransform(transform);
-            intValuePaint.paintControl(event.gc);
-          }
-        });
-        table.addMouseListener(new MouseAdapter() {
-          @Override
-          public void mouseDown(MouseEvent e) {
-            IntDisplayArea displayArea = createIntDisplayArea();
-            int entryWidth = getEntryWidth(table);
-            int textLength = entryWidth - displayArea.getPreferredWidth();
-            int xWithinDisplayArea = e.x - textLength;
-            if (xWithinDisplayArea >= 0) {
-              int value = displayArea.getIndexForPosition(xWithinDisplayArea);
-              TableItem item = table.getItem(new Point(e.x, e.y));
-              IInteractiveTrait background = (IInteractiveTrait) item.getData();
-              background.setValue(value);
-              table.redraw();
-            }
-          }
-        });
-        startListeningForNewBackgrounds(editorInput, table);
-        for (IDisplayTrait background : editorInput.getBackgrounds()) {
-          addBackgroundToTable(table, background);
+          final Composite body) {
+        layoutContainer = toolkit.createComposite(body);
+        layoutContainer.setLayout(new GridLayout(3, false));
+        TraitViewFactory factory = new TraitViewFactory(
+            layoutContainer,
+            editorInput.getImageProvider(),
+            editorInput.getCharacterId());
+        TraitContainer traitContainer = new TraitContainer(toolkit, factory, BackgroundEditor.this);
+        for (IInteractiveTrait trait : editorInput.getBackgrounds()) {
+          traitContainer.addTrait(trait);
         }
+        TraitContainer dynamicTraitContainer = new DynamicTraitContainer(toolkit, factory, BackgroundEditor.this);
+        startListeningForNewBackgrounds(editorInput, dynamicTraitContainer);
       }
 
-      private void startListeningForNewBackgrounds(final BackgroundEditorInput editorInput, final Table table) {
-        final IBackgroundAdditionListener<IDisplayTrait> additionListener = new IBackgroundAdditionListener<IDisplayTrait>() {
+      private void startListeningForNewBackgrounds(final BackgroundEditorInput editorInput, final TraitContainer table) {
+        final IBackgroundAdditionListener<IInteractiveTrait> additionListener = new IBackgroundAdditionListener<IInteractiveTrait>() {
           @Override
-          public void traitAdded(IDisplayTrait trait) {
-            addBackgroundToTable(table, trait);
+          public void traitAdded(IInteractiveTrait trait) {
+            table.addTrait(trait);
             entry.setText(EMPTY_TEXT);
           }
         };
@@ -190,32 +139,14 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
     };
   }
 
-  private int getEntryWidth(Table table) {
-    return table.getClientArea().width;
+  @Override
+  public void decorate(IInteractiveTrait trait, IExtendableIntValueView view) {
+    // TODO Surplusmarking für Backgrounds
   }
 
-  private IntDisplayArea createIntDisplayArea() {
-    IntViewImageProvider imageProvider = createImageProvider();
-    Image passiveImage = imageProvider.createPassiveImage();
-    return IntValuePaintListener.createDisplayArea(passiveImage, 5);
-  }
-
-  private IntValuePaintListener createIntValuePaint(IValueContainer redrawable) {
-    IntViewImageProvider imageProvider = createImageProvider();
-    Image passiveImage = imageProvider.createPassiveImage();
-    Image valueImage = imageProvider.createActiveImage();
-    return new IntValuePaintListener(redrawable, passiveImage, valueImage, 5);
-  }
-
-  private IntViewImageProvider createImageProvider() {
-    final BackgroundEditorInput editorInput = (BackgroundEditorInput) getEditorInput();
-    String activeImageId = editorInput.getCharacterType().getTraitImageId();
-    return new IntViewImageProvider(activeImageId);
-  }
-
-  private void addBackgroundToTable(final Table table, IDisplayTrait background) {
-    TableItem item = new TableItem(table, SWT.NONE);
-    item.setText(background.getTraitType().getId());
-    item.setData(background);
+  @Override
+  public void redraw() {
+    layoutContainer.pack();
+    layoutContainer.layout();
   }
 }

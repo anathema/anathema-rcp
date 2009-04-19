@@ -13,6 +13,7 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.groupeditor.dynamic.DynamicTraitContainer;
 import net.sf.anathema.character.trait.groupeditor.dynamic.IDynamicEditor;
+import net.sf.anathema.character.trait.groupeditor.dynamic.TraitContainer;
 import net.sf.anathema.character.trait.groupeditor.dynamic.TraitViewFactory;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
@@ -57,9 +58,9 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
       @Override
       public void createPartControl(Composite parent) {
         ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
-        final FormToolkit toolkit = new FormToolkit(parent.getDisplay());
+        FormToolkit toolkit = new FormToolkit(parent.getDisplay());
         SectionFactory sectionFactory = new SectionFactory(toolkit);
-        final Form form = toolkit.createForm(parent);
+        Form form = toolkit.createForm(parent);
         toolkit.decorateFormHeading(form);
         form.setText(getEditorInput().getName());
         form.getBody().setLayout(new FillLayout());
@@ -75,11 +76,9 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
           Composite content = sectionFactory.create(layoutContainer, title);
           content.setLayout(new GridLayout(3, false));
           TraitViewFactory factory = new TraitViewFactory(content, editorInput.getImageProvider(), characterId);
-          for (final IInteractiveTrait trait : group) {
-            String label = editorInput.getConfiguration().getTraitLabel(trait.getTraitType());
-            final IExtendableIntValueView view = factory.create(label, toolkit, trait);
-            decorate(trait, view);
-            addDisposable(trait);
+          TraitContainer traitContainer = new TraitContainer(toolkit, factory, GroupEditor.this);
+          for (IInteractiveTrait trait : group) {
+            traitContainer.addTrait(trait);
           }
         }
         if (editorInput.supportsSubTraits()) {
@@ -87,7 +86,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
         }
         IFolder characterFolder = editorInput.getCharacterFolder();
         Display display = layoutContainer.getDisplay();
-        final IResourceChangeListener resourceListener = new CharacterPartNameListener(
+        IResourceChangeListener resourceListener = new CharacterPartNameListener(
             GroupEditor.this,
             characterFolder,
             display);
@@ -99,7 +98,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
       private void createCraftSection(
           final ITraitGroupEditorInput editorInput,
           final FormToolkit toolkit,
-          final Form form,
+          Form form,
           ICharacterId characterId) {
         Section section = toolkit.createSection(layoutContainer, ExpandableComposite.TITLE_BAR);
         section.setText(Messages.GroupEditor_Crafts);
@@ -112,7 +111,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
         form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.text") { //$NON-NLS-1$
               @Override
               protected Control createControl(Composite parent) {
-                final Text craftTextField = toolkit.createText(parent, ""); //$NON-NLS-1$
+                Text craftTextField = toolkit.createText(parent, ""); //$NON-NLS-1$
                 text[0] = craftTextField;
                 return craftTextField;
               }
@@ -146,7 +145,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
               }
             });
         form.getToolBarManager().update(true);
-        for (final IInteractiveTrait trait : getCrafts(editorInput)) {
+        for (IInteractiveTrait trait : getCrafts(editorInput)) {
           subtraitContainer.addTrait(trait);
         }
       }

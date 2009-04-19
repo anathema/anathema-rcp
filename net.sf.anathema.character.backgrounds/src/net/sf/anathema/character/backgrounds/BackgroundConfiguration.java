@@ -21,9 +21,4 @@ public class BackgroundConfiguration extends AbstractEditorInputConfiguration {
   public String getModelId() {
     return IBackgroundModel.MODEL_ID;
   }
-
-  @Override
-  public String getTraitLabel(IIdentificate traitId) {
-    return traitId.getId();
-  }
 }

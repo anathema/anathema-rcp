@@ -8,15 +8,18 @@ import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.backgrounds.model.IBackgroundAdditionListener;
 import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
-import net.sf.anathema.character.trait.display.IDisplayTrait;
+import net.sf.anathema.character.trait.display.IntViewImageProvider;
 import net.sf.anathema.character.trait.groupeditor.IEditorInputConfiguration;
 import net.sf.anathema.character.trait.groupeditor.NullFavorizationInteraction;
+import net.sf.anathema.character.trait.groupeditor.dynamic.IIntViewImageProvider;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.interactive.InteractiveTraitFactory;
 import net.sf.anathema.character.trait.preference.ITraitPreferences;
@@ -28,19 +31,19 @@ import org.eclipse.core.resources.IFile;
 public class BackgroundEditorInput extends AbstractCharacterModelEditorInput<IBackgroundModel> {
 
   private final IBackgroundModel model;
-  private final ICharacterType characterType;
   private final ITraitCollectionContext context;
-  private final GenericControl<IBackgroundAdditionListener<IDisplayTrait>> control = new GenericControl<IBackgroundAdditionListener<IDisplayTrait>>();
+  private final GenericControl<IBackgroundAdditionListener<IInteractiveTrait>> control = new GenericControl<IBackgroundAdditionListener<IInteractiveTrait>>();
+  private final ICharacterId characterId;
 
   public BackgroundEditorInput(
       IFile file,
       URL imageUrl,
       IDisplayNameProvider displayNameProvider,
-      ICharacterType characterType,
+      ICharacterId characterId,
       IBackgroundModel model,
       ITraitCollectionContext context) {
     super(file, imageUrl, displayNameProvider, new BackgroundPersister());
-    this.characterType = characterType;
+    this.characterId = characterId;
     this.model = model;
     this.context = context;
     startListeningForNewBackgrounds();
@@ -50,9 +53,9 @@ public class BackgroundEditorInput extends AbstractCharacterModelEditorInput<IBa
     model.addModificationListener(new IBackgroundAdditionListener<IBasicTrait>() {
       @Override
       public void traitAdded(final IBasicTrait trait) {
-        control.forAllDo(new IClosure<IBackgroundAdditionListener<IDisplayTrait>>() {
+        control.forAllDo(new IClosure<IBackgroundAdditionListener<IInteractiveTrait>>() {
           @Override
-          public void execute(IBackgroundAdditionListener<IDisplayTrait> listener) throws RuntimeException {
+          public void execute(IBackgroundAdditionListener<IInteractiveTrait> listener) throws RuntimeException {
             InteractiveTraitFactory factory = createTraitFactory();
             IInteractiveTrait interactiveTrait = convertTrait(factory, trait);
             listener.traitAdded(interactiveTrait);
@@ -70,10 +73,6 @@ public class BackgroundEditorInput extends AbstractCharacterModelEditorInput<IBa
   @Override
   public IBackgroundModel getItem() {
     return model;
-  }
-
-  public ICharacterType getCharacterType() {
-    return characterType;
   }
 
   public Iterable<IInteractiveTrait> getBackgrounds() {
@@ -97,11 +96,21 @@ public class BackgroundEditorInput extends AbstractCharacterModelEditorInput<IBa
     return traitFactory.create(trait, context.getValidators(trait.getTraitType().getId()));
   }
 
-  public void addModificationListener(IBackgroundAdditionListener<IDisplayTrait> backgroundAdditionListener) {
+  public void addModificationListener(IBackgroundAdditionListener<IInteractiveTrait> backgroundAdditionListener) {
     control.addListener(backgroundAdditionListener);
   }
 
-  public void removeModificationListener(IBackgroundAdditionListener<IDisplayTrait> additionListener) {
+  public void removeModificationListener(IBackgroundAdditionListener<IInteractiveTrait> additionListener) {
     control.removeListener(additionListener);
+  }
+
+  public IIntViewImageProvider getImageProvider() {
+    ICharacterType characterType = new CharacterTypeFinder().getCharacterType(characterId);
+    String activeImageId = characterType.getTraitImageId();
+    return new IntViewImageProvider(activeImageId);
+  }
+
+  public ICharacterId getCharacterId() {
+    return characterId;
   }
 }
