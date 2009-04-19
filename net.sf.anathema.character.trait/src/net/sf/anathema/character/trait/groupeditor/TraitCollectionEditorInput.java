@@ -18,6 +18,7 @@ import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.display.IntViewImageProvider;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.groupeditor.dynamic.IIntViewImageProvider;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.interactive.InteractiveTraitGroupTransformer;
 import net.sf.anathema.character.trait.persistence.TraitCollectionPersister;

@@ -37,7 +37,6 @@ public class AbilitiesMessages extends NLS implements INameCollection {
   public static String Thrown;
   public static String War;
 
-
   private static final ReflectionMessages MESSAGES = new ReflectionMessages(AbilitiesMessages.class, new Logger(
       IAbilitiesPluginConstants.PLUGIN_ID));
   static {
@@ -48,15 +47,19 @@ public class AbilitiesMessages extends NLS implements INameCollection {
   public String getName(String id) {
     return get(id);
   }
-  
+
   public static String get(String id) {
     return MESSAGES.get(id);
   }
-  
-  
+
+  @Override
+  public boolean knowsNameFor(String traitId) {
+    return MESSAGES.hasField(traitId);
+  }
+
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
-    //nothing to do
+    // nothing to do
   }
 }

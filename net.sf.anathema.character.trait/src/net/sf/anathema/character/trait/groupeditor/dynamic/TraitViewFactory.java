@@ -1,10 +1,17 @@
-package net.sf.anathema.character.trait.groupeditor;
+package net.sf.anathema.character.trait.groupeditor.dynamic;
 
 import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.traitview.CanvasIntValueDisplay;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
+import net.sf.anathema.character.trait.groupeditor.EnabledUpdateListener;
+import net.sf.anathema.character.trait.groupeditor.FavoredTraitStatusImageProvider;
+import net.sf.anathema.character.trait.groupeditor.FavorizationButtonChangeListener;
+import net.sf.anathema.character.trait.groupeditor.FavorizationImageProvider;
+import net.sf.anathema.character.trait.groupeditor.FavorizationModelListener;
+import net.sf.anathema.character.trait.groupeditor.IImageProvider;
+import net.sf.anathema.character.trait.groupeditor.TraitStatusImageProviderContainer;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.character.trait.interactive.TraitPresenter;
 import net.sf.anathema.character.trait.status.ITraitStatusImageProvider;

@@ -4,5 +4,7 @@ import org.eclipse.core.runtime.IExecutableExtension;
 
 public interface INameCollection extends IExecutableExtension {
 
-  String getName(String id);
+  public String getName(String id);
+
+  public boolean knowsNameFor(String id);
 }

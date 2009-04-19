@@ -23,7 +23,8 @@ public class AttributeMessages extends NLS implements INameCollection {
   public static String Physical;
   public static String Social;
   public static String Mental;
-  private static ReflectionMessages MESSAGES = new ReflectionMessages(AttributeMessages.class, new Logger(AttributesPlugin.ID));
+  private static ReflectionMessages MESSAGES = new ReflectionMessages(AttributeMessages.class, new Logger(
+      AttributesPlugin.ID));
   static {
     NLS.initializeMessages(BUNDLE_NAME, AttributeMessages.class);
   }
@@ -32,14 +33,19 @@ public class AttributeMessages extends NLS implements INameCollection {
   public String getName(String id) {
     return get(id);
   }
-  
+
   public static String get(String id) {
     return MESSAGES.get(id);
   }
-  
+
   @Override
   public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
       throws CoreException {
-    //nothing to do
+    // nothing to do
+  }
+
+  @Override
+  public boolean knowsNameFor(String traitId) {
+    return MESSAGES.hasField(traitId);
   }
 }

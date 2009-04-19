@@ -11,7 +11,9 @@ import net.sf.anathema.character.core.listening.CharacterPartNameListener;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
-import net.sf.anathema.character.trait.groupeditor.subtrait.SubtraitContainer;
+import net.sf.anathema.character.trait.groupeditor.dynamic.DynamicTraitContainer;
+import net.sf.anathema.character.trait.groupeditor.dynamic.IDynamicEditor;
+import net.sf.anathema.character.trait.groupeditor.dynamic.TraitViewFactory;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 
 import org.eclipse.core.resources.IFolder;
@@ -36,7 +38,7 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 
-public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollectionModel> {
+public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollectionModel> implements IDynamicEditor {
 
   private static final String TRAIT_ID_CRAFT = "Craft"; //$NON-NLS-1$
   private final ClassedProvider<ITraitGroupEditorDecoration> decorations = new ClassedProvider<ITraitGroupEditorDecoration>();
@@ -76,9 +78,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
           for (final IInteractiveTrait trait : group) {
             String label = editorInput.getConfiguration().getTraitLabel(trait.getTraitType());
             final IExtendableIntValueView view = factory.create(label, toolkit, trait);
-            for (ITraitGroupEditorDecoration decoration : decorations) {
-              decoration.decorate(trait, view, editorInput);
-            }
+            decorate(trait, view);
             addDisposable(trait);
           }
         }
@@ -107,51 +107,47 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
         section.setClient(sectionContent);
         TraitViewFactory factory = new TraitViewFactory(sectionContent, editorInput.getImageProvider(), characterId);
         sectionContent.setLayout(new GridLayout(3, false));
-        final SubtraitContainer subtraitContainer = new SubtraitContainer(
-            toolkit,
-            factory,
-            editorInput,
-            GroupEditor.this);
+        final DynamicTraitContainer subtraitContainer = new DynamicTraitContainer(toolkit, factory, GroupEditor.this);
         final Text[] text = new Text[1];
         form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.text") { //$NON-NLS-1$
-          @Override
-          protected Control createControl(Composite parent) {
-            final Text craftTextField = toolkit.createText(parent, ""); //$NON-NLS-1$
-            text[0] = craftTextField;
-            return craftTextField;
-          }
-        });
+              @Override
+              protected Control createControl(Composite parent) {
+                final Text craftTextField = toolkit.createText(parent, ""); //$NON-NLS-1$
+                text[0] = craftTextField;
+                return craftTextField;
+              }
+            });
         form.getToolBarManager().add(new ControlContribution("craft.composite.contribution.button") { //$NON-NLS-1$
-          @Override
-          protected Control createControl(Composite parent) {
-            final Button addCraftButton = toolkit.createButton(parent, Messages.GroupEditor_AddButtonText, SWT.PUSH);
-            addCraftButton.addMouseListener(new MouseAdapter() {
               @Override
-              public void mouseUp(MouseEvent e) {
-                IInteractiveTrait craft = editorInput.addSubTrait(TRAIT_ID_CRAFT, text[0].getText());
-                subtraitContainer.addSubTrait(craft);
-                addCraftButton.setEnabled(false);
-              }
-            });
-            text[0].addModifyListener(new ModifyListener() {
-              @Override
-              public void modifyText(ModifyEvent e) {
-                for (IInteractiveTrait craft : getCrafts(editorInput)) {
-                  if (craft.getTraitType().getId().equals(text[0].getText())) {
+              protected Control createControl(Composite parent) {
+                final Button addCraftButton = toolkit.createButton(parent, Messages.GroupEditor_AddButtonText, SWT.PUSH);
+                addCraftButton.addMouseListener(new MouseAdapter() {
+                  @Override
+                  public void mouseUp(MouseEvent e) {
+                    IInteractiveTrait craft = editorInput.addSubTrait(TRAIT_ID_CRAFT, text[0].getText());
+                    subtraitContainer.addTrait(craft);
                     addCraftButton.setEnabled(false);
-                    return;
                   }
-                }
-                addCraftButton.setEnabled(true);
+                });
+                text[0].addModifyListener(new ModifyListener() {
+                  @Override
+                  public void modifyText(ModifyEvent e) {
+                    for (IInteractiveTrait craft : getCrafts(editorInput)) {
+                      if (craft.getTraitType().getId().equals(text[0].getText())) {
+                        addCraftButton.setEnabled(false);
+                        return;
+                      }
+                    }
+                    addCraftButton.setEnabled(true);
+                  }
+                });
+                addCraftButton.setEnabled(false);
+                return addCraftButton;
               }
             });
-            addCraftButton.setEnabled(false);
-            return addCraftButton;
-          }
-        });
         form.getToolBarManager().update(true);
         for (final IInteractiveTrait trait : getCrafts(editorInput)) {
-          subtraitContainer.addSubTrait(trait);
+          subtraitContainer.addTrait(trait);
         }
       }
     };
@@ -167,12 +163,15 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
     }
   }
 
-  public ClassedProvider<ITraitGroupEditorDecoration> getDecorations() {
-    return decorations;
-  }
-
   public void redraw() {
     sectionContent.getParent().pack(true);
     layoutContainer.layout();
+  }
+
+  @Override
+  public void decorate(IInteractiveTrait trait, IExtendableIntValueView view) {
+    for (ITraitGroupEditorDecoration decoration : decorations) {
+      decoration.decorate(trait, view, (ITraitGroupEditorInput) getEditorInput());
+    }
   }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.group.ITraitGroup;
+import net.sf.anathema.character.trait.groupeditor.dynamic.IIntViewImageProvider;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.lib.util.IIdentificate;
 

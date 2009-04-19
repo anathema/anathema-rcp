@@ -22,19 +22,32 @@ public class TraitMessages {
     IExtensionElement element = extensionPoint.getFirst(new IPredicate<IExtensionElement>() {
       @Override
       public boolean evaluate(IExtensionElement candidate) {
-        return getName(traitId, candidate) != traitId;
+        try {
+          INameCollection nameCollection = candidate.getAttributeAsObject(ATTRIB_CLASS, INameCollection.class);
+          return nameCollection.knowsNameFor(traitId);
+        }
+        catch (RuntimeException e) {
+          throw e;
+        }
+        catch (Exception e) {
+          throw new RuntimeException(e);
+        }
       }
     });
+    if (element == IExtensionElement.NO_ELEMENT) {
+      return traitId;
+    }
     return getName(traitId, element);
   }
 
   private String getName(final String trait, IExtensionElement element) {
     try {
-      return element.getAttributeAsObject(ATTRIB_CLASS, INameCollection.class).getName(trait);
+      INameCollection nameCollection = element.getAttributeAsObject(ATTRIB_CLASS, INameCollection.class);
+      return nameCollection.getName(trait);
     }
     catch (ExtensionException e) {
       CharacterTraitPlugin.getDefaultInstance().log(IStatus.WARNING, Messages.TraitMessages_Error, e);
-      return null;
+      return trait;
     }
   }
 }

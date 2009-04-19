@@ -1,15 +1,12 @@
 package net.sf.anathema.character.trait.resources;
 
+import java.lang.reflect.Field;
+
 import net.sf.anathema.basics.eclipse.logging.Logger;
 
 import org.eclipse.osgi.util.NLS;
 
-public class ReflectionMessages extends NLS {
-  private static final String BUNDLE_NAME = "net.sf.anathema.character.trait.resources.messages"; //$NON-NLS-1$
-  public static String ReflectionMessages_ErrorMessage;
-  static {
-    NLS.initializeMessages(BUNDLE_NAME, ReflectionMessages.class);
-  }
+public class ReflectionMessages {
 
   private final Class< ? > clazz;
   private final Logger logger;
@@ -24,8 +21,17 @@ public class ReflectionMessages extends NLS {
       return (String) clazz.getField(fieldName).get(null);
     }
     catch (Exception e) {
-      logger.warn(NLS.bind(ReflectionMessages_ErrorMessage, fieldName, clazz), e);
+      logger.warn(NLS.bind(Messages.ReflectionMessages_ErrorMessage, fieldName, clazz), e);
       return fieldName;
     }
+  }
+
+  public boolean hasField(String fieldName) {
+    for (Field field : clazz.getDeclaredFields()) {
+      if (field.getName().equals(fieldName)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
