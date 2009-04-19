@@ -1,8 +1,8 @@
-package net.sf.anathema.character.freebies.virtues.internal;
+package net.sf.anathema.character.freebies.configuration;
 
 import net.sf.anathema.character.core.character.ICharacterId;
 
-public interface IVirtueFreebieLimit {
+public interface ITraitFreebieLimit {
 
   int getFor(ICharacterId id);
 

@@ -1,33 +1,32 @@
 package net.sf.anathema.character.freebies.virtues.internal;
 
-import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.ModelCache;
-import net.sf.anathema.character.freebies.configuration.IFreebiesHandler;
+import net.sf.anathema.character.freebies.configuration.AbstractLimitedFreebiesHandler;
+import net.sf.anathema.character.freebies.configuration.ITraitFreebieLimit;
+import net.sf.anathema.character.freebies.configuration.TraitFreebieLimit;
 import net.sf.anathema.character.freebies.virtues.VirtueFreebiesConstants;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.spiritualtraits.virtues.Virtues;
-import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 
-public class VirtueFreebiesHandler extends UnconfiguredExecutableExtension implements IFreebiesHandler {
+public class VirtueFreebiesHandler extends AbstractLimitedFreebiesHandler {
 
   private final IModelCollection models;
-  private final IVirtueFreebieLimit virtueFreebieLimit;
 
   public VirtueFreebiesHandler() {
     this(ModelCache.getInstance());
   }
 
   public VirtueFreebiesHandler(IModelCollection models) {
-    this(models, new VirtueFreebieLimit());
+    this(models, new TraitFreebieLimit());
   }
 
-  public VirtueFreebiesHandler(IModelCollection models, IVirtueFreebieLimit virtueFreebieLimit) {
+  public VirtueFreebiesHandler(IModelCollection models, ITraitFreebieLimit limit) {
+    super(limit, 1);
     this.models = models;
-    this.virtueFreebieLimit = virtueFreebieLimit;
   }
 
   @Override
@@ -36,31 +35,9 @@ public class VirtueFreebiesHandler extends UnconfiguredExecutableExtension imple
   }
 
   @Override
-  public int getPoints(ICharacterId id, int credit) {
+  protected Virtues getTraits(ICharacterId id) {
     ModelIdentifier identifier = new ModelIdentifier(id, IPluginConstants.MODEL_ID);
     ITraitCollectionModel traits = (ITraitCollectionModel) models.getModel(identifier);
-    if (!traits.getAllTraits().iterator().hasNext()) {
-      return 0;
-    }
-    Virtues virtues = new Virtues(traits);
-    int limit = virtueFreebieLimit.getFor(id);
-    int cost = calculateCreditUsedByVirtues(virtues, limit);
-    return Math.min(credit, cost);
-  }
-
-  private int calculateCreditUsedByVirtues(Virtues virtues, int limit) {
-    int cost = 0;
-    for (IBasicTrait virtue : virtues.getTraits()) {
-      int usedCredit = calculateCreditUse(virtue, limit);
-      cost += usedCredit;
-    }
-    return cost;
-  }
-
-  private int calculateCreditUse(IBasicTrait virtue, int limit) {
-    int virtueValue = virtue.getCreationModel().getValue();
-    int creditableValue = Math.min(limit, virtueValue);
-    int usedCredit = Math.max(0, creditableValue - 1);
-    return usedCredit;
+    return new Virtues(traits);
   }
 }

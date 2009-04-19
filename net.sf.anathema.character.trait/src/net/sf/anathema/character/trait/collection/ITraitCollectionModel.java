@@ -8,7 +8,7 @@ import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.lib.util.IIdentificate;
 
-public interface ITraitCollectionModel extends IModel {
+public interface ITraitCollectionModel extends IModel, Iterable<IBasicTrait> {
 
   public Iterable<IBasicTrait> getAllTraits();
 

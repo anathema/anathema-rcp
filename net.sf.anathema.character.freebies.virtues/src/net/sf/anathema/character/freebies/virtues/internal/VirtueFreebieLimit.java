@@ -8,15 +8,15 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.ICharacterTypeFinder;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
+import net.sf.anathema.character.freebies.configuration.TraitFreebieLimit;
 import net.sf.anathema.character.freebies.virtues.VirtueFreebiesConstants;
 
-public class VirtueFreebieLimit implements IVirtueFreebieLimit {
-
+public class VirtueFreebieLimit extends TraitFreebieLimit {
   private final IPluginExtension[] extensions;
   private final ICharacterTypeFinder finder;
 
   public VirtueFreebieLimit() {
-    this (new EclipseExtensionPoint(VirtueFreebiesConstants.PLUGIN_ID, "freebieLimit"), new CharacterTypeFinder());
+    this(new EclipseExtensionPoint(VirtueFreebiesConstants.PLUGIN_ID, "freebieLimit"), new CharacterTypeFinder());
   }
 
   public VirtueFreebieLimit(IExtensionPoint extensionPoint, ICharacterTypeFinder finder) {
@@ -35,6 +35,6 @@ public class VirtueFreebieLimit implements IVirtueFreebieLimit {
         }
       }
     }
-    return 3;
+    return super.getFor(id);
   }
 }

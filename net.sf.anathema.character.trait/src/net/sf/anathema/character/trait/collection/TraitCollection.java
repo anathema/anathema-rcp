@@ -1,6 +1,7 @@
 package net.sf.anathema.character.trait.collection;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import net.disy.commons.core.model.listener.IChangeListener;
@@ -53,6 +54,11 @@ public class TraitCollection extends AbstractTraitCollection {
   @Override
   public Iterable<IBasicTrait> getAllTraits() {
     return traits;
+  }
+
+  @Override
+  public Iterator<IBasicTrait> iterator() {
+    return traits.iterator();
   }
 
   @Override

@@ -284,6 +284,10 @@
                id="net.sf.anathema.character.virtues.freebies"
                value="5">
          </credit>
+         <credit
+               id="background.freebies"
+               value="15">
+         </credit>
       </creditList>
    </extension>
    <extension
