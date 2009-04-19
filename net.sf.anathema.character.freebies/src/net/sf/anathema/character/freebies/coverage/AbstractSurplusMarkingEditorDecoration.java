@@ -48,6 +48,7 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Unconfig
         calculateCoverage();
       }
     });
+    calculateCoverage();
     viewsByType.put(trait.getTraitType(), view);
   }
 
@@ -64,7 +65,7 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Unconfig
   }
 
   private void calculateCoverage() {
-    if (ToggleSurplusMarkingHandler.ACTIVE) {
+    if (ToggleSurplusMarkingHandler.isMarkingActive()) {
       for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
         int coveredPoints = getPointsCoveredByCredit(entry.getKey());
         surplusPainters.get(entry.getValue()).setSurplusThreshold(coveredPoints);
@@ -77,7 +78,7 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Unconfig
   public void update() {
     calculateCoverage();
     for (IIntValueView display : viewsByType.values()) {
-      surplusPainters.get(display).setShowSurplus(ToggleSurplusMarkingHandler.ACTIVE);
+      surplusPainters.get(display).setShowSurplus(ToggleSurplusMarkingHandler.isMarkingActive());
     }
   }
 }

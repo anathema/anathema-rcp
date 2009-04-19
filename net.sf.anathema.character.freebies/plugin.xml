@@ -17,6 +17,10 @@
       <command
             id="net.sf.anathema.character.freebies.toggle.surplusmarking"
             name="%toggle.surplusmarking.command.name">
+         <state
+               class="org.eclipse.jface.commands.ToggleState"
+               id="surplusmarking.active">
+         </state>
       </command>
    </extension>
    <extension
