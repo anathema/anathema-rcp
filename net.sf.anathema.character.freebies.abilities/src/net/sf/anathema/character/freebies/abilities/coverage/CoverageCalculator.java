@@ -24,25 +24,23 @@ public class CoverageCalculator {
   public int calculate(ITraitCollectionModel collection, ICharacterId characterId, IIdentificate traitType) {
     ModelIdentifier experienceIdentifier = new ModelIdentifier(characterId, IExperience.MODEL_ID);
     IExperience experience = (IExperience) modelCollection.getModel(experienceIdentifier);
-    if (experience.isExperienced()) {
-      IBasicTrait trait = collection.getTrait(traitType.getId());
-      return trait.getCreationModel().getValue();
-    }
-    int remainingCheapFreebies = creditManager.getCredit(characterId, IAbilityFreebiesConstants.FAVORED_CREDIT);
-    int remainingExpensiveFreebies = creditManager.getCredit(characterId, IAbilityFreebiesConstants.UNRESTRICTED_CREDIT);
+    ICoverageBuilder coverageBuilder = createCoverageBuilder(characterId, experience);
     for (IBasicTrait trait : collection.getAllTraits()) {
-      int possiblyCovered = Math.min(trait.getCreationModel().getValue(), 3);
-      int cheapFreebiesSpent = 0;
-      if (trait.getStatusManager().getStatus().isCheap()) {
-        cheapFreebiesSpent = Math.min(remainingCheapFreebies, possiblyCovered);
-      }
-      int expensiveFreebiesSpent = Math.min(remainingExpensiveFreebies, possiblyCovered - cheapFreebiesSpent);
-      remainingCheapFreebies -= cheapFreebiesSpent;
-      remainingExpensiveFreebies -= expensiveFreebiesSpent;
+      int currentCoverage = coverageBuilder.calculateCoverageForNextTrait(trait);
       if (trait.getTraitType().equals(traitType)) {
-        return cheapFreebiesSpent + expensiveFreebiesSpent;
+        return currentCoverage;
       }
     }
     throw new UnreachableCodeReachedException();
+  }
+
+  private ICoverageBuilder createCoverageBuilder(ICharacterId characterId, IExperience experience) {
+    return experience.isExperienced() ? new ExperienceCoverageBuilder() : createBonusPointCoverageBuilder(characterId);
+  }
+
+  private ICoverageBuilder createBonusPointCoverageBuilder(ICharacterId characterId) {
+    int remainingCheapFreebies = creditManager.getCredit(characterId, IAbilityFreebiesConstants.FAVORED_CREDIT);
+    int remainingExpensiveFreebies = creditManager.getCredit(characterId, IAbilityFreebiesConstants.UNRESTRICTED_CREDIT);
+    return new BonuspointCoverageBuilder(remainingCheapFreebies, remainingExpensiveFreebies);
   }
 }
