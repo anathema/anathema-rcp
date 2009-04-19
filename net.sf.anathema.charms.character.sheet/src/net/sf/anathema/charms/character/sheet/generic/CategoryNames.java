@@ -1,5 +1,7 @@
 package net.sf.anathema.charms.character.sheet.generic;
 
+import java.util.Arrays;
+
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.trait.resources.INameCollection;
 
@@ -17,5 +19,10 @@ public class CategoryNames extends UnconfiguredExecutableExtension implements IN
       return Messages.CategoryNames_Attribute;
     }
     return id;
+  }
+
+  @Override
+  public boolean knowsNameFor(String id) {
+    return Arrays.asList(ABILITY, ATTRIBUTE).contains(id);
   }
 }
