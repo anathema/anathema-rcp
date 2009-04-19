@@ -6,6 +6,7 @@ import net.sf.anathema.character.core.character.Character;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.IModelCollection;
+import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.template.CharacterTemplateProvider;
 import net.sf.anathema.character.freebies.configuration.CreditManager;
 import net.sf.anathema.character.freebies.coverage.AbstractSurplusMarkingEditorDecoration;
@@ -37,7 +38,7 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
     ITraitCollectionContext traitContext = getContext();
     ITraitGroupEditorInput editorInput = getInput();
     ITraitCollectionModel collection = traitContext.getCollection();
-    CoverageCalculator calculator = new CoverageCalculator(new CreditManager());
+    CoverageCalculator calculator = new CoverageCalculator(new CreditManager(), ModelCache.getInstance());
     return calculator.calculate(collection, editorInput.getCharacterId(), traitType);
   }
 }

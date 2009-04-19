@@ -20,7 +20,6 @@ import net.sf.anathema.lib.util.IIdentificate;
 
 public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEditorDecoration<G> {
 
-
   @Override
   protected ITraitCollectionContext createContext(ITraitGroupEditorInput editorInput, IModelCollection modelCollection) {
     ICharacterId characterId = editorInput.getCharacterId();
@@ -35,9 +34,9 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
     ITraitGroupEditorInput editorInput = getInput();
     ITraitCollectionContext traitContext = getContext();
     ITraitGroup traitGroup = editorInput.findTraitGroup(traitType);
-    Map<Priority, Integer> creditByPriority = new AttributePriorityFreebies().get(
-        editorInput.getCharacterId(),
-        new CreditManager());
+    ICharacterId characterId = editorInput.getCharacterId();
+    AttributePriorityFreebies priorityFreebies = new AttributePriorityFreebies();
+    Map<Priority, Integer> creditByPriority = priorityFreebies.get(characterId, new CreditManager());
     ITraitGroup[] traitGroups = traitContext.getTraitGroups();
     ITraitCollectionModel collection = traitContext.getCollection();
     Dots dots = new AttributePointCalculator(creditByPriority, collection, traitGroups).getDotsFor(traitType);
