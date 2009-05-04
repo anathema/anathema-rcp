@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.anima;
 
-import static net.sf.anathema.character.sheet.anima.LineEncodingUtilities.*;
+import static net.sf.anathema.character.sheet.anima.util.LineEncodingUtilities.*;
 import static net.sf.anathema.character.sheet.common.IEncodeContext.*;
 
 import java.awt.Color;

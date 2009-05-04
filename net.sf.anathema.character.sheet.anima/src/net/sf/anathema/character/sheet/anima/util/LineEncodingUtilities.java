@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.anima;
+package net.sf.anathema.character.sheet.anima.util;
 
 import net.sf.anathema.character.sheet.elements.Line;
 import net.sf.anathema.character.sheet.elements.Position;
@@ -17,10 +17,11 @@ public class LineEncodingUtilities {
     if (lineCount <= 0) {
       return;
     }
-    Line.createHorizontalByCoordinate(lineStartPosition, maxX).encode(directContent);
+    Line line = Line.CreateHorizontalByCoordinate(lineStartPosition, maxX);
+    line.encode(directContent);
     for (int index = 1; index < lineCount; index++) {
       lineStartPosition = new Position(minX, lineStartPosition.y - lineHeight);
-      Line.createHorizontalByCoordinate(lineStartPosition, maxX).encode(directContent);
+      Line.CreateHorizontalByCoordinate(lineStartPosition, maxX).encode(directContent);
     }
   }
 }

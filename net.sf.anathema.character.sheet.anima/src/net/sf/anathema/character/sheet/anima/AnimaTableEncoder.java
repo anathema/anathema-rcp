@@ -8,6 +8,7 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.anima.columns.BannerFlareColumn;
 import net.sf.anathema.character.sheet.anima.columns.MotesColumn;
 import net.sf.anathema.character.sheet.anima.columns.StealthColumn;
+import net.sf.anathema.character.sheet.anima.util.ColumnDescriptor;
 import net.sf.anathema.character.sheet.elements.Bounds;
 
 import com.lowagie.text.Font;

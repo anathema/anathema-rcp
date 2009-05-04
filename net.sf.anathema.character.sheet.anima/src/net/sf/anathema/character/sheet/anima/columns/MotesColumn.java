@@ -1,8 +1,8 @@
 package net.sf.anathema.character.sheet.anima.columns;
 
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.sheet.anima.ColumnDescriptor;
 import net.sf.anathema.character.sheet.anima.IAnimaColumn;
+import net.sf.anathema.character.sheet.anima.util.ColumnDescriptor;
 
 public class MotesColumn implements IAnimaColumn {
 

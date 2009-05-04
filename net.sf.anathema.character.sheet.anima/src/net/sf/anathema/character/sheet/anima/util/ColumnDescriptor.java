@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.anima;
+package net.sf.anathema.character.sheet.anima.util;
 
 
 public class ColumnDescriptor {

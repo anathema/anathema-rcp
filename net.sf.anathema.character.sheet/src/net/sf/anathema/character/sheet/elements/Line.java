@@ -7,12 +7,12 @@ import com.lowagie.text.pdf.PdfContentByte;
 
 public class Line {
 
-  public static Line createHorizontalByCoordinate(Position startPoint, float endX) {
+  public static Line CreateHorizontalByCoordinate(Position startPoint, float endX) {
     return new Line(startPoint, new Position(endX, startPoint.y));
   }
 
   public static Line createHorizontalByLength(Position startPoint, float length) {
-    return createHorizontalByCoordinate(startPoint, startPoint.x + length);
+    return CreateHorizontalByCoordinate(startPoint, startPoint.x + length);
   }
 
   public static Line createVerticalByLength(Position startPoint, float length) {
