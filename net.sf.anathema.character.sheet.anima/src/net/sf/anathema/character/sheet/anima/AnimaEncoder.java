@@ -13,6 +13,7 @@ import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.content.PdfTextEncodingUtilities;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
+import net.sf.anathema.character.sheet.table.ITableEncoder;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;

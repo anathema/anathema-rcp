@@ -10,6 +10,7 @@ import net.sf.anathema.character.sheet.anima.columns.MotesColumn;
 import net.sf.anathema.character.sheet.anima.columns.StealthColumn;
 import net.sf.anathema.character.sheet.anima.util.ColumnDescriptor;
 import net.sf.anathema.character.sheet.elements.Bounds;
+import net.sf.anathema.character.sheet.table.AbstractTableEncoder;
 
 import com.lowagie.text.Font;
 import com.lowagie.text.Phrase;

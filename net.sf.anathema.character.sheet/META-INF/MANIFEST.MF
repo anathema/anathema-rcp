@@ -19,5 +19,7 @@ Bundle-Localization: plugin
 Export-Package: net.sf.anathema.character.sheet.common,
  net.sf.anathema.character.sheet.content,
  net.sf.anathema.character.sheet.elements,
- net.sf.anathema.character.sheet.page
+ net.sf.anathema.character.sheet.page,
+ net.sf.anathema.character.sheet.stats,
+ net.sf.anathema.character.sheet.table
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -1,0 +1,63 @@
+package net.sf.anathema.character.sheet.socialcombat;
+
+import net.sf.anathema.character.sheet.content.PdfEncoder;
+import net.sf.anathema.character.sheet.elements.Bounds;
+import net.sf.anathema.character.sheet.elements.Position;
+import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
+
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfContentByte;
+
+public class LabelledValueEncoder {
+
+  private final static float BOX_HEIGHT = IVoidStateFormatConstants.LINE_HEIGHT - 2;
+  private final static float BOX_WIDTH = 12;
+
+  private final int columnCount;
+  private final Position position;
+  private final float width;
+  private final float baseLine;
+  private final float commentLine;
+  private final float padding;
+  private boolean commentPresent = false;
+
+  public LabelledValueEncoder(int columnCount, Position position, float width, int padding) {
+    this.columnCount = columnCount;
+    this.position = position;
+    this.width = width;
+    this.baseLine = position.y - BOX_HEIGHT - padding;
+    this.commentLine = baseLine - IVoidStateFormatConstants.COMMENT_FONT_SIZE - padding + 1;
+    this.padding = padding;
+  }
+
+  private float getRightColumnX(int index) {
+    return position.x + width / columnCount * (index + 1);
+  }
+
+  public void addComment(PdfContentByte directContent, String text, int column) {
+    PdfEncoder pdfEncoder = new PdfEncoder(directContent);
+    float rightX = getRightColumnX(column);
+    commentPresent = true;
+    pdfEncoder.drawComment(text, new Position(rightX, commentLine), Element.ALIGN_RIGHT);
+  }
+
+  public void addLabelledValue(PdfContentByte directContent, int column, String text, int... values) {
+    PdfEncoder pdfEncoder = new PdfEncoder(directContent);
+    float rightX = getRightColumnX(column);
+    float allBoxesWidth = BOX_WIDTH * values.length + (values.length - 1) * padding;
+    Position textPosition = new Position(rightX - allBoxesWidth - padding, baseLine);
+    pdfEncoder.drawText(text, textPosition, Element.ALIGN_RIGHT);
+    for (int index = 0; index < values.length; index++) {
+      float boxX = rightX - allBoxesWidth + (BOX_WIDTH + padding) * index;
+      Bounds boxBounds = new Bounds(boxX, textPosition.y - 2, BOX_WIDTH, BOX_HEIGHT);
+      new net.sf.anathema.character.sheet.elements.Box(boxBounds).encodeTotalType(directContent);
+      Position valuePosition = new Position(boxBounds.getCenterX(), textPosition.getY());
+      pdfEncoder.drawText(String.valueOf(values[index]), valuePosition, Element.ALIGN_CENTER);
+    }
+  }
+
+  public float getHeight() {
+    float textPosition = commentPresent ? commentLine : baseLine;
+    return position.y - textPosition + 1;
+  }
+}
