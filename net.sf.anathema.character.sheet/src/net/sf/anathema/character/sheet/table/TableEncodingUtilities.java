@@ -5,11 +5,8 @@ import java.awt.Color;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
 import com.lowagie.text.Font;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
 
 public class TableEncodingUtilities {
 
@@ -45,29 +42,14 @@ public class TableEncodingUtilities {
       int border,
       int alignment,
       boolean enabled) {
-    PdfPCell innerCell = new PdfPCell(new Phrase(text, font));
-    innerCell.setBorderColor(borderColor);
-    innerCell.setBorderWidth(borderWidth);
-    innerCell.setBorder(border);
-    innerCell.setHorizontalAlignment(alignment);
-    innerCell.setPaddingTop(0.5f);
-    if (border != Rectangle.BOX) {
-      innerCell.setPaddingLeft(0);
-      innerCell.setPaddingRight(0);
-    }
+    ContentCellBuilder cellBuilder = new ContentCellBuilder(font);
+    cellBuilder.setText(text);
+    cellBuilder.setHorizontalAlignment(alignment);
+    cellBuilder.setBorder(borderColor, borderWidth, border);
     if (!enabled) {
-      innerCell.setBackgroundColor(Color.LIGHT_GRAY);
+      cellBuilder.disable();
     }
-
-    PdfPTable cellTable = new PdfPTable(1);
-    cellTable.setWidthPercentage(100);
-    cellTable.addCell(innerCell);
-
-    PdfPCell outerCell = new PdfPCell();
-    outerCell.addElement(cellTable);
-    outerCell.setBorder(Rectangle.NO_BORDER);
-    outerCell.setPadding(1);
-    return outerCell;
+    return cellBuilder.create();
   }
 
   public static Font createFont(BaseFont baseFont) {

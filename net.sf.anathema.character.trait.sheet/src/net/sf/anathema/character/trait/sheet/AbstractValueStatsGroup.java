@@ -18,27 +18,30 @@ public abstract class AbstractValueStatsGroup<T extends IStats> implements IStat
     return TableEncodingUtilities.createStandardColumnWeights(getColumnCount());
   }
 
+  @Deprecated
   protected final PdfPCell createFinalValueCell(Font font) {
-    return createContentCellTable(Color.BLACK, " ", font, 0.75f, true); //$NON-NLS-1$
+    return FinalValueCell.CreateEmpty(font);
   }
 
+  @Deprecated
   protected final PdfPCell createFinalValueCell(Font font, Integer value) {
-    return createFinalValueCell(font, value != null ? value.toString() : null);
+    return FinalValueCell.CreateForValue(font, value);
   }
 
-  protected final PdfPCell createFinalValueCell(Font font, String text) {
-    String content = text != null ? text : " "; //$NON-NLS-1$
-    return createContentCellTable(Color.BLACK, content, font, 0.75f, text != null);
-  }
-
+  @Deprecated
   protected final PdfPCell createFinalValueCell(Font font, String text, int alignment) {
-    boolean enabled = text != null;
-    String content = enabled ? text : " "; //$NON-NLS-1$
-    return createContentCellTable(Color.BLACK, content, font, 0.75f, alignment, enabled);
+    PdfPCell cell = FinalValueCell.CreateForText(font, text);
+    cell.setHorizontalAlignment(alignment);
+    return cell;
+  }
+
+  @Deprecated
+  protected final PdfPCell createFinalValueCell(Font font, String text) {
+    return FinalValueCell.CreateForText(font, text);
   }
 
   protected final PdfPCell createEmptyValueCell(Font font) {
-    return createContentCellTable(Color.GRAY, " ", font, 0.5f, true); //$NON-NLS-1$
+    return createContentCellTable(Color.GRAY, " ", font, 0.5f, true);
   }
 
   protected final PdfPCell createEquipmentValueCell(Font font, Integer value) {
@@ -48,7 +51,7 @@ public abstract class AbstractValueStatsGroup<T extends IStats> implements IStat
 
   private final String getStatsValueString(Integer value) {
     if (value == null) {
-      return " "; //$NON-NLS-1$
+      return " ";
     }
     StringBuilder stringBuilder = new StringBuilder(value.toString());
     if (value == 0) {
@@ -61,11 +64,11 @@ public abstract class AbstractValueStatsGroup<T extends IStats> implements IStat
   }
 
   protected String getPositivePrefix() {
-    return "+"; //$NON-NLS-1$
+    return "+";
   }
 
   protected String getZeroPrefix() {
-    return "+"; //$NON-NLS-1$
+    return "+";
   }
 
   private final PdfPCell createContentCellTable(
