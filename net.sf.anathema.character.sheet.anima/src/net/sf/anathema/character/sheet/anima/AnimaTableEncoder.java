@@ -30,7 +30,8 @@ public class AnimaTableEncoder extends AbstractTableEncoder {
   @Override
   protected PdfPTable createTable(PdfContentByte directContent, ICharacter character, Bounds bounds) {
     IAnimaColumn[] columns = getColumns();
-    PdfPTable table = new PdfPTable(getColumWidths(columns));
+    float[] columnWidths = getColumWidths(columns);
+    PdfPTable table = new PdfPTable(columnWidths);
     table.setWidthPercentage(100);
     for (IAnimaColumn column : columns) {
       ColumnDescriptor descriptor = column.getDescriptor();
@@ -60,13 +61,9 @@ public class AnimaTableEncoder extends AbstractTableEncoder {
 
   protected final PdfPCell createContentCell(String text) {
     PdfPCell cell = new PdfPCell(new Phrase(text, font));
-    configureCell(cell);
-    return cell;
-  }
-
-  protected void configureCell(PdfPCell cell) {
     cell.setPaddingTop(1);
     cell.setPaddingBottom(2);
+    return cell;
   }
 
   private PdfPCell createHeaderCell(String text) {

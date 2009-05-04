@@ -10,11 +10,9 @@ import com.lowagie.text.pdf.PdfPTable;
 
 public abstract class AbstractTableEncoder implements ITableEncoder {
 
-  protected abstract PdfPTable createTable(PdfContentByte directContent, ICharacter character, Bounds bounds)
-      throws DocumentException;
-
   @Override
-  public float encodeTable(PdfContentByte directContent, ICharacter character, Bounds bounds) throws DocumentException {
+  public final float encodeTable(PdfContentByte directContent, ICharacter character, Bounds bounds)
+      throws DocumentException {
     ColumnText tableColumn = new ColumnText(directContent);
     PdfPTable table = createTable(directContent, character, bounds);
     table.setWidthPercentage(100);
@@ -23,4 +21,7 @@ public abstract class AbstractTableEncoder implements ITableEncoder {
     tableColumn.go();
     return table.getTotalHeight();
   }
+
+  protected abstract PdfPTable createTable(PdfContentByte directContent, ICharacter character, Bounds bounds)
+      throws DocumentException;
 }
