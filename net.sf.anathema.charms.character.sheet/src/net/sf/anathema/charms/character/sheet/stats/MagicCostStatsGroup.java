@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.character.sheet.stats;
 
-import net.sf.anathema.charms.character.sheet.group.AbstractTextStatsGroup;
+import net.sf.anathema.character.sheet.stats.AbstractTextStatsGroup;
 
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPTable;

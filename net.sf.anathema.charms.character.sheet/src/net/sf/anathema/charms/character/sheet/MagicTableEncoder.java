@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.disy.commons.core.util.ObjectUtilities;
+import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.charms.character.sheet.group.IStatsGroup;
+import net.sf.anathema.character.sheet.stats.IStatsGroup;
+import net.sf.anathema.character.sheet.table.AbstractStatsTableEncoder;
 import net.sf.anathema.charms.character.sheet.stats.IMagicStats;
 import net.sf.anathema.charms.character.sheet.stats.MagicCostStatsGroup;
 import net.sf.anathema.charms.character.sheet.stats.MagicDetailsStatsGroup;
@@ -39,7 +41,7 @@ public class MagicTableEncoder extends AbstractStatsTableEncoder<IMagicStats> {
   }
 
   @Override
-  protected void encodeContent(PdfPTable table, Bounds bounds) {
+  protected void encodeContent(PdfPTable table, ICharacter character, Bounds bounds) {
     float heightLimit = bounds.height - 3;
     IStatsGroup<IMagicStats>[] groups = createStatsGroups();
     boolean encodeLine = true;

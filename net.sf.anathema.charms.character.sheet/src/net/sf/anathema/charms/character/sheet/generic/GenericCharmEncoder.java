@@ -10,6 +10,7 @@ import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.charms.character.model.GenericCharmCollector;
 
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 
 public class GenericCharmEncoder extends UnconfiguredExecutableExtension implements IDynamicPdfContentBoxEncoder {
@@ -21,11 +22,10 @@ public class GenericCharmEncoder extends UnconfiguredExecutableExtension impleme
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    new GenericCharmTableEncoder(context.getBaseFont(), collect(character), character).encodeTable(
-        directContent,
-        bounds);
+    BaseFont baseFont = context.getBaseFont();
+    Collection<String> genericCharms = collect(character);
+    new GenericCharmTableEncoder(baseFont, genericCharms).encodeTable(directContent, character, bounds);
   }
-  
 
   private Collection<String> collect(ICharacter character) {
     return new GenericCharmCollector(character).getGenericIdPatterns();

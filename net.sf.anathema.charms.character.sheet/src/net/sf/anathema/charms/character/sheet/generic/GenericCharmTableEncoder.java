@@ -8,13 +8,13 @@ import java.util.List;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
+import net.sf.anathema.character.sheet.table.AbstractTableEncoder;
+import net.sf.anathema.character.sheet.table.TableCell;
+import net.sf.anathema.character.sheet.table.TableEncodingUtilities;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.resources.TraitMessages;
 import net.sf.anathema.charms.character.model.GenericCharmCollector;
 import net.sf.anathema.charms.character.model.TraitCollector;
-import net.sf.anathema.charms.character.sheet.AbstractTableEncoder;
-import net.sf.anathema.charms.character.sheet.TableCell;
-import net.sf.anathema.charms.character.sheet.TableEncodingUtilities;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 
 import com.lowagie.text.DocumentException;
@@ -33,16 +33,15 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
   private final TraitMessages traitMessages = new TraitMessages();
   private final BaseFont baseFont;
   private final Iterable<String> genericIdPatterns;
-  private final ICharacter character;
 
-  public GenericCharmTableEncoder(BaseFont baseFont, Iterable<String> genericIdPatterns, ICharacter character) {
+  public GenericCharmTableEncoder(BaseFont baseFont, Iterable<String> genericIdPatterns) {
     this.baseFont = baseFont;
     this.genericIdPatterns = genericIdPatterns;
-    this.character = character;
   }
 
   @Override
-  protected PdfPTable createTable(PdfContentByte directContent, Bounds bounds) throws DocumentException {
+  protected PdfPTable createTable(PdfContentByte directContent, ICharacter character, Bounds bounds)
+      throws DocumentException {
     Font font = TableEncodingUtilities.createFont(baseFont);
     PdfTemplate learnedTemplate = createCharmDotTemplate(directContent, Color.BLACK);
     PdfTemplate notLearnedTemplate = createCharmDotTemplate(directContent, Color.WHITE);
