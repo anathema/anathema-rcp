@@ -7,7 +7,9 @@ import com.lowagie.text.pdf.BaseFont;
 
 public interface IEncodeContext {
 
-  public static final BaseFont BASEFONT = new Font(Font.HELVETICA, 7, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
+  public static final int FONT_SIZE = 7;
+  public static final BaseFont BASEFONT = new Font(Font.HELVETICA, FONT_SIZE, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(true);
+  public static final BaseFont SYMBOLFONT = new Font(Font.SYMBOL, FONT_SIZE, Font.NORMAL, Color.BLACK).getCalculatedBaseFont(false);
 
   public int getMaxEssence();
 
