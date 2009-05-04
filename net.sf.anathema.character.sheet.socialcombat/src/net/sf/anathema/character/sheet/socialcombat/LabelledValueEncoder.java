@@ -1,12 +1,11 @@
 package net.sf.anathema.character.sheet.socialcombat;
 
-import net.sf.anathema.character.sheet.content.PdfEncoder;
+import net.sf.anathema.character.sheet.content.IGraphicalEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
 import com.lowagie.text.Element;
-import com.lowagie.text.pdf.PdfContentByte;
 
 public class LabelledValueEncoder {
 
@@ -34,25 +33,23 @@ public class LabelledValueEncoder {
     return position.x + width / columnCount * (index + 1);
   }
 
-  public void addComment(PdfContentByte directContent, String text, int column) {
-    PdfEncoder pdfEncoder = new PdfEncoder(directContent);
+  public void addComment(IGraphicalEncoder graphicalEncoder, String text, int column) {
     float rightX = getRightColumnX(column);
     commentPresent = true;
-    pdfEncoder.drawComment(text, new Position(rightX, commentLine), Element.ALIGN_RIGHT);
+    graphicalEncoder.drawComment(text, new Position(rightX, commentLine), Element.ALIGN_RIGHT);
   }
 
-  public void addLabelledValue(PdfContentByte directContent, int column, String text, int... values) {
-    PdfEncoder pdfEncoder = new PdfEncoder(directContent);
+  public void addLabelledValue(IGraphicalEncoder graphicalEncoder, int column, String text, int... values) {
     float rightX = getRightColumnX(column);
     float allBoxesWidth = BOX_WIDTH * values.length + (values.length - 1) * padding;
     Position textPosition = new Position(rightX - allBoxesWidth - padding, baseLine);
-    pdfEncoder.drawText(text, textPosition, Element.ALIGN_RIGHT);
+    graphicalEncoder.drawText(text, textPosition, Element.ALIGN_RIGHT);
     for (int index = 0; index < values.length; index++) {
       float boxX = rightX - allBoxesWidth + (BOX_WIDTH + padding) * index;
       Bounds boxBounds = new Bounds(boxX, textPosition.y - 2, BOX_WIDTH, BOX_HEIGHT);
-      new net.sf.anathema.character.sheet.elements.Box(boxBounds).encodeTotalType(directContent);
+      graphicalEncoder.createBox(boxBounds).encode(0.75f);
       Position valuePosition = new Position(boxBounds.getCenterX(), textPosition.getY());
-      pdfEncoder.drawText(String.valueOf(values[index]), valuePosition, Element.ALIGN_CENTER);
+      graphicalEncoder.drawText(String.valueOf(values[index]), valuePosition, Element.ALIGN_CENTER);
     }
   }
 

@@ -1,5 +1,7 @@
 package net.sf.anathema.character.sheet.content;
 
+import net.sf.anathema.character.sheet.elements.Bounds;
+import net.sf.anathema.character.sheet.elements.Box;
 import net.sf.anathema.character.sheet.elements.Position;
 
 public interface IGraphicalEncoder {
@@ -24,7 +26,9 @@ public interface IGraphicalEncoder {
 
   public void drawLabelledContent(String label, String content, Position position, float width);
 
-  public void drawRectangle(Position lowerLeft, int size, boolean filled);
+  public void drawSquare(Position lowerLeft, int size, boolean filled);
 
   public void drawCircle(Position lowerLeft, int size, boolean isFilled);
+
+  public Box createBox(Bounds bound);
 }

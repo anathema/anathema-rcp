@@ -109,7 +109,7 @@ public class PdfTraitEncoder {
   }
 
   private void drawRectangle(Position position, boolean filled) {
-    pdfEncoder.drawRectangle(position, dotSize, filled);
+    pdfEncoder.drawSquare(position, dotSize, filled);
   }
 
   private void drawCircle(Position lowerLeft, boolean isFilled) {

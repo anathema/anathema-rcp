@@ -3,6 +3,8 @@ package net.sf.anathema.character.sheet.content;
 import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
+import net.sf.anathema.character.sheet.elements.Bounds;
+import net.sf.anathema.character.sheet.elements.Box;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
 
@@ -92,7 +94,7 @@ public final class PdfEncoder extends UnconfiguredExecutableExtension implements
     }
   }
 
-  public void drawRectangle(Position position, int size, boolean filled) {
+  public void drawSquare(Position position, int size, boolean filled) {
     initDirectContentForShapes();
     directContent.rectangle(position.x, position.y, size, size);
     commitShape(filled);
@@ -123,5 +125,10 @@ public final class PdfEncoder extends UnconfiguredExecutableExtension implements
     setFillColorBlack();
     setDefaultFont();
     directContent.setLineWidth(0);
+  }
+
+  @Override
+  public Box createBox(Bounds bounds) {
+    return new Box(bounds, directContent);
   }
 }

@@ -5,6 +5,8 @@ import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
+import net.sf.anathema.character.sheet.content.IGraphicalEncoder;
+import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
@@ -21,8 +23,7 @@ import com.lowagie.text.pdf.ColumnText;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfPTable;
 
-public class SocialCombatStatsEncoder extends UnconfiguredExecutableExtension implements
-    IPdfContentBoxEncoder {
+public class SocialCombatStatsEncoder extends UnconfiguredExecutableExtension implements IPdfContentBoxEncoder {
 
   private final Font commentFont;
   private final Font font;
@@ -35,9 +36,10 @@ public class SocialCombatStatsEncoder extends UnconfiguredExecutableExtension im
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
     float valueWidth = bounds.width;
+    IGraphicalEncoder graphicalEncoder = new PdfEncoder(directContent);
     Bounds valueBounds = new Bounds(bounds.x, bounds.y, valueWidth, bounds.height);
     SocialCombatCharacter socialCombatCharacter = new SocialCombatCharacter(character);
-    float valueHeight = encodeValues(directContent, valueBounds, socialCombatCharacter);
+    float valueHeight = encodeValues(graphicalEncoder, valueBounds, socialCombatCharacter);
     Bounds attackTableBounds = new Bounds(bounds.x, bounds.y, valueWidth, bounds.height - valueHeight);
     ITableEncoder tableEncoder = new SocialCombatStatsTableEncoder(BASEFONT);
     float attackHeight = tableEncoder.encodeTable(directContent, character, attackTableBounds);
@@ -118,13 +120,13 @@ public class SocialCombatStatsEncoder extends UnconfiguredExecutableExtension im
     return cell;
   }
 
-  private float encodeValues(PdfContentByte directContent, Bounds bounds, SocialCombatCharacter character) {
+  private float encodeValues(IGraphicalEncoder graphicalEncoder, Bounds bounds, SocialCombatCharacter character) {
     int joinDebate = character.getJoinDebate();
     int dodgeMDV = character.getDodgeMdv();
     Position upperLeftCorner = new Position(bounds.x, bounds.getMaxY());
     LabelledValueEncoder encoder = new LabelledValueEncoder(2, upperLeftCorner, bounds.width, 3);
-    encoder.addLabelledValue(directContent, 0, "Join Debate", joinDebate);
-    encoder.addLabelledValue(directContent, 1, "Dodge MDV", dodgeMDV);
+    encoder.addLabelledValue(graphicalEncoder, 0, "Join Debate", joinDebate);
+    encoder.addLabelledValue(graphicalEncoder, 1, "Dodge MDV", dodgeMDV);
     return encoder.getHeight() + 1;
   }
 

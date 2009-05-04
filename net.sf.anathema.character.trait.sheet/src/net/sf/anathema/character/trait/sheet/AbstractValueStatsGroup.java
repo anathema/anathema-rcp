@@ -32,8 +32,9 @@ public abstract class AbstractValueStatsGroup<T extends IStats> implements IStat
   }
 
   protected final PdfPCell createFinalValueCell(Font font, String text, int alignment) {
-    String content = text != null ? text : " "; //$NON-NLS-1$
-    return createContentCellTable(Color.BLACK, content, font, 0.75f, alignment, text != null);
+    boolean enabled = text != null;
+    String content = enabled ? text : " "; //$NON-NLS-1$
+    return createContentCellTable(Color.BLACK, content, font, 0.75f, alignment, enabled);
   }
 
   protected final PdfPCell createEmptyValueCell(Font font) {

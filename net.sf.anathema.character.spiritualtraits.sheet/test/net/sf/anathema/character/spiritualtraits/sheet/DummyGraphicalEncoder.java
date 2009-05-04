@@ -4,8 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.sf.anathema.character.sheet.content.IGraphicalEncoder;
+import net.sf.anathema.character.sheet.elements.Bounds;
+import net.sf.anathema.character.sheet.elements.Box;
 import net.sf.anathema.character.sheet.elements.Position;
 
+@SuppressWarnings("nls")
 public class DummyGraphicalEncoder implements IGraphicalEncoder {
 
   private final Set<Position> filledCirclePositions = new HashSet<Position>();
@@ -23,68 +26,61 @@ public class DummyGraphicalEncoder implements IGraphicalEncoder {
 
   @Override
   public void drawComment(String text, Position position, int alignment) {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public void drawLabelledContent(String label, String content, Position position, float width) {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public void drawMissingTextLine(Position position, float length) {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
-  public void drawRectangle(Position lowerLeft, int size, boolean filled) {
-    // TODO Auto-generated method stub
-
+  public void drawSquare(Position lowerLeft, int size, boolean filled) {
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public void drawText(String text, Position position, int alignment) {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public void drawVerticalText(String text, Position position, int alignment) {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public int getCommentTextWidth(String text) {
-    // TODO Auto-generated method stub
-    return 0;
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public int getDefaultTextWidth(String text) {
-    // TODO Auto-generated method stub
-    return 0;
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public void setCommentFont() {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public void setDefaultFont() {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("Dummy");
   }
 
   @Override
   public void setFillColorBlack() {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException("Dummy");
   }
 
+  @Override
+  public Box createBox(Bounds bound) {
+    throw new UnsupportedOperationException("Dummy");
+  }
 }
