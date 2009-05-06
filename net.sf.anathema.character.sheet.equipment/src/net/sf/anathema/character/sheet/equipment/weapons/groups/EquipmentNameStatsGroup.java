@@ -1,14 +1,12 @@
 package net.sf.anathema.character.sheet.equipment.weapons.groups;
 
-import net.sf.anathema.character.sheet.equipment.weapons.stats.IEquipmentStats;
+import net.sf.anathema.character.sheet.equipment.stats.IEquipmentStats;
 import net.sf.anathema.character.sheet.stats.AbstractNameStatsGroup;
-import net.sf.anathema.character.sheet.stats.IStatsGroup;
 
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPTable;
 
-public final class EquipmentNameStatsGroup<T extends IEquipmentStats> extends AbstractNameStatsGroup<T> implements
-    IStatsGroup<T> {
+public final class EquipmentNameStatsGroup<T extends IEquipmentStats> extends AbstractNameStatsGroup<T> {
 
   @Override
   public void addContent(PdfPTable table, Font font, T stats) {

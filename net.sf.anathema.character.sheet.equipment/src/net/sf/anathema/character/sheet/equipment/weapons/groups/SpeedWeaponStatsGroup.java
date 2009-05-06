@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.equipment.weapons.groups;
 
-import net.sf.anathema.character.sheet.equipment.weapons.stats.IWeaponStats;
+import net.sf.anathema.character.sheet.equipment.stats.IWeaponStats;
 import net.sf.anathema.character.trait.sheet.AbstractValueStatsGroup;
 import net.sf.anathema.character.trait.sheet.FinalValueCell;
 

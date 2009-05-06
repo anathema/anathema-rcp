@@ -2,6 +2,7 @@ package net.sf.anathema.character.sheet.equipment.weapons;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.derivedtraits.CombatCharacter;
+import net.sf.anathema.character.sheet.equipment.stats.IWeaponStats;
 import net.sf.anathema.character.sheet.equipment.weapons.groups.AccuracyWeaponStatsGroup;
 import net.sf.anathema.character.sheet.equipment.weapons.groups.DamageWeaponStatsGroup;
 import net.sf.anathema.character.sheet.equipment.weapons.groups.DefenceWeaponStatsGroup;
@@ -10,7 +11,6 @@ import net.sf.anathema.character.sheet.equipment.weapons.groups.RangeWeaponStats
 import net.sf.anathema.character.sheet.equipment.weapons.groups.RateWeaponStatsGroup;
 import net.sf.anathema.character.sheet.equipment.weapons.groups.SpeedWeaponStatsGroup;
 import net.sf.anathema.character.sheet.equipment.weapons.groups.TagsStatsGroup;
-import net.sf.anathema.character.sheet.equipment.weapons.stats.IWeaponStats;
 import net.sf.anathema.character.sheet.stats.IStatsGroup;
 import net.sf.anathema.character.sheet.table.AbstractFixedLineStatsTableEncoder;
 

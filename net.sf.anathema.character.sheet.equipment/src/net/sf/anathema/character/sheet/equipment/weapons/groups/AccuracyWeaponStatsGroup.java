@@ -3,7 +3,7 @@ package net.sf.anathema.character.sheet.equipment.weapons.groups;
 import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
 import net.sf.anathema.character.derivedtraits.AttackDto;
 import net.sf.anathema.character.derivedtraits.CombatCharacter;
-import net.sf.anathema.character.sheet.equipment.weapons.stats.IWeaponStats;
+import net.sf.anathema.character.sheet.equipment.stats.IWeaponStats;
 import net.sf.anathema.character.trait.sheet.AbstractValueStatsGroup;
 import net.sf.anathema.character.trait.sheet.FinalValueCell;
 import net.sf.anathema.character.trait.sheet.IntermediaryValueCell;

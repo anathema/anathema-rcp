@@ -7,6 +7,10 @@
             class="net.sf.anathema.character.sheet.equipment.weapons.WeaponryEncoder"
             fieldId="encoder.weaponry">
       </encoder>
+      <encoder
+            class="net.sf.anathema.character.sheet.equipment.armour.ArmourEncoder"
+            fieldId="encoder.armour">
+      </encoder>
    </extension>
 
 </plugin>

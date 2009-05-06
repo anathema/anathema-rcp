@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.equipment.weapons.stats;
+package net.sf.anathema.character.sheet.equipment.stats;
 
 import net.sf.anathema.lib.util.IIdentificate;
 

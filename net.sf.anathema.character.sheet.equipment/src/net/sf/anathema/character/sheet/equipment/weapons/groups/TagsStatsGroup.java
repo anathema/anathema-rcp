@@ -2,8 +2,8 @@ package net.sf.anathema.character.sheet.equipment.weapons.groups;
 
 import java.awt.Color;
 
-import net.sf.anathema.character.sheet.equipment.weapons.stats.IWeaponStats;
-import net.sf.anathema.character.sheet.equipment.weapons.stats.TagDto;
+import net.sf.anathema.character.sheet.equipment.stats.IWeaponStats;
+import net.sf.anathema.character.sheet.equipment.stats.TagDto;
 import net.sf.anathema.character.sheet.stats.IStatsGroup;
 import net.sf.anathema.character.sheet.table.TableEncodingUtilities;
 import net.sf.anathema.lib.lang.ConcatenateString;
