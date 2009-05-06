@@ -17,8 +17,4 @@ public abstract class AbstractNameStatsGroup<T extends IStats> extends AbstractT
       table.addCell(createTextCell(font, stats.getName()));
     }
   }
-
-  protected abstract String getHeaderResourceKey();
-
-  protected abstract String getResourceBase();
 }

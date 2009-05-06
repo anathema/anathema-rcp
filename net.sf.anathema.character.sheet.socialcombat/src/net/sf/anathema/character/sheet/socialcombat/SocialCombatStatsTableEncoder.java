@@ -22,7 +22,7 @@ public class SocialCombatStatsTableEncoder extends AbstractFixedLineStatsTableEn
 
   @SuppressWarnings("unchecked")
   @Override
-  protected IStatsGroup<ISocialCombatStats>[] createStatsGroups() {
+  protected IStatsGroup<ISocialCombatStats>[] createStatsGroups(ICharacter character) {
     return new IStatsGroup[] {
         new SocialCombatNameStatsGroup(),
         new SocialSpeedStatsGroup(),

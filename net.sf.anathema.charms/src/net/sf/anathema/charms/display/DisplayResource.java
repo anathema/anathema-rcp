@@ -5,8 +5,8 @@ import java.text.MessageFormat;
 import net.sf.anathema.charms.data.cost.BaseDto;
 import net.sf.anathema.charms.data.cost.LinearDto;
 import net.sf.anathema.charms.data.cost.ResourceDto;
-import net.sf.anathema.charms.view.tooltipp.ConcatenateString;
 import net.sf.anathema.charms.view.tooltipp.ResourceMessages;
+import net.sf.anathema.lib.lang.ConcatenateString;
 
 public class DisplayResource {
 

@@ -14,14 +14,4 @@ public class SocialCombatNameStatsGroup extends AbstractNameStatsGroup<ISocialCo
   public Float[] getColumnWeights() {
     return new Float[] { new Float(3) };
   }
-
-  @Override
-  protected String getHeaderResourceKey() {
-    return getResourceBase() + "AttackName"; //$NON-NLS-1$
-  }
-
-  @Override
-  protected String getResourceBase() {
-    return "Sheet.SocialCombat."; //$NON-NLS-1$
-  }
 }

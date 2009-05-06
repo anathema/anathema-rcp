@@ -33,7 +33,7 @@ public abstract class AbstractStatsTableEncoder<T extends IStats> extends Abstra
 
   @Override
   protected PdfPTable createTable(PdfContentByte directContent, ICharacter character, Bounds bounds) {
-    IStatsGroup<T>[] groups = createStatsGroups();
+    IStatsGroup<T>[] groups = createStatsGroups(character);
     float[] columnWidths = calculateColumnWidths(groups);
     PdfPTable table = new PdfPTable(columnWidths);
     table.setTotalWidth(bounds.width);
@@ -49,9 +49,9 @@ public abstract class AbstractStatsTableEncoder<T extends IStats> extends Abstra
     return table;
   }
 
-  protected abstract void encodeContent(PdfPTable table, ICharacter character, Bounds bounds);
+  protected abstract IStatsGroup<T>[] createStatsGroups(ICharacter character);
 
-  protected abstract IStatsGroup<T>[] createStatsGroups();
+  protected abstract void encodeContent(PdfPTable table, ICharacter character, Bounds bounds);
 
   protected final void encodeContentLine(PdfPTable table, IStatsGroup<T>[] groups, T stats) {
     for (int index = 0; index < groups.length; index++) {

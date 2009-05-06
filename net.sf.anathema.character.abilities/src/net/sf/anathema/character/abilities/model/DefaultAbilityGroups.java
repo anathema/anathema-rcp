@@ -1,5 +1,6 @@
 package net.sf.anathema.character.abilities.model;
 
+import static net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants.*;
 import net.sf.anathema.character.trait.group.TraitGroup;
 
 public class DefaultAbilityGroups {
@@ -8,9 +9,9 @@ public class DefaultAbilityGroups {
       Messages.DefaultAbilityGroups_War,
       "Archery", //$NON-NLS-1$
       "Athletics", //$NON-NLS-1$
-      "Awareness", //$NON-NLS-1$
+      AWARENESS_ID,
       "Dodge", //$NON-NLS-1$
-      "Integrity", //$NON-NLS-1$
+      INTEGRITY_ID,
       "MartialArts", //$NON-NLS-1$
       "Melee", //$NON-NLS-1$
       "Resistance", //$NON-NLS-1$

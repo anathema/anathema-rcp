@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Equipment Plug-in
+Bundle-SymbolicName: net.sf.anathema.character.sheet.equipment;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: net.sf.anathema.character.sheet;bundle-version="1.0.0",
+ net.sf.anathema.character.trait.sheet;bundle-version="1.0.0",
+ net.sf.anathema.character.derivedtraits;bundle-version="1.0.0",
+ net.sf.anathema.character.attributes;bundle-version="1.0.0"

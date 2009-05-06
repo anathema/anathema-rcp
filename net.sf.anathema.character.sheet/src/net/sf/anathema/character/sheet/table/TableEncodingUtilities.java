@@ -12,10 +12,6 @@ public class TableEncodingUtilities {
 
   public static final float FONT_SIZE = IVoidStateFormatConstants.FONT_SIZE - 0.5f;
 
-  public static Float[] createStandardColumnWeights(int columnCount) {
-    return createStandardColumnWidths(columnCount, 1);
-  }
-
   public static Float[] createStandardColumnWidths(int columnCount, final float value) {
     Float[] columnWeights = new Float[columnCount];
     for (int index = 0; index < columnWeights.length; index++) {

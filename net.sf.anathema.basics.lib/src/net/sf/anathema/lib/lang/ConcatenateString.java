@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.view.tooltipp;
+package net.sf.anathema.lib.lang;
 
 public class ConcatenateString {
 

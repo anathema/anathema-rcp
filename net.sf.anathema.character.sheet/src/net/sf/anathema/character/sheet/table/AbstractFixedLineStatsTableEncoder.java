@@ -16,7 +16,7 @@ public abstract class AbstractFixedLineStatsTableEncoder<T extends IStats> exten
 
   @Override
   protected void encodeContent(PdfPTable table, ICharacter character, Bounds bounds) {
-    IStatsGroup<T>[] groups = createStatsGroups();
+    IStatsGroup<T>[] groups = createStatsGroups(character);
     T[] printStats = getPrintStats(character);
     int line = 0;
     while (line < getLineCount()) {

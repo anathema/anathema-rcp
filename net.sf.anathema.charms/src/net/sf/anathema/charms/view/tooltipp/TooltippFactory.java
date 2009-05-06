@@ -5,6 +5,7 @@ import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.display.DisplayCharm;
 import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.ICharmId;
+import net.sf.anathema.lib.lang.ConcatenateString;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;

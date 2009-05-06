@@ -9,15 +9,15 @@ public class AttributeGroupTemplate implements ITraitGroupTemplate {
       new TraitGroup(
           Messages.AttributeGroup_PhysicalLabel,
           Messages.AttributeGroupTemplate_PhysicalGroup,
-          "Strength", "Dexterity", "Stamina"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+          "Strength", IAttributesPluginConstants.DEXTERITY_ID, "Stamina"), //$NON-NLS-1$//$NON-NLS-2$ 
       new TraitGroup(
           Messages.AttributeGroup_SocialLabel,
           Messages.AttributeGroupTemplate_SocialGroup,
-          "Charisma", "Manipulation", "Appearance"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+          "Charisma", "Manipulation", "Appearance"), //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
       new TraitGroup(
           Messages.AttributeGroup_MentalLabel,
           Messages.AttributeGroupTemplate_MentalGroup,
-          "Perception", "Intelligence", "Wits") };  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+          "Perception", "Intelligence", IAttributesPluginConstants.WITS_ID) }; //$NON-NLS-1$//$NON-NLS-2$ 
 
   public TraitGroup[] getGroups() {
     return groups;

@@ -1,7 +1,8 @@
 package net.sf.anathema.character.sheet.socialcombat.attack;
 
-import static net.sf.anathema.character.sheet.socialcombat.attack.CharacterUtilties.*;
+import static net.sf.anathema.character.derivedtraits.CharacterUtilties.*;
 import net.sf.anathema.character.core.character.ICharacter;
+import net.sf.anathema.character.derivedtraits.SocialCombatCharacter;
 import net.sf.anathema.character.sheet.socialcombat.ISocialCombatStats;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 
@@ -34,7 +35,7 @@ public abstract class AbstractSocialAttack implements ISocialCombatStats {
   public final int getHonestyMDV() {
     IDisplayTrait honestyAttribute = getHonestyAttribute();
     IDisplayTrait ability = getAbility();
-    return CharacterUtilties.getRoundUpDv(honestyAttribute, ability);
+    return getRoundUpDv(honestyAttribute, ability);
   }
 
   private IDisplayTrait getAbility() {

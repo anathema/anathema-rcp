@@ -30,7 +30,7 @@ public class MagicTableEncoder extends AbstractStatsTableEncoder<IMagicStats> {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected IStatsGroup<IMagicStats>[] createStatsGroups() {
+  protected IStatsGroup<IMagicStats>[] createStatsGroups(ICharacter character) {
     return new IStatsGroup[] {
         new MagicNameStatsGroup(),
         new MagicCostStatsGroup(),
@@ -43,7 +43,7 @@ public class MagicTableEncoder extends AbstractStatsTableEncoder<IMagicStats> {
   @Override
   protected void encodeContent(PdfPTable table, ICharacter character, Bounds bounds) {
     float heightLimit = bounds.height - 3;
-    IStatsGroup<IMagicStats>[] groups = createStatsGroups();
+    IStatsGroup<IMagicStats>[] groups = createStatsGroups(character);
     boolean encodeLine = true;
     String groupName = null;
     for (IMagicStats stats : printStats.toArray(new IMagicStats[printStats.size()])) {

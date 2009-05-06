@@ -7,7 +7,7 @@ import net.sf.anathema.charms.data.cost.CostDto;
 import net.sf.anathema.charms.data.cost.ResourceDto;
 import net.sf.anathema.charms.data.duration.DurationDto;
 import net.sf.anathema.charms.data.duration.PrimitiveDurationDto;
-import net.sf.anathema.charms.view.tooltipp.ConcatenateString;
+import net.sf.anathema.lib.lang.ConcatenateString;
 
 public class DisplayCharm {
 

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.socialcombat.attack;
+package net.sf.anathema.character.derivedtraits;
 
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 
