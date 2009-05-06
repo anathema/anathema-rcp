@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.anima.util;
+package net.sf.anathema.character.sheet.common;
 
 import static com.lowagie.text.Font.*;
 import static java.awt.Color.*;

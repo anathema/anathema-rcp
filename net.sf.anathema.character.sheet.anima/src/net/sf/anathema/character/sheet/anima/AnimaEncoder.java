@@ -7,7 +7,7 @@ import java.awt.Color;
 
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.sheet.anima.util.CaretSymbol;
+import net.sf.anathema.character.sheet.common.CaretSymbol;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.content.PdfTextEncodingUtilities;

@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.equipment.weapons.groups;
 
-import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
+import net.sf.anathema.character.attributes.model.IAttributeIds;
 import net.sf.anathema.character.derivedtraits.AttackDto;
 import net.sf.anathema.character.derivedtraits.CombatCharacter;
 import net.sf.anathema.character.sheet.equipment.stats.IWeaponStats;
@@ -50,7 +50,7 @@ public class DefenceWeaponStatsGroup extends AbstractValueStatsGroup<IWeaponStat
   private AttackDto createParryDto(IWeaponStats weapon) {
     AttackDto parryDto = new AttackDto();
     parryDto.ability = weapon.getAbility().getId();
-    parryDto.attribute = IAttributesPluginConstants.DEXTERITY_ID;
+    parryDto.attribute = IAttributeIds.DEXTERITY;
     parryDto.bonus = weapon.getDefence();
     return parryDto;
   }

@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.equipment.weapons.groups;
 
-import net.sf.anathema.character.attributes.model.IAttributesPluginConstants;
+import net.sf.anathema.character.attributes.model.IAttributeIds;
 import net.sf.anathema.character.derivedtraits.AttackDto;
 import net.sf.anathema.character.derivedtraits.CombatCharacter;
 import net.sf.anathema.character.sheet.equipment.stats.IWeaponStats;
@@ -45,7 +45,7 @@ public class AccuracyWeaponStatsGroup extends AbstractValueStatsGroup<IWeaponSta
   private AttackDto createAttackDto(IWeaponStats weapon) {
     AttackDto attackDto = new AttackDto();
     attackDto.ability = weapon.getAbility().getId();
-    attackDto.attribute = IAttributesPluginConstants.DEXTERITY_ID;
+    attackDto.attribute = IAttributeIds.DEXTERITY;
     attackDto.bonus = weapon.getAccuracy();
     return attackDto;
   }

@@ -1,39 +1,42 @@
 package net.sf.anathema.character.abilities.model;
 
-import static net.sf.anathema.character.abilities.util.IAbilitiesPluginConstants.*;
+import static net.sf.anathema.character.abilities.util.IAbilityIds.*;
 import net.sf.anathema.character.trait.group.TraitGroup;
 
 public class DefaultAbilityGroups {
 
-  private static final TraitGroup WAR_GROUP = new TraitGroup("War", //$NON-NLS-1$
+  private static final TraitGroup WAR_GROUP = new TraitGroup(
+      WAR,
       Messages.DefaultAbilityGroups_War,
-      "Archery", //$NON-NLS-1$
-      "Athletics", //$NON-NLS-1$
-      AWARENESS_ID,
-      "Dodge", //$NON-NLS-1$
-      INTEGRITY_ID,
-      "MartialArts", //$NON-NLS-1$
-      "Melee", //$NON-NLS-1$
-      "Resistance", //$NON-NLS-1$
-      "Thrown", "War"); //$NON-NLS-1$ //$NON-NLS-2$
+      ARCHERY,
+      ATHLETICS,
+      AWARENESS,
+      DODGE,
+      INTEGRITY,
+      MARTIAL_ARTS,
+      MELEE,
+      RESISTANCE,
+      THROWN,
+      WAR);
   private static final TraitGroup LIFE_GROUP = new TraitGroup("Life", //$NON-NLS-1$
       Messages.DefaultAbilityGroups_Life,
-      "Craft", //$NON-NLS-1$
-      "Larceny", //$NON-NLS-1$
-      "Linguistics", //$NON-NLS-1$
-      "Performance", //$NON-NLS-1$
-      "Presence", //$NON-NLS-1$
-      "Ride", //$NON-NLS-1$
-      "Sail", //$NON-NLS-1$
-      "Socialize", //$NON-NLS-1$
-      "Stealth", "Survival"); //$NON-NLS-1$ //$NON-NLS-2$
+      CRAFT,
+      LARCENY,
+      LINGUISTICS,
+      PERFORMANCE,
+      PRESENCE,
+      RIDE,
+      SAIL,
+      SOCIALIZE,
+      STEALTH,
+      SURVIVAL);
   private static final TraitGroup WISDOM_GROUP = new TraitGroup("Wisdom", //$NON-NLS-1$
       Messages.DefaultAbilityGroups_Wisdom,
-      "Bureaucracy", //$NON-NLS-1$
-      "Investigation", //$NON-NLS-1$
-      "Lore", //$NON-NLS-1$
-      "Medicine", //$NON-NLS-1$
-      "Occult"); //$NON-NLS-1$
+      BUREAUCRACY,
+      INVESTIGATION,
+      LORE,
+      MEDICINE,
+      OCCULT);
   private static final TraitGroup[] groups = new TraitGroup[] { WAR_GROUP, LIFE_GROUP, WISDOM_GROUP };
 
   public TraitGroup[] get() {

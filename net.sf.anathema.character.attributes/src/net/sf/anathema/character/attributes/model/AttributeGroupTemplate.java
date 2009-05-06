@@ -1,5 +1,6 @@
 package net.sf.anathema.character.attributes.model;
 
+import static net.sf.anathema.character.attributes.model.IAttributeIds.*;
 import net.sf.anathema.character.trait.group.TraitGroup;
 import net.sf.anathema.character.trait.model.ITraitGroupTemplate;
 
@@ -9,15 +10,21 @@ public class AttributeGroupTemplate implements ITraitGroupTemplate {
       new TraitGroup(
           Messages.AttributeGroup_PhysicalLabel,
           Messages.AttributeGroupTemplate_PhysicalGroup,
-          "Strength", IAttributesPluginConstants.DEXTERITY_ID, "Stamina"), //$NON-NLS-1$//$NON-NLS-2$ 
+          STRENGTH,
+          DEXTERITY,
+          STAMINA),
       new TraitGroup(
           Messages.AttributeGroup_SocialLabel,
           Messages.AttributeGroupTemplate_SocialGroup,
-          "Charisma", "Manipulation", "Appearance"), //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+          CHARISMA,
+          MANIPULATION,
+          APPEARANCE),
       new TraitGroup(
           Messages.AttributeGroup_MentalLabel,
           Messages.AttributeGroupTemplate_MentalGroup,
-          "Perception", "Intelligence", IAttributesPluginConstants.WITS_ID) }; //$NON-NLS-1$//$NON-NLS-2$ 
+          PERCEPTION,
+          INTELLIGENCE,
+          WITS) };
 
   public TraitGroup[] getGroups() {
     return groups;
