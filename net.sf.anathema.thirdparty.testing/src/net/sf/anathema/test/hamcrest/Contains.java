@@ -3,7 +3,7 @@ package net.sf.anathema.test.hamcrest;
 import net.disy.commons.core.util.ArrayUtilities;
 
 import org.hamcrest.Description;
-import org.junit.matchers.TypeSafeMatcher;
+import org.hamcrest.TypeSafeMatcher;
 
 public class Contains<T> extends TypeSafeMatcher<T[]> {
 

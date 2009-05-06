@@ -3,7 +3,7 @@ package net.sf.anathema.test.hamcrest;
 import java.util.Collection;
 
 import org.hamcrest.Description;
-import org.junit.matchers.TypeSafeMatcher;
+import org.hamcrest.TypeSafeMatcher;
 
 public class IsEmpty extends TypeSafeMatcher<Collection< ? >> {
 

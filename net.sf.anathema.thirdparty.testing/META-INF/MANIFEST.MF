@@ -8,10 +8,21 @@ Export-Package: net.sf.anathema.test.behaviour,
  net.sf.anathema.test.matcher,
  net.sf.anathema.test.xml,
  org.custommonkey.xmlunit,
- org.easymock
+ org.easymock,
+ org.hamcrest,
+ org.hamcrest.beans,
+ org.hamcrest.collection,
+ org.hamcrest.core,
+ org.hamcrest.internal,
+ org.hamcrest.number,
+ org.hamcrest.object,
+ org.hamcrest.text,
+ org.hamcrest.xml
 Bundle-ClassPath: lib/easymock.jar,
  lib/xmlunit-1.2.jar,
- .
+ .,
+ lib/hamcrest-core.jar,
+ lib/hamcrest-library.jar
 Require-Bundle: org.junit4;visibility:=reexport,
  net.disy.commons;bundle-version="1.0.0"
 Bundle-Localization: plugin
