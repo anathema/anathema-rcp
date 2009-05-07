@@ -36,7 +36,7 @@ public class CharmEncoder extends UnconfiguredExecutableExtension implements IPd
       throws DocumentException {
     Set<ICharmId> learnedCharms = new LearnedCharmCollector().collect(character);
     List<IMagicStats> stats = createPrintStats(learnedCharms, character);
-    new MagicTableEncoder(context.getBaseFont(), stats).encodeTable(directContent, character, bounds);
+    new MagicTableEncoder(context.getBaseFont(), stats).encode(directContent, character, bounds);
   }
 
   private List<IMagicStats> createPrintStats(Collection<ICharmId> learnedCharms, ICharacter character) {

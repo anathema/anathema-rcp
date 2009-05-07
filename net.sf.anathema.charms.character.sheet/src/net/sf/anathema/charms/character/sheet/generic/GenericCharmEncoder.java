@@ -24,7 +24,7 @@ public class GenericCharmEncoder extends UnconfiguredExecutableExtension impleme
       throws DocumentException {
     BaseFont baseFont = context.getBaseFont();
     Collection<String> genericCharms = collect(character);
-    new GenericCharmTableEncoder(baseFont, genericCharms).encodeTable(directContent, character, bounds);
+    new GenericCharmTableEncoder(baseFont, genericCharms).encode(directContent, character, bounds);
   }
 
   private Collection<String> collect(ICharacter character) {
