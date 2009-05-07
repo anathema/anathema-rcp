@@ -85,8 +85,8 @@ public class BackgroundEditorInput extends AbstractCharacterModelEditorInput<IBa
   }
 
   private InteractiveTraitFactory createTraitFactory() {
-    ITraitPreferences preferences = TraitPreferenceFactory.create();
     IExperience experience = context.getExperience();
+    ITraitPreferences preferences = TraitPreferenceFactory.create();
     IEditorInputConfiguration configuration = new BackgroundConfiguration();
     IFavorizationInteraction favorization = new NullFavorizationInteraction();
     return new InteractiveTraitFactory(preferences, experience, configuration, favorization);

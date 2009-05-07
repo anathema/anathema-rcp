@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Backgrounds Plug-in
 Bundle-SymbolicName: net.sf.anathema.character.backgrounds;singleton:=true
+Eclipse-ExtensibleAPI: true
 Bundle-Version: 1.0.0
 Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.item;bundle-version="1.0.0",
