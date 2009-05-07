@@ -16,5 +16,11 @@
             handlerClass="net.sf.anathema.character.freebies.virtues.internal.VirtueFreebiesBonusPointReducer">
       </bonusPointCalculator>
    </extension>
+   <extension
+         point="net.sf.anathema.character.trait.editordecorations">
+      <decoration
+            class="net.sf.anathema.character.freebies.virtues.coverage.SurplusMarkingEditorDecoration">
+      </decoration>
+   </extension>
 
 </plugin>

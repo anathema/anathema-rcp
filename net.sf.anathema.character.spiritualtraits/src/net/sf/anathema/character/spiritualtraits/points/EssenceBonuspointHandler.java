@@ -12,16 +12,20 @@ import net.sf.anathema.character.trait.points.PointwiseCostDto;
 
 public class EssenceBonuspointHandler extends AbstractPointHandler<ITraitCollectionModel> {
 
+  public static PointwiseCostDto getBonusPointCostDto(ICharacterId characterId) {
+    IEssenceCostMap costMap = new SpiritualTraitCostExtensionPoint();
+    CharacterTypeFinder characterTypeFinder = new CharacterTypeFinder();
+    String characterType = characterTypeFinder.getCharacterType(characterId).getId();
+    return new EssenceCostDtoFactory(costMap).createCost(characterType);
+  }
+
   public EssenceBonuspointHandler() {
     super(IPluginConstants.MODEL_ID);
   }
 
   @Override
   protected int calculatePoints(ITraitCollectionModel spiritualTraits, ICharacterId characterId) {
-    IEssenceCostMap costMap = new SpiritualTraitCostExtensionPoint();
-    CharacterTypeFinder characterTypeFinder = new CharacterTypeFinder();
-    String characterType = characterTypeFinder.getCharacterType(characterId).getId();
-    final PointwiseCostDto costDto = new EssenceCostDtoFactory(costMap).createCost(characterType);
+    final PointwiseCostDto costDto = getBonusPointCostDto(characterId);
     return new EssenceBonuspointCalculator(spiritualTraits, costDto).calculate();
   }
 }

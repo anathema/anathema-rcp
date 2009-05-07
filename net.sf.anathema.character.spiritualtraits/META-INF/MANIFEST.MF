@@ -10,7 +10,9 @@ Require-Bundle: net.sf.anathema.character.core;bundle-version="1.0.0",
  net.sf.anathema.character.points;bundle-version="1.0.0",
  net.sf.anathema.character.experience;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.character.spiritualtraits.display,
+ net.sf.anathema.character.spiritualtraits.model,
  net.sf.anathema.character.spiritualtraits.plugin,
+ net.sf.anathema.character.spiritualtraits.points,
  net.sf.anathema.character.spiritualtraits.validator,
  net.sf.anathema.character.spiritualtraits.virtues
 Bundle-Localization: plugin

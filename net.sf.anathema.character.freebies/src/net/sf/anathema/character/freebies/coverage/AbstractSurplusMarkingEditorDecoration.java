@@ -11,6 +11,8 @@ import net.sf.anathema.character.core.model.ModelCache;
 import net.sf.anathema.character.core.plugin.ICharacterCorePluginConstants;
 import net.sf.anathema.character.core.traitview.IExtendableIntValueView;
 import net.sf.anathema.character.core.traitview.SurplusPainter;
+import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorDecoration;
 import net.sf.anathema.character.trait.groupeditor.ITraitGroupEditorInput;
@@ -64,7 +66,7 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Unconfig
     return context;
   }
 
-  protected abstract int getPointsCoveredByCredit(IIdentificate traitType);
+  protected abstract int getCreationPointsCoveredByCredit(IIdentificate traitType);
 
   public void update() {
     boolean showSurplusMarking = ToggleSurplusMarkingHandler.isMarkingActive();
@@ -81,8 +83,13 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Unconfig
   }
 
   private void calculateCoverageThresholds() {
+    IExperience experience = getContext().getExperience();
     for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
-      int coveredPoints = getPointsCoveredByCredit(entry.getKey());
+      IIdentificate traitId = entry.getKey();
+      IBasicTrait trait = getContext().getCollection().getTrait(traitId.getId());
+      int coveredPoints = experience.isExperienced()
+          ? trait.getCreationModel().getValue()
+          : getCreationPointsCoveredByCredit(traitId);
       surplusPainters.get(entry.getValue()).setSurplusThreshold(coveredPoints);
     }
   }

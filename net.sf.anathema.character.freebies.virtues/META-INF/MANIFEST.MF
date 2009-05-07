@@ -7,5 +7,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: net.sf.anathema.character.freebies,
  net.sf.anathema.character.trait;bundle-version="1.0.0",
  net.sf.anathema.character.spiritualtraits;bundle-version="1.0.0",
- net.sf.anathema.character.points
+ net.sf.anathema.character.points,
+ net.sf.anathema.character.experience;bundle-version="1.0.0"
 Export-Package: net.sf.anathema.character.freebies.virtues

@@ -30,7 +30,7 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
   }
 
   @Override
-  protected int getPointsCoveredByCredit(IIdentificate traitType) {
+  protected int getCreationPointsCoveredByCredit(IIdentificate traitType) {
     ITraitGroupEditorInput editorInput = getInput();
     ITraitCollectionContext traitContext = getContext();
     ITraitGroup traitGroup = editorInput.findTraitGroup(traitType);
