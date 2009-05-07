@@ -11,6 +11,10 @@
             class="net.sf.anathema.charms.character.sheet.generic.GenericCharmEncoder"
             fieldId="encoder.genericcharms">
       </encoder>
+      <encoder
+            class="net.sf.anathema.charms.character.sheet.combos.CombosEncoder"
+            fieldId="encoder.combos">
+      </encoder>
    </extension>
    <extension
          point="net.sf.anathema.character.trait.traitname">
