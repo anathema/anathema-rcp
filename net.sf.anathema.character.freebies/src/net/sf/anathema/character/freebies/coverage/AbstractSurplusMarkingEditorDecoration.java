@@ -42,14 +42,14 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Unconfig
     SurplusPainter surplusPainter = new SurplusPainter(surplusImage);
     surplusPainters.put(view, surplusPainter);
     view.addPainter(surplusPainter);
+    viewsByType.put(trait.getTraitType(), view);
     trait.addChangeListener(new IChangeListener() {
       @Override
       public void stateChanged() {
-        calculateCoverage();
+        update();
       }
     });
-    calculateCoverage();
-    viewsByType.put(trait.getTraitType(), view);
+    update();
   }
 
   protected abstract ITraitCollectionContext createContext(
@@ -64,21 +64,26 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Unconfig
     return context;
   }
 
-  private void calculateCoverage() {
-    if (ToggleSurplusMarkingHandler.isMarkingActive()) {
-      for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
-        int coveredPoints = getPointsCoveredByCredit(entry.getKey());
-        surplusPainters.get(entry.getValue()).setSurplusThreshold(coveredPoints);
-      }
-    }
-  }
-
   protected abstract int getPointsCoveredByCredit(IIdentificate traitType);
 
   public void update() {
-    calculateCoverage();
+    boolean showSurplusMarking = ToggleSurplusMarkingHandler.isMarkingActive();
+    if (showSurplusMarking) {
+      calculateCoverageThresholds();
+    }
+    setShowSurplusMarking();
+  }
+
+  private void setShowSurplusMarking() {
     for (IIntValueView display : viewsByType.values()) {
       surplusPainters.get(display).setShowSurplus(ToggleSurplusMarkingHandler.isMarkingActive());
+    }
+  }
+
+  private void calculateCoverageThresholds() {
+    for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
+      int coveredPoints = getPointsCoveredByCredit(entry.getKey());
+      surplusPainters.get(entry.getValue()).setSurplusThreshold(coveredPoints);
     }
   }
 }
