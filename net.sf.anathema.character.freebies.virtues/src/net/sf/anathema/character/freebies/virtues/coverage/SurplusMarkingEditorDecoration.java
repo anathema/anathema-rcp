@@ -7,6 +7,7 @@ import net.sf.anathema.character.freebies.coverage.AbstractSurplusMarkingEditorD
 import net.sf.anathema.character.spiritualtraits.model.SpiritualTraitGroupTemplate;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.spiritualtraits.points.EssenceBonuspointHandler;
+import net.sf.anathema.character.spiritualtraits.virtues.VirtueSumCalculator;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -40,6 +41,10 @@ public class SurplusMarkingEditorDecoration<G> extends AbstractSurplusMarkingEdi
       ICharacterId characterId = editorInput.getCharacterId();
       PointwiseCostDto costDto = EssenceBonuspointHandler.getBonusPointCostDto(characterId);
       return costDto.startValue;
+    }
+    if (IPluginConstants.WILLPOWER_ID.equals(traitId)) {
+      VirtueSumCalculator sumCalculator = new VirtueSumCalculator(collection);
+      return sumCalculator.getSumOfTwoHighestVirtues();
     }
     return trait.getCreationModel().getValue();
   }
