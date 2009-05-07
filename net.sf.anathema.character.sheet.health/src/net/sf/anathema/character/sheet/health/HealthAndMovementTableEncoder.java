@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.anathema.character.core.character.ICharacter;
+import net.sf.anathema.character.sheet.content.ISubEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.character.sheet.table.ITableEncoder;
 import net.sf.anathema.character.sheet.table.TableCell;
 import net.sf.anathema.character.sheet.table.TableEncodingUtilities;
 
@@ -24,7 +24,7 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfTemplate;
 
-public class HealthAndMovementTableEncoder implements ITableEncoder {
+public class HealthAndMovementTableEncoder implements ISubEncoder {
   public static final int HEALTH_RECT_SIZE = 6;
   private static final int HEALTH_COLUMN_COUNT = 10;
   protected static float PADDING = 0.3f;
@@ -65,7 +65,7 @@ public class HealthAndMovementTableEncoder implements ITableEncoder {
   }
 
   @Override
-  public float encodeTable(PdfContentByte directContent, ICharacter character, Bounds bounds) throws DocumentException {
+  public float encode(PdfContentByte directContent, ICharacter character, Bounds bounds) throws DocumentException {
     ColumnText tableColumn = new ColumnText(directContent);
     PdfPTable table = createTable(directContent, character);
     table.setWidthPercentage(100);

@@ -10,10 +10,10 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.CaretSymbol;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
+import net.sf.anathema.character.sheet.content.ISubEncoder;
 import net.sf.anathema.character.sheet.content.PdfTextEncodingUtilities;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
-import net.sf.anathema.character.sheet.table.ITableEncoder;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
@@ -24,7 +24,7 @@ public class AnimaEncoder extends UnconfiguredExecutableExtension implements IPd
 
   private final int fontSize;
   private final float lineHeight;
-  private final ITableEncoder tableEncoder;
+  private final ISubEncoder tableEncoder;
   private final int animaPowerCount;
   private final CaretSymbol caretSymbol;
 
@@ -45,7 +45,7 @@ public class AnimaEncoder extends UnconfiguredExecutableExtension implements IPd
       encodeLines(directContent, bounds, lineStartPosition);
     }
     Bounds animaTableBounds = new Bounds(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), halfWidth);
-    tableEncoder.encodeTable(directContent, character, animaTableBounds);
+    tableEncoder.encode(directContent, character, animaTableBounds);
   }
 
   private void encodeLines(PdfContentByte directContent, Bounds bounds, Position lineStartPosition) {

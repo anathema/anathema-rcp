@@ -7,11 +7,11 @@ import net.sf.anathema.character.derivedtraits.SocialCombatCharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.content.IGraphicalEncoder;
+import net.sf.anathema.character.sheet.content.ISubEncoder;
 import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
-import net.sf.anathema.character.sheet.table.ITableEncoder;
 import net.sf.anathema.character.sheet.table.TableCell;
 import net.sf.anathema.character.sheet.table.TableEncodingUtilities;
 
@@ -41,8 +41,8 @@ public class SocialCombatStatsEncoder extends UnconfiguredExecutableExtension im
     SocialCombatCharacter socialCombatCharacter = new SocialCombatCharacter(character);
     float valueHeight = encodeValues(graphicalEncoder, valueBounds, socialCombatCharacter);
     Bounds attackTableBounds = new Bounds(bounds.x, bounds.y, valueWidth, bounds.height - valueHeight);
-    ITableEncoder tableEncoder = new SocialCombatStatsTableEncoder(BASEFONT);
-    float attackHeight = tableEncoder.encodeTable(directContent, character, attackTableBounds);
+    ISubEncoder tableEncoder = new SocialCombatStatsTableEncoder(BASEFONT);
+    float attackHeight = tableEncoder.encode(directContent, character, attackTableBounds);
     Bounds actionBounds = new Bounds(bounds.x, bounds.y, valueWidth / 2f, attackTableBounds.height - attackHeight);
     encodeActionTable(directContent, actionBounds);
     final float center = bounds.x + valueWidth / 2f;

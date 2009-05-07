@@ -3,7 +3,7 @@ package net.sf.anathema.character.derivedtraits;
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.core.character.ICharacterType;
 
-public class HasLowParryValue implements IPredicate<ICharacterType> {
+public class HasLowDodgeDV implements IPredicate<ICharacterType> {
 
   @Override
   public boolean evaluate(ICharacterType characterType) {

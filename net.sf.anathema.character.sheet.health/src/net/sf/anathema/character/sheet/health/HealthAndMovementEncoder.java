@@ -8,12 +8,12 @@ import net.sf.anathema.character.sheet.common.CaretSymbol;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.content.IGraphicalEncoder;
+import net.sf.anathema.character.sheet.content.ISubEncoder;
 import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.content.PdfTextEncodingUtilities;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
-import net.sf.anathema.character.sheet.table.ITableEncoder;
 import net.sf.anathema.character.sheet.table.TableEncodingUtilities;
 
 import com.lowagie.text.Chunk;
@@ -37,8 +37,8 @@ public class HealthAndMovementEncoder extends UnconfiguredExecutableExtension im
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
     Bounds tableBounds = new Bounds(bounds.x, bounds.y, (bounds.width * 0.66f), bounds.height);
-    ITableEncoder tableEncoder = new HealthAndMovementTableEncoder(context.getBaseFont());
-    tableEncoder.encodeTable(directContent, character, tableBounds);
+    ISubEncoder tableEncoder = new HealthAndMovementTableEncoder(context.getBaseFont());
+    tableEncoder.encode(directContent, character, tableBounds);
     float textX = tableBounds.getMaxX() + IVoidStateFormatConstants.TEXT_PADDING;
     Bounds textBounds = new Bounds(textX, bounds.y, bounds.x + bounds.width - textX, bounds.height - 2);
     encodeText(directContent, textBounds, context.getBaseFont());

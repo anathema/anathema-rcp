@@ -1,7 +1,7 @@
 package net.sf.anathema.character.sheet.equipment.weapons;
 
 import net.sf.anathema.character.core.character.ICharacter;
-import net.sf.anathema.character.derivedtraits.CombatCharacter;
+import net.sf.anathema.character.derivedtraits.AttackingCharacter;
 import net.sf.anathema.character.sheet.equipment.stats.IWeaponStats;
 import net.sf.anathema.character.sheet.equipment.weapons.groups.AccuracyWeaponStatsGroup;
 import net.sf.anathema.character.sheet.equipment.weapons.groups.DamageWeaponStatsGroup;
@@ -24,7 +24,7 @@ public class WeaponryTableEncoder extends AbstractFixedLineStatsTableEncoder<IWe
 
   @Override
   protected IStatsGroup<IWeaponStats>[] createStatsGroups(ICharacter character) {
-    CombatCharacter combatCharacter = new CombatCharacter(character);
+    AttackingCharacter combatCharacter = new AttackingCharacter(character);
     return new IStatsGroup[] {
         new EquipmentNameStatsGroup(),
         new SpeedWeaponStatsGroup(),

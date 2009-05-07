@@ -7,6 +7,10 @@
             class="net.sf.anathema.character.sheet.socialcombat.SocialCombatStatsEncoder"
             fieldId="encoder.socialcombat">
       </encoder>
+      <encoder
+            class="net.sf.anathema.character.sheet.combat.CombatStatsEncoder"
+            fieldId="encoder.combatstats">
+      </encoder>
    </extension>
 
 </plugin>

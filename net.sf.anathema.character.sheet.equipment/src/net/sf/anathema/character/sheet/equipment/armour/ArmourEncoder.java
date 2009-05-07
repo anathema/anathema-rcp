@@ -6,8 +6,8 @@ import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
+import net.sf.anathema.character.sheet.content.ISubEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.character.sheet.table.ITableEncoder;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
@@ -17,8 +17,8 @@ public class ArmourEncoder extends UnconfiguredExecutableExtension implements IP
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    ITableEncoder armourEncoder = new ArmourTableEncoder(context.getBaseFont());
-    float armourHeight = armourEncoder.encodeTable(directContent, character, bounds);
+    ISubEncoder armourEncoder = new ArmourTableEncoder(context.getBaseFont());
+    float armourHeight = armourEncoder.encode(directContent, character, bounds);
     float remainingHeight = bounds.getHeight() - armourHeight;
     float delimitingLineYPosition = bounds.getMinY() + remainingHeight - 1;
     drawDelimiter(directContent, bounds, delimitingLineYPosition);
@@ -27,8 +27,8 @@ public class ArmourEncoder extends UnconfiguredExecutableExtension implements IP
         delimitingLineYPosition - 12,
         bounds.getWidth(),
         remainingHeight - 2);
-    ITableEncoder shieldEncoder = new ShieldTableEncoder(context.getBaseFont());
-    shieldEncoder.encodeTable(directContent, character, shieldBounds);
+    ISubEncoder shieldEncoder = new ShieldTableEncoder(context.getBaseFont());
+    shieldEncoder.encode(directContent, character, shieldBounds);
   }
 
   private void drawDelimiter(PdfContentByte directContent, Bounds bounds, float delimitingLineYPosition) {

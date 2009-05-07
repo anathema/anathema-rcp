@@ -1,6 +1,6 @@
 package net.sf.anathema.character.sheet.equipment.weapons.groups;
 
-import net.sf.anathema.character.derivedtraits.CombatCharacter;
+import net.sf.anathema.character.derivedtraits.AttackingCharacter;
 import net.sf.anathema.character.derivedtraits.DamageDto;
 import net.sf.anathema.character.sheet.equipment.stats.IWeaponStats;
 import net.sf.anathema.character.sheet.stats.IStatsGroup;
@@ -14,9 +14,9 @@ import com.lowagie.text.pdf.PdfPTable;
 
 public class DamageWeaponStatsGroup implements IStatsGroup<IWeaponStats> {
 
-  private final CombatCharacter character;
+  private final AttackingCharacter character;
 
-  public DamageWeaponStatsGroup(CombatCharacter character) {
+  public DamageWeaponStatsGroup(AttackingCharacter character) {
     this.character = character;
   }
 
