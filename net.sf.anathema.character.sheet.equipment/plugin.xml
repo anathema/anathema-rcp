@@ -11,6 +11,10 @@
             class="net.sf.anathema.character.sheet.equipment.armour.ArmourEncoder"
             fieldId="encoder.armour">
       </encoder>
+      <encoder
+            class="net.sf.anathema.character.sheet.equipment.possessions.PossessionsEncoder"
+            fieldId="encoder.possessions">
+      </encoder>
    </extension>
 
 </plugin>

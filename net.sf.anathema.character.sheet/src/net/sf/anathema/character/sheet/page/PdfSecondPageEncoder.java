@@ -20,6 +20,7 @@ public class PdfSecondPageEncoder implements IPdfPageEncoder {
   private static final String ENCODER_BACKGROUNDS = "encoder.backgrounds"; //$NON-NLS-1$
   private static final String ENCODER_EXPERIENCE = "encoder.experience"; //$NON-NLS-1$
   private static final String ENCODER_LANGUAGES = "encoder.languages"; //$NON-NLS-1$
+  private static final String ENCODER_COMBOS = "encoder.combos"; //$NON-NLS-1$
   private final PdfPageConfiguration configuration;
   private final PdfBoxEncoder boxEncoder;
   private final IContentEncoderProvider contentEncoderProvider;
@@ -60,7 +61,7 @@ public class PdfSecondPageEncoder implements IPdfPageEncoder {
 
   private float encodeCombos(PdfContentByte directContent, ICharacter character, float distanceFromTop)
       throws DocumentException {
-    IDynamicPdfContentBoxEncoder encoder = contentEncoderProvider.getDynamicContentEncoder(ENCODER_LANGUAGES, character);
+    IDynamicPdfContentBoxEncoder encoder = contentEncoderProvider.getDynamicContentEncoder(ENCODER_COMBOS, character);
     float height = encoder.getHeight(character);
     Bounds bounds = configuration.getFirstColumnRectangle(distanceFromTop, height, 3);
     boxEncoder.encodeBox(directContent, context, encoder, character, bounds);

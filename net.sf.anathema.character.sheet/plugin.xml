@@ -11,5 +11,12 @@
             name="%exportWizard.CharacterSheet">
       </wizard>
    </extension>
+   <extension
+         point="net.sf.anathema.character.sheet.encoders">
+      <encoder
+            class="net.sf.anathema.character.sheet.ExperienceEncoder"
+            fieldId="encoder.experience">
+      </encoder>
+   </extension>
 
 </plugin>

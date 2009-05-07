@@ -1,4 +1,4 @@
-package net.sf.anathema.character.sheet.pdf;
+package net.sf.anathema.character.sheet.content;
 
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacter;
@@ -11,11 +11,11 @@ import net.sf.anathema.character.sheet.elements.Bounds;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 
-public final class DynamicPdfHorizontalLineContentEncoder extends UnconfiguredExecutableExtension implements
+public class DynamicPdfHorizontalLineContentEncoder extends UnconfiguredExecutableExtension implements
     IDynamicPdfContentBoxEncoder {
   final IPdfContentBoxEncoder encoder;
 
-  DynamicPdfHorizontalLineContentEncoder(String encoderName) {
+  public DynamicPdfHorizontalLineContentEncoder(String encoderName) {
     this.encoder = new PdfHorizontalLineContentEncoder(1, encoderName);
   }
 

@@ -4,6 +4,7 @@ import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.PdfHorizontalLineContentEncoder;
+import net.sf.anathema.character.sheet.content.DynamicPdfHorizontalLineContentEncoder;
 import net.sf.anathema.character.sheet.content.IContentEncoderProvider;
 
 public class ContentEncoderProvider implements IContentEncoderProvider {

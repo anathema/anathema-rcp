@@ -15,6 +15,14 @@
             class="net.sf.anathema.character.spiritualtraits.sheet.WillpowerBoxEncoder"
             fieldId="encoder.willpower">
       </encoder>
+      <encoder
+            class="net.sf.anathema.character.spiritualtraits.sheet.GreatCurseEncoder"
+            fieldId="encoder.greatcurse">
+      </encoder>
+      <encoder
+            class="net.sf.anathema.character.spiritualtraits.sheet.IntimaciesEncoder"
+            fieldId="encoder.intimacies">
+      </encoder>
    </extension>
 
 </fragment>

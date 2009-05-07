@@ -7,6 +7,10 @@
             class="net.sf.anathema.character.abilities.sheet.AbilitiesEncoder"
             fieldId="encoder.abilities">
       </encoder>
+      <encoder
+            class="net.sf.anathema.character.abilities.sheet.LanguagesEncoder"
+            fieldId="encoder.languages">
+      </encoder>
    </extension>
 
 </fragment>
