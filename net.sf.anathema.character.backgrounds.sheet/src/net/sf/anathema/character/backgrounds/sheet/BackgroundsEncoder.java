@@ -1,6 +1,5 @@
 package net.sf.anathema.character.backgrounds.sheet;
 
-import static net.sf.anathema.character.sheet.page.IVoidStateFormatConstants.*;
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.core.character.ICharacter;
@@ -19,6 +18,10 @@ import com.lowagie.text.pdf.PdfContentByte;
 
 public class BackgroundsEncoder extends UnconfiguredExecutableExtension implements IPdfContentBoxEncoder {
 
+  private static final int BACKGROUND_MAX = 5;
+  private PdfTraitEncoder traitEncoder;
+  private LineIterator lineIterator;
+
   @Override
   public String getHeader(ICharacter character) {
     return "Backgrounds";
@@ -27,27 +30,36 @@ public class BackgroundsEncoder extends UnconfiguredExecutableExtension implemen
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
+    lineIterator = new LineIterator(bounds);
+    traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(new PdfEncoder(directContent));
     IBackgroundModel model = (IBackgroundModel) character.getModel(IBackgroundModel.MODEL_ID);
     IExperience experience = (IExperience) character.getModel(IExperience.MODEL_ID);
-    PdfTraitEncoder traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(new PdfEncoder(directContent));
-    float yPosition = bounds.getMaxY() - LINE_HEIGHT;
-    // TODO Case 438: Preferenz wieder einführen
-    boolean printZeroBackgrounds = true;
+    encodeBackgrounds(model, experience);
+    fillUpWithEmptyLines();
+  }
+
+  private void encodeBackgrounds(IBackgroundModel model, IExperience experience) {
     for (IBasicTrait background : model) {
-      if (yPosition < bounds.getMinY()) {
+      if (!lineIterator.hasNext()) {
         return;
       }
-      int value = getBackgroundValue(background, experience);
-      boolean printCurrentBackground = !printZeroBackgrounds && value == 0;
-      if (printCurrentBackground) {
-        continue;
+      if (isEncodedBackground(background, experience)) {
+        encodeBackground(background, experience);
       }
-      String backgroundName = background.getTraitType().getId();
-      Position position = new Position(bounds.x, yPosition);
-      traitEncoder.encodeWithText(backgroundName, position, bounds.width, value, 5);
-      yPosition -= LINE_HEIGHT;
     }
-    encodeEmptyLines(traitEncoder, bounds, yPosition);
+  }
+
+  private void encodeBackground(IBasicTrait background, IExperience experience) {
+    String backgroundName = background.getTraitType().getId();
+    int backgroundValue = getBackgroundValue(background, experience);
+    Position lineStart = lineIterator.nextLineStart();
+    float lineWidth = lineIterator.getLineWidth();
+    traitEncoder.encodeWithText(backgroundName, lineStart, lineWidth, backgroundValue, BACKGROUND_MAX);
+  }
+
+  private boolean isEncodedBackground(IBasicTrait background, IExperience experience) {
+    int backgroundValue = getBackgroundValue(background, experience);
+    return !isPrintZeroBackgrounds() && backgroundValue == 0;
   }
 
   private int getBackgroundValue(IBasicTrait background, IExperience experience) {
@@ -56,11 +68,16 @@ public class BackgroundsEncoder extends UnconfiguredExecutableExtension implemen
     return model.getValue();
   }
 
-  private void encodeEmptyLines(PdfTraitEncoder traitEncoder, Bounds bounds, float yPosition) {
-    while (yPosition > bounds.getMinY()) {
-      Position position = new Position(bounds.x, yPosition);
-      traitEncoder.encodeWithLine(position, bounds.width, 0, 5);
-      yPosition -= LINE_HEIGHT;
+  private boolean isPrintZeroBackgrounds() {
+    // TODO Case 438: Preferenz wieder einführen
+    return true;
+  }
+
+  private void fillUpWithEmptyLines() {
+    while (lineIterator.hasNext()) {
+      Position lineStart = lineIterator.nextLineStart();
+      float lineWidth = lineIterator.getLineWidth();
+      traitEncoder.encodeWithLine(lineStart, lineWidth, 0, BACKGROUND_MAX);
     }
   }
 }
