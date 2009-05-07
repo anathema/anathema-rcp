@@ -83,10 +83,10 @@ public abstract class AbstractSurplusMarkingEditorDecoration<G> extends Unconfig
   }
 
   private void calculateCoverageThresholds() {
-    IExperience experience = getContext().getExperience();
     for (Entry<IIdentificate, IIntValueView> entry : viewsByType.entrySet()) {
+      IExperience experience = context.getExperience();
       IIdentificate traitId = entry.getKey();
-      IBasicTrait trait = getContext().getCollection().getTrait(traitId.getId());
+      IBasicTrait trait = context.getCollection().getTrait(traitId.getId());
       int coveredPoints = experience.isExperienced()
           ? trait.getCreationModel().getValue()
           : getCreationPointsCoveredByCredit(traitId);
