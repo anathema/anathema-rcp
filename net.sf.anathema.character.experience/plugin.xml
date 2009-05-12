@@ -8,6 +8,17 @@
             id="net.sf.anathema.character.experience.model"
             modelFactory="net.sf.anathema.character.experience.internal.ExperienceFactory">
       </model>
+      <model
+            filename="experiencepoints.model"
+            id="net.sf.anathema.character.experience.points.model"
+            modelFactory="net.sf.anathema.character.experience.points.ExperiencePointsFactory">
+         <displayConfiguration
+               displayName="Experience"
+               editorId="net.sf.anathema.character.experiencepoints.editor"
+               editorInputFactory="net.sf.anathema.character.experience.points.ExperiencePointsEditorInputFactory"
+               icon="icons/TabCharacter16.png">
+         </displayConfiguration>
+      </model>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -123,6 +134,25 @@
             properties="activateExperience"
             type="java.lang.Object">
       </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="net.sf.anathema.character.experience.points.ExperiencePointsEditor"
+            default="false"
+            icon="icons/TabCharacter16.png"
+            id="net.sf.anathema.character.experiencepoints.editor"
+            name="Experience">
+      </editor>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.modellists">
+      <modelList
+            id="net.sf.anathema.character.basic.modelList">
+         <modelReference
+               modelId="net.sf.anathema.character.experience.points.model">
+         </modelReference>
+      </modelList>
    </extension>
 
 </plugin>
