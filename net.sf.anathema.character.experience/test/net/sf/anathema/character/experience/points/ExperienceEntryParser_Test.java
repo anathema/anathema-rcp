@@ -52,8 +52,33 @@ public class ExperienceEntryParser_Test {
   }
 
   @Test
-  public void dropsPointsAtTextStartFromComment() throws Exception {
-    ExperienceEntry entry = parser.parse("3 Mit Punkten");
-    assertThat(entry.comment, is("Mit Punkten"));
+  public void allowsCommentToStartWithNumber() throws Exception {
+    ExperienceEntry entry = parser.parse("13Wilde Männer 3");
+    assertThat(entry.comment, is("13Wilde Männer"));
+    assertThat(entry.points, is(3));
+  }
+
+  @Test
+  public void usesStandaloneStartingMinusForComment() throws Exception {
+    ExperienceEntry entry = parser.parse("- Minus");
+    assertThat(entry.comment, is("- Minus"));
+  }
+
+  @Test
+  public void findsPointsAtBackOfString() throws Exception {
+    ExperienceEntry entry = parser.parse("In the Back 2");
+    assertThat(entry.points, is(2));
+  }
+
+  @Test
+  public void findsNegativePointsAtBackOfString() throws Exception {
+    ExperienceEntry entry = parser.parse("In the Back -2");
+    assertThat(entry.points, is(-2));
+  }
+
+  @Test
+  public void dropsWhitespaceAfterCommentWithPointsAtBack() throws Exception {
+    ExperienceEntry entry = parser.parse("In the Back 2");
+    assertThat(entry.comment, is("In the Back"));
   }
 }
