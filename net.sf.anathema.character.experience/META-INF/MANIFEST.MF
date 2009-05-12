@@ -9,7 +9,8 @@ Require-Bundle: net.sf.anathema.basics.lib,
  net.sf.anathema.basics.eclipse,
  net.sf.anathema.basics.repository,
  org.eclipse.core.expressions,
- net.sf.anathema.basics.jface
+ net.sf.anathema.basics.jface,
+ org.eclipse.ui.forms;bundle-version="3.3.101"
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Export-Package: net.sf.anathema.character.experience

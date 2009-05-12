@@ -1,56 +1,36 @@
 package net.sf.anathema.character.experience.points;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.character.experience.IExperiencePoints;
+import net.sf.anathema.lib.control.change.ChangeControl;
 
-public class ExperiencePoints implements IExperiencePoints {
+public class ExperiencePoints extends AbstractModel implements IExperiencePoints {
+
+  private final ChangeControl changeControl = new ChangeControl();
+  private final List<ExperienceEntry> entries = new ArrayList<ExperienceEntry>();
 
   @Override
-  public void updateToDependencies() {
-    // TODO Auto-generated method stub
-
+  public void add(ExperienceEntry entry) {
+    entries.add(entry);
+    changeControl.fireChangedEvent();
   }
 
   @Override
-  public void addDirtyListener(IChangeListener changeListener) {
-    // TODO Auto-generated method stub
-
+  public ExperienceEntry[] getEntries() {
+    return entries.toArray(new ExperienceEntry[entries.size()]);
   }
 
   @Override
-  public int getDirtyListenerCount() {
-    // TODO Auto-generated method stub
-    return 0;
+  public void addChangeListener(IChangeListener listener) {
+    changeControl.addChangeListener(listener);
   }
 
   @Override
-  public boolean isDirty() {
-    // TODO Auto-generated method stub
-    return false;
+  public void removeChangeListener(IChangeListener listener) {
+    changeControl.removeChangeListener(listener);
   }
-
-  @Override
-  public void removeDirtyListener(IChangeListener changeListener) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void setClean() {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void addChangeListener(IChangeListener arg0) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void removeChangeListener(IChangeListener arg0) {
-    // TODO Auto-generated method stub
-
-  }
-
 }

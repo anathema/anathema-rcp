@@ -30,4 +30,8 @@ public class ExperiencePointsEditorInput extends AbstractCharacterModelEditorInp
   protected String getModelId() {
     return IExperiencePoints.MODEL_ID;
   }
+
+  public void addEntry(String text) {
+    experiencePointsModel.add(new ExperienceEntryParser().parse(text));
+  }
 }
