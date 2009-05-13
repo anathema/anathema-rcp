@@ -7,7 +7,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-public class BundlePersistenceUtilities {
+public class BundlePersistenceUtilities implements IPluginDocumentFactory {
 
   public static final String ATTRIB_BUNDLE_VERSION = "bundleVersion"; //$NON-NLS-1$
   private final IBundleVersionCollection collection;
@@ -20,7 +20,7 @@ public class BundlePersistenceUtilities {
     this.collection = collection;
   }
 
-  public Document createVersionedDocument(String rootElementName, String bundleId) {
+  public Document createDocument(String rootElementName, String bundleId) {
     Element root = DocumentHelper.createElement(rootElementName);
     addBundleVersionAttribute(root, bundleId);
     return DocumentHelper.createDocument(root);

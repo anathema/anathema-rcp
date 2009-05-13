@@ -83,7 +83,7 @@ public class PlotPersister {
     IFile file = folder.getFile(HIERARCHY_FILE_NAME);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     try {
-      Document document = new BundlePersistenceUtilities().createVersionedDocument(TAG_HIERARCHY, PlotPlugin.ID);
+      Document document = new BundlePersistenceUtilities().createDocument(TAG_HIERARCHY, PlotPlugin.ID);
       Element plotElement = document.getRootElement().addElement(TAG_PLOT);
       for (IPlotPart plotPart : root.getChildren()) {
         save(plotElement, plotPart);

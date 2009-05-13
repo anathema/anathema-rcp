@@ -44,7 +44,7 @@ public class ExperiencePersister implements IModelPersister<NullModelTemplate, I
   }
 
   public Document createExperienceDocument(IExperience item) {
-    Document document = new BundlePersistenceUtilities(collection).createVersionedDocument(
+    Document document = new BundlePersistenceUtilities(collection).createDocument(
         TAG_MODEL,
         ExperiencePlugin.PLUGIN_ID);
     ElementUtilities.addAttribute(document.getRootElement(), ATTRIB_EXPERIENCED, item.isExperienced());

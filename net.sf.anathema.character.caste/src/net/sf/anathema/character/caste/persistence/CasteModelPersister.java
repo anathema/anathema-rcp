@@ -48,7 +48,7 @@ public class CasteModelPersister implements IModelPersister<CasteTemplate, ICast
   }
 
   public Document createCasteDocument(IIdentificate caste) {
-    Document document = new BundlePersistenceUtilities().createVersionedDocument(
+    Document document = new BundlePersistenceUtilities().createDocument(
         TAG_MODEL,
         ICastePluginConstants.PLUGIN_ID);
     Element rootElement = document.getRootElement();

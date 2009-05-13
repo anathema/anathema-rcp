@@ -32,7 +32,7 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
     this(new IFactory<Document, RuntimeException>() {
       @Override
       public Document createInstance() {
-        return new BundlePersistenceUtilities().createVersionedDocument(TAG_CHARMS, CharmCharacterPlugin.PLUGIN_ID);
+        return new BundlePersistenceUtilities().createDocument(TAG_CHARMS, CharmCharacterPlugin.PLUGIN_ID);
       }
     });
   }

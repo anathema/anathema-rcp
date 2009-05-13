@@ -61,7 +61,7 @@ public class CharacterDescriptionPersister implements IModelPersister<NullModelT
 
   @Override
   public void save(OutputStream stream, ICharacterDescription item) throws IOException, PersistenceException {
-    Document document = new BundlePersistenceUtilities().createVersionedDocument(
+    Document document = new BundlePersistenceUtilities().createDocument(
         TAG_MODEL,
         CharacterDescriptionPluginConstants.PLUGIN_ID);
     save(document.getRootElement(), item);

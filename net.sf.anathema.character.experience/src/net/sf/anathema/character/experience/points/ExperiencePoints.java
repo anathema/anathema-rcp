@@ -16,6 +16,7 @@ public class ExperiencePoints extends AbstractModel implements IExperiencePoints
   @Override
   public void add(ExperienceEntry entry) {
     entries.add(entry);
+    setDirty(true);
     changeControl.fireChangedEvent();
   }
 
