@@ -36,7 +36,7 @@ public class LunarAttributeBonusPointReducerTest {
     copyResource(lunarFolder, "attributes.model", "case14Attributes.model"); //$NON-NLS-1$ //$NON-NLS-2$
     copyResource(lunarFolder, "template.xml", "lunarTemplate.xml"); //$NON-NLS-1$ //$NON-NLS-2$
     CharacterId characterId = new CharacterId(lunarFolder);
-    IPointConfiguration[] all = new PointConfigurationExtensionPoint().getBonusPointConfigurations(new CharacterTemplateProvider().getTemplate(characterId));
+    Iterable<IPointConfiguration> all = new PointConfigurationExtensionPoint().getBonusPointConfigurations(new CharacterTemplateProvider().getTemplate(characterId));
     for (IPointConfiguration configuration : all) {
       if (configuration.getName().equals("Attributes")) { //$NON-NLS-1$
         assertEquals(9, configuration.getPoints(characterId));
@@ -60,7 +60,7 @@ public class LunarAttributeBonusPointReducerTest {
       }
     }
   }
-  
+
   @After
   public void deleteLunarFolder() throws CoreException {
     lunarFolder.delete(true, null);

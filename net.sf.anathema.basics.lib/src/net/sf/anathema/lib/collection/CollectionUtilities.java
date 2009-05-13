@@ -14,4 +14,12 @@ public class CollectionUtilities {
     }
     return output;
   }
+
+  public static <I, O> List<O> transform(Iterable<I> inputArray, ITransformer<I, O> transformer) {
+    List<O> output = new ArrayList<O>();
+    for (I input : inputArray) {
+      output.add(transformer.transform(input));
+    }
+    return output;
+  }
 }

@@ -1,35 +1,19 @@
 package net.sf.anathema.character.points.view;
 
-import net.disy.commons.core.util.ArrayUtilities;
-import net.disy.commons.core.util.ITransformer;
+import java.util.List;
+
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
+import net.sf.anathema.character.points.view.entry.PointConfigurationTransformer;
+import net.sf.anathema.lib.collection.CollectionUtilities;
 import net.sf.anathema.view.valuelist.IValueEntry;
 
 public class PointsValueEntryFactory implements ICharacterValueEntryFactory {
 
-  private final class PointConfigurationValueEntry implements IValueEntry {
-    private final IPointConfiguration pointConfiguration;
-
-    private PointConfigurationValueEntry(IPointConfiguration pointConfiguration) {
-      this.pointConfiguration = pointConfiguration;
-    }
-
-    @Override
-    public String getDisplayName() {
-      return pointConfiguration.getName();
-    }
-
-    @Override
-    public String getValue() {
-      return String.valueOf(pointConfiguration.getPoints(characterId));
-    }
-  }
-
   private final ICharacterId characterId;
-  private final IPointConfiguration[] pointConfigurations;
+  private final Iterable<IPointConfiguration> pointConfigurations;
 
-  public PointsValueEntryFactory(ICharacterId characterId, IPointConfiguration[] pointConfigurations) {
+  public PointsValueEntryFactory(ICharacterId characterId, Iterable<IPointConfiguration> pointConfigurations) {
     this.characterId = characterId;
     this.pointConfigurations = pointConfigurations;
   }
@@ -39,15 +23,8 @@ public class PointsValueEntryFactory implements ICharacterValueEntryFactory {
     return characterId;
   }
 
-  public IValueEntry[] createEntries() {
-    return ArrayUtilities.transform(
-        pointConfigurations,
-        IValueEntry.class,
-        new ITransformer<IPointConfiguration, IValueEntry>() {
-          @Override
-          public IValueEntry transform(final IPointConfiguration pointConfiguration) {
-            return new PointConfigurationValueEntry(pointConfiguration);
-          }
-        });
+  public List<IValueEntry> createEntries() {
+    PointConfigurationTransformer transformer = new PointConfigurationTransformer(characterId);
+    return CollectionUtilities.transform(pointConfigurations, transformer);
   }
 }

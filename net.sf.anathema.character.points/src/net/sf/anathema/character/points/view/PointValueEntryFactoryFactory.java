@@ -1,10 +1,13 @@
 package net.sf.anathema.character.points.view;
 
+import java.util.List;
+
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
+import net.sf.anathema.character.points.view.entry.AvailableXpConfiguration;
 
 public class PointValueEntryFactoryFactory {
 
@@ -20,10 +23,12 @@ public class PointValueEntryFactoryFactory {
     return new PointsValueEntryFactory(characterId, getPointConfigurations(characterId, experienced));
   }
 
-  private IPointConfiguration[] getPointConfigurations(ICharacterId characterId, boolean experienced) {
+  private Iterable<IPointConfiguration> getPointConfigurations(ICharacterId characterId, boolean experienced) {
     ICharacterTemplate template = templateProvider.getTemplate(characterId);
     if (experienced) {
-      return configurationProvider.getExperiencePointConfigurations(template);
+      List<IPointConfiguration> configurations = configurationProvider.getExperiencePointConfigurations(template);
+      configurations.add(0, new AvailableXpConfiguration());
+      return configurations;
     }
     return configurationProvider.getBonusPointConfigurations(template);
   }

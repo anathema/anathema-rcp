@@ -30,15 +30,17 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
   private static final String CONFIGURATIONS_EXTENSION_POINT = "configurations"; //$NON-NLS-1$
   private static final ILogger logger = new Logger(PointPluginConstants.PLUGIN_ID);
 
-  public IPointConfiguration[] getExperiencePointConfigurations(ICharacterTemplate template) {
+  public List<IPointConfiguration> getExperiencePointConfigurations(ICharacterTemplate template) {
     return getPointConfigurations(template, TAG_EXPERIENCE_POINT_CALCULATOR);
   }
 
-  public IPointConfiguration[] getBonusPointConfigurations(ICharacterTemplate template) {
+  public List<IPointConfiguration> getBonusPointConfigurations(ICharacterTemplate template) {
     return getPointConfigurations(template, TAG_BONUS_POINT_CALCULATOR);
   }
 
-  private IPointConfiguration[] getPointConfigurations(ICharacterTemplate template, String pointCalculatorElementName) {
+  private List<IPointConfiguration> getPointConfigurations(
+      ICharacterTemplate template,
+      String pointCalculatorElementName) {
     MultiEntryMap<String, IPointHandler> handlersByGroupId = new MultiEntryMap<String, IPointHandler>();
     Map<String, PointConfiguration> configurationsByGroupId = new HashMap<String, PointConfiguration>();
     for (IPluginExtension extension : getPluginExtensions()) {
@@ -68,7 +70,7 @@ public class PointConfigurationExtensionPoint implements IPointConfigurationProv
       configuration.addHandlers(handlers);
       configurations.add(configuration);
     }
-    return configurations.toArray(new IPointConfiguration[configurations.size()]);
+    return configurations;
   }
 
   private IPointHandler getPointHandler(IExtensionElement element) {

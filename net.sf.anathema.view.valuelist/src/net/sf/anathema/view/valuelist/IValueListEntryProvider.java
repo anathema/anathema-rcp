@@ -4,5 +4,5 @@ import org.eclipse.ui.IEditorInput;
 
 public interface IValueListEntryProvider {
 
-  public IValueEntry[] getEntries(IEditorInput editorInput);
+  public Iterable<IValueEntry> getEntries(IEditorInput editorInput);
 }

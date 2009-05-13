@@ -1,6 +1,10 @@
 package net.sf.anathema.character.points;
 
 import static org.junit.Assert.*;
+
+import java.util.Collections;
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
@@ -30,17 +34,17 @@ public class PointViewInputFactoryTest {
     }
   }
 
-  private void assertPointEntryCreated(String expectedDisplayName, int expectedValue, IValueEntry[] entries) {
-    assertEquals(1, entries.length);
-    assertEquals(expectedDisplayName, entries[0].getDisplayName());
-    assertEquals(String.valueOf(expectedValue), entries[0].getValue());
+  private void assertPointEntryCreated(String expectedDisplayName, int expectedValue, List<IValueEntry> entries) {
+    assertEquals(1, entries.size());
+    assertEquals(expectedDisplayName, entries.get(0).getDisplayName());
+    assertEquals(String.valueOf(expectedValue), entries.get(0).getValue());
     EasyMock.verify(pointConfigurationProvider);
   }
 
-  private IPointConfiguration[] createPointConfigurations(String expectedDisplayName, int expectedValue) {
+  private List<IPointConfiguration> createPointConfigurations(String expectedDisplayName, int expectedValue) {
     PointConfiguration pointConfiguration = new PointConfiguration(expectedDisplayName);
     pointConfiguration.addHandler(new StaticValuePointHandler(expectedValue));
-    return new IPointConfiguration[] { pointConfiguration };
+    return Collections.singletonList((IPointConfiguration) pointConfiguration);
   }
 
   private PointValueEntryFactoryFactory factory;

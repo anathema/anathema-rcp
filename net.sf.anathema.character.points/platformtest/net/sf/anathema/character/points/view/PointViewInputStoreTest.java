@@ -42,7 +42,7 @@ public class PointViewInputStoreTest {
     ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(editorInput);
     assertNotNull(newInput);
     assertNotNull(newInput.getCharacterId());
-    assertTrue(newInput.createEntries().length != 0);
+    assertTrue(newInput.createEntries().size() != 0);
     EasyMock.verify(editorInput);
   }
 

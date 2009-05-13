@@ -1,10 +1,11 @@
 package net.sf.anathema.character.points.view;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
-import net.sf.anathema.character.points.view.ICharacterValueEntryFactory;
-import net.sf.anathema.character.points.view.PointViewInputStore;
 import net.sf.anathema.view.valuelist.IValueEntry;
 
 import org.easymock.EasyMock;
@@ -18,7 +19,7 @@ public class BadInputForPointViewStoreTest {
   private void assertEmptyViewElement(ICharacterValueEntryFactory newInput) {
     assertNotNull(newInput);
     assertNull(newInput.getCharacterId());
-    assertArrayEquals(new IValueEntry[0], newInput.createEntries());
+    assertEquals(new ArrayList<IValueEntry>(), newInput.createEntries());
   }
 
   @Before
