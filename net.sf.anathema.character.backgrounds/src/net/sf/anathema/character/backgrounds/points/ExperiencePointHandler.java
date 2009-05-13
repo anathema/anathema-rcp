@@ -5,8 +5,8 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.points.ICalculator;
 import net.sf.anathema.character.trait.points.PointWiseExperienceCalculator;
+import net.sf.anathema.lib.lang.ICalculator;
 
 public class ExperiencePointHandler extends AbstractPointHandler<ITraitCollectionModel> {
 

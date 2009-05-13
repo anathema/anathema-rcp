@@ -5,7 +5,7 @@ import net.sf.anathema.character.points.configuration.AbstractPointHandler;
 import net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants;
 import net.sf.anathema.character.spiritualtraits.points.willpower.WillpowerXpCalculatorFactory;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.points.ICalculator;
+import net.sf.anathema.lib.lang.ICalculator;
 
 public class WillpowerXpHandler extends AbstractPointHandler<ITraitCollectionModel> {
 

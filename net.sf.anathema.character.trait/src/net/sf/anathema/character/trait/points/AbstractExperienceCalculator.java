@@ -3,6 +3,7 @@ package net.sf.anathema.character.trait.points;
 import java.util.Arrays;
 
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.lib.lang.ICalculator;
 
 public abstract class AbstractExperienceCalculator implements ICalculator {
 

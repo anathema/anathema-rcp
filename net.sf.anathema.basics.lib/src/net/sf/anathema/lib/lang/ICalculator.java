@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.points;
+package net.sf.anathema.lib.lang;
 
 public interface ICalculator {
 

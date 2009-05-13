@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.lib.lang.ICalculator;
 
 import org.junit.Before;
 import org.junit.Test;

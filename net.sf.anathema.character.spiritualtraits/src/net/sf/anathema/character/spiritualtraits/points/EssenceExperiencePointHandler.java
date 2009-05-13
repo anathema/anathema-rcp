@@ -7,7 +7,7 @@ import net.sf.anathema.character.spiritualtraits.points.essence.CharacterExperie
 import net.sf.anathema.character.spiritualtraits.points.essence.EssenceExperienceCalculatoryFactory;
 import net.sf.anathema.character.spiritualtraits.points.essence.IEssenceCostMap;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
-import net.sf.anathema.character.trait.points.ICalculator;
+import net.sf.anathema.lib.lang.ICalculator;
 
 public class EssenceExperiencePointHandler extends AbstractPointHandler<ITraitCollectionModel> {
 
