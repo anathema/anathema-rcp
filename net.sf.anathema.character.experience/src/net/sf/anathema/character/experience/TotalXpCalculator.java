@@ -5,11 +5,11 @@ import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.experience.points.ExperienceEntry;
 import net.sf.anathema.lib.lang.ICalculator;
 
-public class AvailableXpCalculator implements ICalculator {
+public class TotalXpCalculator implements ICalculator {
 
   private final IModelContainer modelContainer;
 
-  public AvailableXpCalculator(IModelContainer modelContainer) {
+  public TotalXpCalculator(IModelContainer modelContainer) {
     this.modelContainer = modelContainer;
   }
 

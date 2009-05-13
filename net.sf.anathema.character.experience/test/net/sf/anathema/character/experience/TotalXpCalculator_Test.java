@@ -9,15 +9,15 @@ import net.sf.anathema.character.experience.points.ExperiencePoints;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AvailableXpCalculator_Test {
+public class TotalXpCalculator_Test {
 
   private ExperiencePoints experiencePoints;
-  private AvailableXpCalculator calculator;
+  private TotalXpCalculator calculator;
 
   @Before
   public void createCalculator() throws Exception {
     this.experiencePoints = new ExperiencePoints();
-    this.calculator = new AvailableXpCalculator(ModelContainerObjectMother.CreateForModelId(
+    this.calculator = new TotalXpCalculator(ModelContainerObjectMother.CreateForModelId(
         IExperiencePoints.MODEL_ID,
         experiencePoints));
   }
