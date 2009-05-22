@@ -4,6 +4,7 @@ import net.sf.anathema.basics.item.IItem;
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.IDisposable;
+import net.sf.anathema.lib.ui.IDisposableStorage;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -16,7 +17,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 public abstract class AbstractPersistableItemEditorPart<I extends IItem> extends EditorPart implements
-    IPersistableItemEditor {
+    IPersistableItemEditor,
+    IDisposableStorage {
 
   private final AggregatedDisposable disposables = new AggregatedDisposable();
 

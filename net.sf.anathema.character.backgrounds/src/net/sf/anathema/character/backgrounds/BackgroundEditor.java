@@ -2,6 +2,7 @@ package net.sf.anathema.character.backgrounds;
 
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
 import net.sf.anathema.basics.item.editor.IEditorControl;
+import net.sf.anathema.basics.ui.forms.InstructionTextFactory;
 import net.sf.anathema.character.backgrounds.model.IBackgroundAdditionListener;
 import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
@@ -13,8 +14,6 @@ import net.sf.anathema.character.trait.groupeditor.dynamic.TraitViewFactory;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.lib.ui.IDisposable;
 
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
@@ -25,32 +24,9 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgroundModel> implements IDynamicEditor {
 
-  private static final class TextChangingFocusListener implements FocusListener {
-
-    private final Text textfield;
-
-    public TextChangingFocusListener(Text textfield) {
-      this.textfield = textfield;
-    }
-
-    @Override
-    public void focusGained(FocusEvent e) {
-      if (textfield.getText().equals(DEFAULT_TEXT)) {
-        textfield.setText(EMPTY_TEXT);
-      }
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-      if (textfield.getText().equals(EMPTY_TEXT)) {
-        textfield.setText(DEFAULT_TEXT);
-      }
-    }
-  }
-
-  private static final String EMPTY_TEXT = ""; //$NON-NLS-1$
-  private static final String DEFAULT_TEXT = Messages.BackgroundEditor_HINT_TEXT;
+  private static final String INSTRUCTION = Messages.BackgroundEditor_HINT_TEXT;
   private Composite layoutContainer;
+  private static final String EMPTY_TEXT = ""; //$NON-NLS-1$
 
   @Override
   protected IEditorControl createItemEditorControl() {
@@ -80,7 +56,7 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
           final BackgroundEditorInput editorInput,
           final FormToolkit toolkit,
           final Composite container) {
-        entry = toolkit.createText(container, DEFAULT_TEXT);
+        entry = new InstructionTextFactory(toolkit, this).createFromToolkit(container, INSTRUCTION);
         entry.addSelectionListener(new SelectionListener() {
           @Override
           public void widgetDefaultSelected(SelectionEvent e) {
@@ -92,7 +68,6 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
             // nothing
           }
         });
-        entry.addFocusListener(new TextChangingFocusListener(entry));
       }
 
       private void createBackgroundTable(
@@ -133,7 +108,7 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
       @Override
       public void setFocus() {
         entry.setFocus();
-        entry.setText(DEFAULT_TEXT);
+        entry.setText(INSTRUCTION);
         entry.selectAll();
       }
     };

@@ -8,7 +8,8 @@ Require-Bundle: org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.jface.text,
  org.eclipse.ui;visibility:=reexport,
  net.sf.anathema.basics.lib,
- net.sf.anathema.basics.eclipse
+ net.sf.anathema.basics.eclipse,
+ org.eclipse.ui.forms;bundle-version="3.3.101";visibility:=reexport
 Export-Package: net.sf.anathema.basics.jface,
  net.sf.anathema.basics.jface.context,
  net.sf.anathema.basics.jface.resource,
@@ -18,6 +19,7 @@ Export-Package: net.sf.anathema.basics.jface,
  net.sf.anathema.basics.swt.dispose,
  net.sf.anathema.basics.swt.event,
  net.sf.anathema.basics.swt.file,
- net.sf.anathema.basics.swt.layout
+ net.sf.anathema.basics.swt.layout,
+ net.sf.anathema.basics.ui.forms
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

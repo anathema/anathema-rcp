@@ -3,7 +3,7 @@ package net.sf.anathema.lib.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AggregatedDisposable implements IDisposable {
+public class AggregatedDisposable implements IDisposable, IDisposableStorage {
 
   private final List<IDisposable> disposables = new ArrayList<IDisposable>();
 
