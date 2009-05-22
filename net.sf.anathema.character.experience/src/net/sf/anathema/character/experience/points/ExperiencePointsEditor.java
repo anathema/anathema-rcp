@@ -25,12 +25,15 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
   @Override
   protected IEditorControl createItemEditorControl() {
     return new AbstractItemEditorControl(this) {
+      private static final String INSTRUCTION = "Type an experience entry and press 'Enter', e.g. '11 Crushing the Wyld Hunt'.";
 
       private Text inputText;
 
       @Override
       public void setFocus() {
-        // nothing to do
+        inputText.setFocus();
+        inputText.setText(INSTRUCTION);
+        inputText.selectAll();
       }
 
       protected ExperiencePointsEditorInput getExperienceEditorInput() {
@@ -42,31 +45,37 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
         FormToolkit toolkit = new FormToolkit(parent.getDisplay());
         Composite body = createFormBody(parent, toolkit);
         addEntryText(toolkit, body);
-        Table table = createTable(toolkit, body);
-        createPointsColumn(table);
-        createCommentColumn(table);
-        createTableViewer(table);
+        addTable(toolkit, body);
+      }
+
+      private Composite createFormBody(Composite parent, FormToolkit toolkit) {
+        Form form = toolkit.createForm(parent);
+        toolkit.decorateFormHeading(form);
+        form.setText(getEditorInput().getName());
+        Composite body = form.getBody();
+        body.setLayout(new GridLayout(1, false));
+        return body;
       }
 
       private void addEntryText(FormToolkit toolkit, Composite body) {
         SelectionAdapter selectionListener = new SelectionAdapter() {
           @Override
           public void widgetDefaultSelected(SelectionEvent e) {
+            ExperiencePointsEditorInput editorInput = getExperienceEditorInput();
             String entryText = inputText.getText();
-            getExperienceEditorInput().addEntry(entryText);
+            editorInput.addEntry(entryText);
           }
         };
         InstructionTextFactory instructionTextFactory = new InstructionTextFactory(toolkit);
-        String instruction = "Type an experience entry and press 'Enter', e.g. '11 Crushing the Wyld Hunt'.";
-        inputText = instructionTextFactory.create(body, selectionListener, instruction);
+        inputText = instructionTextFactory.create(body, selectionListener, INSTRUCTION);
         inputText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
       }
 
-      private Composite createFormBody(Composite parent, FormToolkit toolkit) {
-        Form form = toolkit.createForm(parent);
-        Composite body = form.getBody();
-        body.setLayout(new GridLayout(1, false));
-        return body;
+      private void addTable(FormToolkit toolkit, Composite body) {
+        Table table = createTable(toolkit, body);
+        createPointsColumn(table);
+        createCommentColumn(table);
+        createTableViewer(table);
       }
 
       private Table createTable(FormToolkit toolkit, Composite body) {
