@@ -6,6 +6,7 @@ import net.sf.anathema.charms.data.CharmDataProvider;
 import net.sf.anathema.charms.view.tooltipp.TooltippMouseListener;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.zest.core.viewers.GraphViewer;
@@ -24,8 +25,9 @@ public class ZestView extends ViewPart implements net.sf.anathema.lib.ui.IDispos
   @Override
   public void createPartControl(Composite parent) {
     CharmContentProvider contentProvider = new CharmContentProvider();
-    final GraphViewer viewer = new GraphViewer(parent, SWT.NONE);
-    final Graph graphControl = viewer.getGraphControl();
+    GraphViewer viewer = new GraphViewer(parent, SWT.NONE);
+    Graph graphControl = viewer.getGraphControl();
+    graphControl.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     graphControl.addMouseMoveListener(new TooltippMouseListener(viewer));
     viewer.setLabelProvider(new CharmLabelProvider(new CharmDataProvider()));
     viewer.setContentProvider(contentProvider);

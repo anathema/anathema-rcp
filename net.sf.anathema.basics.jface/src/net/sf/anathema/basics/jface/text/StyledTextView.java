@@ -26,9 +26,9 @@ import org.eclipse.swt.widgets.Composite;
 
 public class StyledTextView implements IStyledTextView {
 
-  private StyledText contentComposite;
-  private ChangeControl caretMoveControl = new ChangeControl();
-  private GenericControl<ITextExchangeListener> exchangeControl = new GenericControl<ITextExchangeListener>();
+  private final StyledText contentComposite;
+  private final ChangeControl caretMoveControl = new ChangeControl();
+  private final GenericControl<ITextExchangeListener> exchangeControl = new GenericControl<ITextExchangeListener>();
 
   public StyledTextView(Composite parent) {
     contentComposite = new StyledText(parent, SWT.MULTI | SWT.V_SCROLL | SWT.WRAP | SWT.BORDER);

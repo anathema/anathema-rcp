@@ -7,6 +7,7 @@ import net.sf.anathema.basics.item.editor.IEditorControl;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class TraitGroupEditor extends AbstractPersistableItemFormEditorPart<IItem> {
 
@@ -22,7 +23,7 @@ public class TraitGroupEditor extends AbstractPersistableItemFormEditorPart<IIte
       }
 
       @Override
-      public void createPartControl(Composite parent) {
+      protected void createPartControl(FormToolkit toolkit, Composite body) {
         throw new UnsupportedOperationException();
       }
     };

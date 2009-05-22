@@ -7,6 +7,7 @@ import net.sf.anathema.charms.character.preference.ICharmPreferences;
 import net.sf.anathema.charms.view.ZestView;
 
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class CharmsEditorControl extends AbstractItemEditorControl {
 
@@ -18,12 +19,12 @@ public class CharmsEditorControl extends AbstractItemEditorControl {
   }
 
   @Override
-  public void createPartControl(Composite parent) {
+  protected void createPartControl(FormToolkit toolkit, Composite body) {
     CharmsEditorInput editorInput = getEditorInput();
     ICharmPreferences preferences = CharmPreferenceFactory.create();
     CharacterCharmVisuals charmVisuals = new CharacterCharmVisuals(editorInput.getItem(), experience, preferences);
     ZestView zestView = new ZestView(charmVisuals, editorInput.getTreeId(), experience);
-    zestView.createPartControl(parent);
+    zestView.createPartControl(body);
     addDisposable(zestView);
   }
 

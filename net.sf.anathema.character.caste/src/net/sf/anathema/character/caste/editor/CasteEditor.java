@@ -16,11 +16,10 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class CasteEditor extends AbstractCharacterModelEditorPart<ICasteModel> {
 
@@ -72,11 +71,11 @@ public class CasteEditor extends AbstractCharacterModelEditorPart<ICasteModel> {
       }
 
       @Override
-      public void createPartControl(Composite parent) {
-        parent.setLayout(new GridLayout(2, false));
-        new Label(parent, SWT.NONE).setText(Messages.CasteEditor_CasteLabel);
+      protected void createPartControl(FormToolkit toolkit, Composite body) {
+        body.setLayout(new GridLayout(2, false));
+        toolkit.createLabel(body, Messages.CasteEditor_CasteLabel);
         IContentProvider provider = new CasteContentProvider();
-        ComboViewer viewer = new ComboViewer(parent);
+        ComboViewer viewer = new ComboViewer(body);
         viewer.setContentProvider(provider);
         viewer.setLabelProvider(new CasteLabelProvider());
         final ICasteModel item = getPersistableEditorInput().getItem();

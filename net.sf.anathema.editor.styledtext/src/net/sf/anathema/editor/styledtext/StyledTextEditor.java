@@ -52,19 +52,17 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
       }
 
       @Override
-      public void createPartControl(Composite parent) {
-        parent.setLayout(new GridLayout(2, false));
-        Label nameLabel = new Label(parent, SWT.LEFT);
-        nameLabel.setText(getColonLabel(Messages.StyledTextEditor_Name));
+      protected void createPartControl(FormToolkit toolkit, Composite body) {
+        body.setLayout(new GridLayout(2, false));
+        Label nameLabel = toolkit.createLabel(body, getColonLabel(Messages.StyledTextEditor_Name), SWT.LEFT);
         nameLabel.setLayoutData(createLabelData());
-        final ITextView nameView = SimpleTextView.createSingleLineView(parent, new FormToolkit(parent.getDisplay()));
+        final ITextView nameView = SimpleTextView.createSingleLineView(body, toolkit);
         final ITextualDescription nameModel = getItem().getName();
         addDisposable(new TextualPresenter(nameView, nameModel)).initPresentation();
-        Label contentLabel = new Label(parent, SWT.LEFT);
-        contentLabel.setText(getColonLabel(Messages.StyledTextEditor_Content));
+        Label contentLabel = toolkit.createLabel(body, getColonLabel(Messages.StyledTextEditor_Content), SWT.LEFT);
         contentLabel.setLayoutData(createLabelData());
         final IStyledTextualDescription contentDescription = getItem().getContent();
-        contentView = new StyledTextView(parent);
+        contentView = new StyledTextView(body);
         new StyledTextPresenter(contentView, contentDescription).initPresentation();
         getSite().setSelectionProvider(contentView.createSelectionProvider());
       }

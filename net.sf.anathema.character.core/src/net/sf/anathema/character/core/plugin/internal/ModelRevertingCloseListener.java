@@ -2,6 +2,7 @@ package net.sf.anathema.character.core.plugin.internal;
 
 import net.sf.anathema.basics.item.IPersistableEditorInput;
 import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
+import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.ModelCache;
 
@@ -23,6 +24,8 @@ public final class ModelRevertingCloseListener extends PartAdapter {
       return;
     }
     AbstractCharacterModelEditorInput< ? > modelEditorInput = (AbstractCharacterModelEditorInput< ? >) input;
-    ModelCache.getInstance().revert(modelEditorInput.getItem());
+    ModelCache modelCache = ModelCache.getInstance();
+    IModel model = modelEditorInput.getItem();
+    modelCache.revert(model);
   }
 }

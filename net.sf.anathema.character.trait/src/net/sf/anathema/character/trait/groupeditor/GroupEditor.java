@@ -56,15 +56,11 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
       }
 
       @Override
-      public void createPartControl(Composite parent) {
-        ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
-        FormToolkit toolkit = new FormToolkit(parent.getDisplay());
+      protected void createPartControl(FormToolkit toolkit, Composite body) {
         SectionFactory sectionFactory = new SectionFactory(toolkit);
-        Form form = toolkit.createForm(parent);
-        toolkit.decorateFormHeading(form);
-        form.setText(getEditorInput().getName());
-        form.getBody().setLayout(new FillLayout());
-        layoutContainer = toolkit.createComposite(form.getBody());
+        ITraitGroupEditorInput editorInput = (ITraitGroupEditorInput) getEditorInput();
+        body.setLayout(new FillLayout());
+        layoutContainer = toolkit.createComposite(body);
         decorations.addAll(new TraitGroupEditorDecorationFactory().create());
         ICharacterId characterId = editorInput.getCharacterId();
         List<IDisplayTraitGroup<IInteractiveTrait>> displayGroups = editorInput.createDisplayGroups();
@@ -82,7 +78,7 @@ public class GroupEditor extends AbstractCharacterModelEditorPart<ITraitCollecti
           }
         }
         if (editorInput.supportsSubTraits()) {
-          createCraftSection(editorInput, toolkit, form, characterId);
+          createCraftSection(editorInput, toolkit, getForm(), characterId);
         }
         IFolder characterFolder = editorInput.getCharacterFolder();
         Display display = layoutContainer.getDisplay();

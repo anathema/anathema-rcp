@@ -7,8 +7,12 @@ import net.sf.anathema.lib.ui.AggregatedDisposable;
 import net.sf.anathema.lib.ui.IDisposable;
 
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.forms.widgets.Form;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public abstract class AbstractItemEditorControl extends AggregatedDisposable implements IEditorControl {
 
@@ -28,6 +32,7 @@ public abstract class AbstractItemEditorControl extends AggregatedDisposable imp
   }
 
   private final IPersistableItemEditor editor;
+  private Form form;
 
   public AbstractItemEditorControl(IPersistableItemEditor editor) {
     this.editor = editor;
@@ -37,7 +42,7 @@ public abstract class AbstractItemEditorControl extends AggregatedDisposable imp
   public final boolean isDirty() {
     return editor.getPersistableEditorInput().getItem().isDirty();
   }
-  
+
   protected final IPersistableItemEditor getEditor() {
     return editor;
   }
@@ -56,5 +61,27 @@ public abstract class AbstractItemEditorControl extends AggregatedDisposable imp
     Image titleImage = itemInput.getImageDescriptor().createImage();
     editor.setTitleImage(titleImage);
     addDisposable(new ImageDisposable(titleImage));
+  }
+
+  @Override
+  public final void createPartControl(Composite parent) {
+    FormToolkit toolkit = new FormToolkit(parent.getDisplay());
+    Composite body = createFormBody(parent, toolkit);
+    createPartControl(toolkit, body);
+  }
+
+  protected abstract void createPartControl(FormToolkit toolkit, Composite body);
+
+  protected final Composite createFormBody(Composite parent, FormToolkit toolkit) {
+    form = toolkit.createForm(parent);
+    toolkit.decorateFormHeading(form);
+    form.setText(getEditor().getPersistableEditorInput().getName());
+    Composite body = form.getBody();
+    body.setLayout(new GridLayout(1, false));
+    return body;
+  }
+
+  protected Form getForm() {
+    return form;
   }
 }

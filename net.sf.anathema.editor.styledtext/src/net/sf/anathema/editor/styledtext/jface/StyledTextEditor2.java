@@ -28,9 +28,9 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
-public class StyledTextEditor2 extends AbstractPersistableItemEditorPart<ITitledText> implements
-    IStyledTextEditor {
+public class StyledTextEditor2 extends AbstractPersistableItemEditorPart<ITitledText> implements IStyledTextEditor {
 
   private SourceViewer viewer;
   private Document document;
@@ -55,12 +55,12 @@ public class StyledTextEditor2 extends AbstractPersistableItemEditorPart<ITitled
       }
 
       @Override
-      public void createPartControl(Composite parent) {
+      protected void createPartControl(FormToolkit toolkit, Composite body) {
         document = new Document();
         partitioner = new STE2Partitioner();
         document.setDocumentPartitioner(partitioner);
         partitioner.connect(document);
-        viewer = new SourceViewer(parent, null, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL | SWT.BORDER);
+        viewer = new SourceViewer(body, null, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL | SWT.BORDER);
         StyledText textWidget = viewer.getTextWidget();
         textWidget.addKeyListener(new KeyReleasedChangeAdapter(changeControl));
         textWidget.addMouseListener(new MouseUpChangeAdapter(changeControl));

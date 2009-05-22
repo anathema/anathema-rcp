@@ -33,7 +33,8 @@ public class ModelCache implements IModelCache {
   public synchronized IModel getModel(final IModelIdentifier identifier) {
     IModel model = modelsByIdentifier.get(identifier);
     if (model == null) {
-      IModelInitializer initializer = new ModelExtensionPoint().createModel(identifier);
+      ModelExtensionPoint modelExtensionPoint = new ModelExtensionPoint();
+      IModelInitializer initializer = modelExtensionPoint.createModel(identifier);
       model = initializer.getModel();
       if (model != null) {
         storeModel(identifier, model);

@@ -45,9 +45,7 @@ public class CharacterDescriptionEditor extends AbstractCharacterModelEditorPart
       }
 
       @Override
-      public void createPartControl(Composite parent) {
-        FormToolkit toolkit = new FormToolkit(parent.getDisplay());
-        Composite body = createFormBody(parent, toolkit);
+      protected void createPartControl(FormToolkit toolkit, Composite body) {
         body.setLayout(new GridLayout(2, false));
         ICharacterDescription item = getItem();
         nameView = initSingleLineText(body, toolkit, CharacterDescriptionEditor_Name, item.getName());
