@@ -7,7 +7,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
 import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.model.ModelCache;
+import net.sf.anathema.character.points.calculation.ExperienceCharacterFactory;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
 import net.sf.anathema.character.points.view.entry.BankedXpConfiguration;
@@ -17,8 +17,13 @@ public class PointValueEntryFactoryFactory {
 
   private final IPointConfigurationProvider configurationProvider;
   private final ICharacterTemplateProvider templateProvider;
+  private final IModelCollection modelCollection;
 
-  public PointValueEntryFactoryFactory(IPointConfigurationProvider provider, ICharacterTemplateProvider templateProvider) {
+  public PointValueEntryFactoryFactory(
+      IModelCollection modelCollection,
+      IPointConfigurationProvider provider,
+      ICharacterTemplateProvider templateProvider) {
+    this.modelCollection = modelCollection;
     this.configurationProvider = provider;
     this.templateProvider = templateProvider;
   }
@@ -31,18 +36,16 @@ public class PointValueEntryFactoryFactory {
     ICharacterTemplate template = templateProvider.getTemplate(characterId);
     if (experienced) {
       List<IPointConfiguration> configured = configurationProvider.getExperiencePointConfigurations(template);
-      IModelCollection modelCollection = ModelCache.getInstance();
-      return getDisplayExperienceConfigurations(modelCollection, configured);
+      return getDisplayExperienceConfigurations(configured);
     }
     return configurationProvider.getBonusPointConfigurations(template);
   }
 
-  private Iterable<IPointConfiguration> getDisplayExperienceConfigurations(
-      IModelCollection modelCollection,
-      List<IPointConfiguration> configured) {
+  private Iterable<IPointConfiguration> getDisplayExperienceConfigurations(List<IPointConfiguration> configured) {
+    ExperienceCharacterFactory factory = new ExperienceCharacterFactory(modelCollection, configured);
     List<IPointConfiguration> displayConfigurations = new ArrayList<IPointConfiguration>();
-    displayConfigurations.add(new LifetimeXpConfiguration(modelCollection));
-    displayConfigurations.add(new BankedXpConfiguration(modelCollection, configured));
+    displayConfigurations.add(new LifetimeXpConfiguration(factory));
+    displayConfigurations.add(new BankedXpConfiguration(factory));
     displayConfigurations.addAll(configured);
     return displayConfigurations;
   }

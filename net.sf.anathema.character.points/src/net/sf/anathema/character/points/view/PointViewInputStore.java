@@ -23,7 +23,10 @@ public class PointViewInputStore implements IValueListInputStore {
   }
 
   public PointViewInputStore(IPointConfigurationProvider provider) {
-    this.factory = new PointValueEntryFactoryFactory(provider, new CharacterTemplateProvider());
+    this.factory = new PointValueEntryFactoryFactory(
+        ModelCache.getInstance(),
+        provider,
+        new CharacterTemplateProvider());
   }
 
   public ICharacterValueEntryFactory getEntriesFactory(IEditorInput editorInput) {

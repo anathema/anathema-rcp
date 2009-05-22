@@ -8,6 +8,7 @@ import java.util.List;
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplateProvider;
+import net.sf.anathema.character.core.fake.DummyModelCollection;
 import net.sf.anathema.character.points.configuration.IPointHandler;
 import net.sf.anathema.character.points.configuration.internal.IPointConfiguration;
 import net.sf.anathema.character.points.configuration.internal.IPointConfigurationProvider;
@@ -34,10 +35,15 @@ public class PointViewInputFactoryTest {
     }
   }
 
-  private void assertPointEntryCreated(String expectedDisplayName, int expectedValue, List<IValueEntry> entries) {
-    assertEquals(1, entries.size());
-    assertEquals(expectedDisplayName, entries.get(0).getDisplayName());
-    assertEquals(String.valueOf(expectedValue), entries.get(0).getValue());
+  private void assertPointEntryCreated(
+      String expectedDisplayName,
+      int expectedValue,
+      int staticEntries,
+      List<IValueEntry> entries) {
+    assertEquals(1 + staticEntries, entries.size());
+    int entryIndex = staticEntries;
+    assertEquals(expectedDisplayName, entries.get(entryIndex).getDisplayName());
+    assertEquals(String.valueOf(expectedValue), entries.get(entryIndex).getValue());
     EasyMock.verify(pointConfigurationProvider);
   }
 
@@ -54,7 +60,10 @@ public class PointViewInputFactoryTest {
   public void createFactory() throws Exception {
     this.pointConfigurationProvider = EasyMock.createMock(IPointConfigurationProvider.class);
     ICharacterTemplateProvider templateProvider = EasyMock.createNiceMock(ICharacterTemplateProvider.class);
-    this.factory = new PointValueEntryFactoryFactory(pointConfigurationProvider, templateProvider);
+    this.factory = new PointValueEntryFactoryFactory(
+        new DummyModelCollection(),
+        pointConfigurationProvider,
+        templateProvider);
   }
 
   @Test
@@ -64,7 +73,7 @@ public class PointViewInputFactoryTest {
     EasyMock.expect(pointConfigurationProvider.getExperiencePointConfigurations(null)).andReturn(
         createPointConfigurations(expectedDisplayName, expectedValue));
     EasyMock.replay(pointConfigurationProvider);
-    assertPointEntryCreated(expectedDisplayName, expectedValue, factory.create(null, true).createEntries());
+    assertPointEntryCreated(expectedDisplayName, expectedValue, 2, factory.create(null, true).createEntries());
   }
 
   @Test
@@ -74,6 +83,6 @@ public class PointViewInputFactoryTest {
     EasyMock.expect(pointConfigurationProvider.getBonusPointConfigurations(null)).andReturn(
         createPointConfigurations(expectedDisplayName, expectedValue));
     EasyMock.replay(pointConfigurationProvider);
-    assertPointEntryCreated(expectedDisplayName, expectedValue, factory.create(null, false).createEntries());
+    assertPointEntryCreated(expectedDisplayName, expectedValue, 0, factory.create(null, false).createEntries());
   }
 }
