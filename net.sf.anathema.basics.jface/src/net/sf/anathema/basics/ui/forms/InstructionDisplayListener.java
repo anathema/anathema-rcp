@@ -1,7 +1,5 @@
 package net.sf.anathema.basics.ui.forms;
 
-import net.sf.anathema.lib.ui.IDisposable;
-
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.MouseAdapter;
@@ -10,10 +8,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Text;
 
-public final class InstructionDisplayListener extends MouseAdapter implements
-    FocusListener,
-    IDisposable,
-    SelectionListener {
+public final class InstructionDisplayListener extends MouseAdapter implements FocusListener, SelectionListener {
   private static final String EMPTY_TEXT = ""; //$NON-NLS-1$
 
   private final Text textfield;
@@ -21,7 +16,10 @@ public final class InstructionDisplayListener extends MouseAdapter implements
 
   private final SelectionListener selectionListener;
 
-  public static IDisposable Connect(Text textfield, SelectionListener selectionListener, String instruction) {
+  public static InstructionDisplayListener Connect(
+      Text textfield,
+      SelectionListener selectionListener,
+      String instruction) {
     InstructionDisplayListener instructionListener = new InstructionDisplayListener(
         textfield,
         selectionListener,
@@ -36,6 +34,7 @@ public final class InstructionDisplayListener extends MouseAdapter implements
     this.textfield = textfield;
     this.selectionListener = selectionListener;
     this.instruction = instruction;
+    showInstruction();
   }
 
   @Override
@@ -67,13 +66,6 @@ public final class InstructionDisplayListener extends MouseAdapter implements
     if (textfield.getText().equals(EMPTY_TEXT)) {
       textfield.setText(instruction);
     }
-  }
-
-  @Override
-  public void dispose() {
-    textfield.removeMouseListener(this);
-    textfield.removeFocusListener(this);
-    textfield.removeSelectionListener(this);
   }
 
   @Override

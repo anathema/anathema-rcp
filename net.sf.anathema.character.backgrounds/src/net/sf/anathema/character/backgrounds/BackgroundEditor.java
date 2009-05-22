@@ -61,7 +61,7 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
             editorInput.getItem().addBackground(entry.getText());
           }
         };
-        entry = new InstructionTextFactory(toolkit, this).create(container, selectionListener, INSTRUCTION);
+        entry = new InstructionTextFactory(toolkit).create(container, selectionListener, INSTRUCTION);
       }
 
       private void createBackgroundTable(

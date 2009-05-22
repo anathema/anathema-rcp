@@ -56,7 +56,7 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
             getExperienceEditorInput().addEntry(entryText);
           }
         };
-        InstructionTextFactory instructionTextFactory = new InstructionTextFactory(toolkit, this);
+        InstructionTextFactory instructionTextFactory = new InstructionTextFactory(toolkit);
         String instruction = "Type an experience entry and press 'Enter', e.g. '11 Crushing the Wyld Hunt'.";
         inputText = instructionTextFactory.create(body, selectionListener, instruction);
         inputText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
