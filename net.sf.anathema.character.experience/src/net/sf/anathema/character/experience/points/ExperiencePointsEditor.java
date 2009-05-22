@@ -1,6 +1,5 @@
 package net.sf.anathema.character.experience.points;
 
-
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractEntryTextEditorControl;
 import net.sf.anathema.basics.item.editor.IEditorControl;
@@ -51,7 +50,7 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
       }
 
       private Table createTable(FormToolkit toolkit, Composite body) {
-        Table table = toolkit.createTable(body, SWT.BORDER | SWT.V_SCROLL);
+        Table table = toolkit.createTable(body, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
         table.setLayoutData(createTableGridData());
         table.setHeaderVisible(true);
         return table;
