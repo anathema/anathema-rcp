@@ -1,18 +1,26 @@
 package net.sf.anathema.character.experience.points;
 
+import java.text.MessageFormat;
+
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractEntryTextEditorControl;
 import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
 import net.sf.anathema.character.experience.IExperiencePoints;
 
+import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -37,10 +45,6 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
             ExperiencePointsEditorInput editorInput = getExperienceEditorInput();
             String entryText = getInputText().getText();
             editorInput.addEntry(entryText);
-          }
-
-          protected ExperiencePointsEditorInput getExperienceEditorInput() {
-            return (ExperiencePointsEditorInput) getPersistableEditorInput();
           }
         };
       }
@@ -76,6 +80,22 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
             table.getParent().layout();
           }
         });
+        tableViewer.addDoubleClickListener(new IDoubleClickListener() {
+          @Override
+          public void doubleClick(DoubleClickEvent event) {
+            StructuredSelection selection = (StructuredSelection) event.getSelection();
+            ExperienceEntry experienceEntry = (ExperienceEntry) selection.getFirstElement();
+            Shell shell = event.getViewer().getControl().getShell();
+            String title = "Edit Experience Entry";
+            String message = "Please edit the experience entry and press okay to confirm.";
+            String initialValue = MessageFormat.format("{0} {1}", experienceEntry.points, experienceEntry.comment);
+            InputDialog dialog = new InputDialog(shell, title, message, initialValue, null);
+            if (dialog.open() == Window.OK) {
+              ExperiencePointsEditorInput editorInput = getExperienceEditorInput();
+              editorInput.update(experienceEntry, dialog.getValue());
+            }
+          }
+        });
       }
 
       private void createCommentColumn(Table table) {
@@ -91,5 +111,9 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
         valueColumn.setWidth(50);
       }
     };
+  }
+
+  protected ExperiencePointsEditorInput getExperienceEditorInput() {
+    return (ExperiencePointsEditorInput) getPersistableEditorInput();
   }
 }

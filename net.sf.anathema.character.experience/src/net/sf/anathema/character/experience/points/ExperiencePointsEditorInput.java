@@ -34,4 +34,9 @@ public class ExperiencePointsEditorInput extends AbstractCharacterModelEditorInp
   public void addEntry(String text) {
     experiencePointsModel.add(new ExperienceEntryParser().parse(text));
   }
+
+  public void update(ExperienceEntry experienceEntry, String text) {
+    ExperienceEntry updateEntry = new ExperienceEntryParser().parse(text);
+    experiencePointsModel.updateEntry(experienceEntry, updateEntry);
+  }
 }

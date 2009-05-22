@@ -10,4 +10,6 @@ public interface IExperiencePoints extends IModel {
   public ExperienceEntry[] getEntries();
 
   public void add(ExperienceEntry entry);
+
+  public void updateEntry(ExperienceEntry experienceEntry, ExperienceEntry updateEntry);
 }
