@@ -1,8 +1,7 @@
 package net.sf.anathema.character.backgrounds;
 
-import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
+import net.sf.anathema.basics.item.editor.AbstractEntryTextEditorControl;
 import net.sf.anathema.basics.item.editor.IEditorControl;
-import net.sf.anathema.basics.ui.forms.InstructionTextFactory;
 import net.sf.anathema.character.backgrounds.model.IBackgroundAdditionListener;
 import net.sf.anathema.character.backgrounds.model.IBackgroundModel;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
@@ -14,14 +13,11 @@ import net.sf.anathema.character.trait.groupeditor.dynamic.TraitViewFactory;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.lib.ui.IDisposable;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgroundModel> implements IDynamicEditor {
@@ -31,46 +27,31 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
 
   @Override
   protected IEditorControl createItemEditorControl() {
-    return new AbstractItemEditorControl(this) {
-
-      private Text inputText;
+    return new AbstractEntryTextEditorControl(this) {
 
       @Override
-      public void createPartControl(final Composite parent) {
-        FormToolkit toolkit = new FormToolkit(parent.getDisplay());
-        Composite body = createFormBody(parent, toolkit);
-        addEntryText(toolkit, body);
-        addTable(toolkit, body);
+      protected String getInstruction() {
+        return INSTRUCTION;
       }
 
-      private Composite createFormBody(final Composite parent, final FormToolkit toolkit) {
-        Form form = toolkit.createForm(parent);
-        toolkit.decorateFormHeading(form);
-        form.setText(getEditorInput().getName());
-        Composite body = form.getBody();
-        body.setLayout(new GridLayout(1, false));
-        return body;
+      @Override
+      protected SelectionListener createSelectionListener() {
+        return new SelectionAdapter() {
+          @Override
+          public void widgetDefaultSelected(SelectionEvent e) {
+            BackgroundEditorInput editorInput = getBackgroundEditorInput();
+            String entryText = getInputText().getText();
+            editorInput.getItem().addBackground(entryText);
+          }
+        };
       }
 
       private BackgroundEditorInput getBackgroundEditorInput() {
         return (BackgroundEditorInput) getEditorInput();
       }
 
-      private void addEntryText(final FormToolkit toolkit, final Composite container) {
-        SelectionAdapter selectionListener = new SelectionAdapter() {
-          @Override
-          public void widgetDefaultSelected(SelectionEvent e) {
-            BackgroundEditorInput editorInput = getBackgroundEditorInput();
-            String entryText = inputText.getText();
-            editorInput.getItem().addBackground(entryText);
-          }
-        };
-        InstructionTextFactory instructionTextFactory = new InstructionTextFactory(toolkit);
-        inputText = instructionTextFactory.create(container, selectionListener, INSTRUCTION);
-        inputText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-      }
-
-      private void addTable(final FormToolkit toolkit, final Composite body) {
+      @Override
+      protected void addTable(final FormToolkit toolkit, final Composite body) {
         layoutContainer = toolkit.createComposite(body);
         layoutContainer.setLayout(new GridLayout(3, false));
         TraitViewFactory factory = new TraitViewFactory(
@@ -99,13 +80,6 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
           }
         });
         editorInput.addModificationListener(additionListener);
-      }
-
-      @Override
-      public void setFocus() {
-        inputText.setFocus();
-        inputText.setText(INSTRUCTION);
-        inputText.selectAll();
       }
     };
   }

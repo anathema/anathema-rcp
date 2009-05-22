@@ -1,9 +1,8 @@
 package net.sf.anathema.character.experience.points;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
+import net.sf.anathema.basics.item.editor.AbstractEntryTextEditorControl;
 import net.sf.anathema.basics.item.editor.IEditorControl;
-import net.sf.anathema.basics.ui.forms.InstructionTextFactory;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
 import net.sf.anathema.character.experience.IExperiencePoints;
 
@@ -11,67 +10,43 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IExperiencePoints> {
 
   @Override
   protected IEditorControl createItemEditorControl() {
-    return new AbstractItemEditorControl(this) {
+    return new AbstractEntryTextEditorControl(this) {
       private static final String INSTRUCTION = "Type an experience entry and press 'Enter', e.g. '11 Crushing the Wyld Hunt'.";
 
-      private Text inputText;
-
       @Override
-      public void setFocus() {
-        inputText.setFocus();
-        inputText.setText(INSTRUCTION);
-        inputText.selectAll();
-      }
-
-      protected ExperiencePointsEditorInput getExperienceEditorInput() {
-        return (ExperiencePointsEditorInput) getPersistableEditorInput();
+      protected String getInstruction() {
+        return INSTRUCTION;
       }
 
       @Override
-      public void createPartControl(Composite parent) {
-        FormToolkit toolkit = new FormToolkit(parent.getDisplay());
-        Composite body = createFormBody(parent, toolkit);
-        addEntryText(toolkit, body);
-        addTable(toolkit, body);
-      }
-
-      private Composite createFormBody(Composite parent, FormToolkit toolkit) {
-        Form form = toolkit.createForm(parent);
-        toolkit.decorateFormHeading(form);
-        form.setText(getEditorInput().getName());
-        Composite body = form.getBody();
-        body.setLayout(new GridLayout(1, false));
-        return body;
-      }
-
-      private void addEntryText(FormToolkit toolkit, Composite body) {
-        SelectionAdapter selectionListener = new SelectionAdapter() {
+      protected SelectionListener createSelectionListener() {
+        return new SelectionAdapter() {
           @Override
           public void widgetDefaultSelected(SelectionEvent e) {
             ExperiencePointsEditorInput editorInput = getExperienceEditorInput();
-            String entryText = inputText.getText();
+            String entryText = getInputText().getText();
             editorInput.addEntry(entryText);
           }
+
+          protected ExperiencePointsEditorInput getExperienceEditorInput() {
+            return (ExperiencePointsEditorInput) getPersistableEditorInput();
+          }
         };
-        InstructionTextFactory instructionTextFactory = new InstructionTextFactory(toolkit);
-        inputText = instructionTextFactory.create(body, selectionListener, INSTRUCTION);
-        inputText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
       }
 
-      private void addTable(FormToolkit toolkit, Composite body) {
+      @Override
+      protected void addTable(FormToolkit toolkit, Composite body) {
         Table table = createTable(toolkit, body);
         createPointsColumn(table);
         createCommentColumn(table);
