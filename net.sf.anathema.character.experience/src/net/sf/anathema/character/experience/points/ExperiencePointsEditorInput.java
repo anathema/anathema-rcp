@@ -42,7 +42,9 @@ public class ExperiencePointsEditorInput extends AbstractCharacterModelEditorInp
     }
     else {
       ExperienceEntry updateEntry = new ExperienceEntryParser().parse(text);
-      experiencePointsModel.update(experienceEntry, updateEntry);
+      if (!updateEntry.equals(experienceEntry)) {
+        experiencePointsModel.update(experienceEntry, updateEntry);
+      }
     }
   }
 }
