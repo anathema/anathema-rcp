@@ -23,9 +23,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
-public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledText> implements
-    IStyledTextEditor {
+public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledText> implements IStyledTextEditor {
 
   private StyledTextView contentView;
 
@@ -57,7 +57,7 @@ public class StyledTextEditor extends AbstractPersistableItemEditorPart<ITitledT
         Label nameLabel = new Label(parent, SWT.LEFT);
         nameLabel.setText(getColonLabel(Messages.StyledTextEditor_Name));
         nameLabel.setLayoutData(createLabelData());
-        final ITextView nameView = SimpleTextView.createSingleLineView(parent);
+        final ITextView nameView = SimpleTextView.createSingleLineView(parent, new FormToolkit(parent.getDisplay()));
         final ITextualDescription nameModel = getItem().getName();
         addDisposable(new TextualPresenter(nameView, nameModel)).initPresentation();
         Label contentLabel = new Label(parent, SWT.LEFT);

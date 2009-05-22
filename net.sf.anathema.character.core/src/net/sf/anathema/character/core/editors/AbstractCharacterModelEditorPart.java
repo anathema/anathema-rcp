@@ -8,6 +8,10 @@ import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.core.resource.ResourceModelMarker;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.widgets.Form;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public abstract class AbstractCharacterModelEditorPart<M extends IModel> extends AbstractPersistableItemEditorPart<M> {
 
@@ -30,5 +34,14 @@ public abstract class AbstractCharacterModelEditorPart<M extends IModel> extends
 
   protected final IModelIdentifier getModelIdentifier() {
     return (IModelIdentifier) getEditorInput().getAdapter(IModelIdentifier.class);
+  }
+
+  protected final Composite createFormBody(Composite parent, FormToolkit toolkit) {
+    Form form = toolkit.createForm(parent);
+    toolkit.decorateFormHeading(form);
+    form.setText(getPersistableEditorInput().getName());
+    Composite body = form.getBody();
+    body.setLayout(new GridLayout(1, false));
+    return body;
   }
 }

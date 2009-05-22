@@ -11,26 +11,27 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class SimpleTextView implements ITextView {
 
   private final Text textWidget;
   private final ObjectValueControl<String> control = new ObjectValueControl<String>();
 
-  public static SimpleTextView createSingleLineView(Composite parent) {
-    SimpleTextView view = new SimpleTextView(parent, SINGLE);
+  public static SimpleTextView createSingleLineView(Composite parent, FormToolkit toolkit) {
+    SimpleTextView view = new SimpleTextView(parent, toolkit, SINGLE);
     view.textWidget.setLayoutData(new GridData(FILL, DEFAULT, true, false));
     return view;
   }
 
-  public static SimpleTextView createMultiLineView(Composite parent) {
-    SimpleTextView view = new SimpleTextView(parent, MULTI | WRAP | V_SCROLL);
+  public static SimpleTextView createMultiLineView(Composite parent, FormToolkit toolkit) {
+    SimpleTextView view = new SimpleTextView(parent, toolkit, MULTI | WRAP | V_SCROLL);
     view.textWidget.setLayoutData(new GridData(FILL, FILL, true, true));
     return view;
   }
 
-  private SimpleTextView(Composite parent, int lineFlag) {
-    this.textWidget = new Text(parent, lineFlag | BORDER);
+  private SimpleTextView(Composite parent, FormToolkit toolkit, int lineFlag) {
+    this.textWidget = toolkit.createText(parent, "", lineFlag | BORDER); //$NON-NLS-1$
     this.textWidget.addModifyListener(new ModifyListener() {
       public void modifyText(ModifyEvent e) {
         control.fireValueChangedEvent(textWidget.getText());
