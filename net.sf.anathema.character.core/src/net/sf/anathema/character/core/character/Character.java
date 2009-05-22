@@ -49,4 +49,9 @@ public class Character implements ICharacter {
     IContainer container = (IContainer) characterId.getAdapter(IContainer.class);
     return new CharacterDisplayNameProvider(container).getDisplayName();
   }
+
+  @Override
+  public ICharacterId getId() {
+    return characterId;
+  }
 }

@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.core.runtime,
  net.sf.anathema.character.report;visibility:=reexport,
  net.sf.anathema.basics.importexport;bundle-version="1.0.0",
  net.sf.anathema.basics.pdfexport;visibility:=reexport,
- net.sf.anathema.character.trait;bundle-version="1.0.0"
+ net.sf.anathema.character.trait;bundle-version="1.0.0",
+ net.sf.anathema.character.points;bundle-version="1.0.0"
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Export-Package: net.sf.anathema.character.sheet.common,

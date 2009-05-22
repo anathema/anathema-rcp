@@ -6,4 +6,5 @@ public interface IExperienceCharacter {
 
   public int getBankedXp();
 
+  public int getSpentXp();
 }
