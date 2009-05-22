@@ -368,5 +368,28 @@
          </keyword>
       </charmdata>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.charmname">
+      <charmName
+            id="dragon-blooded.any.{0}.excellency"
+            name="Any {0} Excellency">
+      </charmName>
+      <charmName
+            id="dragon-blooded.first.{0}.excellency"
+            name="First {0} Excellency">
+      </charmName>
+      <charmName
+            id="dragon-blooded.second.{0}.excellency"
+            name="Second {0} Excellency">
+      </charmName>
+      <charmName
+            id="dragon-blooded.third.{0}.excellency"
+            name="Third {0} Excellency">
+      </charmName>
+      <charmName
+            id="dragon-blooded.terrestrial.{0}.reinforcement"
+            name="Terrestrial {0} Reinforcement">
+      </charmName>
+   </extension>
 
 </plugin>
