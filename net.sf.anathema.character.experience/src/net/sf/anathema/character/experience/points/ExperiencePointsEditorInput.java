@@ -2,6 +2,7 @@ package net.sf.anathema.character.experience.points;
 
 import java.net.URL;
 
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.experience.IExperiencePoints;
@@ -36,7 +37,12 @@ public class ExperiencePointsEditorInput extends AbstractCharacterModelEditorInp
   }
 
   public void update(ExperienceEntry experienceEntry, String text) {
-    ExperienceEntry updateEntry = new ExperienceEntryParser().parse(text);
-    experiencePointsModel.updateEntry(experienceEntry, updateEntry);
+    if (StringUtilities.isNullOrTrimmedEmpty(text)) {
+      experiencePointsModel.delete(experienceEntry);
+    }
+    else {
+      ExperienceEntry updateEntry = new ExperienceEntryParser().parse(text);
+      experiencePointsModel.update(experienceEntry, updateEntry);
+    }
   }
 }

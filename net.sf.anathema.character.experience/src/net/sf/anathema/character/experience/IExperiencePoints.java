@@ -11,5 +11,7 @@ public interface IExperiencePoints extends IModel {
 
   public void add(ExperienceEntry entry);
 
-  public void updateEntry(ExperienceEntry experienceEntry, ExperienceEntry updateEntry);
+  public void update(ExperienceEntry experienceEntry, ExperienceEntry updateEntry);
+
+  public void delete(ExperienceEntry experienceEntry);
 }

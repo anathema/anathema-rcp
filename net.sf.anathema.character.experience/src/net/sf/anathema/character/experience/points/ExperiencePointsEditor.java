@@ -87,7 +87,7 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
             ExperienceEntry experienceEntry = (ExperienceEntry) selection.getFirstElement();
             Shell shell = event.getViewer().getControl().getShell();
             String title = "Edit Experience Entry";
-            String message = "Please edit the experience entry and press okay to confirm.";
+            String message = "Type the revised entry. Deleting all text will delete the entry.";
             String initialValue = MessageFormat.format("{0} {1}", experienceEntry.points, experienceEntry.comment);
             InputDialog dialog = new InputDialog(shell, title, message, initialValue, null);
             if (dialog.open() == Window.OK) {

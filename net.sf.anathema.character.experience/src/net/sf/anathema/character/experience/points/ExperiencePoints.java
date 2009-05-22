@@ -20,9 +20,16 @@ public class ExperiencePoints extends AbstractModel implements IExperiencePoints
   }
 
   @Override
-  public void updateEntry(ExperienceEntry experienceEntry, ExperienceEntry updateEntry) {
-    experienceEntry.points = updateEntry.points;
-    experienceEntry.comment = updateEntry.comment;
+  public void update(ExperienceEntry entry, ExperienceEntry updateEntry) {
+    int entryIndex = entries.indexOf(entry);
+    entries.remove(entry);
+    entries.add(entryIndex, updateEntry);
+    propagateChange();
+  }
+
+  @Override
+  public void delete(ExperienceEntry entry) {
+    entries.remove(entry);
     propagateChange();
   }
 
