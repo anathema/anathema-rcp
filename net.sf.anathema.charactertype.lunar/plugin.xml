@@ -222,5 +222,44 @@
          </experience>
       </spiritualTraitCosts>
    </extension>
+   <extension
+         point="net.sf.anathema.character.spiritualtraits.animapowers">
+      <power
+            description="Cause Caste Mark to glow brightly (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.lunar">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Cause anima to glow bright enough to read by (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.lunar">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Cause Tell to become unmistakable (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.lunar">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Know precise time and moon phase (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.lunar">
+            </property>
+         </evaluation>
+      </power>
+   </extension>
 
 </plugin>

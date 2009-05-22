@@ -2,6 +2,7 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension-point id="spiritualTraitCosts" name="%extension-point.name.0" schema="schema/spiritualTraitCosts.exsd"/>
+   <extension-point id="animapowers" name="animapowers" schema="schema/animapowers.exsd"/>
    <extension
          point="net.sf.anathema.character.core.models">
       <model

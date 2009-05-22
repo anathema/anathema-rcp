@@ -419,4 +419,43 @@
          </experience>
       </spiritualTraitCosts>
    </extension>
+   <extension
+         point="net.sf.anathema.character.spiritualtraits.animapowers">
+      <power
+            description="Cause Caste Mark to glow brightly (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.db">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Cause anima to glow bright enough to read by (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.db">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Know exact location in relation to pole (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.db">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Banner Flare damages everything within 2 yards">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.db">
+            </property>
+         </evaluation>
+      </power>
+   </extension>
 </plugin>

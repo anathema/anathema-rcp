@@ -374,5 +374,53 @@
             limit="4">
       </limit>
    </extension>
+   <extension
+         point="net.sf.anathema.character.spiritualtraits.animapowers">
+      <power
+            description="Cause Caste Mark to glow brightly (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.solar">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Cause anima to glow bright enough to read by (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.solar">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Know the precise time of day (1 mote)">
+         <evaluation>
+            <property
+                  id="hasCharacterType"
+                  value="net.sf.anathema.character.type.solar">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Mute anima (+1 mote, double for obvious)">
+         <evaluation>
+            <property
+                  id="hasCaste"
+                  value="Night">
+            </property>
+         </evaluation>
+      </power>
+      <power
+            description="Shadow Veil: Essence/2 to difficulty for notice; on anima level 11-15 obscures identity (10 mote)">
+         <evaluation>
+            <property
+                  id="hasCaste"
+                  value="Night">
+            </property>
+         </evaluation>
+      </power>
+   </extension>
 
 </plugin>

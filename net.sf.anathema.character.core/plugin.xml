@@ -10,6 +10,7 @@
    <extension-point id="modeldependencies" name="%extension-point.name.modeldependencies" schema="schema/modeldependencies.exsd"/>
    <extension-point id="modelcheck" name="%extension-point.name.modelcontentcheck" schema="schema/modelcheck.exsd"/>
    <extension-point id="viewelementconfigurator" name="%extension-point.name.viewelementconfigurator" schema="schema/viewelementconfigurator.exsd"/>
+   <extension-point id="properties" name="properties" schema="schema/properties.exsd"/>
    <extension
          point="net.sf.anathema.basics.repository.itemtypes">
       <itemtype
@@ -81,6 +82,13 @@
       <super
             type="net.sf.anathema.markers.view.element">
       </super>
+   </extension>
+   <extension
+         point="net.sf.anathema.character.core.properties">
+      <propertyTester
+            class="net.sf.anathema.character.core.properties.concrete.HasCharacterType"
+            id="hasCharacterType">
+      </propertyTester>
    </extension>
 
 </plugin>

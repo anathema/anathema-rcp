@@ -45,5 +45,12 @@
             class="net.sf.anathema.character.caste.dependency.MainModelDependencyProvider">
       </provider>
    </extension>
+   <extension
+         point="net.sf.anathema.character.core.properties">
+      <propertyTester
+            class="net.sf.anathema.character.caste.HasCaste"
+            id="hasCaste">
+      </propertyTester>
+   </extension>
 
 </plugin>

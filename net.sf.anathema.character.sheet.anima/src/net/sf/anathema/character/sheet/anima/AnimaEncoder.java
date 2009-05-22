@@ -1,6 +1,5 @@
 package net.sf.anathema.character.sheet.anima;
 
-import static net.sf.anathema.character.sheet.anima.util.LineEncodingUtilities.*;
 import static net.sf.anathema.character.sheet.common.IEncodeContext.*;
 
 import java.awt.Color;
@@ -13,7 +12,9 @@ import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.content.ISubEncoder;
 import net.sf.anathema.character.sheet.content.PdfTextEncodingUtilities;
 import net.sf.anathema.character.sheet.elements.Bounds;
+import net.sf.anathema.character.sheet.elements.Line;
 import net.sf.anathema.character.sheet.elements.Position;
+import net.sf.anathema.character.spiritualtraits.anima.AnimaPowerExtensionPoint;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
@@ -25,12 +26,10 @@ public class AnimaEncoder extends UnconfiguredExecutableExtension implements IPd
   private final int fontSize;
   private final float lineHeight;
   private final ISubEncoder tableEncoder;
-  private final int animaPowerCount;
   private final CaretSymbol caretSymbol;
 
   public AnimaEncoder() {
     this.fontSize = FONT_SIZE - 1;
-    this.animaPowerCount = 4;
     this.lineHeight = fontSize * 1.5f;
     this.caretSymbol = new CaretSymbol(fontSize);
     this.tableEncoder = new AnimaTableEncoder(fontSize);
@@ -40,33 +39,38 @@ public class AnimaEncoder extends UnconfiguredExecutableExtension implements IPd
       throws DocumentException {
     float halfWidth = bounds.getHeight() / 2;
     Bounds animaPowerBounds = new Bounds(bounds.getMinX(), bounds.getCenterY(), bounds.getWidth(), halfWidth);
-    Position lineStartPosition = encodeAnimaPowers(directContent, character, animaPowerBounds);
-    if (lineStartPosition != null) {
-      encodeLines(directContent, bounds, lineStartPosition);
-    }
+    String[] animaPowers = new AnimaPowerExtensionPoint().getPowers(character);
+    encodeAnimaPowers(directContent, animaPowerBounds, animaPowers);
+    Position lineStartPosition = encodeAnimaPowers(directContent, animaPowerBounds, animaPowers);
     Bounds animaTableBounds = new Bounds(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), halfWidth);
+    if (lineStartPosition != null) {
+      encodeLines(directContent, bounds, lineStartPosition, bounds.getMaxY() - 6 * lineHeight);
+    }
     tableEncoder.encode(directContent, character, animaTableBounds);
   }
 
-  private void encodeLines(PdfContentByte directContent, Bounds bounds, Position lineStartPosition) {
+  private void encodeLines(PdfContentByte directContent, Bounds bounds, Position lineStartPosition, float bottomLine) {
     float minX = bounds.getMinX();
     float maxX = bounds.getMaxX();
-    encodeHorizontalLines(directContent, lineStartPosition, minX, maxX, lineHeight, 6 - animaPowerCount);
+    float lineY = lineStartPosition.y;
+    while (lineY > bottomLine) {
+      lineY -= lineHeight;
+      Line.CreateHorizontalByCoordinate(new Position(minX, lineY), maxX).encode(directContent);
+    }
   }
 
-  private Position encodeAnimaPowers(PdfContentByte directContent, ICharacter character, Bounds bounds)
+  private Position encodeAnimaPowers(PdfContentByte directContent, Bounds bounds, String[] powers)
       throws DocumentException {
     Phrase phrase = new Phrase("", new Font(BASEFONT, fontSize, Font.NORMAL, Color.BLACK)); //$NON-NLS-1$
-    addAnimaPowerText(character, phrase);
-    phrase.add(caretSymbol.createChunk());
+    addAnimaPowerText(phrase, powers);
     float yPosition = PdfTextEncodingUtilities.encodeText(directContent, phrase, bounds, lineHeight).getYLine();
     return new Position((bounds.getMinX() + caretSymbol.getSymbolWidth()), yPosition);
   }
 
-  private void addAnimaPowerText(ICharacter character, Phrase phrase) {
-    for (int power = 0; power < animaPowerCount; power++) {
+  private void addAnimaPowerText(Phrase phrase, String[] powers) {
+    for (String power : powers) {
       phrase.add(caretSymbol.createChunk());
-      phrase.add("\n"); //$NON-NLS-1$
+      phrase.add(power + "\n"); //$NON-NLS-1$
     }
   }
 
