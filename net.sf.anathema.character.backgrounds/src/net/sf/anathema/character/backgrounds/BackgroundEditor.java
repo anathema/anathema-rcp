@@ -14,8 +14,8 @@ import net.sf.anathema.character.trait.groupeditor.dynamic.TraitViewFactory;
 import net.sf.anathema.character.trait.interactive.IInteractiveTrait;
 import net.sf.anathema.lib.ui.IDisposable;
 
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
@@ -26,7 +26,6 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
 
   private static final String INSTRUCTION = Messages.BackgroundEditor_HINT_TEXT;
   private Composite layoutContainer;
-  private static final String EMPTY_TEXT = ""; //$NON-NLS-1$
 
   @Override
   protected IEditorControl createItemEditorControl() {
@@ -56,18 +55,13 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
           final BackgroundEditorInput editorInput,
           final FormToolkit toolkit,
           final Composite container) {
-        entry = new InstructionTextFactory(toolkit, this).createFromToolkit(container, INSTRUCTION);
-        entry.addSelectionListener(new SelectionListener() {
+        SelectionAdapter selectionListener = new SelectionAdapter() {
           @Override
           public void widgetDefaultSelected(SelectionEvent e) {
             editorInput.getItem().addBackground(entry.getText());
           }
-
-          @Override
-          public void widgetSelected(SelectionEvent e) {
-            // nothing
-          }
-        });
+        };
+        entry = new InstructionTextFactory(toolkit, this).create(container, selectionListener, INSTRUCTION);
       }
 
       private void createBackgroundTable(
@@ -93,7 +87,6 @@ public class BackgroundEditor extends AbstractCharacterModelEditorPart<IBackgrou
           @Override
           public void traitAdded(IInteractiveTrait trait) {
             table.addTrait(trait);
-            entry.setText(EMPTY_TEXT);
           }
         };
         addDisposable(new IDisposable() {
