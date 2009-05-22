@@ -1,6 +1,9 @@
-package net.sf.anathema.character.experience.points;
+package net.sf.anathema.character.experience.points.edit;
 
 import static java.text.MessageFormat.*;
+
+import net.sf.anathema.character.experience.points.ExperienceEntry;
+import net.sf.anathema.character.experience.points.ExperiencePointsEditorInput;
 
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -10,12 +13,12 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 
-public final class EditEntryDoubleClickListener implements IDoubleClickListener {
+public final class EditEntryListener implements IDoubleClickListener {
   private final ExperiencePointsEditorInput editorInput;
   private final String title = "Edit Experience Entry";
   private final String message = "Type the revised entry. Deleting all text will delete the entry.";
 
-  public EditEntryDoubleClickListener(ExperiencePointsEditorInput editorInput) {
+  public EditEntryListener(ExperiencePointsEditorInput editorInput) {
     this.editorInput = editorInput;
   }
 

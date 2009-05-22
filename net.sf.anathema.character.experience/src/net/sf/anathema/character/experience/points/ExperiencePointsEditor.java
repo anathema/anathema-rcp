@@ -5,6 +5,8 @@ import net.sf.anathema.basics.item.editor.AbstractEntryTextEditorControl;
 import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
 import net.sf.anathema.character.experience.IExperiencePoints;
+import net.sf.anathema.character.experience.points.edit.EditEntryListener;
+import net.sf.anathema.character.experience.points.edit.NewEntryListener;
 
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
@@ -18,6 +20,20 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IExperiencePoints> {
+
+  private final class RefreshTableListener implements IChangeListener {
+    private final TableViewer tableViewer;
+
+    private RefreshTableListener(TableViewer tableViewer) {
+      this.tableViewer = tableViewer;
+    }
+
+    @Override
+    public void stateChanged() {
+      tableViewer.refresh();
+      tableViewer.getTable().getParent().layout();
+    }
+  }
 
   @Override
   protected IEditorControl createItemEditorControl() {
@@ -61,19 +77,15 @@ public class ExperiencePointsEditor extends AbstractCharacterModelEditorPart<IEx
       }
 
       private void createTableViewer(final Table table) {
-        final TableViewer tableViewer = new TableViewer(table);
+        TableViewer tableViewer = new TableViewer(table);
         tableViewer.setContentProvider(new ExperienceContentProvider());
         tableViewer.setLabelProvider(new ExperiencePointsLabelProvider());
-        tableViewer.setInput(getPersistableEditorInput().getItem());
-        getPersistableEditorInput().getItem().addChangeListener(new IChangeListener() {
-          @Override
-          public void stateChanged() {
-            tableViewer.refresh();
-            table.getParent().layout();
-          }
-        });
-        final ExperiencePointsEditorInput editorInput = getExperienceEditorInput();
-        tableViewer.addDoubleClickListener(new EditEntryDoubleClickListener(editorInput));
+        ExperiencePointsEditorInput editorInput = getExperienceEditorInput();
+        IExperiencePoints experiencePoints = editorInput.getItem();
+        tableViewer.setInput(experiencePoints);
+        experiencePoints.addChangeListener(new RefreshTableListener(tableViewer));
+        tableViewer.addDoubleClickListener(new EditEntryListener(editorInput));
+        table.addMouseListener(new NewEntryListener(getInputText(), tableViewer));
       }
 
       private void createCommentColumn(Table table) {
