@@ -1,6 +1,5 @@
 package net.sf.anathema.character.abilities.sheet;
 
-
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.elements.Position;
 

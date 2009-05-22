@@ -1,11 +1,15 @@
 package net.sf.anathema.character.abilities.sheet;
 
+import static net.sf.anathema.character.abilities.sheet.Messages.*;
+import static net.sf.anathema.character.trait.sheet.PdfTraitEncoder.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.character.abilities.model.AbilitiesMessages;
 import net.sf.anathema.character.abilities.util.AbilitiesDisplayGroupFactory;
+import net.sf.anathema.character.abilities.util.IAbilityIds;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
@@ -14,6 +18,7 @@ import net.sf.anathema.character.sheet.content.PdfEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.character.sheet.elements.Position;
 import net.sf.anathema.character.sheet.page.IVoidStateFormatConstants;
+import net.sf.anathema.character.trait.display.DisplayTraitList;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.group.IDisplayTraitGroup;
 import net.sf.anathema.character.trait.sheet.PdfTraitEncoder;
@@ -26,21 +31,31 @@ public class AbilitiesEncoder extends UnconfiguredExecutableExtension implements
   private final MarkerEncoder markerEncoder = new MarkerEncoder();
   private final MarkedTraits markedTraits = new MarkedTraits();
 
-  private List<ISubSectionEncoder> getEmptySubsectionEncoder(final PdfTraitEncoder traitEncoder) {
-    final List<ISubSectionEncoder> subsectionEncoders = new ArrayList<ISubSectionEncoder>();
-    subsectionEncoders.add(new EmptySubsectionEncoder(traitEncoder, Messages.AbilitiesEncoder_CraftsHeader, 10, 9));
-    subsectionEncoders.add(new EmptySubsectionEncoder(traitEncoder, Messages.AbilitiesEncoder_SpecialtiesHeader, 3, 9));
+  private List<ISubSectionEncoder> getOtherSubsectionEncoder(
+      PdfTraitEncoder traitEncoder,
+      int maxEssence,
+      List<IDisplayTraitGroup<IDisplayTrait>> groups) {
+    IDisplayTrait craft = new DisplayTraitList<IDisplayTrait>(groups).getTrait(IAbilityIds.CRAFT);
+    List<ISubSectionEncoder> subsectionEncoders = new ArrayList<ISubSectionEncoder>();
+    subsectionEncoders.add(new CraftsSubsectionEncoder(
+        traitEncoder,
+        AbilitiesEncoder_CraftsHeader,
+        maxEssence,
+        9,
+        craft));
+    subsectionEncoders.add(new EmptySubsectionEncoder(traitEncoder, AbilitiesEncoder_SpecialtiesHeader, 3, 9));
     return subsectionEncoders;
   }
 
   @Override
   public void encode(PdfContentByte directContent, IEncodeContext context, ICharacter character, Bounds bounds)
       throws DocumentException {
-    final PdfTraitEncoder traitEncoder = PdfTraitEncoder.createSmallTraitEncoder(new PdfEncoder(directContent));
+    final PdfTraitEncoder traitEncoder = createSmallTraitEncoder(new PdfEncoder(directContent));
     Position position = new Position(bounds.getMinX(), bounds.getMaxY());
     float width = bounds.width;
-    float yPosition = encodeTraitGroups(traitEncoder, directContent, character, position, width);
-    for (ISubSectionEncoder encoder : getEmptySubsectionEncoder(traitEncoder)) {
+    List<IDisplayTraitGroup<IDisplayTrait>> groups = new AbilitiesDisplayGroupFactory().createDisplayTraitGroups(character);
+    float yPosition = encodeTraitGroups(traitEncoder, directContent, groups, position, width);
+    for (ISubSectionEncoder encoder : getOtherSubsectionEncoder(traitEncoder, context.getMaxEssence(), groups)) {
       yPosition -= IVoidStateFormatConstants.LINE_HEIGHT;
       yPosition -= encoder.encode(directContent, character, new Position(position.x, yPosition), width);
     }
@@ -50,10 +65,9 @@ public class AbilitiesEncoder extends UnconfiguredExecutableExtension implements
   private float encodeTraitGroups(
       final PdfTraitEncoder traitEncoder,
       PdfContentByte directContent,
-      ICharacter character,
+      List<IDisplayTraitGroup<IDisplayTrait>> groups,
       Position position,
       float width) {
-    List<IDisplayTraitGroup<IDisplayTrait>> groups = new AbilitiesDisplayGroupFactory().createDisplayTraitGroups(character);
     float yPosition = position.y;
     for (IDisplayTraitGroup<IDisplayTrait> group : groups) {
       Position groupPosition = new Position(position.x, yPosition);
