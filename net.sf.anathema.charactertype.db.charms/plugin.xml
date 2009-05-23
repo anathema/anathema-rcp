@@ -391,5 +391,26 @@
             name="Terrestrial {0} Reinforcement">
       </charmName>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.character.specialcharms">
+      <virtualCharm
+            charmIdPattern="dragon-blooded.any.{0}.excellency">
+         <evaluation>
+            <or>
+               <property
+                     id="hasLearnedCharm"
+                     value="dragon-blooded.first.{0}.excellency">
+               </property>
+               <property
+                     id="hasLearnedCharm"
+                     value="dragon-blooded.second.{0}.excellency">
+               </property>
+               <property
+                     id="hasLearnedCharm"
+                     value="dragon-blooded.third.{0}.excellency">
+               </property>
+            </or></evaluation>
+      </virtualCharm>
+   </extension>
 
 </plugin>
