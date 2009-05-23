@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sf.anathema.character.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="net.sf.anathema.character.core" id="evaluation" name="Character Evaluation"/>
+      </appinfo>
+      <documentation>
+         Defines Character Properties.
+      </documentation>
+   </annotation>
+
+   <element name="evaluation">
+      <complexType>
+         <sequence>
+            <choice>
+               <element ref="property"/>
+               <element ref="or"/>
+            </choice>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="or">
+      <complexType>
+         <sequence>
+            <element ref="property" minOccurs="2" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="property">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         v1.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         The supplied implementation can be instantiated to retrieve the Character Type associated with a given type id.
+Usually, this is only required when characters are loaded.
+      </documentation>
+   </annotation>
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         net.sf.anathema.character.core.type.internal.CharacterTypeExtensionPoint
+      </documentation>
+   </annotation>
+
+
+</schema>

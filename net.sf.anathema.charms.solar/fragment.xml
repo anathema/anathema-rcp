@@ -381,5 +381,26 @@
          </resource>
       </charmDataMap>
    </extension>
+   <extension
+         point="net.sf.anathema.charms.character.specialcharms">
+      <virtualCharm
+            charmIdPattern="solar.any.{0}.excellency">
+         <evaluation>
+            <or>
+               <property
+                     id="hasLearnedCharm"
+                     value="solar.first.{0}.excellency">
+               </property>
+               <property
+                     id="hasLearnedCharm"
+                     value="solar.second.{0}.excellency">
+               </property>
+               <property
+                     id="hasLearnedCharm"
+                     value="solar.third.{0}.excellency">
+               </property>
+            </or></evaluation>
+      </virtualCharm>
+   </extension>
 
 </fragment>
