@@ -13,8 +13,8 @@ import net.sf.anathema.character.sheet.table.TableCell;
 import net.sf.anathema.character.sheet.table.TableEncodingUtilities;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.resources.TraitMessages;
-import net.sf.anathema.charms.character.evaluation.TraitCollector;
 import net.sf.anathema.charms.character.print.GenericCharmCollector;
+import net.sf.anathema.charms.character.print.TraitCollector;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 
 import com.lowagie.text.DocumentException;
