@@ -7,7 +7,7 @@ import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.AbstractTextEncoder;
-import net.sf.anathema.charms.character.model.GenericCharmCollector;
+import net.sf.anathema.charms.character.evaluation.GenericCharmCollector;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 import net.sf.anathema.charms.tree.CharmId;
 

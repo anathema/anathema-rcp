@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import net.sf.anathema.charms.character.model.CharmModel;
+import net.sf.anathema.charms.character.model.CharmsPersister;
 import net.sf.anathema.charms.character.model.ICharmModel;
 import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;

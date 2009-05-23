@@ -10,9 +10,9 @@ import net.sf.anathema.basics.repository.linkage.util.ILink;
 import net.sf.anathema.basics.repository.messages.BasicRepositoryMessages;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IViewElement;
 import net.sf.anathema.character.core.model.IConfigurableViewElement;
-import net.sf.anathema.charms.character.CharmsEditorInput;
-import net.sf.anathema.charms.character.StringLinkDecorator;
-import net.sf.anathema.charms.character.plugin.CharmCharacterPlugin;
+import net.sf.anathema.charms.character.CharmCharacterPlugin;
+import net.sf.anathema.charms.character.editor.CharmsEditorInput;
+import net.sf.anathema.charms.character.editor.StringLinkDecorator;
 import net.sf.anathema.charms.tree.TreeDto;
 import net.sf.anathema.lib.exception.PersistenceException;
 

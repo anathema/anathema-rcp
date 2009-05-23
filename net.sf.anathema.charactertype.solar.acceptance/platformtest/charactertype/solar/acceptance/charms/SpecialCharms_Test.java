@@ -2,8 +2,8 @@ package charactertype.solar.acceptance.charms;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import net.sf.anathema.charms.character.model.IVirtualCharms;
-import net.sf.anathema.charms.character.model.VirtualCharms;
+import net.sf.anathema.charms.character.special.IVirtualCharms;
+import net.sf.anathema.charms.character.special.VirtualCharms;
 
 import org.junit.Test;
 

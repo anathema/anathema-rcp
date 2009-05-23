@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.character.preference;
 
-import net.sf.anathema.charms.character.plugin.CharmCharacterPlugin;
+import net.sf.anathema.charms.character.CharmCharacterPlugin;
 
 public class CharmPreferenceFactory {
 

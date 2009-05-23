@@ -8,11 +8,11 @@
       <model
             filename="charms.model"
             id="net.sf.anathema.charms.character.modelId"
-            modelFactory="net.sf.anathema.charms.character.CharmModelFactory">
+            modelFactory="net.sf.anathema.charms.character.model.CharmModelFactory">
          <displayConfiguration
                displayName="Charms"
                editorId="net.sf.anathema.charms.character.editor"
-               editorInputFactory="net.sf.anathema.charms.character.CharmsEditorInputFactory"
+               editorInputFactory="net.sf.anathema.charms.character.editor.CharmsEditorInputFactory"
                icon="icons/TabCharacter16.png">
          </displayConfiguration>
       </model>
@@ -20,7 +20,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="net.sf.anathema.charms.character.CharmsEditor"
+            class="net.sf.anathema.charms.character.editor.CharmsEditor"
             default="false"
             icon="icons/TabCharacter16.png"
             id="net.sf.anathema.charms.character.editor"
@@ -37,7 +37,7 @@
    <extension
          point="org.eclipse.ui.elementFactories">
       <factory
-            class="net.sf.anathema.charms.character.CharmModelPersistableFactory"
+            class="net.sf.anathema.charms.character.model.CharmModelPersistableFactory"
             id="net.sf.anathema.charms.character.model.persistablefactory">
       </factory>
    </extension>

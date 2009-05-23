@@ -11,7 +11,7 @@ import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.type.CharacterTypeFinder;
 import net.sf.anathema.character.points.cost.CostDto;
 import net.sf.anathema.character.points.cost.CostTagDto;
-import net.sf.anathema.charms.character.plugin.CharmCharacterPlugin;
+import net.sf.anathema.charms.character.CharmCharacterPlugin;
 
 public class CharmCostExtensionPoint {
 

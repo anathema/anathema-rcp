@@ -3,7 +3,7 @@ package net.sf.anathema.charms.character.preference;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.anathema.charms.character.plugin.CharmCharacterPlugin;
+import net.sf.anathema.charms.character.CharmCharacterPlugin;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;

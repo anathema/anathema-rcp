@@ -13,9 +13,11 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.character.experience;bundle-version="1.0.0",
  net.sf.anathema.character.points,
  net.sf.anathema.character.trait;bundle-version="1.0.0";visibility:=reexport
-Export-Package: net.sf.anathema.charms.character.model,
+Export-Package: net.sf.anathema.charms.character.evaluation,
+ net.sf.anathema.charms.character.model,
  net.sf.anathema.charms.character.points,
+ net.sf.anathema.charms.character.special,
  net.sf.anathema.charms.character.tree
-Bundle-Activator: net.sf.anathema.charms.character.plugin.CharmCharacterPlugin
+Bundle-Activator: net.sf.anathema.charms.character.CharmCharacterPlugin
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Anathema Team

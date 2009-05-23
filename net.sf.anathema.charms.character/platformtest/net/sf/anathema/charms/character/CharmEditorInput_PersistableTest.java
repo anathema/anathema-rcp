@@ -3,6 +3,9 @@ package net.sf.anathema.charms.character;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import net.sf.anathema.charms.character.editor.CharmsEditorInput;
+import net.sf.anathema.charms.character.model.CharmModelPersistableFactory;
+
 import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;

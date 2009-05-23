@@ -10,17 +10,17 @@ import net.sf.anathema.charms.tree.ICharmId;
 public class HasLearnedCharm extends UnconfiguredExecutableExtension implements IProperty {
 
   @Override
-  public boolean has(ICharacter character, String property) {
+  public boolean has(ICharacter character, String fullCharmId) {
+    IExperience experience = (IExperience) character.getModel(IExperience.MODEL_ID);
     ICharmModel charms = (ICharmModel) character.getModel(ICharmModel.MODEL_ID);
-    boolean creationLearned = contains(charms.getCreationLearnedCharms(), property);
+    boolean creationLearned = contains(charms.getCreationLearnedCharms(), fullCharmId);
     if (creationLearned) {
       return true;
     }
-    IExperience experience = (IExperience) character.getModel(IExperience.MODEL_ID);
     if (!experience.isExperienced()) {
       return false;
     }
-    return contains(charms.getExperienceLearnedCharms(), property);
+    return contains(charms.getExperienceLearnedCharms(), fullCharmId);
   }
 
   private boolean contains(Iterable<ICharmId> charms, String fullCharmId) {

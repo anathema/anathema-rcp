@@ -4,6 +4,9 @@ import static org.easymock.EasyMock.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import net.sf.anathema.charms.character.editor.TreeIdPersistableDecoration;
+import net.sf.anathema.charms.character.fake.DummyPersistable;
+
 import org.eclipse.ui.IMemento;
 import org.junit.Before;
 import org.junit.Test;
