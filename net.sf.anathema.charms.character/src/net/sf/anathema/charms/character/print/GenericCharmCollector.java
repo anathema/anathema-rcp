@@ -9,7 +9,7 @@ import java.util.List;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.trait.resources.TraitMessages;
 import net.sf.anathema.charms.character.evaluation.GenericCharmCharacter;
-import net.sf.anathema.charms.character.evaluation.GenericCharmTree;
+import net.sf.anathema.charms.character.evaluation.NonVirtualGenericCharmTree;
 import net.sf.anathema.charms.character.evaluation.IGenericCharmCharacter;
 import net.sf.anathema.charms.character.evaluation.IGenericCharmTree;
 import net.sf.anathema.charms.character.special.IVirtualCharms;
@@ -28,11 +28,11 @@ public class GenericCharmCollector {
 
   public GenericCharmCollector(IVirtualCharms virtualCharms, ITreeProvider treeProvider, ICharacter character) {
     this.charmCharacter = new GenericCharmCharacter(character);
-    this.charmTree = new GenericCharmTree(treeProvider, virtualCharms);
+    this.charmTree = new NonVirtualGenericCharmTree(treeProvider, virtualCharms);
   }
 
   public Collection<String> getRealGenericIdPatterns() {
-    return charmCharacter.getRealGenericIdPatterns(charmTree);
+    return charmCharacter.getGenericIdPatterns(charmTree);
   }
 
   public List<ICharmId> getLearnedGenerics() {

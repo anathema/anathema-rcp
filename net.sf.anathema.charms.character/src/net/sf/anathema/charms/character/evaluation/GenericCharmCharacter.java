@@ -48,8 +48,8 @@ public class GenericCharmCharacter implements IGenericCharmCharacter {
   }
 
   @Override
-  public Collection<String> getRealGenericIdPatterns(IGenericCharmTree charmTree) {
+  public Collection<String> getGenericIdPatterns(IGenericCharmTree charmTree) {
     String characterType = character.getCharacterType().getId();
-    return charmTree.getRealGenericIdPattersFor(characterType);
+    return charmTree.getGenericIdPattersFor(characterType);
   }
 }

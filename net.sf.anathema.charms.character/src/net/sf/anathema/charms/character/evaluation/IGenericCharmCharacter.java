@@ -11,5 +11,5 @@ public interface IGenericCharmCharacter {
 
   public List<ICharmId> getAllCharmIds(String genericId);
 
-  public Collection<String> getRealGenericIdPatterns(IGenericCharmTree charmTree);
+  public Collection<String> getGenericIdPatterns(IGenericCharmTree charmTree);
 }

@@ -7,18 +7,18 @@ import java.util.List;
 import net.sf.anathema.charms.character.special.IVirtualCharms;
 import net.sf.anathema.charms.tree.ITreeProvider;
 
-public class GenericCharmTree implements IGenericCharmTree {
+public class NonVirtualGenericCharmTree implements IGenericCharmTree {
 
   private final ITreeProvider treeProvider;
   private final IVirtualCharms virtualCharms;
 
-  public GenericCharmTree(ITreeProvider treeProvider, IVirtualCharms virtualCharms) {
+  public NonVirtualGenericCharmTree(ITreeProvider treeProvider, IVirtualCharms virtualCharms) {
     this.treeProvider = treeProvider;
     this.virtualCharms = virtualCharms;
   }
 
   @Override
-  public Collection<String> getRealGenericIdPattersFor(String characterType) {
+  public Collection<String> getGenericIdPattersFor(String characterType) {
     List<String> genericCharms = treeProvider.getGenericCharms(characterType);
     return extractRealPatterns(genericCharms);
   }

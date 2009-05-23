@@ -13,12 +13,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 @SuppressWarnings("nls")
-public class GenericCharmTree_Test {
+public class NonVirtualGenericCharmTree_Test {
 
   private static final String OTHER_GENERIC_ID = "my other generic id";
   private static final String GENERIC_ID = "my generic id";
   private static final String CHARACTER_TYPE = "characterType";
-  private GenericCharmTree charmTree;
+  private NonVirtualGenericCharmTree charmTree;
   private DummyTreeProvider treeProvider;
   private DummyVirtualCharms virtualCharms;
 
@@ -26,7 +26,7 @@ public class GenericCharmTree_Test {
   public void createTreeAndAdGenericIdToProvider() throws Exception {
     treeProvider = new DummyTreeProvider();
     virtualCharms = new DummyVirtualCharms();
-    this.charmTree = new GenericCharmTree(treeProvider, virtualCharms);
+    this.charmTree = new NonVirtualGenericCharmTree(treeProvider, virtualCharms);
     treeProvider.genericIdsByCharactertype.add(CHARACTER_TYPE, GENERIC_ID);
   }
 
@@ -55,6 +55,6 @@ public class GenericCharmTree_Test {
   }
 
   private Collection<String> getRealGenericIds() {
-    return charmTree.getRealGenericIdPattersFor(CHARACTER_TYPE);
+    return charmTree.getGenericIdPattersFor(CHARACTER_TYPE);
   }
 }

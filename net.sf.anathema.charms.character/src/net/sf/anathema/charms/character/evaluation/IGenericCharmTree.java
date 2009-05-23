@@ -4,5 +4,5 @@ import java.util.Collection;
 
 public interface IGenericCharmTree {
 
-  public Collection<String> getRealGenericIdPattersFor(String characterType);
+  public Collection<String> getGenericIdPattersFor(String characterType);
 }
