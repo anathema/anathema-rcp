@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character.evaluation;
+package net.sf.anathema.charms.character.editor;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;

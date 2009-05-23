@@ -25,7 +25,7 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
 
   @Override
   public void connect(final ICharmSelectionControl selectionControl) {
-    final ICharmSelectionListener selectionListener = new LearningCharmSelectionListener(charmCharacter);
+    final ICharmSelectionListener selectionListener = new LearnCharmSelectionListener(charmCharacter);
     addDisposable(new IDisposable() {
       @Override
       public void dispose() {

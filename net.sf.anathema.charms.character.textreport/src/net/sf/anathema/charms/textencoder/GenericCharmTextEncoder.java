@@ -7,7 +7,7 @@ import java.util.List;
 
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.textreport.encoder.AbstractTextEncoder;
-import net.sf.anathema.charms.character.evaluation.GenericCharmCollector;
+import net.sf.anathema.charms.character.print.GenericCharmCollector;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 import net.sf.anathema.charms.tree.CharmId;
 
@@ -21,11 +21,11 @@ public class GenericCharmTextEncoder extends AbstractTextEncoder {
   @Override
   public Iterable<Element> createParagraphs(ICharacter character) throws DocumentException {
     GenericCharmCollector collector = new GenericCharmCollector(character);
-    Collection<String> generics = collector.getUnvirtualGenericIdPatterns();
+    Collection<String> generics = collector.getRealGenericIdPatterns();
     CharmNamesExtensionPoint names = new CharmNamesExtensionPoint();
     Phrase genericsParagraph = createTextParagraph(createTextChunk("")); //$NON-NLS-1$
     for (String generic : generics) {
-      List<String> traits = collector.getTraits(generic);
+      List<String> traits = collector.getLearnedTraits(generic);
       if (traits.isEmpty()) {
         continue;
       }

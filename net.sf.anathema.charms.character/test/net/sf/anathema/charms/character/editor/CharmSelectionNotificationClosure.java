@@ -1,7 +1,7 @@
 /**
  * 
  */
-package net.sf.anathema.charms.character.evaluation;
+package net.sf.anathema.charms.character.editor;
 
 import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.charms.tree.ICharmId;
