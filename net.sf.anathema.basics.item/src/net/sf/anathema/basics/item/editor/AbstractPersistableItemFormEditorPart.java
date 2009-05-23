@@ -99,7 +99,7 @@ public abstract class AbstractPersistableItemFormEditorPart<I extends IItem> ext
     super.dispose();
   }
 
-  protected final <T extends IDisposable> T addDisposable(T disposable) {
+  public final <T extends IDisposable> T addDisposable(T disposable) {
     return disposables.addDisposable(disposable);
   }
 

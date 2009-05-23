@@ -13,4 +13,6 @@ public interface IPersistableItemEditor {
   public IPersistableEditorInput< ? > getPersistableEditorInput();
 
   public void setTitleImage(Image image);
+
+  public boolean isDirty();
 }

@@ -1,7 +1,7 @@
 package net.sf.anathema.character.core.plugin.internal;
 
 import net.sf.anathema.basics.item.IPersistableEditorInput;
-import net.sf.anathema.basics.item.editor.AbstractPersistableItemEditorPart;
+import net.sf.anathema.basics.item.editor.IPersistableItemEditor;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
 import net.sf.anathema.character.core.model.ModelCache;
@@ -12,10 +12,10 @@ public final class ModelRevertingCloseListener extends PartAdapter {
 
   @Override
   public void partClosed(IWorkbenchPart part) {
-    if (!(part instanceof AbstractPersistableItemEditorPart)) {
+    if (!(part instanceof IPersistableItemEditor)) {
       return;
     }
-    AbstractPersistableItemEditorPart< ? > editorPart = (AbstractPersistableItemEditorPart< ? >) part;
+    IPersistableItemEditor editorPart = (IPersistableItemEditor) part;
     if (!editorPart.isDirty()) {
       return;
     }
