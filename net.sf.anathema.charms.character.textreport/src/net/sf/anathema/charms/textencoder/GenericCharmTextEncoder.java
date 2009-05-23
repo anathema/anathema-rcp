@@ -21,7 +21,7 @@ public class GenericCharmTextEncoder extends AbstractTextEncoder {
   @Override
   public Iterable<Element> createParagraphs(ICharacter character) throws DocumentException {
     GenericCharmCollector collector = new GenericCharmCollector(character);
-    Collection<String> generics = collector.getGenericIdPatterns();
+    Collection<String> generics = collector.getUnvirtualGenericIdPatterns();
     CharmNamesExtensionPoint names = new CharmNamesExtensionPoint();
     Phrase genericsParagraph = createTextParagraph(createTextChunk("")); //$NON-NLS-1$
     for (String generic : generics) {

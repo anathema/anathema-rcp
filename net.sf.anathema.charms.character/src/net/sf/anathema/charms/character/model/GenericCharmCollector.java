@@ -10,6 +10,7 @@ import net.sf.anathema.character.trait.resources.TraitMessages;
 import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;
+import net.sf.anathema.charms.tree.ITreeProvider;
 
 public class GenericCharmCollector {
 
@@ -19,14 +20,27 @@ public class GenericCharmCollector {
     this.character = character;
   }
 
-  public Collection<String> getGenericIdPatterns() {
+  public Collection<String> getUnvirtualGenericIdPatterns() {
     String typeId = character.getCharacterType().getId();
-    return CharmProvidingExtensionPoint.CreateTreeProvider().getGenericCharms(typeId);
+    ITreeProvider treeProvider = CharmProvidingExtensionPoint.CreateTreeProvider();
+    List<String> genericCharms = treeProvider.getGenericCharms(typeId);
+    return removeVirtualCharms(genericCharms);
+  }
+
+  private Collection<String> removeVirtualCharms(List<String> genericCharms) {
+    List<String> unvirtualCharms = new ArrayList<String>();
+    VirtualCharmEvaluation evaluation = new VirtualCharmEvaluation();
+    for (String pattern : genericCharms) {
+      if (!evaluation.isVirtual(pattern)) {
+        unvirtualCharms.add(pattern);
+      }
+    }
+    return unvirtualCharms;
   }
 
   public List<ICharmId> getLearnedGenerics() {
     List<ICharmId> list = new ArrayList<ICharmId>();
-    for (String id : getGenericIdPatterns()) {
+    for (String id : getUnvirtualGenericIdPatterns()) {
       for (String trait : getTraits(id)) {
         list.add(new CharmId(id, trait));
       }
