@@ -13,8 +13,8 @@ import net.sf.anathema.character.sheet.table.TableCell;
 import net.sf.anathema.character.sheet.table.TableEncodingUtilities;
 import net.sf.anathema.character.trait.display.IDisplayTrait;
 import net.sf.anathema.character.trait.resources.TraitMessages;
-import net.sf.anathema.charms.character.evaluation.GenericCharmCollector;
 import net.sf.anathema.charms.character.evaluation.TraitCollector;
+import net.sf.anathema.charms.character.print.GenericCharmCollector;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 
 import com.lowagie.text.DocumentException;
@@ -56,7 +56,7 @@ public class GenericCharmTableEncoder extends AbstractTableEncoder {
     CharmNamesExtensionPoint names = new CharmNamesExtensionPoint();
     for (String pattern : genericIdPatterns) {
       Phrase charmPhrase = new Phrase(names.getNameFor(new GenericDisplayId(character, pattern)), font);
-      List<String> learnedTraits = collector.getTraits(pattern);
+      List<String> learnedTraits = collector.getLearnedTraits(pattern);
       table.addCell(new TableCell(charmPhrase, Rectangle.NO_BORDER));
       for (IDisplayTrait trait : traits) {
         table.addCell(createGenericCell(learnedTraits, trait, learnedTemplate, notLearnedTemplate));

@@ -7,7 +7,7 @@ import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.sheet.common.IDynamicPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.elements.Bounds;
-import net.sf.anathema.charms.character.evaluation.GenericCharmCollector;
+import net.sf.anathema.charms.character.print.GenericCharmCollector;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.BaseFont;
@@ -28,7 +28,7 @@ public class GenericCharmEncoder extends UnconfiguredExecutableExtension impleme
   }
 
   private Collection<String> collect(ICharacter character) {
-    return new GenericCharmCollector(character).getUnvirtualGenericIdPatterns();
+    return new GenericCharmCollector(character).getRealGenericIdPatterns();
   }
 
   @Override

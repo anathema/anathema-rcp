@@ -11,7 +11,7 @@ import net.sf.anathema.character.sheet.common.IEncodeContext;
 import net.sf.anathema.character.sheet.common.IPdfContentBoxEncoder;
 import net.sf.anathema.character.sheet.elements.Bounds;
 import net.sf.anathema.charms.character.evaluation.CharmCharacter;
-import net.sf.anathema.charms.character.evaluation.GenericCharmCollector;
+import net.sf.anathema.charms.character.print.GenericCharmCollector;
 import net.sf.anathema.charms.character.sheet.generic.GenericDisplayId;
 import net.sf.anathema.charms.character.sheet.stats.CharmStats;
 import net.sf.anathema.charms.character.sheet.stats.IMagicStats;
@@ -44,7 +44,7 @@ public class CharmEncoder extends UnconfiguredExecutableExtension implements IPd
     ICharmDataMap map = CharmProvidingExtensionPoint.CreateCharmDataMap();
     GenericCharmCollector collector = new GenericCharmCollector(character);
     List<ICharmId> learnedGenerics = collector.getLearnedGenerics();
-    Collection<String> genericIdPatterns = collector.getUnvirtualGenericIdPatterns();
+    Collection<String> genericIdPatterns = collector.getRealGenericIdPatterns();
     for (String id : genericIdPatterns) {
       printStats.add(createGenericStats(map, new GenericDisplayId(character, id)));
     }
