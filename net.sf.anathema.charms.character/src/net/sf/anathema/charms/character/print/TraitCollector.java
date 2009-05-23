@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character.evaluation;
+package net.sf.anathema.charms.character.print;
 
 import java.util.ArrayList;
 import java.util.Collection;
