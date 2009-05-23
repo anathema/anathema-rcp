@@ -7,21 +7,28 @@ import net.sf.anathema.basics.eclipse.resource.IContentHandle;
 import net.sf.anathema.basics.eclipse.runtime.DefaultAdaptable;
 import net.sf.anathema.character.core.character.ICharacterId;
 
+@SuppressWarnings("nls")
 public class DummyCharacterId extends DefaultAdaptable implements ICharacterId {
 
-  private final Map<String, IContentHandle> contentHandlesByName = new HashMap<String, IContentHandle>();
+  public String equalsIdentifier = "DummyCharacterId";
+  public final Map<String, IContentHandle> contentHandlesByName = new HashMap<String, IContentHandle>();
 
   @Override
   public IContentHandle getContents(String fileName) {
     return contentHandlesByName.get(fileName);
   }
 
-  public void addContentHandle(String name, IContentHandle handle) {
-    contentHandlesByName.put(name, handle);
+  @Override
+  public boolean equals(Object object) {
+    if (!(object instanceof DummyCharacterId)) {
+      return false;
+    }
+    DummyCharacterId other = (DummyCharacterId) object;
+    return other.equalsIdentifier.equals(equalsIdentifier);
   }
 
   @Override
-  public boolean equals(Object arg0) {
-    return arg0 instanceof DummyCharacterId;
+  public int hashCode() {
+    return equalsIdentifier.hashCode();
   }
 }

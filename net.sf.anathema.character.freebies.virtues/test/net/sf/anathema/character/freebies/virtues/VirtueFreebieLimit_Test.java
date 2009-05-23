@@ -9,40 +9,16 @@ import net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother;
 import net.sf.anathema.basics.eclipse.extension.fake.MockIntegerAttribute;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.character.core.character.ICharacterId;
-import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.ICharacterTypeFinder;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
+import net.sf.anathema.character.core.fake.DummyCharacterType;
 import net.sf.anathema.character.freebies.virtues.internal.VirtueFreebieLimit;
 
 import org.easymock.EasyMock;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.junit.Test;
 
 @SuppressWarnings("nls")
 public class VirtueFreebieLimit_Test {
-
-  private static final class DummyCharacterType implements ICharacterType {
-    private final String typename;
-
-    private DummyCharacterType(String typename) {
-      this.typename = typename;
-    }
-
-    @Override
-    public ImageDescriptor getImageDescriptor() {
-      throw new UnsupportedOperationException("Dummy");
-    }
-
-    @Override
-    public String getTraitImageId() {
-      throw new UnsupportedOperationException("Dummy");
-    }
-
-    @Override
-    public String getId() {
-      return typename;
-    }
-  }
 
   @Test
   public void defaultsTo3() throws Exception {
@@ -67,7 +43,8 @@ public class VirtueFreebieLimit_Test {
 
   private ICharacterTypeFinder createCharacterTypeFinder(final String typename, ICharacterId id) {
     ICharacterTypeFinder finder = EasyMock.createNiceMock(ICharacterTypeFinder.class);
-    ICharacterType type = new DummyCharacterType(typename);
+    DummyCharacterType type = new DummyCharacterType();
+    type.typeId = typename;
     EasyMock.expect(finder.getCharacterType(id)).andReturn(type);
     EasyMock.replay(finder);
     return finder;

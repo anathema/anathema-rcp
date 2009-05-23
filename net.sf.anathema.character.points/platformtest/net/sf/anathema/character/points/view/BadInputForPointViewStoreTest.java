@@ -1,9 +1,11 @@
 package net.sf.anathema.character.points.view;
 
+import static net.sf.anathema.character.core.fake.CharacterObjectMother.*;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelIdentifier;
 import net.sf.anathema.character.points.configuration.internal.PointConfigurationExtensionPoint;
 import net.sf.anathema.view.valuelist.IValueEntry;
@@ -29,7 +31,8 @@ public class BadInputForPointViewStoreTest {
 
   @Test
   public void nullInputProviderReturnsEmptyViewInput() throws Exception {
-    ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(null);
+    IEditorInput input = createCharacterEditorInput((ICharacterId) null);
+    ICharacterValueEntryFactory newInput = viewInputFactory.getEntriesFactory(input);
     assertEmptyViewElement(newInput);
   }
 

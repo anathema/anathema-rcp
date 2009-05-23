@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Text;
 import org.junit.Before;
 import org.junit.Test;
 
+@SuppressWarnings("nls")
 public class FileDisplayNameUpdaterTest {
 
   private Text widget;
@@ -22,7 +23,7 @@ public class FileDisplayNameUpdaterTest {
   public void createTextWidget() {
     Shell shell = new Shell();
     widget = new Text(shell, SWT.NONE);
-    widget.setText("Hasä"); //$NON-NLS-1$
+    widget.setText("Hasä");
   }
 
   @Test
@@ -30,14 +31,14 @@ public class FileDisplayNameUpdaterTest {
     IFileProvider fileProvider = createNiceMock(IFileProvider.class);
     replay(fileProvider);
     new FileDisplayNameUpdater(widget, fileProvider).stateChanged();
-    assertEquals("", widget.getText()); //$NON-NLS-1$
+    assertEquals("", widget.getText());
   }
 
   @Test
   public void updatesTextToAbsoluteFileNameForFile() throws Exception {
-    File file = new File("C:/Has/Tum"); //$NON-NLS-1$
+    File file = new File("C:/Has/Tum");
     IFileProvider fileProvider = createNiceMock(IFileProvider.class);
-    expect(fileProvider.getFile()).andReturn(file);
+    expect(fileProvider.getFile()).andStubReturn(file);
     replay(fileProvider);
     new FileDisplayNameUpdater(widget, fileProvider).stateChanged();
     assertEquals(file.getAbsolutePath(), widget.getText());

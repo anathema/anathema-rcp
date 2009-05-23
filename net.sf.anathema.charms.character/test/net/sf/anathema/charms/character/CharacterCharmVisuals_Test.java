@@ -2,9 +2,9 @@ package net.sf.anathema.charms.character;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import net.sf.anathema.character.core.fake.DummyCharacter;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
-import net.sf.anathema.character.trait.validator.DummyCharacter;
 import net.sf.anathema.charms.character.model.CharmCharacter;
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;

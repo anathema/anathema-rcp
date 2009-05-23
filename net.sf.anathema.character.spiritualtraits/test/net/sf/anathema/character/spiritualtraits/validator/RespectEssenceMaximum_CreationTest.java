@@ -4,13 +4,13 @@ import static net.sf.anathema.character.spiritualtraits.plugin.IPluginConstants.
 import static net.sf.anathema.character.trait.validator.ValidationDtoObjectMother.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import net.sf.anathema.character.core.fake.DummyCharacter;
 import net.sf.anathema.character.experience.DummyExperience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.spiritualtraits.model.SpiritualTraitGroupTemplate;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollectionModelFactory;
 import net.sf.anathema.character.trait.group.TraitGroup;
-import net.sf.anathema.character.trait.validator.DummyCharacter;
 import net.sf.anathema.character.trait.validator.ISpecialValidator;
 import net.sf.anathema.character.trait.validator.where.ValidationDto;
 
@@ -30,7 +30,7 @@ public class RespectEssenceMaximum_CreationTest {
     collection = TraitCollectionModelFactory.create(groups);
     this.validationDto = ForModel(MODEL_ID, collection);
     dummyExperience = new DummyExperience(false);
-    ((DummyCharacter) validationDto.container).addModel(IExperience.MODEL_ID, dummyExperience);
+    ((DummyCharacter) validationDto.container).modelsById.put(IExperience.MODEL_ID, dummyExperience);
   }
 
   @Before

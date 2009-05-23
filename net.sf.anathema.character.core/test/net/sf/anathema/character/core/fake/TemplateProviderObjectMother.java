@@ -32,7 +32,7 @@ public class TemplateProviderObjectMother {
 
   public static DummyCharacterId createCharacterId(String templateId) {
     DummyCharacterId characterId = new DummyCharacterId();
-    characterId.addContentHandle("template.xml", new DummyContentHandler("<template reference=\"" //$NON-NLS-1$ //$NON-NLS-2$
+    characterId.contentHandlesByName.put("template.xml", new DummyContentHandler("<template reference=\"" //$NON-NLS-1$ //$NON-NLS-2$
         + templateId
         + "\" />")); //$NON-NLS-1$
     return characterId;

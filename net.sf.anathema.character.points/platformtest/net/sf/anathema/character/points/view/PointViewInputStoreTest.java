@@ -30,7 +30,7 @@ public class PointViewInputStoreTest {
   @Before
   public void createCharacterAndEditorInput() {
     this.characterId = TemplateProviderObjectMother.createCharacterId("net.sf.anathema.character.template.heroicmortal"); //$NON-NLS-1$
-    characterId.addContentHandle("experience.model", new DummyContentHandler("<model experienced=\"false\"/>")); //$NON-NLS-1$ //$NON-NLS-2$
+    characterId.contentHandlesByName.put("experience.model", new DummyContentHandler("<model experienced=\"false\"/>")); //$NON-NLS-1$ //$NON-NLS-2$
     this.modelIdentifier = new ModelIdentifier(characterId, "Hasän.egal.id"); //$NON-NLS-1$
     this.editorInput = EasyMock.createStrictMock(IEditorInput.class);
     EasyMock.expect(editorInput.getAdapter(IModelIdentifier.class)).andReturn(modelIdentifier).anyTimes();

@@ -1,4 +1,4 @@
-package net.sf.anathema.character.trait.validator;
+package net.sf.anathema.character.core.fake;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,10 +9,12 @@ import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.character.ICharacterType;
 import net.sf.anathema.character.core.character.IModel;
 
-@SuppressWarnings("nls")
 public class DummyCharacter implements ICharacter {
 
   public final Map<String, IModel> modelsById = new HashMap<String, IModel>();
+  public final DummyCharacterId charachterId = new DummyCharacterId();
+  public final DummyCharacterType characterType = new DummyCharacterType();
+  public final DummyCharacterTemplate characterTemplate = new DummyCharacterTemplate();
 
   @Override
   public String getDisplayName() {
@@ -21,28 +23,7 @@ public class DummyCharacter implements ICharacter {
 
   @Override
   public ICharacterTemplate getTemplate() {
-    return new ICharacterTemplate() {
-
-      @Override
-      public boolean supportsModel(final String modelId) {
-        return true;
-      }
-
-      @Override
-      public String getName() {
-        return "DummyTemplate";
-      }
-
-      @Override
-      public String getId() {
-        return "DummyTemplate.id";
-      }
-
-      @Override
-      public String getCharacterTypeId() {
-        return "CharacterType";
-      }
-    };
+    return characterTemplate;
   }
 
   @Override
@@ -50,17 +31,13 @@ public class DummyCharacter implements ICharacter {
     return modelsById.get(modelId);
   }
 
-  public void addModel(String modelId, IModel model) {
-    modelsById.put(modelId, model);
-  }
-
   @Override
   public ICharacterType getCharacterType() {
-    return null;
+    return characterType;
   }
 
   @Override
   public ICharacterId getId() {
-    return null;
+    return charachterId;
   }
 }

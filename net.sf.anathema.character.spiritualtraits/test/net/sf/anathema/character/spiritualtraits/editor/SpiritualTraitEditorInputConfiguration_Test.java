@@ -34,7 +34,7 @@ public class SpiritualTraitEditorInputConfiguration_Test {
 
   @Test
   public void hasEssenceMaximumOf5() throws Exception {
-    assertThatTraitHasMaximum("Essence", 5);
+    assertThatTraitHasMaximum("Essence", 10);
   }
 
   private void assertThatTraitHasMaximum(String id, int maximum) {
