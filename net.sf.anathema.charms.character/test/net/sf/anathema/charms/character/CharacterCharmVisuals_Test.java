@@ -21,7 +21,11 @@ public class CharacterCharmVisuals_Test {
   @Before
   public void createConnnectedVisuals() throws Exception {
     charmModel = new CharmModel();
-    visuals = new CharacterCharmVisuals(charmModel, new DummyExperience(), new DummyCharmPreferences());
+    visuals = new CharacterCharmVisuals(
+        charmModel,
+        new DummyExperience(),
+        new DummyCharmPreferences(),
+        new DummyVirtualCharmEvaluation());
     charmSelectionControl = new DummyCharmSelectionControl();
     visuals.connect(charmSelectionControl);
   }

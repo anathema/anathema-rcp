@@ -29,5 +29,4 @@ public class CharmNameLookup_Test {
     String name = names.getNameFor(new DummyCharmId("Solar: Katze")); //$NON-NLS-1$
     assertThat(name, is("Solar: Katze")); //$NON-NLS-1$
   }
-
 }

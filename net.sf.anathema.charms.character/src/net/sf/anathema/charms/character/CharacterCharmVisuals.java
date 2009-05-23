@@ -3,6 +3,7 @@ package net.sf.anathema.charms.character;
 import net.sf.anathema.basics.swt.dispose.ColorDisposable;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.charms.character.model.ICharmModel;
+import net.sf.anathema.charms.character.model.IVirtualCharmEvaluation;
 import net.sf.anathema.charms.character.preference.ICharmPreferences;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.view.ICharmNode;
@@ -22,11 +23,17 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
   final ICharmModel charmModel;
   final IExperience experience;
   private final ICharmPreferences preferences;
+  private final IVirtualCharmEvaluation virtualCharmEvaluation;
 
-  public CharacterCharmVisuals(ICharmModel charmModel, IExperience experience, ICharmPreferences preferences) {
+  public CharacterCharmVisuals(
+      ICharmModel charmModel,
+      IExperience experience,
+      ICharmPreferences preferences,
+      IVirtualCharmEvaluation virtualCharmEvaluation) {
     this.charmModel = charmModel;
     this.experience = experience;
     this.preferences = preferences;
+    this.virtualCharmEvaluation = virtualCharmEvaluation;
   }
 
   @Override
@@ -34,7 +41,8 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
     final ICharmSelectionListener selectionListener = new LearningCharmSelectionListener(
         charmModel,
         experience,
-        preferences);
+        preferences,
+        virtualCharmEvaluation);
     addDisposable(new IDisposable() {
       @Override
       public void dispose() {

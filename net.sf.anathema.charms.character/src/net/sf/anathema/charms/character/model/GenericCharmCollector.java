@@ -29,7 +29,7 @@ public class GenericCharmCollector {
 
   private Collection<String> removeVirtualCharms(List<String> genericCharms) {
     List<String> unvirtualCharms = new ArrayList<String>();
-    VirtualCharmEvaluation evaluation = new VirtualCharmEvaluation();
+    IVirtualCharmEvaluation evaluation = new VirtualCharmEvaluation();
     for (String pattern : genericCharms) {
       if (!evaluation.isVirtual(pattern)) {
         unvirtualCharms.add(pattern);

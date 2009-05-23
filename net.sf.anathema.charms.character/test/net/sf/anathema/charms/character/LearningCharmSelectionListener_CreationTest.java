@@ -22,7 +22,11 @@ public class LearningCharmSelectionListener_CreationTest {
   public void createsCharmModel() {
     charmModel = new CharmModel();
     preferences = new DummyCharmPreferences();
-    listener = new LearningCharmSelectionListener(charmModel, new DummyExperience(false), preferences);
+    listener = new LearningCharmSelectionListener(
+        charmModel,
+        new DummyExperience(false),
+        preferences,
+        new DummyVirtualCharmEvaluation());
   }
 
   @Test
