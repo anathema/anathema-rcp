@@ -2,8 +2,8 @@ package net.sf.anathema.charms.character;
 
 import net.sf.anathema.basics.swt.dispose.ColorDisposable;
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.charms.character.model.ICharmCharacter;
 import net.sf.anathema.charms.character.model.ICharmModel;
-import net.sf.anathema.charms.character.model.IVirtualCharmEvaluation;
 import net.sf.anathema.charms.character.preference.ICharmPreferences;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.charms.view.ICharmNode;
@@ -23,17 +23,17 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
   final ICharmModel charmModel;
   final IExperience experience;
   private final ICharmPreferences preferences;
-  private final IVirtualCharmEvaluation virtualCharmEvaluation;
+  private final ICharmCharacter charmCharacter;
 
   public CharacterCharmVisuals(
       ICharmModel charmModel,
       IExperience experience,
       ICharmPreferences preferences,
-      IVirtualCharmEvaluation virtualCharmEvaluation) {
+      ICharmCharacter charmCharacter) {
     this.charmModel = charmModel;
     this.experience = experience;
     this.preferences = preferences;
-    this.virtualCharmEvaluation = virtualCharmEvaluation;
+    this.charmCharacter = charmCharacter;
   }
 
   @Override
@@ -42,7 +42,7 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
         charmModel,
         experience,
         preferences,
-        virtualCharmEvaluation);
+        charmCharacter);
     addDisposable(new IDisposable() {
       @Override
       public void dispose() {
@@ -56,11 +56,7 @@ public class CharacterCharmVisuals extends AggregatedDisposable implements IChar
   public synchronized void update(ICharmNode node) {
     Display display = node.getDisplay();
     ICharmId charmId = node.getCharmId();
-    node.setColor(isLearned(charmId) ? getLearnedColor(display) : getDefaultColor(display));
-  }
-
-  private boolean isLearned(ICharmId charmId) {
-    return experience.isExperienced() ? charmModel.isLearned(charmId) : charmModel.isCreationLearned(charmId);
+    node.setColor(charmCharacter.isLearned(charmId) ? getLearnedColor(display) : getDefaultColor(display));
   }
 
   private synchronized Color getLearnedColor(Display display) {

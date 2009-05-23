@@ -12,7 +12,7 @@ public final class IsVirtualCharmWithIdPattern implements IPredicate<IExtensionE
 
   @Override
   public boolean evaluate(IExtensionElement element) {
-    return element.getName().endsWith(VirtualCharmEvaluation.TAG_VIRTUAL_CHARM)
-        && pattern.equals(element.getAttribute(VirtualCharmEvaluation.ATTRIB_CHARM_ID_PATTERN));
+    return element.getName().endsWith(VirtualCharms.TAG_VIRTUAL_CHARM)
+        && pattern.equals(element.getAttribute(VirtualCharms.ATTRIB_CHARM_ID_PATTERN));
   }
 }

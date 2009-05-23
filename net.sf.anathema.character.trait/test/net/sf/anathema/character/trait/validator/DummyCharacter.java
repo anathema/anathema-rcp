@@ -12,7 +12,7 @@ import net.sf.anathema.character.core.character.IModel;
 @SuppressWarnings("nls")
 public class DummyCharacter implements ICharacter {
 
-  private final Map<String, IModel> modelsById = new HashMap<String, IModel>();
+  public final Map<String, IModel> modelsById = new HashMap<String, IModel>();
 
   @Override
   public String getDisplayName() {

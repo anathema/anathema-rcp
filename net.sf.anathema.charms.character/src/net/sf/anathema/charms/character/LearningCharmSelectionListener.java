@@ -1,8 +1,8 @@
 package net.sf.anathema.charms.character;
 
 import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.charms.character.model.ICharmCharacter;
 import net.sf.anathema.charms.character.model.ICharmModel;
-import net.sf.anathema.charms.character.model.IVirtualCharmEvaluation;
 import net.sf.anathema.charms.character.preference.ExperienceCharmTreatment;
 import net.sf.anathema.charms.character.preference.ICharmPreferences;
 import net.sf.anathema.charms.tree.ICharmId;
@@ -12,22 +12,22 @@ public final class LearningCharmSelectionListener implements ICharmSelectionList
   private final ICharmModel charmModel;
   private final IExperience experience;
   private final ICharmPreferences preferences;
-  private final IVirtualCharmEvaluation virtualEvaluation;
+  private final ICharmCharacter charmCharacter;
 
   public LearningCharmSelectionListener(
       ICharmModel charmModel,
       IExperience experience,
       ICharmPreferences preferences,
-      IVirtualCharmEvaluation virtualEvaluation) {
+      ICharmCharacter charmCharacter) {
     this.charmModel = charmModel;
     this.experience = experience;
     this.preferences = preferences;
-    this.virtualEvaluation = virtualEvaluation;
+    this.charmCharacter = charmCharacter;
   }
 
   @Override
   public void charmSelected(ICharmId charmId) {
-    if (virtualEvaluation.isVirtual(charmId)) {
+    if (charmCharacter.isVirtual(charmId)) {
       return;
     }
     ExperienceCharmTreatment treatment = preferences.getExperienceTreatment();
