@@ -44,7 +44,7 @@ public class CharmEncoder extends UnconfiguredExecutableExtension implements IPd
     ICharmDataMap map = CharmProvidingExtensionPoint.CreateCharmDataMap();
     GenericCharmCollector collector = new GenericCharmCollector(character);
     List<ICharmId> learnedGenerics = collector.getLearnedGenerics();
-    Collection<String> genericIdPatterns = collector.getGenericIdPatterns();
+    Collection<String> genericIdPatterns = collector.getUnvirtualGenericIdPatterns();
     for (String id : genericIdPatterns) {
       printStats.add(createGenericStats(map, new GenericDisplayId(character, id)));
     }

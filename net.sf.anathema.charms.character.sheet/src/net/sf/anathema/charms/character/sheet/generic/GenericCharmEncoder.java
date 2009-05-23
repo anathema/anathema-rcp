@@ -28,7 +28,7 @@ public class GenericCharmEncoder extends UnconfiguredExecutableExtension impleme
   }
 
   private Collection<String> collect(ICharacter character) {
-    return new GenericCharmCollector(character).getGenericIdPatterns();
+    return new GenericCharmCollector(character).getUnvirtualGenericIdPatterns();
   }
 
   @Override
