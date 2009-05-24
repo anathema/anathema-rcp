@@ -40,4 +40,8 @@ public class RepositoryUtilities {
     }
     return members;
   }
+
+  public static void refreshWorkspace() throws CoreException {
+    ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
+  }
 }

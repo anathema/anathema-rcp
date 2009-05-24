@@ -1,6 +1,7 @@
 package net.sf.anathema.basics.repository;
 
 import net.sf.anathema.basics.eclipse.plugin.AbstractAnathemaUIPlugin;
+import net.sf.anathema.basics.repository.access.RepositoryUtilities;
 import net.sf.anathema.basics.repository.initialization.ProjectInitializer;
 
 import org.eclipse.jface.resource.ImageRegistry;
@@ -35,6 +36,7 @@ public class RepositoryPlugin extends AbstractAnathemaUIPlugin {
   @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
+    RepositoryUtilities.refreshWorkspace();
     new ProjectInitializer().initialize();
   }
 
