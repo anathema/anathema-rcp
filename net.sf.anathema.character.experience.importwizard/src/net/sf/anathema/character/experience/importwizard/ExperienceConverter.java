@@ -1,7 +1,7 @@
 package net.sf.anathema.character.experience.importwizard;
 
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
-import net.sf.anathema.character.experience.internal.Experience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.internal.ExperiencePersister;
 import net.sf.anathema.character.importwizard.IExecutableConverter;
 import net.sf.anathema.lib.xml.ElementUtilities;

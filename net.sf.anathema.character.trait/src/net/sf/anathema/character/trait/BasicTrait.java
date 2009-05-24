@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 
 import net.sf.anathema.character.trait.interactive.IIntValueModel;
 import net.sf.anathema.character.trait.interactive.IntValueModel;
+import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.character.trait.status.ITraitStatusModel;
 import net.sf.anathema.character.trait.status.TraitStatusModel;
 import net.sf.anathema.lib.util.IIdentificate;
@@ -57,11 +58,29 @@ public class BasicTrait implements IBasicTrait {
 
   @Override
   public String toString() {
-    return MessageFormat.format(
-        "{0}[{1},{2},{3}]", //$NON-NLS-1$
+    return MessageFormat.format("{0}[{1},{2},{3}]", //$NON-NLS-1$
         getTraitType().getId(),
         getCreationModel().getValue(),
         getExperiencedModel().getValue(),
         getStatusManager().getStatus());
+  }
+
+  @Override
+  public TraitMemento getSaveState() {
+    TraitMemento memento = new TraitMemento();
+    memento.creationValue = getCreationModel().getValue();
+    memento.experienceValue = getExperiencedModel().getValue();
+    memento.status = getStatusManager().getStatus();
+    return memento;
+  }
+
+  @Override
+  public void revert(TraitMemento memento) {
+    getCreationModel().setValue(memento.creationValue);
+    getExperiencedModel().setValue(memento.experienceValue);
+    ITraitStatus currentStatus = getStatusManager().getStatus();
+    if (currentStatus.isModifiable() && memento.status.isModifiable()) {
+      getStatusManager().setStatus(memento.status);
+    }
   }
 }

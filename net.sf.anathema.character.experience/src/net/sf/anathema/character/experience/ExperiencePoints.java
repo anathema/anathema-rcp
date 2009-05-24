@@ -1,16 +1,14 @@
-package net.sf.anathema.character.experience.points;
+package net.sf.anathema.character.experience;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.model.AbstractModel;
-import net.sf.anathema.character.experience.IExperiencePoints;
-import net.sf.anathema.lib.control.change.ChangeControl;
+import net.sf.anathema.character.experience.points.ExperienceEntry;
+import net.sf.anathema.character.experience.points.ExperiencePointsMemento;
 
 public class ExperiencePoints extends AbstractModel implements IExperiencePoints {
 
-  private final ChangeControl changeControl = new ChangeControl();
   private final List<ExperienceEntry> entries = new ArrayList<ExperienceEntry>();
 
   @Override
@@ -35,7 +33,7 @@ public class ExperiencePoints extends AbstractModel implements IExperiencePoints
 
   private void propagateChange() {
     setDirty(true);
-    changeControl.fireChangedEvent();
+    fireChangedEvent();
   }
 
   @Override
@@ -44,12 +42,16 @@ public class ExperiencePoints extends AbstractModel implements IExperiencePoints
   }
 
   @Override
-  public void addChangeListener(IChangeListener listener) {
-    changeControl.addChangeListener(listener);
+  protected void loadFromFromSaveState(Object saveState) {
+    ExperiencePointsMemento memento = (ExperiencePointsMemento) saveState;
+    entries.clear();
+    entries.addAll(memento.entries);
   }
 
   @Override
-  public void removeChangeListener(IChangeListener listener) {
-    changeControl.removeChangeListener(listener);
+  public ExperiencePointsMemento getSaveState() {
+    ExperiencePointsMemento memento = new ExperiencePointsMemento();
+    memento.entries = new ArrayList<ExperienceEntry>(entries);
+    return memento;
   }
 }

@@ -5,5 +5,9 @@ import net.sf.anathema.basics.item.IItem;
 
 public interface IModel extends IItem, IChangeableModel {
 
+  public Object getSaveState();
+
+  public void revertTo(Object memento);
+
   public void updateToDependencies();
 }

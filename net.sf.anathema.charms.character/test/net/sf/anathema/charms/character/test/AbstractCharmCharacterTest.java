@@ -1,7 +1,7 @@
 package net.sf.anathema.charms.character.test;
 
 import net.sf.anathema.character.core.fake.DummyCharacter;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.charms.character.model.CharmModel;
 import net.sf.anathema.charms.character.model.ICharmModel;
@@ -15,7 +15,7 @@ public class AbstractCharmCharacterTest {
   @Before
   public void createCharacter() throws Exception {
     character = new DummyCharacter();
-    character.modelsById.put(IExperience.MODEL_ID, new DummyExperience(false));
+    character.modelsById.put(IExperience.MODEL_ID, new Experience());
     character.modelsById.put(ICharmModel.MODEL_ID, new CharmModel());
   }
 
@@ -23,7 +23,7 @@ public class AbstractCharmCharacterTest {
     return (CharmModel) character.getModel(ICharmModel.MODEL_ID);
   }
 
-  protected final DummyExperience getExperience() {
-    return (DummyExperience) character.getModel(IExperience.MODEL_ID);
+  protected final Experience getExperience() {
+    return (Experience) character.getModel(IExperience.MODEL_ID);
   }
 }

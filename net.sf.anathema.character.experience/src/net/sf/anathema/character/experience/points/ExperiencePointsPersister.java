@@ -9,6 +9,7 @@ import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.basics.item.persistence.IPluginDocumentFactory;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
+import net.sf.anathema.character.experience.ExperiencePoints;
 import net.sf.anathema.character.experience.IExperiencePoints;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;

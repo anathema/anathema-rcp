@@ -2,6 +2,7 @@ package net.sf.anathema.character.experience.internal;
 
 import static org.junit.Assert.assertEquals;
 import net.sf.anathema.basics.item.persistence.IBundleVersionCollection;
+import net.sf.anathema.character.experience.Experience;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;

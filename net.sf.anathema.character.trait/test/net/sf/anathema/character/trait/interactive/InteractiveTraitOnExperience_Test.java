@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
@@ -53,7 +53,7 @@ public class InteractiveTraitOnExperience_Test {
 
   @Before
   public void createRules() throws Exception {
-    experience = new DummyExperience();
+    experience = new Experience();
     experience.setExperienced(true);
     basicTrait = new BasicTrait(new Identificate("Hasä")); //$NON-NLS-1$
     basicTrait.getCreationModel().setValue(CREATION_VALUE);

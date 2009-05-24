@@ -2,7 +2,7 @@ package net.sf.anathema.character.freebies.abilities.coverage;
 
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.fake.DummyModelCollection;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
@@ -33,7 +33,7 @@ public class CoverageCalculator_ExperienceTest {
 
   private CoverageCalculator createCollector() {
     DummyModelCollection modelCollection = new DummyModelCollection();
-    modelCollection.addModel(IExperience.MODEL_ID, new DummyExperience(true));
+    modelCollection.addModel(IExperience.MODEL_ID, Experience.Create(true));
     return new CoverageCalculator(null, modelCollection);
   }
 }

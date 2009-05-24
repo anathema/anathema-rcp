@@ -1,7 +1,7 @@
 package net.sf.anathema.character.points;
 
-import static org.junit.Assert.assertEquals;
-import net.sf.anathema.character.experience.DummyExperience;
+import static org.junit.Assert.*;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.view.CharacterPointsViewTitleFactory;
 import net.sf.anathema.character.points.view.IExperienceProvider;
@@ -42,7 +42,7 @@ public class ExperienceTitleFactoryTest {
   }
 
   private IExperience createExperience(boolean experienced) {
-    IExperience experience = new DummyExperience();
+    IExperience experience = new Experience();
     experience.setExperienced(experienced);
     return experience;
   }

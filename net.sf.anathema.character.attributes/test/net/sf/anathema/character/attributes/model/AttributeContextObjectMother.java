@@ -4,7 +4,7 @@ import static org.easymock.EasyMock.*;
 
 import java.util.ArrayList;
 
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.trait.collection.ITraitCollectionContext;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
 import net.sf.anathema.character.trait.collection.TraitCollectionModelFactory;
@@ -17,7 +17,7 @@ public class AttributeContextObjectMother {
 
   public static ITraitCollectionContext createContext(TraitGroup... traitGroups) {
     ITraitCollectionModel attributes = TraitCollectionModelFactory.create(traitGroups);
-    DummyExperience experience = new DummyExperience();
+    Experience experience = new Experience();
     ITraitCollectionContext context = EasyMock.createNiceMock(ITraitCollectionContext.class);
     EasyMock.expect(context.getTraitGroups()).andReturn(traitGroups).anyTimes();
     EasyMock.expect(context.getCollection()).andReturn(attributes).anyTimes();

@@ -5,7 +5,7 @@ import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterTemplate;
 import net.sf.anathema.character.core.fake.DummyModelCollection;
 import net.sf.anathema.character.core.fake.TemplateProviderObjectMother;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.PointsObjectMother;
 
@@ -15,7 +15,7 @@ import org.junit.Test;
 
 public class PointEvaluationProviderTest {
 
-  private DummyExperience dummyExperience;
+  private Experience dummyExperience;
   private DummyModelCollection modelCollection;
   private BonusPointsProvider bonusPointsProvider;
   private ICharacterId characterId;
@@ -27,7 +27,7 @@ public class PointEvaluationProviderTest {
     this.characterId = EasyMock.createMock(ICharacterId.class);
     this.characterTemplate = TemplateProviderObjectMother.createTemplate("templateId"); //$NON-NLS-1$
     modelCollection = new DummyModelCollection();
-    dummyExperience = new DummyExperience();
+    dummyExperience = new Experience();
     modelCollection.addModel(IExperience.MODEL_ID, dummyExperience);
     bonusPointContainer = EasyMock.createMock(IBonusPointContainer.class);
     bonusPointsProvider = new BonusPointsProvider(modelCollection, TemplateProviderObjectMother.createTemplateProvider(

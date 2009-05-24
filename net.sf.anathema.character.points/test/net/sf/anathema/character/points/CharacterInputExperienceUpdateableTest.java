@@ -7,7 +7,7 @@ import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.fake.CharacterObjectMother;
 import net.sf.anathema.character.core.fake.DummyCharacterId;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.points.view.CharacterPointsUpdatable;
 import net.sf.anathema.lib.ui.IUpdatable;
@@ -25,7 +25,7 @@ public class CharacterInputExperienceUpdateableTest {
 
   @Before
   public void createUpdateable() throws Exception {
-    this.experience = new DummyExperience();
+    this.experience = new Experience();
     ICharacterId characterId = new DummyCharacterId();
     IEditorInput editedInput = CharacterObjectMother.createCharacterEditorInput(new ModelIdentifier(characterId, "Egal")); //$NON-NLS-1$
     IPartContainer partContainer = CharacterObjectMother.createPartContainerWithActiveEditorInput(editedInput);
@@ -41,7 +41,7 @@ public class CharacterInputExperienceUpdateableTest {
   public void returnsExperience() throws Exception {
     assertSame(experience, experienceUpdateable.getExperience());
   }
-  
+
   @Test
   public void updatableIsNotifiedForModelChange() throws Exception {
     modelChangeUpdatable.update();

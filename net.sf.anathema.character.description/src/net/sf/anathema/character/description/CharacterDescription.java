@@ -68,4 +68,30 @@ public class CharacterDescription extends AggregatedChangeManagement implements 
   public void updateToDependencies() {
     // nothing to do
   }
+
+  @Override
+  public Object getSaveState() {
+    CharacterDescriptionMemento memento = new CharacterDescriptionMemento();
+    memento.characterization = getCharacterization().getText();
+    memento.concept = getConcept().getText();
+    memento.name = getName().getText();
+    memento.notes = getNotes().getText();
+    memento.periphrasis = getPeriphrasis().getText();
+    memento.physicalDescription = getPhysicalDescription().getText();
+    memento.player = getPlayer().getText();
+    return memento;
+  }
+
+  @Override
+  public void revertTo(Object saveState) {
+    CharacterDescriptionMemento memento = (CharacterDescriptionMemento) saveState;
+    getCharacterization().setText(memento.characterization);
+    getConcept().setText(memento.concept);
+    getName().setText(memento.name);
+    getNotes().setText(memento.notes);
+    getPeriphrasis().setText(memento.periphrasis);
+    getPhysicalDescription().setText(memento.physicalDescription);
+    getPlayer().setText(memento.player);
+    setClean();
+  }
 }

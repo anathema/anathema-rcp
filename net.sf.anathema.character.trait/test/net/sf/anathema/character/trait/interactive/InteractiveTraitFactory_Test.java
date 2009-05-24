@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.groupeditor.IEditorInputConfiguration;
@@ -30,7 +30,7 @@ public class InteractiveTraitFactory_Test {
     IEditorInputConfiguration configuration = createMock(IEditorInputConfiguration.class);
     expect(configuration.getTraitMaximum(traitType)).andStubReturn(MAXIMUM);
     replay(configuration);
-    factory = new InteractiveTraitFactory(null, new DummyExperience(), configuration, new NullFavorizationInteraction());
+    factory = new InteractiveTraitFactory(null, new Experience(), configuration, new NullFavorizationInteraction());
   }
 
   @Test

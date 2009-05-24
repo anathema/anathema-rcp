@@ -2,7 +2,7 @@ package net.sf.anathema.character.trait.interactive;
 
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IFavorizationInteraction;
 import net.sf.anathema.lib.util.Identificate;
@@ -17,11 +17,11 @@ public class InteractiveFavorizationTest {
   private BasicTrait basicTrait;
   private IFavorizationInteraction favorizationHandler;
   private InteractiveFavorization favorization;
-  private DummyExperience experience;
+  private Experience experience;
 
   @Before
   public final void createTrait() {
-    this.experience = new DummyExperience();
+    this.experience = new Experience();
     this.traitType = new Identificate("test"); //$NON-NLS-1$
     this.basicTrait = new BasicTrait(traitType);
     this.favorizationHandler = EasyMock.createNiceMock(IFavorizationInteraction.class);
@@ -49,7 +49,7 @@ public class InteractiveFavorizationTest {
     favorization.toggleFavored();
     EasyMock.verify(favorizationHandler);
   }
-  
+
   @Test
   public void favorizationListenerIsAddedToBasicTraitFavorizationModel() throws Exception {
     IChangeListener favorizationListener = EasyMock.createMock(IChangeListener.class);
@@ -57,7 +57,7 @@ public class InteractiveFavorizationTest {
     favorization.addFavoredChangeListener(favorizationListener);
     assertEquals(1, basicTrait.getStatusManager().getListenerCount());
   }
-  
+
   @Test
   public void favorizationListenerIsRemovedOnDispose() throws Exception {
     IChangeListener favorizationListener = EasyMock.createMock(IChangeListener.class);
@@ -66,16 +66,7 @@ public class InteractiveFavorizationTest {
     favorization.dispose();
     assertEquals(0, basicTrait.getStatusManager().getListenerCount());
   }
- 
-  @Test
-  public void favorizableListenerIsRemovedOnDispose() throws Exception {
-    IChangeListener favorizableListener = EasyMock.createMock(IChangeListener.class);
-    favorization.addFavorableChangeListener(favorizableListener);
-    assertEquals(1, experience.getListenerCount());
-    favorization.dispose();
-    assertEquals(0, experience.getListenerCount());
-  }
-  
+
   @Test
   public void experienceOverrulesFavorablityToFalse() throws Exception {
     experience.setExperienced(true);
@@ -83,7 +74,7 @@ public class InteractiveFavorizationTest {
     EasyMock.replay(favorizationHandler);
     assertFalse(favorization.isFavorable());
   }
-  
+
   @Test
   public void favorablilityIsDecidedByFavorizationHandlerUnexperiencedCharacter() throws Exception {
     experience.setExperienced(false);
@@ -93,7 +84,7 @@ public class InteractiveFavorizationTest {
     assertFalse(favorization.isFavorable());
     assertTrue(favorization.isFavorable());
   }
-  
+
   @Test
   public void favorabiltyListenerIsNotifiedOnExperienceChange() throws Exception {
     IChangeListener favorableListener = EasyMock.createMock(IChangeListener.class);

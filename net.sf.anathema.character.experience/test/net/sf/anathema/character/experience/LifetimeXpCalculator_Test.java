@@ -4,7 +4,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.fake.ModelContainerObjectMother;
 import net.sf.anathema.character.experience.points.ExperienceEntry;
-import net.sf.anathema.character.experience.points.ExperiencePoints;
 
 import org.junit.Before;
 import org.junit.Test;

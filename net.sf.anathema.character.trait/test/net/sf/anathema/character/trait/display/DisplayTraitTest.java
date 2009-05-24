@@ -1,7 +1,7 @@
 package net.sf.anathema.character.trait.display;
 
 import static org.junit.Assert.*;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.IBasicTrait;
@@ -20,7 +20,7 @@ public class DisplayTraitTest {
   @Before
   public void createTraitWithoutSetExperienceValue() throws Exception {
     basicTrait = new BasicTrait(new Identificate("TestTrait")); //$NON-NLS-1$
-    experience = new DummyExperience();
+    experience = new Experience();
     IDisplayFavorization favorization = new DisplayFavorization(new DummyFavorizationHandler(), basicTrait);
     displayTrait = new DisplayTrait(favorization, basicTrait, experience, 5);
   }

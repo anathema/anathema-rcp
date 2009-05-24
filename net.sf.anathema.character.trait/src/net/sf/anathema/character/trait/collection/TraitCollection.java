@@ -7,6 +7,7 @@ import java.util.List;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.disy.commons.core.util.ITransformer;
 import net.sf.anathema.character.trait.IBasicTrait;
+import net.sf.anathema.character.trait.TraitMemento;
 import net.sf.anathema.character.trait.collection.internal.CreationModelTransformer;
 import net.sf.anathema.character.trait.collection.internal.ExperiencedModelTransformer;
 import net.sf.anathema.character.trait.collection.internal.StatusUpdater;
@@ -16,7 +17,6 @@ import net.sf.anathema.character.trait.status.DefaultStatus;
 import net.sf.anathema.character.trait.status.ITraitStatus;
 import net.sf.anathema.character.trait.status.ITraitStatusModel;
 import net.sf.anathema.lib.collection.MultiEntryMap;
-import net.sf.anathema.lib.control.change.ChangeControl;
 import net.sf.anathema.lib.ui.IUpdatable;
 import net.sf.anathema.lib.util.IIdentificate;
 
@@ -26,11 +26,10 @@ public class TraitCollection extends AbstractTraitCollection {
   private final IChangeListener changeListener = new IChangeListener() {
     @Override
     public void stateChanged() {
-      changeControl.fireChangedEvent();
+      fireChangedEvent();
       setDirty(true);
     }
   };
-  private final ChangeControl changeControl = new ChangeControl();
   private IUpdatable dependencyUpdatable = new IUpdatable() {
     @Override
     public void update() {
@@ -59,16 +58,6 @@ public class TraitCollection extends AbstractTraitCollection {
   @Override
   public Iterator<IBasicTrait> iterator() {
     return traits.iterator();
-  }
-
-  @Override
-  public void addChangeListener(final IChangeListener listener) {
-    changeControl.addChangeListener(listener);
-  }
-
-  @Override
-  public void removeChangeListener(final IChangeListener listener) {
-    changeControl.removeChangeListener(listener);
   }
 
   @Override
@@ -123,5 +112,25 @@ public class TraitCollection extends AbstractTraitCollection {
   @Override
   public void updateToDependencies() {
     dependencyUpdatable.update();
+  }
+
+  @Override
+  public Object getSaveState() {
+    TraitCollectionMemento memento = new TraitCollectionMemento();
+    for (IBasicTrait trait : this) {
+      String traitId = trait.getTraitType().getId();
+      memento.mementosByTraitType.put(traitId, trait.getSaveState());
+    }
+    return memento;
+  }
+
+  @Override
+  protected void loadFromFromSaveState(Object saveState) {
+    TraitCollectionMemento memento = (TraitCollectionMemento) saveState;
+    for (IBasicTrait trait : this) {
+      String traitId = trait.getTraitType().getId();
+      TraitMemento traitMemento = memento.mementosByTraitType.get(traitId);
+      trait.revert(traitMemento);
+    }
   }
 }

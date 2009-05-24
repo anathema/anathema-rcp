@@ -20,6 +20,8 @@ public class ModelCache implements IModelCache {
   private final Map<IModel, IModelIdentifier> identifiersByModel = new HashMap<IModel, IModelIdentifier>();
   private final DependenciesHandler dependenciesHandler = new DependenciesHandler(new CharacterTemplateProvider());
   private final Map<IModelIdentifier, IChangeListener> changeListeners = new HashMap<IModelIdentifier, IChangeListener>();
+  private final Map<IModelIdentifier, Object> mementosByIdentifier = new HashMap<IModelIdentifier, Object>();
+  private final Map<IModelIdentifier, IChangeListener> mementoListenerByIdentifier = new HashMap<IModelIdentifier, IChangeListener>();
   private final GenericControl<IModelChangeListener> modelChangeListeners = new GenericControl<IModelChangeListener>();
 
   private ModelCache() {
@@ -42,6 +44,18 @@ public class ModelCache implements IModelCache {
         loadDependencies(identifier, model);
         IChangeListener overallChangeListener = new OverallModelChangeListener(identifier, modelChangeListeners);
         changeListeners.put(identifier, overallChangeListener);
+        IChangeListener mementoListener = new IChangeListener() {
+          @Override
+          public void stateChanged() {
+            IModel cleanModel = getModel(identifier);
+            if (!cleanModel.isDirty()) {
+              mementosByIdentifier.put(identifier, cleanModel.getSaveState());
+            }
+          }
+        };
+        mementoListener.stateChanged();
+        mementoListenerByIdentifier.put(identifier, mementoListener);
+        model.addDirtyListener(mementoListener);
         model.addChangeListener(overallChangeListener);
         modelChangeListeners.forAllDo(new NotifyOfModelCreation(identifier));
       }
@@ -68,16 +82,21 @@ public class ModelCache implements IModelCache {
 
   public synchronized void revert(IModel item) {
     IModelIdentifier modelIdentifier = identifiersByModel.get(item);
-    removeFromCache(item, modelIdentifier);
-    getModel(modelIdentifier);
+    if (modelIdentifier == null) {
+      return;
+    }
+    item.revertTo(mementosByIdentifier.get(modelIdentifier));
   }
 
   private void removeFromCache(IModel model, IModelIdentifier identifier) {
     IChangeListener modelChangeListener = changeListeners.get(identifier);
+    IChangeListener mementoListener = mementoListenerByIdentifier.get(identifier);
     identifiersByModel.remove(model);
     modelsByIdentifier.remove(identifier);
     changeListeners.remove(modelChangeListener);
+    mementoListenerByIdentifier.remove(identifier);
     model.removeChangeListener(modelChangeListener);
+    model.removeDirtyListener(mementoListener);
   }
 
   @Override

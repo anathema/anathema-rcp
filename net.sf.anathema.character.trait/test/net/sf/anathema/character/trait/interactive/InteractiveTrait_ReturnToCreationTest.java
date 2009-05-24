@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.fake.DummyTraitPreferences;
 import net.sf.anathema.character.trait.preference.ExperienceTraitTreatment;
@@ -18,13 +18,13 @@ import org.junit.Test;
 
 public class InteractiveTrait_ReturnToCreationTest {
 
-  private DummyExperience experience;
+  private Experience experience;
   private BasicTrait basicTrait;
   private InteractiveTrait interactiveTrait;
 
   @Before
   public final void createTraitWithExperienceValue3AndCreationValue2() {
-    experience = new DummyExperience();
+    experience = new Experience();
     basicTrait = new BasicTrait(new Identificate("test")); //$NON-NLS-1$
     basicTrait.getCreationModel().setValue(2);
     basicTrait.getExperiencedModel().setValue(3);

@@ -3,33 +3,20 @@ package net.sf.anathema.charms.character.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
 import net.sf.anathema.character.core.character.ModelIdentifier;
 import net.sf.anathema.character.core.model.AbstractModel;
 import net.sf.anathema.charms.tree.ICharmId;
-import net.sf.anathema.lib.control.change.ChangeControl;
 
 public class CharmModel extends AbstractModel implements ICharmModel {
 
   private final List<ICharmId> creationLearnedCharms = new ArrayList<ICharmId>();
   private final List<ICharmId> experienceLearnedCharms = new ArrayList<ICharmId>();
-  private final ChangeControl changeControl = new ChangeControl();
 
   public static ICharmModel getFrom(IModelCollection modelCollection, ICharacterId characterId) {
     ModelIdentifier identifier = new ModelIdentifier(characterId, ICharmModel.MODEL_ID);
     return (ICharmModel) modelCollection.getModel(identifier);
-  }
-
-  @Override
-  public void addChangeListener(IChangeListener listener) {
-    changeControl.addChangeListener(listener);
-  }
-
-  @Override
-  public void removeChangeListener(IChangeListener listener) {
-    changeControl.removeChangeListener(listener);
   }
 
   @Override
@@ -75,6 +62,23 @@ public class CharmModel extends AbstractModel implements ICharmModel {
       charmList.add(charmId);
     }
     setDirty(true);
-    changeControl.fireChangedEvent();
+    fireChangedEvent();
+  }
+
+  @Override
+  public Object getSaveState() {
+    CharmModelMemento memento = new CharmModelMemento();
+    memento.creationLearnedCharms = new ArrayList<ICharmId>(creationLearnedCharms);
+    memento.experienceLearnedCharms = new ArrayList<ICharmId>(experienceLearnedCharms);
+    return memento;
+  }
+
+  @Override
+  protected void loadFromFromSaveState(Object saveState) {
+    CharmModelMemento memento = (CharmModelMemento) saveState;
+    creationLearnedCharms.clear();
+    creationLearnedCharms.addAll(memento.creationLearnedCharms);
+    experienceLearnedCharms.clear();
+    experienceLearnedCharms.addAll(memento.experienceLearnedCharms);
   }
 }

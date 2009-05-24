@@ -3,7 +3,7 @@ package net.sf.anathema.character.caste.editor;
 import static org.junit.Assert.*;
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.eclipse.resource.fake.ResourceObjectMother;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 
 import org.eclipse.core.resources.IFile;
 import org.junit.Test;
@@ -12,7 +12,7 @@ public class CasteEditorInputTest {
 
   @Test
   public void isNotModifiableWhenExperienced() throws Exception {
-    DummyExperience dummyExperience = new DummyExperience();
+    Experience dummyExperience = new Experience();
     dummyExperience.setExperienced(true);
     IFile file = ResourceObjectMother.createNonExistingFile();
     assertFalse(new CasteEditorInput(file, null, null, null, dummyExperience).isModifiable());
@@ -20,7 +20,7 @@ public class CasteEditorInputTest {
 
   @Test
   public void isModifiableWhenNotExperienced() throws Exception {
-    DummyExperience dummyExperience = new DummyExperience();
+    Experience dummyExperience = new Experience();
     dummyExperience.setExperienced(false);
     IFile file = ResourceObjectMother.createNonExistingFile();
     assertTrue(new CasteEditorInput(file, null, null, null, dummyExperience).isModifiable());
@@ -29,7 +29,7 @@ public class CasteEditorInputTest {
   @Test
   public void throwsEventOnExperienceChange() throws Exception {
     IFile file = ResourceObjectMother.createNonExistingFile();
-    DummyExperience dummyExperience = new DummyExperience();
+    Experience dummyExperience = new Experience();
     dummyExperience.setExperienced(false);
     final CasteEditorInput editor = new CasteEditorInput(file, null, null, null, dummyExperience);
     final boolean[] success = new boolean[] { false };
@@ -42,11 +42,11 @@ public class CasteEditorInputTest {
     dummyExperience.setExperienced(true);
     assertTrue(success[0]);
   }
-  
+
   @Test
   public void removesListenersOnRequest() throws Exception {
     IFile file = ResourceObjectMother.createNonExistingFile();
-    DummyExperience dummyExperience = new DummyExperience();
+    Experience dummyExperience = new Experience();
     dummyExperience.setExperienced(false);
     final CasteEditorInput editor = new CasteEditorInput(file, null, null, null, dummyExperience);
     final boolean[] success = new boolean[] { false };

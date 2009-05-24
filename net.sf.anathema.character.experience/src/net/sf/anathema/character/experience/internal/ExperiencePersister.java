@@ -8,6 +8,7 @@ import net.sf.anathema.basics.item.persistence.BundleVersionCollection;
 import net.sf.anathema.basics.item.persistence.IBundleVersionCollection;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.experience.plugin.ExperiencePlugin;
 import net.sf.anathema.lib.exception.PersistenceException;

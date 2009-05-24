@@ -3,7 +3,7 @@ package net.sf.anathema.character.freebies.abilities.coverage;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.fake.DummyModelCollection;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.freebies.abilities.util.IAbilityFreebiesConstants;
 import net.sf.anathema.character.freebies.configuration.ICreditManager;
@@ -31,7 +31,7 @@ public class CoverageCalculator_CreationTest {
     collection.addTrait(new BasicTrait(SECOND));
     collection.addTrait(new BasicTrait(THIRD));
     modelCollection = new DummyModelCollection();
-    modelCollection.addModel(IExperience.MODEL_ID, new DummyExperience(false));
+    modelCollection.addModel(IExperience.MODEL_ID, Experience.Create(false));
   }
 
   @Test

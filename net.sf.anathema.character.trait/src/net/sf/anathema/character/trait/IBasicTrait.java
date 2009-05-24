@@ -11,10 +11,14 @@ public interface IBasicTrait {
   public IIntValueModel getCreationModel();
 
   public IIntValueModel getExperiencedModel();
-  
+
   public ITraitStatusModel getStatusManager();
 
   public IIdentificate getTraitType();
-  
+
   public boolean isExperiencedValueSet();
+
+  public TraitMemento getSaveState();
+
+  public void revert(TraitMemento memento);
 }

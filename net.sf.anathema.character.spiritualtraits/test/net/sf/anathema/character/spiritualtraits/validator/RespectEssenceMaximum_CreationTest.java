@@ -5,7 +5,7 @@ import static net.sf.anathema.character.trait.validator.ValidationDtoObjectMothe
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.character.core.fake.DummyCharacter;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.spiritualtraits.model.SpiritualTraitGroupTemplate;
 import net.sf.anathema.character.trait.collection.ITraitCollectionModel;
@@ -22,14 +22,14 @@ public class RespectEssenceMaximum_CreationTest {
   private ValidationDto validationDto;
   private ISpecialValidator validator;
   private ITraitCollectionModel collection;
-  private DummyExperience dummyExperience;
+  private IExperience dummyExperience;
 
   @Before
   public void createValidationDto() throws Exception {
     TraitGroup[] groups = new SpiritualTraitGroupTemplate().getGroups();
     collection = TraitCollectionModelFactory.create(groups);
     this.validationDto = ForModel(MODEL_ID, collection);
-    dummyExperience = new DummyExperience(false);
+    dummyExperience = Experience.Create(false);
     ((DummyCharacter) validationDto.container).modelsById.put(IExperience.MODEL_ID, dummyExperience);
   }
 

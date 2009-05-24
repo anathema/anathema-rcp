@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.character.experience.DummyExperience;
+import net.sf.anathema.character.experience.Experience;
 import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.character.trait.BasicTrait;
 import net.sf.anathema.character.trait.fake.DummyTraitPreferences;
@@ -28,7 +28,7 @@ public class InteractiveTrait_CreationTest {
 
   @Before
   public final void createTrait() {
-    IExperience experience = new DummyExperience();
+    IExperience experience = new Experience();
     traitType = new Identificate("test"); //$NON-NLS-1$
     basicTrait = new BasicTrait(traitType);
     favorization = EasyMock.createNiceMock(IInteractiveFavorization.class);

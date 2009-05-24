@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.trait.IBasicTrait;
 import net.sf.anathema.character.trait.collection.AbstractTraitCollection;
 import net.sf.anathema.character.trait.status.ITraitStatus;
@@ -33,16 +32,6 @@ public class DummyTraitCollection extends AbstractTraitCollection {
   }
 
   @Override
-  public void addChangeListener(final IChangeListener modelChangeListener) {
-    // nothing to do
-  }
-
-  @Override
-  public void removeChangeListener(final IChangeListener modelChangeListener) {
-    // nothing to do
-  }
-
-  @Override
   public void setStatusFor(final ITraitStatus newStatus, final List< ? extends IIdentificate> traits) {
     // nothing to do
   }
@@ -60,5 +49,15 @@ public class DummyTraitCollection extends AbstractTraitCollection {
   @Override
   public List<IBasicTrait> getSubTraits(final String traitId) {
     return subTraits.get(traitId);
+  }
+
+  @Override
+  protected void loadFromFromSaveState(Object saveState) {
+    // nothing to do
+  }
+
+  @Override
+  public Object getSaveState() {
+    return null;
   }
 }

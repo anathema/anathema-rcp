@@ -8,9 +8,9 @@ import net.sf.anathema.lib.ui.IDisposable;
 import net.sf.anathema.lib.ui.IUpdatable;
 
 public class EditorDependentUpdateHandler implements IDisposable {
-  
-  private AggregatedDisposable disposables = new AggregatedDisposable();
-  private UpdateRunnable runnable = new UpdateRunnable();
+
+  private final AggregatedDisposable disposables = new AggregatedDisposable();
+  private final UpdateRunnable runnable = new UpdateRunnable();
 
   public void init(IPartContainer partContainer) {
     runnable.run();
@@ -28,5 +28,9 @@ public class EditorDependentUpdateHandler implements IDisposable {
   @Override
   public void dispose() {
     disposables.dispose();
+  }
+
+  public void addDisposable(IDisposable disposable) {
+    disposables.addDisposable(disposable);
   }
 }

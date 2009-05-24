@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import net.sf.anathema.basics.item.persistence.IPluginDocumentFactory;
 import net.sf.anathema.basics.item.persistence.UnversionedDocumentFactory;
+import net.sf.anathema.character.experience.ExperiencePoints;
 import net.sf.anathema.character.experience.IExperiencePoints;
 
 import org.junit.Before;
