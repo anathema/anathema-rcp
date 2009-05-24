@@ -74,8 +74,8 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
     Element rootElement = document.getRootElement();
     CharmModelMemento memento = item.getSaveState();
     // TODO vernünftiger Umgang mit der Fall, dass etwas sowohl experienced als auch creation learned sein kann?
-    saveCharmIds(rootElement, memento.creationLearnedCharms, false);
     saveCharmIds(rootElement, memento.experienceLearnedCharms, true);
+    saveCharmIds(rootElement, memento.creationLearnedCharms, false);
     DocumentUtilities.save(document, stream);
   }
 

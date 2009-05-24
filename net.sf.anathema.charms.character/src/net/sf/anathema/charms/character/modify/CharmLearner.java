@@ -44,7 +44,7 @@ public class CharmLearner implements ICharmLearner {
       }
       charmModel.toggleCreationLearned(charmId);
     }
-    if (experience.isExperienced() && !charmModel.isCreationLearned(charmId)) {
+    else if (!charmModel.isCreationLearned(charmId)) {
       charmModel.toggleExperiencedLearned(charmId);
     }
   }

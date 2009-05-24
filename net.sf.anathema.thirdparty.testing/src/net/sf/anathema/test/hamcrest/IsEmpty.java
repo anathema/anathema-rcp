@@ -1,11 +1,9 @@
 package net.sf.anathema.test.hamcrest;
 
-import java.util.Collection;
-
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
-public class IsEmpty extends TypeSafeMatcher<Collection< ? >> {
+public class IsEmpty extends TypeSafeMatcher<Iterable< ? >> {
 
   @Override
   public void describeTo(Description description) {
@@ -13,7 +11,7 @@ public class IsEmpty extends TypeSafeMatcher<Collection< ? >> {
   }
 
   @Override
-  public boolean matchesSafely(Collection< ? > collection) {
-    return collection.isEmpty();
+  public boolean matchesSafely(Iterable< ? > collection) {
+    return !collection.iterator().hasNext();
   }
 }

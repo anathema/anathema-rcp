@@ -1,5 +1,7 @@
 package net.sf.anathema.character.core.model;
 
+import java.util.Collection;
+
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.character.core.character.IModel;
 import net.sf.anathema.lib.control.ChangeManagement;
@@ -39,5 +41,10 @@ public abstract class AbstractModel extends ChangeManagement implements IModel {
   @Override
   public final void removeChangeListener(IChangeListener listener) {
     changeControl.removeChangeListener(listener);
+  }
+
+  protected final <T> void synchronize(Collection<T> from, Collection<T> to) {
+    to.clear();
+    to.addAll(from);
   }
 }
