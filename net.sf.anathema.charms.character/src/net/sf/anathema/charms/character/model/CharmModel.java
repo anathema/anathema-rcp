@@ -66,10 +66,10 @@ public class CharmModel extends AbstractModel implements ICharmModel {
   }
 
   @Override
-  public Object getSaveState() {
+  public CharmModelMemento getSaveState() {
     CharmModelMemento memento = new CharmModelMemento();
-    memento.creationLearnedCharms = new ArrayList<ICharmId>(creationLearnedCharms);
-    memento.experienceLearnedCharms = new ArrayList<ICharmId>(experienceLearnedCharms);
+    memento.creationLearnedCharms.addAll(creationLearnedCharms);
+    memento.experienceLearnedCharms.addAll(experienceLearnedCharms);
     return memento;
   }
 

@@ -2,6 +2,7 @@ package net.sf.anathema.charms.character.model;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import net.disy.commons.core.creation.IFactory;
 import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
@@ -40,23 +41,25 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
   }
 
   @Override
-  public ICharmModel createNew(NullModelTemplate template) {
+  public CharmModel createNew(NullModelTemplate template) {
     return new CharmModel();
   }
 
   @Override
-  public ICharmModel load(Document document, NullModelTemplate template) throws PersistenceException {
-    CharmModel charmModel = new CharmModel();
-    for (Element charmElement : ElementUtilities.elements(document.getRootElement())) {
-      boolean experienced = ElementUtilities.getBooleanAttribute(charmElement, ATTRIB_EXPERIENCED, false);
-      if (experienced) {
-        charmModel.toggleExperiencedLearned(loadCharmId(charmElement));
-      }
-      else {
-        charmModel.toggleCreationLearned(loadCharmId(charmElement));
-      }
-    }
+  public CharmModel load(Document document, NullModelTemplate template) throws PersistenceException {
+    CharmModel charmModel = createNew(template);
+    CharmModelMemento memento = new CharmModelMemento();
+    load(document.getRootElement(), memento);
+    charmModel.revertTo(memento);
     return charmModel;
+  }
+
+  private void load(Element parent, CharmModelMemento memento) {
+    for (Element charmElement : ElementUtilities.elements(parent)) {
+      boolean experienced = ElementUtilities.getBooleanAttribute(charmElement, ATTRIB_EXPERIENCED, false);
+      List<ICharmId> idList = experienced ? memento.experienceLearnedCharms : memento.creationLearnedCharms;
+      idList.add(loadCharmId(charmElement));
+    }
   }
 
   private CharmId loadCharmId(Element charmElement) {
@@ -67,23 +70,28 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
 
   @Override
   public void save(OutputStream stream, ICharmModel item) throws IOException, PersistenceException {
-    // TODO vernünftiger Umgang mit der Fall, dass etwas sowohl experienced als auch creation learned sein kann?
     Document document = documentFactory.createInstance();
     Element rootElement = document.getRootElement();
-    for (ICharmId charmId : item.getCreationLearnedCharms()) {
-      Element charmElement = rootElement.addElement(TAG_CHARM);
-      ElementUtilities.addAttribute(charmElement, ATTRIB_EXPERIENCED, false);
-      savaeCharmId(charmElement, charmId);
-    }
-    for (ICharmId charmId : item.getExperienceLearnedCharms()) {
-      Element charmElement = rootElement.addElement(TAG_CHARM);
-      ElementUtilities.addAttribute(charmElement, ATTRIB_EXPERIENCED, true);
-      savaeCharmId(charmElement, charmId);
-    }
+    CharmModelMemento memento = item.getSaveState();
+    // TODO vernünftiger Umgang mit der Fall, dass etwas sowohl experienced als auch creation learned sein kann?
+    saveCharmIds(rootElement, memento.creationLearnedCharms, false);
+    saveCharmIds(rootElement, memento.experienceLearnedCharms, true);
     DocumentUtilities.save(document, stream);
   }
 
-  private void savaeCharmId(Element charmElement, ICharmId charmId) {
+  private void saveCharmIds(Element rootElement, List<ICharmId> charmIds, boolean experienced) {
+    for (ICharmId charmId : charmIds) {
+      saveCharm(rootElement, charmId, experienced);
+    }
+  }
+
+  private void saveCharm(Element rootElement, ICharmId charmId, boolean experienced) {
+    Element charmElement = rootElement.addElement(TAG_CHARM);
+    ElementUtilities.addAttribute(charmElement, ATTRIB_EXPERIENCED, experienced);
+    saveCharmId(charmElement, charmId);
+  }
+
+  private void saveCharmId(Element charmElement, ICharmId charmId) {
     charmElement.addElement(TAG_ID).addText(charmId.getIdPattern());
     charmElement.addElement(TAG_TRAIT).addText(charmId.getPrimaryTrait());
   }

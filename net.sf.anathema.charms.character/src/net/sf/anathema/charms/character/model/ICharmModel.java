@@ -20,4 +20,6 @@ public interface ICharmModel extends IModel {
   public Iterable<ICharmId> getExperienceLearnedCharms();
 
   public Iterable<ICharmId> getCreationLearnedCharms();
+
+  public CharmModelMemento getSaveState();
 }
