@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.sf.anathema.character.core.model.AbstractModel;
 
-public class ComboModel extends AbstractModel {
+public class ComboModel extends AbstractModel implements IComboModel {
 
   private final List<Combo> creationLearned = new ArrayList<Combo>();
   private final List<Combo> experienceLearned = new ArrayList<Combo>();

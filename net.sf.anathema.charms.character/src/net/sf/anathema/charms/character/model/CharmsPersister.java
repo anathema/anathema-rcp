@@ -9,7 +9,6 @@ import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
 import net.sf.anathema.charms.character.CharmCharacterPlugin;
-import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
@@ -21,11 +20,10 @@ import org.dom4j.Element;
 public class CharmsPersister implements IModelPersister<NullModelTemplate, ICharmModel> {
 
   private static final String ATTRIB_EXPERIENCED = "experienced"; //$NON-NLS-1$
-  private static final String TAG_ID = "id"; //$NON-NLS-1$
-  private static final String TAG_TRAIT = "trait"; //$NON-NLS-1$
   private static final String TAG_CHARM = "charm"; //$NON-NLS-1$
   private static final String TAG_CHARMS = "charms"; //$NON-NLS-1$
   private final IFactory<Document, RuntimeException> documentFactory;
+  private final CharmIdPersister charmIdPersister = new CharmIdPersister();
 
   public CharmsPersister() {
     this(new IFactory<Document, RuntimeException>() {
@@ -58,14 +56,8 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
     for (Element charmElement : ElementUtilities.elements(parent)) {
       boolean experienced = ElementUtilities.getBooleanAttribute(charmElement, ATTRIB_EXPERIENCED, false);
       List<ICharmId> idList = experienced ? memento.experienceLearnedCharms : memento.creationLearnedCharms;
-      idList.add(loadCharmId(charmElement));
+      idList.add(charmIdPersister.load(charmElement));
     }
-  }
-
-  private CharmId loadCharmId(Element charmElement) {
-    String idPattern = charmElement.element(TAG_ID).getText();
-    String trait = charmElement.element(TAG_TRAIT).getText();
-    return new CharmId(idPattern, trait);
   }
 
   @Override
@@ -88,11 +80,6 @@ public class CharmsPersister implements IModelPersister<NullModelTemplate, IChar
   private void saveCharm(Element rootElement, ICharmId charmId, boolean experienced) {
     Element charmElement = rootElement.addElement(TAG_CHARM);
     ElementUtilities.addAttribute(charmElement, ATTRIB_EXPERIENCED, experienced);
-    saveCharmId(charmElement, charmId);
-  }
-
-  private void saveCharmId(Element charmElement, ICharmId charmId) {
-    charmElement.addElement(TAG_ID).addText(charmId.getIdPattern());
-    charmElement.addElement(TAG_TRAIT).addText(charmId.getPrimaryTrait());
+    charmIdPersister.save(charmElement, charmId);
   }
 }
