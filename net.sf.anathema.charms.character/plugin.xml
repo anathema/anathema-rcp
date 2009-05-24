@@ -8,13 +8,18 @@
       <model
             filename="charms.model"
             id="net.sf.anathema.charms.character.modelId"
-            modelFactory="net.sf.anathema.charms.character.model.CharmModelFactory">
+            modelFactory="net.sf.anathema.charms.character.model.ComboModelFactory">
          <displayConfiguration
                displayName="Charms"
                editorId="net.sf.anathema.charms.character.editor"
                editorInputFactory="net.sf.anathema.charms.character.editor.CharmsEditorInputFactory"
                icon="icons/TabCharacter16.png">
          </displayConfiguration>
+      </model>
+      <model
+            filename="combo.model"
+            id="net.sf.anathema.charms.character.combo.model"
+            modelFactory="net.sf.anathema.charms.character.model.ComboModelFactory">
       </model>
    </extension>
    <extension
@@ -78,6 +83,9 @@
             id="net.sf.anathema.character.essenceUser.modelList">
          <modelReference
                modelId="net.sf.anathema.charms.character.modelId">
+         </modelReference>
+         <modelReference
+               modelId="net.sf.anathema.charms.character.combo.model">
          </modelReference>
       </modelList>
    </extension>
