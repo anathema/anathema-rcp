@@ -27,7 +27,6 @@ public class TraitCollection extends AbstractTraitCollection {
     @Override
     public void stateChanged() {
       fireChangedEvent();
-      setDirty(true);
     }
   };
   private IUpdatable dependencyUpdatable = new IUpdatable() {

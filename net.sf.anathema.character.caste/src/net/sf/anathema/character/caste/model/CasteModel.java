@@ -24,7 +24,6 @@ public class CasteModel extends AbstractModel implements ICasteModel {
       return;
     }
     this.caste = caste;
-    setDirty(true);
     fireChangedEvent();
   }
 

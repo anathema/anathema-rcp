@@ -29,7 +29,8 @@ public abstract class AbstractModel extends ChangeManagement implements IModel {
 
   protected abstract void loadFromFromSaveState(Object saveState);
 
-  protected final void fireChangedEvent() {
+  protected void fireChangedEvent() {
+    setDirty(true);
     changeControl.fireChangedEvent();
   }
 

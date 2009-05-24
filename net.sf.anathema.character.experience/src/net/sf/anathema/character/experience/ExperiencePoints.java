@@ -32,7 +32,6 @@ public class ExperiencePoints extends AbstractModel implements IExperiencePoints
   }
 
   private void propagateChange() {
-    setDirty(true);
     fireChangedEvent();
   }
 
