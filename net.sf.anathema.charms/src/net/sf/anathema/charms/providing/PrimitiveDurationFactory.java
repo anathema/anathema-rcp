@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.extension;
+package net.sf.anathema.charms.providing;
 
 import java.util.List;
 

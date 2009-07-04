@@ -1,7 +1,5 @@
-package net.sf.anathema.charms.extension;
+package net.sf.anathema.charms.data;
 
-import net.sf.anathema.charms.data.CharmDto;
-import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataMap implements ICharmDataMap {

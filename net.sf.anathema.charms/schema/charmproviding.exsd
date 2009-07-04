@@ -20,6 +20,7 @@
          <sequence>
             <element ref="treeProvider" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="charmDataMap" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="charmTraits" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -78,6 +79,29 @@
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":net.sf.anathema.charms.data.IExecutableCharmDataMap"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="charmTraits">
+      <annotation>
+         <documentation>
+            Adds providers for charm trait prerequisits, which consist of a minimum for the primaryTrait and the a minimum for the permanent essence. If there is no provider found for a given If no traits are registered for a given charm id, both values are assumed to be 1.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="resource" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.anathema.charms.traits.IExecutableCharmTraitMap"/>
                </appinfo>
             </annotation>
          </attribute>

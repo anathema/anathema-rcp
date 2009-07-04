@@ -1,9 +1,13 @@
 package net.sf.anathema.rcp;
 
+import static net.sf.anathema.rcp.Messages.*;
+import static org.eclipse.jface.dialogs.MessageDialog.*;
+import static org.eclipse.ui.PlatformUI.*;
+
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 public class Application implements IApplication {
@@ -13,22 +17,20 @@ public class Application implements IApplication {
     Display display = PlatformUI.createDisplay();
     WorkspaceLock lock = new WorkspaceLock();
     if (!lock.lock()) {
-      MessageDialog.openInformation(
-          display.getActiveShell(),
-          Messages.Application_LockDialogTitle,
-          Messages.Application_LockDialogMessage);
+      Shell activeShell = display.getActiveShell();
+      openInformation(activeShell, Application_LockDialogTitle, Application_LockDialogMessage);
       return EXIT_OK;
     }
     try {
-      int returnCode = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
-      if (returnCode == PlatformUI.RETURN_RESTART) {
+      int returnCode = createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
+      if (returnCode == RETURN_RESTART) {
         return EXIT_RESTART;
       }
       return EXIT_OK;
     }
     finally {
-      display.dispose();
       lock.release();
+      display.dispose();
     }
   }
 

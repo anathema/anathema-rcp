@@ -21,8 +21,11 @@
             class="net.sf.anathema.charms.tree.CharmTreeExtensionPoint">
       </treeProvider>
       <charmDataMap
-            class="net.sf.anathema.charms.extension.CharmDataExtensionPoint">
+            class="net.sf.anathema.charms.data.CharmDataExtensionPoint">
       </charmDataMap>
+      <charmTraits
+            class="net.sf.anathema.charms.traits.CharmTraitExtensionPoint">
+      </charmTraits>
    </extension>
 
 </plugin>

@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.zest.core;bundle-version="1.0.0",
 Export-Package: net.sf.anathema.charms.data,
  net.sf.anathema.charms.data.lookup,
  net.sf.anathema.charms.display,
- net.sf.anathema.charms.extension,
+ net.sf.anathema.charms.providing,
  net.sf.anathema.charms.tree,
  net.sf.anathema.charms.view,
  net.sf.anathema.charms.xml

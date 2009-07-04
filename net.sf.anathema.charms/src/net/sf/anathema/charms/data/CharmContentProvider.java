@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.data;
 
-import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
+import net.sf.anathema.charms.providing.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.ICharmId;
 
 import org.eclipse.jface.viewers.Viewer;

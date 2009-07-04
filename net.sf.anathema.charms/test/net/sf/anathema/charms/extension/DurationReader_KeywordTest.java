@@ -8,6 +8,7 @@ import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChild;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.charms.data.duration.DurationDto;
+import net.sf.anathema.charms.providing.DurationReader;
 
 import org.junit.Test;
 
@@ -24,7 +25,7 @@ public class DurationReader_KeywordTest {
     IExtensionElement text = createKeywordElement("Indefinite"); //$NON-NLS-1$
     assertThat(readDuration(text).keyword, is("Indefinite")); //$NON-NLS-1$
   }
-  
+
   private DurationDto readDuration(IExtensionElement duration) {
     return new DurationReader(duration).read();
   }

@@ -9,6 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.fake.MockIntegerAttribute;
 import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.charms.data.cost.CostDto;
+import net.sf.anathema.charms.providing.CostReader;
 
 import org.junit.Test;
 

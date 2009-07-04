@@ -8,7 +8,7 @@
       <model
             filename="charms.model"
             id="net.sf.anathema.charms.character.modelId"
-            modelFactory="net.sf.anathema.charms.character.model.ComboModelFactory">
+            modelFactory="net.sf.anathema.charms.character.model.CharmModelFactory">
          <displayConfiguration
                displayName="Charms"
                editorId="net.sf.anathema.charms.character.editor"

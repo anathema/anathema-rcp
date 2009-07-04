@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.character.print;
 
-import static net.sf.anathema.charms.extension.CharmProvidingExtensionPoint.*;
+import static net.sf.anathema.charms.providing.CharmProvidingExtensionPoint.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,9 +9,9 @@ import java.util.List;
 import net.sf.anathema.character.core.character.ICharacter;
 import net.sf.anathema.character.trait.resources.TraitMessages;
 import net.sf.anathema.charms.character.evaluation.GenericCharmCharacter;
-import net.sf.anathema.charms.character.evaluation.NonVirtualGenericCharmTree;
 import net.sf.anathema.charms.character.evaluation.IGenericCharmCharacter;
 import net.sf.anathema.charms.character.evaluation.IGenericCharmTree;
+import net.sf.anathema.charms.character.evaluation.NonVirtualGenericCharmTree;
 import net.sf.anathema.charms.character.special.IVirtualCharms;
 import net.sf.anathema.charms.character.special.VirtualCharms;
 import net.sf.anathema.charms.tree.ICharmId;
