@@ -1,5 +1,7 @@
 package net.sf.anathema.charms.character.sheet;
 
+import static net.sf.anathema.charms.providing.CharmProvidingExtensionPoint.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +20,6 @@ import net.sf.anathema.charms.character.sheet.stats.IMagicStats;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.display.DisplayCharm;
-import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.ICharmId;
 
 import com.lowagie.text.DocumentException;
@@ -41,7 +42,7 @@ public class CharmEncoder extends UnconfiguredExecutableExtension implements IPd
 
   private List<IMagicStats> createPrintStats(Collection<ICharmId> learnedCharms, ICharacter character) {
     final List<IMagicStats> printStats = new ArrayList<IMagicStats>();
-    ICharmDataMap map = CharmProvidingExtensionPoint.CreateCharmDataMap();
+    ICharmDataMap map = CreateCharmDataMap();
     GenericCharmCollector collector = new GenericCharmCollector(character);
     List<ICharmId> learnedGenerics = collector.getLearnedGenerics();
     Collection<String> genericIdPatterns = collector.getRealGenericIdPatterns();
