@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.character.sheet;
 
-import static net.sf.anathema.charms.providing.CharmProvidingExtensionPoint.*;
+import static net.sf.anathema.charms.extension.CharmProvidingExtensionPoint.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
