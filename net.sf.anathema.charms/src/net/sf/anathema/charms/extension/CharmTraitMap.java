@@ -1,7 +1,10 @@
-package net.sf.anathema.charms.traits;
+package net.sf.anathema.charms.extension;
 
 import java.util.List;
 
+import net.sf.anathema.charms.traits.CharmTraits;
+import net.sf.anathema.charms.traits.ICharmTraitMap;
+import net.sf.anathema.charms.traits.IExecutableCharmTraitMap;
 import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmTraitMap implements ICharmTraitMap {

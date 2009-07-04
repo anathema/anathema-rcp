@@ -7,7 +7,6 @@ import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmDataMap;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.data.IExecutableCharmDataMap;
-import net.sf.anathema.charms.traits.CharmTraitMap;
 import net.sf.anathema.charms.traits.ICharmTraitMap;
 import net.sf.anathema.charms.traits.IExecutableCharmTraitMap;
 import net.sf.anathema.charms.tree.CharmTreeProvider;
