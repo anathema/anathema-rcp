@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.extension;
+package net.sf.anathema.charms.extension.data;
 
 import static net.sf.anathema.basics.eclipse.extension.fake.ExtensionObjectMother.*;
 import static org.hamcrest.CoreMatchers.*;

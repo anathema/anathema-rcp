@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.extension;
+package net.sf.anathema.charms.extension.data;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
