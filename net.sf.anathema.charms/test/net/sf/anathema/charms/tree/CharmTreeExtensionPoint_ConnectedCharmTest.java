@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import net.sf.anathema.basics.eclipse.extension.IPluginExtension;
 import net.sf.anathema.charms.StaticExtensionProvider;
 import net.sf.anathema.charms.data.CharmPrerequisite;
+import net.sf.anathema.charms.extension.tree.CharmTreeExtensionPoint;
 
 import org.junit.Before;
 import org.junit.Test;

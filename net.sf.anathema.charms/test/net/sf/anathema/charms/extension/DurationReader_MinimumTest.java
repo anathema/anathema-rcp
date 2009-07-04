@@ -7,7 +7,7 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChild;
 import net.sf.anathema.charms.data.duration.DurationDto;
-import net.sf.anathema.charms.providing.DurationReader;
+import net.sf.anathema.charms.extension.data.DurationReader;
 
 import org.junit.Before;
 import org.junit.Test;

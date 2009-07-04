@@ -4,7 +4,7 @@ import java.util.Set;
 
 import net.disy.commons.core.util.IClosure;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.charms.tree.CharmTreeExtensionPoint;
+import net.sf.anathema.charms.extension.tree.CharmTreeExtensionPoint;
 
 public final class CollectTreeIds implements IClosure<IExtensionElement> {
   private static final String ATTRIB_ID = "id"; //$NON-NLS-1$

@@ -12,8 +12,8 @@ import net.sf.anathema.basics.eclipse.extension.fake.MockName;
 import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChild;
 import net.sf.anathema.basics.eclipse.extension.fake.MockNamedChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
-import net.sf.anathema.charms.data.CharmDataExtensionPoint;
 import net.sf.anathema.charms.data.CharmDto;
+import net.sf.anathema.charms.extension.data.CharmDataExtensionPoint;
 import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;
 

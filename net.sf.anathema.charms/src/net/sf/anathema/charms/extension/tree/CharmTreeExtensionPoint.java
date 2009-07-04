@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.tree;
+package net.sf.anathema.charms.extension.tree;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,6 +11,9 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmPrerequisite;
+import net.sf.anathema.charms.tree.IExecutableTreeProvider;
+import net.sf.anathema.charms.tree.TreeDto;
+import net.sf.anathema.charms.tree.TreeWithId;
 import net.sf.anathema.charms.tree.entries.CharmListBuilder;
 import net.sf.anathema.charms.tree.entries.CharmPrerequisiteFactory;
 import net.sf.anathema.charms.tree.entries.GenericIdFactory;

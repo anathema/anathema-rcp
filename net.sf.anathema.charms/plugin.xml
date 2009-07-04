@@ -18,13 +18,13 @@
    <extension
          point="net.sf.anathema.charms.charmproviding">
       <treeProvider
-            class="net.sf.anathema.charms.tree.CharmTreeExtensionPoint">
+            class="net.sf.anathema.charms.extension.tree.CharmTreeExtensionPoint">
       </treeProvider>
       <charmDataMap
-            class="net.sf.anathema.charms.data.CharmDataExtensionPoint">
+            class="net.sf.anathema.charms.extension.data.CharmDataExtensionPoint">
       </charmDataMap>
       <charmTraits
-            class="net.sf.anathema.charms.traits.CharmTraitExtensionPoint">
+            class="net.sf.anathema.charms.extension.traits.CharmTraitExtensionPoint">
       </charmTraits>
    </extension>
 

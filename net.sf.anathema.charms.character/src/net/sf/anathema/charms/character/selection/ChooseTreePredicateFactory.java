@@ -1,6 +1,6 @@
 package net.sf.anathema.charms.character.selection;
 
-import static net.sf.anathema.charms.providing.CharmProvidingExtensionPoint.*;
+import static net.sf.anathema.charms.extension.CharmProvidingExtensionPoint.*;
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.ICharacterType;

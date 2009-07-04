@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.providing;
+package net.sf.anathema.charms.extension.data;
 
 import java.util.ArrayList;
 import java.util.Collection;

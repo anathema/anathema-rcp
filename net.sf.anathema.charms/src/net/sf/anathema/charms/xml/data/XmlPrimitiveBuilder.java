@@ -7,7 +7,7 @@ import java.util.List;
 import net.sf.anathema.charms.data.duration.AmountDto;
 import net.sf.anathema.charms.data.duration.PrimitiveDurationDto;
 import net.sf.anathema.charms.data.duration.TraitDto;
-import net.sf.anathema.charms.providing.PrimitiveDurationFactory;
+import net.sf.anathema.charms.extension.data.PrimitiveDurationFactory;
 
 import org.dom4j.Element;
 

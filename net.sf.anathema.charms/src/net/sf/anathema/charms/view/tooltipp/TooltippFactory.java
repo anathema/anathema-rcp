@@ -3,7 +3,7 @@ package net.sf.anathema.charms.view.tooltipp;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.display.DisplayCharm;
-import net.sf.anathema.charms.providing.CharmProvidingExtensionPoint;
+import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.lib.lang.ConcatenateString;
 

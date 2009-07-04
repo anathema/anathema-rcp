@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.data;
+package net.sf.anathema.charms.extension.data;
 
 import net.sf.anathema.basics.eclipse.extension.AttributePredicate;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
@@ -6,8 +6,9 @@ import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.charms.IPluginConstants;
-import net.sf.anathema.charms.providing.CostReader;
-import net.sf.anathema.charms.providing.DurationReader;
+import net.sf.anathema.charms.data.CharmDto;
+import net.sf.anathema.charms.data.IExecutableCharmDataMap;
+import net.sf.anathema.charms.data.SourceDto;
 import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataExtensionPoint extends UnconfiguredExecutableExtension implements IExecutableCharmDataMap {

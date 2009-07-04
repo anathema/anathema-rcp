@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.providing;
+package net.sf.anathema.charms.extension;
 
 import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;

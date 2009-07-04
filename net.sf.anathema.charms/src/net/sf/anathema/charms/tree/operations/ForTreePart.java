@@ -2,7 +2,7 @@ package net.sf.anathema.charms.tree.operations;
 
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
-import net.sf.anathema.charms.tree.CharmTreeExtensionPoint;
+import net.sf.anathema.charms.extension.tree.CharmTreeExtensionPoint;
 
 public final class ForTreePart implements IPredicate<IExtensionElement> {
   private final String id;

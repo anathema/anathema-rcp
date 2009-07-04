@@ -9,7 +9,7 @@ import net.sf.anathema.basics.eclipse.extension.fake.MockChildren;
 import net.sf.anathema.basics.eclipse.extension.fake.MockIntegerAttribute;
 import net.sf.anathema.basics.eclipse.extension.fake.MockStringAttribute;
 import net.sf.anathema.charms.data.duration.DurationDto;
-import net.sf.anathema.charms.providing.DurationReader;
+import net.sf.anathema.charms.extension.data.DurationReader;
 
 import org.junit.Test;
 
