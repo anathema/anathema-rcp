@@ -87,4 +87,21 @@ public class TraitsConversionSheet_Test {
     String expectedResult = "<charmTraitsList/>";
     assertTransformationConvertsSimilar(xml, expectedResult, sheet);
   }
+
+  @Test
+  public void choosesFirstValueOfMultipleTraits() throws Exception {
+    String xml = "<charmlist>"
+        + "<charm id=\"charmId\">"
+        + " <prerequisite>"
+        + "  <trait id=\"Archery\" value=\"2\"/>"
+        + "  <trait id=\"Melee\" value=\"4\"/>"
+        + "  <essence value=\"3\"/>"
+        + " </prerequisite>"
+        + "</charm>"
+        + "</charmlist>";
+    String expectedResult = "<charmTraitsList>"
+        + "<charmTraits charmId=\"charmId\" essenceMinimum=\"3\" primaryMinimum=\"2\"/>"
+        + "</charmTraitsList>";
+    assertTransformationConvertsSimilar(xml, expectedResult, sheet);
+  }
 }
