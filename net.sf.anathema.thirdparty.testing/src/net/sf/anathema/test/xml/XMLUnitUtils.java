@@ -21,7 +21,7 @@ public class XMLUnitUtils {
     return new Transform(xml, sheet);
   }
 
-  public static void assertStructureTransformationConvertsSimilar(String xml, String expectedResult, File sheet)
+  public static void assertTransformationConvertsSimilar(String xml, String expectedResult, File sheet)
       throws Exception {
     Diff diff = XMLUnitUtils.createXslDiff(xml, expectedResult, sheet);
     System.err.println(XMLUnitUtils.createTransform(xml, sheet).getResultString());
