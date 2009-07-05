@@ -16,7 +16,7 @@ public class CharmTraitConverter {
     File sourceFolder = new File(args[0]);
     File targetFolder = new File(args[1]);
     Map<String, String> parameters = new HashMap<String, String>();
-    URL sheet = ClassLoader.getSystemResource("net/sf/anathema/tools/conversion/charmTrait.xslt");
+    URL sheet = ClassLoader.getSystemResource("net/sf/anathema/tools/conversion/charmTraits.xslt");
     XSLDocumentConverter converter = new XSLDocumentConverter(sheet, parameters);
     File[] allFiles = sourceFolder.listFiles();
     System.err.print(sourceFolder.getCanonicalPath());
