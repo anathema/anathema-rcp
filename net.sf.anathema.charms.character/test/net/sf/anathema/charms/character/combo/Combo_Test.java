@@ -17,7 +17,7 @@ public class Combo_Test {
     combo = new Combo();
     combo.name = "Hossa";
     combo.description = "Horst";
-    combo.charmIds.add(new CharmId("pattern", "trait"));
+    combo.charms.add(new CharmId("pattern", "trait"));
   }
 
   @Test

@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character.model;
+package net.sf.anathema.charms.character.combo;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -9,6 +9,7 @@ import net.sf.anathema.basics.item.persistence.BundlePersistenceUtilities;
 import net.sf.anathema.character.core.model.IModelPersister;
 import net.sf.anathema.character.core.model.template.NullModelTemplate;
 import net.sf.anathema.charms.character.CharmCharacterPlugin;
+import net.sf.anathema.charms.character.model.CharmIdPersister;
 import net.sf.anathema.charms.tree.CharmId;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.lib.exception.PersistenceException;

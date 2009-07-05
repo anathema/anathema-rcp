@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character.model;
+package net.sf.anathema.charms.character.combo;
 
 import net.sf.anathema.character.core.character.IModel;
 

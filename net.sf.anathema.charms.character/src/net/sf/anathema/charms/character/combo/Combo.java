@@ -12,11 +12,11 @@ public class Combo extends ValueObject {
     Combo newCombo = new Combo();
     newCombo.name = combo.name;
     newCombo.description = combo.description;
-    newCombo.charmIds.addAll(combo.charmIds);
+    newCombo.charms.addAll(combo.charms);
     return newCombo;
   }
 
   public String name;
   public String description;
-  public final List<ICharmId> charmIds = new ArrayList<ICharmId>();
+  public final List<ICharmId> charms = new ArrayList<ICharmId>();
 }

@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character.model;
+package net.sf.anathema.charms.character.combo;
 
 import static net.sf.anathema.test.hamcrest.AnathemaMatchers.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 
 import java.util.Iterator;
 
+import net.sf.anathema.charms.character.combo.Combo;
+import net.sf.anathema.charms.character.combo.ComboPersister;
+import net.sf.anathema.charms.character.combo.IComboModel;
 import net.sf.anathema.lib.exception.PersistenceException;
 import net.sf.anathema.lib.xml.DocumentUtilities;
 

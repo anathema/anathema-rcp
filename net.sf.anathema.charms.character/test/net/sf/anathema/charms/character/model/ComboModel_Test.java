@@ -7,6 +7,9 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.junit.matchers.JUnitMatchers.*;
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.charms.character.combo.Combo;
+import net.sf.anathema.charms.character.combo.ComboModel;
+import net.sf.anathema.charms.character.combo.ComboModelMemento;
 
 import org.junit.Before;
 import org.junit.Test;

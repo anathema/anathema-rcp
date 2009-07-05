@@ -19,7 +19,7 @@
       <model
             filename="combo.model"
             id="net.sf.anathema.charms.character.combo.model"
-            modelFactory="net.sf.anathema.charms.character.model.ComboModelFactory">
+            modelFactory="net.sf.anathema.charms.character.combo.ComboModelFactory">
       </model>
    </extension>
    <extension
