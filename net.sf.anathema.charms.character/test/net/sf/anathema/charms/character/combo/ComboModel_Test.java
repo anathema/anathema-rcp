@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character.model;
+package net.sf.anathema.charms.character.combo;
 
 import static net.sf.anathema.test.disy.ChangeListenerObjectMother.*;
 import static net.sf.anathema.test.hamcrest.AnathemaMatchers.*;
