@@ -1,6 +1,5 @@
 package net.sf.anathema.charms.extension.data;
 
-import net.sf.anathema.basics.eclipse.extension.AttributePredicate;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.IExtensionElement;
 import net.sf.anathema.basics.eclipse.extension.IExtensionPoint;
@@ -9,6 +8,7 @@ import net.sf.anathema.charms.IPluginConstants;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.IExecutableCharmDataMap;
 import net.sf.anathema.charms.data.SourceDto;
+import net.sf.anathema.charms.extension.util.CharmElementExtractor;
 import net.sf.anathema.charms.tree.ICharmId;
 
 public class CharmDataExtensionPoint extends UnconfiguredExecutableExtension implements IExecutableCharmDataMap {
@@ -20,35 +20,28 @@ public class CharmDataExtensionPoint extends UnconfiguredExecutableExtension imp
   private static final String TAG_SOURCE = "source"; //$NON-NLS-1$
   private static final String TAG_DURATION = "duration"; //$NON-NLS-1$
   private static final String ATTRIB_VALUE = "value"; //$NON-NLS-1$
-  private static final String ATTRIB_CHARM_ID = "charmId"; //$NON-NLS-1$
   private static final String ATTRIB_SOURCE = "source"; //$NON-NLS-1$
   private static final String ATTRIB_ADDITION = "addition"; //$NON-NLS-1$
   private static final String EXTENSION_POINT_ID = "charmdata"; //$NON-NLS-1$
-  private final IExtensionPoint extensionPoint;
+  private final CharmElementExtractor charmElementExtractor;
 
   public CharmDataExtensionPoint() {
     this(new EclipseExtensionPoint(IPluginConstants.PLUGIN_ID, EXTENSION_POINT_ID));
   }
 
   public CharmDataExtensionPoint(IExtensionPoint extensionPoint) {
-    this.extensionPoint = extensionPoint;
+    this.charmElementExtractor = new CharmElementExtractor(extensionPoint);
   }
 
   @Override
   public CharmDto getData(ICharmId charmId) {
-    IExtensionElement extensionElement = getExtensionElement(charmId);
+    IExtensionElement extensionElement = charmElementExtractor.getExtensionElement(charmId);
     if (extensionElement == IExtensionElement.NO_ELEMENT) {
       return null;
     }
     CharmDto charmDto = new CharmDto();
     fillCharmData(extensionElement, charmDto);
     return charmDto;
-  }
-
-  private IExtensionElement getExtensionElement(ICharmId charmId) {
-    String idString = charmId.getIdPattern();
-    AttributePredicate charmIdPredicate = AttributePredicate.FromNameAndValue(ATTRIB_CHARM_ID, idString);
-    return extensionPoint.getFirst(charmIdPredicate);
   }
 
   private void fillCharmData(IExtensionElement extensionElement, CharmDto charmDto) {

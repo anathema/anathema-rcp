@@ -24,7 +24,7 @@ public class VirtueFreebieLimit_Test {
   public void defaultsTo3() throws Exception {
     ICharacterId id = new DummyCharacterId();
     ICharacterTypeFinder finder = createCharacterTypeFinder("DragonBlood", id);
-    IExtensionPoint extensionPoint = ExtensionObjectMother.createExtensionPoint();
+    IExtensionPoint extensionPoint = ExtensionObjectMother.createExtensionPoint(new IPluginExtension[0]);
     assertThat(new VirtueFreebieLimit(extensionPoint, finder).getFor(id), is(3));
   }
 

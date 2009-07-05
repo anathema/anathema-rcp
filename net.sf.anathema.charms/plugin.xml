@@ -5,6 +5,7 @@
    <extension-point id="charmname" name="Charm Name" schema="schema/charmname.exsd"/>
    <extension-point id="charmdata" name="Charm Data" schema="schema/charmdata.exsd"/>
    <extension-point id="charmproviding" name="Charm Providing" schema="schema/charmproviding.exsd"/>
+   <extension-point id="charmtraits" name="Charm Traits" schema="schema/charmtraits.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
