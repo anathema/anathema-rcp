@@ -380,6 +380,15 @@
                resource="data/Data.xml">
          </resource>
       </charmDataMap>
+      <charmTraits
+            class="net.sf.anathema.charms.xml.XmlCharmTraitsMap">
+         <resource
+               resource="old/Charms_Solar_SecondEdition.xml">
+         </resource>
+         <resource
+               resource="data/TraitsCharms_Solar_2nd_Occult.xml">
+         </resource>
+      </charmTraits>
    </extension>
    <extension
          point="net.sf.anathema.charms.character.specialcharms">
