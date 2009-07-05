@@ -20,6 +20,12 @@
             filename="combo.model"
             id="net.sf.anathema.charms.character.combo.model"
             modelFactory="net.sf.anathema.charms.character.combo.ComboModelFactory">
+         <displayConfiguration
+               displayName="Combos"
+               editorId="net.sf.anathema.character.charms.combos.editor"
+               editorInputFactory="net.sf.anathema.charms.character.editor.ComboEditorInputFactory"
+               icon="icons/TabCharacter16.png">
+         </displayConfiguration>
       </model>
    </extension>
    <extension
@@ -30,6 +36,13 @@
             icon="icons/TabCharacter16.png"
             id="net.sf.anathema.charms.character.editor"
             name="Charms Editor">
+      </editor>
+      <editor
+            class="net.sf.anathema.charms.character.editor.CombosEditor"
+            default="false"
+            icon="icons/Combos.png"
+            id="net.sf.anathema.character.charms.combos.editor"
+            name="Combos Editor">
       </editor>
    </extension>
    <extension
