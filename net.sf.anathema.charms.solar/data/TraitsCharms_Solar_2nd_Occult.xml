@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <charmTraitsList> 
-  <charmTraits charmId="Solar.TerrestrialCircleSorcery" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.CelestialCircleSorcery" essenceMinimum="4" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.SolarCircleSorcery" essenceMinimum="5" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.ShadowlandsCircleNecromancy" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.LabyrinthCircleNecromancy" essenceMinimum="4" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Spirit-DetectingGlance" essenceMinimum="2" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.Spirit-CuttingAttack" essenceMinimum="2" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.Ghost-EatingTechnique" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Spirit-RepellingDiagram" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.All-EncompassingSorcerer'sSight" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Sorcerer'sBurningChakram" essenceMinimum="4" primaryMinimum="5"/> 
+  <charm charmId="Solar.TerrestrialCircleSorcery" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.CelestialCircleSorcery" essenceMinimum="4" primaryMinimum="4"/>  
+  <charm charmId="Solar.SolarCircleSorcery" essenceMinimum="5" primaryMinimum="5"/>  
+  <charm charmId="Solar.ShadowlandsCircleNecromancy" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.LabyrinthCircleNecromancy" essenceMinimum="4" primaryMinimum="4"/>  
+  <charm charmId="Solar.Spirit-DetectingGlance" essenceMinimum="2" primaryMinimum="2"/>  
+  <charm charmId="Solar.Spirit-CuttingAttack" essenceMinimum="2" primaryMinimum="2"/>  
+  <charm charmId="Solar.Ghost-EatingTechnique" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.Spirit-RepellingDiagram" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.All-EncompassingSorcerer'sSight" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.Sorcerer'sBurningChakram" essenceMinimum="4" primaryMinimum="5"/> 
 </charmTraitsList>

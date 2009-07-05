@@ -1,204 +1,204 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <charmTraitsList> 
-  <charmTraits charmId="Solar.AccuracyWithoutDistance" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.ForcefulArrow" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.TranceUnhesitatingSpeed" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.ArrowStormTechnique" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.FlashingVengeanceDraw" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.EssenceArrowAttack" essenceMinimum="2" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.PhantomArrowTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.SummoningLoyalBow" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.ImmaculateGoldenBow" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.InexhaustibleBoltsSolarFire" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.SolarFlareMethodology" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.RainFeatheredDeath" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.HungryTigerTechnique" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.FireandStonesStrike" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.OneWeapon,TwoBlows" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.PeonyBlossomAttack" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.IronWhirlwindAttack" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.InvincibleFuryDawn" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.CallBlade" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.SummoningLoyalSteel" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.GloriousSolarSaber" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.IronRaptorTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.BlazingSolarBolt" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.DippingSwallowDefense" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.BulwarkStance" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.HeavenlyGuardianDefense" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.FivefoldBulwarkStance" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.SolarCounterattack" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.ReadyinEightDirectionsStance" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.ProtectionCelestialBliss" essenceMinimum="5" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Joint-WoundingAttack" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Observer-DeceivingAttack" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.MistonWaterAttack" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.FallingIcicleStrike" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Triple-DistanceAttackTechnique" essenceMinimum="2" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.CascadeCuttingTerror" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.ReturningWeaponConcentration" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.CallBladeThrown" essenceMinimum="2" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.SpiritWeapons" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Rout-StemmingGesture" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.CommandingIdealCelestialArmy" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Mob-DispersingRebuke" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.FuryIncitingPresence" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.GeneralAll-SeeingSun" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Heroism-EncouragingPresence" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.TigerWarriorTrainingTechnique" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.LegendaryWarriorCurriculum" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.IdealBattleKnowledgePrana" essenceMinimum="5" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Destiny-ManifestingMethod" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.RighteousLionDefense" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.StubbornBoarDefense" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.PhoenixRenewalTactic" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Temptation-ResistingStance" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.ElusiveDreamDefense" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.TranscendentHero'sMeditation" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.SunKingRadiance" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Spirit-MaintainingManeuver" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.UnhesitatingDedication" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.RespectCommandingAttitude" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Phantom-ConjuringPerformance" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Heart-CompellingMethod" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Memory-ReweavingDiscipline" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Husband-SeducingDemonDance" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.HypnoticTongueTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.MajesticRadiantPresence" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.TerrifyingApparitionGlory" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.UnderlingPromotingTouch" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Authority-RadiatingStance" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.IrresistibleSalesmanSpirit" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.WorshipfulLackeyAcquisition" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Enemy-CastigatingSolarJudgement" essenceMinimum="3"/>  
-  <charmTraits charmId="Solar.Hauberk-LighteningGesture" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.GloriousSolarPlate" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.ArmoredScout'sInvigoration" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.DurabilityOakMeditation" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.SpiritStrengthensSkin" essenceMinimum="2" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.IronSkinConcentration" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.IronKettleBody" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.AdamantSkinTechnique" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Willpower-EnhancingSpirit" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.BattleFuryFocus" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.BloodthirstySword-DancerSpirit" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.UnbreakableWarrior'sMastery" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.ImmunitytoEverythingTechnique" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.FriendshipwithAnimalsApproach" essenceMinimum="2"/>  
-  <charmTraits charmId="Solar.Spirit-TiedPet" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.BestialTraitsTechnique" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Hardship-SurvivingMendicantSpirit" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Element-ResistingPrana" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.EternalElementalHarmony" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Food-GatheringExcercise" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.TracklessRegionNavigation" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.UnshakeableBloodhoundTechnique" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.TracelessPassage" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Eye-DeceivingCamouflage" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.City-MovingSecrets" essenceMinimum="5" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Object-StrengtheningTouch" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.Durability-EnhancingTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Chaos-ResistancePreparation" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Crack-MendingTechnique" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.ShatteringGrasp" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.CraftsmanNeedsNoTools" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.CraftyObservationMethod" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Evidence-DiscerningMethod" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Judge'sEarTechnique" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.IrresistibleQuestioningTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Courtier'sEyeTechnique" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Consumer-EvaluatingGlance" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.KnowSoul'sPrice" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.HarmoniousAcademicMethodology" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.LegendaryScholarCurriculum" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Chaos-RepellingPattern" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Wyld-ShapingTechnique" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.WyldCauldronTechnique" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Essence-LendingMethod" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.Will-BolsteringMethod" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Power-AwardingPrana" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Soul-EnlighteningBeneficence" essenceMinimum="4" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Order-AffirmingBlow" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.ImmanentSolarGlory" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.TouchBlissfulRelease" essenceMinimum="2" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.Contagion-CuringTouch" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Wound-MendingCareTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.AnointmentMiraculousHealth" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Wound-CleansingMeditation" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Ailment-RectifyingMethod" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Body-PurifyingAdmonitions" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Wholeness-RestoringMeditation" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.InstantTreatmentMethodology" essenceMinimum="2" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.Wonder-ForgingGenius" essenceMinimum="5" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Words-as-WorkshopMethod" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.InvincibleArmorInvocation" essenceMinimum="6" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.GracefulCraneStance" essenceMinimum="2"/>  
-  <charmTraits charmId="Solar.MonkeyLeapTechnique" essenceMinimum="2"/>  
-  <charmTraits charmId="Solar.SoaringCraneLeap" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Mountain-CrossingLeapTechnique" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Foe-VaultingMethod" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.ThunderboltAttackPrana" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.LightningSpeed" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.RacingHareMethod" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Spider-FootStyle" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Feather-FootStyle" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Eagle-WingStyle" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.IncreasingStrengthExercise" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.KeenSightTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.KeenHearingandTouchTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.KeenSmellandTasteTechnique" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.UnsurpassedSightDiscipline" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.UnsurpassedHearingandTouchDiscipline" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.UnsurpassedSmellandTasteDiscipline" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.SurpriseAnticipationMethod" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.EyeUnconqueredSun" essenceMinimum="5" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.ShadowOverWater" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.SevenShadowEvasion" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.ReflexSidestepTechnique" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.FlowLikeBlood" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.LeapingDodgeMethod" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.FlawlesslyImpenetrableDisguise" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.PerfectMirror" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.FlawlessPickpocketingTechnique" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.StealingfromPlainSightSpirit" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Lock-OpeningTouch" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Door-EvadingTechnique" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.EasilyOverlookedPresenceMethod" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.MentalInvisibilityTechnique" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.VanishingfromMind'sEyeMethod" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.InvisibleStatueSpirit" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.InsightfulBuyerTechnique" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.SpeedWheels" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Bureau-RectifyingMethod" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.IndolentOfficialCharm" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.FoulAirArgumentTechnique" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.FlawlessBrushDiscipline" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Letter-Within-a-LetterTechnique" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.DiscerningSavant'sEye" essenceMinimum="2" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.PoeticExpressionStyle" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.ExcellentEmissary'sTongue" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.TwistedWordsTechnique" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.UnbreakableFascinationMethod" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.WorthyMountTechnique" essenceMinimum="3" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.SingleSpiritMethod" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.PhantomSteed" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.FlashingThunderboltSteed" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Wind-RacingEssenceInfusion" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.SometimesHorsesFlyApproach" essenceMinimum="4" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.SaltyDogMethod" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.InvincibleAdmiralMethod" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Ship-ClaimingStance" essenceMinimum="3" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Hull-PreservingTechnique" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.Shipwreck-SurvivingStamina" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.PerfectReckoningTechnique" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Storm-WeatheringEssenceInfusion" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.SeaAmbushTechnique" essenceMinimum="2" primaryMinimum="4"/>  
-  <charmTraits charmId="Solar.Wise-EyedCourtierMethod" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.Wild-RevelryApproach" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.TabooInflictingDiatribe" essenceMinimum="2" primaryMinimum="3"/>  
-  <charmTraits charmId="Solar.VenomousWhispersTechnique" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.UnderstandingCourt" essenceMinimum="3" primaryMinimum="5"/>  
-  <charmTraits charmId="Solar.MasterySmallManners" primaryMinimum="2"/>  
-  <charmTraits charmId="Solar.GatheringCongregation" essenceMinimum="3" primaryMinimum="3"/> 
+  <charm charmId="Solar.AccuracyWithoutDistance" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.ForcefulArrow" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.TranceUnhesitatingSpeed" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.ArrowStormTechnique" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.FlashingVengeanceDraw" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.EssenceArrowAttack" essenceMinimum="2" primaryMinimum="2"/>  
+  <charm charmId="Solar.PhantomArrowTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.SummoningLoyalBow" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.ImmaculateGoldenBow" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.InexhaustibleBoltsSolarFire" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.SolarFlareMethodology" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.RainFeatheredDeath" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.HungryTigerTechnique" primaryMinimum="2"/>  
+  <charm charmId="Solar.FireandStonesStrike" primaryMinimum="3"/>  
+  <charm charmId="Solar.OneWeapon,TwoBlows" primaryMinimum="2"/>  
+  <charm charmId="Solar.PeonyBlossomAttack" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.IronWhirlwindAttack" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.InvincibleFuryDawn" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.CallBlade" primaryMinimum="2"/>  
+  <charm charmId="Solar.SummoningLoyalSteel" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.GloriousSolarSaber" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.IronRaptorTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.BlazingSolarBolt" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.DippingSwallowDefense" primaryMinimum="2"/>  
+  <charm charmId="Solar.BulwarkStance" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.HeavenlyGuardianDefense" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.FivefoldBulwarkStance" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.SolarCounterattack" primaryMinimum="4"/>  
+  <charm charmId="Solar.ReadyinEightDirectionsStance" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.ProtectionCelestialBliss" essenceMinimum="5" primaryMinimum="5"/>  
+  <charm charmId="Solar.Joint-WoundingAttack" primaryMinimum="3"/>  
+  <charm charmId="Solar.Observer-DeceivingAttack" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.MistonWaterAttack" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.FallingIcicleStrike" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.Triple-DistanceAttackTechnique" essenceMinimum="2" primaryMinimum="2"/>  
+  <charm charmId="Solar.CascadeCuttingTerror" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.ReturningWeaponConcentration" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.CallBladeThrown" essenceMinimum="2" primaryMinimum="2"/>  
+  <charm charmId="Solar.SpiritWeapons" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.Rout-StemmingGesture" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.CommandingIdealCelestialArmy" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Mob-DispersingRebuke" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.FuryIncitingPresence" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.GeneralAll-SeeingSun" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.Heroism-EncouragingPresence" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.TigerWarriorTrainingTechnique" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.LegendaryWarriorCurriculum" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.IdealBattleKnowledgePrana" essenceMinimum="5" primaryMinimum="5"/>  
+  <charm charmId="Solar.Destiny-ManifestingMethod" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.RighteousLionDefense" primaryMinimum="3"/>  
+  <charm charmId="Solar.StubbornBoarDefense" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.PhoenixRenewalTactic" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.Temptation-ResistingStance" primaryMinimum="2"/>  
+  <charm charmId="Solar.ElusiveDreamDefense" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.TranscendentHero'sMeditation" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.SunKingRadiance" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.Spirit-MaintainingManeuver" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.UnhesitatingDedication" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.RespectCommandingAttitude" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Phantom-ConjuringPerformance" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.Heart-CompellingMethod" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Memory-ReweavingDiscipline" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.Husband-SeducingDemonDance" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.HypnoticTongueTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.MajesticRadiantPresence" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.TerrifyingApparitionGlory" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.UnderlingPromotingTouch" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.Authority-RadiatingStance" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.IrresistibleSalesmanSpirit" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.WorshipfulLackeyAcquisition" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.Enemy-CastigatingSolarJudgement" essenceMinimum="3"/>  
+  <charm charmId="Solar.Hauberk-LighteningGesture" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.GloriousSolarPlate" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.ArmoredScout'sInvigoration" primaryMinimum="4"/>  
+  <charm charmId="Solar.DurabilityOakMeditation" primaryMinimum="2"/>  
+  <charm charmId="Solar.SpiritStrengthensSkin" essenceMinimum="2" primaryMinimum="2"/>  
+  <charm charmId="Solar.IronSkinConcentration" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.IronKettleBody" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.AdamantSkinTechnique" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.Willpower-EnhancingSpirit" primaryMinimum="3"/>  
+  <charm charmId="Solar.BattleFuryFocus" primaryMinimum="3"/>  
+  <charm charmId="Solar.BloodthirstySword-DancerSpirit" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.UnbreakableWarrior'sMastery" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.ImmunitytoEverythingTechnique" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.FriendshipwithAnimalsApproach" essenceMinimum="2"/>  
+  <charm charmId="Solar.Spirit-TiedPet" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.BestialTraitsTechnique" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.Hardship-SurvivingMendicantSpirit" primaryMinimum="3"/>  
+  <charm charmId="Solar.Element-ResistingPrana" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.EternalElementalHarmony" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.Food-GatheringExcercise" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.TracklessRegionNavigation" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.UnshakeableBloodhoundTechnique" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.TracelessPassage" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.Eye-DeceivingCamouflage" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.City-MovingSecrets" essenceMinimum="5" primaryMinimum="5"/>  
+  <charm charmId="Solar.Object-StrengtheningTouch" primaryMinimum="2"/>  
+  <charm charmId="Solar.Durability-EnhancingTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Chaos-ResistancePreparation" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Crack-MendingTechnique" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.ShatteringGrasp" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.CraftsmanNeedsNoTools" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.CraftyObservationMethod" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Evidence-DiscerningMethod" primaryMinimum="4"/>  
+  <charm charmId="Solar.Judge'sEarTechnique" primaryMinimum="2"/>  
+  <charm charmId="Solar.IrresistibleQuestioningTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Courtier'sEyeTechnique" primaryMinimum="3"/>  
+  <charm charmId="Solar.Consumer-EvaluatingGlance" primaryMinimum="3"/>  
+  <charm charmId="Solar.KnowSoul'sPrice" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.HarmoniousAcademicMethodology" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.LegendaryScholarCurriculum" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.Chaos-RepellingPattern" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.Wyld-ShapingTechnique" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.WyldCauldronTechnique" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.Essence-LendingMethod" primaryMinimum="2"/>  
+  <charm charmId="Solar.Will-BolsteringMethod" primaryMinimum="3"/>  
+  <charm charmId="Solar.Power-AwardingPrana" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.Soul-EnlighteningBeneficence" essenceMinimum="4" primaryMinimum="3"/>  
+  <charm charmId="Solar.Order-AffirmingBlow" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.ImmanentSolarGlory" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.TouchBlissfulRelease" essenceMinimum="2" primaryMinimum="2"/>  
+  <charm charmId="Solar.Contagion-CuringTouch" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Wound-MendingCareTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.AnointmentMiraculousHealth" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Wound-CleansingMeditation" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Ailment-RectifyingMethod" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Body-PurifyingAdmonitions" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Wholeness-RestoringMeditation" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.InstantTreatmentMethodology" essenceMinimum="2" primaryMinimum="2"/>  
+  <charm charmId="Solar.Wonder-ForgingGenius" essenceMinimum="5" primaryMinimum="5"/>  
+  <charm charmId="Solar.Words-as-WorkshopMethod" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.InvincibleArmorInvocation" essenceMinimum="6" primaryMinimum="5"/>  
+  <charm charmId="Solar.GracefulCraneStance" essenceMinimum="2"/>  
+  <charm charmId="Solar.MonkeyLeapTechnique" essenceMinimum="2"/>  
+  <charm charmId="Solar.SoaringCraneLeap" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Mountain-CrossingLeapTechnique" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.Foe-VaultingMethod" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.ThunderboltAttackPrana" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.LightningSpeed" primaryMinimum="2"/>  
+  <charm charmId="Solar.RacingHareMethod" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.Spider-FootStyle" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Feather-FootStyle" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Eagle-WingStyle" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.IncreasingStrengthExercise" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.KeenSightTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.KeenHearingandTouchTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.KeenSmellandTasteTechnique" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.UnsurpassedSightDiscipline" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.UnsurpassedHearingandTouchDiscipline" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.UnsurpassedSmellandTasteDiscipline" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.SurpriseAnticipationMethod" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.EyeUnconqueredSun" essenceMinimum="5" primaryMinimum="5"/>  
+  <charm charmId="Solar.ShadowOverWater" primaryMinimum="3"/>  
+  <charm charmId="Solar.SevenShadowEvasion" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.ReflexSidestepTechnique" primaryMinimum="3"/>  
+  <charm charmId="Solar.FlowLikeBlood" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.LeapingDodgeMethod" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.FlawlesslyImpenetrableDisguise" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.PerfectMirror" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.FlawlessPickpocketingTechnique" primaryMinimum="2"/>  
+  <charm charmId="Solar.StealingfromPlainSightSpirit" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.Lock-OpeningTouch" primaryMinimum="3"/>  
+  <charm charmId="Solar.Door-EvadingTechnique" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.EasilyOverlookedPresenceMethod" primaryMinimum="3"/>  
+  <charm charmId="Solar.MentalInvisibilityTechnique" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.VanishingfromMind'sEyeMethod" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.InvisibleStatueSpirit" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.InsightfulBuyerTechnique" primaryMinimum="3"/>  
+  <charm charmId="Solar.SpeedWheels" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Bureau-RectifyingMethod" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.IndolentOfficialCharm" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.FoulAirArgumentTechnique" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.FlawlessBrushDiscipline" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.Letter-Within-a-LetterTechnique" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.DiscerningSavant'sEye" essenceMinimum="2" primaryMinimum="5"/>  
+  <charm charmId="Solar.PoeticExpressionStyle" primaryMinimum="2"/>  
+  <charm charmId="Solar.ExcellentEmissary'sTongue" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.TwistedWordsTechnique" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.UnbreakableFascinationMethod" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.WorthyMountTechnique" essenceMinimum="3" primaryMinimum="3"/>  
+  <charm charmId="Solar.SingleSpiritMethod" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.PhantomSteed" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.FlashingThunderboltSteed" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.Wind-RacingEssenceInfusion" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.SometimesHorsesFlyApproach" essenceMinimum="4" primaryMinimum="5"/>  
+  <charm charmId="Solar.SaltyDogMethod" primaryMinimum="2"/>  
+  <charm charmId="Solar.InvincibleAdmiralMethod" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Ship-ClaimingStance" essenceMinimum="3" primaryMinimum="4"/>  
+  <charm charmId="Solar.Hull-PreservingTechnique" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.Shipwreck-SurvivingStamina" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.PerfectReckoningTechnique" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Storm-WeatheringEssenceInfusion" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.SeaAmbushTechnique" essenceMinimum="2" primaryMinimum="4"/>  
+  <charm charmId="Solar.Wise-EyedCourtierMethod" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.Wild-RevelryApproach" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.TabooInflictingDiatribe" essenceMinimum="2" primaryMinimum="3"/>  
+  <charm charmId="Solar.VenomousWhispersTechnique" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.UnderstandingCourt" essenceMinimum="3" primaryMinimum="5"/>  
+  <charm charmId="Solar.MasterySmallManners" primaryMinimum="2"/>  
+  <charm charmId="Solar.GatheringCongregation" essenceMinimum="3" primaryMinimum="3"/> 
 </charmTraitsList>

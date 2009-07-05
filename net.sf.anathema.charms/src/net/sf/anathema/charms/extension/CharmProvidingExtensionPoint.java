@@ -1,5 +1,7 @@
 package net.sf.anathema.charms.extension;
 
+import java.util.List;
+
 import net.sf.anathema.basics.eclipse.extension.ClassConveyerBelt;
 import net.sf.anathema.basics.eclipse.extension.EclipseExtensionPoint;
 import net.sf.anathema.basics.eclipse.extension.NamePredicate;
@@ -50,6 +52,7 @@ public class CharmProvidingExtensionPoint {
         extensionPoint,
         IExecutableCharmTraitMap.class,
         predicate);
-    return new CharmTraitMap(conveyerBelt.getAllObjects());
+    List<IExecutableCharmTraitMap> subMaps = conveyerBelt.getAllObjects();
+    return new CharmTraitMap(subMaps);
   }
 }

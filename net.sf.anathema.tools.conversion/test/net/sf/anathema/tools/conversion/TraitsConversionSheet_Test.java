@@ -37,7 +37,7 @@ public class TraitsConversionSheet_Test {
         + "</charm>"
         + "</charmlist>";
     String expectedResult = "<charmTraitsList>"
-        + "<charmTraits charmId=\"Dragon-Blooded.DragonGracedArrow\" essenceMinimum=\"2\" primaryMinimum=\"3\"/>"
+        + "<charm charmId=\"Dragon-Blooded.DragonGracedArrow\" essenceMinimum=\"2\" primaryMinimum=\"3\"/>"
         + "</charmTraitsList>";
     assertTransformationConvertsSimilar(xml, expectedResult, sheet);
   }
@@ -53,7 +53,7 @@ public class TraitsConversionSheet_Test {
         + "</charm>"
         + "</charmlist>";
     String expectedResult = "<charmTraitsList>"
-        + "  <charmTraits charmId=\"charmId\" essenceMinimum=\"2\"/>"
+        + "  <charm charmId=\"charmId\" essenceMinimum=\"2\"/>"
         + "</charmTraitsList>";
     assertTransformationConvertsSimilar(xml, expectedResult, sheet);
   }
@@ -69,7 +69,7 @@ public class TraitsConversionSheet_Test {
         + "</charm>"
         + "</charmlist>";
     String expectedResult = "<charmTraitsList>"
-        + "<charmTraits charmId=\"charmId\" primaryMinimum=\"2\"/>"
+        + "<charm charmId=\"charmId\" primaryMinimum=\"2\"/>"
         + "</charmTraitsList>";
     assertTransformationConvertsSimilar(xml, expectedResult, sheet);
   }
@@ -100,7 +100,7 @@ public class TraitsConversionSheet_Test {
         + "</charm>"
         + "</charmlist>";
     String expectedResult = "<charmTraitsList>"
-        + "<charmTraits charmId=\"charmId\" essenceMinimum=\"3\" primaryMinimum=\"2\"/>"
+        + "<charm charmId=\"charmId\" essenceMinimum=\"3\" primaryMinimum=\"2\"/>"
         + "</charmTraitsList>";
     assertTransformationConvertsSimilar(xml, expectedResult, sheet);
   }

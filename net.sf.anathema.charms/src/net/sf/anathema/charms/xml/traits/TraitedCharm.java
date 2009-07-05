@@ -32,6 +32,8 @@ public class TraitedCharm implements ITraitedCharm {
 
   @Override
   public boolean hasId(ICharmId charmId) {
-    return charmTraitsElement.attributeValue(ATTRIB_CHARM_ID).equals(charmId.getId());
+    String charmIdAttribute = charmTraitsElement.attributeValue(ATTRIB_CHARM_ID);
+    String charmIdPattern = charmId.getIdPattern();
+    return charmIdAttribute.equals(charmIdPattern);
   }
 }

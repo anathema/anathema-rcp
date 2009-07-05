@@ -10,7 +10,7 @@
 	<xsl:template match="charm[prerequisite/trait/@value != 1 or prerequisite/essence/@value != 1]">
         <xsl:variable name="primaryMinimum" select="prerequisite/trait/@value"/>
         <xsl:variable name="essenceMinimum" select="prerequisite/essence/@value"/>
-	      <charmTraits>
+	      <charm>
 			<xsl:attribute name="charmId"><xsl:value-of select="@id"/></xsl:attribute>
 			<xsl:if test="$essenceMinimum != 1">
 				<xsl:attribute name="essenceMinimum"><xsl:value-of select="$essenceMinimum"/></xsl:attribute>
@@ -18,6 +18,6 @@
 			<xsl:if test="$primaryMinimum != 1">
 			  <xsl:attribute name="primaryMinimum"><xsl:value-of select="$primaryMinimum"/></xsl:attribute>
 			</xsl:if>
-	      </charmTraits>
+	      </charm>
 	</xsl:template>
 </xsl:stylesheet>
