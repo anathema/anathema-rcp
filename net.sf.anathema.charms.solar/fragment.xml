@@ -363,6 +363,19 @@
       </charmdata>
    </extension>
    <extension
+         point="net.sf.anathema.charms.charmtraits">
+      <charmtraits
+            charmId="solar.infinite.{0}.mastery"
+            essenceMinimum="3"
+            primaryMinimum="4">
+      </charmtraits>
+      <charmtraits
+            charmId="solar.{0}.essence.flow"
+            essenceMinimum="4"
+            primaryMinimum="5">
+      </charmtraits>
+   </extension>
+   <extension
          point="net.sf.anathema.charms.charmproviding">
       <treeProvider
             class="net.sf.anathema.charms.xml.XmlTreeProvider">
