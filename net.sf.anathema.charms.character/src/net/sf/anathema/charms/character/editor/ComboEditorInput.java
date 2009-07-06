@@ -1,6 +1,7 @@
 package net.sf.anathema.charms.character.editor;
 
 import java.net.URL;
+import java.util.Set;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.IModelContainer;
@@ -12,12 +13,15 @@ import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.data.INameMap;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
+import net.sf.anathema.charms.tree.ICharmId;
+import net.sf.anathema.lib.collection.ListOrderedSet;
 
 import org.eclipse.core.resources.IFile;
 
 public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboModel> {
 
-  final IModelContainer modelContainer;
+  private final IModelContainer modelContainer;
+  private final Set<ICharmId> comboCharmIds = new ListOrderedSet<ICharmId>();
 
   public ComboEditorInput(
       IFile modelFile,
@@ -42,11 +46,24 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
     return new CombableCharmTableInput(modelContainer);
   }
 
+  public ICharmTableInput getComboedCharms() {
+    return new ICharmTableInput() {
+      @Override
+      public ICharmId[] getAllCharms() {
+        return comboCharmIds.toArray(new ICharmId[comboCharmIds.size()]);
+      }
+    };
+  }
+
   public INameMap getCharmNameMap() {
     return new CharmNamesExtensionPoint();
   }
 
   public ICharmDataMap getCharmDataMap() {
     return CharmProvidingExtensionPoint.CreateCharmDataMap();
+  }
+
+  public void addCharmToCombo(ICharmId charm) {
+    comboCharmIds.add(charm);
   }
 }
