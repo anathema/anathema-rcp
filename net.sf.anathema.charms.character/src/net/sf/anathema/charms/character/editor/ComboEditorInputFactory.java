@@ -6,9 +6,9 @@ import net.sf.anathema.basics.eclipse.extension.UnconfiguredExecutableExtension;
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.ICharacterId;
 import net.sf.anathema.character.core.character.IModelCollection;
-import net.sf.anathema.character.core.character.ModelIdentifier;
+import net.sf.anathema.character.core.character.IModelContainer;
+import net.sf.anathema.character.core.model.ModelContainer;
 import net.sf.anathema.character.core.repository.IEditorInputFactory;
-import net.sf.anathema.charms.character.combo.IComboModel;
 import net.sf.anathema.lib.exception.PersistenceException;
 
 import org.eclipse.core.resources.IFile;
@@ -24,8 +24,7 @@ public class ComboEditorInputFactory extends UnconfiguredExecutableExtension imp
       URL imageUrl,
       IDisplayNameProvider nameProvider,
       IModelCollection modelProvider) throws PersistenceException, CoreException {
-    ModelIdentifier identifier = new ModelIdentifier(characterId, IComboModel.MODEL_ID);
-    IComboModel combos = (IComboModel) modelProvider.getModel(identifier);
-    return new ComboEditorInput(modelFile, imageUrl, combos, nameProvider);
+    IModelContainer modelContainer = new ModelContainer(modelProvider, characterId);
+    return new ComboEditorInput(modelFile, imageUrl, modelContainer, nameProvider);
   }
 }
