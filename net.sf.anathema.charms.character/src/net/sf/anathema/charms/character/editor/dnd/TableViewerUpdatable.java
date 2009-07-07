@@ -14,5 +14,6 @@ public final class TableViewerUpdatable implements IUpdatable {
   @Override
   public void update() {
     tableViewer.setInput(tableViewer.getInput());
+    tableViewer.getTable().getParent().layout();
   }
 }

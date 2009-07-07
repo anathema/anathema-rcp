@@ -66,4 +66,8 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
   public void addCharmToCombo(ICharmId charm) {
     comboCharmIds.add(charm);
   }
+
+  public void removeCharmFromCombo(ICharmId element) {
+    comboCharmIds.remove(element);
+  }
 }

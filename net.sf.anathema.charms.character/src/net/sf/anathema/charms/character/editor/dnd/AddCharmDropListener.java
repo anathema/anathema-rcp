@@ -9,11 +9,11 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 
-public final class CharmDropListener extends DropTargetAdapter {
+public final class AddCharmDropListener extends DropTargetAdapter {
   private final IUpdatable comboTableUpdatable;
   private final ComboEditorInput comboEditorInput;
 
-  public CharmDropListener(IUpdatable comboTableUpdatable, ComboEditorInput comboEditorInput) {
+  public AddCharmDropListener(IUpdatable comboTableUpdatable, ComboEditorInput comboEditorInput) {
     this.comboTableUpdatable = comboTableUpdatable;
     this.comboEditorInput = comboEditorInput;
   }

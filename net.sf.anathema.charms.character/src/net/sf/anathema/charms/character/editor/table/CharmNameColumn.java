@@ -8,14 +8,16 @@ import org.eclipse.swt.graphics.Image;
 public class CharmNameColumn implements ITableColumn {
 
   private final INameMap nameMap;
+  private final String header;
 
-  public CharmNameColumn(INameMap nameMap) {
+  public CharmNameColumn(INameMap nameMap, String header) {
     this.nameMap = nameMap;
+    this.header = header;
   }
 
   @Override
   public String getHeader() {
-    return "Charm";
+    return header;
   }
 
   @Override

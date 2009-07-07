@@ -6,17 +6,17 @@ import org.eclipse.swt.dnd.DragSource;
 import org.eclipse.swt.dnd.DragSourceAdapter;
 import org.eclipse.swt.dnd.DragSourceEvent;
 
-public final class CharmDragListener extends DragSourceAdapter {
-  private final TableViewer availableTable;
+public final class CharmTableDragListener extends DragSourceAdapter {
+  private final TableViewer table;
 
-  public CharmDragListener(TableViewer availableTable) {
-    this.availableTable = availableTable;
+  public CharmTableDragListener(TableViewer table) {
+    this.table = table;
   }
 
   @Override
   public void dragSetData(DragSourceEvent event) {
     DragSource dragSource = (DragSource) event.widget;
     LocalSelectionTransfer transfer = (LocalSelectionTransfer) dragSource.getTransfer()[0];
-    transfer.setSelection(availableTable.getSelection());
+    transfer.setSelection(table.getSelection());
   }
 }
