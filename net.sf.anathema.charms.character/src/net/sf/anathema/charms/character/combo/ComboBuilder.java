@@ -1,5 +1,8 @@
 package net.sf.anathema.charms.character.combo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.disy.commons.core.predicate.IPredicate;
 import net.sf.anathema.charms.character.combo.predicate.IsComboBasic;
 import net.sf.anathema.charms.character.combo.predicate.IsExtraAction;

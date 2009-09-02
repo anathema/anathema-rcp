@@ -12,6 +12,7 @@ import net.sf.anathema.charms.character.combo.IComboModel;
 import net.sf.anathema.charms.character.editor.combo.ComboableCharmTableInput;
 import net.sf.anathema.charms.character.editor.combo.ComboedCharmTableInput;
 import net.sf.anathema.charms.character.editor.table.ICharmTableInput;
+import net.sf.anathema.charms.data.CachingCharmDataMap;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.data.INameMap;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
@@ -25,6 +26,7 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
   private final ComboEditModel comboEditModel = new ComboEditModel();
   private final ICharmTableInput comboedCharmTableInput = new ComboedCharmTableInput(comboEditModel);
   private final ICharmTableInput comboableCharmTableInput;
+  private final ICharmDataMap charmDataMap;
 
   public ComboEditorInput(
       IFile modelFile,
@@ -34,6 +36,7 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
     super(modelFile, imageUrl, nameProvider, new ComboPersister());
     this.modelContainer = modelContainer;
     this.comboableCharmTableInput = new ComboableCharmTableInput(this, modelContainer);
+    this.charmDataMap = new CachingCharmDataMap(CharmProvidingExtensionPoint.CreateCharmDataMap());
   }
 
   @Override
@@ -59,7 +62,7 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
   }
 
   public ICharmDataMap getCharmDataMap() {
-    return CharmProvidingExtensionPoint.CreateCharmDataMap();
+    return charmDataMap;
   }
 
   public ComboEditModel getComboEditModel() {
