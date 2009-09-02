@@ -24,20 +24,35 @@ public class ComboBuilder {
     if (!charm.hasComboKeyword()) {
       return false;
     }
-    if (contains(new IsNonReflexive()) && charm.isComboBasic()) {
-      return charm.isReflexive();
+    if (combinesComboBasicWithNonReflexiveCharms(charm)) {
+      return false;
     }
-    if (contains(new IsNonReflexive()) && contains(new IsComboBasic())) {
-      return charm.isReflexive();
+    if (combinesTwoExtraActionOrTwoSimpleCharms(charm)) {
+      return false;
     }
+    return true;
+  }
+  
+  private boolean combinesComboBasicWithNonReflexiveCharms(ComboCharm charm) {
+    boolean containsNonReflexive = contains(new IsNonReflexive());
+    if (containsNonReflexive && charm.isComboBasic()) {
+      return !charm.isReflexive();
+    }
+    if (containsNonReflexive && contains(new IsComboBasic())) {
+      return !charm.isReflexive();
+    }
+    return false;
+  }
+  
+  private boolean combinesTwoExtraActionOrTwoSimpleCharms(ComboCharm charm) {
     boolean containsExtraAction = contains(new IsExtraAction());
     boolean containsSimple = contains(new IsSimple());
     if (containsExtraAction || containsSimple) {
       boolean twoExtraActionCharms = containsExtraAction && charm.isExtraAction();
       boolean twoSimpleCharms = containsSimple && charm.isSimple();
-      return !twoExtraActionCharms && ! twoSimpleCharms;
+      return twoExtraActionCharms ||  twoSimpleCharms;
     }
-    return true;
+    return false;
   }
   
   private boolean contains(IPredicate<ComboCharm> predicate) {
