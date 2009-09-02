@@ -33,9 +33,16 @@ public class ComboInputViewFactory {
   public ComboInputWidgets create(Composite parent) {
     ComboInputWidgets widgets = new ComboInputWidgets();
     Composite container = createGridContainer(parent, 2);
-    createLeftColumn(widgets, container);
-    createRightColumn(widgets, container);
+    createAvailableRow(widgets, container);
+    createEditRowColumn(widgets, container);
     return widgets;
+  }
+
+  private void createAvailableRow(ComboInputWidgets widgets, Composite container) {
+    widgets.availableCharms = createAvailableCharmsTable(container);
+    widgets.availableCharms.getTable().setLayoutData(new GridData(GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
+    Composite availableCombos = createGridContainer(container, 1);
+    toolkit.createLabel(availableCombos, "Learned Combos");
   }
 
   private Composite createGridContainer(Composite parent, int columnCount) {
@@ -45,19 +52,14 @@ public class ComboInputViewFactory {
     return container;
   }
 
-  private void createLeftColumn(ComboInputWidgets widgets, Composite parent) {
-    widgets.availableCharms = createAvailableCharmsTable(parent);
-    widgets.availableCharms.getTable().setLayoutData(new GridData(GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
-  }
-
-  private void createRightColumn(ComboInputWidgets widgets, Composite parent) {
+  private void createEditRowColumn(ComboInputWidgets widgets, Composite parent) {
     InstructionTextFactory textFactory = new InstructionTextFactory(toolkit);
-    Composite container = createGridContainer(parent, 1);
-    widgets.selectedCharms = createComboCharmsTable(container);
+    widgets.selectedCharms = createComboCharmsTable(parent);
     widgets.selectedCharms.getTable().setLayoutData(new GridData(GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
-    widgets.name = textFactory.create(container, "<Name>");
+    Composite container = createGridContainer(parent, 1);
+    widgets.name = textFactory.create(container, "<Name>", SWT.BORDER);
     widgets.name.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.FILL_HORIZONTAL));
-    widgets.description = textFactory.create(container, "<Description>", SWT.MULTI | SWT.V_SCROLL);
+    widgets.description = textFactory.create(container, "<Description>", SWT.MULTI | SWT.V_SCROLL | SWT.BORDER);
     widgets.description.setLayoutData(new GridData(GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
     widgets.confirmButton = toolkit.createButton(container, "Confirm", SWT.PUSH);
     widgets.confirmButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
