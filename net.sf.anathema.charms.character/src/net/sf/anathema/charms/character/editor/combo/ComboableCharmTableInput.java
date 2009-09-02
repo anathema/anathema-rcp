@@ -1,4 +1,4 @@
-package net.sf.anathema.charms.character.editor;
+package net.sf.anathema.charms.character.editor.combo;
 
 import java.util.Set;
 

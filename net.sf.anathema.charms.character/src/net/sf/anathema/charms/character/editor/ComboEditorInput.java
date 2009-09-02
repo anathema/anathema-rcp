@@ -9,6 +9,8 @@ import net.sf.anathema.character.experience.IExperience;
 import net.sf.anathema.charms.character.combo.Combo;
 import net.sf.anathema.charms.character.combo.ComboPersister;
 import net.sf.anathema.charms.character.combo.IComboModel;
+import net.sf.anathema.charms.character.editor.combo.ComboableCharmTableInput;
+import net.sf.anathema.charms.character.editor.combo.ComboedCharmTableInput;
 import net.sf.anathema.charms.character.editor.table.ICharmTableInput;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.data.INameMap;

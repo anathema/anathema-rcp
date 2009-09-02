@@ -1,9 +1,10 @@
 /**
  * 
  */
-package net.sf.anathema.charms.character.editor;
+package net.sf.anathema.charms.character.editor.combo;
 
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.charms.character.editor.ComboEditModel;
 import net.sf.anathema.charms.character.editor.table.ICharmTableInput;
 import net.sf.anathema.charms.tree.ICharmId;
 

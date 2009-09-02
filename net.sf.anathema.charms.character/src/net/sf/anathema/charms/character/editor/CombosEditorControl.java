@@ -2,13 +2,16 @@ package net.sf.anathema.charms.character.editor;
 
 import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
+import net.sf.anathema.charms.character.combo.IComboModel;
 import net.sf.anathema.charms.character.editor.combo.ComboInputViewFactory;
 import net.sf.anathema.charms.character.editor.combo.ComboInputWidgets;
+import net.sf.anathema.charms.character.editor.combo.LearnedComboControl;
 import net.sf.anathema.charms.character.editor.dnd.AddCharmDropListener;
 import net.sf.anathema.charms.character.editor.dnd.CharmTableDragListener;
 import net.sf.anathema.charms.character.editor.dnd.RemoveCharmDropListener;
 import net.sf.anathema.charms.character.editor.dnd.TableViewerUpdatable;
 import net.sf.anathema.charms.character.editor.table.ICharmTableInput;
+import net.sf.anathema.charms.data.INameMap;
 import net.sf.anathema.lib.ui.ChangeableModelDisposable;
 
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -26,6 +29,23 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class CombosEditorControl extends AbstractItemEditorControl {
+
+  private final class UpdateLearnedCombos implements IChangeListener {
+    private final FormToolkit toolkit;
+    private final Composite availableCombos;
+
+    private UpdateLearnedCombos(FormToolkit toolkit, Composite availableCombos) {
+      this.toolkit = toolkit;
+      this.availableCombos = availableCombos;
+    }
+
+    @Override
+    public void stateChanged() {
+      INameMap charmNameMap = getComboEditorInput().getCharmNameMap();
+      LearnedComboControl view = new LearnedComboControl(availableCombos, toolkit, charmNameMap);
+      view.updateView(getComboModel().getCreationLearned());
+    }
+  }
 
   private static class SameInstanceInputUpdate implements IChangeListener {
     private final ICharmTableInput input;
@@ -76,6 +96,19 @@ public class CombosEditorControl extends AbstractItemEditorControl {
     initConfirmationActivation(widgets.confirmButton);
     initCharmTableUpdate(widgets);
     initTextualUpdates(widgets);
+    initLearnedComboUpdates(toolkit, widgets.availableCombos);
+  }
+
+  private void initLearnedComboUpdates(FormToolkit toolkit, Composite availableCombos) {
+    IChangeListener changeListener = new UpdateLearnedCombos(toolkit, availableCombos);
+    getComboModel().addChangeListener(changeListener);
+    changeListener.stateChanged();
+    addDisposable(new ChangeableModelDisposable(getComboModel(), changeListener));
+  }
+
+  private IComboModel getComboModel() {
+    ComboEditorInput comboEditorInput = getComboEditorInput();
+    return comboEditorInput.getItem();
   }
 
   private void initTextualUpdates(ComboInputWidgets widgets) {

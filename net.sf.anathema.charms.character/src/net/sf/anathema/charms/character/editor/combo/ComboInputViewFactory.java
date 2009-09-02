@@ -1,6 +1,5 @@
 package net.sf.anathema.charms.character.editor.combo;
 
-import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.ui.forms.InstructionTextFactory;
 import net.sf.anathema.charms.character.editor.ComboEditorInput;
 import net.sf.anathema.charms.character.editor.table.CharmContentProvider;
@@ -42,8 +41,7 @@ public class ComboInputViewFactory {
   private void createAvailableRow(ComboInputWidgets widgets, Composite container) {
     widgets.availableCharms = createAvailableCharmsTable(container);
     widgets.availableCharms.getTable().setLayoutData(new GridData(GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
-    Composite availableCombos = createGridContainer(container, 1);
-    toolkit.createLabel(availableCombos, "Learned Combos");
+    widgets.availableCombos = createGridContainer(container, 1);
   }
 
   private Composite createGridContainer(Composite parent, int columnCount) {
