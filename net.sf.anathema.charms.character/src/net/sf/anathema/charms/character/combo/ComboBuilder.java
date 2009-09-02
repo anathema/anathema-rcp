@@ -35,10 +35,8 @@ public class ComboBuilder {
   
   private boolean combinesComboBasicWithNonReflexiveCharms(ComboCharm charm) {
     boolean containsNonReflexive = contains(new IsNonReflexive());
-    if (containsNonReflexive && charm.isComboBasic()) {
-      return !charm.isReflexive();
-    }
-    if (containsNonReflexive && contains(new IsComboBasic())) {
+    boolean comboBasicCharmPresent = charm.isComboBasic() || contains(new IsComboBasic());
+    if (containsNonReflexive && comboBasicCharmPresent) {
       return !charm.isReflexive();
     }
     return false;
