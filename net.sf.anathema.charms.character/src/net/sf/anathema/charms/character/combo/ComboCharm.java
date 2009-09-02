@@ -16,4 +16,28 @@ public class ComboCharm {
   public List<String> getComboKeywords() {
     return CollectionUtilities.filter(data.keywords, new IsComboKeyword());
   }
+  
+  public boolean hasComboKeyword() {
+    return getComboKeywords().size() > 0;
+  }
+  
+  public boolean isComboBasic() {
+    return getComboKeywords().contains("Combo-Basic");
+  }
+  
+  public boolean isComboOk() {
+    return getComboKeywords().contains("Combo-OK");
+  }
+  
+  public boolean isReflexive() {
+    return "reflexive".equals(String.valueOf(data.type).toLowerCase());
+  }
+  
+  public boolean isSimple() {
+    return "simple".equals(String.valueOf(data.type).toLowerCase());
+  }
+  
+  public boolean isExtraAction() {
+    return "extraaction".equals(String.valueOf(data.type).toLowerCase());
+  }
 }
