@@ -1,24 +1,22 @@
 package net.sf.anathema.charms.character.editor.table;
 
-import net.sf.anathema.charms.character.combo.ComboCharm;
 import net.sf.anathema.charms.data.CharmDto;
 import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.tree.ICharmId;
-import net.sf.anathema.lib.lang.ConcatenateString;
 
 import org.eclipse.swt.graphics.Image;
 
-public class ComboKeywordColumn implements ITableColumn {
+public class CharmTypeColumn implements ITableColumn {
 
   private final ICharmDataMap dataMap;
 
-  public ComboKeywordColumn(ICharmDataMap dataMap) {
+  public CharmTypeColumn(ICharmDataMap dataMap) {
     this.dataMap = dataMap;
   }
 
   @Override
   public String getHeader() {
-    return "Keyword";
+    return "Type";
   }
 
   @Override
@@ -28,22 +26,13 @@ public class ComboKeywordColumn implements ITableColumn {
 
   @Override
   public String getText(Object element) {
-    ComboCharm comboCharm = createComboCharm(element);
-    ConcatenateString comboKeywords = ConcatenateString.CommaSeparated();
-    for (String keyword : comboCharm.getComboKeywords()) {
-      comboKeywords.concatenate(keyword);
-    }
-    return comboKeywords.create();
-  }
-
-  private ComboCharm createComboCharm(Object element) {
     ICharmId charmId = (ICharmId) element;
     CharmDto data = dataMap.getData(charmId);
-    return new ComboCharm(data);
+    return data.type;
   }
 
   @Override
   public int getWidth() {
-    return 85;
+    return 90;
   }
 }

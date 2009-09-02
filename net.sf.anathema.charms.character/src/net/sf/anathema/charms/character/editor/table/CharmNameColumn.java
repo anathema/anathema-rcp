@@ -33,6 +33,6 @@ public class CharmNameColumn implements ITableColumn {
 
   @Override
   public int getWidth() {
-    return 300;
+    return 210;
   }
 }

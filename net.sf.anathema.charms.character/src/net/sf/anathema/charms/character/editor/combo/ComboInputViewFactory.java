@@ -5,6 +5,7 @@ import net.sf.anathema.charms.character.editor.ComboEditorInput;
 import net.sf.anathema.charms.character.editor.table.CharmContentProvider;
 import net.sf.anathema.charms.character.editor.table.CharmNameColumn;
 import net.sf.anathema.charms.character.editor.table.CharmTableLabelProvider;
+import net.sf.anathema.charms.character.editor.table.CharmTypeColumn;
 import net.sf.anathema.charms.character.editor.table.ComboKeywordColumn;
 import net.sf.anathema.charms.character.editor.table.ICharmTableInput;
 import net.sf.anathema.charms.character.editor.table.ITableColumn;
@@ -90,7 +91,10 @@ public class ComboInputViewFactory {
   private TableViewer createTableViewer(Table table, ICharmTableInput input, String header) {
     INameMap nameMap = editorInput.getCharmNameMap();
     ICharmDataMap dataMap = editorInput.getCharmDataMap();
-    ITableColumn[] columns = new ITableColumn[] { new CharmNameColumn(nameMap, header), new ComboKeywordColumn(dataMap) };
+    ITableColumn[] columns = new ITableColumn[] {
+        new CharmNameColumn(nameMap, header),
+        new ComboKeywordColumn(dataMap),
+        new CharmTypeColumn(dataMap) };
     for (ITableColumn column : columns) {
       createColumn(table, column, SWT.LEFT);
     }
