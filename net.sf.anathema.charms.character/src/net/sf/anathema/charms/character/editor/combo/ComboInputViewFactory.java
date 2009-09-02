@@ -1,5 +1,6 @@
 package net.sf.anathema.charms.character.editor.combo;
 
+import net.disy.commons.core.model.listener.IChangeListener;
 import net.sf.anathema.basics.ui.forms.InstructionTextFactory;
 import net.sf.anathema.charms.character.editor.ComboEditorInput;
 import net.sf.anathema.charms.character.editor.table.CharmContentProvider;

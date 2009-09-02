@@ -12,8 +12,7 @@ Require-Bundle: net.sf.anathema.character.core,
  net.sf.anathema.basics.jface;bundle-version="1.0.0",
  net.sf.anathema.character.experience;bundle-version="1.0.0",
  net.sf.anathema.character.points,
- net.sf.anathema.character.trait;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.nebula.widgets.compositetable;bundle-version="1.0.0"
+ net.sf.anathema.character.trait;bundle-version="1.0.0";visibility:=reexport
 Export-Package: net.sf.anathema.charms.character.evaluation,
  net.sf.anathema.charms.character.model,
  net.sf.anathema.charms.character.points,

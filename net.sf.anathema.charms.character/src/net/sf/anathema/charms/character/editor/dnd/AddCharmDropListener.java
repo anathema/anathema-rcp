@@ -30,7 +30,7 @@ public final class AddCharmDropListener extends DropTargetAdapter {
     }
     IStructuredSelection selection = (IStructuredSelection) event.data;
     for (Object element : selection.toList()) {
-      comboEditorInput.addCharmToCombo((ICharmId) element);
+      comboEditorInput.getComboEditModel().addCharmToCombo((ICharmId) element);
     }
     comboTableUpdatable.update();
   }

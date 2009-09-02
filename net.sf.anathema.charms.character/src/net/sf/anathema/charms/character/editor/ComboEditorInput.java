@@ -1,11 +1,12 @@
 package net.sf.anathema.charms.character.editor;
 
 import java.net.URL;
-import java.util.Set;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.IModelContainer;
 import net.sf.anathema.character.core.model.AbstractCharacterModelEditorInput;
+import net.sf.anathema.character.experience.IExperience;
+import net.sf.anathema.charms.character.combo.Combo;
 import net.sf.anathema.charms.character.combo.ComboPersister;
 import net.sf.anathema.charms.character.combo.IComboModel;
 import net.sf.anathema.charms.character.editor.table.ICharmTableInput;
@@ -13,15 +14,15 @@ import net.sf.anathema.charms.data.ICharmDataMap;
 import net.sf.anathema.charms.data.INameMap;
 import net.sf.anathema.charms.data.lookup.CharmNamesExtensionPoint;
 import net.sf.anathema.charms.extension.CharmProvidingExtensionPoint;
-import net.sf.anathema.charms.tree.ICharmId;
-import net.sf.anathema.lib.collection.ListOrderedSet;
 
 import org.eclipse.core.resources.IFile;
 
 public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboModel> {
 
   private final IModelContainer modelContainer;
-  private final Set<ICharmId> comboCharmIds = new ListOrderedSet<ICharmId>();
+  private final ComboEditModel comboEditModel = new ComboEditModel();
+  private final ICharmTableInput comboedCharmTableInput = new ComboedCharmTableInput(comboEditModel);
+  private final ICharmTableInput comboableCharmTableInput;
 
   public ComboEditorInput(
       IFile modelFile,
@@ -30,6 +31,7 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
       IDisplayNameProvider nameProvider) {
     super(modelFile, imageUrl, nameProvider, new ComboPersister());
     this.modelContainer = modelContainer;
+    this.comboableCharmTableInput = new ComboableCharmTableInput(modelContainer);
   }
 
   @Override
@@ -43,16 +45,11 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
   }
 
   public ICharmTableInput getComboableCharms() {
-    return new CombableCharmTableInput(modelContainer);
+    return comboableCharmTableInput;
   }
 
   public ICharmTableInput getComboedCharms() {
-    return new ICharmTableInput() {
-      @Override
-      public ICharmId[] getAllCharms() {
-        return comboCharmIds.toArray(new ICharmId[comboCharmIds.size()]);
-      }
-    };
+    return comboedCharmTableInput;
   }
 
   public INameMap getCharmNameMap() {
@@ -63,11 +60,18 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
     return CharmProvidingExtensionPoint.CreateCharmDataMap();
   }
 
-  public void addCharmToCombo(ICharmId charm) {
-    comboCharmIds.add(charm);
+  public ComboEditModel getComboEditModel() {
+    return comboEditModel;
   }
 
-  public void removeCharmFromCombo(ICharmId element) {
-    comboCharmIds.remove(element);
+  public void learnCombo() {
+    Combo combo = comboEditModel.createComboAndClear();
+    IExperience experience = (IExperience) modelContainer.getModel(IExperience.MODEL_ID);
+    if (experience.isExperienced()) {
+      getItem().addExperienceLearned(combo);
+    }
+    else {
+      getItem().addCreationLearned(combo);
+    }
   }
 }
