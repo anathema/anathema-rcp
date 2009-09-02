@@ -33,7 +33,7 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
       IDisplayNameProvider nameProvider) {
     super(modelFile, imageUrl, nameProvider, new ComboPersister());
     this.modelContainer = modelContainer;
-    this.comboableCharmTableInput = new ComboableCharmTableInput(modelContainer);
+    this.comboableCharmTableInput = new ComboableCharmTableInput(this, modelContainer);
   }
 
   @Override

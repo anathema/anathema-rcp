@@ -27,11 +27,16 @@ public class ComboEditModel extends AbstractChangeableModel {
   }
   
   public Combo createComboAndClear() {
+    Combo combo = createCombo();
+    clear();
+    return combo;
+  }
+
+  public Combo createCombo() {
     Combo combo = new Combo();
     combo.charms.addAll(comboCharmIds);
     combo.description = isSet(description) ? description : null;
     combo.name = isSet(name) ? name : null;
-    clear();
     return combo;
   }
 
