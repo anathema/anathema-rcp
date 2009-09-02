@@ -8,7 +8,9 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Text;
 
-public final class InstructionDisplayListener extends MouseAdapter implements FocusListener, SelectionListener {
+public final class InstructionDisplayListener extends MouseAdapter implements
+    FocusListener,
+    SelectionListener {
   private static final String EMPTY_TEXT = ""; //$NON-NLS-1$
 
   private final Text textfield;

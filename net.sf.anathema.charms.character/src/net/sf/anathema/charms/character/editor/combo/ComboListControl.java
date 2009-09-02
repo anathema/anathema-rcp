@@ -1,11 +1,6 @@
 package net.sf.anathema.charms.character.editor.combo;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import net.disy.commons.core.model.listener.IChangeListener;
-import net.sf.anathema.charms.character.combo.Combo;
 import net.sf.anathema.charms.character.combo.IComboModel;
 import net.sf.anathema.charms.character.editor.ComboEditorInput;
 import net.sf.anathema.charms.data.INameMap;
