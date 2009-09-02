@@ -42,6 +42,7 @@ public class ComboInputViewFactory {
     widgets.availableCharms = createAvailableCharmsTable(container);
     widgets.availableCharms.getTable().setLayoutData(new GridData(GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
     widgets.availableCombos = createGridContainer(container, 1);
+    toolkit.createLabel(widgets.availableCombos, "Combos:");
   }
 
   private Composite createGridContainer(Composite parent, int columnCount) {

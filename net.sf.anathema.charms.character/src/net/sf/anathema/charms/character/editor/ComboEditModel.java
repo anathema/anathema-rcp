@@ -4,6 +4,7 @@ import java.util.Set;
 
 import net.disy.commons.core.model.AbstractChangeableModel;
 import net.disy.commons.core.util.ObjectUtilities;
+import net.disy.commons.core.util.StringUtilities;
 import net.sf.anathema.charms.character.combo.Combo;
 import net.sf.anathema.charms.tree.ICharmId;
 import net.sf.anathema.lib.collection.ListOrderedSet;
@@ -18,46 +19,60 @@ public class ComboEditModel extends AbstractChangeableModel {
     fireChangeEvent();
   }
 
-  public void removeCharmFromCombo(ICharmId element) {
-    comboCharmIds.remove(element);
+  private void clear() {
+    comboCharmIds.clear();
+    name = null;
+    description = null;
     fireChangeEvent();
   }
   
-  public boolean isValid() {
-    return comboCharmIds.size() > 1;
+  public Combo createComboAndClear() {
+    Combo combo = new Combo();
+    combo.charms.addAll(comboCharmIds);
+    combo.description = isSet(description) ? description : null;
+    combo.name = isSet(name) ? name : null;
+    clear();
+    return combo;
   }
 
   public ICharmId[] getComboedCharms() {
     return comboCharmIds.toArray(new ICharmId[comboCharmIds.size()]);
   }
   
+  public String getDescription() {
+    return description;
+  }
+  
+  public String getName() {
+    return name;
+  }
+
+  public boolean isValid() {
+    return comboCharmIds.size() > 1;
+  }
+
+  public void removeCharmFromCombo(ICharmId element) {
+    comboCharmIds.remove(element);
+    fireChangeEvent();
+  }
+
+  public void setDescription(String description) {
+    if (ObjectUtilities.equals(description, this.description)) {
+      return;
+    }
+    this.description = description;
+    fireChangeEvent();
+  }
+  
   public void setName(String name) {
-    if (ObjectUtilities.equals(this.name, name)) {
+    if (ObjectUtilities.equals(name, this.name)) {
       return;
     }
     this.name = name;
     fireChangeEvent();
   }
   
-  public void setDescription(String description) {
-    if (ObjectUtilities.equals(this.description, description)) {
-      return;
-    }
-    this.description = description;
-    fireChangeEvent();
-  }
-
-  public Combo createComboAndClear() {
-    Combo combo = new Combo();
-    combo.charms.addAll(comboCharmIds);
-    combo.description = description;
-    combo.name = name;
-    clear();
-    return combo;
-  }
-
-  private void clear() {
-    comboCharmIds.clear();
-    fireChangeEvent();
+  public boolean isSet(String text) {
+    return !StringUtilities.isNullOrEmpty(text);
   }
 }
