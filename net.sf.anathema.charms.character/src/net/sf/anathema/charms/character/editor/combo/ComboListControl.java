@@ -1,6 +1,11 @@
 package net.sf.anathema.charms.character.editor.combo;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import net.disy.commons.core.model.listener.IChangeListener;
+import net.sf.anathema.charms.character.combo.Combo;
 import net.sf.anathema.charms.character.combo.IComboModel;
 import net.sf.anathema.charms.character.editor.ComboEditorInput;
 import net.sf.anathema.charms.data.INameMap;
@@ -22,7 +27,7 @@ public class ComboListControl {
     public void stateChanged() {
       INameMap charmNameMap = editorInput.getCharmNameMap();
       LearnedComboViewFactory view = new LearnedComboViewFactory(availableCombos, charmNameMap);
-      view.exchangeView(getComboModel().getCreationLearned());
+      view.exchangeView(editorInput.getAllCombos());
     }
   }
 

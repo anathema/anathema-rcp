@@ -1,6 +1,8 @@
 package net.sf.anathema.charms.character.editor;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.anathema.basics.repository.treecontent.itemtype.IDisplayNameProvider;
 import net.sf.anathema.character.core.character.IModelContainer;
@@ -71,12 +73,31 @@ public class ComboEditorInput extends AbstractCharacterModelEditorInput<IComboMo
 
   public void learnCombo() {
     Combo combo = comboEditModel.createComboAndClear();
-    IExperience experience = (IExperience) modelContainer.getModel(IExperience.MODEL_ID);
-    if (experience.isExperienced()) {
+    if (isExperienced()) {
       getItem().addExperienceLearned(combo);
     }
     else {
       getItem().addCreationLearned(combo);
     }
+  }
+
+  public Iterable<Combo> getAllCombos() {
+    List<Combo> combos = new ArrayList<Combo>();
+    addAll(combos, getItem().getCreationLearned());
+    if (isExperienced()) {
+      addAll(combos, getItem().getExperienceLearned());
+    }
+    return combos;
+  }
+
+  private void addAll(List<Combo> combos, Iterable<Combo> addition) {
+    for (Combo combo : addition) {
+      combos.add(combo);
+    }
+  }
+
+  private boolean isExperienced() {
+    IExperience experience = (IExperience) modelContainer.getModel(IExperience.MODEL_ID);
+    return experience.isExperienced();
   }
 }

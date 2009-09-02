@@ -8,6 +8,7 @@ import net.sf.anathema.lib.ui.ChangeableModelDisposable;
 
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.widgets.Text;
 
 public class ComboTextControl {
 
@@ -22,8 +23,15 @@ public class ComboTextControl {
 
     @Override
     public void stateChanged() {
-      widgets.name.setText(getDisplayText(editModel.getName()));
-      widgets.description.setText(getDisplayText(editModel.getDescription()));
+      setText(widgets.name, editModel.getName());
+      setText(widgets.description, editModel.getDescription());
+    }
+
+    private void setText(Text text, String value) {
+      String displayText = getDisplayText(value);
+      if (!text.getText().equals(displayText)) {
+        text.setText(displayText);
+      }
     }
 
     private String getDisplayText(String name) {
