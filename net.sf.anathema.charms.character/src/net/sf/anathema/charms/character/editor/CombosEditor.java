@@ -2,6 +2,7 @@ package net.sf.anathema.charms.character.editor;
 
 import net.sf.anathema.basics.item.editor.IEditorControl;
 import net.sf.anathema.character.core.editors.AbstractCharacterModelEditorPart;
+import net.sf.anathema.charms.character.editor.combo.CombosEditorControl;
 import net.sf.anathema.charms.character.model.ICharmModel;
 
 public class CombosEditor extends AbstractCharacterModelEditorPart<ICharmModel> {

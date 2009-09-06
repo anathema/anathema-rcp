@@ -1,14 +1,9 @@
-package net.sf.anathema.charms.character.editor;
+package net.sf.anathema.charms.character.editor.combo;
 
 import net.sf.anathema.basics.item.editor.AbstractItemEditorControl;
-import net.sf.anathema.charms.character.editor.combo.AddToComboListener;
-import net.sf.anathema.charms.character.editor.combo.CharmTableControl;
-import net.sf.anathema.charms.character.editor.combo.ComboInputViewFactory;
-import net.sf.anathema.charms.character.editor.combo.ComboInputWidgets;
-import net.sf.anathema.charms.character.editor.combo.ComboListControl;
-import net.sf.anathema.charms.character.editor.combo.ComboTextControl;
-import net.sf.anathema.charms.character.editor.combo.ConfirmationControl;
-import net.sf.anathema.charms.character.editor.combo.RemoveFromComboListener;
+import net.sf.anathema.charms.character.editor.ComboEditModel;
+import net.sf.anathema.charms.character.editor.ComboEditorInput;
+import net.sf.anathema.charms.character.editor.CombosEditor;
 import net.sf.anathema.charms.character.editor.dnd.AddCharmDropListener;
 import net.sf.anathema.charms.character.editor.dnd.CharmTableDragListener;
 import net.sf.anathema.charms.character.editor.dnd.RemoveCharmDropListener;
@@ -16,9 +11,6 @@ import net.sf.anathema.charms.character.editor.dnd.TableViewerUpdatable;
 
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.dnd.DragSource;
-import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -59,9 +51,9 @@ public class CombosEditorControl extends AbstractItemEditorControl {
 
   private void initAddDragAndDrop(TableViewer availableTable, TableViewer comboTable) {
     createTableDragSource(availableTable);
-    DropTarget target = new DropTarget(comboTable.getControl(), DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_DEFAULT);
-    target.setTransfer(types);
-    target.addDropListener(new AddCharmDropListener(new TableViewerUpdatable(comboTable), getEditorInput()));
+    Control control = comboTable.getControl();
+    AddCharmDropListener listener = new AddCharmDropListener(new TableViewerUpdatable(comboTable), getEditorInput());
+    new LocalDragAndDropControl().addDropTarget(control, listener);
   }
 
   private void initRemoveDragAndDrop(TableViewer availableTable, TableViewer comboTable, Composite body) {
@@ -76,15 +68,14 @@ public class CombosEditorControl extends AbstractItemEditorControl {
   }
 
   private void createRemoveDropListener(TableViewer comboTable, Control control) {
-    DropTarget target = new DropTarget(control, DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_DEFAULT);
-    target.setTransfer(types);
-    target.addDropListener(new RemoveCharmDropListener(new TableViewerUpdatable(comboTable), getEditorInput()));
+    TableViewerUpdatable updatable = new TableViewerUpdatable(comboTable);
+    RemoveCharmDropListener listener = new RemoveCharmDropListener(updatable, getEditorInput());
+    new LocalDragAndDropControl().addDropTarget(control, listener);
   }
 
   private void createTableDragSource(TableViewer sourceTable) {
-    DragSource source = new DragSource(sourceTable.getControl(), DND.DROP_MOVE | DND.DROP_COPY);
-    source.setTransfer(types);
-    source.addDragListener(new CharmTableDragListener(sourceTable));
+    CharmTableDragListener listener = new CharmTableDragListener(sourceTable);
+    new LocalDragAndDropControl().addDragSource(sourceTable.getControl(), listener);
   }
 
   @Override
