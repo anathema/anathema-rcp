@@ -61,19 +61,32 @@
    </extension>
    <extension
          point="net.sf.anathema.character.points.configurations">
-      <experiencePointCalculator
-            groupReference="charmCosts"
-            handlerClass="net.sf.anathema.charms.character.points.ExperienceHandler">
-      </experiencePointCalculator>
       <pointGroup
             groupId="charmCosts"
             modelId="net.sf.anathema.charms.character.modelId"
             name="Charms">
       </pointGroup>
+      <pointGroup
+            groupId="comboCosts"
+            modelId="net.sf.anathema.charms.character.combo.model"
+            name="Combos">
+      </pointGroup>
       <bonusPointCalculator
             groupReference="charmCosts"
             handlerClass="net.sf.anathema.charms.character.points.CharmBonusPointHandler">
       </bonusPointCalculator>
+      <bonusPointCalculator
+            groupReference="comboCosts"
+            handlerClass="net.sf.anathema.charms.character.points.ComboBonusPointHandler">
+      </bonusPointCalculator>
+      <experiencePointCalculator
+            groupReference="charmCosts"
+            handlerClass="net.sf.anathema.charms.character.points.ExperienceHandler">
+      </experiencePointCalculator>
+      <experiencePointCalculator
+            groupReference="comboCosts"
+            handlerClass="net.sf.anathema.charms.character.points.ComboExperienceHandler">
+      </experiencePointCalculator>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">

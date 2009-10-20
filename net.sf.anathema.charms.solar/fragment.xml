@@ -374,6 +374,21 @@
             essenceMinimum="4"
             primaryMinimum="5">
       </charmtraits>
+      <charmtraits
+            charmId="solar.first.{0}.excellency"
+            essenceMinimum="1"
+            primaryMinimum="1">
+      </charmtraits>
+      <charmtraits
+            charmId="solar.second.{0}.excellency"
+            essenceMinimum="1"
+            primaryMinimum="1">
+      </charmtraits>
+      <charmtraits
+            charmId="solar.third.{0}.excellency"
+            essenceMinimum="1"
+            primaryMinimum="1">
+      </charmtraits>
    </extension>
    <extension
          point="net.sf.anathema.charms.charmproviding">
